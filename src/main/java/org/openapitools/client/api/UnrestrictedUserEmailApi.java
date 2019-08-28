@@ -1,0 +1,93 @@
+package org.openapitools.client.api;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+
+import java.util.Optional;
+
+import io.reactivex.Single;
+import io.reactivex.Completable;
+
+import org.everit.atlassian.restclient.common.RestCallUtil;
+import org.everit.atlassian.restclient.common.RestRequest;
+import org.everit.atlassian.restclient.common.RestRequestInterceptor;
+
+import org.everit.http.client.HttpClient;
+import org.everit.http.client.HttpMethod;
+import org.everit.http.client.HttpRequest;
+
+import org.openapitools.client.model.UnrestrictedUserEmail;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Collections;
+
+public class UnrestrictedUserEmailApi {
+
+  private static final String DEFAULT_BASE_PATH = "http://localhost";
+
+
+  private static final TypeReference<UnrestrictedUserEmail> returnType_getUserEmail = new TypeReference<UnrestrictedUserEmail>() {};
+
+
+  private static final TypeReference<UnrestrictedUserEmail> returnType_getUserEmailBulk = new TypeReference<UnrestrictedUserEmail>() {};
+
+
+  private final HttpClient httpClient;
+
+  public UnrestrictedUserEmailApi(HttpClient httpClient) {
+    this.httpClient = httpClient;
+  }
+
+  /**
+   * Get user email
+   * <p>Returns a user's email address. This API is only available to apps approved by Atlassian, according to these <a href=\"https://community.developer.atlassian.com/t/guidelines-for-requesting-access-to-email-address/27603\">guidelines</a>.</p> 
+   * @param accountId <p>The account ID of the user, which uniquely identifies the user across all Atlassian products. For example, <code>384093:32b4d9w0-f6a5-3535-11a3-9c8c88d10192</code>. Note, this should be treated as an opaque identifier (i.e. do not assume any structure in the value). Required.</p>  (optional)
+   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;UnrestrictedUserEmail&gt;
+   */
+  public Single<UnrestrictedUserEmail> getUserEmail(
+    String accountId, Optional<RestRequestInterceptor> restRequestInterceptor) {
+
+    RestRequest request = new RestRequest();
+    request.method = HttpMethod.GET;
+    request.basePath = DEFAULT_BASE_PATH;
+    request.path = "/rest/api/3/user/email";
+    if (accountId != null) {
+      request.queryParams.put("accountId", Collections.singleton(String.valueOf(accountId)));
+    }
+    
+    if (restRequestInterceptor.isPresent()) {
+      restRequestInterceptor.get().enhanceRestRequest(request);
+    }
+
+    return RestCallUtil.callEndpoint(httpClient, request, returnType_getUserEmail);
+  }
+
+  /**
+   * Get user email bulk
+   * <p>Returns a user's email address. This API is only available to apps approved by Atlassian, according to these <a href=\"https://community.developer.atlassian.com/t/guidelines-for-requesting-access-to-email-address/27603\">guidelines</a>.</p> 
+   * @param accountId <p>the account IDs of the users for which emails are required. An <code>accountId</code> is an identifier that uniquely identifies the user across all Atlassian products. For example, <code>384093:32b4d9w0-f6a5-3535-11a3-9c8c88d10192</code>. Note, this should be treated as an opaque identifier (i.e. do not assume any structure in the value).</p>  (optional, default to new ArrayList&lt;&gt;())
+   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;UnrestrictedUserEmail&gt;
+   */
+  public Single<UnrestrictedUserEmail> getUserEmailBulk(
+    List<String> accountId, Optional<RestRequestInterceptor> restRequestInterceptor) {
+
+    RestRequest request = new RestRequest();
+    request.method = HttpMethod.GET;
+    request.basePath = DEFAULT_BASE_PATH;
+    request.path = "/rest/api/3/user/email/bulk";
+    if (accountId != null) {
+      request.queryParams.put("accountId", RestCallUtil.objectCollectionToStringCollection(accountId));
+    }
+    
+    if (restRequestInterceptor.isPresent()) {
+      restRequestInterceptor.get().enhanceRestRequest(request);
+    }
+
+    return RestCallUtil.callEndpoint(httpClient, request, returnType_getUserEmailBulk);
+  }
+
+}

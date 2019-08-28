@@ -1,0 +1,115 @@
+package {{package}};
+
+import com.fasterxml.jackson.core.type.TypeReference;
+
+import java.util.Optional;
+
+{{^returnType}}
+import io.reactivex.Single;
+{{/returnType}}
+{{^returnType}}
+import io.reactivex.Completable;
+{{/returnType}}
+
+import org.everit.atlassian.restclient.common.RestCallUtil;
+import org.everit.atlassian.restclient.common.RestRequest;
+import org.everit.atlassian.restclient.common.RestRequestInterceptor;
+
+import org.everit.http.client.HttpClient;
+import org.everit.http.client.HttpMethod;
+import org.everit.http.client.HttpRequest;
+
+{{#imports}}import {{import}};
+{{/imports}}
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Collections;
+
+{{#operations}}
+public class {{classname}} {
+
+  private static final String DEFAULT_BASE_PATH = "{{{basePath}}}";
+
+{{#operation}}{{#returnType}}
+  private static final TypeReference<{{{returnType}}}> returnType_{{operationId}} = new TypeReference<{{{returnType}}}>() {};
+
+{{/returnType}}{{/operation}}
+  private final HttpClient httpClient;
+
+  public {{classname}}(HttpClient httpClient) {
+    this.httpClient = httpClient;
+  }
+
+  {{#operation}}
+  /**
+   * {{{summary}}}
+   * {{{notes}}}
+{{#allParams}}
+   * @param {{paramName}} {{{description}}}{{#required}} (required){{/required}}{{^required}} (optional{{#defaultValue}}, default to {{.}}{{/defaultValue}}){{/required}}
+{{/allParams}}
+   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return {{#returnType}}Single&lt;{{#isResponseFile}}ResponseBody{{/isResponseFile}}{{^isResponseFile}}{{returnType}}{{/isResponseFile}}&gt;{{/returnType}}{{^returnType}}Completable{{/returnType}}
+{{#isDeprecated}}
+   * @deprecated
+{{/isDeprecated}}
+{{#externalDocs}}
+   * {{{description}}}
+   * @see <a href="{{url}}">{{summary}} Documentation</a>
+{{/externalDocs}}
+   */
+  {{#isDeprecated}}
+  @Deprecated
+  {{/isDeprecated}}
+  {{#formParams}}
+  {{#-first}}
+  {{#isMultipart}}@retrofit2.http.Multipart{{/isMultipart}}{{^isMultipart}}@retrofit2.http.FormUrlEncoded{{/isMultipart}}
+  {{/-first}}
+  {{/formParams}}
+  {{^formParams}}
+  {{#prioritizedContentTypes}}
+  {{#-first}}
+  @Headers({
+    "Content-Type:{{{mediaType}}}"
+  })
+  {{/-first}}
+  {{/prioritizedContentTypes}}
+  {{/formParams}}
+  public {{#returnType}}Single<{{#isResponseFile}}ResponseBody{{/isResponseFile}}{{^isResponseFile}}{{{returnType}}}{{/isResponseFile}}>{{/returnType}}{{^returnType}}Completable{{/returnType}} {{operationId}}({{^allParams}}Optional<RestRequestInterceptor> restRequestInterceptor){{/allParams}}
+    {{#allParams}}{{{dataType}}} {{paramName}}, {{^hasMore}}Optional<RestRequestInterceptor> restRequestInterceptor){{/hasMore}}{{/allParams}} {
+
+    RestRequest request = new RestRequest();
+    request.method = HttpMethod.{{httpMethod}};
+    request.basePath = DEFAULT_BASE_PATH;
+    request.path = "{{{path}}}";
+    {{#pathParams}}
+    if ({{paramName}} != null) {
+      request.pathParams.put("{{baseName}}", String.valueOf({{paramName}}));
+    }
+    {{/pathParams}}
+    {{#queryParams}}
+    if ({{paramName}} != null) {
+      request.queryParams.put("{{baseName}}", {{#collectionFormat}}RestCallUtil.objectCollectionToStringCollection({{paramName}}){{/collectionFormat}}{{^collectionFormat}}Collections.singleton(String.valueOf({{paramName}})){{/collectionFormat}});
+    }
+    {{/queryParams}}
+    {{#headerParams}}
+    if ({{paramName}} != null) {
+      request.headers.put("{{baseName}}", {{paramName}});
+    }
+    {{/headerParams}}
+    {{#bodyParam}}
+    request.requestBody = Optional.ofNullable({{paramName}});
+    {{/bodyParam}}
+    
+    if (restRequestInterceptor.isPresent()) {
+      restRequestInterceptor.get().enhanceRestRequest(request);
+    }
+
+    return RestCallUtil.callEndpoint(httpClient, request{{#returnType}}, returnType_{{operationId}}{{/returnType}});
+  }
+
+  {{/operation}}
+}
+{{/operations}}

@@ -1,0 +1,30 @@
+diff --git a/modules/openapi-generator/src/main/java/org/openapitools/codegen/DefaultCodegen.java b/modules/openapi-generator/src/main/java/org/openapitools/codegen/DefaultCodegen.java
+index 67fd445..a235401 100644
+--- a/modules/openapi-generator/src/main/java/org/openapitools/codegen/DefaultCodegen.java
++++ b/modules/openapi-generator/src/main/java/org/openapitools/codegen/DefaultCodegen.java
+@@ -4688,11 +4688,23 @@
+             codegenParameter.paramName = toParamName(codegenParameter.baseName);
+             codegenParameter.items = codegenProperty.items;
+             codegenParameter.mostInnerItems = codegenProperty.mostInnerItems;
+-            codegenParameter.dataType = getTypeDeclaration(schema);
+-            codegenParameter.baseType = getSchemaType(inner);
+             codegenParameter.isContainer = Boolean.TRUE;
+             codegenParameter.isMapContainer = Boolean.TRUE;
+ 
++            CodegenModel codegenModel = null;
++            if (name != null) {
++                codegenModel = fromModel(name, schema);
++            }
++
++            if (codegenModel != null) {
++                codegenParameter.baseType = codegenModel.classname;
++                codegenParameter.dataType = getTypeDeclaration(codegenModel.classname);
++                imports.add(codegenParameter.baseType);
++            } else {
++                codegenParameter.dataType = getTypeDeclaration(schema);
++                codegenParameter.baseType = getSchemaType(inner);
++            }
++
+             setParameterBooleanFlagWithCodegenProperty(codegenParameter, codegenProperty);
+ 
+             // set nullable
