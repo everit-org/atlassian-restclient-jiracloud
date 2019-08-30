@@ -50,7 +50,7 @@ public class {{classname}} {
    * @param {{paramName}} {{{description}}}{{#required}} (required){{/required}}{{^required}} (optional{{#defaultValue}}, default to {{.}}{{/defaultValue}}){{/required}}
 {{/allParams}}
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
-   * @return {{#returnType}}Single&lt;{{#isResponseFile}}ResponseBody{{/isResponseFile}}{{^isResponseFile}}{{returnType}}{{/isResponseFile}}&gt;{{/returnType}}{{^returnType}}Completable{{/returnType}}
+   * @return {{#returnType}}Single&lt;{{#isResponseFile}}org.everit.http.client.async.AsyncContentProvider{{/isResponseFile}}{{^isResponseFile}}{{returnType}}{{/isResponseFile}}&gt;{{/returnType}}{{^returnType}}Completable{{/returnType}}
 {{#isDeprecated}}
    * @deprecated
 {{/isDeprecated}}
@@ -62,21 +62,7 @@ public class {{classname}} {
   {{#isDeprecated}}
   @Deprecated
   {{/isDeprecated}}
-  {{#formParams}}
-  {{#-first}}
-  {{#isMultipart}}@retrofit2.http.Multipart{{/isMultipart}}{{^isMultipart}}@retrofit2.http.FormUrlEncoded{{/isMultipart}}
-  {{/-first}}
-  {{/formParams}}
-  {{^formParams}}
-  {{#prioritizedContentTypes}}
-  {{#-first}}
-  @Headers({
-    "Content-Type:{{{mediaType}}}"
-  })
-  {{/-first}}
-  {{/prioritizedContentTypes}}
-  {{/formParams}}
-  public {{#returnType}}Single<{{#isResponseFile}}ResponseBody{{/isResponseFile}}{{^isResponseFile}}{{{returnType}}}{{/isResponseFile}}>{{/returnType}}{{^returnType}}Completable{{/returnType}} {{operationId}}({{^allParams}}Optional<RestRequestEnhancer> restRequestEnhancer){{/allParams}}
+  public {{#returnType}}Single<{{#isResponseFile}}org.everit.http.client.async.AsyncContentProvider{{/isResponseFile}}{{^isResponseFile}}{{{returnType}}}{{/isResponseFile}}>{{/returnType}}{{^returnType}}Completable{{/returnType}} {{operationId}}({{^allParams}}{{#formParams}}{{#-first}}org.everit.http.client.async.AsyncContentProvider {{#isMultipart}}multipart{{/isMultipart}}{{^isMultipart}}formUrlencoded{{/isMultipart}}Body, {{/-first}}{{/formParams}}Optional<RestRequestEnhancer> restRequestEnhancer){{/allParams}}
     {{#allParams}}{{#required}}{{{dataType}}}{{/required}}{{^required}}Optional<{{{dataType}}}>{{/required}} {{paramName}}, {{^hasMore}}Optional<RestRequestEnhancer> restRequestEnhancer){{/hasMore}}{{/allParams}} {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()

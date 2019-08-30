@@ -122,7 +122,8 @@
                   <generateModelDocumentation>false</generateModelDocumentation>
                   <generateModelTests>false</generateModelTests>
                   <generateSupportingFiles>false</generateSupportingFiles>
-                  <packageName>org.everit.atlassian.restclient.jiracloud.v3</packageName>
+                  <apiPackage>org.everit.atlassian.restclient.jiracloud.v3.api</apiPackage>
+                  <modelPackage>org.everit.atlassian.restclient.jiracloud.v3.model</modelPackage>
                   <output>${project.basedir}</output>
                   <configOptions>
                     <sourceFolder>src/main/java</sourceFolder>
