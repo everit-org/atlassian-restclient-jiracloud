@@ -24,9 +24,8 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * JiraExpressionsComplexityValueBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class JiraExpressionsComplexityValueBean {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("value")
   private Integer value;
 
@@ -42,7 +41,7 @@ public class JiraExpressionsComplexityValueBean {
    * The complexity value of the current expression.
    * @return value
   **/
-  @ApiModelProperty(value = "The complexity value of the current expression.")
+  @ApiModelProperty(required = true, value = "The complexity value of the current expression.")
   public Integer getValue() {
     return value;
   }
@@ -60,7 +59,7 @@ public class JiraExpressionsComplexityValueBean {
    * The maximum allowed complexity. The evaluation will fail if this value is exceeded.
    * @return limit
   **/
-  @ApiModelProperty(value = "The maximum allowed complexity. The evaluation will fail if this value is exceeded.")
+  @ApiModelProperty(required = true, value = "The maximum allowed complexity. The evaluation will fail if this value is exceeded.")
   public Integer getLimit() {
     return limit;
   }

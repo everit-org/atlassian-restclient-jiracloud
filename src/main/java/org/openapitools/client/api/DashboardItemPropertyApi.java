@@ -9,7 +9,7 @@ import io.reactivex.Completable;
 
 import org.everit.atlassian.restclient.common.RestCallUtil;
 import org.everit.atlassian.restclient.common.RestRequest;
-import org.everit.atlassian.restclient.common.RestRequestInterceptor;
+import org.everit.atlassian.restclient.common.RestRequestEnhancer;
 
 import org.everit.http.client.HttpClient;
 import org.everit.http.client.HttpMethod;
@@ -19,24 +19,21 @@ import org.openapitools.client.model.EntityProperty;
 import org.openapitools.client.model.PropertyKeys;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Collections;
 
 public class DashboardItemPropertyApi {
 
   private static final String DEFAULT_BASE_PATH = "http://localhost";
 
-
   private static final TypeReference<EntityProperty> returnType_getDashboardItemProperty = new TypeReference<EntityProperty>() {};
-
 
   private static final TypeReference<PropertyKeys> returnType_getDashboardItemPropertyKeys = new TypeReference<PropertyKeys>() {};
 
-
   private static final TypeReference<Object> returnType_setDashboardItemProperty = new TypeReference<Object>() {};
-
 
   private final HttpClient httpClient;
 
@@ -50,31 +47,30 @@ public class DashboardItemPropertyApi {
    * @param dashboardId <p>The ID of the dashboard.</p>  (required)
    * @param itemId <p>The ID of the dashboard item.</p>  (required)
    * @param propertyKey <p>The key of the dashboard item property.</p>  (required)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Completable
    */
   public Completable deleteDashboardItemProperty(
-    String dashboardId, String itemId, String propertyKey, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    String dashboardId, String itemId, String propertyKey, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.DELETE;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/dashboard/{dashboardId}/items/{itemId}/properties/{propertyKey}";
-    if (dashboardId != null) {
-      request.pathParams.put("dashboardId", String.valueOf(dashboardId));
-    }
-    if (itemId != null) {
-      request.pathParams.put("itemId", String.valueOf(itemId));
-    }
-    if (propertyKey != null) {
-      request.pathParams.put("propertyKey", String.valueOf(propertyKey));
-    }
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.DELETE)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/dashboard/{dashboardId}/items/{itemId}/properties/{propertyKey}");
 
-    return RestCallUtil.callEndpoint(httpClient, request);
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("dashboardId", String.valueOf(dashboardId));
+    pathParams.put("itemId", String.valueOf(itemId));
+    pathParams.put("propertyKey", String.valueOf(propertyKey));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -83,31 +79,30 @@ public class DashboardItemPropertyApi {
    * @param dashboardId <p>The ID of the dashboard.</p>  (required)
    * @param itemId <p>The ID of the dashboard item.</p>  (required)
    * @param propertyKey <p>The key of the dashboard item property.</p>  (required)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;EntityProperty&gt;
    */
   public Single<EntityProperty> getDashboardItemProperty(
-    String dashboardId, String itemId, String propertyKey, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    String dashboardId, String itemId, String propertyKey, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.GET;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/dashboard/{dashboardId}/items/{itemId}/properties/{propertyKey}";
-    if (dashboardId != null) {
-      request.pathParams.put("dashboardId", String.valueOf(dashboardId));
-    }
-    if (itemId != null) {
-      request.pathParams.put("itemId", String.valueOf(itemId));
-    }
-    if (propertyKey != null) {
-      request.pathParams.put("propertyKey", String.valueOf(propertyKey));
-    }
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/dashboard/{dashboardId}/items/{itemId}/properties/{propertyKey}");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_getDashboardItemProperty);
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("dashboardId", String.valueOf(dashboardId));
+    pathParams.put("itemId", String.valueOf(itemId));
+    pathParams.put("propertyKey", String.valueOf(propertyKey));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getDashboardItemProperty);
   }
 
   /**
@@ -115,28 +110,29 @@ public class DashboardItemPropertyApi {
    * <p>Returns the keys of all properties for a dashboard item.</p> <p>This operation can be accessed anonymously.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> The user must be the owner of the dashboard or be shared the dashboard. Note, users with the <em>Administer Jira</em> <a href=\"https://confluence.atlassian.com/x/x4dKLg\">global permission</a> are considered owners of the System dashboard. The System dashboard is considered to be shared with all other users.</p> 
    * @param dashboardId <p>The ID of the dashboard.</p>  (required)
    * @param itemId <p>The ID of the dashboard item.</p>  (required)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PropertyKeys&gt;
    */
   public Single<PropertyKeys> getDashboardItemPropertyKeys(
-    String dashboardId, String itemId, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    String dashboardId, String itemId, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.GET;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/dashboard/{dashboardId}/items/{itemId}/properties";
-    if (dashboardId != null) {
-      request.pathParams.put("dashboardId", String.valueOf(dashboardId));
-    }
-    if (itemId != null) {
-      request.pathParams.put("itemId", String.valueOf(itemId));
-    }
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/dashboard/{dashboardId}/items/{itemId}/properties");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_getDashboardItemPropertyKeys);
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("dashboardId", String.valueOf(dashboardId));
+    pathParams.put("itemId", String.valueOf(itemId));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getDashboardItemPropertyKeys);
   }
 
   /**
@@ -146,32 +142,32 @@ public class DashboardItemPropertyApi {
    * @param itemId <p>The ID of the dashboard item.</p>  (required)
    * @param propertyKey <p>The key of the dashboard item property. The maximum length is 255 characters.</p>  (required)
    * @param body  (required)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Object&gt;
    */
   public Single<Object> setDashboardItemProperty(
-    String dashboardId, String itemId, String propertyKey, Object body, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    String dashboardId, String itemId, String propertyKey, Object body, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.PUT;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/dashboard/{dashboardId}/items/{itemId}/properties/{propertyKey}";
-    if (dashboardId != null) {
-      request.pathParams.put("dashboardId", String.valueOf(dashboardId));
-    }
-    if (itemId != null) {
-      request.pathParams.put("itemId", String.valueOf(itemId));
-    }
-    if (propertyKey != null) {
-      request.pathParams.put("propertyKey", String.valueOf(propertyKey));
-    }
-      request.requestBody = Optional.ofNullable(body);
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.PUT)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/dashboard/{dashboardId}/items/{itemId}/properties/{propertyKey}");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_setDashboardItemProperty);
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("dashboardId", String.valueOf(dashboardId));
+    pathParams.put("itemId", String.valueOf(itemId));
+    pathParams.put("propertyKey", String.valueOf(propertyKey));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(body));
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_setDashboardItemProperty);
   }
 
 }

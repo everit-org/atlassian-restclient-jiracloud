@@ -28,9 +28,8 @@ import org.openapitools.client.model.HierarchyLevel;
  * Project Issue Type Hierarchy
  */
 @ApiModel(description = "Project Issue Type Hierarchy")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class Hierarchy {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("level")
   private List<HierarchyLevel> level = new ArrayList<>();
 

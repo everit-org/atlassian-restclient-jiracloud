@@ -9,7 +9,7 @@ import io.reactivex.Completable;
 
 import org.everit.atlassian.restclient.common.RestCallUtil;
 import org.everit.atlassian.restclient.common.RestRequest;
-import org.everit.atlassian.restclient.common.RestRequestInterceptor;
+import org.everit.atlassian.restclient.common.RestRequestEnhancer;
 
 import org.everit.http.client.HttpClient;
 import org.everit.http.client.HttpMethod;
@@ -18,18 +18,17 @@ import org.everit.http.client.HttpRequest;
 import org.openapitools.client.model.PageBeanChangelog;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Collections;
 
 public class IssueChangelogApi {
 
   private static final String DEFAULT_BASE_PATH = "http://localhost";
 
-
   private static final TypeReference<PageBeanChangelog> returnType_getChangeLogs = new TypeReference<PageBeanChangelog>() {};
-
 
   private final HttpClient httpClient;
 
@@ -43,31 +42,34 @@ public class IssueChangelogApi {
    * @param issueIdOrKey <p>The ID or key of the issue.</p>  (required)
    * @param startAt <p>The index of the first item to return in a page of results (page offset).</p>  (optional, default to 0)
    * @param maxResults <p>The maximum number of items to return per page. The maximum is <code>100</code>.</p>  (optional, default to 100)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PageBeanChangelog&gt;
    */
   public Single<PageBeanChangelog> getChangeLogs(
-    String issueIdOrKey, Integer startAt, Integer maxResults, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    String issueIdOrKey, Optional<Integer> startAt, Optional<Integer> maxResults, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.GET;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/issue/{issueIdOrKey}/changelog";
-    if (issueIdOrKey != null) {
-      request.pathParams.put("issueIdOrKey", String.valueOf(issueIdOrKey));
-    }
-    if (startAt != null) {
-      request.queryParams.put("startAt", Collections.singleton(String.valueOf(startAt)));
-    }
-    if (maxResults != null) {
-      request.queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults)));
-    }
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/issue/{issueIdOrKey}/changelog");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_getChangeLogs);
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("issueIdOrKey", String.valueOf(issueIdOrKey));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (startAt.isPresent()) {
+      queryParams.put("startAt", Collections.singleton(String.valueOf(startAt.get())));
+    }
+    if (maxResults.isPresent()) {
+      queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getChangeLogs);
   }
 
 }

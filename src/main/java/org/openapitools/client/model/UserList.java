@@ -28,9 +28,8 @@ import org.openapitools.client.model.User;
  * A paginated list of users sharing the filter. This includes users that are members of the groups or can browse the projects that the filter is shared with.
  */
 @ApiModel(description = "A paginated list of users sharing the filter. This includes users that are members of the groups or can browse the projects that the filter is shared with.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class UserList {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("size")
   private Integer size;
 

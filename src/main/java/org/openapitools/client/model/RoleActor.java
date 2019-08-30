@@ -28,9 +28,8 @@ import org.openapitools.client.model.ProjectRoleUserBean;
  * Details about a user assigned to a project role.
  */
 @ApiModel(description = "Details about a user assigned to a project role.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class RoleActor {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("id")
   private Long id;
 

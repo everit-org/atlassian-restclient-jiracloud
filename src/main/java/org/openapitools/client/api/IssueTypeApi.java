@@ -9,7 +9,7 @@ import io.reactivex.Completable;
 
 import org.everit.atlassian.restclient.common.RestCallUtil;
 import org.everit.atlassian.restclient.common.RestRequest;
-import org.everit.atlassian.restclient.common.RestRequestInterceptor;
+import org.everit.atlassian.restclient.common.RestRequestEnhancer;
 
 import org.everit.http.client.HttpClient;
 import org.everit.http.client.HttpMethod;
@@ -21,33 +21,27 @@ import org.openapitools.client.model.IssueTypeCreateBean;
 import org.openapitools.client.model.IssueTypeUpdateBean;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Collections;
 
 public class IssueTypeApi {
 
   private static final String DEFAULT_BASE_PATH = "http://localhost";
 
-
   private static final TypeReference<IssueTypeBean> returnType_createIssueType = new TypeReference<IssueTypeBean>() {};
-
 
   private static final TypeReference<Avatar> returnType_createIssueTypeAvatar = new TypeReference<Avatar>() {};
 
-
   private static final TypeReference<List<IssueTypeBean>> returnType_getAlternativeIssueTypes = new TypeReference<List<IssueTypeBean>>() {};
-
 
   private static final TypeReference<List<IssueTypeBean>> returnType_getIssueAllTypes = new TypeReference<List<IssueTypeBean>>() {};
 
-
   private static final TypeReference<IssueTypeBean> returnType_getIssueType = new TypeReference<IssueTypeBean>() {};
 
-
   private static final TypeReference<IssueTypeBean> returnType_updateIssueType = new TypeReference<IssueTypeBean>() {};
-
 
   private final HttpClient httpClient;
 
@@ -59,23 +53,29 @@ public class IssueTypeApi {
    * Create issue type
    * <p>Creates an issue type and adds it to the default issue type scheme.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> <em>Administer Jira</em> <a href=\"https://confluence.atlassian.com/x/x4dKLg\">global permission</a>.</p> 
    * @param issueTypeCreateBean  (required)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;IssueTypeBean&gt;
    */
   public Single<IssueTypeBean> createIssueType(
-    IssueTypeCreateBean issueTypeCreateBean, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    IssueTypeCreateBean issueTypeCreateBean, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.POST;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/issuetype";
-      request.requestBody = Optional.ofNullable(issueTypeCreateBean);
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.POST)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/issuetype");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_createIssueType);
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(issueTypeCreateBean));
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_createIssueType);
   }
 
   /**
@@ -86,35 +86,39 @@ public class IssueTypeApi {
    * @param x <p>The X coordinate of the top-left corner of the crop region.</p>  (optional, default to 0)
    * @param y <p>The Y coordinate of the top-left corner of the crop region.</p>  (optional, default to 0)
    * @param size <p>The length of each side of the crop region.</p>  (optional)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Avatar&gt;
    */
   public Single<Avatar> createIssueTypeAvatar(
-    String id, Object body, Integer x, Integer y, Integer size, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    String id, Object body, Optional<Integer> x, Optional<Integer> y, Optional<Integer> size, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.POST;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/issuetype/{id}/avatar2";
-    if (id != null) {
-      request.pathParams.put("id", String.valueOf(id));
-    }
-    if (x != null) {
-      request.queryParams.put("x", Collections.singleton(String.valueOf(x)));
-    }
-    if (y != null) {
-      request.queryParams.put("y", Collections.singleton(String.valueOf(y)));
-    }
-    if (size != null) {
-      request.queryParams.put("size", Collections.singleton(String.valueOf(size)));
-    }
-      request.requestBody = Optional.ofNullable(body);
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.POST)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/issuetype/{id}/avatar2");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_createIssueTypeAvatar);
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("id", String.valueOf(id));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (x.isPresent()) {
+      queryParams.put("x", Collections.singleton(String.valueOf(x.get())));
+    }
+    if (y.isPresent()) {
+      queryParams.put("y", Collections.singleton(String.valueOf(y.get())));
+    }
+    if (size.isPresent()) {
+      queryParams.put("size", Collections.singleton(String.valueOf(size.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(body));
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_createIssueTypeAvatar);
   }
 
   /**
@@ -122,99 +126,113 @@ public class IssueTypeApi {
    * <p>Deletes the issue type. If the issue type is in use, all uses are updated with the alternative issue type (<code>alternativeIssueTypeId</code>). A list of alternative issue types are obtained from the <a href=\"#api-rest-api-3-issuetype-id-alternatives-get\">Get alternative issue types</a> resource.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> <em>Administer Jira</em> <a href=\"https://confluence.atlassian.com/x/x4dKLg\">global permission</a>.</p> 
    * @param id <p>The ID of the issue type.</p>  (required)
    * @param alternativeIssueTypeId <p>The ID of the replacement issue type.</p>  (optional)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Completable
    */
   public Completable deleteIssueType(
-    String id, String alternativeIssueTypeId, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    String id, Optional<String> alternativeIssueTypeId, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.DELETE;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/issuetype/{id}";
-    if (id != null) {
-      request.pathParams.put("id", String.valueOf(id));
-    }
-    if (alternativeIssueTypeId != null) {
-      request.queryParams.put("alternativeIssueTypeId", Collections.singleton(String.valueOf(alternativeIssueTypeId)));
-    }
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.DELETE)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/issuetype/{id}");
 
-    return RestCallUtil.callEndpoint(httpClient, request);
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("id", String.valueOf(id));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (alternativeIssueTypeId.isPresent()) {
+      queryParams.put("alternativeIssueTypeId", Collections.singleton(String.valueOf(alternativeIssueTypeId.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
    * Get alternative issue types
    * <p>Returns a list of issue types that can be used to replace the issue type. The alternative issue types are those assigned to the same workflow scheme, field configuration scheme, and screen scheme.</p> <p>This operation can be accessed anonymously.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> None.</p> 
    * @param id <p>The ID of the issue type.</p>  (required)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;List&lt;IssueTypeBean&gt;&gt;
    */
   public Single<List<IssueTypeBean>> getAlternativeIssueTypes(
-    String id, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    String id, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.GET;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/issuetype/{id}/alternatives";
-    if (id != null) {
-      request.pathParams.put("id", String.valueOf(id));
-    }
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/issuetype/{id}/alternatives");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_getAlternativeIssueTypes);
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("id", String.valueOf(id));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getAlternativeIssueTypes);
   }
 
   /**
    * Get all issue types for user
    * <p>Returns all issue types.</p> <p>This operation can be accessed anonymously.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> Issue types are only returned as follows:</p> <ul> <li>if the user has the <em>Administer Jira</em> <a href=\"https://confluence.atlassian.com/x/x4dKLg\">global permission</a>, all issue types are returned.</li> <li>if the user has the <em>Browse projects</em> <a href=\"https://confluence.atlassian.com/x/yodKLg\">project permission</a> for one or more projects, the issue types associated with the projects the user has permission to browse are returned.</li> </ul> 
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;List&lt;IssueTypeBean&gt;&gt;
    */
-  public Single<List<IssueTypeBean>> getIssueAllTypes(Optional<RestRequestInterceptor> restRequestInterceptor)
+  public Single<List<IssueTypeBean>> getIssueAllTypes(Optional<RestRequestEnhancer> restRequestEnhancer)
      {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.GET;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/issuetype";
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/issuetype");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_getIssueAllTypes);
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getIssueAllTypes);
   }
 
   /**
    * Get issue type
    * <p>Returns an issue type.</p> <p>This operation can be accessed anonymously.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> <em>Browse projects</em> <a href=\"https://confluence.atlassian.com/x/yodKLg\">project permission</a> in a project the issue type is associated with or <em>Administer Jira</em> <a href=\"https://confluence.atlassian.com/x/x4dKLg\">global permission</a>.</p> 
    * @param id <p>The ID of the issue type.</p>  (required)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;IssueTypeBean&gt;
    */
   public Single<IssueTypeBean> getIssueType(
-    String id, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    String id, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.GET;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/issuetype/{id}";
-    if (id != null) {
-      request.pathParams.put("id", String.valueOf(id));
-    }
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/issuetype/{id}");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_getIssueType);
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("id", String.valueOf(id));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getIssueType);
   }
 
   /**
@@ -222,26 +240,30 @@ public class IssueTypeApi {
    * <p>Updates the issue type.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> <em>Administer Jira</em> <a href=\"https://confluence.atlassian.com/x/x4dKLg\">global permission</a>.</p> 
    * @param id <p>The ID of the issue type.</p>  (required)
    * @param issueTypeUpdateBean  (required)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;IssueTypeBean&gt;
    */
   public Single<IssueTypeBean> updateIssueType(
-    String id, IssueTypeUpdateBean issueTypeUpdateBean, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    String id, IssueTypeUpdateBean issueTypeUpdateBean, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.PUT;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/issuetype/{id}";
-    if (id != null) {
-      request.pathParams.put("id", String.valueOf(id));
-    }
-      request.requestBody = Optional.ofNullable(issueTypeUpdateBean);
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.PUT)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/issuetype/{id}");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_updateIssueType);
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("id", String.valueOf(id));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(issueTypeUpdateBean));
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_updateIssueType);
   }
 
 }

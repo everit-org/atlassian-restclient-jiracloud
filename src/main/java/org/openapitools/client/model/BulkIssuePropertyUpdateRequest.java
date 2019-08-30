@@ -26,9 +26,8 @@ import org.openapitools.client.model.IssueFilterForBulkPropertySet;
  * Bulk issue property update request details.
  */
 @ApiModel(description = "Bulk issue property update request details.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class BulkIssuePropertyUpdateRequest {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("value")
   private Object value = null;
 

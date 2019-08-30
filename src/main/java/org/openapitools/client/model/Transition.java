@@ -23,14 +23,14 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.client.model.ScreenID;
+import org.openapitools.client.model.WorkflowRules;
 
 /**
  * Details of a workflow transition.
  */
 @ApiModel(description = "Details of a workflow transition.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class Transition {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("id")
   private String id;
 
@@ -88,6 +88,9 @@ public class Transition {
 
   @JsonProperty("screen")
   private ScreenID screen;
+
+  @JsonProperty("rules")
+  private WorkflowRules rules;
 
   public Transition id(String id) {
     this.id = id;
@@ -220,6 +223,24 @@ public class Transition {
     this.screen = screen;
   }
 
+  public Transition rules(WorkflowRules rules) {
+    this.rules = rules;
+    return this;
+  }
+
+   /**
+   * Get rules
+   * @return rules
+  **/
+  @ApiModelProperty(value = "")
+  public WorkflowRules getRules() {
+    return rules;
+  }
+
+  public void setRules(WorkflowRules rules) {
+    this.rules = rules;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -236,12 +257,13 @@ public class Transition {
         Objects.equals(this.from, transition.from) &&
         Objects.equals(this.to, transition.to) &&
         Objects.equals(this.type, transition.type) &&
-        Objects.equals(this.screen, transition.screen);
+        Objects.equals(this.screen, transition.screen) &&
+        Objects.equals(this.rules, transition.rules);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, from, to, type, screen);
+    return Objects.hash(id, name, description, from, to, type, screen, rules);
   }
 
 
@@ -256,6 +278,7 @@ public class Transition {
     sb.append("    to: ").append(toIndentedString(to)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    screen: ").append(toIndentedString(screen)).append("\n");
+    sb.append("    rules: ").append(toIndentedString(rules)).append("\n");
     sb.append("}");
     return sb.toString();
   }

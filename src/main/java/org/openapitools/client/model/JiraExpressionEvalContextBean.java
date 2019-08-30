@@ -21,19 +21,18 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.client.model.IdOrKeyBean;
-import org.openapitools.client.model.IssuesBean;
+import org.openapitools.client.model.JexpIssues;
 
 /**
  * JiraExpressionEvalContextBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class JiraExpressionEvalContextBean {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("issue")
   private IdOrKeyBean issue;
 
   @JsonProperty("issues")
-  private IssuesBean issues;
+  private JexpIssues issues;
 
   @JsonProperty("project")
   private IdOrKeyBean project;
@@ -68,7 +67,7 @@ public class JiraExpressionEvalContextBean {
     this.issue = issue;
   }
 
-  public JiraExpressionEvalContextBean issues(IssuesBean issues) {
+  public JiraExpressionEvalContextBean issues(JexpIssues issues) {
     this.issues = issues;
     return this;
   }
@@ -78,11 +77,11 @@ public class JiraExpressionEvalContextBean {
    * @return issues
   **/
   @ApiModelProperty(value = "(EXPERIMENTAL) The collection of issues that is available under the `issues` variable when evaluating the expression.")
-  public IssuesBean getIssues() {
+  public JexpIssues getIssues() {
     return issues;
   }
 
-  public void setIssues(IssuesBean issues) {
+  public void setIssues(JexpIssues issues) {
     this.issues = issues;
   }
 

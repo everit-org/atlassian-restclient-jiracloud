@@ -31,9 +31,8 @@ import org.openapitools.client.model.UserDetails;
  * Details of the users and groups to receive the notification.
  */
 @ApiModel(description = "Details of the users and groups to receive the notification.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class NotificationRecipients {
-/* xxxxxxxxxxxxx Object, , HashMap<String, Object>,  */
   @JsonProperty("reporter")
   private Boolean reporter;
 

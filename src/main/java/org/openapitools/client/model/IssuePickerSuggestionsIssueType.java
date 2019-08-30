@@ -28,9 +28,8 @@ import org.openapitools.client.model.SuggestedIssue;
  * A type of issue suggested for use in auto-completion.
  */
 @ApiModel(description = "A type of issue suggested for use in auto-completion.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class IssuePickerSuggestionsIssueType {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("label")
   private String label;
 

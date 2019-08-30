@@ -9,7 +9,7 @@ import io.reactivex.Completable;
 
 import org.everit.atlassian.restclient.common.RestCallUtil;
 import org.everit.atlassian.restclient.common.RestRequest;
-import org.everit.atlassian.restclient.common.RestRequestInterceptor;
+import org.everit.atlassian.restclient.common.RestRequestEnhancer;
 
 import org.everit.http.client.HttpClient;
 import org.everit.http.client.HttpMethod;
@@ -19,18 +19,17 @@ import org.openapitools.client.model.ErrorCollection;
 import org.openapitools.client.model.PageBeanWorkflow;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Collections;
 
 public class WorkflowSearchApi {
 
   private static final String DEFAULT_BASE_PATH = "http://localhost";
 
-
   private static final TypeReference<PageBeanWorkflow> returnType_getWorkflowsPaginated = new TypeReference<PageBeanWorkflow>() {};
-
 
   private final HttpClient httpClient;
 
@@ -44,35 +43,40 @@ public class WorkflowSearchApi {
    * @param startAt <p>The index of the first item to return in a page of results (page offset).</p>  (optional, default to 0l)
    * @param maxResults <p>The maximum number of items to return per page.</p>  (optional, default to 50)
    * @param workflowName <p>The name of a workflow to return.</p>  (optional, default to new ArrayList&lt;&gt;())
-   * @param expand <p>Use <a href=\"#expansion\">expand</a> to include additional information in the response. This parameter accepts multiple values separated by a comma:</p> <ul> <li><code>transition</code> For each workflow, returns information about the transitions inside the workflow.</li> <li><code>statuses</code> For each workflow, returns information about the statuses inside the workflow.</li> <li><code>statuses.properties</code> For each workflow status, returns information about its properties. Statuses are included automatically if this expand is requested.</li> </ul>  (optional)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param expand <p>Use <a href=\"#expansion\">expand</a> to include additional information in the response. This parameter accepts multiple values separated by a comma:</p> <ul> <li><code>transitions</code> For each workflow, returns information about the transitions inside the workflow.</li> <li><code>transitions.rules</code> For each workflow transition, returns information about its rules. Transitions are included automatically if this expand is requested.</li> <li><code>statuses</code> For each workflow, returns information about the statuses inside the workflow.</li> <li><code>statuses.properties</code> For each workflow status, returns information about its properties. Statuses are included automatically if this expand is requested.</li> </ul>  (optional)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PageBeanWorkflow&gt;
    */
   public Single<PageBeanWorkflow> getWorkflowsPaginated(
-    Long startAt, Integer maxResults, List<String> workflowName, String expand, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    Optional<Long> startAt, Optional<Integer> maxResults, Optional<List<String>> workflowName, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.GET;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/workflow/search";
-    if (startAt != null) {
-      request.queryParams.put("startAt", Collections.singleton(String.valueOf(startAt)));
-    }
-    if (maxResults != null) {
-      request.queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults)));
-    }
-    if (workflowName != null) {
-      request.queryParams.put("workflowName", RestCallUtil.objectCollectionToStringCollection(workflowName));
-    }
-    if (expand != null) {
-      request.queryParams.put("expand", Collections.singleton(String.valueOf(expand)));
-    }
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/workflow/search");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_getWorkflowsPaginated);
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (startAt.isPresent()) {
+      queryParams.put("startAt", Collections.singleton(String.valueOf(startAt.get())));
+    }
+    if (maxResults.isPresent()) {
+      queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults.get())));
+    }
+    if (workflowName.isPresent()) {
+      queryParams.put("workflowName", RestCallUtil.objectCollectionToStringCollection(workflowName.get()));
+    }
+    if (expand.isPresent()) {
+      queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getWorkflowsPaginated);
   }
 
 }

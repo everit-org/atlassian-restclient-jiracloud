@@ -9,7 +9,7 @@ import io.reactivex.Completable;
 
 import org.everit.atlassian.restclient.common.RestCallUtil;
 import org.everit.atlassian.restclient.common.RestRequest;
-import org.everit.atlassian.restclient.common.RestRequestInterceptor;
+import org.everit.atlassian.restclient.common.RestRequestEnhancer;
 
 import org.everit.http.client.HttpClient;
 import org.everit.http.client.HttpMethod;
@@ -19,24 +19,21 @@ import org.openapitools.client.model.EntityProperty;
 import org.openapitools.client.model.PropertyKeys;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Collections;
 
 public class WorklogPropertyApi {
 
   private static final String DEFAULT_BASE_PATH = "http://localhost";
 
-
   private static final TypeReference<EntityProperty> returnType_getWorklogProperty = new TypeReference<EntityProperty>() {};
-
 
   private static final TypeReference<PropertyKeys> returnType_getWorklogPropertyKeys = new TypeReference<PropertyKeys>() {};
 
-
   private static final TypeReference<Object> returnType_setWorklogProperty = new TypeReference<Object>() {};
-
 
   private final HttpClient httpClient;
 
@@ -50,31 +47,30 @@ public class WorklogPropertyApi {
    * @param issueIdOrKey <p>The ID or key of the issue.</p>  (required)
    * @param worklogId <p>The ID of the worklog.</p>  (required)
    * @param propertyKey <p>The key of the property.</p>  (required)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Completable
    */
   public Completable deleteWorklogProperty(
-    String issueIdOrKey, String worklogId, String propertyKey, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    String issueIdOrKey, String worklogId, String propertyKey, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.DELETE;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/issue/{issueIdOrKey}/worklog/{worklogId}/properties/{propertyKey}";
-    if (issueIdOrKey != null) {
-      request.pathParams.put("issueIdOrKey", String.valueOf(issueIdOrKey));
-    }
-    if (worklogId != null) {
-      request.pathParams.put("worklogId", String.valueOf(worklogId));
-    }
-    if (propertyKey != null) {
-      request.pathParams.put("propertyKey", String.valueOf(propertyKey));
-    }
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.DELETE)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/issue/{issueIdOrKey}/worklog/{worklogId}/properties/{propertyKey}");
 
-    return RestCallUtil.callEndpoint(httpClient, request);
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("issueIdOrKey", String.valueOf(issueIdOrKey));
+    pathParams.put("worklogId", String.valueOf(worklogId));
+    pathParams.put("propertyKey", String.valueOf(propertyKey));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -83,31 +79,30 @@ public class WorklogPropertyApi {
    * @param issueIdOrKey <p>The ID or key of the issue.</p>  (required)
    * @param worklogId <p>The ID of the worklog.</p>  (required)
    * @param propertyKey <p>The key of the property.</p>  (required)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;EntityProperty&gt;
    */
   public Single<EntityProperty> getWorklogProperty(
-    String issueIdOrKey, String worklogId, String propertyKey, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    String issueIdOrKey, String worklogId, String propertyKey, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.GET;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/issue/{issueIdOrKey}/worklog/{worklogId}/properties/{propertyKey}";
-    if (issueIdOrKey != null) {
-      request.pathParams.put("issueIdOrKey", String.valueOf(issueIdOrKey));
-    }
-    if (worklogId != null) {
-      request.pathParams.put("worklogId", String.valueOf(worklogId));
-    }
-    if (propertyKey != null) {
-      request.pathParams.put("propertyKey", String.valueOf(propertyKey));
-    }
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/issue/{issueIdOrKey}/worklog/{worklogId}/properties/{propertyKey}");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_getWorklogProperty);
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("issueIdOrKey", String.valueOf(issueIdOrKey));
+    pathParams.put("worklogId", String.valueOf(worklogId));
+    pathParams.put("propertyKey", String.valueOf(propertyKey));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getWorklogProperty);
   }
 
   /**
@@ -115,28 +110,29 @@ public class WorklogPropertyApi {
    * <p>Returns the keys of all properties for a worklog.</p> <p>This operation can be accessed anonymously.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong></p> <ul> <li><em>Browse projects</em> <a href=\"https://confluence.atlassian.com/x/yodKLg\">project permission</a> for the project that the issue is in.</li> <li>If <a href=\"https://confluence.atlassian.com/x/J4lKLg\">issue-level security</a> is configured, issue-level security permission to view the issue.</li> <li>If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.</li> </ul> 
    * @param issueIdOrKey <p>The ID or key of the issue.</p>  (required)
    * @param worklogId <p>The ID of the worklog.</p>  (required)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PropertyKeys&gt;
    */
   public Single<PropertyKeys> getWorklogPropertyKeys(
-    String issueIdOrKey, String worklogId, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    String issueIdOrKey, String worklogId, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.GET;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/issue/{issueIdOrKey}/worklog/{worklogId}/properties";
-    if (issueIdOrKey != null) {
-      request.pathParams.put("issueIdOrKey", String.valueOf(issueIdOrKey));
-    }
-    if (worklogId != null) {
-      request.pathParams.put("worklogId", String.valueOf(worklogId));
-    }
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/issue/{issueIdOrKey}/worklog/{worklogId}/properties");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_getWorklogPropertyKeys);
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("issueIdOrKey", String.valueOf(issueIdOrKey));
+    pathParams.put("worklogId", String.valueOf(worklogId));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getWorklogPropertyKeys);
   }
 
   /**
@@ -146,32 +142,32 @@ public class WorklogPropertyApi {
    * @param worklogId <p>The ID of the worklog.</p>  (required)
    * @param propertyKey <p>The key of the issue property. The maximum length is 255 characters.</p>  (required)
    * @param body  (required)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Object&gt;
    */
   public Single<Object> setWorklogProperty(
-    String issueIdOrKey, String worklogId, String propertyKey, Object body, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    String issueIdOrKey, String worklogId, String propertyKey, Object body, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.PUT;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/issue/{issueIdOrKey}/worklog/{worklogId}/properties/{propertyKey}";
-    if (issueIdOrKey != null) {
-      request.pathParams.put("issueIdOrKey", String.valueOf(issueIdOrKey));
-    }
-    if (worklogId != null) {
-      request.pathParams.put("worklogId", String.valueOf(worklogId));
-    }
-    if (propertyKey != null) {
-      request.pathParams.put("propertyKey", String.valueOf(propertyKey));
-    }
-      request.requestBody = Optional.ofNullable(body);
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.PUT)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/issue/{issueIdOrKey}/worklog/{worklogId}/properties/{propertyKey}");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_setWorklogProperty);
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("issueIdOrKey", String.valueOf(issueIdOrKey));
+    pathParams.put("worklogId", String.valueOf(worklogId));
+    pathParams.put("propertyKey", String.valueOf(propertyKey));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(body));
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_setWorklogProperty);
   }
 
 }

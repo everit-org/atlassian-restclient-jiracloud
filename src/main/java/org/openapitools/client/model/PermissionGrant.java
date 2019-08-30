@@ -27,9 +27,8 @@ import org.openapitools.client.model.PermissionHolder;
  * Details about a permission granted to a user or group.
  */
 @ApiModel(description = "Details about a permission granted to a user or group.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class PermissionGrant {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("id")
   private Long id;
 
@@ -66,10 +65,10 @@ public class PermissionGrant {
   }
 
    /**
-   * The user or group being granted the permission. It consists of a &#x60;type&#x60; and a type-dependent &#x60;parameter&#x60;. For more information, see *Holder* in [Get all permission schemes](#api-rest-api-3-permissionscheme-get).
+   * The user or group being granted the permission. It consists of a &#x60;type&#x60; and a type-dependent &#x60;parameter&#x60;. See [Holder object](#holder-object) in *Get all permission schemes* for more information.
    * @return holder
   **/
-  @ApiModelProperty(value = "The user or group being granted the permission. It consists of a `type` and a type-dependent `parameter`. For more information, see *Holder* in [Get all permission schemes](#api-rest-api-3-permissionscheme-get).")
+  @ApiModelProperty(value = "The user or group being granted the permission. It consists of a `type` and a type-dependent `parameter`. See [Holder object](#holder-object) in *Get all permission schemes* for more information.")
   public PermissionHolder getHolder() {
     return holder;
   }
@@ -84,10 +83,10 @@ public class PermissionGrant {
   }
 
    /**
-   * The permission to grant. This permission can be one of the built-in permissions or a custom permission added by an app. For more information about the built-in permissions, see *Permissions* in [Get all permission schemes](#api-rest-api-3-permissionscheme-get). For more information about custom permissions, see the [project permission](https://developer.atlassian.com/cloud/jira/platform/modules/project-permission/) and [global permission](https://developer.atlassian.com/cloud/jira/platform/modules/global-permission/) module documentation.
+   * The permission to grant. This permission can be one of the built-in permissions or a custom permission added by an app. See [Built-in permissions](#built-in-permissions) in *Get all permission schemes* for more information about the built-in permissions. See the [project permission](https://developer.atlassian.com/cloud/jira/platform/modules/project-permission/) and [global permission](https://developer.atlassian.com/cloud/jira/platform/modules/global-permission/) module documentation for more information about custom permissions.
    * @return permission
   **/
-  @ApiModelProperty(value = "The permission to grant. This permission can be one of the built-in permissions or a custom permission added by an app. For more information about the built-in permissions, see *Permissions* in [Get all permission schemes](#api-rest-api-3-permissionscheme-get). For more information about custom permissions, see the [project permission](https://developer.atlassian.com/cloud/jira/platform/modules/project-permission/) and [global permission](https://developer.atlassian.com/cloud/jira/platform/modules/global-permission/) module documentation.")
+  @ApiModelProperty(value = "The permission to grant. This permission can be one of the built-in permissions or a custom permission added by an app. See [Built-in permissions](#built-in-permissions) in *Get all permission schemes* for more information about the built-in permissions. See the [project permission](https://developer.atlassian.com/cloud/jira/platform/modules/project-permission/) and [global permission](https://developer.atlassian.com/cloud/jira/platform/modules/global-permission/) module documentation for more information about custom permissions.")
   public String getPermission() {
     return permission;
   }

@@ -29,9 +29,8 @@ import org.openapitools.client.model.UserDetails;
  * Details about an attachment.
  */
 @ApiModel(description = "Details about an attachment.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class Attachment {
-/* xxxxxxxxxxxxx Object, , HashMap<String, Object>,  */
   @JsonProperty("self")
   private String self;
 

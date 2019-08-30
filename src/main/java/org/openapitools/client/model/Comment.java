@@ -33,9 +33,8 @@ import org.openapitools.client.model.Visibility;
  * A comment.
  */
 @ApiModel(description = "A comment.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class Comment {
-/* xxxxxxxxxxxxx Object, , HashMap<String, Object>,  */
   @JsonProperty("self")
   private String self;
 
@@ -104,10 +103,10 @@ public class Comment {
   }
 
    /**
-   * The comment text in &lt;a href&#x3D;\&quot;https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/\&quot;&gt;Atlassian Document Format&lt;/a&gt;.
+   * The comment text in [Atlassian Document Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/).
    * @return body
   **/
-  @ApiModelProperty(value = "The comment text in <a href=\"https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/\">Atlassian Document Format</a>.")
+  @ApiModelProperty(value = "The comment text in [Atlassian Document Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/).")
   public Object getBody() {
     return body;
   }

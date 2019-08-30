@@ -9,7 +9,7 @@ import io.reactivex.Completable;
 
 import org.everit.atlassian.restclient.common.RestCallUtil;
 import org.everit.atlassian.restclient.common.RestRequest;
-import org.everit.atlassian.restclient.common.RestRequestInterceptor;
+import org.everit.atlassian.restclient.common.RestRequestEnhancer;
 
 import org.everit.http.client.HttpClient;
 import org.everit.http.client.HttpMethod;
@@ -19,18 +19,17 @@ import org.openapitools.client.model.AuditRecords;
 import java.time.OffsetDateTime;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Collections;
 
 public class AuditingApi {
 
   private static final String DEFAULT_BASE_PATH = "http://localhost";
 
-
   private static final TypeReference<AuditRecords> returnType_getAuditRecords = new TypeReference<AuditRecords>() {};
-
 
   private final HttpClient httpClient;
 
@@ -46,37 +45,42 @@ public class AuditingApi {
    * @param filter <p>The query string.</p>  (optional)
    * @param from <p>The date and time on or after which returned audit records must have been created. If <code>to</code> is provided <code>from</code> must be before <code>to</code> or no audit records are returned.</p>  (optional)
    * @param to <p>The date and time on or before which returned audit results must have been created. If <code>from</code> is provided <code>to</code> must be after <code>from</code> or no audit records are returned.</p>  (optional)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;AuditRecords&gt;
    */
   public Single<AuditRecords> getAuditRecords(
-    Integer offset, Integer limit, String filter, OffsetDateTime from, OffsetDateTime to, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    Optional<Integer> offset, Optional<Integer> limit, Optional<String> filter, Optional<OffsetDateTime> from, Optional<OffsetDateTime> to, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.GET;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/auditing/record";
-    if (offset != null) {
-      request.queryParams.put("offset", Collections.singleton(String.valueOf(offset)));
-    }
-    if (limit != null) {
-      request.queryParams.put("limit", Collections.singleton(String.valueOf(limit)));
-    }
-    if (filter != null) {
-      request.queryParams.put("filter", Collections.singleton(String.valueOf(filter)));
-    }
-    if (from != null) {
-      request.queryParams.put("from", Collections.singleton(String.valueOf(from)));
-    }
-    if (to != null) {
-      request.queryParams.put("to", Collections.singleton(String.valueOf(to)));
-    }
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/auditing/record");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_getAuditRecords);
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (offset.isPresent()) {
+      queryParams.put("offset", Collections.singleton(String.valueOf(offset.get())));
+    }
+    if (limit.isPresent()) {
+      queryParams.put("limit", Collections.singleton(String.valueOf(limit.get())));
+    }
+    if (filter.isPresent()) {
+      queryParams.put("filter", Collections.singleton(String.valueOf(filter.get())));
+    }
+    if (from.isPresent()) {
+      queryParams.put("from", Collections.singleton(String.valueOf(from.get())));
+    }
+    if (to.isPresent()) {
+      queryParams.put("to", Collections.singleton(String.valueOf(to.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getAuditRecords);
   }
 
 }

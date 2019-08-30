@@ -22,12 +22,11 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * An entity property, for more information see &lt;a href&#x3D;\&quot;https://developer.atlassian.com/cloud/jira/platform/jira-entity-properties/\&quot;&gt;Entity properties&lt;/a&gt;.
+ * An entity property, for more information see [Entity properties](https://developer.atlassian.com/cloud/jira/platform/jira-entity-properties/).
  */
-@ApiModel(description = "An entity property, for more information see <a href=\"https://developer.atlassian.com/cloud/jira/platform/jira-entity-properties/\">Entity properties</a>.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@ApiModel(description = "An entity property, for more information see [Entity properties](https://developer.atlassian.com/cloud/jira/platform/jira-entity-properties/).")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class EntityProperty {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("key")
   private String key;
 

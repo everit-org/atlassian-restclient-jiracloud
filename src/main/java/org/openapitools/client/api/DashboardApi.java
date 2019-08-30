@@ -9,7 +9,7 @@ import io.reactivex.Completable;
 
 import org.everit.atlassian.restclient.common.RestCallUtil;
 import org.everit.atlassian.restclient.common.RestRequest;
-import org.everit.atlassian.restclient.common.RestRequestInterceptor;
+import org.everit.atlassian.restclient.common.RestRequestEnhancer;
 
 import org.everit.http.client.HttpClient;
 import org.everit.http.client.HttpMethod;
@@ -21,24 +21,21 @@ import org.openapitools.client.model.PageBeanDashboard;
 import org.openapitools.client.model.PageOfDashboards;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Collections;
 
 public class DashboardApi {
 
   private static final String DEFAULT_BASE_PATH = "http://localhost";
 
-
   private static final TypeReference<PageOfDashboards> returnType_getAllDashboards = new TypeReference<PageOfDashboards>() {};
-
 
   private static final TypeReference<Dashboard> returnType_getDashboard = new TypeReference<Dashboard>() {};
 
-
   private static final TypeReference<PageBeanDashboard> returnType_getDashboardsPaginated = new TypeReference<PageBeanDashboard>() {};
-
 
   private final HttpClient httpClient;
 
@@ -52,56 +49,64 @@ public class DashboardApi {
    * @param filter <p>The filter applied to the list of dashboards. Valid values are:</p> <ul> <li><code>favourite</code> Returns dashboards the user has marked as favorite.</li> <li><code>my</code> Returns dashboards owned by the user.</li> </ul>  (optional)
    * @param startAt <p>The index of the first item to return in a page of results (page offset).</p>  (optional, default to 0)
    * @param maxResults <p>The maximum number of items to return per page. The maximum is <code>1000</code>.</p>  (optional, default to 20)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PageOfDashboards&gt;
    */
   public Single<PageOfDashboards> getAllDashboards(
-    String filter, Integer startAt, Integer maxResults, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    Optional<String> filter, Optional<Integer> startAt, Optional<Integer> maxResults, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.GET;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/dashboard";
-    if (filter != null) {
-      request.queryParams.put("filter", Collections.singleton(String.valueOf(filter)));
-    }
-    if (startAt != null) {
-      request.queryParams.put("startAt", Collections.singleton(String.valueOf(startAt)));
-    }
-    if (maxResults != null) {
-      request.queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults)));
-    }
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/dashboard");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_getAllDashboards);
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (filter.isPresent()) {
+      queryParams.put("filter", Collections.singleton(String.valueOf(filter.get())));
+    }
+    if (startAt.isPresent()) {
+      queryParams.put("startAt", Collections.singleton(String.valueOf(startAt.get())));
+    }
+    if (maxResults.isPresent()) {
+      queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getAllDashboards);
   }
 
   /**
    * Get dashboard
    * <p>Returns a dashboard.</p> <p>This operation can be accessed anonymously.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> None.</p> <p>However, to get a dashboard, the dashboard must be shared with the user or the user must own it. Note, users with the <em>Administer Jira</em> <a href=\"https://confluence.atlassian.com/x/x4dKLg\">global permission</a> are considered owners of the System dashboard. The System dashboard is considered to be shared with all other users.</p> 
    * @param id <p>The ID of the dashboard.</p>  (required)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Dashboard&gt;
    */
   public Single<Dashboard> getDashboard(
-    String id, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    String id, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.GET;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/dashboard/{id}";
-    if (id != null) {
-      request.pathParams.put("id", String.valueOf(id));
-    }
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/dashboard/{id}");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_getDashboard);
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("id", String.valueOf(id));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getDashboard);
   }
 
   /**
@@ -116,49 +121,54 @@ public class DashboardApi {
    * @param startAt <p>The index of the first item to return in a page of results (page offset).</p>  (optional, default to 0l)
    * @param maxResults <p>The maximum number of items to return per page. The maximum is <code>100</code>.</p>  (optional, default to 50)
    * @param expand <p>Use <a href=\"#expansion\">expand</a> to include additional information about dashboard in the response. This parameter accepts multiple values separated by a comma:</p> <ul> <li><code>description</code> Returns the description of the dashboard.</li> <li><code>owner</code> Returns the owner of the dashboard.</li> <li><code>viewUrl</code> Returns the URL that is used to view the dashboard.</li> <li><code>favourite</code> Returns <code>isFavourite</code>, an indicator of whether the user has set the dashboard as a favorite.</li> <li><code>favouritedCount</code> Returns <code>popularity</code>, a count of how many users have set this dashboard as a favorite.</li> <li><code>sharePermissions</code> Returns details of the share permissions defined for the dashboard.</li> </ul>  (optional)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PageBeanDashboard&gt;
    */
   public Single<PageBeanDashboard> getDashboardsPaginated(
-    String dashboardName, String accountId, String owner, String groupname, Long projectId, String orderBy, Long startAt, Integer maxResults, String expand, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    Optional<String> dashboardName, Optional<String> accountId, Optional<String> owner, Optional<String> groupname, Optional<Long> projectId, Optional<String> orderBy, Optional<Long> startAt, Optional<Integer> maxResults, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.GET;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/dashboard/search";
-    if (dashboardName != null) {
-      request.queryParams.put("dashboardName", Collections.singleton(String.valueOf(dashboardName)));
-    }
-    if (accountId != null) {
-      request.queryParams.put("accountId", Collections.singleton(String.valueOf(accountId)));
-    }
-    if (owner != null) {
-      request.queryParams.put("owner", Collections.singleton(String.valueOf(owner)));
-    }
-    if (groupname != null) {
-      request.queryParams.put("groupname", Collections.singleton(String.valueOf(groupname)));
-    }
-    if (projectId != null) {
-      request.queryParams.put("projectId", Collections.singleton(String.valueOf(projectId)));
-    }
-    if (orderBy != null) {
-      request.queryParams.put("orderBy", Collections.singleton(String.valueOf(orderBy)));
-    }
-    if (startAt != null) {
-      request.queryParams.put("startAt", Collections.singleton(String.valueOf(startAt)));
-    }
-    if (maxResults != null) {
-      request.queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults)));
-    }
-    if (expand != null) {
-      request.queryParams.put("expand", Collections.singleton(String.valueOf(expand)));
-    }
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/dashboard/search");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_getDashboardsPaginated);
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (dashboardName.isPresent()) {
+      queryParams.put("dashboardName", Collections.singleton(String.valueOf(dashboardName.get())));
+    }
+    if (accountId.isPresent()) {
+      queryParams.put("accountId", Collections.singleton(String.valueOf(accountId.get())));
+    }
+    if (owner.isPresent()) {
+      queryParams.put("owner", Collections.singleton(String.valueOf(owner.get())));
+    }
+    if (groupname.isPresent()) {
+      queryParams.put("groupname", Collections.singleton(String.valueOf(groupname.get())));
+    }
+    if (projectId.isPresent()) {
+      queryParams.put("projectId", Collections.singleton(String.valueOf(projectId.get())));
+    }
+    if (orderBy.isPresent()) {
+      queryParams.put("orderBy", Collections.singleton(String.valueOf(orderBy.get())));
+    }
+    if (startAt.isPresent()) {
+      queryParams.put("startAt", Collections.singleton(String.valueOf(startAt.get())));
+    }
+    if (maxResults.isPresent()) {
+      queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults.get())));
+    }
+    if (expand.isPresent()) {
+      queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getDashboardsPaginated);
   }
 
 }

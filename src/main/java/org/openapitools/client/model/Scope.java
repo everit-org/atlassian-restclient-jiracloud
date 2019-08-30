@@ -25,12 +25,11 @@ import java.util.Map;
 import org.openapitools.client.model.ProjectForScope;
 
 /**
- * The scope of an entity. Indicated for entities associated with &lt;a href&#x3D;\&quot;https://confluence.atlassian.com/x/loMyO\&quot;&gt;next-gen projects&lt;/a&gt;.
+ * The scope of an entity. Indicated for entities associated with [next-gen projects](https://confluence.atlassian.com/x/loMyO).
  */
-@ApiModel(description = "The scope of an entity. Indicated for entities associated with <a href=\"https://confluence.atlassian.com/x/loMyO\">next-gen projects</a>.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@ApiModel(description = "The scope of an entity. Indicated for entities associated with [next-gen projects](https://confluence.atlassian.com/x/loMyO).")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class Scope {
-/* xxxxxxxxxxxxx Object, , HashMap<String, Object>,  */
   /**
    * The type of scope.
    */

@@ -9,7 +9,7 @@ import io.reactivex.Completable;
 
 import org.everit.atlassian.restclient.common.RestCallUtil;
 import org.everit.atlassian.restclient.common.RestRequest;
-import org.everit.atlassian.restclient.common.RestRequestInterceptor;
+import org.everit.atlassian.restclient.common.RestRequestEnhancer;
 
 import org.everit.http.client.HttpClient;
 import org.everit.http.client.HttpMethod;
@@ -23,27 +23,23 @@ import org.openapitools.client.model.PermissionsKeysBean;
 import org.openapitools.client.model.PermittedProjects;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Collections;
 
 public class PermissionsApi {
 
   private static final String DEFAULT_BASE_PATH = "http://localhost";
 
-
   private static final TypeReference<Permissions> returnType_getAllPermissions = new TypeReference<Permissions>() {};
-
 
   private static final TypeReference<BulkPermissionGrants> returnType_getBulkPermissions = new TypeReference<BulkPermissionGrants>() {};
 
-
   private static final TypeReference<Permissions> returnType_getMyPermissions = new TypeReference<Permissions>() {};
 
-
   private static final TypeReference<PermittedProjects> returnType_getPermittedProjects = new TypeReference<PermittedProjects>() {};
-
 
   private final HttpClient httpClient;
 
@@ -54,45 +50,56 @@ public class PermissionsApi {
   /**
    * Get all permissions
    * <p>Returns all permissions, including:</p> <ul> <li>global permissions.</li> <li>project permissions.</li> <li>global permissions added by plugins.</li> </ul> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> <em>Administer Jira</em> <a href=\"https://confluence.atlassian.com/x/x4dKLg\">global permission</a>.</p> 
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Permissions&gt;
    */
-  public Single<Permissions> getAllPermissions(Optional<RestRequestInterceptor> restRequestInterceptor)
+  public Single<Permissions> getAllPermissions(Optional<RestRequestEnhancer> restRequestEnhancer)
      {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.GET;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/permissions";
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/permissions");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_getAllPermissions);
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getAllPermissions);
   }
 
   /**
    * Get bulk permissions
    * <p>Returns:</p> <ul> <li>for a list of global permissions, the global permissions granted to the user.</li> <li>for a list of project permissions and lists of projects and issues, for each project permission a list of the projects and issues the user can access or manipulate.</li> </ul> <p>Note that:</p> <ul> <li>Invalid project and issue IDs are ignored.</li> <li>A maximum of 1000 projects and 1000 issues can be checked.</li> </ul> <p>This operation can be accessed anonymously.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> None.</p> 
    * @param bulkPermissionsRequestBean <p>Details of the permissions to check.</p>  (required)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;BulkPermissionGrants&gt;
    */
   public Single<BulkPermissionGrants> getBulkPermissions(
-    BulkPermissionsRequestBean bulkPermissionsRequestBean, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    BulkPermissionsRequestBean bulkPermissionsRequestBean, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.POST;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/permissions/check";
-      request.requestBody = Optional.ofNullable(bulkPermissionsRequestBean);
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.POST)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/permissions/check");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_getBulkPermissions);
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(bulkPermissionsRequestBean));
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getBulkPermissions);
   }
 
   /**
@@ -105,66 +112,77 @@ public class PermissionsApi {
    * @param permissions <p>A comma-separated list of permission keys. <a href=\"https://developer.atlassian.com/cloud/jira/platform/change-notice-get-my-permissions-requires-permissions-query-parameter/\"> Omitting this parameter is <strong>deprecated</strong>.</a> To get the list of available permissions, use <a href=\"#api-rest-api-3-permissions-get\">Get all permissions</a>. Note that deprecated keys cannot be used. Deprecated keys are not returned by <a href=\"#api-rest-api-3-permissions-get\">Get all permissions</a> but are returned by this operation if <code>permissions</code> is omitted.</p>  (optional)
    * @param projectUuid  (optional)
    * @param projectConfigurationUuid  (optional)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Permissions&gt;
    */
   public Single<Permissions> getMyPermissions(
-    String projectKey, String projectId, String issueKey, String issueId, String permissions, String projectUuid, String projectConfigurationUuid, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    Optional<String> projectKey, Optional<String> projectId, Optional<String> issueKey, Optional<String> issueId, Optional<String> permissions, Optional<String> projectUuid, Optional<String> projectConfigurationUuid, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.GET;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/mypermissions";
-    if (projectKey != null) {
-      request.queryParams.put("projectKey", Collections.singleton(String.valueOf(projectKey)));
-    }
-    if (projectId != null) {
-      request.queryParams.put("projectId", Collections.singleton(String.valueOf(projectId)));
-    }
-    if (issueKey != null) {
-      request.queryParams.put("issueKey", Collections.singleton(String.valueOf(issueKey)));
-    }
-    if (issueId != null) {
-      request.queryParams.put("issueId", Collections.singleton(String.valueOf(issueId)));
-    }
-    if (permissions != null) {
-      request.queryParams.put("permissions", Collections.singleton(String.valueOf(permissions)));
-    }
-    if (projectUuid != null) {
-      request.queryParams.put("projectUuid", Collections.singleton(String.valueOf(projectUuid)));
-    }
-    if (projectConfigurationUuid != null) {
-      request.queryParams.put("projectConfigurationUuid", Collections.singleton(String.valueOf(projectConfigurationUuid)));
-    }
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/mypermissions");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_getMyPermissions);
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (projectKey.isPresent()) {
+      queryParams.put("projectKey", Collections.singleton(String.valueOf(projectKey.get())));
+    }
+    if (projectId.isPresent()) {
+      queryParams.put("projectId", Collections.singleton(String.valueOf(projectId.get())));
+    }
+    if (issueKey.isPresent()) {
+      queryParams.put("issueKey", Collections.singleton(String.valueOf(issueKey.get())));
+    }
+    if (issueId.isPresent()) {
+      queryParams.put("issueId", Collections.singleton(String.valueOf(issueId.get())));
+    }
+    if (permissions.isPresent()) {
+      queryParams.put("permissions", Collections.singleton(String.valueOf(permissions.get())));
+    }
+    if (projectUuid.isPresent()) {
+      queryParams.put("projectUuid", Collections.singleton(String.valueOf(projectUuid.get())));
+    }
+    if (projectConfigurationUuid.isPresent()) {
+      queryParams.put("projectConfigurationUuid", Collections.singleton(String.valueOf(projectConfigurationUuid.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getMyPermissions);
   }
 
   /**
    * Get permitted projects
    * <p>Returns all the projects where the user is granted a list of project permissions.</p> <p>This operation can be accessed anonymously.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> None.</p> 
    * @param permissionsKeysBean  (required)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PermittedProjects&gt;
    */
   public Single<PermittedProjects> getPermittedProjects(
-    PermissionsKeysBean permissionsKeysBean, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    PermissionsKeysBean permissionsKeysBean, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.POST;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/permissions/project";
-      request.requestBody = Optional.ofNullable(permissionsKeysBean);
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.POST)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/permissions/project");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_getPermittedProjects);
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(permissionsKeysBean));
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getPermittedProjects);
   }
 
 }

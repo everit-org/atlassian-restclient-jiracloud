@@ -28,9 +28,8 @@ import org.openapitools.client.model.AutoCompleteSuggestion;
  * The results from a JQL query.
  */
 @ApiModel(description = "The results from a JQL query.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class AutoCompleteSuggestions {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("results")
   private List<AutoCompleteSuggestion> results = new ArrayList<>();
 

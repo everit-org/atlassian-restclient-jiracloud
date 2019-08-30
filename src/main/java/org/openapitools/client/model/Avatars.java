@@ -28,9 +28,8 @@ import org.openapitools.client.model.Avatar;
  * Details about system and custom avatars.
  */
 @ApiModel(description = "Details about system and custom avatars.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class Avatars {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("system")
   private List<Avatar> system = new ArrayList<>();
 

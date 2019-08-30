@@ -27,9 +27,8 @@ import java.util.List;
  * A list of webhooks.
  */
 @ApiModel(description = "A list of webhooks.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class WebhookDetails {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("jqlFilter")
   private String jqlFilter;
 
@@ -85,10 +84,10 @@ public class WebhookDetails {
   }
 
    /**
-   * The JQL filter that specifies which issues the webhook is sent for. Only a subset of JQL can be used. The supported elements are: &lt;ul&gt; &lt;li&gt;Fields: &lt;code&gt;issueKey&lt;/code&gt;, &lt;code&gt;project&lt;/code&gt;, &lt;code&gt;issuetype&lt;/code&gt;, &lt;code&gt;status&lt;/code&gt;, &lt;code&gt;assignee&lt;/code&gt;, &lt;code&gt;reporter&lt;/code&gt;, &lt;code&gt;issue.property&lt;/code&gt;, and &lt;code&gt;cf[id]&lt;/code&gt; (for custom fields—only the epic label custom field is supported).&lt;/li&gt; &lt;li&gt;Operators: &lt;code&gt;&#x3D;&lt;/code&gt;, &lt;code&gt;!&#x3D;&lt;/code&gt;, &lt;code&gt;IN&lt;/code&gt;, and &lt;code&gt;NOT IN&lt;/code&gt;.&lt;/li&gt; &lt;/ul&gt;
+   * The JQL filter that specifies which issues the webhook is sent for. Only a subset of JQL can be used. The supported elements are:   *  Fields: &#x60;issueKey&#x60;, &#x60;project&#x60;, &#x60;issuetype&#x60;, &#x60;status&#x60;, &#x60;assignee&#x60;, &#x60;reporter&#x60;, &#x60;issue.property&#x60;, and &#x60;cf[id]&#x60; (for custom fields—only the epic label custom field is supported).  *  Operators: &#x60;&#x3D;&#x60;, &#x60;!&#x3D;&#x60;, &#x60;IN&#x60;, and &#x60;NOT IN&#x60;.
    * @return jqlFilter
   **/
-  @ApiModelProperty(required = true, value = "The JQL filter that specifies which issues the webhook is sent for. Only a subset of JQL can be used. The supported elements are: <ul> <li>Fields: <code>issueKey</code>, <code>project</code>, <code>issuetype</code>, <code>status</code>, <code>assignee</code>, <code>reporter</code>, <code>issue.property</code>, and <code>cf[id]</code> (for custom fields—only the epic label custom field is supported).</li> <li>Operators: <code>=</code>, <code>!=</code>, <code>IN</code>, and <code>NOT IN</code>.</li> </ul>")
+  @ApiModelProperty(required = true, value = "The JQL filter that specifies which issues the webhook is sent for. Only a subset of JQL can be used. The supported elements are:   *  Fields: `issueKey`, `project`, `issuetype`, `status`, `assignee`, `reporter`, `issue.property`, and `cf[id]` (for custom fields—only the epic label custom field is supported).  *  Operators: `=`, `!=`, `IN`, and `NOT IN`.")
   public String getJqlFilter() {
     return jqlFilter;
   }

@@ -25,12 +25,11 @@ import java.util.List;
 import org.openapitools.client.model.AttachmentArchiveItemReadable;
 
 /**
- * Metadata for an archive (for example a zip)  and its contents.
+ * Metadata for an archive (for example a zip) and its contents.
  */
-@ApiModel(description = "Metadata for an archive (for example a zip)  and its contents.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@ApiModel(description = "Metadata for an archive (for example a zip) and its contents.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class AttachmentArchiveMetadataReadable {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("id")
   private Long id;
 

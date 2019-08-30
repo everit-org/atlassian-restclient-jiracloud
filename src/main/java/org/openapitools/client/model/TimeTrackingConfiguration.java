@@ -25,9 +25,8 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of the time tracking configuration.
  */
 @ApiModel(description = "Details of the time tracking configuration.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class TimeTrackingConfiguration {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("workingHoursPerDay")
   private Double workingHoursPerDay;
 

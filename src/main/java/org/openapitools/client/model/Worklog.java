@@ -34,9 +34,8 @@ import org.openapitools.client.model.Visibility;
  * Details of a worklog.
  */
 @ApiModel(description = "Details of a worklog.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class Worklog {
-/* xxxxxxxxxxxxx Object, , HashMap<String, Object>,  */
   @JsonProperty("self")
   private URI self;
 
@@ -111,10 +110,10 @@ public class Worklog {
   }
 
    /**
-   * A comment about the worklog in &lt;a href&#x3D;\&quot;https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/\&quot;&gt;Atlassian Document Format&lt;/a&gt;. Optional when creating or updating a worklog.
+   * A comment about the worklog in [Atlassian Document Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/). Optional when creating or updating a worklog.
    * @return comment
   **/
-  @ApiModelProperty(value = "A comment about the worklog in <a href=\"https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/\">Atlassian Document Format</a>. Optional when creating or updating a worklog.")
+  @ApiModelProperty(value = "A comment about the worklog in [Atlassian Document Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/). Optional when creating or updating a worklog.")
   public Object getComment() {
     return comment;
   }

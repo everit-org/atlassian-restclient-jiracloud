@@ -25,12 +25,11 @@ import java.util.List;
 import org.openapitools.client.model.UserDetails;
 
 /**
- * A paged list. To access additional details append &lt;code&gt;[start-index:end-index]&lt;/code&gt; to the expand request. For example, &lt;code&gt;?expand&#x3D;sharedUsers[10:40]&lt;/code&gt; returns a list starting at item 10 and finishing at item 40.
+ * A paged list. To access additional details append &#x60;[start-index:end-index]&#x60; to the expand request. For example, &#x60;?expand&#x3D;sharedUsers[10:40]&#x60; returns a list starting at item 10 and finishing at item 40.
  */
-@ApiModel(description = "A paged list. To access additional details append <code>[start-index:end-index]</code> to the expand request. For example, <code>?expand=sharedUsers[10:40]</code> returns a list starting at item 10 and finishing at item 40.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@ApiModel(description = "A paged list. To access additional details append `[start-index:end-index]` to the expand request. For example, `?expand=sharedUsers[10:40]` returns a list starting at item 10 and finishing at item 40.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class PagedListUserDetailsApplicationUser {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("size")
   private Integer size;
 

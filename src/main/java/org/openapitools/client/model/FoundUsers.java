@@ -28,9 +28,8 @@ import org.openapitools.client.model.UserPickerUser;
  * The list of users found in a search, including header text (Showing X of Y matching users) and total of matched users.
  */
 @ApiModel(description = "The list of users found in a search, including header text (Showing X of Y matching users) and total of matched users.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class FoundUsers {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("users")
   private List<UserPickerUser> users = new ArrayList<>();
 

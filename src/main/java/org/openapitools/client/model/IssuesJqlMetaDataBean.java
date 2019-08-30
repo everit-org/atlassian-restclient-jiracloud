@@ -20,14 +20,15 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The description of the page of issues loaded by the provided JQL query.
  */
 @ApiModel(description = "The description of the page of issues loaded by the provided JQL query.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class IssuesJqlMetaDataBean {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("startAt")
   private Long startAt;
 
@@ -40,6 +41,9 @@ public class IssuesJqlMetaDataBean {
   @JsonProperty("totalCount")
   private Long totalCount;
 
+  @JsonProperty("validationWarnings")
+  private List<String> validationWarnings = new ArrayList<>();
+
   public IssuesJqlMetaDataBean startAt(Long startAt) {
     this.startAt = startAt;
     return this;
@@ -49,7 +53,7 @@ public class IssuesJqlMetaDataBean {
    * The index of the first issue.
    * @return startAt
   **/
-  @ApiModelProperty(value = "The index of the first issue.")
+  @ApiModelProperty(required = true, value = "The index of the first issue.")
   public Long getStartAt() {
     return startAt;
   }
@@ -67,7 +71,7 @@ public class IssuesJqlMetaDataBean {
    * The maximum number of issues that could be loaded in this evaluation.
    * @return maxResults
   **/
-  @ApiModelProperty(value = "The maximum number of issues that could be loaded in this evaluation.")
+  @ApiModelProperty(required = true, value = "The maximum number of issues that could be loaded in this evaluation.")
   public Integer getMaxResults() {
     return maxResults;
   }
@@ -85,7 +89,7 @@ public class IssuesJqlMetaDataBean {
    * The number of issues that were loaded in this evaluation.
    * @return count
   **/
-  @ApiModelProperty(value = "The number of issues that were loaded in this evaluation.")
+  @ApiModelProperty(required = true, value = "The number of issues that were loaded in this evaluation.")
   public Integer getCount() {
     return count;
   }
@@ -103,13 +107,39 @@ public class IssuesJqlMetaDataBean {
    * The total number of issues the JQL returned.
    * @return totalCount
   **/
-  @ApiModelProperty(value = "The total number of issues the JQL returned.")
+  @ApiModelProperty(required = true, value = "The total number of issues the JQL returned.")
   public Long getTotalCount() {
     return totalCount;
   }
 
   public void setTotalCount(Long totalCount) {
     this.totalCount = totalCount;
+  }
+
+  public IssuesJqlMetaDataBean validationWarnings(List<String> validationWarnings) {
+    this.validationWarnings = validationWarnings;
+    return this;
+  }
+
+  public IssuesJqlMetaDataBean addValidationWarningsItem(String validationWarningsItem) {
+    if (this.validationWarnings == null) {
+      this.validationWarnings = new ArrayList<>();
+    }
+    this.validationWarnings.add(validationWarningsItem);
+    return this;
+  }
+
+   /**
+   * Any warnings related to the JQL query. Present only if the validation mode was set to &#x60;warn&#x60;.
+   * @return validationWarnings
+  **/
+  @ApiModelProperty(value = "Any warnings related to the JQL query. Present only if the validation mode was set to `warn`.")
+  public List<String> getValidationWarnings() {
+    return validationWarnings;
+  }
+
+  public void setValidationWarnings(List<String> validationWarnings) {
+    this.validationWarnings = validationWarnings;
   }
 
 
@@ -125,12 +155,13 @@ public class IssuesJqlMetaDataBean {
     return Objects.equals(this.startAt, issuesJqlMetaDataBean.startAt) &&
         Objects.equals(this.maxResults, issuesJqlMetaDataBean.maxResults) &&
         Objects.equals(this.count, issuesJqlMetaDataBean.count) &&
-        Objects.equals(this.totalCount, issuesJqlMetaDataBean.totalCount);
+        Objects.equals(this.totalCount, issuesJqlMetaDataBean.totalCount) &&
+        Objects.equals(this.validationWarnings, issuesJqlMetaDataBean.validationWarnings);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(startAt, maxResults, count, totalCount);
+    return Objects.hash(startAt, maxResults, count, totalCount, validationWarnings);
   }
 
 
@@ -142,6 +173,7 @@ public class IssuesJqlMetaDataBean {
     sb.append("    maxResults: ").append(toIndentedString(maxResults)).append("\n");
     sb.append("    count: ").append(toIndentedString(count)).append("\n");
     sb.append("    totalCount: ").append(toIndentedString(totalCount)).append("\n");
+    sb.append("    validationWarnings: ").append(toIndentedString(validationWarnings)).append("\n");
     sb.append("}");
     return sb.toString();
   }

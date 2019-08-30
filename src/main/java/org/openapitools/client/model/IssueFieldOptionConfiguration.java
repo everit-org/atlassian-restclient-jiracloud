@@ -28,9 +28,8 @@ import org.openapitools.client.model.IssueFieldOptionScopeBean;
  * Details of the projects the option is available in.
  */
 @ApiModel(description = "Details of the projects the option is available in.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class IssueFieldOptionConfiguration {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("scope")
   private IssueFieldOptionScopeBean scope;
 

@@ -25,9 +25,8 @@ import io.swagger.annotations.ApiModelProperty;
  * A change item.
  */
 @ApiModel(description = "A change item.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class ChangeDetails {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("field")
   private String field;
 

@@ -9,7 +9,7 @@ import io.reactivex.Completable;
 
 import org.everit.atlassian.restclient.common.RestCallUtil;
 import org.everit.atlassian.restclient.common.RestRequest;
-import org.everit.atlassian.restclient.common.RestRequestInterceptor;
+import org.everit.atlassian.restclient.common.RestRequestEnhancer;
 
 import org.everit.http.client.HttpClient;
 import org.everit.http.client.HttpMethod;
@@ -19,21 +19,19 @@ import org.openapitools.client.model.NotificationScheme;
 import org.openapitools.client.model.PageBeanNotificationScheme;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Collections;
 
 public class NotificationSchemeApi {
 
   private static final String DEFAULT_BASE_PATH = "http://localhost";
 
-
   private static final TypeReference<NotificationScheme> returnType_getNotificationScheme = new TypeReference<NotificationScheme>() {};
 
-
   private static final TypeReference<PageBeanNotificationScheme> returnType_getNotificationSchemes = new TypeReference<PageBeanNotificationScheme>() {};
-
 
   private final HttpClient httpClient;
 
@@ -46,28 +44,31 @@ public class NotificationSchemeApi {
    * <p>Returns a <a href=\"https://confluence.atlassian.com/x/8YdKLg\">notification scheme</a>, including the list of events and the recipients who will receive notifications for those events.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> Permission to access Jira, however the user must have permission to administer at least one project associated with the notification scheme.</p> 
    * @param id <p>The ID of the notification scheme. Use <a href=\"#api-rest-api-3-notificationscheme-get\">Get notification schemes paginated</a> to get a list of notification scheme IDs.</p>  (required)
    * @param expand <p>Use <a href=\"#expansion\">expand</a> to include additional information in the response. This parameter accepts multiple values separated by a comma:</p> <ul> <li><code>all</code> Returns all expandable information.</li> <li><code>field</code> Returns information about any custom fields assigned to receive an event.</li> <li><code>group</code> Returns information about any groups assigned to receive an event.</li> <li><code>notificationSchemeEvents</code> Returns a list of event associations. This list is returned for all expandable information.</li> <li><code>projectRole</code> Returns information about any project roles assigned to receive an event.</li> <li><code>user</code> Returns information about any users assigned to receive an event.</li> </ul>  (optional)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;NotificationScheme&gt;
    */
   public Single<NotificationScheme> getNotificationScheme(
-    Long id, String expand, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    Long id, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.GET;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/notificationscheme/{id}";
-    if (id != null) {
-      request.pathParams.put("id", String.valueOf(id));
-    }
-    if (expand != null) {
-      request.queryParams.put("expand", Collections.singleton(String.valueOf(expand)));
-    }
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/notificationscheme/{id}");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_getNotificationScheme);
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("id", String.valueOf(id));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (expand.isPresent()) {
+      queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getNotificationScheme);
   }
 
   /**
@@ -76,31 +77,36 @@ public class NotificationSchemeApi {
    * @param startAt <p>The index of the first item to return in a page of results (page offset).</p>  (optional, default to 0l)
    * @param maxResults <p>The maximum number of items to return per page. The maximum is <code>50</code>.</p>  (optional, default to 50)
    * @param expand <p>Use <a href=\"#expansion\">expand</a> to include additional information in the response. This parameter accepts multiple values separated by a comma:</p> <ul> <li><code>all</code> Returns all expandable information.</li> <li><code>field</code> Returns information about any custom fields assigned to receive an event.</li> <li><code>group</code> Returns information about any groups assigned to receive an event.</li> <li><code>notificationSchemeEvents</code> Returns a list of event associations. This list is returned for all expandable information.</li> <li><code>projectRole</code> Returns information about any project roles assigned to receive an event.</li> <li><code>user</code> Returns information about any users assigned to receive an event.</li> </ul>  (optional)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PageBeanNotificationScheme&gt;
    */
   public Single<PageBeanNotificationScheme> getNotificationSchemes(
-    Long startAt, Integer maxResults, String expand, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    Optional<Long> startAt, Optional<Integer> maxResults, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.GET;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/notificationscheme";
-    if (startAt != null) {
-      request.queryParams.put("startAt", Collections.singleton(String.valueOf(startAt)));
-    }
-    if (maxResults != null) {
-      request.queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults)));
-    }
-    if (expand != null) {
-      request.queryParams.put("expand", Collections.singleton(String.valueOf(expand)));
-    }
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/notificationscheme");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_getNotificationSchemes);
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (startAt.isPresent()) {
+      queryParams.put("startAt", Collections.singleton(String.valueOf(startAt.get())));
+    }
+    if (maxResults.isPresent()) {
+      queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults.get())));
+    }
+    if (expand.isPresent()) {
+      queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getNotificationSchemes);
   }
 
 }

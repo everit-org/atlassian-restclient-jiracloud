@@ -32,9 +32,8 @@ import org.openapitools.client.model.Scope;
  * Details of a permission scheme.
  */
 @ApiModel(description = "Details of a permission scheme.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class PermissionScheme {
-/* xxxxxxxxxxxxx Object, , HashMap<String, Object>,  */
   @JsonProperty("expand")
   private String expand;
 
@@ -153,10 +152,10 @@ public class PermissionScheme {
   }
 
    /**
-   * The permission scheme to create or update. See [About permission schemes and grants](em&gt;#about-permission-schemes) for more information.
+   * The permission scheme to create or update. See [About permission schemes and grants](#about-permission-schemes-and-grants) for more information.
    * @return permissions
   **/
-  @ApiModelProperty(value = "The permission scheme to create or update. See [About permission schemes and grants](em>#about-permission-schemes) for more information.")
+  @ApiModelProperty(value = "The permission scheme to create or update. See [About permission schemes and grants](#about-permission-schemes-and-grants) for more information.")
   public List<PermissionGrant> getPermissions() {
     return permissions;
   }

@@ -28,9 +28,8 @@ import org.openapitools.client.model.RegisteredWebhook;
  * Container for a list of registered webhooks. Webhook details are returned in the same order as the request.
  */
 @ApiModel(description = "Container for a list of registered webhooks. Webhook details are returned in the same order as the request.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class ContainerForRegisteredWebhooks {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("webhookRegistrationResult")
   private List<RegisteredWebhook> webhookRegistrationResult = new ArrayList<>();
 

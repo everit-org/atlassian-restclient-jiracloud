@@ -20,19 +20,18 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.openapitools.client.model.IssuesJqlBean;
+import org.openapitools.client.model.JexpJqlIssues;
 
 /**
  * The JQL specifying the issues available in the evaluated Jira expression under the &#x60;issues&#x60; context variable.
  */
 @ApiModel(description = "The JQL specifying the issues available in the evaluated Jira expression under the `issues` context variable.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
-public class IssuesBean {
-/* xxxxxxxxxxxxx , , ,  */
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
+public class JexpIssues {
   @JsonProperty("jql")
-  private IssuesJqlBean jql;
+  private JexpJqlIssues jql;
 
-  public IssuesBean jql(IssuesJqlBean jql) {
+  public JexpIssues jql(JexpJqlIssues jql) {
     this.jql = jql;
     return this;
   }
@@ -42,11 +41,11 @@ public class IssuesBean {
    * @return jql
   **/
   @ApiModelProperty(value = "The JQL query that specifies the set of issues available in the Jira expression.")
-  public IssuesJqlBean getJql() {
+  public JexpJqlIssues getJql() {
     return jql;
   }
 
-  public void setJql(IssuesJqlBean jql) {
+  public void setJql(JexpJqlIssues jql) {
     this.jql = jql;
   }
 
@@ -59,8 +58,8 @@ public class IssuesBean {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    IssuesBean issuesBean = (IssuesBean) o;
-    return Objects.equals(this.jql, issuesBean.jql);
+    JexpIssues jexpIssues = (JexpIssues) o;
+    return Objects.equals(this.jql, jexpIssues.jql);
   }
 
   @Override
@@ -72,7 +71,7 @@ public class IssuesBean {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class IssuesBean {\n");
+    sb.append("class JexpIssues {\n");
     sb.append("    jql: ").append(toIndentedString(jql)).append("\n");
     sb.append("}");
     return sb.toString();

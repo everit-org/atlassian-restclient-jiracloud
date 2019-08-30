@@ -20,80 +20,53 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.openapitools.client.model.RuleConfiguration;
-import org.openapitools.client.model.WorkflowTransition;
 
 /**
  * A workflow transition rule.
  */
 @ApiModel(description = "A workflow transition rule.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class WorkflowTransitionRule {
-/* xxxxxxxxxxxxx , , ,  */
-  @JsonProperty("id")
-  private String id;
-
-  @JsonProperty("key")
-  private String key;
+  @JsonProperty("type")
+  private String type;
 
   @JsonProperty("configuration")
-  private RuleConfiguration _configuration;
+  private Object _configuration = null;
 
-  @JsonProperty("transition")
-  private WorkflowTransition transition;
-
-  public WorkflowTransitionRule id(String id) {
-    this.id = id;
+  public WorkflowTransitionRule type(String type) {
+    this.type = type;
     return this;
   }
 
    /**
-   * The ID of the transition rule.
-   * @return id
+   * The type of the transition rule.
+   * @return type
   **/
-  @ApiModelProperty(required = true, value = "The ID of the transition rule.")
-  public String getId() {
-    return id;
+  @ApiModelProperty(required = true, value = "The type of the transition rule.")
+  public String getType() {
+    return type;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setType(String type) {
+    this.type = type;
   }
 
-   /**
-   * The key of the rule, as defined in the Connect app descriptor.
-   * @return key
-  **/
-  @ApiModelProperty(required = true, value = "The key of the rule, as defined in the Connect app descriptor.")
-  public String getKey() {
-    return key;
-  }
-
-  public WorkflowTransitionRule _configuration(RuleConfiguration _configuration) {
+  public WorkflowTransitionRule _configuration(Object _configuration) {
     this._configuration = _configuration;
     return this;
   }
 
    /**
-   * Get _configuration
+   * The configuration of the transition rule. This is currently returned only for some of the rule types. Availability of this property is subject to change.
    * @return _configuration
   **/
-  @ApiModelProperty(value = "")
-  public RuleConfiguration getConfiguration() {
+  @ApiModelProperty(value = "The configuration of the transition rule. This is currently returned only for some of the rule types. Availability of this property is subject to change.")
+  public Object getConfiguration() {
     return _configuration;
   }
 
-  public void setConfiguration(RuleConfiguration _configuration) {
+  public void setConfiguration(Object _configuration) {
     this._configuration = _configuration;
-  }
-
-   /**
-   * Get transition
-   * @return transition
-  **/
-  @ApiModelProperty(value = "")
-  public WorkflowTransition getTransition() {
-    return transition;
   }
 
 
@@ -106,15 +79,13 @@ public class WorkflowTransitionRule {
       return false;
     }
     WorkflowTransitionRule workflowTransitionRule = (WorkflowTransitionRule) o;
-    return Objects.equals(this.id, workflowTransitionRule.id) &&
-        Objects.equals(this.key, workflowTransitionRule.key) &&
-        Objects.equals(this._configuration, workflowTransitionRule._configuration) &&
-        Objects.equals(this.transition, workflowTransitionRule.transition);
+    return Objects.equals(this.type, workflowTransitionRule.type) &&
+        Objects.equals(this._configuration, workflowTransitionRule._configuration);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, key, _configuration, transition);
+    return Objects.hash(type, _configuration);
   }
 
 
@@ -122,10 +93,8 @@ public class WorkflowTransitionRule {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class WorkflowTransitionRule {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    key: ").append(toIndentedString(key)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    _configuration: ").append(toIndentedString(_configuration)).append("\n");
-    sb.append("    transition: ").append(toIndentedString(transition)).append("\n");
     sb.append("}");
     return sb.toString();
   }

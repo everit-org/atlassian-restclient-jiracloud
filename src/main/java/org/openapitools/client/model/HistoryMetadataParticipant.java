@@ -27,9 +27,8 @@ import java.util.Map;
  * Details of user or system associated with a issue history metadata item.
  */
 @ApiModel(description = "Details of user or system associated with a issue history metadata item.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class HistoryMetadataParticipant {
-/* xxxxxxxxxxxxx Object, , HashMap<String, Object>,  */
   @JsonProperty("id")
   private String id;
 

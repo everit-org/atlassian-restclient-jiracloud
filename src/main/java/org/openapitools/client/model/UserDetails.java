@@ -23,12 +23,11 @@ import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.client.model.AvatarUrlsBean;
 
 /**
- * User details. Note, cannot be specified as a body parameter in &lt;a href&#x3D;\&quot;#api-rest-api-3-issue-issue-issueIdOrKey-worklog-post\&quot;&gt;Add worklog&lt;/a&gt; or &lt;a href&#x3D;\&quot;#api-rest-api-3-issue-issueIdOrKey-worklog-id-put\&quot;&gt;Update worklog&lt;/a&gt;.
+ * User details.
  */
-@ApiModel(description = "User details. Note, cannot be specified as a body parameter in <a href=\"#api-rest-api-3-issue-issue-issueIdOrKey-worklog-post\">Add worklog</a> or <a href=\"#api-rest-api-3-issue-issueIdOrKey-worklog-id-put\">Update worklog</a>.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@ApiModel(description = "User details.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class UserDetails {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("self")
   private String self;
 
@@ -86,6 +85,11 @@ public class UserDetails {
     return key;
   }
 
+  public UserDetails accountId(String accountId) {
+    this.accountId = accountId;
+    return this;
+  }
+
    /**
    * The accountId of the user, which uniquely identifies the user across all Atlassian products. For example, *384093:32b4d9w0-f6a5-3535-11a3-9c8c88d10192*.
    * @return accountId
@@ -93,6 +97,10 @@ public class UserDetails {
   @ApiModelProperty(value = "The accountId of the user, which uniquely identifies the user across all Atlassian products. For example, *384093:32b4d9w0-f6a5-3535-11a3-9c8c88d10192*.")
   public String getAccountId() {
     return accountId;
+  }
+
+  public void setAccountId(String accountId) {
+    this.accountId = accountId;
   }
 
    /**

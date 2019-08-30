@@ -24,12 +24,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * An icon. If no icon is defined:&lt;ul&gt;  &lt;li&gt;for a status icon, no status icon displays in Jira.&lt;/li&gt;  &lt;li&gt;for the remote object icon, the default link icon displays in Jira.&lt;/li&gt;&lt;/ul&gt;
+ * An icon. If no icon is defined:   *  for a status icon, no status icon displays in Jira.  *  for the remote object icon, the default link icon displays in Jira.
  */
-@ApiModel(description = "An icon. If no icon is defined:<ul>  <li>for a status icon, no status icon displays in Jira.</li>  <li>for the remote object icon, the default link icon displays in Jira.</li></ul>")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@ApiModel(description = "An icon. If no icon is defined:   *  for a status icon, no status icon displays in Jira.  *  for the remote object icon, the default link icon displays in Jira.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class Icon {
-/* xxxxxxxxxxxxx Object, , HashMap<String, Object>,  */
   @JsonProperty("url16x16")
   private String url16x16;
 

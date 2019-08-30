@@ -29,9 +29,8 @@ import org.openapitools.client.model.NotificationEvent;
  * Details about a notification scheme event.
  */
 @ApiModel(description = "Details about a notification scheme event.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class NotificationSchemeEvent {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("event")
   private NotificationEvent event;
 

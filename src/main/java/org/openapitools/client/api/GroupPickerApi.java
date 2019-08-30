@@ -9,7 +9,7 @@ import io.reactivex.Completable;
 
 import org.everit.atlassian.restclient.common.RestCallUtil;
 import org.everit.atlassian.restclient.common.RestRequest;
-import org.everit.atlassian.restclient.common.RestRequestInterceptor;
+import org.everit.atlassian.restclient.common.RestRequestEnhancer;
 
 import org.everit.http.client.HttpClient;
 import org.everit.http.client.HttpMethod;
@@ -18,18 +18,17 @@ import org.everit.http.client.HttpRequest;
 import org.openapitools.client.model.FoundGroups;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Collections;
 
 public class GroupPickerApi {
 
   private static final String DEFAULT_BASE_PATH = "http://localhost";
 
-
   private static final TypeReference<FoundGroups> returnType_findGroups = new TypeReference<FoundGroups>() {};
-
 
   private final HttpClient httpClient;
 
@@ -44,38 +43,43 @@ public class GroupPickerApi {
    * @param query <p>The string to find in group names.</p>  (optional)
    * @param exclude <p>A group to exclude from the result. To exclude multiple groups, provide multiple copies of this parameter. For example, <code>exclude=group1&amp;exclude=group2</code>.</p>  (optional, default to new ArrayList&lt;&gt;())
    * @param maxResults <p>The maximum number of groups to return. The maximum number of groups that can be returned is limited by the system property <code>jira.ajax.autocomplete.limit</code>.</p>  (optional)
-   * @param userName <p>This parameter is no longer available and will be removed from the documentation soon. See the <a href=\"&quot;https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/&quot;\">deprecation notice</a> for details.</p>  (optional)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param userName <p>This parameter is no longer available and will be removed from the documentation soon. See the <a href=\"https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/\">deprecation notice</a> for details.</p>  (optional)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;FoundGroups&gt;
    */
   public Single<FoundGroups> findGroups(
-    String accountId, String query, List<String> exclude, Integer maxResults, String userName, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    Optional<String> accountId, Optional<String> query, Optional<List<String>> exclude, Optional<Integer> maxResults, Optional<String> userName, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.GET;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/groups/picker";
-    if (accountId != null) {
-      request.queryParams.put("accountId", Collections.singleton(String.valueOf(accountId)));
-    }
-    if (query != null) {
-      request.queryParams.put("query", Collections.singleton(String.valueOf(query)));
-    }
-    if (exclude != null) {
-      request.queryParams.put("exclude", RestCallUtil.objectCollectionToStringCollection(exclude));
-    }
-    if (maxResults != null) {
-      request.queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults)));
-    }
-    if (userName != null) {
-      request.queryParams.put("userName", Collections.singleton(String.valueOf(userName)));
-    }
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/groups/picker");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_findGroups);
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (accountId.isPresent()) {
+      queryParams.put("accountId", Collections.singleton(String.valueOf(accountId.get())));
+    }
+    if (query.isPresent()) {
+      queryParams.put("query", Collections.singleton(String.valueOf(query.get())));
+    }
+    if (exclude.isPresent()) {
+      queryParams.put("exclude", RestCallUtil.objectCollectionToStringCollection(exclude.get()));
+    }
+    if (maxResults.isPresent()) {
+      queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults.get())));
+    }
+    if (userName.isPresent()) {
+      queryParams.put("userName", Collections.singleton(String.valueOf(userName.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_findGroups);
   }
 
 }

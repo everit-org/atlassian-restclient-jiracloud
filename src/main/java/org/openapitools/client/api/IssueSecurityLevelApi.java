@@ -9,7 +9,7 @@ import io.reactivex.Completable;
 
 import org.everit.atlassian.restclient.common.RestCallUtil;
 import org.everit.atlassian.restclient.common.RestRequest;
-import org.everit.atlassian.restclient.common.RestRequestInterceptor;
+import org.everit.atlassian.restclient.common.RestRequestEnhancer;
 
 import org.everit.http.client.HttpClient;
 import org.everit.http.client.HttpMethod;
@@ -18,18 +18,17 @@ import org.everit.http.client.HttpRequest;
 import org.openapitools.client.model.SecurityLevel;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Collections;
 
 public class IssueSecurityLevelApi {
 
   private static final String DEFAULT_BASE_PATH = "http://localhost";
 
-
   private static final TypeReference<SecurityLevel> returnType_getIssueSecurityLevel = new TypeReference<SecurityLevel>() {};
-
 
   private final HttpClient httpClient;
 
@@ -41,25 +40,28 @@ public class IssueSecurityLevelApi {
    * Get issue security level
    * <p>Returns details of an issue security level.</p> <p>Use <a href=\"#api-rest-api-3-issuesecurityschemes-id-get\">Get issue security scheme</a> to obtain the IDs of issue security levels associated with the issue security scheme.</p> <p>This operation can be accessed anonymously.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> None.</p> 
    * @param id <p>The ID of the issue security level.</p>  (required)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;SecurityLevel&gt;
    */
   public Single<SecurityLevel> getIssueSecurityLevel(
-    String id, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    String id, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.GET;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/securitylevel/{id}";
-    if (id != null) {
-      request.pathParams.put("id", String.valueOf(id));
-    }
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/securitylevel/{id}");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_getIssueSecurityLevel);
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("id", String.valueOf(id));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getIssueSecurityLevel);
   }
 
 }

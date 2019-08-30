@@ -13,7 +13,7 @@ import io.reactivex.Completable;
 
 import org.everit.atlassian.restclient.common.RestCallUtil;
 import org.everit.atlassian.restclient.common.RestRequest;
-import org.everit.atlassian.restclient.common.RestRequestInterceptor;
+import org.everit.atlassian.restclient.common.RestRequestEnhancer;
 
 import org.everit.http.client.HttpClient;
 import org.everit.http.client.HttpMethod;
@@ -23,19 +23,18 @@ import org.everit.http.client.HttpRequest;
 {{/imports}}
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Collections;
 
 {{#operations}}
 public class {{classname}} {
 
   private static final String DEFAULT_BASE_PATH = "{{{basePath}}}";
-
 {{#operation}}{{#returnType}}
   private static final TypeReference<{{{returnType}}}> returnType_{{operationId}} = new TypeReference<{{{returnType}}}>() {};
-
 {{/returnType}}{{/operation}}
   private final HttpClient httpClient;
 
@@ -50,7 +49,7 @@ public class {{classname}} {
 {{#allParams}}
    * @param {{paramName}} {{{description}}}{{#required}} (required){{/required}}{{^required}} (optional{{#defaultValue}}, default to {{.}}{{/defaultValue}}){{/required}}
 {{/allParams}}
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return {{#returnType}}Single&lt;{{#isResponseFile}}ResponseBody{{/isResponseFile}}{{^isResponseFile}}{{returnType}}{{/isResponseFile}}&gt;{{/returnType}}{{^returnType}}Completable{{/returnType}}
 {{#isDeprecated}}
    * @deprecated
@@ -77,37 +76,43 @@ public class {{classname}} {
   {{/-first}}
   {{/prioritizedContentTypes}}
   {{/formParams}}
-  public {{#returnType}}Single<{{#isResponseFile}}ResponseBody{{/isResponseFile}}{{^isResponseFile}}{{{returnType}}}{{/isResponseFile}}>{{/returnType}}{{^returnType}}Completable{{/returnType}} {{operationId}}({{^allParams}}Optional<RestRequestInterceptor> restRequestInterceptor){{/allParams}}
-    {{#allParams}}{{{dataType}}} {{paramName}}, {{^hasMore}}Optional<RestRequestInterceptor> restRequestInterceptor){{/hasMore}}{{/allParams}} {
+  public {{#returnType}}Single<{{#isResponseFile}}ResponseBody{{/isResponseFile}}{{^isResponseFile}}{{{returnType}}}{{/isResponseFile}}>{{/returnType}}{{^returnType}}Completable{{/returnType}} {{operationId}}({{^allParams}}Optional<RestRequestEnhancer> restRequestEnhancer){{/allParams}}
+    {{#allParams}}{{#required}}{{{dataType}}}{{/required}}{{^required}}Optional<{{{dataType}}}>{{/required}} {{paramName}}, {{^hasMore}}Optional<RestRequestEnhancer> restRequestEnhancer){{/hasMore}}{{/allParams}} {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.{{httpMethod}};
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "{{{path}}}";
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.{{httpMethod}})
+        .basePath(DEFAULT_BASE_PATH)
+        .path("{{{path}}}");
+
+    Map<String, String> pathParams = new HashMap<>();
     {{#pathParams}}
-    if ({{paramName}} != null) {
-      request.pathParams.put("{{baseName}}", String.valueOf({{paramName}}));
-    }
+{{^required}}    if ({{paramName}}.isPresent()) {
+  {{/required}}    pathParams.put("{{baseName}}", String.valueOf({{paramName}}{{^required}}.get(){{/required}}));{{^required}}
+    }{{/required}}
     {{/pathParams}}
-    {{#queryParams}}
-    if ({{paramName}} != null) {
-      request.queryParams.put("{{baseName}}", {{#collectionFormat}}RestCallUtil.objectCollectionToStringCollection({{paramName}}){{/collectionFormat}}{{^collectionFormat}}Collections.singleton(String.valueOf({{paramName}})){{/collectionFormat}});
-    }
-    {{/queryParams}}
-    {{#headerParams}}
-    if ({{paramName}} != null) {
-      request.headers.put("{{baseName}}", {{paramName}});
-    }
-    {{/headerParams}}
-    {{#bodyParam}}
-    request.requestBody = Optional.ofNullable({{paramName}});
-    {{/bodyParam}}
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    requestBuilder.pathParams(pathParams);
 
-    return RestCallUtil.callEndpoint(httpClient, request{{#returnType}}, returnType_{{operationId}}{{/returnType}});
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    {{#queryParams}}
+{{^required}}    if ({{paramName}}.isPresent()) {
+  {{/required}}    queryParams.put("{{baseName}}", {{#collectionFormat}}RestCallUtil.objectCollectionToStringCollection({{paramName}}{{^required}}.get(){{/required}}){{/collectionFormat}}{{^collectionFormat}}Collections.singleton(String.valueOf({{paramName}}{{^required}}.get(){{/required}})){{/collectionFormat}});{{^required}}
+    }{{/required}}
+    {{/queryParams}}
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    {{#headerParams}}
+{{^required}}    if ({{paramName}}.isPresent()) {
+  {{/required}}    headers.put("{{baseName}}", {{paramName}}{{^required}}.get(){{/required}});{{^required}}
+    }{{/required}}
+    {{/headerParams}}
+    requestBuilder.headers(headers);
+    {{#bodyParam}}
+
+    requestBuilder.requestBody({{#required}}Optional.of({{paramName}}){{/required}}{{^required}}{{paramName}}{{/required}});
+    {{/bodyParam}}
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer{{#returnType}}, returnType_{{operationId}}{{/returnType}});
   }
 
   {{/operation}}

@@ -93,11 +93,23 @@ def removeIgnoreCaseDuplicatesFromList(stringList) {
   }
 }
 
+def removeNullValuesFromList(stringList) {
+  def iterator = stringList.iterator();
+  def processedValues = new HashSet();
+  while (iterator.hasNext()) {
+    def value = iterator.next();
+    if (value == null) {
+      iterator.remove();
+    }
+  }
+}
+
 def recursiveEnumSearch(currentNode) {
   if (currentNode instanceof java.util.Map) {
     currentNode.each { childEntry ->
       if (childEntry.key.equals('enum') && childEntry.value instanceof java.util.List) {
         removeIgnoreCaseDuplicatesFromList(childEntry.value);
+        removeNullValuesFromList(childEntry.value);
       } else {
         recursiveEnumSearch(childEntry.value);
       }

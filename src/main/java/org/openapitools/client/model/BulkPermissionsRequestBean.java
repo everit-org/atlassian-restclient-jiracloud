@@ -28,9 +28,8 @@ import org.openapitools.client.model.BulkProjectPermissions;
  * Details of global permissions to look up and project permissions with associated projects and issues to look up.
  */
 @ApiModel(description = "Details of global permissions to look up and project permissions with associated projects and issues to look up.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class BulkPermissionsRequestBean {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("projectPermissions")
   private List<BulkProjectPermissions> projectPermissions = new ArrayList<>();
 

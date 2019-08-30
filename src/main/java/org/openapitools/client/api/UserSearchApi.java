@@ -9,7 +9,7 @@ import io.reactivex.Completable;
 
 import org.everit.atlassian.restclient.common.RestCallUtil;
 import org.everit.atlassian.restclient.common.RestRequest;
-import org.everit.atlassian.restclient.common.RestRequestInterceptor;
+import org.everit.atlassian.restclient.common.RestRequestEnhancer;
 
 import org.everit.http.client.HttpClient;
 import org.everit.http.client.HttpMethod;
@@ -19,21 +19,19 @@ import org.openapitools.client.model.PageBeanUser;
 import org.openapitools.client.model.PageBeanUserKey;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Collections;
 
 public class UserSearchApi {
 
   private static final String DEFAULT_BASE_PATH = "http://localhost";
 
-
   private static final TypeReference<PageBeanUserKey> returnType_findUserKeysByQuery = new TypeReference<PageBeanUserKey>() {};
 
-
   private static final TypeReference<PageBeanUser> returnType_findUsersByQuery = new TypeReference<PageBeanUser>() {};
-
 
   private final HttpClient httpClient;
 
@@ -47,31 +45,36 @@ public class UserSearchApi {
    * @param query <p>The search query.</p>  (optional)
    * @param startAt <p>The index of the first item to return in a page of results (page offset).</p>  (optional, default to 0l)
    * @param maxResults <p>The maximum number of items to return per page. The maximum is <code>1000</code>.</p>  (optional, default to 100)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PageBeanUserKey&gt;
    */
   public Single<PageBeanUserKey> findUserKeysByQuery(
-    String query, Long startAt, Integer maxResults, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    Optional<String> query, Optional<Long> startAt, Optional<Integer> maxResults, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.GET;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/user/search/query/key";
-    if (query != null) {
-      request.queryParams.put("query", Collections.singleton(String.valueOf(query)));
-    }
-    if (startAt != null) {
-      request.queryParams.put("startAt", Collections.singleton(String.valueOf(startAt)));
-    }
-    if (maxResults != null) {
-      request.queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults)));
-    }
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/user/search/query/key");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_findUserKeysByQuery);
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (query.isPresent()) {
+      queryParams.put("query", Collections.singleton(String.valueOf(query.get())));
+    }
+    if (startAt.isPresent()) {
+      queryParams.put("startAt", Collections.singleton(String.valueOf(startAt.get())));
+    }
+    if (maxResults.isPresent()) {
+      queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_findUserKeysByQuery);
   }
 
   /**
@@ -80,31 +83,36 @@ public class UserSearchApi {
    * @param query <p>The search query.</p>  (optional)
    * @param startAt <p>The index of the first item to return in a page of results (page offset).</p>  (optional, default to 0l)
    * @param maxResults <p>The maximum number of items to return per page. The maximum is <code>1000</code>.</p>  (optional, default to 100)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PageBeanUser&gt;
    */
   public Single<PageBeanUser> findUsersByQuery(
-    String query, Long startAt, Integer maxResults, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    Optional<String> query, Optional<Long> startAt, Optional<Integer> maxResults, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.GET;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/user/search/query";
-    if (query != null) {
-      request.queryParams.put("query", Collections.singleton(String.valueOf(query)));
-    }
-    if (startAt != null) {
-      request.queryParams.put("startAt", Collections.singleton(String.valueOf(startAt)));
-    }
-    if (maxResults != null) {
-      request.queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults)));
-    }
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/user/search/query");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_findUsersByQuery);
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (query.isPresent()) {
+      queryParams.put("query", Collections.singleton(String.valueOf(query.get())));
+    }
+    if (startAt.isPresent()) {
+      queryParams.put("startAt", Collections.singleton(String.valueOf(startAt.get())));
+    }
+    if (maxResults.isPresent()) {
+      queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_findUsersByQuery);
   }
 
 }

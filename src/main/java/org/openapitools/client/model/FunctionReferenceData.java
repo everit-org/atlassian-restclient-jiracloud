@@ -27,9 +27,8 @@ import java.util.List;
  * Details of functions that can be used in advanced searches.
  */
 @ApiModel(description = "Details of functions that can be used in advanced searches.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class FunctionReferenceData {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("value")
   private String value;
 

@@ -24,17 +24,16 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * AttachmentArchiveEntry
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class AttachmentArchiveEntry {
-/* xxxxxxxxxxxxx , , ,  */
-  @JsonProperty("entryIndex")
-  private Long entryIndex;
+  @JsonProperty("mediaType")
+  private String mediaType;
 
   @JsonProperty("abbreviatedName")
   private String abbreviatedName;
 
-  @JsonProperty("mediaType")
-  private String mediaType;
+  @JsonProperty("entryIndex")
+  private Long entryIndex;
 
   @JsonProperty("name")
   private String name;
@@ -42,22 +41,22 @@ public class AttachmentArchiveEntry {
   @JsonProperty("size")
   private Long size;
 
-  public AttachmentArchiveEntry entryIndex(Long entryIndex) {
-    this.entryIndex = entryIndex;
+  public AttachmentArchiveEntry mediaType(String mediaType) {
+    this.mediaType = mediaType;
     return this;
   }
 
    /**
-   * Get entryIndex
-   * @return entryIndex
+   * Get mediaType
+   * @return mediaType
   **/
   @ApiModelProperty(value = "")
-  public Long getEntryIndex() {
-    return entryIndex;
+  public String getMediaType() {
+    return mediaType;
   }
 
-  public void setEntryIndex(Long entryIndex) {
-    this.entryIndex = entryIndex;
+  public void setMediaType(String mediaType) {
+    this.mediaType = mediaType;
   }
 
   public AttachmentArchiveEntry abbreviatedName(String abbreviatedName) {
@@ -78,22 +77,22 @@ public class AttachmentArchiveEntry {
     this.abbreviatedName = abbreviatedName;
   }
 
-  public AttachmentArchiveEntry mediaType(String mediaType) {
-    this.mediaType = mediaType;
+  public AttachmentArchiveEntry entryIndex(Long entryIndex) {
+    this.entryIndex = entryIndex;
     return this;
   }
 
    /**
-   * Get mediaType
-   * @return mediaType
+   * Get entryIndex
+   * @return entryIndex
   **/
   @ApiModelProperty(value = "")
-  public String getMediaType() {
-    return mediaType;
+  public Long getEntryIndex() {
+    return entryIndex;
   }
 
-  public void setMediaType(String mediaType) {
-    this.mediaType = mediaType;
+  public void setEntryIndex(Long entryIndex) {
+    this.entryIndex = entryIndex;
   }
 
   public AttachmentArchiveEntry name(String name) {
@@ -142,16 +141,16 @@ public class AttachmentArchiveEntry {
       return false;
     }
     AttachmentArchiveEntry attachmentArchiveEntry = (AttachmentArchiveEntry) o;
-    return Objects.equals(this.entryIndex, attachmentArchiveEntry.entryIndex) &&
+    return Objects.equals(this.mediaType, attachmentArchiveEntry.mediaType) &&
         Objects.equals(this.abbreviatedName, attachmentArchiveEntry.abbreviatedName) &&
-        Objects.equals(this.mediaType, attachmentArchiveEntry.mediaType) &&
+        Objects.equals(this.entryIndex, attachmentArchiveEntry.entryIndex) &&
         Objects.equals(this.name, attachmentArchiveEntry.name) &&
         Objects.equals(this.size, attachmentArchiveEntry.size);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(entryIndex, abbreviatedName, mediaType, name, size);
+    return Objects.hash(mediaType, abbreviatedName, entryIndex, name, size);
   }
 
 
@@ -159,9 +158,9 @@ public class AttachmentArchiveEntry {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AttachmentArchiveEntry {\n");
-    sb.append("    entryIndex: ").append(toIndentedString(entryIndex)).append("\n");
-    sb.append("    abbreviatedName: ").append(toIndentedString(abbreviatedName)).append("\n");
     sb.append("    mediaType: ").append(toIndentedString(mediaType)).append("\n");
+    sb.append("    abbreviatedName: ").append(toIndentedString(abbreviatedName)).append("\n");
+    sb.append("    entryIndex: ").append(toIndentedString(entryIndex)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    size: ").append(toIndentedString(size)).append("\n");
     sb.append("}");

@@ -22,18 +22,17 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * MethodCallResult
+ * OperationMessage
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
-public class MethodCallResult {
-/* xxxxxxxxxxxxx , , ,  */
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
+public class OperationMessage {
   @JsonProperty("message")
   private String message;
 
   @JsonProperty("statusCode")
   private Integer statusCode;
 
-  public MethodCallResult message(String message) {
+  public OperationMessage message(String message) {
     this.message = message;
     return this;
   }
@@ -51,7 +50,7 @@ public class MethodCallResult {
     this.message = message;
   }
 
-  public MethodCallResult statusCode(Integer statusCode) {
+  public OperationMessage statusCode(Integer statusCode) {
     this.statusCode = statusCode;
     return this;
   }
@@ -60,7 +59,7 @@ public class MethodCallResult {
    * The status code of the response.
    * @return statusCode
   **/
-  @ApiModelProperty(value = "The status code of the response.")
+  @ApiModelProperty(required = true, value = "The status code of the response.")
   public Integer getStatusCode() {
     return statusCode;
   }
@@ -78,9 +77,9 @@ public class MethodCallResult {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    MethodCallResult methodCallResult = (MethodCallResult) o;
-    return Objects.equals(this.message, methodCallResult.message) &&
-        Objects.equals(this.statusCode, methodCallResult.statusCode);
+    OperationMessage operationMessage = (OperationMessage) o;
+    return Objects.equals(this.message, operationMessage.message) &&
+        Objects.equals(this.statusCode, operationMessage.statusCode);
   }
 
   @Override
@@ -92,7 +91,7 @@ public class MethodCallResult {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class MethodCallResult {\n");
+    sb.append("class OperationMessage {\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    statusCode: ").append(toIndentedString(statusCode)).append("\n");
     sb.append("}");

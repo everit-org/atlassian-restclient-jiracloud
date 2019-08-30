@@ -23,12 +23,11 @@ import io.swagger.annotations.ApiModelProperty;
 import java.net.URI;
 
 /**
- * This object is used as follows:  &lt;ul&gt;      &lt;li&gt;In the &lt;a href&#x3D;\&quot;#api-rest-api-3-issueLink-post\&quot;&gt;      issueLink&lt;/a&gt; resource it defines and reports on the type of link between the issues. Find a list of issue link types with      &lt;a href&#x3D;\&quot;#api-rest-api-3-issueLinkType-get\&quot;&gt;Get issue link types&lt;/a&gt;.&lt;/li&gt;      &lt;li&gt;In the &lt;a href&#x3D;\&quot;#api-rest-api-3-issueLinkType-post\&quot;&gt;      issueLinkType&lt;/a&gt; resource it defines and reports on issue link types.&lt;/li&gt;  &lt;/ul&gt;
+ * This object is used as follows:   *  In the [ issueLink](#api-rest-api-3-issueLink-post) resource it defines and reports on the type of link between the issues. Find a list of issue link types with [Get issue link types](#api-rest-api-3-issueLinkType-get).  *  In the [ issueLinkType](#api-rest-api-3-issueLinkType-post) resource it defines and reports on issue link types.
  */
-@ApiModel(description = "This object is used as follows:  <ul>      <li>In the <a href=\"#api-rest-api-3-issueLink-post\">      issueLink</a> resource it defines and reports on the type of link between the issues. Find a list of issue link types with      <a href=\"#api-rest-api-3-issueLinkType-get\">Get issue link types</a>.</li>      <li>In the <a href=\"#api-rest-api-3-issueLinkType-post\">      issueLinkType</a> resource it defines and reports on issue link types.</li>  </ul>")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@ApiModel(description = "This object is used as follows:   *  In the [ issueLink](#api-rest-api-3-issueLink-post) resource it defines and reports on the type of link between the issues. Find a list of issue link types with [Get issue link types](#api-rest-api-3-issueLinkType-get).  *  In the [ issueLinkType](#api-rest-api-3-issueLinkType-post) resource it defines and reports on issue link types.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class IssueLinkType {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("id")
   private String id;
 

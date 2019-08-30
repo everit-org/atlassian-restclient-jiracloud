@@ -28,9 +28,8 @@ import org.openapitools.client.model.BulkProjectPermissionGrants;
  * Details of global and project permissions granted to the user.
  */
 @ApiModel(description = "Details of global and project permissions granted to the user.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class BulkPermissionGrants {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("projectPermissions")
   private List<BulkProjectPermissionGrants> projectPermissions = new ArrayList<>();
 

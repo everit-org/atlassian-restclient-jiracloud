@@ -28,9 +28,8 @@ import org.openapitools.client.model.SecurityLevel;
  * List of issue level security items in a project.
  */
 @ApiModel(description = "List of issue level security items in a project.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class ProjectIssueSecurityLevels {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("levels")
   private List<SecurityLevel> levels = new ArrayList<>();
 

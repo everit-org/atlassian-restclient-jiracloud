@@ -32,9 +32,8 @@ import org.openapitools.client.model.UserList;
  * Details about a filter.
  */
 @ApiModel(description = "Details about a filter.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class Filter {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("self")
   private URI self;
 
@@ -214,10 +213,10 @@ public class Filter {
   }
 
    /**
-   * The groups and projects that the filter is shared with. This can be specified when updating a filter, but not when creating a filter.
+   * The groups and projects that the filter is shared with.
    * @return sharePermissions
   **/
-  @ApiModelProperty(value = "The groups and projects that the filter is shared with. This can be specified when updating a filter, but not when creating a filter.")
+  @ApiModelProperty(value = "The groups and projects that the filter is shared with.")
   public List<SharePermission> getSharePermissions() {
     return sharePermissions;
   }

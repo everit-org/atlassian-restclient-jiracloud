@@ -30,9 +30,8 @@ import org.openapitools.client.model.LinkGroup;
  * Details of the operations that can be performed on the issue.
  */
 @ApiModel(description = "Details of the operations that can be performed on the issue.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class Operations {
-/* xxxxxxxxxxxxx Object, , HashMap<String, Object>,  */
   @JsonProperty("linkGroups")
   private List<LinkGroup> linkGroups = new ArrayList<>();
 

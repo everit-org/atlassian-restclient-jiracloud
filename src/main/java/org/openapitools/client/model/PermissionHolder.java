@@ -20,35 +20,18 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.openapitools.client.model.Field;
-import org.openapitools.client.model.GroupName;
-import org.openapitools.client.model.ProjectRole;
-import org.openapitools.client.model.UserDetails;
 
 /**
- * Details of a user, group, field, or project role that holds a permission.For more information, see &lt;em&gt;Holder&lt;/em&gt; in &lt;a href&#x3D;\&quot;#api-rest-api-3-permissionscheme-get\&quot;&gt;Get all permission schemes&lt;/a&gt;.
+ * Details of a user, group, field, or project role that holds a permission. See [Holder object](#holder-object) in *Get all permission schemes* for more information.
  */
-@ApiModel(description = "Details of a user, group, field, or project role that holds a permission.For more information, see <em>Holder</em> in <a href=\"#api-rest-api-3-permissionscheme-get\">Get all permission schemes</a>.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@ApiModel(description = "Details of a user, group, field, or project role that holds a permission. See [Holder object](#holder-object) in *Get all permission schemes* for more information.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class PermissionHolder {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("type")
   private String type;
 
   @JsonProperty("parameter")
   private String parameter;
-
-  @JsonProperty("user")
-  private UserDetails user;
-
-  @JsonProperty("group")
-  private GroupName group;
-
-  @JsonProperty("field")
-  private Field field;
-
-  @JsonProperty("projectRole")
-  private ProjectRole projectRole;
 
   @JsonProperty("expand")
   private String expand;
@@ -89,78 +72,6 @@ public class PermissionHolder {
     this.parameter = parameter;
   }
 
-  public PermissionHolder user(UserDetails user) {
-    this.user = user;
-    return this;
-  }
-
-   /**
-   * The user holding the permission.
-   * @return user
-  **/
-  @ApiModelProperty(value = "The user holding the permission.")
-  public UserDetails getUser() {
-    return user;
-  }
-
-  public void setUser(UserDetails user) {
-    this.user = user;
-  }
-
-  public PermissionHolder group(GroupName group) {
-    this.group = group;
-    return this;
-  }
-
-   /**
-   * The group holding the permission.
-   * @return group
-  **/
-  @ApiModelProperty(value = "The group holding the permission.")
-  public GroupName getGroup() {
-    return group;
-  }
-
-  public void setGroup(GroupName group) {
-    this.group = group;
-  }
-
-  public PermissionHolder field(Field field) {
-    this.field = field;
-    return this;
-  }
-
-   /**
-   * The field holding the permission.
-   * @return field
-  **/
-  @ApiModelProperty(value = "The field holding the permission.")
-  public Field getField() {
-    return field;
-  }
-
-  public void setField(Field field) {
-    this.field = field;
-  }
-
-  public PermissionHolder projectRole(ProjectRole projectRole) {
-    this.projectRole = projectRole;
-    return this;
-  }
-
-   /**
-   * The project role holding the permission.
-   * @return projectRole
-  **/
-  @ApiModelProperty(value = "The project role holding the permission.")
-  public ProjectRole getProjectRole() {
-    return projectRole;
-  }
-
-  public void setProjectRole(ProjectRole projectRole) {
-    this.projectRole = projectRole;
-  }
-
    /**
    * Expand options that include additional permission holder details in the response.
    * @return expand
@@ -182,16 +93,12 @@ public class PermissionHolder {
     PermissionHolder permissionHolder = (PermissionHolder) o;
     return Objects.equals(this.type, permissionHolder.type) &&
         Objects.equals(this.parameter, permissionHolder.parameter) &&
-        Objects.equals(this.user, permissionHolder.user) &&
-        Objects.equals(this.group, permissionHolder.group) &&
-        Objects.equals(this.field, permissionHolder.field) &&
-        Objects.equals(this.projectRole, permissionHolder.projectRole) &&
         Objects.equals(this.expand, permissionHolder.expand);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, parameter, user, group, field, projectRole, expand);
+    return Objects.hash(type, parameter, expand);
   }
 
 
@@ -201,10 +108,6 @@ public class PermissionHolder {
     sb.append("class PermissionHolder {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    parameter: ").append(toIndentedString(parameter)).append("\n");
-    sb.append("    user: ").append(toIndentedString(user)).append("\n");
-    sb.append("    group: ").append(toIndentedString(group)).append("\n");
-    sb.append("    field: ").append(toIndentedString(field)).append("\n");
-    sb.append("    projectRole: ").append(toIndentedString(projectRole)).append("\n");
     sb.append("    expand: ").append(toIndentedString(expand)).append("\n");
     sb.append("}");
     return sb.toString();

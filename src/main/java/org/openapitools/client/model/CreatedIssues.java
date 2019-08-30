@@ -29,9 +29,8 @@ import org.openapitools.client.model.CreatedIssue;
  * Details about the issues created and the errors for requests that failed.
  */
 @ApiModel(description = "Details about the issues created and the errors for requests that failed.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class CreatedIssues {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("issues")
   private List<CreatedIssue> issues = new ArrayList<>();
 

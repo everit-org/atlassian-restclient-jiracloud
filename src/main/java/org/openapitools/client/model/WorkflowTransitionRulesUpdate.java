@@ -28,9 +28,8 @@ import org.openapitools.client.model.WorkflowTransitionRules;
  * Details about a workflow configuration update request.
  */
 @ApiModel(description = "Details about a workflow configuration update request.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class WorkflowTransitionRulesUpdate {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("workflows")
   private List<WorkflowTransitionRules> workflows = new ArrayList<>();
 

@@ -25,9 +25,8 @@ import io.swagger.annotations.ApiModelProperty;
  * The JQL specifying the issues available in the evaluated Jira expression under the &#x60;issues&#x60; context variable. Not all issues returned by the JQL query will be loaded, but only a portion of them, as described by the &#x60;startAt&#x60; and &#x60;maxResults&#x60; properties. Iterate over pages by inspecting the meta data included in the response.
  */
 @ApiModel(description = "The JQL specifying the issues available in the evaluated Jira expression under the `issues` context variable. Not all issues returned by the JQL query will be loaded, but only a portion of them, as described by the `startAt` and `maxResults` properties. Iterate over pages by inspecting the meta data included in the response.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
-public class IssuesJqlBean {
-/* xxxxxxxxxxxxx , , ,  */
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
+public class JexpJqlIssues {
   @JsonProperty("query")
   private String query;
 
@@ -37,7 +36,47 @@ public class IssuesJqlBean {
   @JsonProperty("maxResults")
   private Integer maxResults;
 
-  public IssuesJqlBean query(String query) {
+  /**
+   * Determines how to validate the JQL query and treat the validation results.
+   */
+  public enum ValidationEnum {
+    STRICT("strict"),
+    
+    WARN("warn"),
+    
+    NONE("none");
+
+    private String value;
+
+    ValidationEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ValidationEnum fromValue(String value) {
+      for (ValidationEnum b : ValidationEnum.values()) {
+        if (b.value.equalsIgnoreCase(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  @JsonProperty("validation")
+  private ValidationEnum validation = ValidationEnum.STRICT;
+
+  public JexpJqlIssues query(String query) {
     this.query = query;
     return this;
   }
@@ -55,7 +94,7 @@ public class IssuesJqlBean {
     this.query = query;
   }
 
-  public IssuesJqlBean startAt(Long startAt) {
+  public JexpJqlIssues startAt(Long startAt) {
     this.startAt = startAt;
     return this;
   }
@@ -73,7 +112,7 @@ public class IssuesJqlBean {
     this.startAt = startAt;
   }
 
-  public IssuesJqlBean maxResults(Integer maxResults) {
+  public JexpJqlIssues maxResults(Integer maxResults) {
     this.maxResults = maxResults;
     return this;
   }
@@ -91,6 +130,24 @@ public class IssuesJqlBean {
     this.maxResults = maxResults;
   }
 
+  public JexpJqlIssues validation(ValidationEnum validation) {
+    this.validation = validation;
+    return this;
+  }
+
+   /**
+   * Determines how to validate the JQL query and treat the validation results.
+   * @return validation
+  **/
+  @ApiModelProperty(value = "Determines how to validate the JQL query and treat the validation results.")
+  public ValidationEnum getValidation() {
+    return validation;
+  }
+
+  public void setValidation(ValidationEnum validation) {
+    this.validation = validation;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -100,25 +157,27 @@ public class IssuesJqlBean {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    IssuesJqlBean issuesJqlBean = (IssuesJqlBean) o;
-    return Objects.equals(this.query, issuesJqlBean.query) &&
-        Objects.equals(this.startAt, issuesJqlBean.startAt) &&
-        Objects.equals(this.maxResults, issuesJqlBean.maxResults);
+    JexpJqlIssues jexpJqlIssues = (JexpJqlIssues) o;
+    return Objects.equals(this.query, jexpJqlIssues.query) &&
+        Objects.equals(this.startAt, jexpJqlIssues.startAt) &&
+        Objects.equals(this.maxResults, jexpJqlIssues.maxResults) &&
+        Objects.equals(this.validation, jexpJqlIssues.validation);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(query, startAt, maxResults);
+    return Objects.hash(query, startAt, maxResults, validation);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class IssuesJqlBean {\n");
+    sb.append("class JexpJqlIssues {\n");
     sb.append("    query: ").append(toIndentedString(query)).append("\n");
     sb.append("    startAt: ").append(toIndentedString(startAt)).append("\n");
     sb.append("    maxResults: ").append(toIndentedString(maxResults)).append("\n");
+    sb.append("    validation: ").append(toIndentedString(validation)).append("\n");
     sb.append("}");
     return sb.toString();
   }

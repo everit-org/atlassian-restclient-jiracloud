@@ -26,9 +26,8 @@ import org.openapitools.client.model.IssuesJqlMetaDataBean;
  * Meta data describing the &#x60;issues&#x60; context variable.
  */
 @ApiModel(description = "Meta data describing the `issues` context variable.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class IssuesMetaBean {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("jql")
   private IssuesJqlMetaDataBean jql;
 

@@ -29,9 +29,8 @@ import org.openapitools.client.model.User;
  * The details of votes on an issue.
  */
 @ApiModel(description = "The details of votes on an issue.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class Votes {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("self")
   private URI self;
 

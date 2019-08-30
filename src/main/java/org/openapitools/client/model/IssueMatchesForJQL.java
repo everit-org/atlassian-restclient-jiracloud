@@ -27,9 +27,8 @@ import java.util.List;
  * A list of the issues matched to a JQL query or details of errors encountered during matching.
  */
 @ApiModel(description = "A list of the issues matched to a JQL query or details of errors encountered during matching.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class IssueMatchesForJQL {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("matchedIssues")
   private List<Long> matchedIssues = new ArrayList<>();
 

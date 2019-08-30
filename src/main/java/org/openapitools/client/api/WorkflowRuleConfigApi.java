@@ -9,7 +9,7 @@ import io.reactivex.Completable;
 
 import org.everit.atlassian.restclient.common.RestCallUtil;
 import org.everit.atlassian.restclient.common.RestRequest;
-import org.everit.atlassian.restclient.common.RestRequestInterceptor;
+import org.everit.atlassian.restclient.common.RestRequestEnhancer;
 
 import org.everit.http.client.HttpClient;
 import org.everit.http.client.HttpMethod;
@@ -21,21 +21,19 @@ import org.openapitools.client.model.WorkflowTransitionRulesUpdate;
 import org.openapitools.client.model.WorkflowTransitionRulesUpdateErrors;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Collections;
 
 public class WorkflowRuleConfigApi {
 
   private static final String DEFAULT_BASE_PATH = "http://localhost";
 
-
   private static final TypeReference<PageBeanWorkflowTransitionRules> returnType_getWorkflowTransitionRuleConfigurations = new TypeReference<PageBeanWorkflowTransitionRules>() {};
 
-
   private static final TypeReference<WorkflowTransitionRulesUpdateErrors> returnType_updateWorkflowTransitionRuleConfigurations = new TypeReference<WorkflowTransitionRulesUpdateErrors>() {};
-
 
   private final HttpClient httpClient;
 
@@ -51,60 +49,71 @@ public class WorkflowRuleConfigApi {
    * @param types <p>The types of the transition rules to return.</p>  (optional, default to new ArrayList&lt;&gt;())
    * @param keys <p>The transition rule class keys, as defined in the Connect app descriptor, of the transition rules to return.</p>  (optional, default to new ArrayList&lt;&gt;())
    * @param expand <p>Use <a href=\"#expansion\">expand</a> to include additional information in the response. This parameter accepts multiple values separated by a comma:</p> <ul> <li><code>transition</code> For each rule, returns information about the transition the rule is assigned to.</li> </ul>  (optional)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PageBeanWorkflowTransitionRules&gt;
    */
   public Single<PageBeanWorkflowTransitionRules> getWorkflowTransitionRuleConfigurations(
-    Long startAt, Integer maxResults, List<String> types, List<String> keys, String expand, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    Optional<Long> startAt, Optional<Integer> maxResults, Optional<List<String>> types, Optional<List<String>> keys, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.GET;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/workflow/rule/config";
-    if (startAt != null) {
-      request.queryParams.put("startAt", Collections.singleton(String.valueOf(startAt)));
-    }
-    if (maxResults != null) {
-      request.queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults)));
-    }
-    if (types != null) {
-      request.queryParams.put("types", RestCallUtil.objectCollectionToStringCollection(types));
-    }
-    if (keys != null) {
-      request.queryParams.put("keys", RestCallUtil.objectCollectionToStringCollection(keys));
-    }
-    if (expand != null) {
-      request.queryParams.put("expand", Collections.singleton(String.valueOf(expand)));
-    }
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/workflow/rule/config");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_getWorkflowTransitionRuleConfigurations);
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (startAt.isPresent()) {
+      queryParams.put("startAt", Collections.singleton(String.valueOf(startAt.get())));
+    }
+    if (maxResults.isPresent()) {
+      queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults.get())));
+    }
+    if (types.isPresent()) {
+      queryParams.put("types", RestCallUtil.objectCollectionToStringCollection(types.get()));
+    }
+    if (keys.isPresent()) {
+      queryParams.put("keys", RestCallUtil.objectCollectionToStringCollection(keys.get()));
+    }
+    if (expand.isPresent()) {
+      queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getWorkflowTransitionRuleConfigurations);
   }
 
   /**
    * Update workflow transition rule configurations
    * <p>Updates configuration of workflow transition rules. The following rule types are supported:</p> <ul> <li><a href=\"https://developer.atlassian.com/cloud/jira/platform/modules/workflow-post-function/\">post functions</a></li> <li><a href=\"https://developer.atlassian.com/cloud/jira/platform/modules/workflow-condition/\">conditions</a></li> <li><a href=\"https://developer.atlassian.com/cloud/jira/platform/modules/workflow-validator/\">validators</a></li> </ul> <p>Only rules created by the calling Connect app can be updated.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> Only Connect apps can use this operation.</p> 
    * @param workflowTransitionRulesUpdate  (required)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;WorkflowTransitionRulesUpdateErrors&gt;
    */
   public Single<WorkflowTransitionRulesUpdateErrors> updateWorkflowTransitionRuleConfigurations(
-    WorkflowTransitionRulesUpdate workflowTransitionRulesUpdate, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    WorkflowTransitionRulesUpdate workflowTransitionRulesUpdate, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.PUT;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/workflow/rule/config";
-      request.requestBody = Optional.ofNullable(workflowTransitionRulesUpdate);
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.PUT)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/workflow/rule/config");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_updateWorkflowTransitionRuleConfigurations);
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(workflowTransitionRulesUpdate));
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_updateWorkflowTransitionRuleConfigurations);
   }
 
 }

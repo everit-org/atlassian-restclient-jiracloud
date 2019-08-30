@@ -28,9 +28,8 @@ import org.openapitools.client.model.IssueMatchesForJQL;
  * A list of matched issues or errors for each JQL query, in the order the JQL queries were passed.
  */
 @ApiModel(description = "A list of matched issues or errors for each JQL query, in the order the JQL queries were passed.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-07T22:31:05.639+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T01:56:21.684+02:00[Europe/Prague]")
 public class IssueMatches {
-/* xxxxxxxxxxxxx , , ,  */
   @JsonProperty("matches")
   private List<IssueMatchesForJQL> matches = new ArrayList<>();
 

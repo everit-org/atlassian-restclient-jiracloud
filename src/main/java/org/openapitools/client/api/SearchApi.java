@@ -9,7 +9,7 @@ import io.reactivex.Completable;
 
 import org.everit.atlassian.restclient.common.RestCallUtil;
 import org.everit.atlassian.restclient.common.RestRequest;
-import org.everit.atlassian.restclient.common.RestRequestInterceptor;
+import org.everit.atlassian.restclient.common.RestRequestEnhancer;
 
 import org.everit.http.client.HttpClient;
 import org.everit.http.client.HttpMethod;
@@ -19,21 +19,19 @@ import org.openapitools.client.model.SearchRequestBean;
 import org.openapitools.client.model.SearchResults;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Collections;
 
 public class SearchApi {
 
   private static final String DEFAULT_BASE_PATH = "http://localhost";
 
-
   private static final TypeReference<SearchResults> returnType_searchForIssuesUsingJql = new TypeReference<SearchResults>() {};
 
-
   private static final TypeReference<SearchResults> returnType_searchForIssuesUsingJql_0 = new TypeReference<SearchResults>() {};
-
 
   private final HttpClient httpClient;
 
@@ -52,69 +50,80 @@ public class SearchApi {
    * @param expand <p>Use <a href=\"#expansion\">expand</a> to include additional information about issues in the response. This parameter accepts multiple values separated by a comma:</p> <ul> <li><code>renderedFields</code> Returns field values rendered in HTML format.</li> <li><code>names</code> Returns the display name of each field.</li> <li><code>schema</code> Returns the schema describing a field type.</li> <li><code>transitions</code> Returns all possible transitions for the issue.</li> <li><code>operations</code> Returns all possible operations for the issue.</li> <li><code>editmeta</code> Returns information about how each field can be edited.</li> <li><code>changelog</code> Returns a list of recent updates to an issue, sorted by date, starting from the most recent.</li> <li><code>versionedRepresentations</code> Instead of <code>fields</code>, returns <code>versionedRepresentations</code> a JSON array containing each version of a field's value, with the highest numbered item representing the most recent version.</li> </ul>  (optional)
    * @param properties <p>A comma-separated list of issue property keys for issue properties to include in the results. This parameter may be specified multiple times. For example, <code>properties=prop1,prop2&amp;properties=prop3</code>. A maximum of 5 issue property keys can be specified.</p>  (optional, default to new ArrayList&lt;&gt;())
    * @param fieldsByKeys <p>Reference fields by their key (rather than ID).</p>  (optional, default to false)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;SearchResults&gt;
    */
   public Single<SearchResults> searchForIssuesUsingJql(
-    String jql, Integer startAt, Integer maxResults, String validateQuery, List<String> fields, String expand, List<String> properties, Boolean fieldsByKeys, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    Optional<String> jql, Optional<Integer> startAt, Optional<Integer> maxResults, Optional<String> validateQuery, Optional<List<String>> fields, Optional<String> expand, Optional<List<String>> properties, Optional<Boolean> fieldsByKeys, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.GET;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/search";
-    if (jql != null) {
-      request.queryParams.put("jql", Collections.singleton(String.valueOf(jql)));
-    }
-    if (startAt != null) {
-      request.queryParams.put("startAt", Collections.singleton(String.valueOf(startAt)));
-    }
-    if (maxResults != null) {
-      request.queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults)));
-    }
-    if (validateQuery != null) {
-      request.queryParams.put("validateQuery", Collections.singleton(String.valueOf(validateQuery)));
-    }
-    if (fields != null) {
-      request.queryParams.put("fields", RestCallUtil.objectCollectionToStringCollection(fields));
-    }
-    if (expand != null) {
-      request.queryParams.put("expand", Collections.singleton(String.valueOf(expand)));
-    }
-    if (properties != null) {
-      request.queryParams.put("properties", RestCallUtil.objectCollectionToStringCollection(properties));
-    }
-    if (fieldsByKeys != null) {
-      request.queryParams.put("fieldsByKeys", Collections.singleton(String.valueOf(fieldsByKeys)));
-    }
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/search");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_searchForIssuesUsingJql);
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (jql.isPresent()) {
+      queryParams.put("jql", Collections.singleton(String.valueOf(jql.get())));
+    }
+    if (startAt.isPresent()) {
+      queryParams.put("startAt", Collections.singleton(String.valueOf(startAt.get())));
+    }
+    if (maxResults.isPresent()) {
+      queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults.get())));
+    }
+    if (validateQuery.isPresent()) {
+      queryParams.put("validateQuery", Collections.singleton(String.valueOf(validateQuery.get())));
+    }
+    if (fields.isPresent()) {
+      queryParams.put("fields", RestCallUtil.objectCollectionToStringCollection(fields.get()));
+    }
+    if (expand.isPresent()) {
+      queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
+    }
+    if (properties.isPresent()) {
+      queryParams.put("properties", RestCallUtil.objectCollectionToStringCollection(properties.get()));
+    }
+    if (fieldsByKeys.isPresent()) {
+      queryParams.put("fieldsByKeys", Collections.singleton(String.valueOf(fieldsByKeys.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_searchForIssuesUsingJql);
   }
 
   /**
    * Search for issues using JQL (POST)
    * <p>Searches for issues using <a href=\"https://confluence.atlassian.com/x/egORLQ\">JQL</a>.</p> <p>There is a <a href=\"#api-rest-api-3-search-get\">GET</a> version of this resource that can be used for smaller JQL query expressions.</p> <p>This operation can be accessed anonymously.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> Issues are included in the response where the user has:</p> <ul> <li><em>Browse projects</em> <a href=\"https://confluence.atlassian.com/x/yodKLg\">project permission</a> for the project containing the issue.</li> <li>If <a href=\"https://confluence.atlassian.com/x/J4lKLg\">issue-level security</a> is configured, issue-level security permission to view the issue.</li> </ul> 
    * @param searchRequestBean <p>A JSON object containing the search request.</p>  (required)
-   * @param restRequestInterceptor <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;SearchResults&gt;
    */
   public Single<SearchResults> searchForIssuesUsingJql_0(
-    SearchRequestBean searchRequestBean, Optional<RestRequestInterceptor> restRequestInterceptor) {
+    SearchRequestBean searchRequestBean, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
-    RestRequest request = new RestRequest();
-    request.method = HttpMethod.POST;
-    request.basePath = DEFAULT_BASE_PATH;
-    request.path = "/rest/api/3/search";
-      request.requestBody = Optional.ofNullable(searchRequestBean);
-    
-    if (restRequestInterceptor.isPresent()) {
-      restRequestInterceptor.get().enhanceRestRequest(request);
-    }
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.POST)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/search");
 
-    return RestCallUtil.callEndpoint(httpClient, request, returnType_searchForIssuesUsingJql_0);
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(searchRequestBean));
+
+    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_searchForIssuesUsingJql_0);
   }
 
 }
