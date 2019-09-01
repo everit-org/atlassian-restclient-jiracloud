@@ -28,7 +28,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.FoundGroup;
  * The list of groups found in a search, including header text (Showing X of Y matching groups) and total of matched groups.
  */
 @ApiModel(description = "The list of groups found in a search, including header text (Showing X of Y matching groups) and total of matched groups.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T02:22:14.429+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
 public class FoundGroups {
   @JsonProperty("header")
   private String header;

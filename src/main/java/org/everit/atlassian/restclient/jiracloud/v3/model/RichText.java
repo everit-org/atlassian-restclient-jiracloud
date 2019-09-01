@@ -24,31 +24,13 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * RichText
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T02:22:14.429+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
 public class RichText {
-  @JsonProperty("emptyAdf")
-  private Boolean emptyAdf;
-
   @JsonProperty("valueSet")
   private Boolean valueSet;
 
-  public RichText emptyAdf(Boolean emptyAdf) {
-    this.emptyAdf = emptyAdf;
-    return this;
-  }
-
-   /**
-   * Get emptyAdf
-   * @return emptyAdf
-  **/
-  @ApiModelProperty(value = "")
-  public Boolean getEmptyAdf() {
-    return emptyAdf;
-  }
-
-  public void setEmptyAdf(Boolean emptyAdf) {
-    this.emptyAdf = emptyAdf;
-  }
+  @JsonProperty("emptyAdf")
+  private Boolean emptyAdf;
 
   public RichText valueSet(Boolean valueSet) {
     this.valueSet = valueSet;
@@ -68,6 +50,24 @@ public class RichText {
     this.valueSet = valueSet;
   }
 
+  public RichText emptyAdf(Boolean emptyAdf) {
+    this.emptyAdf = emptyAdf;
+    return this;
+  }
+
+   /**
+   * Get emptyAdf
+   * @return emptyAdf
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getEmptyAdf() {
+    return emptyAdf;
+  }
+
+  public void setEmptyAdf(Boolean emptyAdf) {
+    this.emptyAdf = emptyAdf;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -78,13 +78,13 @@ public class RichText {
       return false;
     }
     RichText richText = (RichText) o;
-    return Objects.equals(this.emptyAdf, richText.emptyAdf) &&
-        Objects.equals(this.valueSet, richText.valueSet);
+    return Objects.equals(this.valueSet, richText.valueSet) &&
+        Objects.equals(this.emptyAdf, richText.emptyAdf);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(emptyAdf, valueSet);
+    return Objects.hash(valueSet, emptyAdf);
   }
 
 
@@ -92,8 +92,8 @@ public class RichText {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class RichText {\n");
-    sb.append("    emptyAdf: ").append(toIndentedString(emptyAdf)).append("\n");
     sb.append("    valueSet: ").append(toIndentedString(valueSet)).append("\n");
+    sb.append("    emptyAdf: ").append(toIndentedString(emptyAdf)).append("\n");
     sb.append("}");
     return sb.toString();
   }

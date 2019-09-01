@@ -27,7 +27,7 @@ import java.util.List;
  * Details of project permissions and associated issues and projects to look up.
  */
 @ApiModel(description = "Details of project permissions and associated issues and projects to look up.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T02:22:14.429+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
 public class BulkProjectPermissions {
   @JsonProperty("issues")
   private List<Long> issues = new ArrayList<>();

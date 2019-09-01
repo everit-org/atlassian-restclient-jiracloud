@@ -27,7 +27,7 @@ import java.util.List;
  * ID of a registered webhook or error messages explaining why a webhook wasn&#39;t registered.
  */
 @ApiModel(description = "ID of a registered webhook or error messages explaining why a webhook wasn't registered.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T02:22:14.429+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
 public class RegisteredWebhook {
   @JsonProperty("createdWebhookId")
   private Long createdWebhookId;

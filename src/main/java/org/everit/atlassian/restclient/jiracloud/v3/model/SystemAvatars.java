@@ -28,7 +28,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.Avatar;
  * List of system avatars.
  */
 @ApiModel(description = "List of system avatars.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T02:22:14.429+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
 public class SystemAvatars {
   @JsonProperty("system")
   private List<Avatar> system = new ArrayList<>();

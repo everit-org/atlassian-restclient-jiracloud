@@ -25,7 +25,7 @@ import io.swagger.annotations.ApiModelProperty;
  * The JQL specifying the issues available in the evaluated Jira expression under the &#x60;issues&#x60; context variable. Not all issues returned by the JQL query will be loaded, but only a portion of them, as described by the &#x60;startAt&#x60; and &#x60;maxResults&#x60; properties. Iterate over pages by inspecting the meta data included in the response.
  */
 @ApiModel(description = "The JQL specifying the issues available in the evaluated Jira expression under the `issues` context variable. Not all issues returned by the JQL query will be loaded, but only a portion of them, as described by the `startAt` and `maxResults` properties. Iterate over pages by inspecting the meta data included in the response.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T02:22:14.429+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
 public class JexpJqlIssues {
   @JsonProperty("query")
   private String query;

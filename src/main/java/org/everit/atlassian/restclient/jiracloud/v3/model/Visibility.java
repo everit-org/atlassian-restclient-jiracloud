@@ -27,7 +27,7 @@ import java.util.Map;
  * The group or role to which this item is visible.
  */
 @ApiModel(description = "The group or role to which this item is visible.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T02:22:14.429+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
 public class Visibility {
   /**
    * Indicates whether visibility of this item is restricted to a group or role.

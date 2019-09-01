@@ -7,9 +7,9 @@ import java.util.Optional;
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.atlassian.restclient.common.RestCallUtil;
-import org.everit.atlassian.restclient.common.RestRequest;
-import org.everit.atlassian.restclient.common.RestRequestEnhancer;
+import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.restclient.RestRequest;
+import org.everit.http.restclient.RestRequestEnhancer;
 
 import org.everit.http.client.HttpClient;
 import org.everit.http.client.HttpMethod;

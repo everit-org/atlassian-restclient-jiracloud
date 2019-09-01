@@ -22,8 +22,8 @@
   <dependencies>
   <!-- Real dependencies -->
     <dependency>
-      <groupId>org.everit.atlassian</groupId>
-      <artifactId>org.everit.atlassian.restclient.common</artifactId>
+      <groupId>org.everit.http</groupId>
+      <artifactId>org.everit.http.restclient</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
     <dependency>
@@ -52,7 +52,21 @@
             <version>1.4.2</version>
             <executions>
               <execution>
-      <!-- the wget goal actually binds itself to this phase by default -->
+                <id>download-v2</id>
+                <phase>generate-sources</phase>
+                <goals>
+                  <goal>wget</goal>
+                </goals>
+                <configuration>
+                  <url>https://developer.atlassian.com/cloud/jira/platform/swagger.v3.json</url>
+                  <outputFileName>jira-cloud-v2.openapi.json</outputFileName>
+                  <outputDirectory>${project.basedir}/src/main/resources/META-INF</outputDirectory>
+                  <overwrite>true</overwrite>
+                  <skipCache>true</skipCache>
+                </configuration>
+              </execution>
+              <execution>
+                <id>download-v3</id>
                 <phase>generate-sources</phase>
                 <goals>
                   <goal>wget</goal>
@@ -60,7 +74,6 @@
                 <configuration>
                   <url>https://developer.atlassian.com/cloud/jira/platform/swagger-v3.v3.json</url>
                   <outputFileName>jira-cloud-v3.openapi.json</outputFileName>
-        <!-- default target location, just to demonstrate the parameter -->
                   <outputDirectory>${project.basedir}/src/main/resources/META-INF</outputDirectory>
                   <overwrite>true</overwrite>
                   <skipCache>true</skipCache>
@@ -73,6 +86,20 @@
             <artifactId>groovy-maven-plugin</artifactId>
             <executions>
               <execution>
+                <id>fixopenapi-v2</id>
+                <phase>generate-sources</phase>
+                <goals>
+                  <goal>execute</goal>
+                </goals>
+                <configuration>
+                  <source>${project.basedir}/src/main/groovy/TransformJiraOpenAPIJSON.groovy</source>
+                  <properties>
+                    <openapi-file>${project.basedir}/src/main/resources/META-INF/jira-cloud-v2.openapi.json</openapi-file>
+                  </properties>
+                </configuration>
+              </execution>
+              <execution>
+                <id>fixopenapi-v3</id>
                 <phase>generate-sources</phase>
                 <goals>
                   <goal>execute</goal>
@@ -107,13 +134,40 @@
     <!-- /RELEASE_VERSION -->
             <executions>
               <execution>
+                <id>generate-v2</id>
+                <goals>
+                  <goal>generate</goal>
+                </goals>
+                <configuration>
+                  <inputSpec>${project.basedir}/src/main/resources/META-INF/jira-cloud-v2.openapi.json</inputSpec>
+                  <generatorName>java</generatorName>
+                  <library>jersey2</library>
+                  <templateDirectory>${project.basedir}/src/main/template</templateDirectory>
+                  <generateAliasAsModel>true</generateAliasAsModel>
+                  <generateApiDocumentation>false</generateApiDocumentation>
+                  <generateApiTests>false</generateApiTests>
+                  <generateModelDocumentation>false</generateModelDocumentation>
+                  <generateModelTests>false</generateModelTests>
+                  <generateSupportingFiles>false</generateSupportingFiles>
+                  <apiPackage>org.everit.atlassian.restclient.jiracloud.v2.api</apiPackage>
+                  <modelPackage>org.everit.atlassian.restclient.jiracloud.v2.model</modelPackage>
+                  <output>${project.basedir}</output>
+                  <configOptions>
+                    <sourceFolder>src/main/java</sourceFolder>
+                    <dateLibrary>java8</dateLibrary>
+                    <java8>true</java8>
+                  </configOptions>
+                  <skipValidateSpec>true</skipValidateSpec>
+                </configuration>
+              </execution>
+              <execution>
+                <id>generate-v3</id>
                 <goals>
                   <goal>generate</goal>
                 </goals>
                 <configuration>
                   <inputSpec>${project.basedir}/src/main/resources/META-INF/jira-cloud-v3.openapi.json</inputSpec>
                   <generatorName>java</generatorName>
-<!--                   <library>okhttp-gson</library> -->
                   <library>jersey2</library>
                   <templateDirectory>${project.basedir}/src/main/template</templateDirectory>
                   <generateAliasAsModel>true</generateAliasAsModel>
@@ -135,54 +189,6 @@
               </execution>
             </executions>
           </plugin>
-<!--           <plugin> -->
-<!--             <artifactId>maven-resources-plugin</artifactId> -->
-<!--             <version>3.1.0</version> -->
-<!--             <executions> -->
-<!--               <execution> -->
-<!--                 <id>copy-model</id> -->
-<!--             here the phase you need -->
-<!--                 <phase>generate-sources</phase> -->
-<!--                 <goals> -->
-<!--                   <goal>copy-resources</goal> -->
-<!--                 </goals> -->
-<!--                 <configuration> -->
-<!--                   <outputDirectory>${basedir}/src/main/java/org/openapitools/client/model</outputDirectory> -->
-<!--                   <resources> -->
-<!--                     <resource> -->
-<!--                        <directory>${basedir}/target/generated-sources/openapi/src/gen/java/main/org/openapitools/client/api</directory>-->
-<!--                       <filtering>true</filtering> -->
-<!--                   </resource> -->
-<!--                     <resource> -->
-<!--                       <directory>${basedir}/target/generated-sources/openapi/src/gen/java/main/org/openapitools/client/model</directory> -->
-<!--                       <filtering>true</filtering> -->
-<!--                     </resource> -->
-<!--                   </resources> -->
-<!--                 </configuration> -->
-<!--               </execution> -->
-<!--               <execution> -->
-<!--                 <id>copy-api</id> -->
-<!--             here the phase you need -->
-<!--                 <phase>generate-sources</phase> -->
-<!--                 <goals> -->
-<!--                   <goal>copy-resources</goal> -->
-<!--                 </goals> -->
-<!--                 <configuration> -->
-<!--                   <outputDirectory>${basedir}/src/main/java/org/openapitools/client/api</outputDirectory> -->
-<!--                   <resources> -->
-<!--                      <resource>  -->
-<!--                       <directory>${basedir}/target/generated-sources/openapi/src/gen/java/main/org/openapitools/client/api</directory> -->
-<!--                      <filtering>true</filtering> -->
-<!--                      </resource>  -->
-<!--                     <resource> -->
-<!--                       <directory>${basedir}/target/generated-sources/openapi/src/gen/java/main/org/openapitools/client/api</directory> -->
-<!--                       <filtering>true</filtering> -->
-<!--                     </resource> -->
-<!--                   </resources> -->
-<!--                 </configuration> -->
-<!--               </execution> -->
-<!--             </executions> -->
-<!--           </plugin> -->
         </plugins>
       </build>
     </profile>

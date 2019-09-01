@@ -25,7 +25,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of the instance&#39;s attachment settings.
  */
 @ApiModel(description = "Details of the instance's attachment settings.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-30T02:22:14.429+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
 public class AttachmentSettings {
   @JsonProperty("enabled")
   private Boolean enabled;
