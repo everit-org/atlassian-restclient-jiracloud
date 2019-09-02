@@ -11,7 +11,8 @@
 
   <groupId>org.everit.atlassian</groupId>
   <artifactId>org.everit.atlassian.restclient.jiracloud</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>bundle</packaging>
 
   <properties>
     <checkstyle.skip>true</checkstyle.skip>
@@ -19,12 +20,33 @@
     <pmd.skip>true</pmd.skip>
   </properties>
 
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Import-Package>
+              *
+            </Import-Package>
+            <Export-Package>
+              org.everit.atlassian.restclient.jiracloud.v2.*;version="1.0.0.v1001-0-0",
+              org.everit.atlassian.restclient.jiracloud.v3.*;version="1.0.0.v1001-0-0"
+            </Export-Package>
+          </instructions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
   <dependencies>
   <!-- Real dependencies -->
     <dependency>
       <groupId>org.everit.http</groupId>
       <artifactId>org.everit.http.restclient</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+      <version>1.0.1</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
@@ -193,13 +215,9 @@
       </build>
     </profile>
     <profile>
-      <id>m2e</id>
+      <id>ide</id>
    <!-- This profile is only activated when building in Eclipse with m2e -->
-      <activation>
-        <property>
-          <name>m2e.version</name>
-        </property>
-      </activation>
+      
       <dependencies>
         <!-- For executing groovy scripts in the ide -->
         <dependency>
