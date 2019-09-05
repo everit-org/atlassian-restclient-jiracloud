@@ -44,7 +44,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.Scope;
  * Details about a notification scheme.
  */
 @ApiModel(description = "Details about a notification scheme.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class NotificationScheme {
   @JsonProperty("expand")
   private String expand;
@@ -230,6 +230,7 @@ public class NotificationScheme {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class NotificationScheme {\n");
+    
     sb.append("    expand: ").append(toIndentedString(expand)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    self: ").append(toIndentedString(self)).append("\n");

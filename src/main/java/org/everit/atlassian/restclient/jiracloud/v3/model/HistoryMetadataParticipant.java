@@ -42,7 +42,7 @@ import java.util.Map;
  * Details of user or system associated with a issue history metadata item.
  */
 @ApiModel(description = "Details of user or system associated with a issue history metadata item.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class HistoryMetadataParticipant {
   @JsonProperty("id")
   private String id;
@@ -211,13 +211,14 @@ public class HistoryMetadataParticipant {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class HistoryMetadataParticipant {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    displayNameKey: ").append(toIndentedString(displayNameKey)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    avatarUrl: ").append(toIndentedString(avatarUrl)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.JqlQueryUnitaryOperand
  * An operand that is a list of values.
  */
 @ApiModel(description = "An operand that is a list of values.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class ListOperand {
   @JsonProperty("values")
   private List<JqlQueryUnitaryOperand> values = new ArrayList<>();
@@ -97,6 +97,7 @@ public class ListOperand {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ListOperand {\n");
+    
     sb.append("    values: ").append(toIndentedString(values)).append("\n");
     sb.append("}");
     return sb.toString();

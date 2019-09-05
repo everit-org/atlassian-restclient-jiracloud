@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Properties that identify a published workflow.
  */
 @ApiModel(description = "Properties that identify a published workflow.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class PublishedWorkflowId {
   @JsonProperty("name")
   private String name;
@@ -86,6 +86,7 @@ public class PublishedWorkflowId {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PublishedWorkflowId {\n");
+    
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();

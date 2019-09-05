@@ -15,20 +15,18 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v3.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v3.model.WorkflowTransitionProperty;
 
@@ -49,10 +47,10 @@ public class WorkflowTransitionApi {
 
   private static final TypeReference<WorkflowTransitionProperty> returnType_updateWorkflowTransitionProperty = new TypeReference<WorkflowTransitionProperty>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public WorkflowTransitionApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public WorkflowTransitionApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -95,7 +93,7 @@ public class WorkflowTransitionApi {
 
     requestBuilder.requestBody(Optional.of(requestBody));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_createWorkflowTransitionProperty);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_createWorkflowTransitionProperty);
   }
 
   /**
@@ -135,7 +133,7 @@ public class WorkflowTransitionApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -179,7 +177,7 @@ public class WorkflowTransitionApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getWorkflowTransitionProperties);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getWorkflowTransitionProperties);
   }
 
   /**
@@ -222,7 +220,7 @@ public class WorkflowTransitionApi {
 
     requestBuilder.requestBody(Optional.of(requestBody));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_updateWorkflowTransitionProperty);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updateWorkflowTransitionProperty);
   }
 
 }

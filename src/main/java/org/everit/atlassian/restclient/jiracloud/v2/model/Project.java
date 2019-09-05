@@ -54,7 +54,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.Version;
  * Details about a project.
  */
 @ApiModel(description = "Details about a project.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class Project {
   @JsonProperty("expand")
   private String expand;
@@ -517,6 +517,7 @@ public class Project {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Project {\n");
+    
     sb.append("    expand: ").append(toIndentedString(expand)).append("\n");
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");

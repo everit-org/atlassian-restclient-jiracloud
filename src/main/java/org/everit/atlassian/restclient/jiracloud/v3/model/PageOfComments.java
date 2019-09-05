@@ -45,7 +45,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.Comment;
  * A page of comments.
  */
 @ApiModel(description = "A page of comments.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class PageOfComments {
   @JsonProperty("startAt")
   private Long startAt;
@@ -134,11 +134,12 @@ public class PageOfComments {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PageOfComments {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    
     sb.append("    startAt: ").append(toIndentedString(startAt)).append("\n");
     sb.append("    maxResults: ").append(toIndentedString(maxResults)).append("\n");
     sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("    comments: ").append(toIndentedString(comments)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.MinimalIssueTypeOutput
 /**
  * HierarchyLevelOutput
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class HierarchyLevelOutput {
   @JsonProperty("entityId")
   private UUID entityId;
@@ -163,6 +163,7 @@ public class HierarchyLevelOutput {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class HierarchyLevelOutput {\n");
+    
     sb.append("    entityId: ").append(toIndentedString(entityId)).append("\n");
     sb.append("    level: ").append(toIndentedString(level)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");

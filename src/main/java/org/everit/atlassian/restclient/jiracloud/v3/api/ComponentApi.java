@@ -15,20 +15,18 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v3.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v3.model.Component;
 import org.everit.atlassian.restclient.jiracloud.v3.model.ComponentIssuesCount;
@@ -52,10 +50,10 @@ public class ComponentApi {
 
   private static final TypeReference<Component> returnType_updateComponent = new TypeReference<Component>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public ComponentApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public ComponentApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -84,7 +82,7 @@ public class ComponentApi {
 
     requestBuilder.requestBody(Optional.of(component));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_createComponent);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_createComponent);
   }
 
   /**
@@ -116,7 +114,7 @@ public class ComponentApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -144,7 +142,7 @@ public class ComponentApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getComponent);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getComponent);
   }
 
   /**
@@ -172,7 +170,7 @@ public class ComponentApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getComponentRelatedIssues);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getComponentRelatedIssues);
   }
 
   /**
@@ -203,7 +201,7 @@ public class ComponentApi {
 
     requestBuilder.requestBody(Optional.of(component));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_updateComponent);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updateComponent);
   }
 
 }

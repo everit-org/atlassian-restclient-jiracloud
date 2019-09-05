@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of an operation to perform on a field.
  */
 @ApiModel(description = "Details of an operation to perform on a field.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class FieldUpdateOperation {
   @JsonProperty("add")
   private Object add = null;
@@ -152,6 +152,7 @@ public class FieldUpdateOperation {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FieldUpdateOperation {\n");
+    
     sb.append("    add: ").append(toIndentedString(add)).append("\n");
     sb.append("    set: ").append(toIndentedString(set)).append("\n");
     sb.append("    remove: ").append(toIndentedString(remove)).append("\n");

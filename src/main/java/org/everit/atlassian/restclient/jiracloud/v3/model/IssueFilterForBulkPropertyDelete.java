@@ -42,7 +42,7 @@ import java.util.List;
  * Bulk operation filter details.
  */
 @ApiModel(description = "Bulk operation filter details.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class IssueFilterForBulkPropertyDelete {
   @JsonProperty("entityIds")
   private List<Long> entityIds = new ArrayList<>();
@@ -118,6 +118,7 @@ public class IssueFilterForBulkPropertyDelete {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueFilterForBulkPropertyDelete {\n");
+    
     sb.append("    entityIds: ").append(toIndentedString(entityIds)).append("\n");
     sb.append("    currentValue: ").append(toIndentedString(currentValue)).append("\n");
     sb.append("}");

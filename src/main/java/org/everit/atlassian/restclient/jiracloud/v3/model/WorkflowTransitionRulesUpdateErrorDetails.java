@@ -45,7 +45,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.WorkflowId;
  * Details of any errors encountered while updating workflow transition rules for a workflow.
  */
 @ApiModel(description = "Details of any errors encountered while updating workflow transition rules for a workflow.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class WorkflowTransitionRulesUpdateErrorDetails {
   @JsonProperty("workflowId")
   private WorkflowId workflowId;
@@ -148,6 +148,7 @@ public class WorkflowTransitionRulesUpdateErrorDetails {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class WorkflowTransitionRulesUpdateErrorDetails {\n");
+    
     sb.append("    workflowId: ").append(toIndentedString(workflowId)).append("\n");
     sb.append("    ruleUpdateErrors: ").append(toIndentedString(ruleUpdateErrors)).append("\n");
     sb.append("    updateErrors: ").append(toIndentedString(updateErrors)).append("\n");

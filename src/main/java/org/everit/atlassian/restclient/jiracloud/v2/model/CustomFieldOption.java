@@ -41,7 +41,7 @@ import java.net.URI;
  * Details of a custom option for a field.
  */
 @ApiModel(description = "Details of a custom option for a field.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class CustomFieldOption {
   @JsonProperty("self")
   private URI self;
@@ -91,6 +91,7 @@ public class CustomFieldOption {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CustomFieldOption {\n");
+    
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");

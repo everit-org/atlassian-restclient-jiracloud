@@ -41,7 +41,7 @@ import java.util.List;
 /**
  * GlobalScopeBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class GlobalScopeBean {
   /**
    * Gets or Sets attributes
@@ -130,6 +130,7 @@ public class GlobalScopeBean {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GlobalScopeBean {\n");
+    
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("}");
     return sb.toString();

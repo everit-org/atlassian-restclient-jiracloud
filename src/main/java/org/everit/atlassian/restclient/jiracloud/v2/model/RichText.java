@@ -39,7 +39,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * RichText
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class RichText {
   @JsonProperty("valueSet")
   private Boolean valueSet;
@@ -107,6 +107,7 @@ public class RichText {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class RichText {\n");
+    
     sb.append("    valueSet: ").append(toIndentedString(valueSet)).append("\n");
     sb.append("    emptyAdf: ").append(toIndentedString(emptyAdf)).append("\n");
     sb.append("}");

@@ -35,18 +35,22 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.everit.atlassian.restclient.jiracloud.v2.model.Scope;
 
 /**
  * A screen.
  */
 @ApiModel(description = "A screen.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class Screen {
   @JsonProperty("id")
   private Long id;
 
   @JsonProperty("name")
   private String name;
+
+  @JsonProperty("scope")
+  private Scope scope;
 
    /**
    * The ID of the screen.
@@ -66,6 +70,24 @@ public class Screen {
     return name;
   }
 
+  public Screen scope(Scope scope) {
+    this.scope = scope;
+    return this;
+  }
+
+   /**
+   * The scope of the screen.
+   * @return scope
+  **/
+  @ApiModelProperty(value = "The scope of the screen.")
+  public Scope getScope() {
+    return scope;
+  }
+
+  public void setScope(Scope scope) {
+    this.scope = scope;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -77,12 +99,13 @@ public class Screen {
     }
     Screen screen = (Screen) o;
     return Objects.equals(this.id, screen.id) &&
-        Objects.equals(this.name, screen.name);
+        Objects.equals(this.name, screen.name) &&
+        Objects.equals(this.scope, screen.scope);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name);
+    return Objects.hash(id, name, scope);
   }
 
 
@@ -90,8 +113,10 @@ public class Screen {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Screen {\n");
+    
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
     sb.append("}");
     return sb.toString();
   }

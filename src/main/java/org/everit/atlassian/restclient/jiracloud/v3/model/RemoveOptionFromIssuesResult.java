@@ -42,7 +42,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.SimpleErrorCollection;
 /**
  * RemoveOptionFromIssuesResult
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class RemoveOptionFromIssuesResult {
   @JsonProperty("modifiedIssues")
   private List<Long> modifiedIssues = new ArrayList<>();
@@ -148,6 +148,7 @@ public class RemoveOptionFromIssuesResult {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class RemoveOptionFromIssuesResult {\n");
+    
     sb.append("    modifiedIssues: ").append(toIndentedString(modifiedIssues)).append("\n");
     sb.append("    unmodifiedIssues: ").append(toIndentedString(unmodifiedIssues)).append("\n");
     sb.append("    errors: ").append(toIndentedString(errors)).append("\n");

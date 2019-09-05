@@ -39,7 +39,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * JiraExpressionsComplexityValueBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class JiraExpressionsComplexityValueBean {
   @JsonProperty("value")
   private Integer value;
@@ -107,6 +107,7 @@ public class JiraExpressionsComplexityValueBean {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class JiraExpressionsComplexityValueBean {\n");
+    
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    limit: ").append(toIndentedString(limit)).append("\n");
     sb.append("}");

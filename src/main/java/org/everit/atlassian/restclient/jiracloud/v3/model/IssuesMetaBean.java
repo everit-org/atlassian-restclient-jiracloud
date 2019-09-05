@@ -41,7 +41,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.IssuesJqlMetaDataBean;
  * Meta data describing the &#x60;issues&#x60; context variable.
  */
 @ApiModel(description = "Meta data describing the `issues` context variable.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class IssuesMetaBean {
   @JsonProperty("jql")
   private IssuesJqlMetaDataBean jql;
@@ -87,6 +87,7 @@ public class IssuesMetaBean {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssuesMetaBean {\n");
+    
     sb.append("    jql: ").append(toIndentedString(jql)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * JQL queries that contained users that could not be found
  */
 @ApiModel(description = "JQL queries that contained users that could not be found")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class JQLQueryWithUnknownUsers {
   @JsonProperty("originalQuery")
   private String originalQuery;
@@ -108,6 +108,7 @@ public class JQLQueryWithUnknownUsers {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class JQLQueryWithUnknownUsers {\n");
+    
     sb.append("    originalQuery: ").append(toIndentedString(originalQuery)).append("\n");
     sb.append("    convertedQuery: ").append(toIndentedString(convertedQuery)).append("\n");
     sb.append("}");

@@ -39,7 +39,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * UserMigrationBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class UserMigrationBean {
   @JsonProperty("key")
   private String key;
@@ -129,6 +129,7 @@ public class UserMigrationBean {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UserMigrationBean {\n");
+    
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");

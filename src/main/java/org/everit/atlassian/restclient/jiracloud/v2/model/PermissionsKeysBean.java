@@ -41,7 +41,7 @@ import java.util.List;
 /**
  * PermissionsKeysBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class PermissionsKeysBean {
   @JsonProperty("permissions")
   private List<String> permissions = new ArrayList<>();
@@ -92,6 +92,7 @@ public class PermissionsKeysBean {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PermissionsKeysBean {\n");
+    
     sb.append("    permissions: ").append(toIndentedString(permissions)).append("\n");
     sb.append("}");
     return sb.toString();

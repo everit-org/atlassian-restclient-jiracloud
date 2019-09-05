@@ -39,7 +39,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * AttachmentArchiveEntry
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class AttachmentArchiveEntry {
   @JsonProperty("mediaType")
   private String mediaType;
@@ -173,6 +173,7 @@ public class AttachmentArchiveEntry {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AttachmentArchiveEntry {\n");
+    
     sb.append("    mediaType: ").append(toIndentedString(mediaType)).append("\n");
     sb.append("    entryIndex: ").append(toIndentedString(entryIndex)).append("\n");
     sb.append("    abbreviatedName: ").append(toIndentedString(abbreviatedName)).append("\n");

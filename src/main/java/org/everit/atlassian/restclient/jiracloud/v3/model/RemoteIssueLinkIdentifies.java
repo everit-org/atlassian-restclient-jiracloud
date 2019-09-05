@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of the identifiers for a created or updated remote issue link.
  */
 @ApiModel(description = "Details of the identifiers for a created or updated remote issue link.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class RemoteIssueLinkIdentifies {
   @JsonProperty("id")
   private Long id;
@@ -90,6 +90,7 @@ public class RemoteIssueLinkIdentifies {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class RemoteIssueLinkIdentifies {\n");
+    
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("}");

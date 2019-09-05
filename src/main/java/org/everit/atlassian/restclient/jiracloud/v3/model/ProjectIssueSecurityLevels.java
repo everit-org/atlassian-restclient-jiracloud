@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.SecurityLevel;
  * List of issue level security items in a project.
  */
 @ApiModel(description = "List of issue level security items in a project.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class ProjectIssueSecurityLevels {
   @JsonProperty("levels")
   private List<SecurityLevel> levels = new ArrayList<>();
@@ -80,6 +80,7 @@ public class ProjectIssueSecurityLevels {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProjectIssueSecurityLevels {\n");
+    
     sb.append("    levels: ").append(toIndentedString(levels)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Details about a project type.
  */
 @ApiModel(description = "Details about a project type.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class ProjectType {
   @JsonProperty("key")
   private String key;
@@ -129,6 +129,7 @@ public class ProjectType {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProjectType {\n");
+    
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    formattedKey: ").append(toIndentedString(formattedKey)).append("\n");
     sb.append("    descriptionI18nKey: ").append(toIndentedString(descriptionI18nKey)).append("\n");

@@ -43,7 +43,7 @@ import java.util.Map;
  * The schema of a field.
  */
 @ApiModel(description = "The schema of a field.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class JsonTypeBean {
   @JsonProperty("type")
   private String type;
@@ -145,6 +145,7 @@ public class JsonTypeBean {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class JsonTypeBean {\n");
+    
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("    system: ").append(toIndentedString(system)).append("\n");

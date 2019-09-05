@@ -44,7 +44,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.FunctionReferenceData;
  * Lists of JQL reference data.
  */
 @ApiModel(description = "Lists of JQL reference data.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class JQLReferenceData {
   @JsonProperty("visibleFieldNames")
   private List<FieldReferenceData> visibleFieldNames = new ArrayList<>();
@@ -158,6 +158,7 @@ public class JQLReferenceData {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class JQLReferenceData {\n");
+    
     sb.append("    visibleFieldNames: ").append(toIndentedString(visibleFieldNames)).append("\n");
     sb.append("    visibleFunctionNames: ").append(toIndentedString(visibleFunctionNames)).append("\n");
     sb.append("    jqlReservedWords: ").append(toIndentedString(jqlReservedWords)).append("\n");

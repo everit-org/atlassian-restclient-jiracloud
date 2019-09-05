@@ -15,8 +15,6 @@
 }}
 package {{package}};
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 {{^returnType}}
@@ -26,13 +24,13 @@ import io.reactivex.Single;
 import io.reactivex.Completable;
 {{/returnType}}
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 {{#imports}}import {{import}};
 {{/imports}}
@@ -51,10 +49,10 @@ public class {{classname}} {
 {{#operation}}{{#returnType}}
   private static final TypeReference<{{{returnType}}}> returnType_{{operationId}} = new TypeReference<{{{returnType}}}>() {};
 {{/returnType}}{{/operation}}
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public {{classname}}(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public {{classname}}(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   {{#operation}}
@@ -96,7 +94,7 @@ public class {{classname}} {
     Map<String, Collection<String>> queryParams = new HashMap<>();
     {{#queryParams}}
 {{^required}}    if ({{paramName}}.isPresent()) {
-  {{/required}}    queryParams.put("{{baseName}}", {{#collectionFormat}}RestCallUtil.objectCollectionToStringCollection({{paramName}}{{^required}}.get(){{/required}}){{/collectionFormat}}{{^collectionFormat}}Collections.singleton(String.valueOf({{paramName}}{{^required}}.get(){{/required}})){{/collectionFormat}});{{^required}}
+  {{/required}}    queryParams.put("{{baseName}}", {{#collectionFormat}}RestClientUtil.objectCollectionToStringCollection({{paramName}}{{^required}}.get(){{/required}}){{/collectionFormat}}{{^collectionFormat}}Collections.singleton(String.valueOf({{paramName}}{{^required}}.get(){{/required}})){{/collectionFormat}});{{^required}}
     }{{/required}}
     {{/queryParams}}
     requestBuilder.queryParams(queryParams);
@@ -113,7 +111,7 @@ public class {{classname}} {
     requestBuilder.requestBody({{#required}}Optional.of({{paramName}}){{/required}}{{^required}}{{paramName}}{{/required}});
     {{/bodyParam}}
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer{{#returnType}}, returnType_{{operationId}}{{/returnType}});
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer{{#returnType}}, returnType_{{operationId}}{{/returnType}});
   }
 
   {{/operation}}

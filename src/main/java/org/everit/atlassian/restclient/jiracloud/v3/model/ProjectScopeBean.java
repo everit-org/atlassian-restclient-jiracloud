@@ -41,7 +41,7 @@ import java.util.List;
 /**
  * ProjectScopeBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class ProjectScopeBean {
   @JsonProperty("id")
   private Long id;
@@ -152,6 +152,7 @@ public class ProjectScopeBean {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProjectScopeBean {\n");
+    
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("}");

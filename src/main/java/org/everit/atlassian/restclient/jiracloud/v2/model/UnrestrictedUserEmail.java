@@ -39,7 +39,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * UnrestrictedUserEmail
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class UnrestrictedUserEmail {
   @JsonProperty("accountId")
   private String accountId;
@@ -107,6 +107,7 @@ public class UnrestrictedUserEmail {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UnrestrictedUserEmail {\n");
+    
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("}");

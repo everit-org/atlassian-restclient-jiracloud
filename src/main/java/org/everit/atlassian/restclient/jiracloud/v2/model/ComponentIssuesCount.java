@@ -41,7 +41,7 @@ import java.net.URI;
  * Count of issues assigned to a component.
  */
 @ApiModel(description = "Count of issues assigned to a component.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class ComponentIssuesCount {
   @JsonProperty("self")
   private URI self;
@@ -91,6 +91,7 @@ public class ComponentIssuesCount {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ComponentIssuesCount {\n");
+    
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    issueCount: ").append(toIndentedString(issueCount)).append("\n");
     sb.append("}");

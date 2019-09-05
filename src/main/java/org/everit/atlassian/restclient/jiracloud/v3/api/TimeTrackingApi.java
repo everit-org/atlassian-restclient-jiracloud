@@ -15,20 +15,18 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v3.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v3.model.TimeTrackingConfiguration;
 import org.everit.atlassian.restclient.jiracloud.v3.model.TimeTrackingProvider;
@@ -56,10 +54,10 @@ public class TimeTrackingApi {
 
   private static final TypeReference<TimeTrackingConfiguration> returnType_setSharedTimeTrackingConfiguration = new TypeReference<TimeTrackingConfiguration>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public TimeTrackingApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public TimeTrackingApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -87,7 +85,7 @@ public class TimeTrackingApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_disableTimeTracking);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_disableTimeTracking);
   }
 
   /**
@@ -113,7 +111,7 @@ public class TimeTrackingApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getAvailableTimeTrackingImplementations);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getAvailableTimeTrackingImplementations);
   }
 
   /**
@@ -139,7 +137,7 @@ public class TimeTrackingApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getSelectedTimeTrackingImplementation);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getSelectedTimeTrackingImplementation);
   }
 
   /**
@@ -165,7 +163,7 @@ public class TimeTrackingApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getSharedTimeTrackingConfiguration);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getSharedTimeTrackingConfiguration);
   }
 
   /**
@@ -194,7 +192,7 @@ public class TimeTrackingApi {
 
     requestBuilder.requestBody(Optional.of(timeTrackingProvider));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_selectTimeTrackingImplementation);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_selectTimeTrackingImplementation);
   }
 
   /**
@@ -223,7 +221,7 @@ public class TimeTrackingApi {
 
     requestBuilder.requestBody(Optional.of(timeTrackingConfiguration));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_setSharedTimeTrackingConfiguration);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_setSharedTimeTrackingConfiguration);
   }
 
 }

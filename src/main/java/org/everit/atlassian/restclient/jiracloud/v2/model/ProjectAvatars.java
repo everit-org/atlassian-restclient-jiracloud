@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.Avatar;
  * List of project avatars.
  */
 @ApiModel(description = "List of project avatars.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class ProjectAvatars {
   @JsonProperty("system")
   private List<Avatar> system = new ArrayList<>();
@@ -93,6 +93,7 @@ public class ProjectAvatars {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProjectAvatars {\n");
+    
     sb.append("    system: ").append(toIndentedString(system)).append("\n");
     sb.append("    custom: ").append(toIndentedString(custom)).append("\n");
     sb.append("}");

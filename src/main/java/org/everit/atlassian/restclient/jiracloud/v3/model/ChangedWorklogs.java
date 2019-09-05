@@ -44,7 +44,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.ChangedWorklog;
  * List of changed worklogs.
  */
 @ApiModel(description = "List of changed worklogs.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class ChangedWorklogs {
   @JsonProperty("values")
   private List<ChangedWorklog> values = new ArrayList<>();
@@ -155,6 +155,7 @@ public class ChangedWorklogs {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ChangedWorklogs {\n");
+    
     sb.append("    values: ").append(toIndentedString(values)).append("\n");
     sb.append("    since: ").append(toIndentedString(since)).append("\n");
     sb.append("    until: ").append(toIndentedString(until)).append("\n");

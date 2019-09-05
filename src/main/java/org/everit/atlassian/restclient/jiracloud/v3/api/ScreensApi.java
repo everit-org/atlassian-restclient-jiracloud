@@ -15,20 +15,18 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v3.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v3.model.AddFieldBean;
 import org.everit.atlassian.restclient.jiracloud.v3.model.MoveFieldBean;
@@ -67,10 +65,10 @@ public class ScreensApi {
 
   private static final TypeReference<ScreenableTab> returnType_renameScreenTab = new TypeReference<ScreenableTab>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public ScreensApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public ScreensApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -98,7 +96,7 @@ public class ScreensApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_addFieldToDefaultScreen);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_addFieldToDefaultScreen);
   }
 
   /**
@@ -129,7 +127,7 @@ public class ScreensApi {
 
     requestBuilder.requestBody(Optional.of(screenableTab));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_addScreenTab);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_addScreenTab);
   }
 
   /**
@@ -162,7 +160,7 @@ public class ScreensApi {
 
     requestBuilder.requestBody(Optional.of(addFieldBean));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_addScreenTabField);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_addScreenTabField);
   }
 
   /**
@@ -192,7 +190,7 @@ public class ScreensApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -226,7 +224,7 @@ public class ScreensApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getAllScreenTabFields);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getAllScreenTabFields);
   }
 
   /**
@@ -258,7 +256,7 @@ public class ScreensApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getAllScreenTabs);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getAllScreenTabs);
   }
 
   /**
@@ -292,7 +290,7 @@ public class ScreensApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getAllScreens);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getAllScreens);
   }
 
   /**
@@ -320,7 +318,7 @@ public class ScreensApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getAvailableScreenFields);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getAvailableScreenFields);
   }
 
   /**
@@ -352,7 +350,7 @@ public class ScreensApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_moveScreenTab);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_moveScreenTab);
   }
 
   /**
@@ -387,7 +385,7 @@ public class ScreensApi {
 
     requestBuilder.requestBody(Optional.of(moveFieldBean));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_moveScreenTabField);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_moveScreenTabField);
   }
 
   /**
@@ -419,7 +417,7 @@ public class ScreensApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -452,7 +450,7 @@ public class ScreensApi {
 
     requestBuilder.requestBody(Optional.of(screenableTab));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_renameScreenTab);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_renameScreenTab);
   }
 
 }

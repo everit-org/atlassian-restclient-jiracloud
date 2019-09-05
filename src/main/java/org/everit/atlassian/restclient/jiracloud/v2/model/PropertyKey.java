@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Property key details.
  */
 @ApiModel(description = "Property key details.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class PropertyKey {
   @JsonProperty("self")
   private String self;
@@ -90,6 +90,7 @@ public class PropertyKey {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PropertyKey {\n");
+    
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("}");

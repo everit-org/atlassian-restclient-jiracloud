@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Details about the time tracking provider.
  */
 @ApiModel(description = "Details about the time tracking provider.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class TimeTrackingProvider {
   @JsonProperty("key")
   private String key;
@@ -121,6 +121,7 @@ public class TimeTrackingProvider {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class TimeTrackingProvider {\n");
+    
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");

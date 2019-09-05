@@ -41,7 +41,7 @@ import java.net.URI;
  * A project category.
  */
 @ApiModel(description = "A project category.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class ProjectCategory {
   @JsonProperty("self")
   private URI self;
@@ -135,6 +135,7 @@ public class ProjectCategory {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProjectCategory {\n");
+    
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");

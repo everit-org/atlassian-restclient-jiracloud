@@ -15,20 +15,18 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v2.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v2.model.AttachmentArchiveImpl;
 import org.everit.atlassian.restclient.jiracloud.v2.model.AttachmentArchiveMetadataReadable;
@@ -54,10 +52,10 @@ public class AttachmentApi {
 
   private static final TypeReference<AttachmentSettings> returnType_getAttachmentMeta = new TypeReference<AttachmentSettings>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public AttachmentApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public AttachmentApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -85,7 +83,7 @@ public class AttachmentApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_expandAttachmentForHumans);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_expandAttachmentForHumans);
   }
 
   /**
@@ -113,7 +111,7 @@ public class AttachmentApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_expandAttachmentForMachines);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_expandAttachmentForMachines);
   }
 
   /**
@@ -141,7 +139,7 @@ public class AttachmentApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getAttachment);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getAttachment);
   }
 
   /**
@@ -167,7 +165,7 @@ public class AttachmentApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getAttachmentMeta);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getAttachmentMeta);
   }
 
   /**
@@ -195,7 +193,7 @@ public class AttachmentApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
 }

@@ -44,7 +44,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.User;
  * The details of votes on an issue.
  */
 @ApiModel(description = "The details of votes on an issue.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class Votes {
   @JsonProperty("self")
   private URI self;
@@ -120,6 +120,7 @@ public class Votes {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Votes {\n");
+    
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    votes: ").append(toIndentedString(votes)).append("\n");
     sb.append("    hasVoted: ").append(toIndentedString(hasVoted)).append("\n");

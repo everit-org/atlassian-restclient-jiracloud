@@ -42,7 +42,7 @@ import java.util.Map;
  * An icon. If no icon is defined:   *  for a status icon, no status icon displays in Jira.  *  for the remote object icon, the default link icon displays in Jira.
  */
 @ApiModel(description = "An icon. If no icon is defined:   *  for a status icon, no status icon displays in Jira.  *  for the remote object icon, the default link icon displays in Jira.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class Icon {
   @JsonProperty("url16x16")
   private String url16x16;
@@ -145,10 +145,11 @@ public class Icon {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Icon {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    
     sb.append("    url16x16: ").append(toIndentedString(url16x16)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    link: ").append(toIndentedString(link)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();
   }

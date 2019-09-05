@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.JqlQuery;
  * Details of a parsed JQL query.
  */
 @ApiModel(description = "Details of a parsed JQL query.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class ParsedJqlQuery {
   @JsonProperty("query")
   private String query;
@@ -141,6 +141,7 @@ public class ParsedJqlQuery {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ParsedJqlQuery {\n");
+    
     sb.append("    query: ").append(toIndentedString(query)).append("\n");
     sb.append("    structure: ").append(toIndentedString(structure)).append("\n");
     sb.append("    errors: ").append(toIndentedString(errors)).append("\n");

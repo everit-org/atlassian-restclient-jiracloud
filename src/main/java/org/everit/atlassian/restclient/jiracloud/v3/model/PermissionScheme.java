@@ -47,7 +47,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.Scope;
  * Details of a permission scheme.
  */
 @ApiModel(description = "Details of a permission scheme.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class PermissionScheme {
   @JsonProperty("expand")
   private String expand;
@@ -219,7 +219,7 @@ public class PermissionScheme {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PermissionScheme {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    
     sb.append("    expand: ").append(toIndentedString(expand)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
@@ -227,6 +227,7 @@ public class PermissionScheme {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
     sb.append("    permissions: ").append(toIndentedString(permissions)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();
   }

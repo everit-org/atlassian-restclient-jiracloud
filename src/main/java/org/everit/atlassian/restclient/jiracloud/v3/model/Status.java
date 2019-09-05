@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.Icon;
  * The status of the item.
  */
 @ApiModel(description = "The status of the item.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class Status {
   @JsonProperty("resolved")
   private Boolean resolved;
@@ -124,9 +124,10 @@ public class Status {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Status {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    
     sb.append("    resolved: ").append(toIndentedString(resolved)).append("\n");
     sb.append("    icon: ").append(toIndentedString(icon)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();
   }

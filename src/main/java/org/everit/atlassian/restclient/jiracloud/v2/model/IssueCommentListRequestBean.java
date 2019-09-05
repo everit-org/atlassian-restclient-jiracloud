@@ -41,7 +41,7 @@ import java.util.List;
 /**
  * IssueCommentListRequestBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class IssueCommentListRequestBean {
   @JsonProperty("ids")
   private List<Long> ids = new ArrayList<>();
@@ -95,6 +95,7 @@ public class IssueCommentListRequestBean {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueCommentListRequestBean {\n");
+    
     sb.append("    ids: ").append(toIndentedString(ids)).append("\n");
     sb.append("}");
     return sb.toString();

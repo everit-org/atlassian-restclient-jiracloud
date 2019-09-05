@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Details about the replacement for a deleted version.
  */
 @ApiModel(description = "Details about the replacement for a deleted version.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class CustomFieldReplacement {
   @JsonProperty("customFieldId")
   private Long customFieldId;
@@ -108,6 +108,7 @@ public class CustomFieldReplacement {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CustomFieldReplacement {\n");
+    
     sb.append("    customFieldId: ").append(toIndentedString(customFieldId)).append("\n");
     sb.append("    moveTo: ").append(toIndentedString(moveTo)).append("\n");
     sb.append("}");

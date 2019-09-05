@@ -44,7 +44,7 @@ import java.util.Map;
  * Error messages from an operation.
  */
 @ApiModel(description = "Error messages from an operation.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class ErrorCollection {
   @JsonProperty("errorMessages")
   private List<String> errorMessages = new ArrayList<>();
@@ -150,6 +150,7 @@ public class ErrorCollection {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ErrorCollection {\n");
+    
     sb.append("    errorMessages: ").append(toIndentedString(errorMessages)).append("\n");
     sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");

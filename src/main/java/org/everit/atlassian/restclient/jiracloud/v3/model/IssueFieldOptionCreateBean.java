@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.IssueFieldOptionConfig
 /**
  * IssueFieldOptionCreateBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class IssueFieldOptionCreateBean {
   @JsonProperty("value")
   private String value;
@@ -154,10 +154,11 @@ public class IssueFieldOptionCreateBean {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueFieldOptionCreateBean {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    properties: ").append(toIndentedString(properties)).append("\n");
     sb.append("    config: ").append(toIndentedString(config)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();
   }

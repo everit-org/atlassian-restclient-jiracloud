@@ -41,7 +41,7 @@ import java.net.URI;
  * Count of a version&#39;s unresolved issues.
  */
 @ApiModel(description = "Count of a version's unresolved issues.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class VersionUnresolvedIssuesCount {
   @JsonProperty("self")
   private URI self;
@@ -104,6 +104,7 @@ public class VersionUnresolvedIssuesCount {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class VersionUnresolvedIssuesCount {\n");
+    
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    issuesUnresolvedCount: ").append(toIndentedString(issuesUnresolvedCount)).append("\n");
     sb.append("    issuesCount: ").append(toIndentedString(issuesCount)).append("\n");

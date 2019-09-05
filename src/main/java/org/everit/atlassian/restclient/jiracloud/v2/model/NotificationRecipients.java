@@ -46,7 +46,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.UserDetails;
  * Details of the users and groups to receive the notification.
  */
 @ApiModel(description = "Details of the users and groups to receive the notification.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class NotificationRecipients {
   @JsonProperty("reporter")
   private Boolean reporter;
@@ -231,13 +231,14 @@ public class NotificationRecipients {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class NotificationRecipients {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    
     sb.append("    reporter: ").append(toIndentedString(reporter)).append("\n");
     sb.append("    assignee: ").append(toIndentedString(assignee)).append("\n");
     sb.append("    watchers: ").append(toIndentedString(watchers)).append("\n");
     sb.append("    voters: ").append(toIndentedString(voters)).append("\n");
     sb.append("    users: ").append(toIndentedString(users)).append("\n");
     sb.append("    groups: ").append(toIndentedString(groups)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();
   }

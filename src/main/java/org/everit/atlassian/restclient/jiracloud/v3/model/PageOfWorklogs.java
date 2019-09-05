@@ -45,7 +45,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.Worklog;
  * Paginated list of worklog details
  */
 @ApiModel(description = "Paginated list of worklog details")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class PageOfWorklogs {
   @JsonProperty("startAt")
   private Integer startAt;
@@ -134,11 +134,12 @@ public class PageOfWorklogs {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PageOfWorklogs {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    
     sb.append("    startAt: ").append(toIndentedString(startAt)).append("\n");
     sb.append("    maxResults: ").append(toIndentedString(maxResults)).append("\n");
     sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("    worklogs: ").append(toIndentedString(worklogs)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();
   }

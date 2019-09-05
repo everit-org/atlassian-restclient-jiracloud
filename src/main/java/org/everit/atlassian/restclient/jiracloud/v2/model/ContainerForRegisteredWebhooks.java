@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.RegisteredWebhook;
  * Container for a list of registered webhooks. Webhook details are returned in the same order as the request.
  */
 @ApiModel(description = "Container for a list of registered webhooks. Webhook details are returned in the same order as the request.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class ContainerForRegisteredWebhooks {
   @JsonProperty("webhookRegistrationResult")
   private List<RegisteredWebhook> webhookRegistrationResult = new ArrayList<>();
@@ -97,6 +97,7 @@ public class ContainerForRegisteredWebhooks {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ContainerForRegisteredWebhooks {\n");
+    
     sb.append("    webhookRegistrationResult: ").append(toIndentedString(webhookRegistrationResult)).append("\n");
     sb.append("}");
     return sb.toString();

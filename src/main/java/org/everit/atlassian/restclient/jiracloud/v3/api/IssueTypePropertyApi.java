@@ -15,20 +15,18 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v3.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v3.model.EntityProperty;
 import org.everit.atlassian.restclient.jiracloud.v3.model.PropertyKeys;
@@ -50,10 +48,10 @@ public class IssueTypePropertyApi {
 
   private static final TypeReference<Object> returnType_setIssueTypeProperty = new TypeReference<Object>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public IssueTypePropertyApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public IssueTypePropertyApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -83,7 +81,7 @@ public class IssueTypePropertyApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -113,7 +111,7 @@ public class IssueTypePropertyApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getIssueTypeProperty);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getIssueTypeProperty);
   }
 
   /**
@@ -141,7 +139,7 @@ public class IssueTypePropertyApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getIssueTypePropertyKeys);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getIssueTypePropertyKeys);
   }
 
   /**
@@ -174,7 +172,7 @@ public class IssueTypePropertyApi {
 
     requestBuilder.requestBody(Optional.of(body));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_setIssueTypeProperty);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_setIssueTypeProperty);
   }
 
 }

@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of a user, group, field, or project role that holds a permission. See [Holder object](#holder-object) in *Get all permission schemes* for more information.
  */
 @ApiModel(description = "Details of a user, group, field, or project role that holds a permission. See [Holder object](#holder-object) in *Get all permission schemes* for more information.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class PermissionHolder {
   @JsonProperty("type")
   private String type;
@@ -121,6 +121,7 @@ public class PermissionHolder {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PermissionHolder {\n");
+    
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    parameter: ").append(toIndentedString(parameter)).append("\n");
     sb.append("    expand: ").append(toIndentedString(expand)).append("\n");

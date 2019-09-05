@@ -42,7 +42,7 @@ import java.util.UUID;
 /**
  * HierarchyLevel
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class HierarchyLevel {
   @JsonProperty("id")
   private Long id;
@@ -228,6 +228,7 @@ public class HierarchyLevel {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class HierarchyLevel {\n");
+    
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    aboveLevelId: ").append(toIndentedString(aboveLevelId)).append("\n");

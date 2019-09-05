@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.WorkflowTransitionRule
  * Details about a workflow configuration update request.
  */
 @ApiModel(description = "Details about a workflow configuration update request.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class WorkflowTransitionRulesUpdate {
   @JsonProperty("workflows")
   private List<WorkflowTransitionRules> workflows = new ArrayList<>();
@@ -97,6 +97,7 @@ public class WorkflowTransitionRulesUpdate {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class WorkflowTransitionRulesUpdate {\n");
+    
     sb.append("    workflows: ").append(toIndentedString(workflows)).append("\n");
     sb.append("}");
     return sb.toString();

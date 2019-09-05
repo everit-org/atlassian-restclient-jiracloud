@@ -44,7 +44,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.UserDetails;
  * Key fields from the linked issue.
  */
 @ApiModel(description = "Key fields from the linked issue.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class Fields {
   @JsonProperty("summary")
   private String summary;
@@ -155,6 +155,7 @@ public class Fields {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Fields {\n");
+    
     sb.append("    summary: ").append(toIndentedString(summary)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    priority: ").append(toIndentedString(priority)).append("\n");

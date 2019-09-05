@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Jira instance health check results. Deprecated and no longer returned.
  */
 @ApiModel(description = "Jira instance health check results. Deprecated and no longer returned.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class HealthCheckResult {
   @JsonProperty("name")
   private String name;
@@ -130,6 +130,7 @@ public class HealthCheckResult {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class HealthCheckResult {\n");
+    
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    passed: ").append(toIndentedString(passed)).append("\n");

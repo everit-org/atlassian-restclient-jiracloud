@@ -42,7 +42,7 @@ import java.util.List;
  * Details about the mapping between issue types and a workflow.
  */
 @ApiModel(description = "Details about the mapping between issue types and a workflow.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class IssueTypesWorkflowMapping {
   @JsonProperty("workflow")
   private String workflow;
@@ -162,6 +162,7 @@ public class IssueTypesWorkflowMapping {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueTypesWorkflowMapping {\n");
+    
     sb.append("    workflow: ").append(toIndentedString(workflow)).append("\n");
     sb.append("    issueTypes: ").append(toIndentedString(issueTypes)).append("\n");
     sb.append("    defaultMapping: ").append(toIndentedString(defaultMapping)).append("\n");

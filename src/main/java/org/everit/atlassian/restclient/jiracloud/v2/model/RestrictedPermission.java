@@ -42,7 +42,7 @@ import java.util.Map;
  * Details of the permission.
  */
 @ApiModel(description = "Details of the permission.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class RestrictedPermission {
   @JsonProperty("id")
   private String id;
@@ -123,9 +123,10 @@ public class RestrictedPermission {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class RestrictedPermission {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();
   }

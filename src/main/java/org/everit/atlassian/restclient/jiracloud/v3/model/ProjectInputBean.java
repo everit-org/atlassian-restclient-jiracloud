@@ -39,7 +39,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * ProjectInputBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class ProjectInputBean {
   @JsonProperty("key")
   private String key;
@@ -508,6 +508,7 @@ public class ProjectInputBean {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProjectInputBean {\n");
+    
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    projectTypeKey: ").append(toIndentedString(projectTypeKey)).append("\n");

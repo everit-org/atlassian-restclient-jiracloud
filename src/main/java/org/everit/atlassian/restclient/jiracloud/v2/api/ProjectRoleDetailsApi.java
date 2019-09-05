@@ -15,20 +15,18 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v2.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v2.model.ProjectRole;
 
@@ -45,10 +43,10 @@ public class ProjectRoleDetailsApi {
 
   private static final TypeReference<List<ProjectRole>> returnType_getProjectRoleDetails = new TypeReference<List<ProjectRole>>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public ProjectRoleDetailsApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public ProjectRoleDetailsApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -80,7 +78,7 @@ public class ProjectRoleDetailsApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getProjectRoleDetails);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getProjectRoleDetails);
   }
 
 }

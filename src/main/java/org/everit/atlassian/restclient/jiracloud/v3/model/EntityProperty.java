@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * An entity property, for more information see [Entity properties](https://developer.atlassian.com/cloud/jira/platform/jira-entity-properties/).
  */
 @ApiModel(description = "An entity property, for more information see [Entity properties](https://developer.atlassian.com/cloud/jira/platform/jira-entity-properties/).")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class EntityProperty {
   @JsonProperty("key")
   private String key;
@@ -108,6 +108,7 @@ public class EntityProperty {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class EntityProperty {\n");
+    
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");

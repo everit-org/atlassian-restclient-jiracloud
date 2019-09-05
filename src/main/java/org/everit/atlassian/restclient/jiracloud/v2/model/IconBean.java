@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * An icon.
  */
 @ApiModel(description = "An icon.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class IconBean {
   @JsonProperty("url16x16")
   private String url16x16;
@@ -130,6 +130,7 @@ public class IconBean {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class IconBean {\n");
+    
     sb.append("    url16x16: ").append(toIndentedString(url16x16)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    link: ").append(toIndentedString(link)).append("\n");

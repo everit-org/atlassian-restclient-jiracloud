@@ -42,7 +42,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.JqlQueryField;
  * A clause that asserts the current value of a field. For example, &#x60;summary ~ test&#x60;.
  */
 @ApiModel(description = "A clause that asserts the current value of a field. For example, `summary ~ test`.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class FieldValueClause {
   @JsonProperty("field")
   private JqlQueryField field;
@@ -185,6 +185,7 @@ public class FieldValueClause {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FieldValueClause {\n");
+    
     sb.append("    field: ").append(toIndentedString(field)).append("\n");
     sb.append("    operator: ").append(toIndentedString(operator)).append("\n");
     sb.append("    operand: ").append(toIndentedString(operand)).append("\n");

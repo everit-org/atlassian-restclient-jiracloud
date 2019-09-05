@@ -44,7 +44,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.HistoryMetadataPartici
  * Details of issue history metadata.
  */
 @ApiModel(description = "Details of issue history metadata.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class HistoryMetadata {
   @JsonProperty("type")
   private String type;
@@ -331,7 +331,7 @@ public class HistoryMetadata {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class HistoryMetadata {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    descriptionKey: ").append(toIndentedString(descriptionKey)).append("\n");
@@ -343,6 +343,7 @@ public class HistoryMetadata {
     sb.append("    generator: ").append(toIndentedString(generator)).append("\n");
     sb.append("    cause: ").append(toIndentedString(cause)).append("\n");
     sb.append("    extraData: ").append(toIndentedString(extraData)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();
   }

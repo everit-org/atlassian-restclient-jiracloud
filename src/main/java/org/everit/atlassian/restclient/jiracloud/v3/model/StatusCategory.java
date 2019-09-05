@@ -42,7 +42,7 @@ import java.util.Map;
  * A status category.
  */
 @ApiModel(description = "A status category.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class StatusCategory {
   @JsonProperty("self")
   private String self;
@@ -144,12 +144,13 @@ public class StatusCategory {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class StatusCategory {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    colorName: ").append(toIndentedString(colorName)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();
   }

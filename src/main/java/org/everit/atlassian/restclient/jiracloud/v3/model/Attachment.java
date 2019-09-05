@@ -44,7 +44,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.UserDetails;
  * Details about an attachment.
  */
 @ApiModel(description = "Details about an attachment.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class Attachment {
   @JsonProperty("self")
   private String self;
@@ -198,7 +198,7 @@ public class Attachment {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Attachment {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    filename: ").append(toIndentedString(filename)).append("\n");
@@ -208,6 +208,7 @@ public class Attachment {
     sb.append("    mimeType: ").append(toIndentedString(mimeType)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("    thumbnail: ").append(toIndentedString(thumbnail)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();
   }

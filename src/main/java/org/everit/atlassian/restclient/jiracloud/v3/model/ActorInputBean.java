@@ -41,7 +41,7 @@ import java.util.List;
 /**
  * ActorInputBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class ActorInputBean {
   @JsonProperty("user")
   private List<String> user = new ArrayList<>();
@@ -125,6 +125,7 @@ public class ActorInputBean {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ActorInputBean {\n");
+    
     sb.append("    user: ").append(toIndentedString(user)).append("\n");
     sb.append("    group: ").append(toIndentedString(group)).append("\n");
     sb.append("}");

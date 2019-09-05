@@ -41,7 +41,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.JiraExpressionEvaluati
  * The result of evaluating a Jira expression.
  */
 @ApiModel(description = "The result of evaluating a Jira expression.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class JiraExpressionResult {
   @JsonProperty("value")
   private Object value = null;
@@ -109,6 +109,7 @@ public class JiraExpressionResult {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class JiraExpressionResult {\n");
+    
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("}");

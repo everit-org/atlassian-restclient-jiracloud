@@ -45,7 +45,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.UserBean;
  * Details of a dashboard.
  */
 @ApiModel(description = "Details of a dashboard.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class Dashboard {
   @JsonProperty("description")
   private String description;
@@ -208,6 +208,7 @@ public class Dashboard {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Dashboard {\n");
+    
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    isFavourite: ").append(toIndentedString(isFavourite)).append("\n");

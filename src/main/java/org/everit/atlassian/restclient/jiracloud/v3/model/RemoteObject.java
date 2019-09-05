@@ -44,7 +44,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.Status;
  * The linked item.
  */
 @ApiModel(description = "The linked item.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class RemoteObject {
   @JsonProperty("url")
   private String url;
@@ -191,12 +191,13 @@ public class RemoteObject {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class RemoteObject {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    summary: ").append(toIndentedString(summary)).append("\n");
     sb.append("    icon: ").append(toIndentedString(icon)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -15,20 +15,18 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v3.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v3.model.Avatar;
 import org.everit.atlassian.restclient.jiracloud.v3.model.IssueTypeBean;
@@ -58,10 +56,10 @@ public class IssueTypeApi {
 
   private static final TypeReference<IssueTypeBean> returnType_updateIssueType = new TypeReference<IssueTypeBean>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public IssueTypeApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public IssueTypeApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -90,7 +88,7 @@ public class IssueTypeApi {
 
     requestBuilder.requestBody(Optional.of(issueTypeCreateBean));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_createIssueType);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_createIssueType);
   }
 
   /**
@@ -133,7 +131,7 @@ public class IssueTypeApi {
 
     requestBuilder.requestBody(Optional.of(body));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_createIssueTypeAvatar);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_createIssueTypeAvatar);
   }
 
   /**
@@ -165,7 +163,7 @@ public class IssueTypeApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -193,7 +191,7 @@ public class IssueTypeApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getAlternativeIssueTypes);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getAlternativeIssueTypes);
   }
 
   /**
@@ -219,7 +217,7 @@ public class IssueTypeApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getIssueAllTypes);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getIssueAllTypes);
   }
 
   /**
@@ -247,7 +245,7 @@ public class IssueTypeApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getIssueType);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getIssueType);
   }
 
   /**
@@ -278,7 +276,7 @@ public class IssueTypeApi {
 
     requestBuilder.requestBody(Optional.of(issueTypeUpdateBean));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_updateIssueType);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updateIssueType);
   }
 
 }

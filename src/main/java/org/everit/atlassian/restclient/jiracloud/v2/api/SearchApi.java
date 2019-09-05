@@ -15,20 +15,18 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v2.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v2.model.SearchRequestBean;
 import org.everit.atlassian.restclient.jiracloud.v2.model.SearchResults;
@@ -48,10 +46,10 @@ public class SearchApi {
 
   private static final TypeReference<SearchResults> returnType_searchForIssuesUsingJql_0 = new TypeReference<SearchResults>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public SearchApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public SearchApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -93,13 +91,13 @@ public class SearchApi {
       queryParams.put("validateQuery", Collections.singleton(String.valueOf(validateQuery.get())));
     }
     if (fields.isPresent()) {
-      queryParams.put("fields", RestCallUtil.objectCollectionToStringCollection(fields.get()));
+      queryParams.put("fields", RestClientUtil.objectCollectionToStringCollection(fields.get()));
     }
     if (expand.isPresent()) {
       queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
     }
     if (properties.isPresent()) {
-      queryParams.put("properties", RestCallUtil.objectCollectionToStringCollection(properties.get()));
+      queryParams.put("properties", RestClientUtil.objectCollectionToStringCollection(properties.get()));
     }
     if (fieldsByKeys.isPresent()) {
       queryParams.put("fieldsByKeys", Collections.singleton(String.valueOf(fieldsByKeys.get())));
@@ -109,7 +107,7 @@ public class SearchApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_searchForIssuesUsingJql);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_searchForIssuesUsingJql);
   }
 
   /**
@@ -138,7 +136,7 @@ public class SearchApi {
 
     requestBuilder.requestBody(Optional.of(searchRequestBean));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_searchForIssuesUsingJql_0);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_searchForIssuesUsingJql_0);
   }
 
 }

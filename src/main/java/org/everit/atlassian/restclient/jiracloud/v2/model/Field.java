@@ -35,16 +35,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.ArrayList;
-import java.util.List;
-import org.everit.atlassian.restclient.jiracloud.v2.model.JsonTypeBean;
-import org.everit.atlassian.restclient.jiracloud.v2.model.Scope;
 
 /**
- * Details about a field.
+ * Details of a field.
  */
-@ApiModel(description = "Details about a field.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@ApiModel(description = "Details of a field.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class Field {
   @JsonProperty("id")
   private String id;
@@ -55,26 +51,8 @@ public class Field {
   @JsonProperty("name")
   private String name;
 
-  @JsonProperty("custom")
-  private Boolean custom;
-
-  @JsonProperty("orderable")
-  private Boolean orderable;
-
-  @JsonProperty("navigable")
-  private Boolean navigable;
-
-  @JsonProperty("searchable")
-  private Boolean searchable;
-
-  @JsonProperty("clauseNames")
-  private List<String> clauseNames = new ArrayList<>();
-
-  @JsonProperty("scope")
-  private Scope scope;
-
-  @JsonProperty("schema")
-  private JsonTypeBean schema;
+  @JsonProperty("description")
+  private String description;
 
   public Field id(String id) {
     this.id = id;
@@ -82,10 +60,10 @@ public class Field {
   }
 
    /**
-   * The ID of the field.
+   * The id of the field.
    * @return id
   **/
-  @ApiModelProperty(value = "The ID of the field.")
+  @ApiModelProperty(required = true, value = "The id of the field.")
   public String getId() {
     return id;
   }
@@ -103,7 +81,7 @@ public class Field {
    * The key of the field.
    * @return key
   **/
-  @ApiModelProperty(value = "The key of the field.")
+  @ApiModelProperty(required = true, value = "The key of the field.")
   public String getKey() {
     return key;
   }
@@ -121,7 +99,7 @@ public class Field {
    * The name of the field.
    * @return name
   **/
-  @ApiModelProperty(value = "The name of the field.")
+  @ApiModelProperty(required = true, value = "The name of the field.")
   public String getName() {
     return name;
   }
@@ -130,138 +108,22 @@ public class Field {
     this.name = name;
   }
 
-  public Field custom(Boolean custom) {
-    this.custom = custom;
+  public Field description(String description) {
+    this.description = description;
     return this;
   }
 
    /**
-   * Indicates whether the field is a custom field.
-   * @return custom
+   * The description of the field.
+   * @return description
   **/
-  @ApiModelProperty(value = "Indicates whether the field is a custom field.")
-  public Boolean getCustom() {
-    return custom;
+  @ApiModelProperty(required = true, value = "The description of the field.")
+  public String getDescription() {
+    return description;
   }
 
-  public void setCustom(Boolean custom) {
-    this.custom = custom;
-  }
-
-  public Field orderable(Boolean orderable) {
-    this.orderable = orderable;
-    return this;
-  }
-
-   /**
-   * Indicates whether the content of the field can be used to order lists.
-   * @return orderable
-  **/
-  @ApiModelProperty(value = "Indicates whether the content of the field can be used to order lists.")
-  public Boolean getOrderable() {
-    return orderable;
-  }
-
-  public void setOrderable(Boolean orderable) {
-    this.orderable = orderable;
-  }
-
-  public Field navigable(Boolean navigable) {
-    this.navigable = navigable;
-    return this;
-  }
-
-   /**
-   * Indicates whether the field can be used as a column on the issue navigator.
-   * @return navigable
-  **/
-  @ApiModelProperty(value = "Indicates whether the field can be used as a column on the issue navigator.")
-  public Boolean getNavigable() {
-    return navigable;
-  }
-
-  public void setNavigable(Boolean navigable) {
-    this.navigable = navigable;
-  }
-
-  public Field searchable(Boolean searchable) {
-    this.searchable = searchable;
-    return this;
-  }
-
-   /**
-   * Indicates whether the content of the field can be searched.
-   * @return searchable
-  **/
-  @ApiModelProperty(value = "Indicates whether the content of the field can be searched.")
-  public Boolean getSearchable() {
-    return searchable;
-  }
-
-  public void setSearchable(Boolean searchable) {
-    this.searchable = searchable;
-  }
-
-  public Field clauseNames(List<String> clauseNames) {
-    this.clauseNames = clauseNames;
-    return this;
-  }
-
-  public Field addClauseNamesItem(String clauseNamesItem) {
-    if (this.clauseNames == null) {
-      this.clauseNames = new ArrayList<>();
-    }
-    this.clauseNames.add(clauseNamesItem);
-    return this;
-  }
-
-   /**
-   * The names that can be used to reference the field in an advanced search. For more information, see [Advanced searching - fields reference](https://confluence.atlassian.com/x/gwORLQ).
-   * @return clauseNames
-  **/
-  @ApiModelProperty(value = "The names that can be used to reference the field in an advanced search. For more information, see [Advanced searching - fields reference](https://confluence.atlassian.com/x/gwORLQ).")
-  public List<String> getClauseNames() {
-    return clauseNames;
-  }
-
-  public void setClauseNames(List<String> clauseNames) {
-    this.clauseNames = clauseNames;
-  }
-
-  public Field scope(Scope scope) {
-    this.scope = scope;
-    return this;
-  }
-
-   /**
-   * The scope of the field.
-   * @return scope
-  **/
-  @ApiModelProperty(value = "The scope of the field.")
-  public Scope getScope() {
-    return scope;
-  }
-
-  public void setScope(Scope scope) {
-    this.scope = scope;
-  }
-
-  public Field schema(JsonTypeBean schema) {
-    this.schema = schema;
-    return this;
-  }
-
-   /**
-   * The data schema for the field.
-   * @return schema
-  **/
-  @ApiModelProperty(value = "The data schema for the field.")
-  public JsonTypeBean getSchema() {
-    return schema;
-  }
-
-  public void setSchema(JsonTypeBean schema) {
-    this.schema = schema;
+  public void setDescription(String description) {
+    this.description = description;
   }
 
 
@@ -277,18 +139,12 @@ public class Field {
     return Objects.equals(this.id, field.id) &&
         Objects.equals(this.key, field.key) &&
         Objects.equals(this.name, field.name) &&
-        Objects.equals(this.custom, field.custom) &&
-        Objects.equals(this.orderable, field.orderable) &&
-        Objects.equals(this.navigable, field.navigable) &&
-        Objects.equals(this.searchable, field.searchable) &&
-        Objects.equals(this.clauseNames, field.clauseNames) &&
-        Objects.equals(this.scope, field.scope) &&
-        Objects.equals(this.schema, field.schema);
+        Objects.equals(this.description, field.description);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, key, name, custom, orderable, navigable, searchable, clauseNames, scope, schema);
+    return Objects.hash(id, key, name, description);
   }
 
 
@@ -296,16 +152,11 @@ public class Field {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Field {\n");
+    
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    custom: ").append(toIndentedString(custom)).append("\n");
-    sb.append("    orderable: ").append(toIndentedString(orderable)).append("\n");
-    sb.append("    navigable: ").append(toIndentedString(navigable)).append("\n");
-    sb.append("    searchable: ").append(toIndentedString(searchable)).append("\n");
-    sb.append("    clauseNames: ").append(toIndentedString(clauseNames)).append("\n");
-    sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
-    sb.append("    schema: ").append(toIndentedString(schema)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("}");
     return sb.toString();
   }

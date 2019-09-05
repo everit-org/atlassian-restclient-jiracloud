@@ -44,7 +44,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.NotificationRecipients
  * Details about a notification.
  */
 @ApiModel(description = "Details about a notification.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class Notification {
   @JsonProperty("subject")
   private String subject;
@@ -191,12 +191,13 @@ public class Notification {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Notification {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("    textBody: ").append(toIndentedString(textBody)).append("\n");
     sb.append("    htmlBody: ").append(toIndentedString(htmlBody)).append("\n");
     sb.append("    to: ").append(toIndentedString(to)).append("\n");
     sb.append("    restrict: ").append(toIndentedString(restrict)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();
   }

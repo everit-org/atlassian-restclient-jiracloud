@@ -15,20 +15,18 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v3.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v3.model.Resolution;
 
@@ -47,10 +45,10 @@ public class ResolutionApi {
 
   private static final TypeReference<List<Resolution>> returnType_getResolutions = new TypeReference<List<Resolution>>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public ResolutionApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public ResolutionApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -78,7 +76,7 @@ public class ResolutionApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getResolution);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getResolution);
   }
 
   /**
@@ -104,7 +102,7 @@ public class ResolutionApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getResolutions);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getResolutions);
   }
 
 }

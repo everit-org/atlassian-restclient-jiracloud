@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * The JQL specifying the issues available in the evaluated Jira expression under the &#x60;issues&#x60; context variable. Not all issues returned by the JQL query will be loaded, but only a portion of them, as described by the &#x60;startAt&#x60; and &#x60;maxResults&#x60; properties. Iterate over pages by inspecting the meta data included in the response.
  */
 @ApiModel(description = "The JQL specifying the issues available in the evaluated Jira expression under the `issues` context variable. Not all issues returned by the JQL query will be loaded, but only a portion of them, as described by the `startAt` and `maxResults` properties. Iterate over pages by inspecting the meta data included in the response.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class JexpJqlIssues {
   @JsonProperty("query")
   private String query;
@@ -189,6 +189,7 @@ public class JexpJqlIssues {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class JexpJqlIssues {\n");
+    
     sb.append("    query: ").append(toIndentedString(query)).append("\n");
     sb.append("    startAt: ").append(toIndentedString(startAt)).append("\n");
     sb.append("    maxResults: ").append(toIndentedString(maxResults)).append("\n");

@@ -15,20 +15,18 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v2.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v2.model.CustomFieldOption;
 
@@ -45,10 +43,10 @@ public class CustomFieldOptionApi {
 
   private static final TypeReference<CustomFieldOption> returnType_getCustomFieldOption = new TypeReference<CustomFieldOption>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public CustomFieldOptionApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public CustomFieldOptionApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -76,7 +74,7 @@ public class CustomFieldOptionApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getCustomFieldOption);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getCustomFieldOption);
   }
 
 }

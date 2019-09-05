@@ -42,7 +42,7 @@ import java.util.List;
  * Details of functions that can be used in advanced searches.
  */
 @ApiModel(description = "Details of functions that can be used in advanced searches.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class FunctionReferenceData {
   @JsonProperty("value")
   private String value;
@@ -197,6 +197,7 @@ public class FunctionReferenceData {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FunctionReferenceData {\n");
+    
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    isList: ").append(toIndentedString(isList)).append("\n");

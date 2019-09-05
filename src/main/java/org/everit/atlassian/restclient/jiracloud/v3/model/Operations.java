@@ -45,7 +45,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.LinkGroup;
  * Details of the operations that can be performed on the issue.
  */
 @ApiModel(description = "Details of the operations that can be performed on the issue.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class Operations {
   @JsonProperty("linkGroups")
   private List<LinkGroup> linkGroups = new ArrayList<>();
@@ -95,8 +95,9 @@ public class Operations {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Operations {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    
     sb.append("    linkGroups: ").append(toIndentedString(linkGroups)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();
   }

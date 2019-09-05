@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.UserPickerUser;
  * The list of users found in a search, including header text (Showing X of Y matching users) and total of matched users.
  */
 @ApiModel(description = "The list of users found in a search, including header text (Showing X of Y matching users) and total of matched users.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class FoundUsers {
   @JsonProperty("users")
   private List<UserPickerUser> users = new ArrayList<>();
@@ -141,6 +141,7 @@ public class FoundUsers {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FoundUsers {\n");
+    
     sb.append("    users: ").append(toIndentedString(users)).append("\n");
     sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("    header: ").append(toIndentedString(header)).append("\n");

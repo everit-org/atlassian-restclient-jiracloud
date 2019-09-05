@@ -48,7 +48,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.IssueTransition;
  * Details of an issue update request.
  */
 @ApiModel(description = "Details of an issue update request.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class IssueUpdateDetails {
   @JsonProperty("transition")
   private IssueTransition transition;
@@ -219,12 +219,13 @@ public class IssueUpdateDetails {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueUpdateDetails {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    
     sb.append("    transition: ").append(toIndentedString(transition)).append("\n");
     sb.append("    fields: ").append(toIndentedString(fields)).append("\n");
     sb.append("    update: ").append(toIndentedString(update)).append("\n");
     sb.append("    historyMetadata: ").append(toIndentedString(historyMetadata)).append("\n");
     sb.append("    properties: ").append(toIndentedString(properties)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();
   }

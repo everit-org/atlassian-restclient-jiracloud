@@ -42,7 +42,7 @@ import java.util.List;
  * An operand that is a function. See [Advanced searching - functions reference](https://confluence.atlassian.com/x/dwiiLQ) for more information about JQL functions.
  */
 @ApiModel(description = "An operand that is a function. See [Advanced searching - functions reference](https://confluence.atlassian.com/x/dwiiLQ) for more information about JQL functions.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class FunctionOperand {
   @JsonProperty("function")
   private String function;
@@ -118,6 +118,7 @@ public class FunctionOperand {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FunctionOperand {\n");
+    
     sb.append("    function: ").append(toIndentedString(function)).append("\n");
     sb.append("    arguments: ").append(toIndentedString(arguments)).append("\n");
     sb.append("}");

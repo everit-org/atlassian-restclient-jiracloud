@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.Dashboard;
  * A page containing dashboard details.
  */
 @ApiModel(description = "A page containing dashboard details.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class PageOfDashboards {
   @JsonProperty("startAt")
   private Integer startAt;
@@ -145,6 +145,7 @@ public class PageOfDashboards {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PageOfDashboards {\n");
+    
     sb.append("    startAt: ").append(toIndentedString(startAt)).append("\n");
     sb.append("    maxResults: ").append(toIndentedString(maxResults)).append("\n");
     sb.append("    total: ").append(toIndentedString(total)).append("\n");

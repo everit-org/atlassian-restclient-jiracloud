@@ -44,7 +44,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.SimpleListWrapperGroup
  * A user.
  */
 @ApiModel(description = "A user.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class User {
   @JsonProperty("self")
   private URI self;
@@ -316,6 +316,7 @@ public class User {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class User {\n");
+    
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");

@@ -39,7 +39,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * SimpleApplicationPropertyBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class SimpleApplicationPropertyBean {
   @JsonProperty("id")
   private String id;
@@ -107,6 +107,7 @@ public class SimpleApplicationPropertyBean {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SimpleApplicationPropertyBean {\n");
+    
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");

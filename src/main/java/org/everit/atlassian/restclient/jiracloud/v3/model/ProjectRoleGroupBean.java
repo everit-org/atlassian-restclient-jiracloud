@@ -39,7 +39,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * ProjectRoleGroupBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class ProjectRoleGroupBean {
   @JsonProperty("displayName")
   private String displayName;
@@ -107,6 +107,7 @@ public class ProjectRoleGroupBean {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProjectRoleGroupBean {\n");
+    
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");

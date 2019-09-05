@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.JqlQueryFieldEntityPro
  * A field used in a JQL query. See [Advanced searching - fields reference](https://confluence.atlassian.com/x/dAiiLQ) for more information about fields in JQL queries.
  */
 @ApiModel(description = "A field used in a JQL query. See [Advanced searching - fields reference](https://confluence.atlassian.com/x/dAiiLQ) for more information about fields in JQL queries.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class JqlQueryField {
   @JsonProperty("name")
   private String name;
@@ -119,6 +119,7 @@ public class JqlQueryField {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class JqlQueryField {\n");
+    
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    property: ").append(toIndentedString(property)).append("\n");
     sb.append("}");

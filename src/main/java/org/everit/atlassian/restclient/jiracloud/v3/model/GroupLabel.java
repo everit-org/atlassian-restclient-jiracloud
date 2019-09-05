@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * A group label.
  */
 @ApiModel(description = "A group label.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class GroupLabel {
   @JsonProperty("text")
   private String text;
@@ -167,6 +167,7 @@ public class GroupLabel {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GroupLabel {\n");
+    
     sb.append("    text: ").append(toIndentedString(text)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");

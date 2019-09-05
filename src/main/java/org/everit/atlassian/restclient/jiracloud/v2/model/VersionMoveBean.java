@@ -40,7 +40,7 @@ import java.net.URI;
 /**
  * VersionMoveBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class VersionMoveBean {
   @JsonProperty("after")
   private URI after;
@@ -147,6 +147,7 @@ public class VersionMoveBean {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class VersionMoveBean {\n");
+    
     sb.append("    after: ").append(toIndentedString(after)).append("\n");
     sb.append("    position: ").append(toIndentedString(position)).append("\n");
     sb.append("}");

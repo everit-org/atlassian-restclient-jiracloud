@@ -42,7 +42,7 @@ import java.util.List;
  * List of issues and JQL queries.
  */
 @ApiModel(description = "List of issues and JQL queries.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class IssuesAndJQLQueries {
   @JsonProperty("jqls")
   private List<String> jqls = new ArrayList<>();
@@ -120,6 +120,7 @@ public class IssuesAndJQLQueries {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssuesAndJQLQueries {\n");
+    
     sb.append("    jqls: ").append(toIndentedString(jqls)).append("\n");
     sb.append("    issueIds: ").append(toIndentedString(issueIds)).append("\n");
     sb.append("}");

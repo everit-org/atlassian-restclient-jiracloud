@@ -42,7 +42,7 @@ import java.util.List;
  * A list of the issues matched to a JQL query or details of errors encountered during matching.
  */
 @ApiModel(description = "A list of the issues matched to a JQL query or details of errors encountered during matching.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class IssueMatchesForJQL {
   @JsonProperty("matchedIssues")
   private List<Long> matchedIssues = new ArrayList<>();
@@ -120,6 +120,7 @@ public class IssueMatchesForJQL {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueMatchesForJQL {\n");
+    
     sb.append("    matchedIssues: ").append(toIndentedString(matchedIssues)).append("\n");
     sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
     sb.append("}");

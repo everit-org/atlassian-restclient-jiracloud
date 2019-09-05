@@ -41,7 +41,7 @@ import java.util.List;
 /**
  * SearchRequestBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class SearchRequestBean {
   @JsonProperty("jql")
   private String jql;
@@ -306,6 +306,7 @@ public class SearchRequestBean {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SearchRequestBean {\n");
+    
     sb.append("    jql: ").append(toIndentedString(jql)).append("\n");
     sb.append("    startAt: ").append(toIndentedString(startAt)).append("\n");
     sb.append("    maxResults: ").append(toIndentedString(maxResults)).append("\n");

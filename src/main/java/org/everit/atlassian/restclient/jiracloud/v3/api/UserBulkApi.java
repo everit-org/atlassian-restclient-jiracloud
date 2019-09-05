@@ -15,20 +15,18 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v3.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v3.model.PageBeanUser;
 import org.everit.atlassian.restclient.jiracloud.v3.model.UserMigrationBean;
@@ -48,10 +46,10 @@ public class UserBulkApi {
 
   private static final TypeReference<List<UserMigrationBean>> returnType_bulkGetUsersMigration = new TypeReference<List<UserMigrationBean>>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public UserBulkApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public UserBulkApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -84,20 +82,20 @@ public class UserBulkApi {
       queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults.get())));
     }
     if (username.isPresent()) {
-      queryParams.put("username", RestCallUtil.objectCollectionToStringCollection(username.get()));
+      queryParams.put("username", RestClientUtil.objectCollectionToStringCollection(username.get()));
     }
     if (key.isPresent()) {
-      queryParams.put("key", RestCallUtil.objectCollectionToStringCollection(key.get()));
+      queryParams.put("key", RestClientUtil.objectCollectionToStringCollection(key.get()));
     }
     if (accountId.isPresent()) {
-      queryParams.put("accountId", RestCallUtil.objectCollectionToStringCollection(accountId.get()));
+      queryParams.put("accountId", RestClientUtil.objectCollectionToStringCollection(accountId.get()));
     }
     requestBuilder.queryParams(queryParams);
 
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_bulkGetUsers);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_bulkGetUsers);
   }
 
   /**
@@ -129,17 +127,17 @@ public class UserBulkApi {
       queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults.get())));
     }
     if (username.isPresent()) {
-      queryParams.put("username", RestCallUtil.objectCollectionToStringCollection(username.get()));
+      queryParams.put("username", RestClientUtil.objectCollectionToStringCollection(username.get()));
     }
     if (key.isPresent()) {
-      queryParams.put("key", RestCallUtil.objectCollectionToStringCollection(key.get()));
+      queryParams.put("key", RestClientUtil.objectCollectionToStringCollection(key.get()));
     }
     requestBuilder.queryParams(queryParams);
 
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_bulkGetUsersMigration);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_bulkGetUsersMigration);
   }
 
 }

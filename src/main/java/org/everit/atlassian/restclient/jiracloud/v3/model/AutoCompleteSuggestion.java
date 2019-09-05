@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * A field auto-complete suggestion.
  */
 @ApiModel(description = "A field auto-complete suggestion.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class AutoCompleteSuggestion {
   @JsonProperty("value")
   private String value;
@@ -108,6 +108,7 @@ public class AutoCompleteSuggestion {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AutoCompleteSuggestion {\n");
+    
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("}");

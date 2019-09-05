@@ -44,7 +44,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.RemoteObject;
  * Details of a remote issue link.
  */
 @ApiModel(description = "Details of a remote issue link.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class RemoteIssueLinkRequest {
   @JsonProperty("globalId")
   private String globalId;
@@ -169,11 +169,12 @@ public class RemoteIssueLinkRequest {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class RemoteIssueLinkRequest {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    
     sb.append("    globalId: ").append(toIndentedString(globalId)).append("\n");
     sb.append("    application: ").append(toIndentedString(application)).append("\n");
     sb.append("    relationship: ").append(toIndentedString(relationship)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();
   }

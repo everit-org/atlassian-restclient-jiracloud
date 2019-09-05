@@ -14,8 +14,13 @@ library for Atlassian Jira Cloud.
     // as it is non-blocking
     HttpClient httpClient = ...
     
-    // Create a reusable Jetty instance. E.g.:
-    VersionApi versionApi = new VersionApi(httpClient);
+    // Create a Rest Client instance. This instance will have the right
+    // ObjectMapper inside, so conversion of date-times should be OK.
+    RestClient restClient =
+        JiraCloudRestClientFactory.createRestClient(httpClient);
+    
+    // Create a reusable API instance. E.g.:
+    VersionApi versionApi = new VersionApi(restClient);
     
     // If needed, create a RestRequstEnhancer. Such enhancer can be
     // used to attach an act-as-user or a call-as-addon token to the

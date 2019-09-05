@@ -45,7 +45,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.JqlQueryField;
  * A clause that asserts a previous value of a field. For example, &#x60;status WAS \&quot;Resolved\&quot; BY currentUser() BEFORE \&quot;2019/02/02\&quot;&#x60;. See [WAS](https://confluence.atlassian.com/x/dgiiLQ#Advancedsearching-operatorsreference-WASWAS) for more information about the WAS operator.
  */
 @ApiModel(description = "A clause that asserts a previous value of a field. For example, `status WAS \"Resolved\" BY currentUser() BEFORE \"2019/02/02\"`. See [WAS](https://confluence.atlassian.com/x/dgiiLQ#Advancedsearching-operatorsreference-WASWAS) for more information about the WAS operator.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class FieldWasClause {
   @JsonProperty("field")
   private JqlQueryField field;
@@ -201,6 +201,7 @@ public class FieldWasClause {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FieldWasClause {\n");
+    
     sb.append("    field: ").append(toIndentedString(field)).append("\n");
     sb.append("    operator: ").append(toIndentedString(operator)).append("\n");
     sb.append("    operand: ").append(toIndentedString(operand)).append("\n");

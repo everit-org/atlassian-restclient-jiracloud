@@ -234,12 +234,15 @@ public class {{classname}} {{#parent}}{{^isMapModel}}extends {{{parent}}} {{/isM
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class {{classname}} {\n");
-    {{#parent}}
+    {{#parent}}{{^isMapModel}}
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    {{/parent}}
+    {{/isMapModel}}{{/parent}}
     {{#vars}}
     sb.append("    {{name}}: ").append(toIndentedString({{name}})).append("\n");
     {{/vars}}
+    {{#isMapModel}}
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
+    {{/isMapModel}}
     sb.append("}");
     return sb.toString();
   }

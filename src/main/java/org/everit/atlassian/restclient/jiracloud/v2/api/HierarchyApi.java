@@ -15,20 +15,18 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v2.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v2.model.HierarchyOutputFragment;
 
@@ -45,10 +43,10 @@ public class HierarchyApi {
 
   private static final TypeReference<HierarchyOutputFragment> returnType_getHierarchy = new TypeReference<HierarchyOutputFragment>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public HierarchyApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public HierarchyApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -76,7 +74,7 @@ public class HierarchyApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getHierarchy);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getHierarchy);
   }
 
 }

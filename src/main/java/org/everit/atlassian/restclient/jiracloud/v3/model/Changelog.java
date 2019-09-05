@@ -46,7 +46,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.UserDetails;
  * A changelog.
  */
 @ApiModel(description = "A changelog.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class Changelog {
   @JsonProperty("id")
   private String id;
@@ -135,6 +135,7 @@ public class Changelog {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Changelog {\n");
+    
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    author: ").append(toIndentedString(author)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");

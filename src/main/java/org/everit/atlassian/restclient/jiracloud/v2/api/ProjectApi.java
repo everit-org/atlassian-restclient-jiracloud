@@ -15,20 +15,18 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v2.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v2.model.Avatar;
 import org.everit.atlassian.restclient.jiracloud.v2.model.Component;
@@ -81,10 +79,10 @@ public class ProjectApi {
 
   private static final TypeReference<Project> returnType_updateProjectType = new TypeReference<Project>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public ProjectApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public ProjectApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -113,7 +111,7 @@ public class ProjectApi {
 
     requestBuilder.requestBody(Optional.of(projectInputBean));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_createProject);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_createProject);
   }
 
   /**
@@ -156,7 +154,7 @@ public class ProjectApi {
 
     requestBuilder.requestBody(Optional.of(body));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_createProjectAvatar);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_createProjectAvatar);
   }
 
   /**
@@ -184,7 +182,7 @@ public class ProjectApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -214,7 +212,7 @@ public class ProjectApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -242,7 +240,7 @@ public class ProjectApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getAllProjectAvatars);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getAllProjectAvatars);
   }
 
   /**
@@ -275,14 +273,14 @@ public class ProjectApi {
       queryParams.put("recent", Collections.singleton(String.valueOf(recent.get())));
     }
     if (properties.isPresent()) {
-      queryParams.put("properties", RestCallUtil.objectCollectionToStringCollection(properties.get()));
+      queryParams.put("properties", RestClientUtil.objectCollectionToStringCollection(properties.get()));
     }
     requestBuilder.queryParams(queryParams);
 
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getAllProjects);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getAllProjects);
   }
 
   /**
@@ -310,7 +308,7 @@ public class ProjectApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getAllStatuses);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getAllStatuses);
   }
 
   /**
@@ -339,14 +337,14 @@ public class ProjectApi {
       queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
     }
     if (properties.isPresent()) {
-      queryParams.put("properties", RestCallUtil.objectCollectionToStringCollection(properties.get()));
+      queryParams.put("properties", RestClientUtil.objectCollectionToStringCollection(properties.get()));
     }
     requestBuilder.queryParams(queryParams);
 
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getProject);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getProject);
   }
 
   /**
@@ -374,7 +372,7 @@ public class ProjectApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getProjectComponents);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getProjectComponents);
   }
 
   /**
@@ -418,7 +416,7 @@ public class ProjectApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getProjectComponentsPaginated);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getProjectComponentsPaginated);
   }
 
   /**
@@ -450,7 +448,7 @@ public class ProjectApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getProjectVersions);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getProjectVersions);
   }
 
   /**
@@ -502,7 +500,7 @@ public class ProjectApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getProjectVersionsPaginated);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getProjectVersionsPaginated);
   }
 
   /**
@@ -564,7 +562,7 @@ public class ProjectApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_searchProjects);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_searchProjects);
   }
 
   /**
@@ -599,7 +597,7 @@ public class ProjectApi {
 
     requestBuilder.requestBody(Optional.of(projectInputBean));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_updateProject);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updateProject);
   }
 
   /**
@@ -630,7 +628,7 @@ public class ProjectApi {
 
     requestBuilder.requestBody(Optional.of(avatar));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_updateProjectAvatar);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updateProjectAvatar);
   }
 
   /**
@@ -662,7 +660,7 @@ public class ProjectApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_updateProjectType);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updateProjectType);
   }
 
 }

@@ -41,7 +41,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.Scope;
  * Details about a workflow.
  */
 @ApiModel(description = "Details about a workflow.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class DeprecatedWorkflow {
   @JsonProperty("name")
   private String name;
@@ -178,6 +178,7 @@ public class DeprecatedWorkflow {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class DeprecatedWorkflow {\n");
+    
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    lastModifiedDate: ").append(toIndentedString(lastModifiedDate)).append("\n");

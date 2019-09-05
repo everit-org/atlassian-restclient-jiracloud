@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.UserDetails;
  * The details of watchers on an issue.
  */
 @ApiModel(description = "The details of watchers on an issue.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class Watchers {
   @JsonProperty("self")
   private String self;
@@ -119,6 +119,7 @@ public class Watchers {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Watchers {\n");
+    
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    isWatching: ").append(toIndentedString(isWatching)).append("\n");
     sb.append("    watchCount: ").append(toIndentedString(watchCount)).append("\n");

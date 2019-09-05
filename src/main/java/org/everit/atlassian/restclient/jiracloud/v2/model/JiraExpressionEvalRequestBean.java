@@ -40,7 +40,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.JiraExpressionEvalCont
 /**
  * JiraExpressionEvalRequestBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class JiraExpressionEvalRequestBean {
   @JsonProperty("expression")
   private String expression;
@@ -108,6 +108,7 @@ public class JiraExpressionEvalRequestBean {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class JiraExpressionEvalRequestBean {\n");
+    
     sb.append("    expression: ").append(toIndentedString(expression)).append("\n");
     sb.append("    context: ").append(toIndentedString(context)).append("\n");
     sb.append("}");

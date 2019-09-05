@@ -15,20 +15,18 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v2.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v2.model.FoundGroups;
 
@@ -45,10 +43,10 @@ public class GroupPickerApi {
 
   private static final TypeReference<FoundGroups> returnType_findGroups = new TypeReference<FoundGroups>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public GroupPickerApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public GroupPickerApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -81,7 +79,7 @@ public class GroupPickerApi {
       queryParams.put("query", Collections.singleton(String.valueOf(query.get())));
     }
     if (exclude.isPresent()) {
-      queryParams.put("exclude", RestCallUtil.objectCollectionToStringCollection(exclude.get()));
+      queryParams.put("exclude", RestClientUtil.objectCollectionToStringCollection(exclude.get()));
     }
     if (maxResults.isPresent()) {
       queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults.get())));
@@ -94,7 +92,7 @@ public class GroupPickerApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_findGroups);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_findGroups);
   }
 
 }

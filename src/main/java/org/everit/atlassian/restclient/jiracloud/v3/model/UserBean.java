@@ -41,7 +41,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.UserBeanAvatarUrls;
 /**
  * UserBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class UserBean {
   @JsonProperty("key")
   private String key;
@@ -219,6 +219,7 @@ public class UserBean {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UserBean {\n");
+    
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");

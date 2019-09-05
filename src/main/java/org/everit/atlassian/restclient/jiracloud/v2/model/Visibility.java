@@ -42,7 +42,7 @@ import java.util.Map;
  * The group or role to which this item is visible.
  */
 @ApiModel(description = "The group or role to which this item is visible.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class Visibility {
   /**
    * Indicates whether visibility of this item is restricted to a group or role.
@@ -158,9 +158,10 @@ public class Visibility {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Visibility {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.JsonTypeBean;
  * The metadata describing an issue field.
  */
 @ApiModel(description = "The metadata describing an issue field.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class FieldMetadata {
   @JsonProperty("required")
   private Boolean required;
@@ -184,6 +184,7 @@ public class FieldMetadata {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FieldMetadata {\n");
+    
     sb.append("    required: ").append(toIndentedString(required)).append("\n");
     sb.append("    schema: ").append(toIndentedString(schema)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");

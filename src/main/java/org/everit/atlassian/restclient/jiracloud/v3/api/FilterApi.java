@@ -15,20 +15,18 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v3.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v3.model.ColumnItem;
 import org.everit.atlassian.restclient.jiracloud.v3.model.DefaultShareScope;
@@ -81,10 +79,10 @@ public class FilterApi {
 
   private static final TypeReference<Filter> returnType_updateFilter = new TypeReference<Filter>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public FilterApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public FilterApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -115,7 +113,7 @@ public class FilterApi {
 
     requestBuilder.requestBody(Optional.of(sharePermissionInputBean));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_addSharePermission);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_addSharePermission);
   }
 
   /**
@@ -148,7 +146,7 @@ public class FilterApi {
 
     requestBuilder.requestBody(Optional.of(filter));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_createFilter);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_createFilter);
   }
 
   /**
@@ -180,7 +178,7 @@ public class FilterApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_deleteFavouriteForFilter);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_deleteFavouriteForFilter);
   }
 
   /**
@@ -208,7 +206,7 @@ public class FilterApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -238,7 +236,7 @@ public class FilterApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -266,7 +264,7 @@ public class FilterApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getColumns);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getColumns);
   }
 
   /**
@@ -292,7 +290,7 @@ public class FilterApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getDefaultShareScope);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getDefaultShareScope);
   }
 
   /**
@@ -322,7 +320,7 @@ public class FilterApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getFavouriteFilters);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getFavouriteFilters);
   }
 
   /**
@@ -354,7 +352,7 @@ public class FilterApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getFilter);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getFilter);
   }
 
   /**
@@ -386,7 +384,7 @@ public class FilterApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getFilters);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getFilters);
   }
 
   /**
@@ -448,7 +446,7 @@ public class FilterApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getFiltersPaginated);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getFiltersPaginated);
   }
 
   /**
@@ -482,7 +480,7 @@ public class FilterApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getMyFilters);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getMyFilters);
   }
 
   /**
@@ -512,7 +510,7 @@ public class FilterApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getSharePermission);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getSharePermission);
   }
 
   /**
@@ -540,7 +538,7 @@ public class FilterApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getSharePermissions);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getSharePermissions);
   }
 
   /**
@@ -568,7 +566,7 @@ public class FilterApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -599,7 +597,7 @@ public class FilterApi {
 
     requestBuilder.requestBody(requestBody);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_setColumns);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_setColumns);
   }
 
   /**
@@ -628,7 +626,7 @@ public class FilterApi {
 
     requestBuilder.requestBody(Optional.of(defaultShareScope));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_setDefaultShareScope);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_setDefaultShareScope);
   }
 
   /**
@@ -660,7 +658,7 @@ public class FilterApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_setFavouriteForFilter);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_setFavouriteForFilter);
   }
 
   /**
@@ -695,7 +693,7 @@ public class FilterApi {
 
     requestBuilder.requestBody(Optional.of(filter));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_updateFilter);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updateFilter);
   }
 
 }

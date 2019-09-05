@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.StatusCategory;
  * A status.
  */
 @ApiModel(description = "A status.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class StatusDetails {
   @JsonProperty("self")
   private String self;
@@ -158,13 +158,14 @@ public class StatusDetails {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class StatusDetails {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    iconUrl: ").append(toIndentedString(iconUrl)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    statusCategory: ").append(toIndentedString(statusCategory)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();
   }

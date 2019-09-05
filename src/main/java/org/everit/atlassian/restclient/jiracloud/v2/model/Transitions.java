@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.IssueTransition;
  * List of issue transitions.
  */
 @ApiModel(description = "List of issue transitions.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class Transitions {
   @JsonProperty("expand")
   private String expand;
@@ -93,6 +93,7 @@ public class Transitions {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Transitions {\n");
+    
     sb.append("    expand: ").append(toIndentedString(expand)).append("\n");
     sb.append("    transitions: ").append(toIndentedString(transitions)).append("\n");
     sb.append("}");

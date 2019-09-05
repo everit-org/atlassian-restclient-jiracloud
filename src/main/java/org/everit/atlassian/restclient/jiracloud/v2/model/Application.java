@@ -42,7 +42,7 @@ import java.util.Map;
  * The application the linked item is in.
  */
 @ApiModel(description = "The application the linked item is in.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class Application {
   @JsonProperty("type")
   private String type;
@@ -123,9 +123,10 @@ public class Application {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Application {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();
   }

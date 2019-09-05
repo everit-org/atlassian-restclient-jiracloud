@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.UserDetails;
  * A paged list. To access additional details append &#x60;[start-index:end-index]&#x60; to the expand request. For example, &#x60;?expand&#x3D;sharedUsers[10:40]&#x60; returns a list starting at item 10 and finishing at item 40.
  */
 @ApiModel(description = "A paged list. To access additional details append `[start-index:end-index]` to the expand request. For example, `?expand=sharedUsers[10:40]` returns a list starting at item 10 and finishing at item 40.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class PagedListUserDetailsApplicationUser {
   @JsonProperty("size")
   private Integer size;
@@ -132,6 +132,7 @@ public class PagedListUserDetailsApplicationUser {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PagedListUserDetailsApplicationUser {\n");
+    
     sb.append("    size: ").append(toIndentedString(size)).append("\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("    maxResults: ").append(toIndentedString(maxResults)).append("\n");

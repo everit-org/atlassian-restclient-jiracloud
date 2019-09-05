@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.GroupLabel;
  * A group found in a search.
  */
 @ApiModel(description = "A group found in a search.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class FoundGroup {
   @JsonProperty("name")
   private String name;
@@ -141,6 +141,7 @@ public class FoundGroup {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FoundGroup {\n");
+    
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    html: ").append(toIndentedString(html)).append("\n");
     sb.append("    labels: ").append(toIndentedString(labels)).append("\n");

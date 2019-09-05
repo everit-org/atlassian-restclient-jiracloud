@@ -41,7 +41,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.JqlQueryOrderByClause;
  * A parsed JQL query.
  */
 @ApiModel(description = "A parsed JQL query.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class JqlQuery {
   @JsonProperty("where")
   private Object where = null;
@@ -109,6 +109,7 @@ public class JqlQuery {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class JqlQuery {\n");
+    
     sb.append("    where: ").append(toIndentedString(where)).append("\n");
     sb.append("    orderBy: ").append(toIndentedString(orderBy)).append("\n");
     sb.append("}");

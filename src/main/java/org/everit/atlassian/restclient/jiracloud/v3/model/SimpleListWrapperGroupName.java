@@ -42,7 +42,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.GroupName;
 /**
  * SimpleListWrapperGroupName
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class SimpleListWrapperGroupName {
   @JsonProperty("size")
   private Integer size;
@@ -184,6 +184,7 @@ public class SimpleListWrapperGroupName {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SimpleListWrapperGroupName {\n");
+    
     sb.append("    size: ").append(toIndentedString(size)).append("\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("    pagingCallback: ").append(toIndentedString(pagingCallback)).append("\n");

@@ -15,20 +15,18 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v2.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v2.model.FoundUsersAndGroups;
 
@@ -45,10 +43,10 @@ public class GroupAndUserPickerApi {
 
   private static final TypeReference<FoundUsersAndGroups> returnType_findUsersAndGroups = new TypeReference<FoundUsersAndGroups>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public GroupAndUserPickerApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public GroupAndUserPickerApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -91,10 +89,10 @@ public class GroupAndUserPickerApi {
       queryParams.put("fieldId", Collections.singleton(String.valueOf(fieldId.get())));
     }
     if (projectId.isPresent()) {
-      queryParams.put("projectId", RestCallUtil.objectCollectionToStringCollection(projectId.get()));
+      queryParams.put("projectId", RestClientUtil.objectCollectionToStringCollection(projectId.get()));
     }
     if (issueTypeId.isPresent()) {
-      queryParams.put("issueTypeId", RestCallUtil.objectCollectionToStringCollection(issueTypeId.get()));
+      queryParams.put("issueTypeId", RestClientUtil.objectCollectionToStringCollection(issueTypeId.get()));
     }
     if (avatarSize.isPresent()) {
       queryParams.put("avatarSize", Collections.singleton(String.valueOf(avatarSize.get())));
@@ -110,7 +108,7 @@ public class GroupAndUserPickerApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_findUsersAndGroups);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_findUsersAndGroups);
   }
 
 }

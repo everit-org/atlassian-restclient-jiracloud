@@ -42,7 +42,7 @@ import java.util.List;
  * Container for a list of webhook IDs.
  */
 @ApiModel(description = "Container for a list of webhook IDs.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class ContainerForWebhookIDs {
   @JsonProperty("webhookIds")
   private List<Long> webhookIds = new ArrayList<>();
@@ -93,6 +93,7 @@ public class ContainerForWebhookIDs {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ContainerForWebhookIDs {\n");
+    
     sb.append("    webhookIds: ").append(toIndentedString(webhookIds)).append("\n");
     sb.append("}");
     return sb.toString();

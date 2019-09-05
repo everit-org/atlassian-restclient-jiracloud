@@ -15,20 +15,18 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v2.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v2.model.Dashboard;
 import org.everit.atlassian.restclient.jiracloud.v2.model.ErrorCollection;
@@ -52,10 +50,10 @@ public class DashboardApi {
 
   private static final TypeReference<PageBeanDashboard> returnType_getDashboardsPaginated = new TypeReference<PageBeanDashboard>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public DashboardApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public DashboardApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -93,7 +91,7 @@ public class DashboardApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getAllDashboards);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getAllDashboards);
   }
 
   /**
@@ -121,7 +119,7 @@ public class DashboardApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getDashboard);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getDashboard);
   }
 
   /**
@@ -183,7 +181,7 @@ public class DashboardApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getDashboardsPaginated);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getDashboardsPaginated);
   }
 
 }

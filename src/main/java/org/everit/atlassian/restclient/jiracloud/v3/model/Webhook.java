@@ -42,7 +42,7 @@ import java.util.List;
  * A webhook.
  */
 @ApiModel(description = "A webhook.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class Webhook {
   @JsonProperty("id")
   private Long id;
@@ -196,6 +196,7 @@ public class Webhook {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Webhook {\n");
+    
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    jqlFilter: ").append(toIndentedString(jqlFilter)).append("\n");
     sb.append("    events: ").append(toIndentedString(events)).append("\n");

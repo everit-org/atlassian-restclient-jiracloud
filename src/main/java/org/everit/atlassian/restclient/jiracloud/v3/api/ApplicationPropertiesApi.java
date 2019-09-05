@@ -15,20 +15,18 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v3.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v3.model.ApplicationProperty;
 import org.everit.atlassian.restclient.jiracloud.v3.model.SimpleApplicationPropertyBean;
@@ -50,10 +48,10 @@ public class ApplicationPropertiesApi {
 
   private static final TypeReference<ApplicationProperty> returnType_setApplicationProperty = new TypeReference<ApplicationProperty>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public ApplicationPropertiesApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public ApplicationPropertiesApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -79,7 +77,7 @@ public class ApplicationPropertiesApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getAdvancedSettings);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getAdvancedSettings);
   }
 
   /**
@@ -117,7 +115,7 @@ public class ApplicationPropertiesApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getApplicationProperty);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getApplicationProperty);
   }
 
   /**
@@ -148,7 +146,7 @@ public class ApplicationPropertiesApi {
 
     requestBuilder.requestBody(Optional.of(simpleApplicationPropertyBean));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_setApplicationProperty);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_setApplicationProperty);
   }
 
 }

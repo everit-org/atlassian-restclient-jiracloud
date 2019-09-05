@@ -42,7 +42,7 @@ import java.util.List;
  * Details of an application role.
  */
 @ApiModel(description = "Details of an application role.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class ApplicationRole {
   @JsonProperty("key")
   private String key;
@@ -346,6 +346,7 @@ public class ApplicationRole {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ApplicationRole {\n");
+    
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    groups: ").append(toIndentedString(groups)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");

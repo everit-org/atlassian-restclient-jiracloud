@@ -15,20 +15,18 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v3.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v3.model.ActorsMap;
 import org.everit.atlassian.restclient.jiracloud.v3.model.ProjectRole;
@@ -54,10 +52,10 @@ public class ProjectRoleApi {
 
   private static final TypeReference<ProjectRole> returnType_setActors = new TypeReference<ProjectRole>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public ProjectRoleApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public ProjectRoleApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -90,7 +88,7 @@ public class ProjectRoleApi {
 
     requestBuilder.requestBody(Optional.of(actorsMap));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_addActorUsers);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_addActorUsers);
   }
 
   /**
@@ -128,7 +126,7 @@ public class ProjectRoleApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -158,7 +156,7 @@ public class ProjectRoleApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getProjectRole);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getProjectRole);
   }
 
   /**
@@ -186,7 +184,7 @@ public class ProjectRoleApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getProjectRoles);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getProjectRoles);
   }
 
   /**
@@ -219,7 +217,7 @@ public class ProjectRoleApi {
 
     requestBuilder.requestBody(Optional.of(projectRoleActorsUpdateBean));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_setActors);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_setActors);
   }
 
 }

@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Details about the operations available in this version.
  */
 @ApiModel(description = "Details about the operations available in this version.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class SimpleLink {
   @JsonProperty("id")
   private String id;
@@ -218,6 +218,7 @@ public class SimpleLink {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SimpleLink {\n");
+    
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    styleClass: ").append(toIndentedString(styleClass)).append("\n");
     sb.append("    iconClass: ").append(toIndentedString(iconClass)).append("\n");

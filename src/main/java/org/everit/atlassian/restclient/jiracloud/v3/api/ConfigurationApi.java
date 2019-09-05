@@ -15,20 +15,18 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v3.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v3.model.ModelConfiguration;
 
@@ -45,10 +43,10 @@ public class ConfigurationApi {
 
   private static final TypeReference<ModelConfiguration> returnType_getConfiguration = new TypeReference<ModelConfiguration>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public ConfigurationApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public ConfigurationApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -74,7 +72,7 @@ public class ConfigurationApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getConfiguration);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getConfiguration);
   }
 
 }

@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Details about the default workflow.
  */
 @ApiModel(description = "Details about the default workflow.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class DefaultWorkflow {
   @JsonProperty("workflow")
   private String workflow;
@@ -108,6 +108,7 @@ public class DefaultWorkflow {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class DefaultWorkflow {\n");
+    
     sb.append("    workflow: ").append(toIndentedString(workflow)).append("\n");
     sb.append("    updateDraftIfNeeded: ").append(toIndentedString(updateDraftIfNeeded)).append("\n");
     sb.append("}");

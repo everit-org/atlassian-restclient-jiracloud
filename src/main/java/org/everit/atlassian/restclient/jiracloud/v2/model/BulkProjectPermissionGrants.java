@@ -42,7 +42,7 @@ import java.util.List;
  * List of project permissions and the projects and issues those permissions grant access to.
  */
 @ApiModel(description = "List of project permissions and the projects and issues those permissions grant access to.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class BulkProjectPermissionGrants {
   @JsonProperty("permission")
   private String permission;
@@ -142,6 +142,7 @@ public class BulkProjectPermissionGrants {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class BulkProjectPermissionGrants {\n");
+    
     sb.append("    permission: ").append(toIndentedString(permission)).append("\n");
     sb.append("    issues: ").append(toIndentedString(issues)).append("\n");
     sb.append("    projects: ").append(toIndentedString(projects)).append("\n");

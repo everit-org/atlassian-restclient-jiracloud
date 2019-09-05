@@ -35,7 +35,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.everit.atlassian.restclient.jiracloud.v2.model.Field;
+import org.everit.atlassian.restclient.jiracloud.v2.model.FieldDeprecated;
 import org.everit.atlassian.restclient.jiracloud.v2.model.GroupName;
 import org.everit.atlassian.restclient.jiracloud.v2.model.ProjectRole;
 import org.everit.atlassian.restclient.jiracloud.v2.model.UserDetails;
@@ -44,7 +44,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.UserDetails;
  * Details about a notification associated with an event.
  */
 @ApiModel(description = "Details about a notification associated with an event.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class EventNotification {
   @JsonProperty("expand")
   private String expand;
@@ -117,7 +117,7 @@ public class EventNotification {
   private GroupName group;
 
   @JsonProperty("field")
-  private Field field;
+  private FieldDeprecated field;
 
   @JsonProperty("emailAddress")
   private String emailAddress;
@@ -218,7 +218,7 @@ public class EventNotification {
     this.group = group;
   }
 
-  public EventNotification field(Field field) {
+  public EventNotification field(FieldDeprecated field) {
     this.field = field;
     return this;
   }
@@ -228,11 +228,11 @@ public class EventNotification {
    * @return field
   **/
   @ApiModelProperty(value = "The custom user or group field.")
-  public Field getField() {
+  public FieldDeprecated getField() {
     return field;
   }
 
-  public void setField(Field field) {
+  public void setField(FieldDeprecated field) {
     this.field = field;
   }
 
@@ -321,6 +321,7 @@ public class EventNotification {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class EventNotification {\n");
+    
     sb.append("    expand: ").append(toIndentedString(expand)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    notificationType: ").append(toIndentedString(notificationType)).append("\n");

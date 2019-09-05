@@ -40,7 +40,7 @@ import java.net.URI;
 /**
  * AvatarUrlsBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class AvatarUrlsBean {
   @JsonProperty("16x16")
   private URI _16x16;
@@ -152,6 +152,7 @@ public class AvatarUrlsBean {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AvatarUrlsBean {\n");
+    
     sb.append("    _16x16: ").append(toIndentedString(_16x16)).append("\n");
     sb.append("    _24x24: ").append(toIndentedString(_24x24)).append("\n");
     sb.append("    _32x32: ").append(toIndentedString(_32x32)).append("\n");

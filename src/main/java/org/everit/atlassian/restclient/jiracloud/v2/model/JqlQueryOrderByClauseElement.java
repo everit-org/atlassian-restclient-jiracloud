@@ -41,7 +41,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.JqlQueryField;
  * An element of the order-by JQL clause.
  */
 @ApiModel(description = "An element of the order-by JQL clause.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class JqlQueryOrderByClauseElement {
   @JsonProperty("field")
   private JqlQueryField field;
@@ -144,6 +144,7 @@ public class JqlQueryOrderByClauseElement {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class JqlQueryOrderByClauseElement {\n");
+    
     sb.append("    field: ").append(toIndentedString(field)).append("\n");
     sb.append("    direction: ").append(toIndentedString(direction)).append("\n");
     sb.append("}");

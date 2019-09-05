@@ -42,7 +42,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.CustomFieldReplacement
 /**
  * DeleteAndReplaceVersionBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class DeleteAndReplaceVersionBean {
   @JsonProperty("moveFixIssuesTo")
   private Long moveFixIssuesTo;
@@ -140,6 +140,7 @@ public class DeleteAndReplaceVersionBean {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class DeleteAndReplaceVersionBean {\n");
+    
     sb.append("    moveFixIssuesTo: ").append(toIndentedString(moveFixIssuesTo)).append("\n");
     sb.append("    moveAffectedIssuesTo: ").append(toIndentedString(moveAffectedIssuesTo)).append("\n");
     sb.append("    customFieldReplacementList: ").append(toIndentedString(customFieldReplacementList)).append("\n");

@@ -44,7 +44,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.Changelog;
  * A page of items.
  */
 @ApiModel(description = "A page of items.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class PageBeanChangelog {
   @JsonProperty("self")
   private URI self;
@@ -159,6 +159,7 @@ public class PageBeanChangelog {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PageBeanChangelog {\n");
+    
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    nextPage: ").append(toIndentedString(nextPage)).append("\n");
     sb.append("    maxResults: ").append(toIndentedString(maxResults)).append("\n");

@@ -49,7 +49,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.Visibility;
  * Details of a worklog.
  */
 @ApiModel(description = "Details of a worklog.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class Worklog {
   @JsonProperty("self")
   private URI self;
@@ -317,7 +317,7 @@ public class Worklog {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Worklog {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    author: ").append(toIndentedString(author)).append("\n");
     sb.append("    updateAuthor: ").append(toIndentedString(updateAuthor)).append("\n");
@@ -331,6 +331,7 @@ public class Worklog {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    issueId: ").append(toIndentedString(issueId)).append("\n");
     sb.append("    properties: ").append(toIndentedString(properties)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();
   }

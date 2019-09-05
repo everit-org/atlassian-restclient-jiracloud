@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of the instance&#39;s attachment settings.
  */
 @ApiModel(description = "Details of the instance's attachment settings.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class AttachmentSettings {
   @JsonProperty("enabled")
   private Boolean enabled;
@@ -90,6 +90,7 @@ public class AttachmentSettings {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AttachmentSettings {\n");
+    
     sb.append("    enabled: ").append(toIndentedString(enabled)).append("\n");
     sb.append("    uploadLimit: ").append(toIndentedString(uploadLimit)).append("\n");
     sb.append("}");

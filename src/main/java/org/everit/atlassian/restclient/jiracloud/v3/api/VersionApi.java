@@ -15,20 +15,18 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v3.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v3.model.DeleteAndReplaceVersionBean;
 import org.everit.atlassian.restclient.jiracloud.v3.model.Version;
@@ -63,10 +61,10 @@ public class VersionApi {
 
   private static final TypeReference<Version> returnType_updateVersion = new TypeReference<Version>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public VersionApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public VersionApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -95,7 +93,7 @@ public class VersionApi {
 
     requestBuilder.requestBody(Optional.of(version));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_createVersion);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_createVersion);
   }
 
   /**
@@ -126,7 +124,7 @@ public class VersionApi {
 
     requestBuilder.requestBody(Optional.of(deleteAndReplaceVersionBean));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_deleteAndReplaceVersion);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_deleteAndReplaceVersion);
   }
 
   /**
@@ -164,7 +162,7 @@ public class VersionApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -196,7 +194,7 @@ public class VersionApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getVersion);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getVersion);
   }
 
   /**
@@ -224,7 +222,7 @@ public class VersionApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getVersionRelatedIssues);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getVersionRelatedIssues);
   }
 
   /**
@@ -252,7 +250,7 @@ public class VersionApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getVersionUnresolvedIssues);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getVersionUnresolvedIssues);
   }
 
   /**
@@ -282,7 +280,7 @@ public class VersionApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_mergeVersions);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_mergeVersions);
   }
 
   /**
@@ -313,7 +311,7 @@ public class VersionApi {
 
     requestBuilder.requestBody(Optional.of(versionMoveBean));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_moveVersion);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_moveVersion);
   }
 
   /**
@@ -344,7 +342,7 @@ public class VersionApi {
 
     requestBuilder.requestBody(Optional.of(version));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_updateVersion);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updateVersion);
   }
 
 }

@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.ProjectRoleUserBean;
  * Details about a user assigned to a project role.
  */
 @ApiModel(description = "Details about a user assigned to a project role.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class RoleActor {
   @JsonProperty("id")
   private Long id;
@@ -225,6 +225,7 @@ public class RoleActor {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class RoleActor {\n");
+    
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");

@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of the scope of the default sharing for new filters and dashboards.
  */
 @ApiModel(description = "Details of the scope of the default sharing for new filters and dashboards.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class DefaultShareScope {
   /**
    * The scope of the default sharing for new filters and dashboards:   *  &#x60;AUTHENTICATED&#x60; Shared with all logged-in users.  *  &#x60;GLOBAL&#x60; Shared with all logged-in users. This shows as &#x60;AUTHENTICATED&#x60; in the response.  *  &#x60;PRIVATE&#x60; Not shared with any users.
@@ -123,6 +123,7 @@ public class DefaultShareScope {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class DefaultShareScope {\n");
+    
     sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
     sb.append("}");
     return sb.toString();

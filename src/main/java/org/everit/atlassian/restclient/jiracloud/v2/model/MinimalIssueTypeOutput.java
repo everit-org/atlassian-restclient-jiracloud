@@ -39,7 +39,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * MinimalIssueTypeOutput
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class MinimalIssueTypeOutput {
   @JsonProperty("id")
   private Long id;
@@ -129,6 +129,7 @@ public class MinimalIssueTypeOutput {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class MinimalIssueTypeOutput {\n");
+    
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    avatarId: ").append(toIndentedString(avatarId)).append("\n");

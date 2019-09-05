@@ -15,20 +15,18 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v2.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v2.model.AddGroupBean;
 import org.everit.atlassian.restclient.jiracloud.v2.model.Group;
@@ -54,10 +52,10 @@ public class GroupApi {
 
   private static final TypeReference<PageBeanUserDetails> returnType_getUsersFromGroup = new TypeReference<PageBeanUserDetails>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public GroupApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public GroupApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -90,7 +88,7 @@ public class GroupApi {
 
     requestBuilder.requestBody(Optional.of(requestBody));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_addUserToGroup);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_addUserToGroup);
   }
 
   /**
@@ -119,7 +117,7 @@ public class GroupApi {
 
     requestBuilder.requestBody(Optional.of(requestBody));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_createGroup);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_createGroup);
   }
 
   /**
@@ -155,7 +153,7 @@ public class GroupApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getGroup);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getGroup);
   }
 
   /**
@@ -197,7 +195,7 @@ public class GroupApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getUsersFromGroup);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getUsersFromGroup);
   }
 
   /**
@@ -231,7 +229,7 @@ public class GroupApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -269,7 +267,7 @@ public class GroupApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
 }

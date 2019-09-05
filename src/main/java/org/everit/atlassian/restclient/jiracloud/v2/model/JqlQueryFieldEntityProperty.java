@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of an entity property.
  */
 @ApiModel(description = "Details of an entity property.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class JqlQueryFieldEntityProperty {
   @JsonProperty("entity")
   private String entity;
@@ -193,6 +193,7 @@ public class JqlQueryFieldEntityProperty {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class JqlQueryFieldEntityProperty {\n");
+    
     sb.append("    entity: ").append(toIndentedString(entity)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");

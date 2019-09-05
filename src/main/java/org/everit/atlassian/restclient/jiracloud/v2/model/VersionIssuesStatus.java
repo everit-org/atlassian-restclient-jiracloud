@@ -42,7 +42,7 @@ import java.util.Map;
  * Counts of the number of issues in various statuses.
  */
 @ApiModel(description = "Counts of the number of issues in various statuses.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class VersionIssuesStatus {
   @JsonProperty("unmapped")
   private Long unmapped;
@@ -131,11 +131,12 @@ public class VersionIssuesStatus {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class VersionIssuesStatus {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    
     sb.append("    unmapped: ").append(toIndentedString(unmapped)).append("\n");
     sb.append("    toDo: ").append(toIndentedString(toDo)).append("\n");
     sb.append("    inProgress: ").append(toIndentedString(inProgress)).append("\n");
     sb.append("    done: ").append(toIndentedString(done)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();
   }

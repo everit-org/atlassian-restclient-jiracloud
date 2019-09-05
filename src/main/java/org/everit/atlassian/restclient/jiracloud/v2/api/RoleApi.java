@@ -15,20 +15,18 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v2.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v2.model.ActorInputBean;
 import org.everit.atlassian.restclient.jiracloud.v2.model.CreateUpdateRoleRequestBean;
@@ -61,10 +59,10 @@ public class RoleApi {
 
   private static final TypeReference<ProjectRole> returnType_partialUpdateProjectRole = new TypeReference<ProjectRole>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public RoleApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public RoleApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -95,7 +93,7 @@ public class RoleApi {
 
     requestBuilder.requestBody(Optional.of(actorInputBean));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_addProjectRoleActorsToRole);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_addProjectRoleActorsToRole);
   }
 
   /**
@@ -124,7 +122,7 @@ public class RoleApi {
 
     requestBuilder.requestBody(Optional.of(createUpdateRoleRequestBean));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_createProjectRole);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_createProjectRole);
   }
 
   /**
@@ -156,7 +154,7 @@ public class RoleApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -192,7 +190,7 @@ public class RoleApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_deleteProjectRoleActorsFromRole);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_deleteProjectRoleActorsFromRole);
   }
 
   /**
@@ -223,7 +221,7 @@ public class RoleApi {
 
     requestBuilder.requestBody(Optional.of(createUpdateRoleRequestBean));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_fullyUpdateProjectRole);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_fullyUpdateProjectRole);
   }
 
   /**
@@ -249,7 +247,7 @@ public class RoleApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getAllProjectRoles);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getAllProjectRoles);
   }
 
   /**
@@ -277,7 +275,7 @@ public class RoleApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getProjectRoleActorsForRole);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getProjectRoleActorsForRole);
   }
 
   /**
@@ -305,7 +303,7 @@ public class RoleApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getProjectRoleById);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getProjectRoleById);
   }
 
   /**
@@ -336,7 +334,7 @@ public class RoleApi {
 
     requestBuilder.requestBody(Optional.of(createUpdateRoleRequestBean));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_partialUpdateProjectRole);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_partialUpdateProjectRole);
   }
 
 }

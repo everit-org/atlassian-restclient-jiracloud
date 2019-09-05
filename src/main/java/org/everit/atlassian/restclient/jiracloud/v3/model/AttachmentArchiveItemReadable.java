@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Metadata for an item in an attachment archive.
  */
 @ApiModel(description = "Metadata for an item in an attachment archive.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class AttachmentArchiveItemReadable {
   @JsonProperty("path")
   private String path;
@@ -129,6 +129,7 @@ public class AttachmentArchiveItemReadable {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AttachmentArchiveItemReadable {\n");
+    
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("    index: ").append(toIndentedString(index)).append("\n");
     sb.append("    size: ").append(toIndentedString(size)).append("\n");

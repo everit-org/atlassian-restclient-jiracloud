@@ -50,7 +50,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.PageOfChangelogs;
 /**
  * IssueBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class IssueBean {
   @JsonProperty("expand")
   private String expand;
@@ -295,6 +295,7 @@ public class IssueBean {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueBean {\n");
+    
     sb.append("    expand: ").append(toIndentedString(expand)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    self: ").append(toIndentedString(self)).append("\n");

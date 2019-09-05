@@ -40,7 +40,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.ErrorCollection;
 /**
  * NestedResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class NestedResponse {
   @JsonProperty("status")
   private Integer status;
@@ -108,6 +108,7 @@ public class NestedResponse {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class NestedResponse {\n");
+    
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    errorCollection: ").append(toIndentedString(errorCollection)).append("\n");
     sb.append("}");

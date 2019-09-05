@@ -42,7 +42,7 @@ import java.util.Map;
  * An issue priority.
  */
 @ApiModel(description = "An issue priority.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class Priority {
   @JsonProperty("self")
   private String self;
@@ -211,13 +211,14 @@ public class Priority {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Priority {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    statusColor: ").append(toIndentedString(statusColor)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    iconUrl: ").append(toIndentedString(iconUrl)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();
   }

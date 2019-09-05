@@ -15,20 +15,18 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v3.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v3.model.PermissionGrant;
 import org.everit.atlassian.restclient.jiracloud.v3.model.PermissionGrants;
@@ -60,10 +58,10 @@ public class PermissionSchemeApi {
 
   private static final TypeReference<PermissionScheme> returnType_updatePermissionScheme = new TypeReference<PermissionScheme>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public PermissionSchemeApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public PermissionSchemeApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -98,7 +96,7 @@ public class PermissionSchemeApi {
 
     requestBuilder.requestBody(Optional.of(permissionGrant));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_createPermissionGrant);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_createPermissionGrant);
   }
 
   /**
@@ -131,7 +129,7 @@ public class PermissionSchemeApi {
 
     requestBuilder.requestBody(Optional.of(requestBody));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_createPermissionScheme);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_createPermissionScheme);
   }
 
   /**
@@ -159,7 +157,7 @@ public class PermissionSchemeApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -189,7 +187,7 @@ public class PermissionSchemeApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -219,7 +217,7 @@ public class PermissionSchemeApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getAllPermissionSchemes);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getAllPermissionSchemes);
   }
 
   /**
@@ -251,7 +249,7 @@ public class PermissionSchemeApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getPermissionScheme);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getPermissionScheme);
   }
 
   /**
@@ -285,7 +283,7 @@ public class PermissionSchemeApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getPermissionSchemeGrant);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getPermissionSchemeGrant);
   }
 
   /**
@@ -317,7 +315,7 @@ public class PermissionSchemeApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getPermissionSchemeGrants);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getPermissionSchemeGrants);
   }
 
   /**
@@ -352,7 +350,7 @@ public class PermissionSchemeApi {
 
     requestBuilder.requestBody(Optional.of(requestBody));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_updatePermissionScheme);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updatePermissionScheme);
   }
 
 }

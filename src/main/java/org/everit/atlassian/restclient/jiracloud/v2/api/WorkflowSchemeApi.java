@@ -15,20 +15,18 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v2.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v2.model.DefaultWorkflow;
 import org.everit.atlassian.restclient.jiracloud.v2.model.IssueTypeWorkflowMapping;
@@ -90,10 +88,10 @@ public class WorkflowSchemeApi {
 
   private static final TypeReference<WorkflowScheme> returnType_updateWorkflowSchemeDraft = new TypeReference<WorkflowScheme>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public WorkflowSchemeApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public WorkflowSchemeApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -122,7 +120,7 @@ public class WorkflowSchemeApi {
 
     requestBuilder.requestBody(Optional.of(workflowScheme));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_createWorkflowScheme);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_createWorkflowScheme);
   }
 
   /**
@@ -150,7 +148,7 @@ public class WorkflowSchemeApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_createWorkflowSchemeDraftFromParent);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_createWorkflowSchemeDraftFromParent);
   }
 
   /**
@@ -182,7 +180,7 @@ public class WorkflowSchemeApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_deleteDefaultWorkflow);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_deleteDefaultWorkflow);
   }
 
   /**
@@ -210,7 +208,7 @@ public class WorkflowSchemeApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_deleteDraftDefaultWorkflow);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_deleteDraftDefaultWorkflow);
   }
 
   /**
@@ -242,7 +240,7 @@ public class WorkflowSchemeApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -278,7 +276,7 @@ public class WorkflowSchemeApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -306,7 +304,7 @@ public class WorkflowSchemeApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -334,7 +332,7 @@ public class WorkflowSchemeApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -364,7 +362,7 @@ public class WorkflowSchemeApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_deleteWorkflowSchemeDraftIssueType);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_deleteWorkflowSchemeDraftIssueType);
   }
 
   /**
@@ -398,7 +396,7 @@ public class WorkflowSchemeApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_deleteWorkflowSchemeIssueType);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_deleteWorkflowSchemeIssueType);
   }
 
   /**
@@ -430,7 +428,7 @@ public class WorkflowSchemeApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getDefaultWorkflow);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getDefaultWorkflow);
   }
 
   /**
@@ -458,7 +456,7 @@ public class WorkflowSchemeApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getDraftDefaultWorkflow);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getDraftDefaultWorkflow);
   }
 
   /**
@@ -490,7 +488,7 @@ public class WorkflowSchemeApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getDraftWorkflow);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getDraftWorkflow);
   }
 
   /**
@@ -526,7 +524,7 @@ public class WorkflowSchemeApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getWorkflow);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getWorkflow);
   }
 
   /**
@@ -558,7 +556,7 @@ public class WorkflowSchemeApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getWorkflowScheme);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getWorkflowScheme);
   }
 
   /**
@@ -586,7 +584,7 @@ public class WorkflowSchemeApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getWorkflowSchemeDraft);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getWorkflowSchemeDraft);
   }
 
   /**
@@ -616,7 +614,7 @@ public class WorkflowSchemeApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getWorkflowSchemeDraftIssueType);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getWorkflowSchemeDraftIssueType);
   }
 
   /**
@@ -650,7 +648,7 @@ public class WorkflowSchemeApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getWorkflowSchemeIssueType);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getWorkflowSchemeIssueType);
   }
 
   /**
@@ -683,7 +681,7 @@ public class WorkflowSchemeApi {
 
     requestBuilder.requestBody(Optional.of(issueTypeWorkflowMapping));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_setWorkflowSchemeDraftIssueType);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_setWorkflowSchemeDraftIssueType);
   }
 
   /**
@@ -716,7 +714,7 @@ public class WorkflowSchemeApi {
 
     requestBuilder.requestBody(Optional.of(issueTypeWorkflowMapping));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_setWorkflowSchemeIssueType);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_setWorkflowSchemeIssueType);
   }
 
   /**
@@ -747,7 +745,7 @@ public class WorkflowSchemeApi {
 
     requestBuilder.requestBody(Optional.of(defaultWorkflow));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_updateDefaultWorkflow);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updateDefaultWorkflow);
   }
 
   /**
@@ -778,7 +776,7 @@ public class WorkflowSchemeApi {
 
     requestBuilder.requestBody(Optional.of(defaultWorkflow));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_updateDraftDefaultWorkflow);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updateDraftDefaultWorkflow);
   }
 
   /**
@@ -813,7 +811,7 @@ public class WorkflowSchemeApi {
 
     requestBuilder.requestBody(Optional.of(issueTypesWorkflowMapping));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_updateDraftWorkflowMapping);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updateDraftWorkflowMapping);
   }
 
   /**
@@ -848,7 +846,7 @@ public class WorkflowSchemeApi {
 
     requestBuilder.requestBody(Optional.of(issueTypesWorkflowMapping));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_updateWorkflowMapping);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updateWorkflowMapping);
   }
 
   /**
@@ -879,7 +877,7 @@ public class WorkflowSchemeApi {
 
     requestBuilder.requestBody(Optional.of(workflowScheme));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_updateWorkflowScheme);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updateWorkflowScheme);
   }
 
   /**
@@ -910,7 +908,7 @@ public class WorkflowSchemeApi {
 
     requestBuilder.requestBody(Optional.of(workflowScheme));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_updateWorkflowSchemeDraft);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updateWorkflowSchemeDraft);
   }
 
 }

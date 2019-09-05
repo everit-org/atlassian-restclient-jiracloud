@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.ProjectScopeBean;
 /**
  * IssueFieldOptionScopeBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class IssueFieldOptionScopeBean {
   @JsonProperty("projects")
   private List<Long> projects = new ArrayList<>();
@@ -149,6 +149,7 @@ public class IssueFieldOptionScopeBean {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueFieldOptionScopeBean {\n");
+    
     sb.append("    projects: ").append(toIndentedString(projects)).append("\n");
     sb.append("    projects2: ").append(toIndentedString(projects2)).append("\n");
     sb.append("    global: ").append(toIndentedString(global)).append("\n");

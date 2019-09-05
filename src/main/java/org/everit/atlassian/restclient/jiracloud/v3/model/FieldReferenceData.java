@@ -42,7 +42,7 @@ import java.util.List;
  * Details of a field that can be used in advanced searches.
  */
 @ApiModel(description = "Details of a field that can be used in advanced searches.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class FieldReferenceData {
   @JsonProperty("value")
   private String value;
@@ -363,6 +363,7 @@ public class FieldReferenceData {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FieldReferenceData {\n");
+    
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    orderable: ").append(toIndentedString(orderable)).append("\n");

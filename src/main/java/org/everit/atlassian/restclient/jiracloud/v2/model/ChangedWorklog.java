@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.EntityProperty;
  * Details of a changed worklog.
  */
 @ApiModel(description = "Details of a changed worklog.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class ChangedWorklog {
   @JsonProperty("worklogId")
   private Long worklogId;
@@ -106,6 +106,7 @@ public class ChangedWorklog {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ChangedWorklog {\n");
+    
     sb.append("    worklogId: ").append(toIndentedString(worklogId)).append("\n");
     sb.append("    updatedTime: ").append(toIndentedString(updatedTime)).append("\n");
     sb.append("    properties: ").append(toIndentedString(properties)).append("\n");

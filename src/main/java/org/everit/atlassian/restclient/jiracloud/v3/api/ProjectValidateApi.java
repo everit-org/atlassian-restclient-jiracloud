@@ -15,20 +15,18 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v3.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v3.model.ErrorCollection;
 
@@ -49,10 +47,10 @@ public class ProjectValidateApi {
 
   private static final TypeReference<ErrorCollection> returnType_validateProjectKey = new TypeReference<ErrorCollection>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public ProjectValidateApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public ProjectValidateApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -82,7 +80,7 @@ public class ProjectValidateApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getValidProjectKey);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getValidProjectKey);
   }
 
   /**
@@ -112,7 +110,7 @@ public class ProjectValidateApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getValidProjectName);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getValidProjectName);
   }
 
   /**
@@ -142,7 +140,7 @@ public class ProjectValidateApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_validateProjectKey);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_validateProjectKey);
   }
 
 }

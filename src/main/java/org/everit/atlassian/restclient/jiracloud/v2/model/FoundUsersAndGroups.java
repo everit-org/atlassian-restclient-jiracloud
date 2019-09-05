@@ -42,7 +42,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.FoundUsers;
  * List of users and groups found in a search.
  */
 @ApiModel(description = "List of users and groups found in a search.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class FoundUsersAndGroups {
   @JsonProperty("users")
   private FoundUsers users;
@@ -110,6 +110,7 @@ public class FoundUsersAndGroups {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FoundUsersAndGroups {\n");
+    
     sb.append("    users: ").append(toIndentedString(users)).append("\n");
     sb.append("    groups: ").append(toIndentedString(groups)).append("\n");
     sb.append("}");

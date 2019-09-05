@@ -15,23 +15,21 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v2.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v2.model.CustomFieldDefinitionJsonBean;
-import org.everit.atlassian.restclient.jiracloud.v2.model.Field;
+import org.everit.atlassian.restclient.jiracloud.v2.model.FieldDeprecated;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -44,14 +42,14 @@ public class FieldApi {
 
   private static final String DEFAULT_BASE_PATH = "http://localhost";
 
-  private static final TypeReference<Field> returnType_createCustomField = new TypeReference<Field>() {};
+  private static final TypeReference<FieldDeprecated> returnType_createCustomField = new TypeReference<FieldDeprecated>() {};
 
-  private static final TypeReference<List<Field>> returnType_getFields = new TypeReference<List<Field>>() {};
+  private static final TypeReference<List<FieldDeprecated>> returnType_getFields = new TypeReference<List<FieldDeprecated>>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public FieldApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public FieldApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -59,9 +57,9 @@ public class FieldApi {
    * <p>Creates a custom field.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> <em>Administer Jira</em> <a href=\"https://confluence.atlassian.com/x/x4dKLg\">global permission</a>.</p> 
    * @param customFieldDefinitionJsonBean <p>Definition of the custom field to be created</p>  (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
-   * @return Single&lt;Field&gt;
+   * @return Single&lt;FieldDeprecated&gt;
    */
-  public Single<Field> createCustomField(
+  public Single<FieldDeprecated> createCustomField(
     CustomFieldDefinitionJsonBean customFieldDefinitionJsonBean, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
@@ -80,16 +78,16 @@ public class FieldApi {
 
     requestBuilder.requestBody(Optional.of(customFieldDefinitionJsonBean));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_createCustomField);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_createCustomField);
   }
 
   /**
    * Get fields
    * <p>Returns system and custom issue fields according to the following rules:</p> <ul> <li>Fields that cannot be added to the issue navigator are always returned.</li> <li>Fields that cannot be placed on an issue screen are always returned.</li> <li>Fields that depend on global Jira settings are only returned if the setting is enabled. That is, timetracking fields, subtasks, votes, and watches.</li> <li>For all other fields, this operation only returns the fields that the user has permission to view (that is, the field is used in at least one project that the user has <em>Browse Projects</em> <a href=\"https://confluence.atlassian.com/x/yodKLg\">project permission</a> for.)</li> </ul> <p>This operation can be accessed anonymously.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> None.</p> 
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
-   * @return Single&lt;List&lt;Field&gt;&gt;
+   * @return Single&lt;List&lt;FieldDeprecated&gt;&gt;
    */
-  public Single<List<Field>> getFields(Optional<RestRequestEnhancer> restRequestEnhancer)
+  public Single<List<FieldDeprecated>> getFields(Optional<RestRequestEnhancer> restRequestEnhancer)
      {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
@@ -106,7 +104,7 @@ public class FieldApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getFields);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getFields);
   }
 
 }

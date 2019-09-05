@@ -41,7 +41,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.JiraExpressionsComplex
 /**
  * JiraExpressionEvaluationMetaDataBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class JiraExpressionEvaluationMetaDataBean {
   @JsonProperty("complexity")
   private JiraExpressionsComplexityBean complexity;
@@ -109,6 +109,7 @@ public class JiraExpressionEvaluationMetaDataBean {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class JiraExpressionEvaluationMetaDataBean {\n");
+    
     sb.append("    complexity: ").append(toIndentedString(complexity)).append("\n");
     sb.append("    issues: ").append(toIndentedString(issues)).append("\n");
     sb.append("}");

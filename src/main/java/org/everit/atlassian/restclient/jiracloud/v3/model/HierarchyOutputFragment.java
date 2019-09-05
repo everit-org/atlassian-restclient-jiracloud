@@ -42,7 +42,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.HierarchyLevelOutput;
 /**
  * HierarchyOutputFragment
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class HierarchyOutputFragment {
   @JsonProperty("projectId")
   private Long projectId;
@@ -118,6 +118,7 @@ public class HierarchyOutputFragment {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class HierarchyOutputFragment {\n");
+    
     sb.append("    projectId: ").append(toIndentedString(projectId)).append("\n");
     sb.append("    hierarchy: ").append(toIndentedString(hierarchy)).append("\n");
     sb.append("}");

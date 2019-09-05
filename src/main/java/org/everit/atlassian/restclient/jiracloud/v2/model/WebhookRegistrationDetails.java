@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.WebhookDetails;
  * Details of webhooks to register.
  */
 @ApiModel(description = "Details of webhooks to register.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class WebhookRegistrationDetails {
   @JsonProperty("webhooks")
   private List<WebhookDetails> webhooks = new ArrayList<>();
@@ -116,6 +116,7 @@ public class WebhookRegistrationDetails {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class WebhookRegistrationDetails {\n");
+    
     sb.append("    webhooks: ").append(toIndentedString(webhooks)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("}");

@@ -15,20 +15,18 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v2.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v2.model.CreatedIssue;
 import org.everit.atlassian.restclient.jiracloud.v2.model.CreatedIssues;
@@ -97,10 +95,10 @@ public class IssueApi {
 
   private static final TypeReference<Object> returnType_updateRemoteIssueLink = new TypeReference<Object>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public IssueApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public IssueApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -128,7 +126,7 @@ public class IssueApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_addVote);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_addVote);
   }
 
   /**
@@ -159,7 +157,7 @@ public class IssueApi {
 
     requestBuilder.requestBody(Optional.of(body));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_addWatcher);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_addWatcher);
   }
 
   /**
@@ -190,7 +188,7 @@ public class IssueApi {
 
     requestBuilder.requestBody(Optional.of(user));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_assignIssue);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_assignIssue);
   }
 
   /**
@@ -223,7 +221,7 @@ public class IssueApi {
 
     requestBuilder.requestBody(Optional.of(requestBody));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_createIssue);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_createIssue);
   }
 
   /**
@@ -252,7 +250,7 @@ public class IssueApi {
 
     requestBuilder.requestBody(Optional.of(requestBody));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_createIssues);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_createIssues);
   }
 
   /**
@@ -283,7 +281,7 @@ public class IssueApi {
 
     requestBuilder.requestBody(Optional.of(requestBody));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_createOrUpdateRemoteIssueLink);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_createOrUpdateRemoteIssueLink);
   }
 
   /**
@@ -315,7 +313,7 @@ public class IssueApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -347,7 +345,7 @@ public class IssueApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -377,7 +375,7 @@ public class IssueApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -408,7 +406,7 @@ public class IssueApi {
 
     requestBuilder.requestBody(Optional.of(requestBody));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_doTransition);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_doTransition);
   }
 
   /**
@@ -451,7 +449,7 @@ public class IssueApi {
 
     requestBuilder.requestBody(Optional.of(requestBody));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_editIssue);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_editIssue);
   }
 
   /**
@@ -478,16 +476,16 @@ public class IssueApi {
 
     Map<String, Collection<String>> queryParams = new HashMap<>();
     if (projectIds.isPresent()) {
-      queryParams.put("projectIds", RestCallUtil.objectCollectionToStringCollection(projectIds.get()));
+      queryParams.put("projectIds", RestClientUtil.objectCollectionToStringCollection(projectIds.get()));
     }
     if (projectKeys.isPresent()) {
-      queryParams.put("projectKeys", RestCallUtil.objectCollectionToStringCollection(projectKeys.get()));
+      queryParams.put("projectKeys", RestClientUtil.objectCollectionToStringCollection(projectKeys.get()));
     }
     if (issuetypeIds.isPresent()) {
-      queryParams.put("issuetypeIds", RestCallUtil.objectCollectionToStringCollection(issuetypeIds.get()));
+      queryParams.put("issuetypeIds", RestClientUtil.objectCollectionToStringCollection(issuetypeIds.get()));
     }
     if (issuetypeNames.isPresent()) {
-      queryParams.put("issuetypeNames", RestCallUtil.objectCollectionToStringCollection(issuetypeNames.get()));
+      queryParams.put("issuetypeNames", RestClientUtil.objectCollectionToStringCollection(issuetypeNames.get()));
     }
     if (expand.isPresent()) {
       queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
@@ -497,7 +495,7 @@ public class IssueApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getCreateIssueMeta);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getCreateIssueMeta);
   }
 
   /**
@@ -533,7 +531,7 @@ public class IssueApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getEditIssueMeta);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getEditIssueMeta);
   }
 
   /**
@@ -562,7 +560,7 @@ public class IssueApi {
 
     Map<String, Collection<String>> queryParams = new HashMap<>();
     if (fields.isPresent()) {
-      queryParams.put("fields", RestCallUtil.objectCollectionToStringCollection(fields.get()));
+      queryParams.put("fields", RestClientUtil.objectCollectionToStringCollection(fields.get()));
     }
     if (fieldsByKeys.isPresent()) {
       queryParams.put("fieldsByKeys", Collections.singleton(String.valueOf(fieldsByKeys.get())));
@@ -571,7 +569,7 @@ public class IssueApi {
       queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
     }
     if (properties.isPresent()) {
-      queryParams.put("properties", RestCallUtil.objectCollectionToStringCollection(properties.get()));
+      queryParams.put("properties", RestClientUtil.objectCollectionToStringCollection(properties.get()));
     }
     if (updateHistory.isPresent()) {
       queryParams.put("updateHistory", Collections.singleton(String.valueOf(updateHistory.get())));
@@ -581,7 +579,7 @@ public class IssueApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getIssue);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getIssue);
   }
 
   /**
@@ -631,7 +629,7 @@ public class IssueApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getIssuePickerResource);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getIssuePickerResource);
   }
 
   /**
@@ -659,7 +657,7 @@ public class IssueApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getIssueWatchers);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getIssueWatchers);
   }
 
   /**
@@ -689,7 +687,7 @@ public class IssueApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getRemoteIssueLinkById);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getRemoteIssueLinkById);
   }
 
   /**
@@ -721,7 +719,7 @@ public class IssueApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getRemoteIssueLinks);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getRemoteIssueLinks);
   }
 
   /**
@@ -761,7 +759,7 @@ public class IssueApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getTransitions);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getTransitions);
   }
 
   /**
@@ -789,7 +787,7 @@ public class IssueApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getVotes);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getVotes);
   }
 
   /**
@@ -820,7 +818,7 @@ public class IssueApi {
 
     requestBuilder.requestBody(Optional.of(requestBody));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_notify);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_notify);
   }
 
   /**
@@ -848,7 +846,7 @@ public class IssueApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -884,7 +882,7 @@ public class IssueApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -917,7 +915,7 @@ public class IssueApi {
 
     requestBuilder.requestBody(Optional.of(requestBody));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_updateRemoteIssueLink);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updateRemoteIssueLink);
   }
 
 }

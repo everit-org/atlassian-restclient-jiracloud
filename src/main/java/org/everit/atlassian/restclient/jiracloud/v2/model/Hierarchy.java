@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.HierarchyLevel;
  * Project Issue Type Hierarchy
  */
 @ApiModel(description = "Project Issue Type Hierarchy")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class Hierarchy {
   @JsonProperty("level")
   private List<HierarchyLevel> level = new ArrayList<>();
@@ -97,6 +97,7 @@ public class Hierarchy {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Hierarchy {\n");
+    
     sb.append("    level: ").append(toIndentedString(level)).append("\n");
     sb.append("}");
     return sb.toString();

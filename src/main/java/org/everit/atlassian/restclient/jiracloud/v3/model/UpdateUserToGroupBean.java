@@ -41,7 +41,7 @@ import java.util.Map;
 /**
  * UpdateUserToGroupBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class UpdateUserToGroupBean {
   @JsonProperty("name")
   private String name;
@@ -122,9 +122,10 @@ public class UpdateUserToGroupBean {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateUserToGroupBean {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();
   }

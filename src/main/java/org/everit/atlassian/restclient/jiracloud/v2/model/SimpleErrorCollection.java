@@ -43,7 +43,7 @@ import java.util.Map;
 /**
  * SimpleErrorCollection
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class SimpleErrorCollection {
   @JsonProperty("errors")
   private Map<String, String> errors = new HashMap<>();
@@ -149,6 +149,7 @@ public class SimpleErrorCollection {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SimpleErrorCollection {\n");
+    
     sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
     sb.append("    errorMessages: ").append(toIndentedString(errorMessages)).append("\n");
     sb.append("    httpStatusCode: ").append(toIndentedString(httpStatusCode)).append("\n");

@@ -15,20 +15,18 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v2.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v2.model.ColumnItem;
 import org.everit.atlassian.restclient.jiracloud.v2.model.FoundUsers;
@@ -69,10 +67,10 @@ public class UserApi {
 
   private static final TypeReference<Object> returnType_setUserColumns = new TypeReference<Object>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public UserApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public UserApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -101,7 +99,7 @@ public class UserApi {
 
     requestBuilder.requestBody(Optional.of(requestBody));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_createUser);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_createUser);
   }
 
   /**
@@ -163,7 +161,7 @@ public class UserApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_findAssignableUsers);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_findAssignableUsers);
   }
 
   /**
@@ -213,7 +211,7 @@ public class UserApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_findBulkAssignableUsers);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_findBulkAssignableUsers);
   }
 
   /**
@@ -263,7 +261,7 @@ public class UserApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_findUsers);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_findUsers);
   }
 
   /**
@@ -301,10 +299,10 @@ public class UserApi {
       queryParams.put("showAvatar", Collections.singleton(String.valueOf(showAvatar.get())));
     }
     if (exclude.isPresent()) {
-      queryParams.put("exclude", RestCallUtil.objectCollectionToStringCollection(exclude.get()));
+      queryParams.put("exclude", RestClientUtil.objectCollectionToStringCollection(exclude.get()));
     }
     if (excludeAccountIds.isPresent()) {
-      queryParams.put("excludeAccountIds", RestCallUtil.objectCollectionToStringCollection(excludeAccountIds.get()));
+      queryParams.put("excludeAccountIds", RestClientUtil.objectCollectionToStringCollection(excludeAccountIds.get()));
     }
     if (avatarSize.isPresent()) {
       queryParams.put("avatarSize", Collections.singleton(String.valueOf(avatarSize.get())));
@@ -317,7 +315,7 @@ public class UserApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_findUsersForPicker);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_findUsersForPicker);
   }
 
   /**
@@ -375,7 +373,7 @@ public class UserApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_findUsersWithAllPermissions);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_findUsersWithAllPermissions);
   }
 
   /**
@@ -429,7 +427,7 @@ public class UserApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_findUsersWithBrowsePermission);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_findUsersWithBrowsePermission);
   }
 
   /**
@@ -471,7 +469,7 @@ public class UserApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getUser);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getUser);
   }
 
   /**
@@ -505,7 +503,7 @@ public class UserApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getUserDefaultColumns);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getUserDefaultColumns);
   }
 
   /**
@@ -543,7 +541,7 @@ public class UserApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getUserGroups);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getUserGroups);
   }
 
   /**
@@ -581,7 +579,7 @@ public class UserApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -615,7 +613,7 @@ public class UserApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -648,7 +646,7 @@ public class UserApi {
 
     requestBuilder.requestBody(requestBody);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_setUserColumns);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_setUserColumns);
   }
 
 }

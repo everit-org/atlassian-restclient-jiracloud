@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * A workflow transition rule.
  */
 @ApiModel(description = "A workflow transition rule.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class WorkflowTransitionRule {
   @JsonProperty("type")
   private String type;
@@ -108,6 +108,7 @@ public class WorkflowTransitionRule {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class WorkflowTransitionRule {\n");
+    
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    _configuration: ").append(toIndentedString(_configuration)).append("\n");
     sb.append("}");

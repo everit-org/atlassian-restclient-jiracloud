@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Details about the mapping between an issue type and a workflow.
  */
 @ApiModel(description = "Details about the mapping between an issue type and a workflow.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class IssueTypeWorkflowMapping {
   @JsonProperty("issueType")
   private String issueType;
@@ -130,6 +130,7 @@ public class IssueTypeWorkflowMapping {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueTypeWorkflowMapping {\n");
+    
     sb.append("    issueType: ").append(toIndentedString(issueType)).append("\n");
     sb.append("    workflow: ").append(toIndentedString(workflow)).append("\n");
     sb.append("    updateDraftIfNeeded: ").append(toIndentedString(updateDraftIfNeeded)).append("\n");

@@ -39,7 +39,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * CreateUpdateRoleRequestBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class CreateUpdateRoleRequestBean {
   @JsonProperty("name")
   private String name;
@@ -107,6 +107,7 @@ public class CreateUpdateRoleRequestBean {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateUpdateRoleRequestBean {\n");
+    
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("}");

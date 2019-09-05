@@ -15,20 +15,18 @@
  */
 package org.everit.atlassian.restclient.jiracloud.v3.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.Optional;
 
 import io.reactivex.Single;
 import io.reactivex.Completable;
 
-import org.everit.http.restclient.RestCallUtil;
+import org.everit.http.client.HttpMethod;
+
+import org.everit.http.restclient.RestClient;
+import org.everit.http.restclient.RestClientUtil;
 import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
-
-import org.everit.http.client.HttpClient;
-import org.everit.http.client.HttpMethod;
-import org.everit.http.client.HttpRequest;
+import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v3.model.Comment;
 import org.everit.atlassian.restclient.jiracloud.v3.model.PageOfComments;
@@ -52,10 +50,10 @@ public class IssueCommentApi {
 
   private static final TypeReference<Comment> returnType_updateComment = new TypeReference<Comment>() {};
 
-  private final HttpClient httpClient;
+  private final RestClient restClient;
 
-  public IssueCommentApi(HttpClient httpClient) {
-    this.httpClient = httpClient;
+  public IssueCommentApi(RestClient restClient) {
+    this.restClient = restClient;
   }
 
   /**
@@ -90,7 +88,7 @@ public class IssueCommentApi {
 
     requestBuilder.requestBody(Optional.of(requestBody));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_addComment);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_addComment);
   }
 
   /**
@@ -120,7 +118,7 @@ public class IssueCommentApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -154,7 +152,7 @@ public class IssueCommentApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getComment);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getComment);
   }
 
   /**
@@ -198,7 +196,7 @@ public class IssueCommentApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_getComments);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getComments);
   }
 
   /**
@@ -235,7 +233,7 @@ public class IssueCommentApi {
 
     requestBuilder.requestBody(Optional.of(requestBody));
 
-    return RestCallUtil.callEndpoint(httpClient, requestBuilder.build(), restRequestEnhancer, returnType_updateComment);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updateComment);
   }
 
 }

@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * An issue suggested for use in the issue picker auto-completion.
  */
 @ApiModel(description = "An issue suggested for use in the issue picker auto-completion.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class SuggestedIssue {
   @JsonProperty("id")
   private Long id;
@@ -142,6 +142,7 @@ public class SuggestedIssue {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SuggestedIssue {\n");
+    
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    keyHtml: ").append(toIndentedString(keyHtml)).append("\n");

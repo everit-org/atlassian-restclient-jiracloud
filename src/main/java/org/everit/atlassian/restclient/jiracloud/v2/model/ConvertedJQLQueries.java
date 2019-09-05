@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.JQLQueryWithUnknownUse
  * The converted JQL queries.
  */
 @ApiModel(description = "The converted JQL queries.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class ConvertedJQLQueries {
   @JsonProperty("queryStrings")
   private List<String> queryStrings = new ArrayList<>();
@@ -127,6 +127,7 @@ public class ConvertedJQLQueries {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ConvertedJQLQueries {\n");
+    
     sb.append("    queryStrings: ").append(toIndentedString(queryStrings)).append("\n");
     sb.append("    queriesWithUnknownUsers: ").append(toIndentedString(queriesWithUnknownUsers)).append("\n");
     sb.append("}");

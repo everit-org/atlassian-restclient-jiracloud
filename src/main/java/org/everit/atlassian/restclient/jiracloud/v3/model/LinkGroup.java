@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.SimpleLink;
  * Details a link group, which defines issue operations.
  */
 @ApiModel(description = "Details a link group, which defines issue operations.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:57:05.408+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
 public class LinkGroup {
   @JsonProperty("id")
   private String id;
@@ -215,6 +215,7 @@ public class LinkGroup {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class LinkGroup {\n");
+    
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    styleClass: ").append(toIndentedString(styleClass)).append("\n");
     sb.append("    header: ").append(toIndentedString(header)).append("\n");

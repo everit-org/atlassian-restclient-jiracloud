@@ -44,7 +44,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.WorkflowId;
  * A workflow with transition rules.
  */
 @ApiModel(description = "A workflow with transition rules.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class WorkflowTransitionRules {
   @JsonProperty("workflowId")
   private WorkflowId workflowId;
@@ -180,6 +180,7 @@ public class WorkflowTransitionRules {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class WorkflowTransitionRules {\n");
+    
     sb.append("    workflowId: ").append(toIndentedString(workflowId)).append("\n");
     sb.append("    postFunctions: ").append(toIndentedString(postFunctions)).append("\n");
     sb.append("    conditions: ").append(toIndentedString(conditions)).append("\n");

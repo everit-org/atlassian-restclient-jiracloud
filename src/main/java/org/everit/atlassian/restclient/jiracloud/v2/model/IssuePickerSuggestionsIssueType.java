@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.SuggestedIssue;
  * A type of issue suggested for use in auto-completion.
  */
 @ApiModel(description = "A type of issue suggested for use in auto-completion.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-01T13:56:58.037+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
 public class IssuePickerSuggestionsIssueType {
   @JsonProperty("label")
   private String label;
@@ -132,6 +132,7 @@ public class IssuePickerSuggestionsIssueType {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssuePickerSuggestionsIssueType {\n");
+    
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("    sub: ").append(toIndentedString(sub)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
