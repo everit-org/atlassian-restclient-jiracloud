@@ -121,15 +121,14 @@ public class JiraCloudJSONObjectMapper implements JSONObjectMapper {
 
   /**
    * The date time formatter that can be used to convert date-time values to JSON representation of
-   * Jira Cloud and vice versa. Example: 2000-01-01T11:11.123+0100
+   * Jira Cloud and vice versa. Example: 2000-01-01T11:11:25.123+0100
    */
   public static final DateTimeFormatter JIRA_CLOUD_DATETIME_FORMATTER;
 
   static {
     JIRA_CLOUD_DATETIME_FORMATTER =
-        new DateTimeFormatterBuilder().append(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
-            // .appendFraction(ChronoField.MILLI_OF_SECOND, 0, 3, true)
-            .appendOffset("+HHMM", "Z")
+        new DateTimeFormatterBuilder()
+            .append(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ"))
             .toFormatter();
 
     INSTANCE = new JiraCloudJSONObjectMapper();
