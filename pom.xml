@@ -28,7 +28,7 @@
 
   <groupId>org.everit.atlassian</groupId>
   <artifactId>org.everit.atlassian.restclient.jiracloud</artifactId>
-  <version>2.1.0-201910281122</version>
+  <version>3.0.0-201910281122</version>
   <packaging>bundle</packaging>
   <name>Everit - Atlassian Jira Cloud REST Client</name>
   <description>Jira Cloud REST Client generated with OpenAPITools that uses RXJava for asynchornous processing. Version in JSON: 1001.0.0</description>
