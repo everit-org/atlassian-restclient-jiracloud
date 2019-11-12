@@ -28,6 +28,7 @@ import org.everit.http.restclient.TypeReference;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -137,7 +138,8 @@ public class JiraCloudJSONObjectMapper implements JSONObjectMapper {
   private final ObjectMapper objectMapper;
 
   public JiraCloudJSONObjectMapper() {
-    this.objectMapper = new ObjectMapper();
+    this.objectMapper = new ObjectMapper()
+        .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     JavaTimeModule javaTimeModule = new JavaTimeModule();
 
     // We need this trick otherwise we would lose the zone from the offset date time
