@@ -28,7 +28,7 @@
 
   <groupId>org.everit.atlassian</groupId>
   <artifactId>org.everit.atlassian.restclient.jiracloud</artifactId>
-  <version>2.0.3-201909051218</version>
+  <version>2.0.4-201909051218</version>
   <packaging>bundle</packaging>
   <name>Everit - Atlassian Jira Cloud REST Client</name>
   <description>Jira Cloud REST Client generated with OpenAPITools that uses RXJava for asynchornous processing. Version in JSON: 1001.0.0</description>
@@ -84,8 +84,8 @@
               *
             </Import-Package>
             <Export-Package>
-              org.everit.atlassian.restclient.jiracloud.v2.*;version="2.0.0",
-              org.everit.atlassian.restclient.jiracloud.v3.*;version="2.0.0",
+              org.everit.atlassian.restclient.jiracloud.v2.*;version="2.0.1",
+              org.everit.atlassian.restclient.jiracloud.v3.*;version="2.0.1",
               org.everit.atlassian.restclient.jiracloud.util;version="1.0.1"
             </Export-Package>
           </instructions>
@@ -279,13 +279,43 @@
             <groupId>com.mycila</groupId>
             <artifactId>license-maven-plugin</artifactId>
             <executions>
-              <execution>
+              <execution> 
                 <phase>generate-sources</phase>
                 <goals>
                   <goal>format</goal>
                 </goals>
               </execution>
             </executions>
+          </plugin>
+          <!-- Do NOT include null values in JSON for FieldUpdateOperation model -->
+          <plugin>
+            <groupId>com.google.code.maven-replacer-plugin</groupId>
+            <artifactId>replacer</artifactId>
+            <version>1.5.1</version>
+            <executions>
+              <execution>
+                <id>add-jsoninclude-to-fieldupdateoperation-class</id>
+                <phase>generate-sources</phase>
+                <goals>
+                  <goal>replace</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <includes>
+                <include>src/main/java/org/everit/atlassian/restclient/jiracloud/v2/model/FieldUpdateOperation.java</include>
+                <include>src/main/java/org/everit/atlassian/restclient/jiracloud/v3/model/FieldUpdateOperation.java</include>
+              </includes>
+              <replacements>
+                <replacement>
+                  <token>public class FieldUpdateOperation</token>
+                  <value>
+                    @com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
+                    public class FieldUpdateOperation
+                  </value>
+                </replacement>
+              </replacements>
+            </configuration>
           </plugin>
         </plugins>
       </build>
