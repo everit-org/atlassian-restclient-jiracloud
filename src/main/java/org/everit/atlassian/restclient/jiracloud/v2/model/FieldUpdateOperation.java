@@ -40,7 +40,8 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of an operation to perform on a field.
  */
 @ApiModel(description = "Details of an operation to perform on a field.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-30T18:06:35.385+02:00[Europe/Prague]")
+@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 public class FieldUpdateOperation {
   @JsonProperty("add")
   private Object add = null;
