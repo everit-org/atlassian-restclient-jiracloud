@@ -39,7 +39,7 @@ import java.util.Map;
 
 public class ServerInfoApi {
 
-  private static final String DEFAULT_BASE_PATH = "http://localhost";
+  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.com";
 
   private static final TypeReference<ServerInformation> returnType_getServerInfo = new TypeReference<ServerInformation>() {};
 
@@ -51,7 +51,7 @@ public class ServerInfoApi {
 
   /**
    * Get Jira instance info
-   * <p>Returns information about the Jira instance.</p> <p>This operation can be accessed anonymously.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> None.</p> 
+   * Returns information about the Jira instance.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** None.
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;ServerInformation&gt;
    */

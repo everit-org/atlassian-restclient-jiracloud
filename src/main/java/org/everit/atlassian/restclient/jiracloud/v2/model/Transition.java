@@ -44,7 +44,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.WorkflowRules;
  * Details of a workflow transition.
  */
 @ApiModel(description = "Details of a workflow transition.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:24.924+02:00[Europe/Prague]")
 public class Transition {
   @JsonProperty("id")
   private String id;
@@ -172,10 +172,10 @@ public class Transition {
   }
 
    /**
-   * The list of statuses from which the transition can be taken.
+   * The statuses the transition can start from.
    * @return from
   **/
-  @ApiModelProperty(required = true, value = "The list of statuses from which the transition can be taken.")
+  @ApiModelProperty(required = true, value = "The statuses the transition can start from.")
   public List<String> getFrom() {
     return from;
   }
@@ -190,10 +190,10 @@ public class Transition {
   }
 
    /**
-   * The status to which the transition leads.
+   * The status the transition goes to.
    * @return to
   **/
-  @ApiModelProperty(required = true, value = "The status to which the transition leads.")
+  @ApiModelProperty(required = true, value = "The status the transition goes to.")
   public String getTo() {
     return to;
   }

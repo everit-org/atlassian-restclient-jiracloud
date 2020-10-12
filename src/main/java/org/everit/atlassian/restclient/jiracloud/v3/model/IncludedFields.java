@@ -41,7 +41,7 @@ import java.util.List;
 /**
  * IncludedFields
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
 public class IncludedFields {
   @JsonProperty("included")
   private List<String> included = new ArrayList<>();

@@ -41,10 +41,10 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.SimpleListWrapperAppli
 import org.everit.atlassian.restclient.jiracloud.v2.model.SimpleListWrapperGroupName;
 
 /**
- * A user.
+ * A user with details as permitted by the user&#39;s Atlassian Account privacy settings. However, be aware of these exceptions:   *  User record deleted from Atlassian: This occurs as the result of a right to be forgotten request. In this case, &#x60;displayName&#x60; provides an indication and other parameters have default values or are blank (for example, email is blank).  *  User record corrupted: This occurs as a results of events such as a server import and can only happen to deleted users. In this case, &#x60;accountId&#x60; returns *unknown* and all other parameters have fallback values.  *  User record unavailable: This usually occurs due to an internal service outage. In this case, all parameters have fallback values.
  */
-@ApiModel(description = "A user.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@ApiModel(description = "A user with details as permitted by the user's Atlassian Account privacy settings. However, be aware of these exceptions:   *  User record deleted from Atlassian: This occurs as the result of a right to be forgotten request. In this case, `displayName` provides an indication and other parameters have default values or are blank (for example, email is blank).  *  User record corrupted: This occurs as a results of events such as a server import and can only happen to deleted users. In this case, `accountId` returns *unknown* and all other parameters have fallback values.  *  User record unavailable: This usually occurs due to an internal service outage. In this case, all parameters have fallback values.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:24.924+02:00[Europe/Prague]")
 public class User {
   @JsonProperty("self")
   private URI self;
@@ -160,10 +160,10 @@ public class User {
   }
 
    /**
-   * The accountId of the user, which uniquely identifies the user across all Atlassian products. For example, *384093:32b4d9w0-f6a5-3535-11a3-9c8c88d10192*. Required in requests.
+   * The account ID of the user, which uniquely identifies the user across all Atlassian products. For example, *5b10ac8d82e05b22cc7d4ef5*. Required in requests.
    * @return accountId
   **/
-  @ApiModelProperty(value = "The accountId of the user, which uniquely identifies the user across all Atlassian products. For example, *384093:32b4d9w0-f6a5-3535-11a3-9c8c88d10192*. Required in requests.")
+  @ApiModelProperty(value = "The account ID of the user, which uniquely identifies the user across all Atlassian products. For example, *5b10ac8d82e05b22cc7d4ef5*. Required in requests.")
   public String getAccountId() {
     return accountId;
   }
@@ -227,10 +227,10 @@ public class User {
   }
 
    /**
-   * Indicates whether the user is active.
+   * Whether the user is active.
    * @return active
   **/
-  @ApiModelProperty(value = "Indicates whether the user is active.")
+  @ApiModelProperty(value = "Whether the user is active.")
   public Boolean getActive() {
     return active;
   }

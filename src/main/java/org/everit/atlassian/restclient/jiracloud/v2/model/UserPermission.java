@@ -42,7 +42,7 @@ import java.util.Map;
  * Details of a permission and its availability to a user.
  */
 @ApiModel(description = "Details of a permission and its availability to a user.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:24.924+02:00[Europe/Prague]")
 public class UserPermission {
   @JsonProperty("id")
   private String id;
@@ -198,10 +198,10 @@ public class UserPermission {
   }
 
    /**
-   * Indicates whether the permission is available to the user in the queried context.
+   * Whether the permission is available to the user in the queried context.
    * @return havePermission
   **/
-  @ApiModelProperty(value = "Indicates whether the permission is available to the user in the queried context.")
+  @ApiModelProperty(value = "Whether the permission is available to the user in the queried context.")
   public Boolean getHavePermission() {
     return havePermission;
   }

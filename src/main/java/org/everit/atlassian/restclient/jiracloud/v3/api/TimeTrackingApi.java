@@ -40,9 +40,7 @@ import java.util.Map;
 
 public class TimeTrackingApi {
 
-  private static final String DEFAULT_BASE_PATH = "http://localhost";
-
-  private static final TypeReference<Object> returnType_disableTimeTracking = new TypeReference<Object>() {};
+  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.com";
 
   private static final TypeReference<List<TimeTrackingProvider>> returnType_getAvailableTimeTrackingImplementations = new TypeReference<List<TimeTrackingProvider>>() {};
 
@@ -61,36 +59,8 @@ public class TimeTrackingApi {
   }
 
   /**
-   * Disable time tracking
-   * <p>Disables time tracking.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> <em>Administer Jira</em> <a href=\"https://confluence.atlassian.com/x/x4dKLg\">global permission</a>.</p> 
-   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
-   * @return Single&lt;Object&gt;
-   * @deprecated
-   */
-  @Deprecated
-  public Single<Object> disableTimeTracking(Optional<RestRequestEnhancer> restRequestEnhancer)
-     {
-
-    RestRequest.Builder requestBuilder = RestRequest.builder()
-        .method(HttpMethod.DELETE)
-        .basePath(DEFAULT_BASE_PATH)
-        .path("/rest/api/3/configuration/timetracking");
-
-    Map<String, String> pathParams = new HashMap<>();
-    requestBuilder.pathParams(pathParams);
-
-    Map<String, Collection<String>> queryParams = new HashMap<>();
-    requestBuilder.queryParams(queryParams);
-
-    Map<String, String> headers = new HashMap<>();
-    requestBuilder.headers(headers);
-
-    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_disableTimeTracking);
-  }
-
-  /**
    * Get all time tracking providers
-   * <p>Returns all time tracking providers. By default, Jira only has one time tracking provider: <em>JIRA provided time tracking</em>. However, you can install other time tracking providers via apps from the Atlassian Marketplace. For more information on time tracking providers, see the documentation for the <a href=\"https://developer.atlassian.com/cloud/jira/platform/modules/time-tracking-provider/\"> Time Tracking Provider</a> module.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> <em>Administer Jira</em> <a href=\"https://confluence.atlassian.com/x/x4dKLg\">global permission</a>.</p> 
+   * Returns all time tracking providers. By default, Jira only has one time tracking provider: *JIRA provided time tracking*. However, you can install other time tracking providers via apps from the Atlassian Marketplace. For more information on time tracking providers, see the documentation for the [ Time Tracking Provider](https://developer.atlassian.com/cloud/jira/platform/modules/time-tracking-provider/) module.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;List&lt;TimeTrackingProvider&gt;&gt;
    */
@@ -116,7 +86,7 @@ public class TimeTrackingApi {
 
   /**
    * Get selected time tracking provider
-   * <p>Returns the time tracking provider that is currently selected. Note that if time tracking is disabled, then a successful but empty response is returned.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> <em>Administer Jira</em> <a href=\"https://confluence.atlassian.com/x/x4dKLg\">global permission</a>.</p> 
+   * Returns the time tracking provider that is currently selected. Note that if time tracking is disabled, then a successful but empty response is returned.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;TimeTrackingProvider&gt;
    */
@@ -142,7 +112,7 @@ public class TimeTrackingApi {
 
   /**
    * Get time tracking settings
-   * <p>Returns the time tracking settings. This includes settings such as the time format, default time unit, and others. For more information, see <a href=\"https://confluence.atlassian.com/x/qoXKM\">Configuring time tracking</a>.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> <em>Administer Jira</em> <a href=\"https://confluence.atlassian.com/x/x4dKLg\">global permission</a>.</p> 
+   * Returns the time tracking settings. This includes settings such as the time format, default time unit, and others. For more information, see [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;TimeTrackingConfiguration&gt;
    */
@@ -168,7 +138,7 @@ public class TimeTrackingApi {
 
   /**
    * Select time tracking provider
-   * <p>Selects a time tracking provider.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> <em>Administer Jira</em> <a href=\"https://confluence.atlassian.com/x/x4dKLg\">global permission</a>.</p> 
+   * Selects a time tracking provider.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param timeTrackingProvider  (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Object&gt;
@@ -197,7 +167,7 @@ public class TimeTrackingApi {
 
   /**
    * Set time tracking settings
-   * <p>Sets the time tracking settings.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> <em>Administer Jira</em> <a href=\"https://confluence.atlassian.com/x/x4dKLg\">global permission</a>.</p> 
+   * Sets the time tracking settings.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param timeTrackingConfiguration  (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;TimeTrackingConfiguration&gt;

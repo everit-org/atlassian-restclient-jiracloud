@@ -42,7 +42,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.LinkedIssue;
 /**
  * LinkIssueRequestJsonBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
 public class LinkIssueRequestJsonBean {
   @JsonProperty("type")
   private IssueLinkType type;

@@ -45,7 +45,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.WorkflowStatus;
  * Details about a workflow.
  */
 @ApiModel(description = "Details about a workflow.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
 public class Workflow {
   @JsonProperty("id")
   private PublishedWorkflowId id;

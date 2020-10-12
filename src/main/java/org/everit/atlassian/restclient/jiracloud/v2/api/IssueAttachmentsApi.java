@@ -29,6 +29,10 @@ import org.everit.http.restclient.RestRequestEnhancer;
 import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v2.model.Attachment;
+import org.everit.atlassian.restclient.jiracloud.v2.model.AttachmentArchiveImpl;
+import org.everit.atlassian.restclient.jiracloud.v2.model.AttachmentArchiveMetadataReadable;
+import org.everit.atlassian.restclient.jiracloud.v2.model.AttachmentMetadata;
+import org.everit.atlassian.restclient.jiracloud.v2.model.AttachmentSettings;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -39,9 +43,17 @@ import java.util.Map;
 
 public class IssueAttachmentsApi {
 
-  private static final String DEFAULT_BASE_PATH = "http://localhost";
+  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.com";
 
   private static final TypeReference<List<Attachment>> returnType_addAttachment = new TypeReference<List<Attachment>>() {};
+
+  private static final TypeReference<AttachmentArchiveMetadataReadable> returnType_expandAttachmentForHumans = new TypeReference<AttachmentArchiveMetadataReadable>() {};
+
+  private static final TypeReference<AttachmentArchiveImpl> returnType_expandAttachmentForMachines = new TypeReference<AttachmentArchiveImpl>() {};
+
+  private static final TypeReference<AttachmentMetadata> returnType_getAttachment = new TypeReference<AttachmentMetadata>() {};
+
+  private static final TypeReference<AttachmentSettings> returnType_getAttachmentMeta = new TypeReference<AttachmentSettings>() {};
 
   private final RestClient restClient;
 
@@ -51,8 +63,8 @@ public class IssueAttachmentsApi {
 
   /**
    * Add attachment
-   * <p>Adds one or more attachments to an issue. Attachments are posted as multipart/form-data (<a href=\"https://www.ietf.org/rfc/rfc1867.txt\">RFC 1867</a>).</p> <p>Note that:</p> <ul> <li>The request must have a <code>X-Atlassian-Token: no-check</code> header, if not it is blocked. See <a href=\"#special-request-headers\">Special headers</a> for more information.</li> <li>The name of the multipart/form-data parameter that contains the attachments must be <code>file</code>.</li> </ul> <p>The following example uploads a file called <em>myfile.txt</em> to the issue <em>TEST-123</em>:</p> <p><code>curl -D- -u admin:admin -X POST -H &quot;X-Atlassian-Token: no-check&quot; -F &quot;file=@myfile.txt&quot; https://your-domain.atlassian.net/rest/api/2/issue/TEST-123/attachments</code></p> <p>Tip: Use a client library. Many client libraries have classes for handling multipart POST operations. For example, in Java, the Apache HTTP Components library provides a <a href=\"http://hc.apache.org/httpcomponents-client-ga/httpmime/apidocs/org/apache/http/entity/mime/MultipartEntity.html\">MultiPartEntity</a> class for multipart POST operations.</p> <p>This operation can be accessed anonymously.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong></p> <ul> <li><em>Browse Projects</em> and <em>Create attachments</em> <a href=\"https://confluence.atlassian.com/x/yodKLg\"> project permission</a> for the project that the issue is in.</li> <li>If <a href=\"https://confluence.atlassian.com/x/J4lKLg\">issue-level security</a> is configured, issue-level security permission to view the issue.</li> </ul> 
-   * @param issueIdOrKey <p>The ID or key of the issue that attachments are added to.</p>  (required)
+   * Adds one or more attachments to an issue. Attachments are posted as multipart/form-data ([RFC 1867](https://www.ietf.org/rfc/rfc1867.txt)).  Note that:   *  The request must have a `X-Atlassian-Token: no-check` header, if not it is blocked. See [Special headers](#special-request-headers) for more information.  *  The name of the multipart/form-data parameter that contains the attachments must be `file`.  The following example uploads a file called *myfile.txt* to the issue *TEST-123*:  `curl -D- -u admin:admin -X POST -H \"X-Atlassian-Token: no-check\" -F \"file=@myfile.txt\" https://your-domain.atlassian.net/rest/api/2/issue/TEST-123/attachments`  Tip: Use a client library. Many client libraries have classes for handling multipart POST operations. For example, in Java, the Apache HTTP Components library provides a [MultiPartEntity](http://hc.apache.org/httpcomponents-client-ga/httpmime/apidocs/org/apache/http/entity/mime/MultipartEntity.html) class for multipart POST operations.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:**    *  *Browse Projects* and *Create attachments* [ project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
+   * @param issueIdOrKey The ID or key of the issue that attachments are added to. (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;List&lt;Attachment&gt;&gt;
    */
@@ -75,6 +87,144 @@ public class IssueAttachmentsApi {
     requestBuilder.headers(headers);
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_addAttachment);
+  }
+
+  /**
+   * Get all metadata for an expanded attachment
+   * Returns the metadata for the contents of an attachment, if it is an archive, and metadata for the attachment itself. For example, if the attachment is a ZIP archive, then information about the files in the archive is returned and metadata for the ZIP archive. Currently, only the ZIP archive format is supported.  Use this operation to retrieve data that is presented to the user, as this operation returns the metadata for the attachment itself, such as the attachment's ID and name. Otherwise, use [ Get contents metadata for an expanded attachment](#api-rest-api-2-attachment-id-expand-raw-get), which only returns the metadata for the attachment's contents.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** For the issue containing the attachment:   *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
+   * @param id The ID of the attachment. (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;AttachmentArchiveMetadataReadable&gt;
+   */
+  public Single<AttachmentArchiveMetadataReadable> expandAttachmentForHumans(
+    String id, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/attachment/{id}/expand/human");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("id", String.valueOf(id));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_expandAttachmentForHumans);
+  }
+
+  /**
+   * Get contents metadata for an expanded attachment
+   * Returns the metadata for the contents of an attachment, if it is an archive. For example, if the attachment is a ZIP archive, then information about the files in the archive is returned. Currently, only the ZIP archive format is supported.  Use this operation if you are processing the data without presenting it to the user, as this operation only returns the metadata for the contents of the attachment. Otherwise, to retrieve data to present to the user, use [ Get all metadata for an expanded attachment](#api-rest-api-2-attachment-id-expand-human-get) which also returns the metadata for the attachment itself, such as the attachment's ID and name.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** For the issue containing the attachment:   *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
+   * @param id The ID of the attachment. (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;AttachmentArchiveImpl&gt;
+   */
+  public Single<AttachmentArchiveImpl> expandAttachmentForMachines(
+    String id, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/attachment/{id}/expand/raw");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("id", String.valueOf(id));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_expandAttachmentForMachines);
+  }
+
+  /**
+   * Get attachment metadata
+   * Returns the metadata for an attachment. Note that the attachment itself is not returned.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:**   *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
+   * @param id The ID of the attachment. (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;AttachmentMetadata&gt;
+   */
+  public Single<AttachmentMetadata> getAttachment(
+    String id, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/attachment/{id}");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("id", String.valueOf(id));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getAttachment);
+  }
+
+  /**
+   * Get Jira attachment settings
+   * Returns the attachment settings, that is, whether attachments are enabled and the maximum attachment size allowed.  Note that there are also [project permissions](https://confluence.atlassian.com/x/yodKLg) that restrict whether users can create and delete attachments.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** None.
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;AttachmentSettings&gt;
+   */
+  public Single<AttachmentSettings> getAttachmentMeta(Optional<RestRequestEnhancer> restRequestEnhancer)
+     {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/attachment/meta");
+
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getAttachmentMeta);
+  }
+
+  /**
+   * Delete attachment
+   * Deletes an attachment from an issue.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** For the project holding the issue containing the attachment:   *  *Delete own attachments* [project permission](https://confluence.atlassian.com/x/yodKLg) to delete an attachment created by the calling user.  *  *Delete all attachments* [project permission](https://confluence.atlassian.com/x/yodKLg) to delete an attachment created by any user.
+   * @param id The ID of the attachment. (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Completable
+   */
+  public Completable removeAttachment(
+    String id, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.DELETE)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/attachment/{id}");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("id", String.valueOf(id));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
 }

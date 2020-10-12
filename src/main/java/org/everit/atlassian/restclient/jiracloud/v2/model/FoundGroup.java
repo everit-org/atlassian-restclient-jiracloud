@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.GroupLabel;
  * A group found in a search.
  */
 @ApiModel(description = "A group found in a search.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:24.924+02:00[Europe/Prague]")
 public class FoundGroup {
   @JsonProperty("name")
   private String name;
@@ -53,6 +53,9 @@ public class FoundGroup {
 
   @JsonProperty("labels")
   private List<GroupLabel> labels = new ArrayList<>();
+
+  @JsonProperty("groupId")
+  private String groupId;
 
   public FoundGroup name(String name) {
     this.name = name;
@@ -116,6 +119,24 @@ public class FoundGroup {
     this.labels = labels;
   }
 
+  public FoundGroup groupId(String groupId) {
+    this.groupId = groupId;
+    return this;
+  }
+
+   /**
+   * The ID of the group, if available, which uniquely identifies the group across all Atlassian products. For example, *952d12c3-5b5b-4d04-bb32-44d383afc4b2*.
+   * @return groupId
+  **/
+  @ApiModelProperty(value = "The ID of the group, if available, which uniquely identifies the group across all Atlassian products. For example, *952d12c3-5b5b-4d04-bb32-44d383afc4b2*.")
+  public String getGroupId() {
+    return groupId;
+  }
+
+  public void setGroupId(String groupId) {
+    this.groupId = groupId;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -128,12 +149,13 @@ public class FoundGroup {
     FoundGroup foundGroup = (FoundGroup) o;
     return Objects.equals(this.name, foundGroup.name) &&
         Objects.equals(this.html, foundGroup.html) &&
-        Objects.equals(this.labels, foundGroup.labels);
+        Objects.equals(this.labels, foundGroup.labels) &&
+        Objects.equals(this.groupId, foundGroup.groupId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, html, labels);
+    return Objects.hash(name, html, labels, groupId);
   }
 
 
@@ -145,6 +167,7 @@ public class FoundGroup {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    html: ").append(toIndentedString(html)).append("\n");
     sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
+    sb.append("    groupId: ").append(toIndentedString(groupId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

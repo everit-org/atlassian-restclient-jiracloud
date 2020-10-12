@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.UserDetails;
  * The details of watchers on an issue.
  */
 @ApiModel(description = "The details of watchers on an issue.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:24.924+02:00[Europe/Prague]")
 public class Watchers {
   @JsonProperty("self")
   private String self;
@@ -67,10 +67,10 @@ public class Watchers {
   }
 
    /**
-   * Indicates whether the calling user is watching this issue.
+   * Whether the calling user is watching this issue.
    * @return isWatching
   **/
-  @ApiModelProperty(value = "Indicates whether the calling user is watching this issue.")
+  @ApiModelProperty(value = "Whether the calling user is watching this issue.")
   public Boolean getIsWatching() {
     return isWatching;
   }

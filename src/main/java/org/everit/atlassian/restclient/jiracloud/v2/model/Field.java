@@ -35,24 +35,41 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.everit.atlassian.restclient.jiracloud.v2.model.FieldLastUsed;
+import org.everit.atlassian.restclient.jiracloud.v2.model.JsonTypeBean;
 
 /**
  * Details of a field.
  */
 @ApiModel(description = "Details of a field.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:24.924+02:00[Europe/Prague]")
 public class Field {
   @JsonProperty("id")
   private String id;
 
-  @JsonProperty("key")
-  private String key;
-
   @JsonProperty("name")
   private String name;
 
+  @JsonProperty("schema")
+  private JsonTypeBean schema;
+
   @JsonProperty("description")
   private String description;
+
+  @JsonProperty("key")
+  private String key;
+
+  @JsonProperty("isLocked")
+  private Boolean isLocked;
+
+  @JsonProperty("screensCount")
+  private Long screensCount;
+
+  @JsonProperty("contextsCount")
+  private Long contextsCount;
+
+  @JsonProperty("lastUsed")
+  private FieldLastUsed lastUsed;
 
   public Field id(String id) {
     this.id = id;
@@ -60,34 +77,16 @@ public class Field {
   }
 
    /**
-   * The id of the field.
+   * The ID of the field.
    * @return id
   **/
-  @ApiModelProperty(required = true, value = "The id of the field.")
+  @ApiModelProperty(required = true, value = "The ID of the field.")
   public String getId() {
     return id;
   }
 
   public void setId(String id) {
     this.id = id;
-  }
-
-  public Field key(String key) {
-    this.key = key;
-    return this;
-  }
-
-   /**
-   * The key of the field.
-   * @return key
-  **/
-  @ApiModelProperty(required = true, value = "The key of the field.")
-  public String getKey() {
-    return key;
-  }
-
-  public void setKey(String key) {
-    this.key = key;
   }
 
   public Field name(String name) {
@@ -108,6 +107,24 @@ public class Field {
     this.name = name;
   }
 
+  public Field schema(JsonTypeBean schema) {
+    this.schema = schema;
+    return this;
+  }
+
+   /**
+   * Get schema
+   * @return schema
+  **/
+  @ApiModelProperty(value = "")
+  public JsonTypeBean getSchema() {
+    return schema;
+  }
+
+  public void setSchema(JsonTypeBean schema) {
+    this.schema = schema;
+  }
+
   public Field description(String description) {
     this.description = description;
     return this;
@@ -117,13 +134,103 @@ public class Field {
    * The description of the field.
    * @return description
   **/
-  @ApiModelProperty(required = true, value = "The description of the field.")
+  @ApiModelProperty(value = "The description of the field.")
   public String getDescription() {
     return description;
   }
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public Field key(String key) {
+    this.key = key;
+    return this;
+  }
+
+   /**
+   * The key of the field.
+   * @return key
+  **/
+  @ApiModelProperty(value = "The key of the field.")
+  public String getKey() {
+    return key;
+  }
+
+  public void setKey(String key) {
+    this.key = key;
+  }
+
+  public Field isLocked(Boolean isLocked) {
+    this.isLocked = isLocked;
+    return this;
+  }
+
+   /**
+   * Whether the field is locked.
+   * @return isLocked
+  **/
+  @ApiModelProperty(value = "Whether the field is locked.")
+  public Boolean getIsLocked() {
+    return isLocked;
+  }
+
+  public void setIsLocked(Boolean isLocked) {
+    this.isLocked = isLocked;
+  }
+
+  public Field screensCount(Long screensCount) {
+    this.screensCount = screensCount;
+    return this;
+  }
+
+   /**
+   * Number of screens where the field is used.
+   * @return screensCount
+  **/
+  @ApiModelProperty(value = "Number of screens where the field is used.")
+  public Long getScreensCount() {
+    return screensCount;
+  }
+
+  public void setScreensCount(Long screensCount) {
+    this.screensCount = screensCount;
+  }
+
+  public Field contextsCount(Long contextsCount) {
+    this.contextsCount = contextsCount;
+    return this;
+  }
+
+   /**
+   * Number of contexts where the field is used.
+   * @return contextsCount
+  **/
+  @ApiModelProperty(value = "Number of contexts where the field is used.")
+  public Long getContextsCount() {
+    return contextsCount;
+  }
+
+  public void setContextsCount(Long contextsCount) {
+    this.contextsCount = contextsCount;
+  }
+
+  public Field lastUsed(FieldLastUsed lastUsed) {
+    this.lastUsed = lastUsed;
+    return this;
+  }
+
+   /**
+   * Get lastUsed
+   * @return lastUsed
+  **/
+  @ApiModelProperty(value = "")
+  public FieldLastUsed getLastUsed() {
+    return lastUsed;
+  }
+
+  public void setLastUsed(FieldLastUsed lastUsed) {
+    this.lastUsed = lastUsed;
   }
 
 
@@ -137,14 +244,19 @@ public class Field {
     }
     Field field = (Field) o;
     return Objects.equals(this.id, field.id) &&
-        Objects.equals(this.key, field.key) &&
         Objects.equals(this.name, field.name) &&
-        Objects.equals(this.description, field.description);
+        Objects.equals(this.schema, field.schema) &&
+        Objects.equals(this.description, field.description) &&
+        Objects.equals(this.key, field.key) &&
+        Objects.equals(this.isLocked, field.isLocked) &&
+        Objects.equals(this.screensCount, field.screensCount) &&
+        Objects.equals(this.contextsCount, field.contextsCount) &&
+        Objects.equals(this.lastUsed, field.lastUsed);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, key, name, description);
+    return Objects.hash(id, name, schema, description, key, isLocked, screensCount, contextsCount, lastUsed);
   }
 
 
@@ -154,9 +266,14 @@ public class Field {
     sb.append("class Field {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    schema: ").append(toIndentedString(schema)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    key: ").append(toIndentedString(key)).append("\n");
+    sb.append("    isLocked: ").append(toIndentedString(isLocked)).append("\n");
+    sb.append("    screensCount: ").append(toIndentedString(screensCount)).append("\n");
+    sb.append("    contextsCount: ").append(toIndentedString(contextsCount)).append("\n");
+    sb.append("    lastUsed: ").append(toIndentedString(lastUsed)).append("\n");
     sb.append("}");
     return sb.toString();
   }

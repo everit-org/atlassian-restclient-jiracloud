@@ -47,7 +47,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.Scope;
  * Details of a permission scheme.
  */
 @ApiModel(description = "Details of a permission scheme.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
 public class PermissionScheme {
   @JsonProperty("expand")
   private String expand;
@@ -105,10 +105,10 @@ public class PermissionScheme {
   }
 
    /**
-   * The name of the permission scheme. Must be unique. Required when creating or updating a permission scheme.
+   * The name of the permission scheme. Must be unique.
    * @return name
   **/
-  @ApiModelProperty(required = true, value = "The name of the permission scheme. Must be unique. Required when creating or updating a permission scheme.")
+  @ApiModelProperty(required = true, value = "The name of the permission scheme. Must be unique.")
   public String getName() {
     return name;
   }

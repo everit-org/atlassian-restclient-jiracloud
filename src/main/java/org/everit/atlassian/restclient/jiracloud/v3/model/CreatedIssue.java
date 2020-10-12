@@ -41,7 +41,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.NestedResponse;
  * Details about a created issue or subtask.
  */
 @ApiModel(description = "Details about a created issue or subtask.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
 public class CreatedIssue {
   @JsonProperty("id")
   private String id;

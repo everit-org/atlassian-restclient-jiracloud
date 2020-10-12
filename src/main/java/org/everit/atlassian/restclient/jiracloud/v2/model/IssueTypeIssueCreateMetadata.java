@@ -46,7 +46,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.Scope;
  * Details of the issue creation metadata for an issue type.
  */
 @ApiModel(description = "Details of the issue creation metadata for an issue type.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:24.924+02:00[Europe/Prague]")
 public class IssueTypeIssueCreateMetadata {
   @JsonProperty("self")
   private String self;
@@ -127,10 +127,10 @@ public class IssueTypeIssueCreateMetadata {
   }
 
    /**
-   * Indicates whether this issue type is used to create subtasks.
+   * Whether this issue type is used to create subtasks.
    * @return subtask
   **/
-  @ApiModelProperty(value = "Indicates whether this issue type is used to create subtasks.")
+  @ApiModelProperty(value = "Whether this issue type is used to create subtasks.")
   public Boolean getSubtask() {
     return subtask;
   }
@@ -145,10 +145,10 @@ public class IssueTypeIssueCreateMetadata {
   }
 
    /**
-   * project unique ID for next-gen entities
+   * Unique ID for next-gen projects.
    * @return entityId
   **/
-  @ApiModelProperty(value = "project unique ID for next-gen entities")
+  @ApiModelProperty(value = "Unique ID for next-gen projects.")
   public UUID getEntityId() {
     return entityId;
   }

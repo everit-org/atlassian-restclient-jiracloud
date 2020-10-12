@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * ID of a screen.
  */
 @ApiModel(description = "ID of a screen.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
 public class ScreenID {
   @JsonProperty("id")
   private String id;

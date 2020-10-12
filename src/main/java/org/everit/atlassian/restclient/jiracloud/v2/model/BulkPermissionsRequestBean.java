@@ -43,13 +43,16 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.BulkProjectPermissions
  * Details of global permissions to look up and project permissions with associated projects and issues to look up.
  */
 @ApiModel(description = "Details of global permissions to look up and project permissions with associated projects and issues to look up.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:24.924+02:00[Europe/Prague]")
 public class BulkPermissionsRequestBean {
   @JsonProperty("projectPermissions")
   private List<BulkProjectPermissions> projectPermissions = new ArrayList<>();
 
   @JsonProperty("globalPermissions")
   private List<String> globalPermissions = new ArrayList<>();
+
+  @JsonProperty("accountId")
+  private String accountId;
 
   public BulkPermissionsRequestBean projectPermissions(List<BulkProjectPermissions> projectPermissions) {
     this.projectPermissions = projectPermissions;
@@ -103,6 +106,24 @@ public class BulkPermissionsRequestBean {
     this.globalPermissions = globalPermissions;
   }
 
+  public BulkPermissionsRequestBean accountId(String accountId) {
+    this.accountId = accountId;
+    return this;
+  }
+
+   /**
+   * The account ID of a user.
+   * @return accountId
+  **/
+  @ApiModelProperty(value = "The account ID of a user.")
+  public String getAccountId() {
+    return accountId;
+  }
+
+  public void setAccountId(String accountId) {
+    this.accountId = accountId;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -114,12 +135,13 @@ public class BulkPermissionsRequestBean {
     }
     BulkPermissionsRequestBean bulkPermissionsRequestBean = (BulkPermissionsRequestBean) o;
     return Objects.equals(this.projectPermissions, bulkPermissionsRequestBean.projectPermissions) &&
-        Objects.equals(this.globalPermissions, bulkPermissionsRequestBean.globalPermissions);
+        Objects.equals(this.globalPermissions, bulkPermissionsRequestBean.globalPermissions) &&
+        Objects.equals(this.accountId, bulkPermissionsRequestBean.accountId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(projectPermissions, globalPermissions);
+    return Objects.hash(projectPermissions, globalPermissions, accountId);
   }
 
 
@@ -130,6 +152,7 @@ public class BulkPermissionsRequestBean {
     
     sb.append("    projectPermissions: ").append(toIndentedString(projectPermissions)).append("\n");
     sb.append("    globalPermissions: ").append(toIndentedString(globalPermissions)).append("\n");
+    sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

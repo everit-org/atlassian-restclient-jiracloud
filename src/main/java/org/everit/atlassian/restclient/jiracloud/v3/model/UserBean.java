@@ -41,7 +41,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.UserBeanAvatarUrls;
 /**
  * UserBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
 public class UserBean {
   @JsonProperty("key")
   private String key;
@@ -142,10 +142,10 @@ public class UserBean {
   }
 
    /**
-   * Indicates whether the user is active.
+   * Whether the user is active.
    * @return active
   **/
-  @ApiModelProperty(value = "Indicates whether the user is active.")
+  @ApiModelProperty(value = "Whether the user is active.")
   public Boolean getActive() {
     return active;
   }
@@ -160,10 +160,10 @@ public class UserBean {
   }
 
    /**
-   * The accountId of the user, which uniquely identifies the user across all Atlassian products. For example, *384093:32b4d9w0-f6a5-3535-11a3-9c8c88d10192*.
+   * The account ID of the user, which uniquely identifies the user across all Atlassian products. For example, *5b10ac8d82e05b22cc7d4ef5*.
    * @return accountId
   **/
-  @ApiModelProperty(value = "The accountId of the user, which uniquely identifies the user across all Atlassian products. For example, *384093:32b4d9w0-f6a5-3535-11a3-9c8c88d10192*.")
+  @ApiModelProperty(value = "The account ID of the user, which uniquely identifies the user across all Atlassian products. For example, *5b10ac8d82e05b22cc7d4ef5*.")
   public String getAccountId() {
     return accountId;
   }

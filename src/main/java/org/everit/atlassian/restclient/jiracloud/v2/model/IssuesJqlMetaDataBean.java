@@ -42,7 +42,7 @@ import java.util.List;
  * The description of the page of issues loaded by the provided JQL query.
  */
 @ApiModel(description = "The description of the page of issues loaded by the provided JQL query.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:24.924+02:00[Europe/Prague]")
 public class IssuesJqlMetaDataBean {
   @JsonProperty("startAt")
   private Long startAt;

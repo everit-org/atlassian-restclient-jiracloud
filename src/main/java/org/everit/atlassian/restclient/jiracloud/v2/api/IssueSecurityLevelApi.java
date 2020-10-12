@@ -28,6 +28,7 @@ import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
 import org.everit.http.restclient.TypeReference;
 
+import org.everit.atlassian.restclient.jiracloud.v2.model.PageBeanIssueSecurityLevelMember;
 import org.everit.atlassian.restclient.jiracloud.v2.model.SecurityLevel;
 
 import java.util.ArrayList;
@@ -39,9 +40,11 @@ import java.util.Map;
 
 public class IssueSecurityLevelApi {
 
-  private static final String DEFAULT_BASE_PATH = "http://localhost";
+  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.com";
 
   private static final TypeReference<SecurityLevel> returnType_getIssueSecurityLevel = new TypeReference<SecurityLevel>() {};
+
+  private static final TypeReference<PageBeanIssueSecurityLevelMember> returnType_getIssueSecurityLevelMembers = new TypeReference<PageBeanIssueSecurityLevelMember>() {};
 
   private final RestClient restClient;
 
@@ -51,8 +54,8 @@ public class IssueSecurityLevelApi {
 
   /**
    * Get issue security level
-   * <p>Returns details of an issue security level.</p> <p>Use <a href=\"#api-rest-api-2-issuesecurityschemes-id-get\">Get issue security scheme</a> to obtain the IDs of issue security levels associated with the issue security scheme.</p> <p>This operation can be accessed anonymously.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> None.</p> 
-   * @param id <p>The ID of the issue security level.</p>  (required)
+   * Returns details of an issue security level.  Use [Get issue security scheme](#api-rest-api-2-issuesecurityschemes-id-get) to obtain the IDs of issue security levels associated with the issue security scheme.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** None.
+   * @param id The ID of the issue security level. (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;SecurityLevel&gt;
    */
@@ -75,6 +78,50 @@ public class IssueSecurityLevelApi {
     requestBuilder.headers(headers);
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getIssueSecurityLevel);
+  }
+
+  /**
+   * Get issue security level members
+   * Returns issue security level members.  Only issue security level members in context of classic projects are returned.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * @param issueSecuritySchemeId The ID of the issue security scheme. Use the [Get issue security schemes](#api-rest-api-2-issuesecurityschemes-get) operation to get a list of issue security scheme IDs. (required)
+   * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0l)
+   * @param maxResults The maximum number of items to return per page. (optional, default to 50)
+   * @param issueSecurityLevelId The list of issue security level IDs. To include multiple issue security levels separate IDs with ampersand: `issueSecurityLevelId=10000&issueSecurityLevelId=10001`. (optional, default to new ArrayList&lt;&gt;())
+   * @param expand Use expand to include additional information in the response. This parameter accepts a comma-separated list. Expand options include:   *  `all` Returns all expandable information.  *  `field` Returns information about the custom field granted the permission.  *  `group` Returns information about the group that is granted the permission.  *  `projectRole` Returns information about the project role granted the permission.  *  `user` Returns information about the user who is granted the permission. (optional)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;PageBeanIssueSecurityLevelMember&gt;
+   */
+  public Single<PageBeanIssueSecurityLevelMember> getIssueSecurityLevelMembers(
+    Long issueSecuritySchemeId, Optional<Long> startAt, Optional<Integer> maxResults, Optional<List<Long>> issueSecurityLevelId, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/issuesecurityschemes/{issueSecuritySchemeId}/members");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("issueSecuritySchemeId", String.valueOf(issueSecuritySchemeId));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (startAt.isPresent()) {
+      queryParams.put("startAt", Collections.singleton(String.valueOf(startAt.get())));
+    }
+    if (maxResults.isPresent()) {
+      queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults.get())));
+    }
+    if (issueSecurityLevelId.isPresent()) {
+      queryParams.put("issueSecurityLevelId", RestClientUtil.objectCollectionToStringCollection(issueSecurityLevelId.get()));
+    }
+    if (expand.isPresent()) {
+      queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getIssueSecurityLevelMembers);
   }
 
 }

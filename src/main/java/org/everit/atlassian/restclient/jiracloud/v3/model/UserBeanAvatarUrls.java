@@ -40,37 +40,19 @@ import java.net.URI;
 /**
  * UserBeanAvatarUrls
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
 public class UserBeanAvatarUrls {
-  @JsonProperty("16x16")
-  private URI _16x16;
-
   @JsonProperty("24x24")
   private URI _24x24;
 
   @JsonProperty("32x32")
   private URI _32x32;
 
+  @JsonProperty("16x16")
+  private URI _16x16;
+
   @JsonProperty("48x48")
   private URI _48x48;
-
-  public UserBeanAvatarUrls _16x16(URI _16x16) {
-    this._16x16 = _16x16;
-    return this;
-  }
-
-   /**
-   * The URL of the user&#39;s 16x16 pixel avatar.
-   * @return _16x16
-  **/
-  @ApiModelProperty(value = "The URL of the user's 16x16 pixel avatar.")
-  public URI get16x16() {
-    return _16x16;
-  }
-
-  public void set16x16(URI _16x16) {
-    this._16x16 = _16x16;
-  }
 
   public UserBeanAvatarUrls _24x24(URI _24x24) {
     this._24x24 = _24x24;
@@ -108,6 +90,24 @@ public class UserBeanAvatarUrls {
     this._32x32 = _32x32;
   }
 
+  public UserBeanAvatarUrls _16x16(URI _16x16) {
+    this._16x16 = _16x16;
+    return this;
+  }
+
+   /**
+   * The URL of the user&#39;s 16x16 pixel avatar.
+   * @return _16x16
+  **/
+  @ApiModelProperty(value = "The URL of the user's 16x16 pixel avatar.")
+  public URI get16x16() {
+    return _16x16;
+  }
+
+  public void set16x16(URI _16x16) {
+    this._16x16 = _16x16;
+  }
+
   public UserBeanAvatarUrls _48x48(URI _48x48) {
     this._48x48 = _48x48;
     return this;
@@ -136,15 +136,15 @@ public class UserBeanAvatarUrls {
       return false;
     }
     UserBeanAvatarUrls userBeanAvatarUrls = (UserBeanAvatarUrls) o;
-    return Objects.equals(this._16x16, userBeanAvatarUrls._16x16) &&
-        Objects.equals(this._24x24, userBeanAvatarUrls._24x24) &&
+    return Objects.equals(this._24x24, userBeanAvatarUrls._24x24) &&
         Objects.equals(this._32x32, userBeanAvatarUrls._32x32) &&
+        Objects.equals(this._16x16, userBeanAvatarUrls._16x16) &&
         Objects.equals(this._48x48, userBeanAvatarUrls._48x48);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(_16x16, _24x24, _32x32, _48x48);
+    return Objects.hash(_24x24, _32x32, _16x16, _48x48);
   }
 
 
@@ -153,9 +153,9 @@ public class UserBeanAvatarUrls {
     StringBuilder sb = new StringBuilder();
     sb.append("class UserBeanAvatarUrls {\n");
     
-    sb.append("    _16x16: ").append(toIndentedString(_16x16)).append("\n");
     sb.append("    _24x24: ").append(toIndentedString(_24x24)).append("\n");
     sb.append("    _32x32: ").append(toIndentedString(_32x32)).append("\n");
+    sb.append("    _16x16: ").append(toIndentedString(_16x16)).append("\n");
     sb.append("    _48x48: ").append(toIndentedString(_48x48)).append("\n");
     sb.append("}");
     return sb.toString();

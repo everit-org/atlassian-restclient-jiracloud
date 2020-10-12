@@ -41,7 +41,7 @@ import java.util.List;
 /**
  * ActorInputBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
 public class ActorInputBean {
   @JsonProperty("user")
   private List<String> user = new ArrayList<>();
@@ -63,10 +63,10 @@ public class ActorInputBean {
   }
 
    /**
-   * The account IDs of the users to add as default actors. You can add multiple account IDs separated by a comma. For example, &#x60;\&quot;user\&quot;:[\&quot;12345678-9abc-def1-2345-6789abcdef12\&quot;, \&quot;abcdef12-3456-789a-bcde-f123456789ab\&quot;]&#x60;.
+   * The account IDs of the users to add as default actors. This parameter accepts a comma-separated list. For example, &#x60;\&quot;user\&quot;:[\&quot;5b10a2844c20165700ede21g\&quot;, \&quot;5b109f2e9729b51b54dc274d\&quot;]&#x60;.
    * @return user
   **/
-  @ApiModelProperty(value = "The account IDs of the users to add as default actors. You can add multiple account IDs separated by a comma. For example, `\"user\":[\"12345678-9abc-def1-2345-6789abcdef12\", \"abcdef12-3456-789a-bcde-f123456789ab\"]`.")
+  @ApiModelProperty(value = "The account IDs of the users to add as default actors. This parameter accepts a comma-separated list. For example, `\"user\":[\"5b10a2844c20165700ede21g\", \"5b109f2e9729b51b54dc274d\"]`.")
   public List<String> getUser() {
     return user;
   }
@@ -89,10 +89,10 @@ public class ActorInputBean {
   }
 
    /**
-   * The name of the group to add as a default actor. You can add multiple groups separated with a comma. For example, &#x60;\&quot;group\&quot;:[\&quot;project-admin\&quot;, \&quot;jira-developers\&quot;]&#x60;.
+   * The name of the group to add as a default actor. This parameter accepts a comma-separated list. For example, &#x60;\&quot;group\&quot;:[\&quot;project-admin\&quot;, \&quot;jira-developers\&quot;]&#x60;.
    * @return group
   **/
-  @ApiModelProperty(value = "The name of the group to add as a default actor. You can add multiple groups separated with a comma. For example, `\"group\":[\"project-admin\", \"jira-developers\"]`.")
+  @ApiModelProperty(value = "The name of the group to add as a default actor. This parameter accepts a comma-separated list. For example, `\"group\":[\"project-admin\", \"jira-developers\"]`.")
   public List<String> getGroup() {
     return group;
   }

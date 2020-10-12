@@ -44,7 +44,7 @@ import java.util.Map;
  * Details of an avatar.
  */
 @ApiModel(description = "Details of an avatar.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
 public class Avatar {
   @JsonProperty("id")
   private String id;
@@ -73,10 +73,10 @@ public class Avatar {
   }
 
    /**
-   * The ID of the avatar. Required when setting the project avatar.
+   * The ID of the avatar.
    * @return id
   **/
-  @ApiModelProperty(value = "The ID of the avatar. Required when setting the project avatar.")
+  @ApiModelProperty(required = true, value = "The ID of the avatar.")
   public String getId() {
     return id;
   }
@@ -86,37 +86,37 @@ public class Avatar {
   }
 
    /**
-   * The owner of the avatar. For a system avatar the owner is null (and nothing is returned). For non-system avatars this is the appropriate identifier, such as the ID for a project or the accountId for a user.
+   * The owner of the avatar. For a system avatar the owner is null (and nothing is returned). For non-system avatars this is the appropriate identifier, such as the ID for a project or the account ID for a user.
    * @return owner
   **/
-  @ApiModelProperty(value = "The owner of the avatar. For a system avatar the owner is null (and nothing is returned). For non-system avatars this is the appropriate identifier, such as the ID for a project or the accountId for a user.")
+  @ApiModelProperty(value = "The owner of the avatar. For a system avatar the owner is null (and nothing is returned). For non-system avatars this is the appropriate identifier, such as the ID for a project or the account ID for a user.")
   public String getOwner() {
     return owner;
   }
 
    /**
-   * Indicates whether the avatar is a system avatar.
+   * Whether the avatar is a system avatar.
    * @return isSystemAvatar
   **/
-  @ApiModelProperty(value = "Indicates whether the avatar is a system avatar.")
+  @ApiModelProperty(value = "Whether the avatar is a system avatar.")
   public Boolean getIsSystemAvatar() {
     return isSystemAvatar;
   }
 
    /**
-   * Indicates whether the avatar is used in Jira. For example, shown as a project&#39;s avatar.
+   * Whether the avatar is used in Jira. For example, shown as a project&#39;s avatar.
    * @return isSelected
   **/
-  @ApiModelProperty(value = "Indicates whether the avatar is used in Jira. For example, shown as a project's avatar.")
+  @ApiModelProperty(value = "Whether the avatar is used in Jira. For example, shown as a project's avatar.")
   public Boolean getIsSelected() {
     return isSelected;
   }
 
    /**
-   * Indicates whether the avatar can be deleted.
+   * Whether the avatar can be deleted.
    * @return isDeletable
   **/
-  @ApiModelProperty(value = "Indicates whether the avatar can be deleted.")
+  @ApiModelProperty(value = "Whether the avatar can be deleted.")
   public Boolean getIsDeletable() {
     return isDeletable;
   }

@@ -45,7 +45,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.StatusDetails;
  * Details of an issue transition.
  */
 @ApiModel(description = "Details of an issue transition.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
 public class IssueTransition {
   @JsonProperty("id")
   private String id;
@@ -64,6 +64,9 @@ public class IssueTransition {
 
   @JsonProperty("isInitial")
   private Boolean isInitial;
+
+  @JsonProperty("isAvailable")
+  private Boolean isAvailable;
 
   @JsonProperty("isConditional")
   private Boolean isConditional;
@@ -113,37 +116,46 @@ public class IssueTransition {
   }
 
    /**
-   * Indicates whether there is a screen associated with the issue transition.
+   * Whether there is a screen associated with the issue transition.
    * @return hasScreen
   **/
-  @ApiModelProperty(value = "Indicates whether there is a screen associated with the issue transition.")
+  @ApiModelProperty(value = "Whether there is a screen associated with the issue transition.")
   public Boolean getHasScreen() {
     return hasScreen;
   }
 
    /**
-   * Indicates whether the issue transition is global, that is, the transition is applied to issues regardless of their status.
+   * Whether the issue transition is global, that is, the transition is applied to issues regardless of their status.
    * @return isGlobal
   **/
-  @ApiModelProperty(value = "Indicates whether the issue transition is global, that is, the transition is applied to issues regardless of their status.")
+  @ApiModelProperty(value = "Whether the issue transition is global, that is, the transition is applied to issues regardless of their status.")
   public Boolean getIsGlobal() {
     return isGlobal;
   }
 
    /**
-   * Indicates whether this is the initial issue transition for the workflow.
+   * Whether this is the initial issue transition for the workflow.
    * @return isInitial
   **/
-  @ApiModelProperty(value = "Indicates whether this is the initial issue transition for the workflow.")
+  @ApiModelProperty(value = "Whether this is the initial issue transition for the workflow.")
   public Boolean getIsInitial() {
     return isInitial;
   }
 
    /**
-   * Indicates whether the issue has to meet certain criteria before the issue transition is applied.
+   * Whether the transition is available to be performed.
+   * @return isAvailable
+  **/
+  @ApiModelProperty(value = "Whether the transition is available to be performed.")
+  public Boolean getIsAvailable() {
+    return isAvailable;
+  }
+
+   /**
+   * Whether the issue has to meet criteria before the issue transition is applied.
    * @return isConditional
   **/
-  @ApiModelProperty(value = "Indicates whether the issue has to meet certain criteria before the issue transition is applied.")
+  @ApiModelProperty(value = "Whether the issue has to meet criteria before the issue transition is applied.")
   public Boolean getIsConditional() {
     return isConditional;
   }
@@ -192,6 +204,7 @@ public class IssueTransition {
         Objects.equals(this.hasScreen, issueTransition.hasScreen) &&
         Objects.equals(this.isGlobal, issueTransition.isGlobal) &&
         Objects.equals(this.isInitial, issueTransition.isInitial) &&
+        Objects.equals(this.isAvailable, issueTransition.isAvailable) &&
         Objects.equals(this.isConditional, issueTransition.isConditional) &&
         Objects.equals(this.fields, issueTransition.fields) &&
         Objects.equals(this.expand, issueTransition.expand) &&
@@ -200,7 +213,7 @@ public class IssueTransition {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, to, hasScreen, isGlobal, isInitial, isConditional, fields, expand, super.hashCode());
+    return Objects.hash(id, name, to, hasScreen, isGlobal, isInitial, isAvailable, isConditional, fields, expand, super.hashCode());
   }
 
 
@@ -215,6 +228,7 @@ public class IssueTransition {
     sb.append("    hasScreen: ").append(toIndentedString(hasScreen)).append("\n");
     sb.append("    isGlobal: ").append(toIndentedString(isGlobal)).append("\n");
     sb.append("    isInitial: ").append(toIndentedString(isInitial)).append("\n");
+    sb.append("    isAvailable: ").append(toIndentedString(isAvailable)).append("\n");
     sb.append("    isConditional: ").append(toIndentedString(isConditional)).append("\n");
     sb.append("    fields: ").append(toIndentedString(fields)).append("\n");
     sb.append("    expand: ").append(toIndentedString(expand)).append("\n");

@@ -40,9 +40,9 @@ import java.util.Map;
 
 public class DynamicModulesApi {
 
-  private static final String DEFAULT_BASE_PATH = "http://localhost";
+  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.com";
 
-  private static final TypeReference<ConnectModules> returnType_getModules = new TypeReference<ConnectModules>() {};
+  private static final TypeReference<ConnectModules> returnType_dynamicModulesResourceGetModulesGet = new TypeReference<ConnectModules>() {};
 
   private final RestClient restClient;
 
@@ -52,11 +52,11 @@ public class DynamicModulesApi {
 
   /**
    * Get modules
-   * <p>Returns all modules registered dynamically by the calling app.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> Only Connect apps can make this request.</p> 
+   * Returns all modules registered dynamically by the calling app.  **[Permissions](#permissions) required:** Only Connect apps can make this request.
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;ConnectModules&gt;
    */
-  public Single<ConnectModules> getModules(Optional<RestRequestEnhancer> restRequestEnhancer)
+  public Single<ConnectModules> dynamicModulesResourceGetModulesGet(Optional<RestRequestEnhancer> restRequestEnhancer)
      {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
@@ -73,18 +73,18 @@ public class DynamicModulesApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getModules);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_dynamicModulesResourceGetModulesGet);
   }
 
   /**
    * Register modules
-   * <p>Registers a list of modules.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> Only Connect apps can make this request.</p> 
-   * @param requestBody  (required)
+   * Registers a list of modules.  **[Permissions](#permissions) required:** Only Connect apps can make this request.
+   * @param connectModules  (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Completable
    */
-  public Completable registerModules(
-    ConnectModules requestBody, Optional<RestRequestEnhancer> restRequestEnhancer) {
+  public Completable dynamicModulesResourceRegisterModulesPost(
+    ConnectModules connectModules, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.POST)
@@ -100,19 +100,19 @@ public class DynamicModulesApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    requestBuilder.requestBody(Optional.of(requestBody));
+    requestBuilder.requestBody(Optional.of(connectModules));
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
    * Remove modules
-   * <p>Remove all or a list of modules registered by the calling app.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> Only Connect apps can make this request.</p> 
-   * @param moduleKey <p>The key of the module to remove. To include multiple module keys, provide multiple copies of this parameter. For example, <code>moduleKey=dynamic-attachment-entity-property&amp;moduleKey=dynamic-select-field</code>. Nonexistent keys are ignored.</p>  (optional, default to new ArrayList&lt;&gt;())
+   * Remove all or a list of modules registered by the calling app.  **[Permissions](#permissions) required:** Only Connect apps can make this request.
+   * @param moduleKey The key of the module to remove. To include multiple module keys, provide multiple copies of this parameter. For example, `moduleKey=dynamic-attachment-entity-property&moduleKey=dynamic-select-field`. Nonexistent keys are ignored. (optional, default to new ArrayList&lt;&gt;())
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Completable
    */
-  public Completable removeModules(
+  public Completable dynamicModulesResourceRemoveModulesDelete(
     Optional<List<String>> moduleKey, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()

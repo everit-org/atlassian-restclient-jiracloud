@@ -44,7 +44,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.User;
  * The details of votes on an issue.
  */
 @ApiModel(description = "The details of votes on an issue.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:24.924+02:00[Europe/Prague]")
 public class Votes {
   @JsonProperty("self")
   private URI self;
@@ -77,10 +77,10 @@ public class Votes {
   }
 
    /**
-   * Indicates whether the user making this request has voted on the issue.
+   * Whether the user making this request has voted on the issue.
    * @return hasVoted
   **/
-  @ApiModelProperty(value = "Indicates whether the user making this request has voted on the issue.")
+  @ApiModelProperty(value = "Whether the user making this request has voted on the issue.")
   public Boolean getHasVoted() {
     return hasVoted;
   }

@@ -42,7 +42,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.PermissionHolder;
  * Details about a permission granted to a user or group.
  */
 @ApiModel(description = "Details about a permission granted to a user or group.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
 public class PermissionGrant {
   @JsonProperty("id")
   private Long id;

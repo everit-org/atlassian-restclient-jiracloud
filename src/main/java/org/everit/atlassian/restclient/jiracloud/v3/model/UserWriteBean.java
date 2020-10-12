@@ -43,7 +43,7 @@ import java.util.Map;
 /**
  * UserWriteBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
 public class UserWriteBean {
   @JsonProperty("self")
   private String self;
@@ -140,10 +140,10 @@ public class UserWriteBean {
   }
 
    /**
-   * The email address for the user. Required.
+   * The email address for the user.
    * @return emailAddress
   **/
-  @ApiModelProperty(required = true, value = "The email address for the user. Required.")
+  @ApiModelProperty(required = true, value = "The email address for the user.")
   public String getEmailAddress() {
     return emailAddress;
   }
@@ -158,10 +158,10 @@ public class UserWriteBean {
   }
 
    /**
-   * The display name for the user. Required.
+   * The display name for the user.
    * @return displayName
   **/
-  @ApiModelProperty(required = true, value = "The display name for the user. Required.")
+  @ApiModelProperty(required = true, value = "The display name for the user.")
   public String getDisplayName() {
     return displayName;
   }

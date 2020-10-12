@@ -40,16 +40,16 @@ import io.swagger.annotations.ApiModelProperty;
  * Permissions which a user has on a project.
  */
 @ApiModel(description = "Permissions which a user has on a project.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:24.924+02:00[Europe/Prague]")
 public class ProjectPermissions {
   @JsonProperty("canEdit")
   private Boolean canEdit;
 
    /**
-   * Indicates whether the logged user can edit the project.
+   * Whether the logged user can edit the project.
    * @return canEdit
   **/
-  @ApiModelProperty(value = "Indicates whether the logged user can edit the project.")
+  @ApiModelProperty(value = "Whether the logged user can edit the project.")
   public Boolean getCanEdit() {
     return canEdit;
   }

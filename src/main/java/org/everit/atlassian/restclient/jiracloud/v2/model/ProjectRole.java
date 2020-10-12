@@ -45,7 +45,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.Scope;
  * Details about the roles in a project.
  */
 @ApiModel(description = "Details about the roles in a project.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:24.924+02:00[Europe/Prague]")
 public class ProjectRole {
   @JsonProperty("self")
   private URI self;
@@ -64,6 +64,21 @@ public class ProjectRole {
 
   @JsonProperty("scope")
   private Scope scope;
+
+  @JsonProperty("translatedName")
+  private String translatedName;
+
+  @JsonProperty("currentUserRole")
+  private Boolean currentUserRole;
+
+  @JsonProperty("admin")
+  private Boolean admin;
+
+  @JsonProperty("roleConfigurable")
+  private Boolean roleConfigurable;
+
+  @JsonProperty("default")
+  private Boolean _default;
 
    /**
    * The URL the project role details.
@@ -128,6 +143,69 @@ public class ProjectRole {
     return scope;
   }
 
+  public ProjectRole translatedName(String translatedName) {
+    this.translatedName = translatedName;
+    return this;
+  }
+
+   /**
+   * The translated name of the project role.
+   * @return translatedName
+  **/
+  @ApiModelProperty(value = "The translated name of the project role.")
+  public String getTranslatedName() {
+    return translatedName;
+  }
+
+  public void setTranslatedName(String translatedName) {
+    this.translatedName = translatedName;
+  }
+
+  public ProjectRole currentUserRole(Boolean currentUserRole) {
+    this.currentUserRole = currentUserRole;
+    return this;
+  }
+
+   /**
+   * Whether the calling user is part of this role.
+   * @return currentUserRole
+  **/
+  @ApiModelProperty(value = "Whether the calling user is part of this role.")
+  public Boolean getCurrentUserRole() {
+    return currentUserRole;
+  }
+
+  public void setCurrentUserRole(Boolean currentUserRole) {
+    this.currentUserRole = currentUserRole;
+  }
+
+   /**
+   * Whether this role is the admin role for the project.
+   * @return admin
+  **/
+  @ApiModelProperty(value = "Whether this role is the admin role for the project.")
+  public Boolean getAdmin() {
+    return admin;
+  }
+
+   /**
+   * Whether the roles are configurable for this project.
+   * @return roleConfigurable
+  **/
+  @ApiModelProperty(value = "Whether the roles are configurable for this project.")
+  public Boolean getRoleConfigurable() {
+    return roleConfigurable;
+  }
+
+   /**
+   * Whether this role is the default role for the project
+   * @return _default
+  **/
+  @ApiModelProperty(value = "Whether this role is the default role for the project")
+  public Boolean getDefault() {
+    return _default;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -143,12 +221,17 @@ public class ProjectRole {
         Objects.equals(this.id, projectRole.id) &&
         Objects.equals(this.description, projectRole.description) &&
         Objects.equals(this.actors, projectRole.actors) &&
-        Objects.equals(this.scope, projectRole.scope);
+        Objects.equals(this.scope, projectRole.scope) &&
+        Objects.equals(this.translatedName, projectRole.translatedName) &&
+        Objects.equals(this.currentUserRole, projectRole.currentUserRole) &&
+        Objects.equals(this.admin, projectRole.admin) &&
+        Objects.equals(this.roleConfigurable, projectRole.roleConfigurable) &&
+        Objects.equals(this._default, projectRole._default);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, name, id, description, actors, scope);
+    return Objects.hash(self, name, id, description, actors, scope, translatedName, currentUserRole, admin, roleConfigurable, _default);
   }
 
 
@@ -163,6 +246,11 @@ public class ProjectRole {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    actors: ").append(toIndentedString(actors)).append("\n");
     sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
+    sb.append("    translatedName: ").append(toIndentedString(translatedName)).append("\n");
+    sb.append("    currentUserRole: ").append(toIndentedString(currentUserRole)).append("\n");
+    sb.append("    admin: ").append(toIndentedString(admin)).append("\n");
+    sb.append("    roleConfigurable: ").append(toIndentedString(roleConfigurable)).append("\n");
+    sb.append("    _default: ").append(toIndentedString(_default)).append("\n");
     sb.append("}");
     return sb.toString();
   }

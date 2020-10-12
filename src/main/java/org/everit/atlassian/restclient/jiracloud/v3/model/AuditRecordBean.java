@@ -45,7 +45,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.ChangedValueBean;
  * An audit record.
  */
 @ApiModel(description = "An audit record.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
 public class AuditRecordBean {
   @JsonProperty("id")
   private Long id;
@@ -108,10 +108,10 @@ public class AuditRecordBean {
   }
 
    /**
-   * The key of the user who created the audit record.
+   * Deprecated, use &#x60;authorAccountId&#x60; instead. The key of the user who created the audit record.
    * @return authorKey
   **/
-  @ApiModelProperty(value = "The key of the user who created the audit record.")
+  @ApiModelProperty(value = "Deprecated, use `authorAccountId` instead. The key of the user who created the audit record.")
   public String getAuthorKey() {
     return authorKey;
   }

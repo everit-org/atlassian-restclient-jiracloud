@@ -44,7 +44,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.Field;
  * A page of items.
  */
 @ApiModel(description = "A page of items.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:24.924+02:00[Europe/Prague]")
 public class PageBeanField {
   @JsonProperty("self")
   private URI self;
@@ -113,10 +113,10 @@ public class PageBeanField {
   }
 
    /**
-   * Indicates whether this is the last page.
+   * Whether this is the last page.
    * @return isLast
   **/
-  @ApiModelProperty(value = "Indicates whether this is the last page.")
+  @ApiModelProperty(value = "Whether this is the last page.")
   public Boolean getIsLast() {
     return isLast;
   }

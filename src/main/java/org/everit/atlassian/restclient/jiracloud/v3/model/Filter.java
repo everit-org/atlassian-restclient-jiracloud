@@ -47,7 +47,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.UserList;
  * Details about a filter.
  */
 @ApiModel(description = "Details about a filter.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
 public class Filter {
   @JsonProperty("self")
   private URI self;
@@ -193,10 +193,10 @@ public class Filter {
   }
 
    /**
-   * Indicates whether the filter is selected as a favorite.
+   * Whether the filter is selected as a favorite.
    * @return favourite
   **/
-  @ApiModelProperty(value = "Indicates whether the filter is selected as a favorite.")
+  @ApiModelProperty(value = "Whether the filter is selected as a favorite.")
   public Boolean getFavourite() {
     return favourite;
   }

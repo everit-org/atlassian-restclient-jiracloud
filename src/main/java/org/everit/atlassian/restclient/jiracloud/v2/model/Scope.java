@@ -40,10 +40,10 @@ import java.util.Map;
 import org.everit.atlassian.restclient.jiracloud.v2.model.ProjectForScope;
 
 /**
- * The scope of an entity. Indicated for entities associated with [next-gen projects](https://confluence.atlassian.com/x/loMyO).
+ * The projects the item is associated with. Indicated for items associated with [next-gen projects](https://confluence.atlassian.com/x/loMyO).
  */
-@ApiModel(description = "The scope of an entity. Indicated for entities associated with [next-gen projects](https://confluence.atlassian.com/x/loMyO).")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@ApiModel(description = "The projects the item is associated with. Indicated for items associated with [next-gen projects](https://confluence.atlassian.com/x/loMyO).")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:24.924+02:00[Europe/Prague]")
 public class Scope {
   /**
    * The type of scope.
@@ -98,10 +98,10 @@ public class Scope {
   }
 
    /**
-   * The project the entity has scope in.
+   * The project the item has scope in.
    * @return project
   **/
-  @ApiModelProperty(value = "The project the entity has scope in.")
+  @ApiModelProperty(value = "The project the item has scope in.")
   public ProjectForScope getProject() {
     return project;
   }

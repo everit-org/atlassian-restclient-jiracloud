@@ -30,29 +30,45 @@ package org.everit.atlassian.restclient.jiracloud.v2.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
-import java.util.HashMap;
+import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
- * A list of app modules in the same format as the &#x60;modules&#x60; property in the [app descriptor](https://developer.atlassian.com/cloud/jira/platform/app-descriptor/).
+ * ConnectModules
  */
-@ApiModel(description = "A list of app modules in the same format as the `modules` property in the [app descriptor](https://developer.atlassian.com/cloud/jira/platform/app-descriptor/).")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:24.924+02:00[Europe/Prague]")
 public class ConnectModules {
-  private HashMap<String, List> additionalProperties_ = new HashMap<String, List>();
+  @JsonProperty("modules")
+  private List<Object> modules = new ArrayList<>();
 
-
-  @com.fasterxml.jackson.annotation.JsonAnyGetter
-  public Map<String, List> any() {
-   return this.additionalProperties_;
+  public ConnectModules modules(List<Object> modules) {
+    this.modules = modules;
+    return this;
   }
 
-  @com.fasterxml.jackson.annotation.JsonAnySetter
-  public void set(String name, List value) {
-   this.additionalProperties_.put(name, value);
+  public ConnectModules addModulesItem(Object modulesItem) {
+    this.modules.add(modulesItem);
+    return this;
   }
+
+   /**
+   * A list of app modules in the same format as the &#x60;modules&#x60; property in the [app descriptor](https://developer.atlassian.com/cloud/jira/platform/app-descriptor/).
+   * @return modules
+  **/
+  @ApiModelProperty(required = true, value = "A list of app modules in the same format as the `modules` property in the [app descriptor](https://developer.atlassian.com/cloud/jira/platform/app-descriptor/).")
+  public List<Object> getModules() {
+    return modules;
+  }
+
+  public void setModules(List<Object> modules) {
+    this.modules = modules;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -62,12 +78,13 @@ public class ConnectModules {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    return super.equals(o);
+    ConnectModules connectModules = (ConnectModules) o;
+    return Objects.equals(this.modules, connectModules.modules);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(super.hashCode());
+    return Objects.hash(modules);
   }
 
 
@@ -76,7 +93,7 @@ public class ConnectModules {
     StringBuilder sb = new StringBuilder();
     sb.append("class ConnectModules {\n");
     
-    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
+    sb.append("    modules: ").append(toIndentedString(modules)).append("\n");
     sb.append("}");
     return sb.toString();
   }

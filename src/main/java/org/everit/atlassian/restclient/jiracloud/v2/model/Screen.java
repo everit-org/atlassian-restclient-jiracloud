@@ -41,13 +41,16 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.Scope;
  * A screen.
  */
 @ApiModel(description = "A screen.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:24.924+02:00[Europe/Prague]")
 public class Screen {
   @JsonProperty("id")
   private Long id;
 
   @JsonProperty("name")
   private String name;
+
+  @JsonProperty("description")
+  private String description;
 
   @JsonProperty("scope")
   private Scope scope;
@@ -68,6 +71,15 @@ public class Screen {
   @ApiModelProperty(value = "The name of the screen.")
   public String getName() {
     return name;
+  }
+
+   /**
+   * The description of the screen.
+   * @return description
+  **/
+  @ApiModelProperty(value = "The description of the screen.")
+  public String getDescription() {
+    return description;
   }
 
   public Screen scope(Scope scope) {
@@ -100,12 +112,13 @@ public class Screen {
     Screen screen = (Screen) o;
     return Objects.equals(this.id, screen.id) &&
         Objects.equals(this.name, screen.name) &&
+        Objects.equals(this.description, screen.description) &&
         Objects.equals(this.scope, screen.scope);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, scope);
+    return Objects.hash(id, name, description, scope);
   }
 
 
@@ -116,6 +129,7 @@ public class Screen {
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -40,7 +40,7 @@ import java.net.URI;
 /**
  * MoveFieldBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:24.924+02:00[Europe/Prague]")
 public class MoveFieldBean {
   @JsonProperty("after")
   private URI after;

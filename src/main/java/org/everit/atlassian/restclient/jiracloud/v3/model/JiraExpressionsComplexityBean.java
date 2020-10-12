@@ -40,7 +40,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.JiraExpressionsComplex
 /**
  * JiraExpressionsComplexityBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
 public class JiraExpressionsComplexityBean {
   @JsonProperty("steps")
   private JiraExpressionsComplexityValueBean steps;
@@ -60,10 +60,10 @@ public class JiraExpressionsComplexityBean {
   }
 
    /**
-   * The number of steps it took to evaluate the expression.
+   * The number of steps it took to evaluate the expression, where a step is a high-level operation performed by the expression. A step is an operation such as arithmetic, accessing a property, accessing a context variable, or calling a function.
    * @return steps
   **/
-  @ApiModelProperty(value = "The number of steps it took to evaluate the expression.")
+  @ApiModelProperty(value = "The number of steps it took to evaluate the expression, where a step is a high-level operation performed by the expression. A step is an operation such as arithmetic, accessing a property, accessing a context variable, or calling a function.")
   public JiraExpressionsComplexityValueBean getSteps() {
     return steps;
   }

@@ -35,16 +35,17 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.everit.atlassian.restclient.jiracloud.v3.model.IssueTypeBean;
+import org.everit.atlassian.restclient.jiracloud.v3.model.IssueTypeDetails;
 import org.everit.atlassian.restclient.jiracloud.v3.model.Priority;
 import org.everit.atlassian.restclient.jiracloud.v3.model.StatusDetails;
+import org.everit.atlassian.restclient.jiracloud.v3.model.TimeTrackingDetails;
 import org.everit.atlassian.restclient.jiracloud.v3.model.UserDetails;
 
 /**
  * Key fields from the linked issue.
  */
 @ApiModel(description = "Key fields from the linked issue.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
 public class Fields {
   @JsonProperty("summary")
   private String summary;
@@ -58,11 +59,14 @@ public class Fields {
   @JsonProperty("assignee")
   private UserDetails assignee;
 
+  @JsonProperty("timetracking")
+  private TimeTrackingDetails timetracking;
+
   @JsonProperty("issuetype")
-  private IssueTypeBean issuetype;
+  private IssueTypeDetails issuetype;
 
   @JsonProperty("issueType")
-  private IssueTypeBean issueType;
+  private IssueTypeDetails issueType;
 
    /**
    * The summary description of the linked issue.
@@ -100,7 +104,16 @@ public class Fields {
     return assignee;
   }
 
-  public Fields issuetype(IssueTypeBean issuetype) {
+   /**
+   * The time tracking of the linked issue.
+   * @return timetracking
+  **/
+  @ApiModelProperty(value = "The time tracking of the linked issue.")
+  public TimeTrackingDetails getTimetracking() {
+    return timetracking;
+  }
+
+  public Fields issuetype(IssueTypeDetails issuetype) {
     this.issuetype = issuetype;
     return this;
   }
@@ -110,11 +123,11 @@ public class Fields {
    * @return issuetype
   **/
   @ApiModelProperty(value = "")
-  public IssueTypeBean getIssuetype() {
+  public IssueTypeDetails getIssuetype() {
     return issuetype;
   }
 
-  public void setIssuetype(IssueTypeBean issuetype) {
+  public void setIssuetype(IssueTypeDetails issuetype) {
     this.issuetype = issuetype;
   }
 
@@ -123,7 +136,7 @@ public class Fields {
    * @return issueType
   **/
   @ApiModelProperty(value = "The type of the linked issue.")
-  public IssueTypeBean getIssueType() {
+  public IssueTypeDetails getIssueType() {
     return issueType;
   }
 
@@ -141,13 +154,14 @@ public class Fields {
         Objects.equals(this.status, fields.status) &&
         Objects.equals(this.priority, fields.priority) &&
         Objects.equals(this.assignee, fields.assignee) &&
+        Objects.equals(this.timetracking, fields.timetracking) &&
         Objects.equals(this.issuetype, fields.issuetype) &&
         Objects.equals(this.issueType, fields.issueType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(summary, status, priority, assignee, issuetype, issueType);
+    return Objects.hash(summary, status, priority, assignee, timetracking, issuetype, issueType);
   }
 
 
@@ -160,6 +174,7 @@ public class Fields {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    priority: ").append(toIndentedString(priority)).append("\n");
     sb.append("    assignee: ").append(toIndentedString(assignee)).append("\n");
+    sb.append("    timetracking: ").append(toIndentedString(timetracking)).append("\n");
     sb.append("    issuetype: ").append(toIndentedString(issuetype)).append("\n");
     sb.append("    issueType: ").append(toIndentedString(issueType)).append("\n");
     sb.append("}");

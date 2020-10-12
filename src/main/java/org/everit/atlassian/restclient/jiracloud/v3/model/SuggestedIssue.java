@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * An issue suggested for use in the issue picker auto-completion.
  */
 @ApiModel(description = "An issue suggested for use in the issue picker auto-completion.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
 public class SuggestedIssue {
   @JsonProperty("id")
   private Long id;
@@ -61,10 +61,10 @@ public class SuggestedIssue {
   private String summaryText;
 
    /**
-   * The id of the issue.
+   * The ID of the issue.
    * @return id
   **/
-  @ApiModelProperty(value = "The id of the issue.")
+  @ApiModelProperty(value = "The ID of the issue.")
   public Long getId() {
     return id;
   }

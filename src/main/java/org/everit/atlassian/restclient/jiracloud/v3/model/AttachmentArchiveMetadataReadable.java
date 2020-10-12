@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.AttachmentArchiveItemR
  * Metadata for an archive (for example a zip) and its contents.
  */
 @ApiModel(description = "Metadata for an archive (for example a zip) and its contents.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
 public class AttachmentArchiveMetadataReadable {
   @JsonProperty("id")
   private Long id;

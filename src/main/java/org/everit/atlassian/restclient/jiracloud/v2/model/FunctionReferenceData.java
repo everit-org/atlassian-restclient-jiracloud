@@ -42,7 +42,7 @@ import java.util.List;
  * Details of functions that can be used in advanced searches.
  */
 @ApiModel(description = "Details of functions that can be used in advanced searches.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:24.924+02:00[Europe/Prague]")
 public class FunctionReferenceData {
   @JsonProperty("value")
   private String value;
@@ -51,7 +51,7 @@ public class FunctionReferenceData {
   private String displayName;
 
   /**
-   * Indicates whether the function can take a list of arguments.
+   * Whether the function can take a list of arguments.
    */
   public enum IsListEnum {
     TRUE("true"),
@@ -133,10 +133,10 @@ public class FunctionReferenceData {
   }
 
    /**
-   * Indicates whether the function can take a list of arguments.
+   * Whether the function can take a list of arguments.
    * @return isList
   **/
-  @ApiModelProperty(value = "Indicates whether the function can take a list of arguments.")
+  @ApiModelProperty(value = "Whether the function can take a list of arguments.")
   public IsListEnum getIsList() {
     return isList;
   }

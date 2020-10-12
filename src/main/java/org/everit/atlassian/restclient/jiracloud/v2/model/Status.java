@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.Icon;
  * The status of the item.
  */
 @ApiModel(description = "The status of the item.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:24.924+02:00[Europe/Prague]")
 public class Status {
   @JsonProperty("resolved")
   private Boolean resolved;
@@ -59,10 +59,10 @@ public class Status {
   }
 
    /**
-   * Indicates whether the item is resolved. If set to \&quot;true\&quot;, the link to the issue is displayed in a strikethrough font, otherwise the link displays in normal font.
+   * Whether the item is resolved. If set to \&quot;true\&quot;, the link to the issue is displayed in a strikethrough font, otherwise the link displays in normal font.
    * @return resolved
   **/
-  @ApiModelProperty(value = "Indicates whether the item is resolved. If set to \"true\", the link to the issue is displayed in a strikethrough font, otherwise the link displays in normal font.")
+  @ApiModelProperty(value = "Whether the item is resolved. If set to \"true\", the link to the issue is displayed in a strikethrough font, otherwise the link displays in normal font.")
   public Boolean getResolved() {
     return resolved;
   }
