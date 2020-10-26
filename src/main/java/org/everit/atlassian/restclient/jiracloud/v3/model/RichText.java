@@ -39,31 +39,13 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * RichText
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:51.013+01:00[Europe/Prague]")
 public class RichText {
-  @JsonProperty("valueSet")
-  private Boolean valueSet;
-
   @JsonProperty("emptyAdf")
   private Boolean emptyAdf;
 
-  public RichText valueSet(Boolean valueSet) {
-    this.valueSet = valueSet;
-    return this;
-  }
-
-   /**
-   * Get valueSet
-   * @return valueSet
-  **/
-  @ApiModelProperty(value = "")
-  public Boolean getValueSet() {
-    return valueSet;
-  }
-
-  public void setValueSet(Boolean valueSet) {
-    this.valueSet = valueSet;
-  }
+  @JsonProperty("valueSet")
+  private Boolean valueSet;
 
   public RichText emptyAdf(Boolean emptyAdf) {
     this.emptyAdf = emptyAdf;
@@ -83,6 +65,24 @@ public class RichText {
     this.emptyAdf = emptyAdf;
   }
 
+  public RichText valueSet(Boolean valueSet) {
+    this.valueSet = valueSet;
+    return this;
+  }
+
+   /**
+   * Get valueSet
+   * @return valueSet
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getValueSet() {
+    return valueSet;
+  }
+
+  public void setValueSet(Boolean valueSet) {
+    this.valueSet = valueSet;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -93,13 +93,13 @@ public class RichText {
       return false;
     }
     RichText richText = (RichText) o;
-    return Objects.equals(this.valueSet, richText.valueSet) &&
-        Objects.equals(this.emptyAdf, richText.emptyAdf);
+    return Objects.equals(this.emptyAdf, richText.emptyAdf) &&
+        Objects.equals(this.valueSet, richText.valueSet);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(valueSet, emptyAdf);
+    return Objects.hash(emptyAdf, valueSet);
   }
 
 
@@ -108,8 +108,8 @@ public class RichText {
     StringBuilder sb = new StringBuilder();
     sb.append("class RichText {\n");
     
-    sb.append("    valueSet: ").append(toIndentedString(valueSet)).append("\n");
     sb.append("    emptyAdf: ").append(toIndentedString(emptyAdf)).append("\n");
+    sb.append("    valueSet: ").append(toIndentedString(valueSet)).append("\n");
     sb.append("}");
     return sb.toString();
   }

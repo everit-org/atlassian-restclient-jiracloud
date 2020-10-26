@@ -42,7 +42,7 @@ import java.util.List;
  * Details of an issue type scheme and its associated issue types.
  */
 @ApiModel(description = "Details of an issue type scheme and its associated issue types.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:24.924+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:44.797+01:00[Europe/Prague]")
 public class IssueTypeSchemeDetails {
   @JsonProperty("name")
   private String name;

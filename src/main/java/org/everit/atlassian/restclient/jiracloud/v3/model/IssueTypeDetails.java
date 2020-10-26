@@ -42,7 +42,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.Scope;
  * Details about an issue type.
  */
 @ApiModel(description = "Details about an issue type.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:51.013+01:00[Europe/Prague]")
 public class IssueTypeDetails {
   @JsonProperty("self")
   private String self;

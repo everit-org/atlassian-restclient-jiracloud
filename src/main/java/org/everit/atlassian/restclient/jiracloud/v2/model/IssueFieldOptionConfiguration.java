@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.IssueFieldOptionScopeB
  * Details of the projects the option is available in.
  */
 @ApiModel(description = "Details of the projects the option is available in.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:24.924+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:44.797+01:00[Europe/Prague]")
 public class IssueFieldOptionConfiguration {
   @JsonProperty("scope")
   private IssueFieldOptionScopeBean scope;

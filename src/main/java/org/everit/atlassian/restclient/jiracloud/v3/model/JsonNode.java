@@ -42,11 +42,8 @@ import java.util.List;
 /**
  * JsonNode
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:51.013+01:00[Europe/Prague]")
 public class JsonNode {
-  @JsonProperty("floatingPointNumber")
-  private Boolean floatingPointNumber;
-
   @JsonProperty("elements")
   private Object elements = null;
 
@@ -58,6 +55,9 @@ public class JsonNode {
 
   @JsonProperty("integralNumber")
   private Boolean integralNumber;
+
+  @JsonProperty("floatingPointNumber")
+  private Boolean floatingPointNumber;
 
   @JsonProperty("int")
   private Boolean _int;
@@ -177,14 +177,14 @@ public class JsonNode {
   @JsonProperty("binaryValue")
   private List<byte[]> binaryValue = new ArrayList<>();
 
-  @JsonProperty("fieldNames")
-  private Object fieldNames = null;
-
   @JsonProperty("textValue")
   private String textValue;
 
   @JsonProperty("valueAsText")
   private String valueAsText;
+
+  @JsonProperty("fieldNames")
+  private Object fieldNames = null;
 
   @JsonProperty("array")
   private Boolean array;
@@ -194,24 +194,6 @@ public class JsonNode {
 
   @JsonProperty("null")
   private Boolean _null;
-
-  public JsonNode floatingPointNumber(Boolean floatingPointNumber) {
-    this.floatingPointNumber = floatingPointNumber;
-    return this;
-  }
-
-   /**
-   * Get floatingPointNumber
-   * @return floatingPointNumber
-  **/
-  @ApiModelProperty(value = "")
-  public Boolean getFloatingPointNumber() {
-    return floatingPointNumber;
-  }
-
-  public void setFloatingPointNumber(Boolean floatingPointNumber) {
-    this.floatingPointNumber = floatingPointNumber;
-  }
 
   public JsonNode elements(Object elements) {
     this.elements = elements;
@@ -283,6 +265,24 @@ public class JsonNode {
 
   public void setIntegralNumber(Boolean integralNumber) {
     this.integralNumber = integralNumber;
+  }
+
+  public JsonNode floatingPointNumber(Boolean floatingPointNumber) {
+    this.floatingPointNumber = floatingPointNumber;
+    return this;
+  }
+
+   /**
+   * Get floatingPointNumber
+   * @return floatingPointNumber
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getFloatingPointNumber() {
+    return floatingPointNumber;
+  }
+
+  public void setFloatingPointNumber(Boolean floatingPointNumber) {
+    this.floatingPointNumber = floatingPointNumber;
   }
 
   public JsonNode _int(Boolean _int) {
@@ -743,24 +743,6 @@ public class JsonNode {
     this.binaryValue = binaryValue;
   }
 
-  public JsonNode fieldNames(Object fieldNames) {
-    this.fieldNames = fieldNames;
-    return this;
-  }
-
-   /**
-   * Get fieldNames
-   * @return fieldNames
-  **/
-  @ApiModelProperty(value = "")
-  public Object getFieldNames() {
-    return fieldNames;
-  }
-
-  public void setFieldNames(Object fieldNames) {
-    this.fieldNames = fieldNames;
-  }
-
   public JsonNode textValue(String textValue) {
     this.textValue = textValue;
     return this;
@@ -795,6 +777,24 @@ public class JsonNode {
 
   public void setValueAsText(String valueAsText) {
     this.valueAsText = valueAsText;
+  }
+
+  public JsonNode fieldNames(Object fieldNames) {
+    this.fieldNames = fieldNames;
+    return this;
+  }
+
+   /**
+   * Get fieldNames
+   * @return fieldNames
+  **/
+  @ApiModelProperty(value = "")
+  public Object getFieldNames() {
+    return fieldNames;
+  }
+
+  public void setFieldNames(Object fieldNames) {
+    this.fieldNames = fieldNames;
   }
 
   public JsonNode array(Boolean array) {
@@ -861,11 +861,11 @@ public class JsonNode {
       return false;
     }
     JsonNode jsonNode = (JsonNode) o;
-    return Objects.equals(this.floatingPointNumber, jsonNode.floatingPointNumber) &&
-        Objects.equals(this.elements, jsonNode.elements) &&
+    return Objects.equals(this.elements, jsonNode.elements) &&
         Objects.equals(this.number, jsonNode.number) &&
         Objects.equals(this.pojo, jsonNode.pojo) &&
         Objects.equals(this.integralNumber, jsonNode.integralNumber) &&
+        Objects.equals(this.floatingPointNumber, jsonNode.floatingPointNumber) &&
         Objects.equals(this._int, jsonNode._int) &&
         Objects.equals(this._long, jsonNode._long) &&
         Objects.equals(this._double, jsonNode._double) &&
@@ -891,9 +891,9 @@ public class JsonNode {
         Objects.equals(this.decimalValue, jsonNode.decimalValue) &&
         Objects.equals(this.booleanValue, jsonNode.booleanValue) &&
         Objects.equals(this.binaryValue, jsonNode.binaryValue) &&
-        Objects.equals(this.fieldNames, jsonNode.fieldNames) &&
         Objects.equals(this.textValue, jsonNode.textValue) &&
         Objects.equals(this.valueAsText, jsonNode.valueAsText) &&
+        Objects.equals(this.fieldNames, jsonNode.fieldNames) &&
         Objects.equals(this.array, jsonNode.array) &&
         Objects.equals(this.fields, jsonNode.fields) &&
         Objects.equals(this._null, jsonNode._null);
@@ -901,7 +901,7 @@ public class JsonNode {
 
   @Override
   public int hashCode() {
-    return Objects.hash(floatingPointNumber, elements, number, pojo, integralNumber, _int, _long, _double, bigDecimal, bigInteger, textual, _boolean, binary, _object, missingNode, valueNode, containerNode, valueAsInt, valueAsLong, valueAsDouble, valueAsBoolean, numberValue, numberType, intValue, longValue, bigIntegerValue, doubleValue, decimalValue, booleanValue, binaryValue, fieldNames, textValue, valueAsText, array, fields, _null);
+    return Objects.hash(elements, number, pojo, integralNumber, floatingPointNumber, _int, _long, _double, bigDecimal, bigInteger, textual, _boolean, binary, _object, missingNode, valueNode, containerNode, valueAsInt, valueAsLong, valueAsDouble, valueAsBoolean, numberValue, numberType, intValue, longValue, bigIntegerValue, doubleValue, decimalValue, booleanValue, binaryValue, textValue, valueAsText, fieldNames, array, fields, _null);
   }
 
 
@@ -910,11 +910,11 @@ public class JsonNode {
     StringBuilder sb = new StringBuilder();
     sb.append("class JsonNode {\n");
     
-    sb.append("    floatingPointNumber: ").append(toIndentedString(floatingPointNumber)).append("\n");
     sb.append("    elements: ").append(toIndentedString(elements)).append("\n");
     sb.append("    number: ").append(toIndentedString(number)).append("\n");
     sb.append("    pojo: ").append(toIndentedString(pojo)).append("\n");
     sb.append("    integralNumber: ").append(toIndentedString(integralNumber)).append("\n");
+    sb.append("    floatingPointNumber: ").append(toIndentedString(floatingPointNumber)).append("\n");
     sb.append("    _int: ").append(toIndentedString(_int)).append("\n");
     sb.append("    _long: ").append(toIndentedString(_long)).append("\n");
     sb.append("    _double: ").append(toIndentedString(_double)).append("\n");
@@ -940,9 +940,9 @@ public class JsonNode {
     sb.append("    decimalValue: ").append(toIndentedString(decimalValue)).append("\n");
     sb.append("    booleanValue: ").append(toIndentedString(booleanValue)).append("\n");
     sb.append("    binaryValue: ").append(toIndentedString(binaryValue)).append("\n");
-    sb.append("    fieldNames: ").append(toIndentedString(fieldNames)).append("\n");
     sb.append("    textValue: ").append(toIndentedString(textValue)).append("\n");
     sb.append("    valueAsText: ").append(toIndentedString(valueAsText)).append("\n");
+    sb.append("    fieldNames: ").append(toIndentedString(fieldNames)).append("\n");
     sb.append("    array: ").append(toIndentedString(array)).append("\n");
     sb.append("    fields: ").append(toIndentedString(fields)).append("\n");
     sb.append("    _null: ").append(toIndentedString(_null)).append("\n");

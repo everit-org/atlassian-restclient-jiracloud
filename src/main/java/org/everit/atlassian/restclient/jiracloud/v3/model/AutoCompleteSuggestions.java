@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.AutoCompleteSuggestion
  * The results from a JQL query.
  */
 @ApiModel(description = "The results from a JQL query.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:51.013+01:00[Europe/Prague]")
 public class AutoCompleteSuggestions {
   @JsonProperty("results")
   private List<AutoCompleteSuggestion> results = new ArrayList<>();

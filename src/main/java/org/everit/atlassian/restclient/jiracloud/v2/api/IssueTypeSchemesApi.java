@@ -55,8 +55,6 @@ public class IssueTypeSchemesApi {
 
   private static final TypeReference<IssueTypeSchemeID> returnType_createIssueTypeScheme = new TypeReference<IssueTypeSchemeID>() {};
 
-  private static final TypeReference<Object> returnType_deleteIssueTypeFromIssueTypeScheme = new TypeReference<Object>() {};
-
   private static final TypeReference<Object> returnType_deleteIssueTypeScheme = new TypeReference<Object>() {};
 
   private static final TypeReference<PageBeanIssueTypeScheme> returnType_getAllIssueTypeSchemes = new TypeReference<PageBeanIssueTypeScheme>() {};
@@ -64,6 +62,8 @@ public class IssueTypeSchemesApi {
   private static final TypeReference<PageBeanIssueTypeSchemeProjects> returnType_getIssueTypeSchemeForProjects = new TypeReference<PageBeanIssueTypeSchemeProjects>() {};
 
   private static final TypeReference<PageBeanIssueTypeSchemeMapping> returnType_getIssueTypeSchemesMapping = new TypeReference<PageBeanIssueTypeSchemeMapping>() {};
+
+  private static final TypeReference<Object> returnType_removeIssueTypeFromIssueTypeScheme = new TypeReference<Object>() {};
 
   private static final TypeReference<Object> returnType_reorderIssueTypesInIssueTypeScheme = new TypeReference<Object>() {};
 
@@ -162,36 +162,6 @@ public class IssueTypeSchemesApi {
     requestBuilder.requestBody(Optional.of(issueTypeSchemeDetails));
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_createIssueTypeScheme);
-  }
-
-  /**
-   * Remove issue type from issue type scheme
-   * Deletes an issue type from an issue type scheme.  This operation cannot delete:   *  any issue type used by issues.  *  any issue types from the default issue type scheme.  *  the last standard issue type from an issue type scheme.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   * @param issueTypeSchemeId The ID of the issue type scheme. (required)
-   * @param issueTypeId The ID of the issue type. (required)
-   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
-   * @return Single&lt;Object&gt;
-   */
-  public Single<Object> deleteIssueTypeFromIssueTypeScheme(
-    Long issueTypeSchemeId, Long issueTypeId, Optional<RestRequestEnhancer> restRequestEnhancer) {
-
-    RestRequest.Builder requestBuilder = RestRequest.builder()
-        .method(HttpMethod.DELETE)
-        .basePath(DEFAULT_BASE_PATH)
-        .path("/rest/api/2/issuetypescheme/{issueTypeSchemeId}/issuetype/{issueTypeId}");
-
-    Map<String, String> pathParams = new HashMap<>();
-    pathParams.put("issueTypeSchemeId", String.valueOf(issueTypeSchemeId));
-    pathParams.put("issueTypeId", String.valueOf(issueTypeId));
-    requestBuilder.pathParams(pathParams);
-
-    Map<String, Collection<String>> queryParams = new HashMap<>();
-    requestBuilder.queryParams(queryParams);
-
-    Map<String, String> headers = new HashMap<>();
-    requestBuilder.headers(headers);
-
-    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_deleteIssueTypeFromIssueTypeScheme);
   }
 
   /**
@@ -332,6 +302,36 @@ public class IssueTypeSchemesApi {
     requestBuilder.headers(headers);
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getIssueTypeSchemesMapping);
+  }
+
+  /**
+   * Remove issue type from issue type scheme
+   * Removes an issue type from an issue type scheme.  This operation cannot remove:   *  any issue type used by issues.  *  any issue types from the default issue type scheme.  *  the last standard issue type from an issue type scheme.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * @param issueTypeSchemeId The ID of the issue type scheme. (required)
+   * @param issueTypeId The ID of the issue type. (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;Object&gt;
+   */
+  public Single<Object> removeIssueTypeFromIssueTypeScheme(
+    Long issueTypeSchemeId, Long issueTypeId, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.DELETE)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/issuetypescheme/{issueTypeSchemeId}/issuetype/{issueTypeId}");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("issueTypeSchemeId", String.valueOf(issueTypeSchemeId));
+    pathParams.put("issueTypeId", String.valueOf(issueTypeId));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_removeIssueTypeFromIssueTypeScheme);
   }
 
   /**

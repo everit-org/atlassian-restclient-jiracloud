@@ -42,7 +42,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.ApplicationRole;
 /**
  * SimpleListWrapperApplicationRole
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:24.924+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:44.797+01:00[Europe/Prague]")
 public class SimpleListWrapperApplicationRole {
   @JsonProperty("size")
   private Integer size;

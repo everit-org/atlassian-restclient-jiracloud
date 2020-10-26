@@ -99,19 +99,19 @@ public class IssueCustomFieldOptionsApi {
   /**
    * Delete custom field option (context)
    * Deletes a custom field option.  Options with cascading options cannot be deleted without deleting the cascading options first.  This operation works for custom field options created in Jira or the operations from this resource. **To work with issue field select list options created for Connect apps use the [Issue custom field options (apps)](#api-group-issue-custom-field-options--apps-) operations.**  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   * @param fieldId The ID of the custom field. Note: This is the numeric part of the of the field ID. For example, for a field with the ID *customfield\\_10075* use *10075*. (required)
+   * @param fieldId The ID of the custom field. IDs should be provided in the format *customfield\\_XXXXX*. (required)
    * @param contextId The ID of the context from which an option should be deleted. (required)
    * @param optionId The ID of the option to delete. (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Completable
    */
   public Completable deleteCustomFieldOption(
-    Long fieldId, Long contextId, Long optionId, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String fieldId, Long contextId, Long optionId, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.DELETE)
         .basePath(DEFAULT_BASE_PATH)
-        .path("/rest/api/3/customField/{fieldId}/context/{contextId}/option/{optionId}");
+        .path("/rest/api/3/field/{fieldId}/context/{contextId}/option/{optionId}");
 
     Map<String, String> pathParams = new HashMap<>();
     pathParams.put("fieldId", String.valueOf(fieldId));
@@ -159,7 +159,7 @@ public class IssueCustomFieldOptionsApi {
   /**
    * Get options for field (context)
    * Returns a [paginated](#pagination) list of all custom field option for a context. Options are returned first then cascading options, in the order they display in Jira.  This operation works for custom field options created in Jira or the operations from this resource. **To work with issue field select list options created for Connect apps use the [Issue custom field options (apps)](#api-group-issue-custom-field-options--apps-) operations.**  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   * @param fieldId The ID of the custom field. Note: This is the numeric part of the of the field ID. For example, for a field with the ID *customfield\\_10075* use *10075*. (required)
+   * @param fieldId The ID of the custom field. IDs should be provided in the format *customfield\\_XXXXX*. (required)
    * @param contextId The ID of the context. (required)
    * @param optionId The ID of the option. (optional)
    * @param onlyOptions Whether only options are returned. (optional, default to false)
@@ -169,12 +169,12 @@ public class IssueCustomFieldOptionsApi {
    * @return Single&lt;PageBeanCustomFieldContextOption&gt;
    */
   public Single<PageBeanCustomFieldContextOption> getOptionsForContext(
-    Long fieldId, Long contextId, Optional<Long> optionId, Optional<Boolean> onlyOptions, Optional<Long> startAt, Optional<Integer> maxResults, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String fieldId, Long contextId, Optional<Long> optionId, Optional<Boolean> onlyOptions, Optional<Long> startAt, Optional<Integer> maxResults, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.GET)
         .basePath(DEFAULT_BASE_PATH)
-        .path("/rest/api/3/customField/{fieldId}/context/{contextId}/option");
+        .path("/rest/api/3/field/{fieldId}/context/{contextId}/option");
 
     Map<String, String> pathParams = new HashMap<>();
     pathParams.put("fieldId", String.valueOf(fieldId));
@@ -241,19 +241,19 @@ public class IssueCustomFieldOptionsApi {
   /**
    * Reorder options (context)
    * Changes the order of custom field options or cascading options in a context.  This operation works for custom field options created in Jira or the operations from this resource. **To work with issue field select list options created for Connect apps use the [Issue custom field options (apps)](#api-group-issue-custom-field-options--apps-) operations.**  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   * @param fieldId The ID of the custom field. Note: This is the numeric part of the of the field ID. For example, for a field with the ID *customfield\\_10075* use *10075*. (required)
+   * @param fieldId The ID of the custom field. IDs should be provided in the format *customfield\\_XXXXX*. (required)
    * @param contextId The ID of the context. (required)
    * @param orderOfCustomFieldOptions  (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Object&gt;
    */
   public Single<Object> reorderCustomFieldOptions(
-    Long fieldId, Long contextId, OrderOfCustomFieldOptions orderOfCustomFieldOptions, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String fieldId, Long contextId, OrderOfCustomFieldOptions orderOfCustomFieldOptions, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.PUT)
         .basePath(DEFAULT_BASE_PATH)
-        .path("/rest/api/3/customField/{fieldId}/context/{contextId}/option/move");
+        .path("/rest/api/3/field/{fieldId}/context/{contextId}/option/move");
 
     Map<String, String> pathParams = new HashMap<>();
     pathParams.put("fieldId", String.valueOf(fieldId));

@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.BulkProjectPermissions
  * Details of global permissions to look up and project permissions with associated projects and issues to look up.
  */
 @ApiModel(description = "Details of global permissions to look up and project permissions with associated projects and issues to look up.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:24.924+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:44.797+01:00[Europe/Prague]")
 public class BulkPermissionsRequestBean {
   @JsonProperty("projectPermissions")
   private List<BulkProjectPermissions> projectPermissions = new ArrayList<>();

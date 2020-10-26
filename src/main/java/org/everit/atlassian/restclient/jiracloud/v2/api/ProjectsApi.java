@@ -48,6 +48,8 @@ public class ProjectsApi {
 
   private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.com";
 
+  private static final TypeReference<Object> returnType_archiveProject = new TypeReference<Object>() {};
+
   private static final TypeReference<ProjectIdentifiers> returnType_createProject = new TypeReference<ProjectIdentifiers>() {};
 
   private static final TypeReference<List<Project>> returnType_getAllProjects = new TypeReference<List<Project>>() {};
@@ -72,6 +74,34 @@ public class ProjectsApi {
 
   public ProjectsApi(RestClient restClient) {
     this.restClient = restClient;
+  }
+
+  /**
+   * Archive project
+   * Archives a project.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * @param projectIdOrKey The project ID or project key (case sensitive). (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;Object&gt;
+   */
+  public Single<Object> archiveProject(
+    String projectIdOrKey, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.POST)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/project/{projectIdOrKey}/archive");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("projectIdOrKey", String.valueOf(projectIdOrKey));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_archiveProject);
   }
 
   /**

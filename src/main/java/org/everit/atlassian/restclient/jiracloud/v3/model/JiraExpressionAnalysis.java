@@ -37,13 +37,14 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import org.everit.atlassian.restclient.jiracloud.v3.model.JiraExpressionComplexity;
 import org.everit.atlassian.restclient.jiracloud.v3.model.JiraExpressionValidationError;
 
 /**
  * Details about the analysed Jira expression.
  */
 @ApiModel(description = "Details about the analysed Jira expression.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:51.013+01:00[Europe/Prague]")
 public class JiraExpressionAnalysis {
   @JsonProperty("expression")
   private String expression;
@@ -56,6 +57,9 @@ public class JiraExpressionAnalysis {
 
   @JsonProperty("type")
   private String type;
+
+  @JsonProperty("complexity")
+  private JiraExpressionComplexity complexity;
 
   public JiraExpressionAnalysis expression(String expression) {
     this.expression = expression;
@@ -128,13 +132,31 @@ public class JiraExpressionAnalysis {
    * EXPERIMENTAL. The inferred type of the expression.
    * @return type
   **/
-  @ApiModelProperty(required = true, value = "EXPERIMENTAL. The inferred type of the expression.")
+  @ApiModelProperty(value = "EXPERIMENTAL. The inferred type of the expression.")
   public String getType() {
     return type;
   }
 
   public void setType(String type) {
     this.type = type;
+  }
+
+  public JiraExpressionAnalysis complexity(JiraExpressionComplexity complexity) {
+    this.complexity = complexity;
+    return this;
+  }
+
+   /**
+   * Get complexity
+   * @return complexity
+  **/
+  @ApiModelProperty(value = "")
+  public JiraExpressionComplexity getComplexity() {
+    return complexity;
+  }
+
+  public void setComplexity(JiraExpressionComplexity complexity) {
+    this.complexity = complexity;
   }
 
 
@@ -150,12 +172,13 @@ public class JiraExpressionAnalysis {
     return Objects.equals(this.expression, jiraExpressionAnalysis.expression) &&
         Objects.equals(this.errors, jiraExpressionAnalysis.errors) &&
         Objects.equals(this.valid, jiraExpressionAnalysis.valid) &&
-        Objects.equals(this.type, jiraExpressionAnalysis.type);
+        Objects.equals(this.type, jiraExpressionAnalysis.type) &&
+        Objects.equals(this.complexity, jiraExpressionAnalysis.complexity);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(expression, errors, valid, type);
+    return Objects.hash(expression, errors, valid, type, complexity);
   }
 
 
@@ -168,6 +191,7 @@ public class JiraExpressionAnalysis {
     sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
     sb.append("    valid: ").append(toIndentedString(valid)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    complexity: ").append(toIndentedString(complexity)).append("\n");
     sb.append("}");
     return sb.toString();
   }

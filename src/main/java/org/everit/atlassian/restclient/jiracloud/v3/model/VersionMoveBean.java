@@ -40,7 +40,7 @@ import java.net.URI;
 /**
  * VersionMoveBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:51.013+01:00[Europe/Prague]")
 public class VersionMoveBean {
   @JsonProperty("after")
   private URI after;

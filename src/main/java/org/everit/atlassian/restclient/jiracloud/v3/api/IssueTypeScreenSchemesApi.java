@@ -31,6 +31,7 @@ import org.everit.http.restclient.TypeReference;
 import org.everit.atlassian.restclient.jiracloud.v3.model.IssueTypeScreenSchemeDetails;
 import org.everit.atlassian.restclient.jiracloud.v3.model.IssueTypeScreenSchemeId;
 import org.everit.atlassian.restclient.jiracloud.v3.model.IssueTypeScreenSchemeProjectAssociation;
+import org.everit.atlassian.restclient.jiracloud.v3.model.IssueTypeScreenSchemeUpdateDetails;
 import org.everit.atlassian.restclient.jiracloud.v3.model.PageBeanIssueTypeScreenScheme;
 import org.everit.atlassian.restclient.jiracloud.v3.model.PageBeanIssueTypeScreenSchemeItem;
 import org.everit.atlassian.restclient.jiracloud.v3.model.PageBeanIssueTypeScreenSchemesProjects;
@@ -50,11 +51,15 @@ public class IssueTypeScreenSchemesApi {
 
   private static final TypeReference<IssueTypeScreenSchemeId> returnType_createIssueTypeScreenScheme = new TypeReference<IssueTypeScreenSchemeId>() {};
 
+  private static final TypeReference<Object> returnType_deleteIssueTypeScreenScheme = new TypeReference<Object>() {};
+
   private static final TypeReference<PageBeanIssueTypeScreenSchemeItem> returnType_getIssueTypeScreenSchemeMappings = new TypeReference<PageBeanIssueTypeScreenSchemeItem>() {};
 
   private static final TypeReference<PageBeanIssueTypeScreenSchemesProjects> returnType_getIssueTypeScreenSchemeProjectAssociations = new TypeReference<PageBeanIssueTypeScreenSchemesProjects>() {};
 
   private static final TypeReference<PageBeanIssueTypeScreenScheme> returnType_getIssueTypeScreenSchemes = new TypeReference<PageBeanIssueTypeScreenScheme>() {};
+
+  private static final TypeReference<Object> returnType_updateIssueTypeScreenScheme = new TypeReference<Object>() {};
 
   private final RestClient restClient;
 
@@ -118,6 +123,34 @@ public class IssueTypeScreenSchemesApi {
     requestBuilder.requestBody(Optional.of(issueTypeScreenSchemeDetails));
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_createIssueTypeScreenScheme);
+  }
+
+  /**
+   * Delete issue type screen scheme
+   * Deletes an issue type screen scheme.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * @param issueTypeScreenSchemeId The ID of the issue type screen scheme. (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;Object&gt;
+   */
+  public Single<Object> deleteIssueTypeScreenScheme(
+    String issueTypeScreenSchemeId, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.DELETE)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/issuetypescreenscheme/{issueTypeScreenSchemeId}");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("issueTypeScreenSchemeId", String.valueOf(issueTypeScreenSchemeId));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_deleteIssueTypeScreenScheme);
   }
 
   /**
@@ -232,6 +265,37 @@ public class IssueTypeScreenSchemesApi {
     requestBuilder.headers(headers);
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getIssueTypeScreenSchemes);
+  }
+
+  /**
+   * Update issue type screen scheme
+   * Updates an issue type screen scheme.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * @param issueTypeScreenSchemeId The ID of the issue type screen scheme. (required)
+   * @param issueTypeScreenSchemeUpdateDetails The issue type screen scheme update details. (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;Object&gt;
+   */
+  public Single<Object> updateIssueTypeScreenScheme(
+    String issueTypeScreenSchemeId, IssueTypeScreenSchemeUpdateDetails issueTypeScreenSchemeUpdateDetails, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.PUT)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/issuetypescreenscheme/{issueTypeScreenSchemeId}");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("issueTypeScreenSchemeId", String.valueOf(issueTypeScreenSchemeId));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(issueTypeScreenSchemeUpdateDetails));
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updateIssueTypeScreenScheme);
   }
 
 }

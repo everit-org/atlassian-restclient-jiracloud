@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of the name, description, and default issue type for an issue type scheme.
  */
 @ApiModel(description = "Details of the name, description, and default issue type for an issue type scheme.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:51.013+01:00[Europe/Prague]")
 public class IssueTypeSchemeUpdateDetails {
   @JsonProperty("name")
   private String name;

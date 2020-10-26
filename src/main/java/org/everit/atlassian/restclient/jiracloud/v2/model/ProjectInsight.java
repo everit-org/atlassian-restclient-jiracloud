@@ -41,7 +41,7 @@ import java.time.OffsetDateTime;
  * Additional details about a project.
  */
 @ApiModel(description = "Additional details about a project.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:24.924+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:44.797+01:00[Europe/Prague]")
 public class ProjectInsight {
   @JsonProperty("totalIssueCount")
   private Long totalIssueCount;

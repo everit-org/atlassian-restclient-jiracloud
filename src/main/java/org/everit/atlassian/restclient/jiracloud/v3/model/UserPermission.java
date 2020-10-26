@@ -42,7 +42,7 @@ import java.util.Map;
  * Details of a permission and its availability to a user.
  */
 @ApiModel(description = "Details of a permission and its availability to a user.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:51.013+01:00[Europe/Prague]")
 public class UserPermission {
   @JsonProperty("id")
   private String id;

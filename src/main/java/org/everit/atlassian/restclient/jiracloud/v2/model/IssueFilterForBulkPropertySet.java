@@ -42,7 +42,7 @@ import java.util.List;
  * Bulk operation filter details.
  */
 @ApiModel(description = "Bulk operation filter details.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:24.924+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:44.797+01:00[Europe/Prague]")
 public class IssueFilterForBulkPropertySet {
   @JsonProperty("entityIds")
   private List<Long> entityIds = new ArrayList<>();

@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * The date the newly refreshed webhooks expire.
  */
 @ApiModel(description = "The date the newly refreshed webhooks expire.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:51.013+01:00[Europe/Prague]")
 public class WebhooksExpirationDate {
   @JsonProperty("expirationDate")
   private Long expirationDate;

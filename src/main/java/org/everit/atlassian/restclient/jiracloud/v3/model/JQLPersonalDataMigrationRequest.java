@@ -42,7 +42,7 @@ import java.util.List;
  * The JQL queries to be converted.
  */
 @ApiModel(description = "The JQL queries to be converted.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:51.013+01:00[Europe/Prague]")
 public class JQLPersonalDataMigrationRequest {
   @JsonProperty("queryStrings")
   private List<String> queryStrings = new ArrayList<>();

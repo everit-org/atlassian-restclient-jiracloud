@@ -41,7 +41,7 @@ import java.net.URI;
  * Count of issues assigned to a component.
  */
 @ApiModel(description = "Count of issues assigned to a component.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:24.924+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:44.797+01:00[Europe/Prague]")
 public class ComponentIssuesCount {
   @JsonProperty("self")
   private URI self;

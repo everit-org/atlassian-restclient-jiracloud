@@ -44,7 +44,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.IssueFieldOptionConfig
  * Details of the options for a select list issue field.
  */
 @ApiModel(description = "Details of the options for a select list issue field.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:51.013+01:00[Europe/Prague]")
 public class IssueFieldOption {
   @JsonProperty("id")
   private Long id;

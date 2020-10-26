@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * An operand that is a user-provided value.
  */
 @ApiModel(description = "An operand that is a user-provided value.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:32.013+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:51.013+01:00[Europe/Prague]")
 public class ValueOperand {
   @JsonProperty("value")
   private String value;

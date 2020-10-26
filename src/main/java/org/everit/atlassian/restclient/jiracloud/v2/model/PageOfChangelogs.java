@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.Changelog;
  * A page of changelogs.
  */
 @ApiModel(description = "A page of changelogs.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-12T12:22:24.924+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:44.797+01:00[Europe/Prague]")
 public class PageOfChangelogs {
   @JsonProperty("startAt")
   private Integer startAt;
