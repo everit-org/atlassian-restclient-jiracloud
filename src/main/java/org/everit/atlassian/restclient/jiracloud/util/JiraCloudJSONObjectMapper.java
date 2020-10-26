@@ -30,6 +30,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.datatype.jsr310.deser.InstantDeserializer;
@@ -139,7 +140,9 @@ public class JiraCloudJSONObjectMapper implements JSONObjectMapper {
 
   public JiraCloudJSONObjectMapper() {
     this.objectMapper = new ObjectMapper()
-        .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+        .configure(DeserializationFeature.READ_ENUMS_USING_TO_STRING, true)
+        .configure(SerializationFeature.WRITE_ENUMS_USING_TO_STRING, true);
     JavaTimeModule javaTimeModule = new JavaTimeModule();
 
     // We need this trick otherwise we would lose the zone from the offset date time
