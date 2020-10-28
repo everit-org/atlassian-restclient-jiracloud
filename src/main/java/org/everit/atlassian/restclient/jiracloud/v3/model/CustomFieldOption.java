@@ -41,7 +41,7 @@ import java.net.URI;
  * Details of a custom option for a field.
  */
 @ApiModel(description = "Details of a custom option for a field.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:51.013+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
 public class CustomFieldOption {
   @JsonProperty("self")
   private URI self;

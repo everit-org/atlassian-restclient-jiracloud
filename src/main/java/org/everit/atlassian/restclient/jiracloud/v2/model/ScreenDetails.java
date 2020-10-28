@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of a screen.
  */
 @ApiModel(description = "Details of a screen.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:44.797+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
 public class ScreenDetails {
   @JsonProperty("name")
   private String name;

@@ -47,7 +47,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.Scope;
  * Details of a permission scheme.
  */
 @ApiModel(description = "Details of a permission scheme.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:44.797+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
 public class PermissionScheme {
   @JsonProperty("expand")
   private String expand;

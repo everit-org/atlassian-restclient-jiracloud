@@ -42,7 +42,7 @@ import java.util.List;
  * A list of issue type IDs.
  */
 @ApiModel(description = "A list of issue type IDs.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:44.797+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
 public class IssueTypeIDs {
   @JsonProperty("issueTypeIds")
   private List<String> issueTypeIds = new ArrayList<>();

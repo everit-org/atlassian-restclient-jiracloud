@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.IssueMatchesForJQL;
  * A list of matched issues or errors for each JQL query, in the order the JQL queries were passed.
  */
 @ApiModel(description = "A list of matched issues or errors for each JQL query, in the order the JQL queries were passed.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:44.797+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
 public class IssueMatches {
   @JsonProperty("matches")
   private List<IssueMatchesForJQL> matches = new ArrayList<>();

@@ -42,7 +42,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.User;
  * Details about a component with a count of the issues it contains.
  */
 @ApiModel(description = "Details about a component with a count of the issues it contains.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:51.013+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
 public class ComponentWithIssueCount {
   @JsonProperty("issueCount")
   private Long issueCount;
@@ -50,14 +50,14 @@ public class ComponentWithIssueCount {
   @JsonProperty("description")
   private String description;
 
+  @JsonProperty("self")
+  private URI self;
+
   @JsonProperty("projectId")
   private Long projectId;
 
   @JsonProperty("project")
   private String project;
-
-  @JsonProperty("self")
-  private URI self;
 
   /**
    * The nominal user type used to determine the assignee for issues created with this component. See &#x60;realAssigneeType&#x60; for details on how the type of the user, and hence the user, assigned to issues is determined. Takes the following values:   *  &#x60;PROJECT_LEAD&#x60; the assignee to any issues created with this component is nominally the lead for the project the component is in.  *  &#x60;COMPONENT_LEAD&#x60; the assignee to any issues created with this component is nominally the lead for the component.  *  &#x60;UNASSIGNED&#x60; an assignee is not set for issues created with this component.  *  &#x60;PROJECT_DEFAULT&#x60; the assignee to any issues created with this component is nominally the default assignee for the project that the component is in.
@@ -180,6 +180,15 @@ public class ComponentWithIssueCount {
   }
 
    /**
+   * The URL for this count of the issues contained in the component.
+   * @return self
+  **/
+  @ApiModelProperty(value = "The URL for this count of the issues contained in the component.")
+  public URI getSelf() {
+    return self;
+  }
+
+   /**
    * Not used.
    * @return projectId
   **/
@@ -195,15 +204,6 @@ public class ComponentWithIssueCount {
   @ApiModelProperty(value = "The key of the project to which the component is assigned.")
   public String getProject() {
     return project;
-  }
-
-   /**
-   * The URL for this count of the issues contained in the component.
-   * @return self
-  **/
-  @ApiModelProperty(value = "The URL for this count of the issues contained in the component.")
-  public URI getSelf() {
-    return self;
   }
 
    /**
@@ -317,9 +317,9 @@ public class ComponentWithIssueCount {
     ComponentWithIssueCount componentWithIssueCount = (ComponentWithIssueCount) o;
     return Objects.equals(this.issueCount, componentWithIssueCount.issueCount) &&
         Objects.equals(this.description, componentWithIssueCount.description) &&
+        Objects.equals(this.self, componentWithIssueCount.self) &&
         Objects.equals(this.projectId, componentWithIssueCount.projectId) &&
         Objects.equals(this.project, componentWithIssueCount.project) &&
-        Objects.equals(this.self, componentWithIssueCount.self) &&
         Objects.equals(this.assigneeType, componentWithIssueCount.assigneeType) &&
         Objects.equals(this.lead, componentWithIssueCount.lead) &&
         Objects.equals(this.realAssignee, componentWithIssueCount.realAssignee) &&
@@ -332,7 +332,7 @@ public class ComponentWithIssueCount {
 
   @Override
   public int hashCode() {
-    return Objects.hash(issueCount, description, projectId, project, self, assigneeType, lead, realAssignee, isAssigneeTypeValid, assignee, realAssigneeType, name, id);
+    return Objects.hash(issueCount, description, self, projectId, project, assigneeType, lead, realAssignee, isAssigneeTypeValid, assignee, realAssigneeType, name, id);
   }
 
 
@@ -343,9 +343,9 @@ public class ComponentWithIssueCount {
     
     sb.append("    issueCount: ").append(toIndentedString(issueCount)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    projectId: ").append(toIndentedString(projectId)).append("\n");
     sb.append("    project: ").append(toIndentedString(project)).append("\n");
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    assigneeType: ").append(toIndentedString(assigneeType)).append("\n");
     sb.append("    lead: ").append(toIndentedString(lead)).append("\n");
     sb.append("    realAssignee: ").append(toIndentedString(realAssignee)).append("\n");

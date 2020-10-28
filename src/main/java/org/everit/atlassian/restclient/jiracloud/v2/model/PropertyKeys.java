@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.PropertyKey;
  * List of property keys.
  */
 @ApiModel(description = "List of property keys.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:44.797+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
 public class PropertyKeys {
   @JsonProperty("keys")
   private List<PropertyKey> keys = new ArrayList<>();

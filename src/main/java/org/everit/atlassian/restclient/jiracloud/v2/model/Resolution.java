@@ -41,7 +41,7 @@ import java.net.URI;
  * Details of an issue resolution.
  */
 @ApiModel(description = "Details of an issue resolution.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:44.797+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
 public class Resolution {
   @JsonProperty("self")
   private URI self;

@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.IssuePickerSuggestions
  * A list of issues suggested for use in auto-completion.
  */
 @ApiModel(description = "A list of issues suggested for use in auto-completion.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:44.797+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
 public class IssuePickerSuggestions {
   @JsonProperty("sections")
   private List<IssuePickerSuggestionsIssueType> sections = new ArrayList<>();

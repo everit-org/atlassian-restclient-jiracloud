@@ -44,7 +44,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.User;
  * The details of votes on an issue.
  */
 @ApiModel(description = "The details of votes on an issue.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:51.013+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
 public class Votes {
   @JsonProperty("self")
   private URI self;

@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.ProjectRole;
  * Details of a share permission for the filter.
  */
 @ApiModel(description = "Details of a share permission for the filter.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:51.013+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
 public class SharePermission {
   @JsonProperty("id")
   private Long id;

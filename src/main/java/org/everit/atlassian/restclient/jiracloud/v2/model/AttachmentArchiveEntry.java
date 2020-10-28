@@ -39,40 +39,22 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * AttachmentArchiveEntry
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:44.797+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
 public class AttachmentArchiveEntry {
-  @JsonProperty("mediaType")
-  private String mediaType;
-
   @JsonProperty("entryIndex")
   private Long entryIndex;
 
   @JsonProperty("abbreviatedName")
   private String abbreviatedName;
 
+  @JsonProperty("mediaType")
+  private String mediaType;
+
   @JsonProperty("name")
   private String name;
 
   @JsonProperty("size")
   private Long size;
-
-  public AttachmentArchiveEntry mediaType(String mediaType) {
-    this.mediaType = mediaType;
-    return this;
-  }
-
-   /**
-   * Get mediaType
-   * @return mediaType
-  **/
-  @ApiModelProperty(value = "")
-  public String getMediaType() {
-    return mediaType;
-  }
-
-  public void setMediaType(String mediaType) {
-    this.mediaType = mediaType;
-  }
 
   public AttachmentArchiveEntry entryIndex(Long entryIndex) {
     this.entryIndex = entryIndex;
@@ -108,6 +90,24 @@ public class AttachmentArchiveEntry {
 
   public void setAbbreviatedName(String abbreviatedName) {
     this.abbreviatedName = abbreviatedName;
+  }
+
+  public AttachmentArchiveEntry mediaType(String mediaType) {
+    this.mediaType = mediaType;
+    return this;
+  }
+
+   /**
+   * Get mediaType
+   * @return mediaType
+  **/
+  @ApiModelProperty(value = "")
+  public String getMediaType() {
+    return mediaType;
+  }
+
+  public void setMediaType(String mediaType) {
+    this.mediaType = mediaType;
   }
 
   public AttachmentArchiveEntry name(String name) {
@@ -156,16 +156,16 @@ public class AttachmentArchiveEntry {
       return false;
     }
     AttachmentArchiveEntry attachmentArchiveEntry = (AttachmentArchiveEntry) o;
-    return Objects.equals(this.mediaType, attachmentArchiveEntry.mediaType) &&
-        Objects.equals(this.entryIndex, attachmentArchiveEntry.entryIndex) &&
+    return Objects.equals(this.entryIndex, attachmentArchiveEntry.entryIndex) &&
         Objects.equals(this.abbreviatedName, attachmentArchiveEntry.abbreviatedName) &&
+        Objects.equals(this.mediaType, attachmentArchiveEntry.mediaType) &&
         Objects.equals(this.name, attachmentArchiveEntry.name) &&
         Objects.equals(this.size, attachmentArchiveEntry.size);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(mediaType, entryIndex, abbreviatedName, name, size);
+    return Objects.hash(entryIndex, abbreviatedName, mediaType, name, size);
   }
 
 
@@ -174,9 +174,9 @@ public class AttachmentArchiveEntry {
     StringBuilder sb = new StringBuilder();
     sb.append("class AttachmentArchiveEntry {\n");
     
-    sb.append("    mediaType: ").append(toIndentedString(mediaType)).append("\n");
     sb.append("    entryIndex: ").append(toIndentedString(entryIndex)).append("\n");
     sb.append("    abbreviatedName: ").append(toIndentedString(abbreviatedName)).append("\n");
+    sb.append("    mediaType: ").append(toIndentedString(mediaType)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    size: ").append(toIndentedString(size)).append("\n");
     sb.append("}");

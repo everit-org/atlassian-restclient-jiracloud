@@ -28,7 +28,7 @@
 
   <groupId>org.everit.atlassian</groupId>
   <artifactId>org.everit.atlassian.restclient.jiracloud</artifactId>
-  <version>3.0.0-202010121222-SNAPSHOT</version>
+  <version>3.0.0-202010281413-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>Everit - Atlassian Jira Cloud REST Client</name>
   <description>Jira Cloud REST Client generated with OpenAPITools that uses RXJava for asynchornous processing. Version in JSON: 1001.0.0</description>
@@ -180,51 +180,6 @@
               </execution>
             </executions>
           </plugin>
-<!--           <plugin> -->
-<!--             <groupId>org.codehaus.gmaven</groupId> -->
-<!--             <artifactId>groovy-maven-plugin</artifactId> -->
-<!--             <executions> -->
-<!--               <execution> -->
-<!--                 <id>fixopenapi-v2</id> -->
-<!--                 <phase>generate-sources</phase> -->
-<!--                 <goals> -->
-<!--                   <goal>execute</goal> -->
-<!--                 </goals> -->
-<!--                 <configuration> -->
-<!--                   <source>${project.basedir}/src/main/groovy/TransformJiraOpenAPIJSON.groovy</source> -->
-<!--                   <properties> -->
-<!--                     <openapi-file>${project.basedir}/src/main/resources/META-INF/jira-cloud-v2.openapi.json</openapi-file> -->
-<!--                   </properties> -->
-<!--                 </configuration> -->
-<!--               </execution> -->
-<!--               <execution> -->
-<!--                 <id>fixopenapi-v3</id> -->
-<!--                 <phase>generate-sources</phase> -->
-<!--                 <goals> -->
-<!--                   <goal>execute</goal> -->
-<!--                 </goals> -->
-<!--                 <configuration> -->
-<!--                   <source>${project.basedir}/src/main/groovy/TransformJiraOpenAPIJSON.groovy</source> -->
-<!--                   <properties> -->
-<!--                     <openapi-file>${project.basedir}/src/main/resources/META-INF/jira-cloud-v3.openapi.json</openapi-file> -->
-<!--                   </properties> -->
-<!--                 </configuration> -->
-<!--               </execution> -->
-<!--             </executions> -->
-<!--             <dependencies> -->
-<!--               <dependency> -->
-<!--                 <groupId>com.atlassian.commonmark</groupId> -->
-<!--                 <artifactId>commonmark</artifactId> -->
-<!--                 <version>0.13.0</version> -->
-<!--               </dependency> -->
-<!--               <dependency> -->
-<!--                 <groupId>org.codehaus.groovy</groupId> -->
-<!--                 <artifactId>groovy-all</artifactId> -->
-<!--                 <version>2.5.7</version> -->
-<!--                 <type>pom</type> -->
-<!--               </dependency> -->
-<!--             </dependencies> -->
-<!--           </plugin> -->
           <plugin>
             <groupId>org.openapitools</groupId>
             <artifactId>openapi-generator-maven-plugin</artifactId>

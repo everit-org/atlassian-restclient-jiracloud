@@ -45,7 +45,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.JsonNode;
  * Lists of issues and entity properties. See [Entity properties](https://developer.atlassian.com/cloud/jira/platform/jira-entity-properties/) for more information.
  */
 @ApiModel(description = "Lists of issues and entity properties. See [Entity properties](https://developer.atlassian.com/cloud/jira/platform/jira-entity-properties/) for more information.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:51.013+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
 public class IssueEntityProperties {
   @JsonProperty("entitiesIds")
   private List<Long> entitiesIds = new ArrayList<>();

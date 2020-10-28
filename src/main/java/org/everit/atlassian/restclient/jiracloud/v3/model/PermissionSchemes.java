@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.PermissionScheme;
  * List of all permission schemes.
  */
 @ApiModel(description = "List of all permission schemes.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:51.013+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
 public class PermissionSchemes {
   @JsonProperty("permissionSchemes")
   private List<PermissionScheme> permissionSchemes = new ArrayList<>();

@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * A project category.
  */
 @ApiModel(description = "A project category.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:44.797+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
 public class UpdatedProjectCategory {
   @JsonProperty("self")
   private String self;

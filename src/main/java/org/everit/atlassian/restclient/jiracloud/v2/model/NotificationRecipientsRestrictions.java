@@ -44,7 +44,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.RestrictedPermission;
  * Details of the group membership or permissions needed to receive the notification.
  */
 @ApiModel(description = "Details of the group membership or permissions needed to receive the notification.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:44.797+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
 public class NotificationRecipientsRestrictions {
   @JsonProperty("groups")
   private List<GroupName> groups = new ArrayList<>();

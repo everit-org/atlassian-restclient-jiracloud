@@ -42,7 +42,7 @@ import java.util.Map;
  * Details of the permission.
  */
 @ApiModel(description = "Details of the permission.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:51.013+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
 public class RestrictedPermission {
   @JsonProperty("id")
   private String id;

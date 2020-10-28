@@ -44,7 +44,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.CreatedIssue;
  * Details about the issues created and the errors for requests that failed.
  */
 @ApiModel(description = "Details about the issues created and the errors for requests that failed.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:44.797+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
 public class CreatedIssues {
   @JsonProperty("issues")
   private List<CreatedIssue> issues = new ArrayList<>();

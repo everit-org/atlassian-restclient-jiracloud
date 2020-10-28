@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.WorkflowSchemeAssociat
  * A container for a list of workflow schemes together with the projects they are associated with.
  */
 @ApiModel(description = "A container for a list of workflow schemes together with the projects they are associated with.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:44.797+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
 public class ContainerOfWorkflowSchemeAssociations {
   @JsonProperty("values")
   private List<WorkflowSchemeAssociations> values = new ArrayList<>();

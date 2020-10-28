@@ -41,7 +41,7 @@ import java.net.URI;
  * A user found in a search.
  */
 @ApiModel(description = "A user found in a search.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:51.013+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
 public class UserPickerUser {
   @JsonProperty("accountId")
   private String accountId;

@@ -42,7 +42,7 @@ import java.util.List;
  * A list of JQL queries to parse.
  */
 @ApiModel(description = "A list of JQL queries to parse.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T10:18:51.013+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
 public class JqlQueriesToParse {
   @JsonProperty("queries")
   private List<String> queries = new ArrayList<>();
