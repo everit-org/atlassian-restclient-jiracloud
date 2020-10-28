@@ -42,7 +42,7 @@ import java.util.List;
  * Details about the mapping between issue types and a workflow.
  */
 @ApiModel(description = "Details about the mapping between issue types and a workflow.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
 public class IssueTypesWorkflowMapping {
   @JsonProperty("workflow")
   private String workflow;
@@ -106,10 +106,10 @@ public class IssueTypesWorkflowMapping {
   }
 
    /**
-   * Indicates whether the workflow is the default workflow for the workflow scheme.
+   * Whether the workflow is the default workflow for the workflow scheme.
    * @return defaultMapping
   **/
-  @ApiModelProperty(value = "Indicates whether the workflow is the default workflow for the workflow scheme.")
+  @ApiModelProperty(value = "Whether the workflow is the default workflow for the workflow scheme.")
   public Boolean getDefaultMapping() {
     return defaultMapping;
   }
@@ -124,10 +124,10 @@ public class IssueTypesWorkflowMapping {
   }
 
    /**
-   * Indicates whether a draft workflow scheme is created or updated when updating an active workflow scheme. The draft is updated with the new workflow-issue types mapping. Defaults to &#x60;false&#x60;.
+   * Whether a draft workflow scheme is created or updated when updating an active workflow scheme. The draft is updated with the new workflow-issue types mapping. Defaults to &#x60;false&#x60;.
    * @return updateDraftIfNeeded
   **/
-  @ApiModelProperty(value = "Indicates whether a draft workflow scheme is created or updated when updating an active workflow scheme. The draft is updated with the new workflow-issue types mapping. Defaults to `false`.")
+  @ApiModelProperty(value = "Whether a draft workflow scheme is created or updated when updating an active workflow scheme. The draft is updated with the new workflow-issue types mapping. Defaults to `false`.")
   public Boolean getUpdateDraftIfNeeded() {
     return updateDraftIfNeeded;
   }

@@ -42,7 +42,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.WorkflowTransition;
  * A workflow transition rule.
  */
 @ApiModel(description = "A workflow transition rule.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
 public class ConnectWorkflowTransitionRule {
   @JsonProperty("id")
   private String id;

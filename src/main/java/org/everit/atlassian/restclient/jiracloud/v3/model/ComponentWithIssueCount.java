@@ -42,7 +42,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.User;
  * Details about a component with a count of the issues it contains.
  */
 @ApiModel(description = "Details about a component with a count of the issues it contains.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
 public class ComponentWithIssueCount {
   @JsonProperty("issueCount")
   private Long issueCount;
@@ -52,6 +52,9 @@ public class ComponentWithIssueCount {
 
   @JsonProperty("self")
   private URI self;
+
+  @JsonProperty("projectId")
+  private Long projectId;
 
   @JsonProperty("project")
   private String project;
@@ -100,9 +103,6 @@ public class ComponentWithIssueCount {
 
   @JsonProperty("lead")
   private User lead;
-
-  @JsonProperty("projectId")
-  private Long projectId;
 
   @JsonProperty("realAssignee")
   private User realAssignee;
@@ -189,6 +189,15 @@ public class ComponentWithIssueCount {
   }
 
    /**
+   * Not used.
+   * @return projectId
+  **/
+  @ApiModelProperty(value = "Not used.")
+  public Long getProjectId() {
+    return projectId;
+  }
+
+   /**
    * The key of the project to which the component is assigned.
    * @return project
   **/
@@ -224,15 +233,6 @@ public class ComponentWithIssueCount {
     this.lead = lead;
   }
 
-   /**
-   * Not used.
-   * @return projectId
-  **/
-  @ApiModelProperty(value = "Not used.")
-  public Long getProjectId() {
-    return projectId;
-  }
-
   public ComponentWithIssueCount realAssignee(User realAssignee) {
     this.realAssignee = realAssignee;
     return this;
@@ -252,10 +252,10 @@ public class ComponentWithIssueCount {
   }
 
    /**
-   * Indicates whether a user is associated with &#x60;assigneeType&#x60;. For example, if the &#x60;assigneeType&#x60; is set to &#x60;COMPONENT_LEAD&#x60; but the component lead is not set, then &#x60;false&#x60; is returned.
+   * Whether a user is associated with &#x60;assigneeType&#x60;. For example, if the &#x60;assigneeType&#x60; is set to &#x60;COMPONENT_LEAD&#x60; but the component lead is not set, then &#x60;false&#x60; is returned.
    * @return isAssigneeTypeValid
   **/
-  @ApiModelProperty(value = "Indicates whether a user is associated with `assigneeType`. For example, if the `assigneeType` is set to `COMPONENT_LEAD` but the component lead is not set, then `false` is returned.")
+  @ApiModelProperty(value = "Whether a user is associated with `assigneeType`. For example, if the `assigneeType` is set to `COMPONENT_LEAD` but the component lead is not set, then `false` is returned.")
   public Boolean getIsAssigneeTypeValid() {
     return isAssigneeTypeValid;
   }
@@ -318,10 +318,10 @@ public class ComponentWithIssueCount {
     return Objects.equals(this.issueCount, componentWithIssueCount.issueCount) &&
         Objects.equals(this.description, componentWithIssueCount.description) &&
         Objects.equals(this.self, componentWithIssueCount.self) &&
+        Objects.equals(this.projectId, componentWithIssueCount.projectId) &&
         Objects.equals(this.project, componentWithIssueCount.project) &&
         Objects.equals(this.assigneeType, componentWithIssueCount.assigneeType) &&
         Objects.equals(this.lead, componentWithIssueCount.lead) &&
-        Objects.equals(this.projectId, componentWithIssueCount.projectId) &&
         Objects.equals(this.realAssignee, componentWithIssueCount.realAssignee) &&
         Objects.equals(this.isAssigneeTypeValid, componentWithIssueCount.isAssigneeTypeValid) &&
         Objects.equals(this.assignee, componentWithIssueCount.assignee) &&
@@ -332,7 +332,7 @@ public class ComponentWithIssueCount {
 
   @Override
   public int hashCode() {
-    return Objects.hash(issueCount, description, self, project, assigneeType, lead, projectId, realAssignee, isAssigneeTypeValid, assignee, realAssigneeType, name, id);
+    return Objects.hash(issueCount, description, self, projectId, project, assigneeType, lead, realAssignee, isAssigneeTypeValid, assignee, realAssigneeType, name, id);
   }
 
 
@@ -344,10 +344,10 @@ public class ComponentWithIssueCount {
     sb.append("    issueCount: ").append(toIndentedString(issueCount)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
+    sb.append("    projectId: ").append(toIndentedString(projectId)).append("\n");
     sb.append("    project: ").append(toIndentedString(project)).append("\n");
     sb.append("    assigneeType: ").append(toIndentedString(assigneeType)).append("\n");
     sb.append("    lead: ").append(toIndentedString(lead)).append("\n");
-    sb.append("    projectId: ").append(toIndentedString(projectId)).append("\n");
     sb.append("    realAssignee: ").append(toIndentedString(realAssignee)).append("\n");
     sb.append("    isAssigneeTypeValid: ").append(toIndentedString(isAssigneeTypeValid)).append("\n");
     sb.append("    assignee: ").append(toIndentedString(assignee)).append("\n");

@@ -36,14 +36,14 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.net.URI;
-import org.everit.atlassian.restclient.jiracloud.v2.model.ProjectRoleGroupBean;
-import org.everit.atlassian.restclient.jiracloud.v2.model.ProjectRoleUserBean;
+import org.everit.atlassian.restclient.jiracloud.v2.model.ProjectRoleGroup;
+import org.everit.atlassian.restclient.jiracloud.v2.model.ProjectRoleUser;
 
 /**
  * Details about a user assigned to a project role.
  */
 @ApiModel(description = "Details about a user assigned to a project role.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
 public class RoleActor {
   @JsonProperty("id")
   private Long id;
@@ -51,8 +51,43 @@ public class RoleActor {
   @JsonProperty("displayName")
   private String displayName;
 
+  /**
+   * The type of role actor.
+   */
+  public enum TypeEnum {
+    GROUP_ROLE_ACTOR("atlassian-group-role-actor"),
+    
+    USER_ROLE_ACTOR("atlassian-user-role-actor");
+
+    private String value;
+
+    TypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static TypeEnum fromValue(String value) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (b.value.equalsIgnoreCase(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   @JsonProperty("type")
-  private String type;
+  private TypeEnum type;
 
   @JsonProperty("name")
   private String name;
@@ -61,57 +96,36 @@ public class RoleActor {
   private URI avatarUrl;
 
   @JsonProperty("actorUser")
-  private ProjectRoleUserBean actorUser;
+  private ProjectRoleUser actorUser;
 
   @JsonProperty("actorGroup")
-  private ProjectRoleGroupBean actorGroup;
-
-  @JsonProperty("user")
-  private String user;
-
-  public RoleActor id(Long id) {
-    this.id = id;
-    return this;
-  }
+  private ProjectRoleGroup actorGroup;
 
    /**
-   * Get id
+   * The ID of the role actor.
    * @return id
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The ID of the role actor.")
   public Long getId() {
     return id;
   }
 
-  public void setId(Long id) {
-    this.id = id;
-  }
-
    /**
-   * The display name of the user. Depending on the user’s privacy setting, this may return an alternative value.
+   * The display name of the role actor. For users, depending on the user’s privacy setting, this may return an alternative value for the user&#39;s name.
    * @return displayName
   **/
-  @ApiModelProperty(value = "The display name of the user. Depending on the user’s privacy setting, this may return an alternative value.")
+  @ApiModelProperty(value = "The display name of the role actor. For users, depending on the user’s privacy setting, this may return an alternative value for the user's name.")
   public String getDisplayName() {
     return displayName;
   }
 
-  public RoleActor type(String type) {
-    this.type = type;
-    return this;
-  }
-
    /**
-   * Get type
+   * The type of role actor.
    * @return type
   **/
-  @ApiModelProperty(value = "")
-  public String getType() {
+  @ApiModelProperty(value = "The type of role actor.")
+  public TypeEnum getType() {
     return type;
-  }
-
-  public void setType(String type) {
-    this.type = type;
   }
 
    /**
@@ -123,27 +137,13 @@ public class RoleActor {
     return name;
   }
 
-  public RoleActor avatarUrl(URI avatarUrl) {
-    this.avatarUrl = avatarUrl;
-    return this;
-  }
-
    /**
-   * Get avatarUrl
+   * The avatar of the role actor.
    * @return avatarUrl
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The avatar of the role actor.")
   public URI getAvatarUrl() {
     return avatarUrl;
-  }
-
-  public void setAvatarUrl(URI avatarUrl) {
-    this.avatarUrl = avatarUrl;
-  }
-
-  public RoleActor actorUser(ProjectRoleUserBean actorUser) {
-    this.actorUser = actorUser;
-    return this;
   }
 
    /**
@@ -151,17 +151,8 @@ public class RoleActor {
    * @return actorUser
   **/
   @ApiModelProperty(value = "")
-  public ProjectRoleUserBean getActorUser() {
+  public ProjectRoleUser getActorUser() {
     return actorUser;
-  }
-
-  public void setActorUser(ProjectRoleUserBean actorUser) {
-    this.actorUser = actorUser;
-  }
-
-  public RoleActor actorGroup(ProjectRoleGroupBean actorGroup) {
-    this.actorGroup = actorGroup;
-    return this;
   }
 
    /**
@@ -169,30 +160,8 @@ public class RoleActor {
    * @return actorGroup
   **/
   @ApiModelProperty(value = "")
-  public ProjectRoleGroupBean getActorGroup() {
+  public ProjectRoleGroup getActorGroup() {
     return actorGroup;
-  }
-
-  public void setActorGroup(ProjectRoleGroupBean actorGroup) {
-    this.actorGroup = actorGroup;
-  }
-
-  public RoleActor user(String user) {
-    this.user = user;
-    return this;
-  }
-
-   /**
-   * Get user
-   * @return user
-  **/
-  @ApiModelProperty(value = "")
-  public String getUser() {
-    return user;
-  }
-
-  public void setUser(String user) {
-    this.user = user;
   }
 
 
@@ -211,13 +180,12 @@ public class RoleActor {
         Objects.equals(this.name, roleActor.name) &&
         Objects.equals(this.avatarUrl, roleActor.avatarUrl) &&
         Objects.equals(this.actorUser, roleActor.actorUser) &&
-        Objects.equals(this.actorGroup, roleActor.actorGroup) &&
-        Objects.equals(this.user, roleActor.user);
+        Objects.equals(this.actorGroup, roleActor.actorGroup);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, displayName, type, name, avatarUrl, actorUser, actorGroup, user);
+    return Objects.hash(id, displayName, type, name, avatarUrl, actorUser, actorGroup);
   }
 
 
@@ -233,7 +201,6 @@ public class RoleActor {
     sb.append("    avatarUrl: ").append(toIndentedString(avatarUrl)).append("\n");
     sb.append("    actorUser: ").append(toIndentedString(actorUser)).append("\n");
     sb.append("    actorGroup: ").append(toIndentedString(actorGroup)).append("\n");
-    sb.append("    user: ").append(toIndentedString(user)).append("\n");
     sb.append("}");
     return sb.toString();
   }

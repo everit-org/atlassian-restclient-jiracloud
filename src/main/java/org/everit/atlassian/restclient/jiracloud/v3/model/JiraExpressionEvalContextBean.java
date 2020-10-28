@@ -41,7 +41,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.JexpIssues;
 /**
  * JiraExpressionEvalContextBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
 public class JiraExpressionEvalContextBean {
   @JsonProperty("issue")
   private IdOrKeyBean issue;
@@ -88,10 +88,10 @@ public class JiraExpressionEvalContextBean {
   }
 
    /**
-   * (EXPERIMENTAL) The collection of issues that is available under the &#x60;issues&#x60; variable when evaluating the expression.
+   * The collection of issues that is available under the &#x60;issues&#x60; variable when evaluating the expression.
    * @return issues
   **/
-  @ApiModelProperty(value = "(EXPERIMENTAL) The collection of issues that is available under the `issues` variable when evaluating the expression.")
+  @ApiModelProperty(value = "The collection of issues that is available under the `issues` variable when evaluating the expression.")
   public JexpIssues getIssues() {
     return issues;
   }

@@ -41,7 +41,7 @@ import java.util.List;
 /**
  * SearchRequestBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
 public class SearchRequestBean {
   @JsonProperty("jql")
   private String jql;
@@ -50,7 +50,7 @@ public class SearchRequestBean {
   private Integer startAt;
 
   @JsonProperty("maxResults")
-  private Integer maxResults;
+  private Integer maxResults = 50;
 
   @JsonProperty("fields")
   private List<String> fields = new ArrayList<>();
@@ -150,10 +150,10 @@ public class SearchRequestBean {
   }
 
    /**
-   * The maximum number of items to return per page. The default is &#x60;50&#x60; and the maximum is &#x60;100&#x60;.
+   * The maximum number of items to return per page.
    * @return maxResults
   **/
-  @ApiModelProperty(value = "The maximum number of items to return per page. The default is `50` and the maximum is `100`.")
+  @ApiModelProperty(value = "The maximum number of items to return per page.")
   public Integer getMaxResults() {
     return maxResults;
   }
@@ -176,10 +176,10 @@ public class SearchRequestBean {
   }
 
    /**
-   * A comma-separated list of fields to return for each issue, use it to retrieve a subset of fields. Allowed values   *  &#x60;*all&#x60; Returns all fields.  *  &#x60;*navigable&#x60; Returns navigable fields.  *  Any issue field, prefixed with a minus to exclude.  The default is &#x60;*navigable&#x60;.  Examples:   *  &#x60;summary,comment&#x60; Returns the summary and comments fields only.  *  &#x60;-description&#x60; Returns all navigable (default) fields except description.  *  &#x60;*all,-comment&#x60; Returns all fields except comments.  Multiple &#x60;fields&#x60; parameters can be included in a request.  Note: All navigable fields are returned by default. This differs from [GET issue](#api-rest-api-3-issue-issueIdOrKey-get) where the default is all fields.
+   * A list of fields to return for each issue, use it to retrieve a subset of fields. This parameter accepts a comma-separated list. Expand options include:   *  &#x60;*all&#x60; Returns all fields.  *  &#x60;*navigable&#x60; Returns navigable fields.  *  Any issue field, prefixed with a minus to exclude.  The default is &#x60;*navigable&#x60;.  Examples:   *  &#x60;summary,comment&#x60; Returns the summary and comments fields only.  *  &#x60;-description&#x60; Returns all navigable (default) fields except description.  *  &#x60;*all,-comment&#x60; Returns all fields except comments.  Multiple &#x60;fields&#x60; parameters can be included in a request.  Note: All navigable fields are returned by default. This differs from [GET issue](#api-rest-api-3-issue-issueIdOrKey-get) where the default is all fields.
    * @return fields
   **/
-  @ApiModelProperty(value = "A comma-separated list of fields to return for each issue, use it to retrieve a subset of fields. Allowed values   *  `*all` Returns all fields.  *  `*navigable` Returns navigable fields.  *  Any issue field, prefixed with a minus to exclude.  The default is `*navigable`.  Examples:   *  `summary,comment` Returns the summary and comments fields only.  *  `-description` Returns all navigable (default) fields except description.  *  `*all,-comment` Returns all fields except comments.  Multiple `fields` parameters can be included in a request.  Note: All navigable fields are returned by default. This differs from [GET issue](#api-rest-api-3-issue-issueIdOrKey-get) where the default is all fields.")
+  @ApiModelProperty(value = "A list of fields to return for each issue, use it to retrieve a subset of fields. This parameter accepts a comma-separated list. Expand options include:   *  `*all` Returns all fields.  *  `*navigable` Returns navigable fields.  *  Any issue field, prefixed with a minus to exclude.  The default is `*navigable`.  Examples:   *  `summary,comment` Returns the summary and comments fields only.  *  `-description` Returns all navigable (default) fields except description.  *  `*all,-comment` Returns all fields except comments.  Multiple `fields` parameters can be included in a request.  Note: All navigable fields are returned by default. This differs from [GET issue](#api-rest-api-3-issue-issueIdOrKey-get) where the default is all fields.")
   public List<String> getFields() {
     return fields;
   }
@@ -246,10 +246,10 @@ public class SearchRequestBean {
   }
 
    /**
-   * A comma-separated list of up to 5 issue properties to include in the results.
+   * A list of up to 5 issue properties to include in the results. This parameter accepts a comma-separated list.
    * @return properties
   **/
-  @ApiModelProperty(value = "A comma-separated list of up to 5 issue properties to include in the results.")
+  @ApiModelProperty(value = "A list of up to 5 issue properties to include in the results. This parameter accepts a comma-separated list.")
   public List<String> getProperties() {
     return properties;
   }

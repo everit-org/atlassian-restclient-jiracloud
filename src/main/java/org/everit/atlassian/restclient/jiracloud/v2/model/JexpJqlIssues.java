@@ -37,10 +37,10 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * The JQL specifying the issues available in the evaluated Jira expression under the &#x60;issues&#x60; context variable. Not all issues returned by the JQL query will be loaded, but only a portion of them, as described by the &#x60;startAt&#x60; and &#x60;maxResults&#x60; properties. Iterate over pages by inspecting the meta data included in the response.
+ * The JQL specifying the issues available in the evaluated Jira expression under the &#x60;issues&#x60; context variable. Not all issues returned by the JQL query are loaded, only those described by the &#x60;startAt&#x60; and &#x60;maxResults&#x60; properties. To determine whether it is necessary to iterate to ensure all the issues returned by the JQL query are evaluated, inspect &#x60;meta.issues.jql.count&#x60; in the response.
  */
-@ApiModel(description = "The JQL specifying the issues available in the evaluated Jira expression under the `issues` context variable. Not all issues returned by the JQL query will be loaded, but only a portion of them, as described by the `startAt` and `maxResults` properties. Iterate over pages by inspecting the meta data included in the response.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@ApiModel(description = "The JQL specifying the issues available in the evaluated Jira expression under the `issues` context variable. Not all issues returned by the JQL query are loaded, only those described by the `startAt` and `maxResults` properties. To determine whether it is necessary to iterate to ensure all the issues returned by the JQL query are evaluated, inspect `meta.issues.jql.count` in the response.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
 public class JexpJqlIssues {
   @JsonProperty("query")
   private String query;
@@ -115,10 +115,10 @@ public class JexpJqlIssues {
   }
 
    /**
-   * The index of the first issue returned from the JQL query.
+   * The index of the first issue to return from the JQL query.
    * @return startAt
   **/
-  @ApiModelProperty(value = "The index of the first issue returned from the JQL query.")
+  @ApiModelProperty(value = "The index of the first issue to return from the JQL query.")
   public Long getStartAt() {
     return startAt;
   }
@@ -133,10 +133,10 @@ public class JexpJqlIssues {
   }
 
    /**
-   * The maximum number of issues that will be included on the list. This value is currently capped at 1000 but the cap may change without notice.
+   * The maximum number of issues to return from the JQL query. Inspect &#x60;meta.issues.jql.maxResults&#x60; in the response to ensure the maximum value has not been exceeded.
    * @return maxResults
   **/
-  @ApiModelProperty(value = "The maximum number of issues that will be included on the list. This value is currently capped at 1000 but the cap may change without notice.")
+  @ApiModelProperty(value = "The maximum number of issues to return from the JQL query. Inspect `meta.issues.jql.maxResults` in the response to ensure the maximum value has not been exceeded.")
   public Integer getMaxResults() {
     return maxResults;
   }

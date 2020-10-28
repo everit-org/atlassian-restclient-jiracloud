@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.ProjectIssueCreateMeta
  * The wrapper for the issue creation metadata for a list of projects.
  */
 @ApiModel(description = "The wrapper for the issue creation metadata for a list of projects.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
 public class IssueCreateMetadata {
   @JsonProperty("expand")
   private String expand;

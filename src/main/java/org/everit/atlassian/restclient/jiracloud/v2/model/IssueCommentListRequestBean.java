@@ -41,7 +41,7 @@ import java.util.List;
 /**
  * IssueCommentListRequestBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
 public class IssueCommentListRequestBean {
   @JsonProperty("ids")
   private List<Long> ids = new ArrayList<>();
@@ -52,18 +52,15 @@ public class IssueCommentListRequestBean {
   }
 
   public IssueCommentListRequestBean addIdsItem(Long idsItem) {
-    if (this.ids == null) {
-      this.ids = new ArrayList<>();
-    }
     this.ids.add(idsItem);
     return this;
   }
 
    /**
-   * The list of comment IDs. A maximum of 1000 IDs can be specified. Required.
+   * The list of comment IDs. A maximum of 1000 IDs can be specified.
    * @return ids
   **/
-  @ApiModelProperty(value = "The list of comment IDs. A maximum of 1000 IDs can be specified. Required.")
+  @ApiModelProperty(required = true, value = "The list of comment IDs. A maximum of 1000 IDs can be specified.")
   public List<Long> getIds() {
     return ids;
   }

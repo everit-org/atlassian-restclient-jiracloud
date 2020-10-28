@@ -36,6 +36,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.net.URI;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -44,8 +45,9 @@ import java.util.UUID;
 import org.everit.atlassian.restclient.jiracloud.v2.model.AvatarUrlsBean;
 import org.everit.atlassian.restclient.jiracloud.v2.model.Component;
 import org.everit.atlassian.restclient.jiracloud.v2.model.Hierarchy;
-import org.everit.atlassian.restclient.jiracloud.v2.model.IssueTypeBean;
+import org.everit.atlassian.restclient.jiracloud.v2.model.IssueTypeDetails;
 import org.everit.atlassian.restclient.jiracloud.v2.model.ProjectCategory;
+import org.everit.atlassian.restclient.jiracloud.v2.model.ProjectInsight;
 import org.everit.atlassian.restclient.jiracloud.v2.model.ProjectPermissions;
 import org.everit.atlassian.restclient.jiracloud.v2.model.User;
 import org.everit.atlassian.restclient.jiracloud.v2.model.Version;
@@ -54,7 +56,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.Version;
  * Details about a project.
  */
 @ApiModel(description = "Details about a project.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
 public class Project {
   @JsonProperty("expand")
   private String expand;
@@ -78,7 +80,7 @@ public class Project {
   private List<Component> components = new ArrayList<>();
 
   @JsonProperty("issueTypes")
-  private List<IssueTypeBean> issueTypes = new ArrayList<>();
+  private List<IssueTypeDetails> issueTypes = new ArrayList<>();
 
   @JsonProperty("url")
   private String url;
@@ -186,9 +188,7 @@ public class Project {
    * The type of the project.
    */
   public enum StyleEnum {
-    CLASSIC("CLASSIC"),
-    
-    NEXTGEN("NEXTGEN"),
+    CLASSIC("classic"),
     
     NEXT_GEN("next-gen");
 
@@ -222,6 +222,9 @@ public class Project {
   @JsonProperty("style")
   private StyleEnum style;
 
+  @JsonProperty("favourite")
+  private Boolean favourite;
+
   @JsonProperty("isPrivate")
   private Boolean isPrivate;
 
@@ -236,6 +239,30 @@ public class Project {
 
   @JsonProperty("uuid")
   private UUID uuid;
+
+  @JsonProperty("insight")
+  private ProjectInsight insight;
+
+  @JsonProperty("deleted")
+  private Boolean deleted;
+
+  @JsonProperty("retentionTillDate")
+  private OffsetDateTime retentionTillDate;
+
+  @JsonProperty("deletedDate")
+  private OffsetDateTime deletedDate;
+
+  @JsonProperty("deletedBy")
+  private User deletedBy;
+
+  @JsonProperty("archived")
+  private Boolean archived;
+
+  @JsonProperty("archivedDate")
+  private OffsetDateTime archivedDate;
+
+  @JsonProperty("archivedBy")
+  private User archivedBy;
 
    /**
    * Expand options that include additional project details in the response.
@@ -314,7 +341,7 @@ public class Project {
    * @return issueTypes
   **/
   @ApiModelProperty(value = "List of the issue types available in the project.")
-  public List<IssueTypeBean> getIssueTypes() {
+  public List<IssueTypeDetails> getIssueTypes() {
     return issueTypes;
   }
 
@@ -409,10 +436,10 @@ public class Project {
   }
 
    /**
-   * Indicates whether the project is simplified.
+   * Whether the project is simplified.
    * @return simplified
   **/
-  @ApiModelProperty(value = "Indicates whether the project is simplified.")
+  @ApiModelProperty(value = "Whether the project is simplified.")
   public Boolean getSimplified() {
     return simplified;
   }
@@ -426,11 +453,29 @@ public class Project {
     return style;
   }
 
+  public Project favourite(Boolean favourite) {
+    this.favourite = favourite;
+    return this;
+  }
+
    /**
-   * Indicates whether the project is private.
+   * Whether the project is selected as a favorite.
+   * @return favourite
+  **/
+  @ApiModelProperty(value = "Whether the project is selected as a favorite.")
+  public Boolean getFavourite() {
+    return favourite;
+  }
+
+  public void setFavourite(Boolean favourite) {
+    this.favourite = favourite;
+  }
+
+   /**
+   * Whether the project is private.
    * @return isPrivate
   **/
-  @ApiModelProperty(value = "Indicates whether the project is private.")
+  @ApiModelProperty(value = "Whether the project is private.")
   public Boolean getIsPrivate() {
     return isPrivate;
   }
@@ -463,12 +508,84 @@ public class Project {
   }
 
    /**
-   * unique ID for next-gen projects
+   * Unique ID for next-gen projects.
    * @return uuid
   **/
-  @ApiModelProperty(value = "unique ID for next-gen projects")
+  @ApiModelProperty(value = "Unique ID for next-gen projects.")
   public UUID getUuid() {
     return uuid;
+  }
+
+   /**
+   * Insights about the project.
+   * @return insight
+  **/
+  @ApiModelProperty(value = "Insights about the project.")
+  public ProjectInsight getInsight() {
+    return insight;
+  }
+
+   /**
+   * Whether the project is marked as deleted.
+   * @return deleted
+  **/
+  @ApiModelProperty(value = "Whether the project is marked as deleted.")
+  public Boolean getDeleted() {
+    return deleted;
+  }
+
+   /**
+   * The date when the project is deleted permanently.
+   * @return retentionTillDate
+  **/
+  @ApiModelProperty(value = "The date when the project is deleted permanently.")
+  public OffsetDateTime getRetentionTillDate() {
+    return retentionTillDate;
+  }
+
+   /**
+   * The date when the project was marked as deleted.
+   * @return deletedDate
+  **/
+  @ApiModelProperty(value = "The date when the project was marked as deleted.")
+  public OffsetDateTime getDeletedDate() {
+    return deletedDate;
+  }
+
+   /**
+   * The user who marked the project as deleted.
+   * @return deletedBy
+  **/
+  @ApiModelProperty(value = "The user who marked the project as deleted.")
+  public User getDeletedBy() {
+    return deletedBy;
+  }
+
+   /**
+   * Whether the project is archived.
+   * @return archived
+  **/
+  @ApiModelProperty(value = "Whether the project is archived.")
+  public Boolean getArchived() {
+    return archived;
+  }
+
+   /**
+   * The date when the project was archived.
+   * @return archivedDate
+  **/
+  @ApiModelProperty(value = "The date when the project was archived.")
+  public OffsetDateTime getArchivedDate() {
+    return archivedDate;
+  }
+
+   /**
+   * The user who archived the project.
+   * @return archivedBy
+  **/
+  @ApiModelProperty(value = "The user who archived the project.")
+  public User getArchivedBy() {
+    return archivedBy;
   }
 
 
@@ -500,16 +617,25 @@ public class Project {
         Objects.equals(this.projectTypeKey, project.projectTypeKey) &&
         Objects.equals(this.simplified, project.simplified) &&
         Objects.equals(this.style, project.style) &&
+        Objects.equals(this.favourite, project.favourite) &&
         Objects.equals(this.isPrivate, project.isPrivate) &&
         Objects.equals(this.issueTypeHierarchy, project.issueTypeHierarchy) &&
         Objects.equals(this.permissions, project.permissions) &&
         Objects.equals(this.properties, project.properties) &&
-        Objects.equals(this.uuid, project.uuid);
+        Objects.equals(this.uuid, project.uuid) &&
+        Objects.equals(this.insight, project.insight) &&
+        Objects.equals(this.deleted, project.deleted) &&
+        Objects.equals(this.retentionTillDate, project.retentionTillDate) &&
+        Objects.equals(this.deletedDate, project.deletedDate) &&
+        Objects.equals(this.deletedBy, project.deletedBy) &&
+        Objects.equals(this.archived, project.archived) &&
+        Objects.equals(this.archivedDate, project.archivedDate) &&
+        Objects.equals(this.archivedBy, project.archivedBy);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(expand, self, id, key, description, lead, components, issueTypes, url, email, assigneeType, versions, name, roles, avatarUrls, projectCategory, projectTypeKey, simplified, style, isPrivate, issueTypeHierarchy, permissions, properties, uuid);
+    return Objects.hash(expand, self, id, key, description, lead, components, issueTypes, url, email, assigneeType, versions, name, roles, avatarUrls, projectCategory, projectTypeKey, simplified, style, favourite, isPrivate, issueTypeHierarchy, permissions, properties, uuid, insight, deleted, retentionTillDate, deletedDate, deletedBy, archived, archivedDate, archivedBy);
   }
 
 
@@ -537,11 +663,20 @@ public class Project {
     sb.append("    projectTypeKey: ").append(toIndentedString(projectTypeKey)).append("\n");
     sb.append("    simplified: ").append(toIndentedString(simplified)).append("\n");
     sb.append("    style: ").append(toIndentedString(style)).append("\n");
+    sb.append("    favourite: ").append(toIndentedString(favourite)).append("\n");
     sb.append("    isPrivate: ").append(toIndentedString(isPrivate)).append("\n");
     sb.append("    issueTypeHierarchy: ").append(toIndentedString(issueTypeHierarchy)).append("\n");
     sb.append("    permissions: ").append(toIndentedString(permissions)).append("\n");
     sb.append("    properties: ").append(toIndentedString(properties)).append("\n");
     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
+    sb.append("    insight: ").append(toIndentedString(insight)).append("\n");
+    sb.append("    deleted: ").append(toIndentedString(deleted)).append("\n");
+    sb.append("    retentionTillDate: ").append(toIndentedString(retentionTillDate)).append("\n");
+    sb.append("    deletedDate: ").append(toIndentedString(deletedDate)).append("\n");
+    sb.append("    deletedBy: ").append(toIndentedString(deletedBy)).append("\n");
+    sb.append("    archived: ").append(toIndentedString(archived)).append("\n");
+    sb.append("    archivedDate: ").append(toIndentedString(archivedDate)).append("\n");
+    sb.append("    archivedBy: ").append(toIndentedString(archivedBy)).append("\n");
     sb.append("}");
     return sb.toString();
   }

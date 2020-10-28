@@ -43,7 +43,7 @@ import java.util.List;
  * A page of items.
  */
 @ApiModel(description = "A page of items.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
 public class PageBeanString {
   @JsonProperty("self")
   private URI self;
@@ -112,10 +112,10 @@ public class PageBeanString {
   }
 
    /**
-   * Indicates whether this is the last page.
+   * Whether this is the last page.
    * @return isLast
   **/
-  @ApiModelProperty(value = "Indicates whether this is the last page.")
+  @ApiModelProperty(value = "Whether this is the last page.")
   public Boolean getIsLast() {
     return isLast;
   }

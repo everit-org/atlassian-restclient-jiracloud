@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.StatusDetails;
  * Status details for an issue type.
  */
 @ApiModel(description = "Status details for an issue type.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
 public class IssueTypeWithStatus {
   @JsonProperty("self")
   private String self;
@@ -88,10 +88,10 @@ public class IssueTypeWithStatus {
   }
 
    /**
-   * Indicates whether this issue type represents subtasks.
+   * Whether this issue type represents subtasks.
    * @return subtask
   **/
-  @ApiModelProperty(required = true, value = "Indicates whether this issue type represents subtasks.")
+  @ApiModelProperty(required = true, value = "Whether this issue type represents subtasks.")
   public Boolean getSubtask() {
     return subtask;
   }

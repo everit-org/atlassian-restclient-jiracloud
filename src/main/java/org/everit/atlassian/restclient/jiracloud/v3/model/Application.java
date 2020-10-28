@@ -42,7 +42,7 @@ import java.util.Map;
  * The application the linked item is in.
  */
 @ApiModel(description = "The application the linked item is in.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
 public class Application {
   @JsonProperty("type")
   private String type;

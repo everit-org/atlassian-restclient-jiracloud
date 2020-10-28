@@ -45,7 +45,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.UserBean;
  * Details of a dashboard.
  */
 @ApiModel(description = "Details of a dashboard.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
 public class Dashboard {
   @JsonProperty("description")
   private String description;
@@ -105,10 +105,10 @@ public class Dashboard {
   }
 
    /**
-   * Indicates whether the dashboard is selected as a favorite by the user.
+   * Whether the dashboard is selected as a favorite by the user.
    * @return isFavourite
   **/
-  @ApiModelProperty(value = "Indicates whether the dashboard is selected as a favorite by the user.")
+  @ApiModelProperty(value = "Whether the dashboard is selected as a favorite by the user.")
   public Boolean getIsFavourite() {
     return isFavourite;
   }

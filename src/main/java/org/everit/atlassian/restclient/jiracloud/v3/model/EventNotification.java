@@ -35,7 +35,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.everit.atlassian.restclient.jiracloud.v3.model.FieldDeprecated;
+import org.everit.atlassian.restclient.jiracloud.v3.model.FieldDetails;
 import org.everit.atlassian.restclient.jiracloud.v3.model.GroupName;
 import org.everit.atlassian.restclient.jiracloud.v3.model.ProjectRole;
 import org.everit.atlassian.restclient.jiracloud.v3.model.UserDetails;
@@ -44,7 +44,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.UserDetails;
  * Details about a notification associated with an event.
  */
 @ApiModel(description = "Details about a notification associated with an event.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
 public class EventNotification {
   @JsonProperty("expand")
   private String expand;
@@ -117,7 +117,7 @@ public class EventNotification {
   private GroupName group;
 
   @JsonProperty("field")
-  private FieldDeprecated field;
+  private FieldDetails field;
 
   @JsonProperty("emailAddress")
   private String emailAddress;
@@ -188,10 +188,10 @@ public class EventNotification {
   }
 
    /**
-   * The value of the &#x60;notificationType&#x60;:   *  &#x60;User&#x60; The &#x60;parameter&#x60; is the user key.  *  &#x60;Group&#x60; The &#x60;parameter&#x60; is the group name.  *  &#x60;ProjectRole&#x60; The &#x60;parameter&#x60; is the project role ID.  *  &#x60;UserCustomField&#x60; The &#x60;parameter&#x60; is the ID of the custom field.  *  &#x60;GroupCustomField&#x60; The &#x60;parameter&#x60; is the ID of the custom field.
+   * The value of the &#x60;notificationType&#x60;:   *  &#x60;User&#x60; The &#x60;parameter&#x60; is the user account ID.  *  &#x60;Group&#x60; The &#x60;parameter&#x60; is the group name.  *  &#x60;ProjectRole&#x60; The &#x60;parameter&#x60; is the project role ID.  *  &#x60;UserCustomField&#x60; The &#x60;parameter&#x60; is the ID of the custom field.  *  &#x60;GroupCustomField&#x60; The &#x60;parameter&#x60; is the ID of the custom field.
    * @return parameter
   **/
-  @ApiModelProperty(value = "The value of the `notificationType`:   *  `User` The `parameter` is the user key.  *  `Group` The `parameter` is the group name.  *  `ProjectRole` The `parameter` is the project role ID.  *  `UserCustomField` The `parameter` is the ID of the custom field.  *  `GroupCustomField` The `parameter` is the ID of the custom field.")
+  @ApiModelProperty(value = "The value of the `notificationType`:   *  `User` The `parameter` is the user account ID.  *  `Group` The `parameter` is the group name.  *  `ProjectRole` The `parameter` is the project role ID.  *  `UserCustomField` The `parameter` is the ID of the custom field.  *  `GroupCustomField` The `parameter` is the ID of the custom field.")
   public String getParameter() {
     return parameter;
   }
@@ -218,7 +218,7 @@ public class EventNotification {
     this.group = group;
   }
 
-  public EventNotification field(FieldDeprecated field) {
+  public EventNotification field(FieldDetails field) {
     this.field = field;
     return this;
   }
@@ -228,11 +228,11 @@ public class EventNotification {
    * @return field
   **/
   @ApiModelProperty(value = "The custom user or group field.")
-  public FieldDeprecated getField() {
+  public FieldDetails getField() {
     return field;
   }
 
-  public void setField(FieldDeprecated field) {
+  public void setField(FieldDetails field) {
     this.field = field;
   }
 

@@ -28,7 +28,7 @@
 
   <groupId>org.everit.atlassian</groupId>
   <artifactId>org.everit.atlassian.restclient.jiracloud</artifactId>
-  <version>2.0.7-201909051218</version>
+  <version>3.0.0-202010281413-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>Everit - Atlassian Jira Cloud REST Client</name>
   <description>Jira Cloud REST Client generated with OpenAPITools that uses RXJava for asynchornous processing. Version in JSON: 1001.0.0</description>
@@ -85,12 +85,24 @@
               *
             </Import-Package>
             <Export-Package>
-              org.everit.atlassian.restclient.jiracloud.v2.*;version="2.0.1",
-              org.everit.atlassian.restclient.jiracloud.v3.*;version="2.0.1",
+              org.everit.atlassian.restclient.jiracloud.v2.*;version="3.0.0",
+              org.everit.atlassian.restclient.jiracloud.v3.*;version="3.0.0",
               org.everit.atlassian.restclient.jiracloud.util;version="1.0.1"
             </Export-Package>
           </instructions>
         </configuration>
+        <executions>
+          <execution>
+             <id>baseline</id>
+             <goals>
+               <goal>baseline</goal>
+             </goals>
+             <configuration>
+               <failOnError>true</failOnError>
+               <failOnWarning>true</failOnWarning>
+             </configuration>
+           </execution>
+         </executions>
       </plugin>
     </plugins>
   </build>
@@ -167,51 +179,6 @@
                 </configuration>
               </execution>
             </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.codehaus.gmaven</groupId>
-            <artifactId>groovy-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>fixopenapi-v2</id>
-                <phase>generate-sources</phase>
-                <goals>
-                  <goal>execute</goal>
-                </goals>
-                <configuration>
-                  <source>${project.basedir}/src/main/groovy/TransformJiraOpenAPIJSON.groovy</source>
-                  <properties>
-                    <openapi-file>${project.basedir}/src/main/resources/META-INF/jira-cloud-v2.openapi.json</openapi-file>
-                  </properties>
-                </configuration>
-              </execution>
-              <execution>
-                <id>fixopenapi-v3</id>
-                <phase>generate-sources</phase>
-                <goals>
-                  <goal>execute</goal>
-                </goals>
-                <configuration>
-                  <source>${project.basedir}/src/main/groovy/TransformJiraOpenAPIJSON.groovy</source>
-                  <properties>
-                    <openapi-file>${project.basedir}/src/main/resources/META-INF/jira-cloud-v3.openapi.json</openapi-file>
-                  </properties>
-                </configuration>
-              </execution>
-            </executions>
-            <dependencies>
-              <dependency>
-                <groupId>com.atlassian.commonmark</groupId>
-                <artifactId>commonmark</artifactId>
-                <version>0.13.0</version>
-              </dependency>
-              <dependency>
-                <groupId>org.codehaus.groovy</groupId>
-                <artifactId>groovy-all</artifactId>
-                <version>2.5.7</version>
-                <type>pom</type>
-              </dependency>
-            </dependencies>
           </plugin>
           <plugin>
             <groupId>org.openapitools</groupId>

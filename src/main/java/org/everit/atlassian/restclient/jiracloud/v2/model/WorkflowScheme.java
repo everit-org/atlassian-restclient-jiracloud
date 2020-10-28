@@ -39,14 +39,14 @@ import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.everit.atlassian.restclient.jiracloud.v2.model.IssueTypeBean;
+import org.everit.atlassian.restclient.jiracloud.v2.model.IssueTypeDetails;
 import org.everit.atlassian.restclient.jiracloud.v2.model.User;
 
 /**
  * Details about a workflow scheme.
  */
 @ApiModel(description = "Details about a workflow scheme.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
 public class WorkflowScheme {
   @JsonProperty("id")
   private Long id;
@@ -85,7 +85,7 @@ public class WorkflowScheme {
   private Boolean updateDraftIfNeeded;
 
   @JsonProperty("issueTypes")
-  private Map<String, IssueTypeBean> issueTypes = new HashMap<>();
+  private Map<String, IssueTypeDetails> issueTypes = new HashMap<>();
 
    /**
    * The ID of the workflow scheme.
@@ -195,10 +195,10 @@ public class WorkflowScheme {
   }
 
    /**
-   * Indicates whether the workflow scheme is a draft or not.
+   * Whether the workflow scheme is a draft or not.
    * @return draft
   **/
-  @ApiModelProperty(value = "Indicates whether the workflow scheme is a draft or not.")
+  @ApiModelProperty(value = "Whether the workflow scheme is a draft or not.")
   public Boolean getDraft() {
     return draft;
   }
@@ -236,10 +236,10 @@ public class WorkflowScheme {
   }
 
    /**
-   * Indicates whether to create or update a draft workflow scheme when updating an active workflow scheme. An active workflow scheme is a workflow scheme that is used by at least one project. The following examples show how this property works:   *  Update an active workflow scheme with &#x60;updateDraftIfNeeded&#x60; set to &#x60;true&#x60;: If a draft workflow scheme exists, it is updated. Otherwise, a draft workflow scheme is created.  *  Update an active workflow scheme with &#x60;updateDraftIfNeeded&#x60; set to &#x60;false&#x60;: An error is returned, as active workflow schemes cannot be updated.  *  Update an inactive workflow scheme with &#x60;updateDraftIfNeeded&#x60; set to &#x60;true&#x60;: The workflow scheme is updated, as inactive workflow schemes do not require drafts to update.  Defaults to &#x60;false&#x60;.
+   * Whether to create or update a draft workflow scheme when updating an active workflow scheme. An active workflow scheme is a workflow scheme that is used by at least one project. The following examples show how this property works:   *  Update an active workflow scheme with &#x60;updateDraftIfNeeded&#x60; set to &#x60;true&#x60;: If a draft workflow scheme exists, it is updated. Otherwise, a draft workflow scheme is created.  *  Update an active workflow scheme with &#x60;updateDraftIfNeeded&#x60; set to &#x60;false&#x60;: An error is returned, as active workflow schemes cannot be updated.  *  Update an inactive workflow scheme with &#x60;updateDraftIfNeeded&#x60; set to &#x60;true&#x60;: The workflow scheme is updated, as inactive workflow schemes do not require drafts to update.  Defaults to &#x60;false&#x60;.
    * @return updateDraftIfNeeded
   **/
-  @ApiModelProperty(value = "Indicates whether to create or update a draft workflow scheme when updating an active workflow scheme. An active workflow scheme is a workflow scheme that is used by at least one project. The following examples show how this property works:   *  Update an active workflow scheme with `updateDraftIfNeeded` set to `true`: If a draft workflow scheme exists, it is updated. Otherwise, a draft workflow scheme is created.  *  Update an active workflow scheme with `updateDraftIfNeeded` set to `false`: An error is returned, as active workflow schemes cannot be updated.  *  Update an inactive workflow scheme with `updateDraftIfNeeded` set to `true`: The workflow scheme is updated, as inactive workflow schemes do not require drafts to update.  Defaults to `false`.")
+  @ApiModelProperty(value = "Whether to create or update a draft workflow scheme when updating an active workflow scheme. An active workflow scheme is a workflow scheme that is used by at least one project. The following examples show how this property works:   *  Update an active workflow scheme with `updateDraftIfNeeded` set to `true`: If a draft workflow scheme exists, it is updated. Otherwise, a draft workflow scheme is created.  *  Update an active workflow scheme with `updateDraftIfNeeded` set to `false`: An error is returned, as active workflow schemes cannot be updated.  *  Update an inactive workflow scheme with `updateDraftIfNeeded` set to `true`: The workflow scheme is updated, as inactive workflow schemes do not require drafts to update.  Defaults to `false`.")
   public Boolean getUpdateDraftIfNeeded() {
     return updateDraftIfNeeded;
   }
@@ -253,7 +253,7 @@ public class WorkflowScheme {
    * @return issueTypes
   **/
   @ApiModelProperty(value = "The issue types available in Jira.")
-  public Map<String, IssueTypeBean> getIssueTypes() {
+  public Map<String, IssueTypeDetails> getIssueTypes() {
     return issueTypes;
   }
 

@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * A screen tab.
  */
 @ApiModel(description = "A screen tab.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
 public class ScreenableTab {
   @JsonProperty("id")
   private Long id;
@@ -63,10 +63,10 @@ public class ScreenableTab {
   }
 
    /**
-   * The name of the screen tab. Required on create and update. The maximum length is 255 characters.
+   * The name of the screen tab. The maximum length is 255 characters.
    * @return name
   **/
-  @ApiModelProperty(required = true, value = "The name of the screen tab. Required on create and update. The maximum length is 255 characters.")
+  @ApiModelProperty(required = true, value = "The name of the screen tab. The maximum length is 255 characters.")
   public String getName() {
     return name;
   }

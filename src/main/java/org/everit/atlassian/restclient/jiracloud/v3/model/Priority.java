@@ -42,7 +42,7 @@ import java.util.Map;
  * An issue priority.
  */
 @ApiModel(description = "An issue priority.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
 public class Priority {
   @JsonProperty("self")
   private String self;

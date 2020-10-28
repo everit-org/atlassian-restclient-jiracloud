@@ -42,10 +42,10 @@ import java.util.Map;
  * The group or role to which this item is visible.
  */
 @ApiModel(description = "The group or role to which this item is visible.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
 public class Visibility {
   /**
-   * Indicates whether visibility of this item is restricted to a group or role.
+   * Whether visibility of this item is restricted to a group or role.
    */
   public enum TypeEnum {
     GROUP("group"),
@@ -93,10 +93,10 @@ public class Visibility {
   }
 
    /**
-   * Indicates whether visibility of this item is restricted to a group or role.
+   * Whether visibility of this item is restricted to a group or role.
    * @return type
   **/
-  @ApiModelProperty(value = "Indicates whether visibility of this item is restricted to a group or role.")
+  @ApiModelProperty(value = "Whether visibility of this item is restricted to a group or role.")
   public TypeEnum getType() {
     return type;
   }

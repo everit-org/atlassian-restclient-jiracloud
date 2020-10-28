@@ -42,7 +42,7 @@ import java.util.List;
  * A webhook.
  */
 @ApiModel(description = "A webhook.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
 public class Webhook {
   @JsonProperty("id")
   private Long id;
@@ -64,7 +64,11 @@ public class Webhook {
     
     COMMENT_UPDATED("comment_updated"),
     
-    COMMENT_DELETED("comment_deleted");
+    COMMENT_DELETED("comment_deleted"),
+    
+    ISSUE_PROPERTY_SET("issue_property_set"),
+    
+    ISSUE_PROPERTY_DELETED("issue_property_deleted");
 
     private String value;
 

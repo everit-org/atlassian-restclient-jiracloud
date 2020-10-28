@@ -46,7 +46,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.UserDetails;
  * Details of the users and groups to receive the notification.
  */
 @ApiModel(description = "Details of the users and groups to receive the notification.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
 public class NotificationRecipients {
   @JsonProperty("reporter")
   private Boolean reporter;
@@ -74,10 +74,10 @@ public class NotificationRecipients {
   }
 
    /**
-   * Indicates whether the notification should be sent to the issue&#39;s reporter.
+   * Whether the notification should be sent to the issue&#39;s reporter.
    * @return reporter
   **/
-  @ApiModelProperty(value = "Indicates whether the notification should be sent to the issue's reporter.")
+  @ApiModelProperty(value = "Whether the notification should be sent to the issue's reporter.")
   public Boolean getReporter() {
     return reporter;
   }
@@ -92,10 +92,10 @@ public class NotificationRecipients {
   }
 
    /**
-   * Indicates whether the notification should be sent to the issue&#39;s assignees.
+   * Whether the notification should be sent to the issue&#39;s assignees.
    * @return assignee
   **/
-  @ApiModelProperty(value = "Indicates whether the notification should be sent to the issue's assignees.")
+  @ApiModelProperty(value = "Whether the notification should be sent to the issue's assignees.")
   public Boolean getAssignee() {
     return assignee;
   }
@@ -110,10 +110,10 @@ public class NotificationRecipients {
   }
 
    /**
-   * Indicates whether the notification should be sent to the issue&#39;s watchers.
+   * Whether the notification should be sent to the issue&#39;s watchers.
    * @return watchers
   **/
-  @ApiModelProperty(value = "Indicates whether the notification should be sent to the issue's watchers.")
+  @ApiModelProperty(value = "Whether the notification should be sent to the issue's watchers.")
   public Boolean getWatchers() {
     return watchers;
   }
@@ -128,10 +128,10 @@ public class NotificationRecipients {
   }
 
    /**
-   * Indicates whether the notification should be sent to the issue&#39;s voters.
+   * Whether the notification should be sent to the issue&#39;s voters.
    * @return voters
   **/
-  @ApiModelProperty(value = "Indicates whether the notification should be sent to the issue's voters.")
+  @ApiModelProperty(value = "Whether the notification should be sent to the issue's voters.")
   public Boolean getVoters() {
     return voters;
   }

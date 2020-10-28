@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.JsonTypeBean;
  * The metadata describing an issue field.
  */
 @ApiModel(description = "The metadata describing an issue field.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
 public class FieldMetadata {
   @JsonProperty("required")
   private Boolean required;
@@ -73,10 +73,10 @@ public class FieldMetadata {
   private Object defaultValue = null;
 
    /**
-   * Indicates whether the field is required.
+   * Whether the field is required.
    * @return required
   **/
-  @ApiModelProperty(required = true, value = "Indicates whether the field is required.")
+  @ApiModelProperty(required = true, value = "Whether the field is required.")
   public Boolean getRequired() {
     return required;
   }
@@ -118,10 +118,10 @@ public class FieldMetadata {
   }
 
    /**
-   * Indicates whether the field has a default value.
+   * Whether the field has a default value.
    * @return hasDefaultValue
   **/
-  @ApiModelProperty(value = "Indicates whether the field has a default value.")
+  @ApiModelProperty(value = "Whether the field has a default value.")
   public Boolean getHasDefaultValue() {
     return hasDefaultValue;
   }

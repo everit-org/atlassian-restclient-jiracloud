@@ -39,7 +39,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * IssueTypeCreateBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
 public class IssueTypeCreateBean {
   @JsonProperty("name")
   private String name;
@@ -91,10 +91,10 @@ public class IssueTypeCreateBean {
   }
 
    /**
-   * The unique name for the issue type. The maximum length is 60 characters. Required.
+   * The unique name for the issue type. The maximum length is 60 characters.
    * @return name
   **/
-  @ApiModelProperty(required = true, value = "The unique name for the issue type. The maximum length is 60 characters. Required.")
+  @ApiModelProperty(required = true, value = "The unique name for the issue type. The maximum length is 60 characters.")
   public String getName() {
     return name;
   }

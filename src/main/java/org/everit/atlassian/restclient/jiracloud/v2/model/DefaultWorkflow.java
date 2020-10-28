@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Details about the default workflow.
  */
 @ApiModel(description = "Details about the default workflow.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
 public class DefaultWorkflow {
   @JsonProperty("workflow")
   private String workflow;
@@ -72,10 +72,10 @@ public class DefaultWorkflow {
   }
 
    /**
-   * Indicates whether a draft workflow scheme is created or updated when updating an active workflow scheme. The draft is updated with the new default workflow. Defaults to &#x60;false&#x60;.
+   * Whether a draft workflow scheme is created or updated when updating an active workflow scheme. The draft is updated with the new default workflow. Defaults to &#x60;false&#x60;.
    * @return updateDraftIfNeeded
   **/
-  @ApiModelProperty(value = "Indicates whether a draft workflow scheme is created or updated when updating an active workflow scheme. The draft is updated with the new default workflow. Defaults to `false`.")
+  @ApiModelProperty(value = "Whether a draft workflow scheme is created or updated when updating an active workflow scheme. The draft is updated with the new default workflow. Defaults to `false`.")
   public Boolean getUpdateDraftIfNeeded() {
     return updateDraftIfNeeded;
   }

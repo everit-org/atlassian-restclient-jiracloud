@@ -44,7 +44,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.UserDetails;
  * Details about an attachment.
  */
 @ApiModel(description = "Details about an attachment.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
 public class Attachment {
   @JsonProperty("self")
   private String self;

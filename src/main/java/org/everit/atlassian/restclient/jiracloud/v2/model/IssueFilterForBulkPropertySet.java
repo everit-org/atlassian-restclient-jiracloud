@@ -42,7 +42,7 @@ import java.util.List;
  * Bulk operation filter details.
  */
 @ApiModel(description = "Bulk operation filter details.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
 public class IssueFilterForBulkPropertySet {
   @JsonProperty("entityIds")
   private List<Long> entityIds = new ArrayList<>();
@@ -103,10 +103,10 @@ public class IssueFilterForBulkPropertySet {
   }
 
    /**
-   * Indicates whether the bulk operation occurs only when the property is present on or absent from an issue.
+   * Whether the bulk operation occurs only when the property is present on or absent from an issue.
    * @return hasProperty
   **/
-  @ApiModelProperty(value = "Indicates whether the bulk operation occurs only when the property is present on or absent from an issue.")
+  @ApiModelProperty(value = "Whether the bulk operation occurs only when the property is present on or absent from an issue.")
   public Boolean getHasProperty() {
     return hasProperty;
   }

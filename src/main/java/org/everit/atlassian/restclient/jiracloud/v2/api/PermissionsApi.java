@@ -44,7 +44,7 @@ import java.util.Map;
 
 public class PermissionsApi {
 
-  private static final String DEFAULT_BASE_PATH = "http://localhost";
+  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.com";
 
   private static final TypeReference<Permissions> returnType_getAllPermissions = new TypeReference<Permissions>() {};
 
@@ -62,7 +62,7 @@ public class PermissionsApi {
 
   /**
    * Get all permissions
-   * <p>Returns all permissions, including:</p> <ul> <li>global permissions.</li> <li>project permissions.</li> <li>global permissions added by plugins.</li> </ul> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> <em>Administer Jira</em> <a href=\"https://confluence.atlassian.com/x/x4dKLg\">global permission</a>.</p> 
+   * Returns all permissions, including:   *  global permissions.  *  project permissions.  *  global permissions added by plugins.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Permissions&gt;
    */
@@ -88,8 +88,8 @@ public class PermissionsApi {
 
   /**
    * Get bulk permissions
-   * <p>Returns:</p> <ul> <li>for a list of global permissions, the global permissions granted to the user.</li> <li>for a list of project permissions and lists of projects and issues, for each project permission a list of the projects and issues the user can access or manipulate.</li> </ul> <p>Note that:</p> <ul> <li>Invalid project and issue IDs are ignored.</li> <li>A maximum of 1000 projects and 1000 issues can be checked.</li> </ul> <p>This operation can be accessed anonymously.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> None.</p> 
-   * @param bulkPermissionsRequestBean <p>Details of the permissions to check.</p>  (required)
+   * Returns:   *  for a list of global permissions, the global permissions granted to a user.  *  for a list of project permissions and lists of projects and issues, for each project permission a list of the projects and issues a user can access or manipulate.  If no account ID is provided, the operation returns details for the logged in user.  Note that:   *  Invalid project and issue IDs are ignored.  *  A maximum of 1000 projects and 1000 issues can be checked.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) to check the permissions for other users, otherwise none.
+   * @param bulkPermissionsRequestBean Details of the permissions to check. (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;BulkPermissionGrants&gt;
    */
@@ -117,12 +117,12 @@ public class PermissionsApi {
 
   /**
    * Get my permissions
-   * <p>Returns a list of permissions indicating which permissions the user has. Details of the user's permissions can be obtained in a global, project, or issue context.</p> <p>The user is reported as having a project permission:</p> <ul> <li>in the global context, if the user has the project permission in any project.</li> <li>for a project, where the project permission is determined using issue data, if the user meets the permission's criteria for any issue in the project. Otherwise, if the user has the project permission in the project.</li> <li>for an issue, where a project permission is determined using issue data, if the user has the permission in the issue. Otherwise, if the user has the project permission in the project containing the issue.</li> </ul> <p>This means that users may be shown as having an issue permission (such as EDIT_ISSUE) in the global context or a project context but may not have the permission for any or all issues. For example, if Reporters have the EDIT_ISSUE permission a user would be shown as having this permission in the global context or the context of a project, because any user can be a reporter. However, if they are not the user who reported the issue queried they would not have EDIT_ISSUE permission for that issue.</p> <p>Global permissions are unaffected by context.</p> <p>This operation can be accessed anonymously.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> None.</p> 
-   * @param projectKey <p>The key of project. Ignored if <code>projectId</code> is provided.</p>  (optional)
-   * @param projectId <p>The ID of project.</p>  (optional)
-   * @param issueKey <p>The key of the issue. Ignored if <code>issueId</code> is provided.</p>  (optional)
-   * @param issueId <p>The ID of the issue.</p>  (optional)
-   * @param permissions <p>A comma-separated list of permission keys. <a href=\"https://developer.atlassian.com/cloud/jira/platform/change-notice-get-my-permissions-requires-permissions-query-parameter/\"> Omitting this parameter is <strong>deprecated</strong>.</a> To get the list of available permissions, use <a href=\"#api-rest-api-2-permissions-get\">Get all permissions</a>. Note that deprecated keys cannot be used. Deprecated keys are not returned by <a href=\"#api-rest-api-2-permissions-get\">Get all permissions</a> but are returned by this operation if <code>permissions</code> is omitted.</p>  (optional)
+   * Returns a list of permissions indicating which permissions the user has. Details of the user's permissions can be obtained in a global, project, or issue context.  The user is reported as having a project permission:   *  in the global context, if the user has the project permission in any project.  *  for a project, where the project permission is determined using issue data, if the user meets the permission's criteria for any issue in the project. Otherwise, if the user has the project permission in the project.  *  for an issue, where a project permission is determined using issue data, if the user has the permission in the issue. Otherwise, if the user has the project permission in the project containing the issue.  This means that users may be shown as having an issue permission (such as EDIT\\_ISSUES) in the global context or a project context but may not have the permission for any or all issues. For example, if Reporters have the EDIT\\_ISSUES permission a user would be shown as having this permission in the global context or the context of a project, because any user can be a reporter. However, if they are not the user who reported the issue queried they would not have EDIT\\_ISSUES permission for that issue.  Global permissions are unaffected by context.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** None.
+   * @param projectKey The key of project. Ignored if `projectId` is provided. (optional)
+   * @param projectId The ID of project. (optional)
+   * @param issueKey The key of the issue. Ignored if `issueId` is provided. (optional)
+   * @param issueId The ID of the issue. (optional)
+   * @param permissions A list of permission keys. (Required) This parameter accepts a comma-separated list. To get the list of available permissions, use [Get all permissions](#api-rest-api-2-permissions-get). (optional)
    * @param projectUuid  (optional)
    * @param projectConfigurationUuid  (optional)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
@@ -171,7 +171,7 @@ public class PermissionsApi {
 
   /**
    * Get permitted projects
-   * <p>Returns all the projects where the user is granted a list of project permissions.</p> <p>This operation can be accessed anonymously.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> None.</p> 
+   * Returns all the projects where the user is granted a list of project permissions.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** None.
    * @param permissionsKeysBean  (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PermittedProjects&gt;

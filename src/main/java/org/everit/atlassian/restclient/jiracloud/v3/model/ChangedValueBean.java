@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of names changed in the record event.
  */
 @ApiModel(description = "Details of names changed in the record event.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
 public class ChangedValueBean {
   @JsonProperty("fieldName")
   private String fieldName;

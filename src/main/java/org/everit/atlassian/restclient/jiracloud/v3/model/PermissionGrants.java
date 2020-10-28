@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.PermissionGrant;
  * List of permission grants.
  */
 @ApiModel(description = "List of permission grants.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:37.034+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
 public class PermissionGrants {
   @JsonProperty("permissions")
   private List<PermissionGrant> permissions = new ArrayList<>();

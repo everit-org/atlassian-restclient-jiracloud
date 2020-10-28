@@ -42,7 +42,7 @@ import java.util.List;
  * Details of a field that can be used in advanced searches.
  */
 @ApiModel(description = "Details of a field that can be used in advanced searches.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
 public class FieldReferenceData {
   @JsonProperty("value")
   private String value;
@@ -51,7 +51,7 @@ public class FieldReferenceData {
   private String displayName;
 
   /**
-   * Indicates whether the field can be used in a query&#39;s &#x60;ORDER BY&#x60; clause.
+   * Whether the field can be used in a query&#39;s &#x60;ORDER BY&#x60; clause.
    */
   public enum OrderableEnum {
     TRUE("true"),
@@ -89,7 +89,7 @@ public class FieldReferenceData {
   private OrderableEnum orderable;
 
   /**
-   * Indicates whether the content of this field can be searched.
+   * Whether the content of this field can be searched.
    */
   public enum SearchableEnum {
     TRUE("true"),
@@ -127,7 +127,7 @@ public class FieldReferenceData {
   private SearchableEnum searchable;
 
   /**
-   * Indicates whether the field provide auto-complete suggestions.
+   * Whether the field provide auto-complete suggestions.
    */
   public enum AutoEnum {
     TRUE("true"),
@@ -215,10 +215,10 @@ public class FieldReferenceData {
   }
 
    /**
-   * Indicates whether the field can be used in a query&#39;s &#x60;ORDER BY&#x60; clause.
+   * Whether the field can be used in a query&#39;s &#x60;ORDER BY&#x60; clause.
    * @return orderable
   **/
-  @ApiModelProperty(value = "Indicates whether the field can be used in a query's `ORDER BY` clause.")
+  @ApiModelProperty(value = "Whether the field can be used in a query's `ORDER BY` clause.")
   public OrderableEnum getOrderable() {
     return orderable;
   }
@@ -233,10 +233,10 @@ public class FieldReferenceData {
   }
 
    /**
-   * Indicates whether the content of this field can be searched.
+   * Whether the content of this field can be searched.
    * @return searchable
   **/
-  @ApiModelProperty(value = "Indicates whether the content of this field can be searched.")
+  @ApiModelProperty(value = "Whether the content of this field can be searched.")
   public SearchableEnum getSearchable() {
     return searchable;
   }
@@ -251,10 +251,10 @@ public class FieldReferenceData {
   }
 
    /**
-   * Indicates whether the field provide auto-complete suggestions.
+   * Whether the field provide auto-complete suggestions.
    * @return auto
   **/
-  @ApiModelProperty(value = "Indicates whether the field provide auto-complete suggestions.")
+  @ApiModelProperty(value = "Whether the field provide auto-complete suggestions.")
   public AutoEnum getAuto() {
     return auto;
   }

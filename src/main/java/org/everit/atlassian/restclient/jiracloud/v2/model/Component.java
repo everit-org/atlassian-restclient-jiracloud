@@ -42,7 +42,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.User;
  * Details about a project component.
  */
 @ApiModel(description = "Details about a project component.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-05T12:17:30.184+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
 public class Component {
   @JsonProperty("self")
   private URI self;
@@ -251,10 +251,10 @@ public class Component {
   }
 
    /**
-   * The accountId of the component&#39;s lead user. The accountId uniquely identifies the user across all Atlassian products. For example, *384093:32b4d9w0-f6a5-3535-11a3-9c8c88d10192*.Optional when creating or updating a component.
+   * The accountId of the component&#39;s lead user. The accountId uniquely identifies the user across all Atlassian products. For example, *5b10ac8d82e05b22cc7d4ef5*.
    * @return leadAccountId
   **/
-  @ApiModelProperty(value = "The accountId of the component's lead user. The accountId uniquely identifies the user across all Atlassian products. For example, *384093:32b4d9w0-f6a5-3535-11a3-9c8c88d10192*.Optional when creating or updating a component.")
+  @ApiModelProperty(value = "The accountId of the component's lead user. The accountId uniquely identifies the user across all Atlassian products. For example, *5b10ac8d82e05b22cc7d4ef5*.")
   public String getLeadAccountId() {
     return leadAccountId;
   }
@@ -309,10 +309,10 @@ public class Component {
   }
 
    /**
-   * Indicates whether a user is associated with &#x60;assigneeType&#x60;. For example, if the &#x60;assigneeType&#x60; is set to &#x60;COMPONENT_LEAD&#x60; but the component lead is not set, then &#x60;false&#x60; is returned.
+   * Whether a user is associated with &#x60;assigneeType&#x60;. For example, if the &#x60;assigneeType&#x60; is set to &#x60;COMPONENT_LEAD&#x60; but the component lead is not set, then &#x60;false&#x60; is returned.
    * @return isAssigneeTypeValid
   **/
-  @ApiModelProperty(value = "Indicates whether a user is associated with `assigneeType`. For example, if the `assigneeType` is set to `COMPONENT_LEAD` but the component lead is not set, then `false` is returned.")
+  @ApiModelProperty(value = "Whether a user is associated with `assigneeType`. For example, if the `assigneeType` is set to `COMPONENT_LEAD` but the component lead is not set, then `false` is returned.")
   public Boolean getIsAssigneeTypeValid() {
     return isAssigneeTypeValid;
   }
