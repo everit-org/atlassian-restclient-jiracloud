@@ -38,7 +38,7 @@
     <spotbugs.skip>true</spotbugs.skip>
     <pmd.skip>true</pmd.skip>
     <projectpath>atlassian-restclient-jiracloud</projectpath>
-    <com.fasterxml.jackson.version>2.10.3</com.fasterxml.jackson.version>
+    <com.fasterxml.jackson.version>2.12.1</com.fasterxml.jackson.version>
   </properties>
 
   <scm>
