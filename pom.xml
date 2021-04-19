@@ -27,7 +27,7 @@
 
   <groupId>org.everit.atlassian</groupId>
   <artifactId>org.everit.atlassian.restclient.jiracloud</artifactId>
-  <version>3.0.2-202010281413</version>
+  <version>3.0.3-202010281413</version>
 
   <packaging>bundle</packaging>
 
@@ -106,24 +106,6 @@
         </executions>
       </plugin>
       <plugin>
-        <groupId>org.owasp</groupId>
-        <artifactId>dependency-check-maven</artifactId>
-        <version>6.1.2</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>aggregate</goal>
-            </goals>
-            <configuration>
-              <!-- high or above -->
-              <failBuildOnCVSS>7</failBuildOnCVSS>
-              <suppressionFile>${nvd.supprpression.file}</suppressionFile>
-              <skipProvidedScope>true</skipProvidedScope>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <groupId>com.mycila</groupId>
         <artifactId>license-maven-plugin</artifactId>
         <version>3.0</version>
@@ -155,22 +137,24 @@
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
       <version>${com.fasterxml.jackson.version}</version>
+      <scope>provided</scope>
     </dependency>
-    <dependency>
-      <groupId>io.swagger</groupId>
-      <artifactId>swagger-annotations</artifactId>
-      <version>1.5.22</version>
-    </dependency>
-
     <dependency>
       <groupId>com.fasterxml.jackson.datatype</groupId>
       <artifactId>jackson-datatype-jsr310</artifactId>
       <version>${com.fasterxml.jackson.version}</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.datatype</groupId>
       <artifactId>jackson-datatype-jdk8</artifactId>
       <version>${com.fasterxml.jackson.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.swagger</groupId>
+      <artifactId>swagger-annotations</artifactId>
+      <version>1.5.22</version>
     </dependency>
   </dependencies>
 
@@ -354,15 +338,17 @@
           <plugin>
             <groupId>org.owasp</groupId>
             <artifactId>dependency-check-maven</artifactId>
-            <version>5.3.0</version>
+            <version>6.1.2</version>
             <executions>
               <execution>
                 <goals>
-                  <goal>check</goal>
+                  <goal>aggregate</goal>
                 </goals>
                 <configuration>
                   <!-- high or above -->
                   <failBuildOnCVSS>7</failBuildOnCVSS>
+                  <suppressionFile>${nvd.supprpression.file}</suppressionFile>
+                  <skipProvidedScope>true</skipProvidedScope>
                 </configuration>
               </execution>
             </executions>
