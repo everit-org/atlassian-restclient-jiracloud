@@ -44,7 +44,7 @@ import java.util.Map;
 
 public class IssueFieldConfigurationsApi {
 
-  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.com";
+  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.net";
 
   private static final TypeReference<Object> returnType_assignFieldConfigurationSchemeToProject = new TypeReference<Object>() {};
 
@@ -133,16 +133,17 @@ public class IssueFieldConfigurationsApi {
 
   /**
    * Get all field configurations
-   * Returns a [paginated](#pagination) list of all field configurations.  Only field configurations used in classic projects are returned.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * Returns a [paginated](#pagination) list of field configurations. The list can be for all field configurations or a subset determined by any combination of these criteria:   *  a list of field configuration item IDs.  *  whether the field configuration is a default.  *  whether the field configuration name or description contains a query string.  Only field configurations used in classic projects are returned.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0l)
    * @param maxResults The maximum number of items to return per page. (optional, default to 50)
    * @param id The list of field configuration IDs. To include multiple IDs, provide an ampersand-separated list. For example, `id=10000&id=10001`. (optional, default to new ArrayList&lt;&gt;())
-   * @param isDefault If *true* returns the default field configuration only. (optional, default to false)
+   * @param isDefault If *true* returns default field configurations only. (optional, default to false)
+   * @param query The query string used to match against field configuration names and descriptions. (optional, default to &quot;&quot;)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PageBeanFieldConfiguration&gt;
    */
   public Single<PageBeanFieldConfiguration> getAllFieldConfigurations(
-    Optional<Long> startAt, Optional<Integer> maxResults, Optional<List<Long>> id, Optional<Boolean> isDefault, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Optional<Long> startAt, Optional<Integer> maxResults, Optional<List<Long>> id, Optional<Boolean> isDefault, Optional<String> query, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.GET)
@@ -164,6 +165,9 @@ public class IssueFieldConfigurationsApi {
     }
     if (isDefault.isPresent()) {
       queryParams.put("isDefault", Collections.singleton(String.valueOf(isDefault.get())));
+    }
+    if (query.isPresent()) {
+      queryParams.put("query", Collections.singleton(String.valueOf(query.get())));
     }
     requestBuilder.queryParams(queryParams);
 

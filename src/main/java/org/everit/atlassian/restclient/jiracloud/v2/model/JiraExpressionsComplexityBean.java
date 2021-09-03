@@ -40,7 +40,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.JiraExpressionsComplex
 /**
  * JiraExpressionsComplexityBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
 public class JiraExpressionsComplexityBean {
   @JsonProperty("steps")
   private JiraExpressionsComplexityValueBean steps;
@@ -63,7 +63,7 @@ public class JiraExpressionsComplexityBean {
    * The number of steps it took to evaluate the expression, where a step is a high-level operation performed by the expression. A step is an operation such as arithmetic, accessing a property, accessing a context variable, or calling a function.
    * @return steps
   **/
-  @ApiModelProperty(value = "The number of steps it took to evaluate the expression, where a step is a high-level operation performed by the expression. A step is an operation such as arithmetic, accessing a property, accessing a context variable, or calling a function.")
+  @ApiModelProperty(required = true, value = "The number of steps it took to evaluate the expression, where a step is a high-level operation performed by the expression. A step is an operation such as arithmetic, accessing a property, accessing a context variable, or calling a function.")
   public JiraExpressionsComplexityValueBean getSteps() {
     return steps;
   }
@@ -81,7 +81,7 @@ public class JiraExpressionsComplexityBean {
    * The number of expensive operations executed while evaluating the expression. Expensive operations are those that load additional data, such as entity properties, comments, or custom fields.
    * @return expensiveOperations
   **/
-  @ApiModelProperty(value = "The number of expensive operations executed while evaluating the expression. Expensive operations are those that load additional data, such as entity properties, comments, or custom fields.")
+  @ApiModelProperty(required = true, value = "The number of expensive operations executed while evaluating the expression. Expensive operations are those that load additional data, such as entity properties, comments, or custom fields.")
   public JiraExpressionsComplexityValueBean getExpensiveOperations() {
     return expensiveOperations;
   }
@@ -99,7 +99,7 @@ public class JiraExpressionsComplexityBean {
    * The number of Jira REST API beans returned in the response.
    * @return beans
   **/
-  @ApiModelProperty(value = "The number of Jira REST API beans returned in the response.")
+  @ApiModelProperty(required = true, value = "The number of Jira REST API beans returned in the response.")
   public JiraExpressionsComplexityValueBean getBeans() {
     return beans;
   }
@@ -117,7 +117,7 @@ public class JiraExpressionsComplexityBean {
    * The number of primitive values returned in the response.
    * @return primitiveValues
   **/
-  @ApiModelProperty(value = "The number of primitive values returned in the response.")
+  @ApiModelProperty(required = true, value = "The number of primitive values returned in the response.")
   public JiraExpressionsComplexityValueBean getPrimitiveValues() {
     return primitiveValues;
   }

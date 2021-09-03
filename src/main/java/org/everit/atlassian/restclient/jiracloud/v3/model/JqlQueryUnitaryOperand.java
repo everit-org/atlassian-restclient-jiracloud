@@ -45,7 +45,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.ValueOperand;
  * An operand that can be part of a list operand.
  */
 @ApiModel(description = "An operand that can be part of a list operand.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
 public class JqlQueryUnitaryOperand {
   @JsonProperty("value")
   private String value;
@@ -134,9 +134,6 @@ public class JqlQueryUnitaryOperand {
   }
 
   public JqlQueryUnitaryOperand addArgumentsItem(String argumentsItem) {
-    if (this.arguments == null) {
-      this.arguments = new ArrayList<>();
-    }
     this.arguments.add(argumentsItem);
     return this;
   }
@@ -145,7 +142,7 @@ public class JqlQueryUnitaryOperand {
    * The list of function arguments.
    * @return arguments
   **/
-  @ApiModelProperty(value = "The list of function arguments.")
+  @ApiModelProperty(required = true, value = "The list of function arguments.")
   public List<String> getArguments() {
     return arguments;
   }

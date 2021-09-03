@@ -30,7 +30,6 @@ import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v2.model.RemoteIssueLink;
 import org.everit.atlassian.restclient.jiracloud.v2.model.RemoteIssueLinkIdentifies;
-import org.everit.atlassian.restclient.jiracloud.v2.model.RemoteIssueLinkRequest;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -41,7 +40,7 @@ import java.util.Map;
 
 public class IssueRemoteLinksApi {
 
-  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.com";
+  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.net";
 
   private static final TypeReference<RemoteIssueLinkIdentifies> returnType_createOrUpdateRemoteIssueLink = new TypeReference<RemoteIssueLinkIdentifies>() {};
 
@@ -66,7 +65,7 @@ public class IssueRemoteLinksApi {
    * @return Single&lt;RemoteIssueLinkIdentifies&gt;
    */
   public Single<RemoteIssueLinkIdentifies> createOrUpdateRemoteIssueLink(
-    String issueIdOrKey, RemoteIssueLinkRequest requestBody, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String issueIdOrKey, Map<String, Object> requestBody, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.POST)
@@ -220,7 +219,7 @@ public class IssueRemoteLinksApi {
    * @return Single&lt;Object&gt;
    */
   public Single<Object> updateRemoteIssueLink(
-    String issueIdOrKey, String linkId, RemoteIssueLinkRequest requestBody, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String issueIdOrKey, String linkId, Map<String, Object> requestBody, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.PUT)

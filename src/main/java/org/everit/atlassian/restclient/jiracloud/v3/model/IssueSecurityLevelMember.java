@@ -41,7 +41,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.PermissionHolder;
  * Issue security level member.
  */
 @ApiModel(description = "Issue security level member.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
 public class IssueSecurityLevelMember {
   @JsonProperty("id")
   private Long id;
@@ -94,10 +94,10 @@ public class IssueSecurityLevelMember {
   }
 
    /**
-   * The user or group being granted the permission. It consists of a &#x60;type&#x60; and a type-dependent &#x60;parameter&#x60;. See [Holder object](#holder-object) in *Get all permission schemes* for more information.
+   * The user or group being granted the permission. It consists of a &#x60;type&#x60; and a type-dependent &#x60;parameter&#x60;. See [Holder object](../api-group-permission-schemes/#holder-object) in *Get all permission schemes* for more information.
    * @return holder
   **/
-  @ApiModelProperty(value = "The user or group being granted the permission. It consists of a `type` and a type-dependent `parameter`. See [Holder object](#holder-object) in *Get all permission schemes* for more information.")
+  @ApiModelProperty(required = true, value = "The user or group being granted the permission. It consists of a `type` and a type-dependent `parameter`. See [Holder object](../api-group-permission-schemes/#holder-object) in *Get all permission schemes* for more information.")
   public PermissionHolder getHolder() {
     return holder;
   }

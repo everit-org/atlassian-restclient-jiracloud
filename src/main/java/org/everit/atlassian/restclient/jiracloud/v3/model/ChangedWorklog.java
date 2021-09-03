@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.EntityProperty;
  * Details of a changed worklog.
  */
 @ApiModel(description = "Details of a changed worklog.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
 public class ChangedWorklog {
   @JsonProperty("worklogId")
   private Long worklogId;

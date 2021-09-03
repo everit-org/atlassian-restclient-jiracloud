@@ -42,7 +42,7 @@ import java.util.List;
  * Details of a field that can be used in advanced searches.
  */
 @ApiModel(description = "Details of a field that can be used in advanced searches.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
 public class FieldReferenceData {
   @JsonProperty("value")
   private String value;
@@ -197,10 +197,10 @@ public class FieldReferenceData {
   }
 
    /**
-   * The display name of the field.
+   * The display name contains the following:   *  for system fields, the field name. For example, &#x60;Summary&#x60;.  *  for collapsed custom fields, the field name followed by a hyphen and then the field name and field type. For example, &#x60;Component - Component[Dropdown]&#x60;.  *  for other custom fields, the field name followed by a hyphen and then the custom field ID. For example, &#x60;Component - cf[10061]&#x60;.
    * @return displayName
   **/
-  @ApiModelProperty(value = "The display name of the field.")
+  @ApiModelProperty(value = "The display name contains the following:   *  for system fields, the field name. For example, `Summary`.  *  for collapsed custom fields, the field name followed by a hyphen and then the field name and field type. For example, `Component - Component[Dropdown]`.  *  for other custom fields, the field name followed by a hyphen and then the custom field ID. For example, `Component - cf[10061]`.")
   public String getDisplayName() {
     return displayName;
   }

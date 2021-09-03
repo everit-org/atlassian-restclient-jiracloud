@@ -46,7 +46,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.Scope;
  * Details of the issue creation metadata for an issue type.
  */
 @ApiModel(description = "Details of the issue creation metadata for an issue type.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
 public class IssueTypeIssueCreateMetadata {
   @JsonProperty("self")
   private String self;
@@ -71,6 +71,9 @@ public class IssueTypeIssueCreateMetadata {
 
   @JsonProperty("entityId")
   private UUID entityId;
+
+  @JsonProperty("hierarchyLevel")
+  private Integer hierarchyLevel;
 
   @JsonProperty("scope")
   private Scope scope;
@@ -154,6 +157,15 @@ public class IssueTypeIssueCreateMetadata {
   }
 
    /**
+   * Hierarchy level of the issue type.
+   * @return hierarchyLevel
+  **/
+  @ApiModelProperty(value = "Hierarchy level of the issue type.")
+  public Integer getHierarchyLevel() {
+    return hierarchyLevel;
+  }
+
+   /**
    * Details of the next-gen projects the issue type is available in.
    * @return scope
   **/
@@ -198,6 +210,7 @@ public class IssueTypeIssueCreateMetadata {
         Objects.equals(this.subtask, issueTypeIssueCreateMetadata.subtask) &&
         Objects.equals(this.avatarId, issueTypeIssueCreateMetadata.avatarId) &&
         Objects.equals(this.entityId, issueTypeIssueCreateMetadata.entityId) &&
+        Objects.equals(this.hierarchyLevel, issueTypeIssueCreateMetadata.hierarchyLevel) &&
         Objects.equals(this.scope, issueTypeIssueCreateMetadata.scope) &&
         Objects.equals(this.expand, issueTypeIssueCreateMetadata.expand) &&
         Objects.equals(this.fields, issueTypeIssueCreateMetadata.fields);
@@ -205,7 +218,7 @@ public class IssueTypeIssueCreateMetadata {
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, id, description, iconUrl, name, subtask, avatarId, entityId, scope, expand, fields);
+    return Objects.hash(self, id, description, iconUrl, name, subtask, avatarId, entityId, hierarchyLevel, scope, expand, fields);
   }
 
 
@@ -222,6 +235,7 @@ public class IssueTypeIssueCreateMetadata {
     sb.append("    subtask: ").append(toIndentedString(subtask)).append("\n");
     sb.append("    avatarId: ").append(toIndentedString(avatarId)).append("\n");
     sb.append("    entityId: ").append(toIndentedString(entityId)).append("\n");
+    sb.append("    hierarchyLevel: ").append(toIndentedString(hierarchyLevel)).append("\n");
     sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
     sb.append("    expand: ").append(toIndentedString(expand)).append("\n");
     sb.append("    fields: ").append(toIndentedString(fields)).append("\n");

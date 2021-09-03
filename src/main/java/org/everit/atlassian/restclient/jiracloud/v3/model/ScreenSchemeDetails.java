@@ -41,7 +41,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.ScreenTypes;
  * Details of a screen scheme.
  */
 @ApiModel(description = "Details of a screen scheme.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
 public class ScreenSchemeDetails {
   @JsonProperty("name")
   private String name;
@@ -97,7 +97,7 @@ public class ScreenSchemeDetails {
    * The IDs of the screens for the screen types of the screen scheme. Only screens used in classic projects are accepted.
    * @return screens
   **/
-  @ApiModelProperty(value = "The IDs of the screens for the screen types of the screen scheme. Only screens used in classic projects are accepted.")
+  @ApiModelProperty(required = true, value = "The IDs of the screens for the screen types of the screen scheme. Only screens used in classic projects are accepted.")
   public ScreenTypes getScreens() {
     return screens;
   }

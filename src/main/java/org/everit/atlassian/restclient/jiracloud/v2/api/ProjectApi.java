@@ -566,6 +566,76 @@ public class ProjectApi {
   }
 
   /**
+   * Get projects paginated
+   * <p>Returns projects visible to the user.</p> <p>This operation can be accessed anonymously.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> Projects are returned only where the user has <em>Browse Projects</em> <a href=\"https://confluence.atlassian.com/x/yodKLg\">project permission</a> for the project.</p> 
+   * @param startAt <p>The index of the first item to return in a page of results (page offset).</p>  (optional, default to 0l)
+   * @param maxResults <p>The maximum number of items to return per page. The maximum is <code>50</code>.</p>  (optional, default to 50)
+   * @param orderBy <p><a href=\"#ordering\">Order</a> the results by a field. If the <code>orderBy</code> field is not set, then projects are listed in ascending order by project key:</p> <ul> <li><code>category</code> Sorts projects in order by project category. A complete list of category IDs is found using the <a href=\"#api-rest-api-2-projectCategory-get\">Get all project categories</a> operation.</li> <li><code>key</code> Sorts projects in order by project key.</li> <li><code>name</code> Sorts projects in alphabetical order by project name.</li> <li><code>owner</code> Sorts projects in order by the project lead.</li> </ul>  (optional, default to key)
+   * @param query <p>Filter the results using a literal string. Projects with a matching <code>key</code> or <code>name</code> are returned (case insensitive).</p>  (optional)
+   * @param typeKey <p>Orders results by the <a href=\"https://confluence.atlassian.com/x/GwiiLQ#Jiraapplicationsoverview-Productfeaturesandprojecttypes\">project type</a>. This parameter accepts multiple values separated by a comma. Valid values are <code>business</code>, <code>service_desk</code>, and <code>software</code>.</p>  (optional)
+   * @param categoryId <p>The ID of the project's category. A complete list of category IDs is found using the <a href=\"#api-rest-api-2-projectCategory-get\">Get all project categories</a> operation.</p>  (optional)
+   * @param searchBy  (optional, default to &quot;key, name&quot;)
+   * @param action <p>Filter results by projects for which the user can:</p> <ul> <li> <p><code>view</code> the project, meaning that they have one of the following permissions:</p> <ul> <li><em>Browse projects</em> <a href=\"https://confluence.atlassian.com/x/yodKLg\">project permission</a> for the project.</li> <li><em>Administer projects</em> <a href=\"https://confluence.atlassian.com/x/yodKLg\">project permission</a> for the project.</li> <li>site administration (that is, member of the <em>site-admin</em> <a href=\"https://confluence.atlassian.com/x/24xjL&quot;\">group</a>).</li> </ul> </li> <li> <p><code>browse</code> the project, meaning that they have the <em>Browse projects</em> <a href=\"https://confluence.atlassian.com/x/yodKLg\">project permission</a> for the project.</p> </li> <li> <p><code>edit</code> the project, meaning that they have one of the following permissions:</p> <ul> <li><em>Administer projects</em> <a href=\"https://confluence.atlassian.com/x/yodKLg\">project permission</a> for the project.</li> <li>site administration (that is, member of the <em>site-admin</em> <a href=\"https://confluence.atlassian.com/x/24xjL&quot;\">group</a>).</li> </ul> </li> </ul>  (optional, default to view)
+   * @param expand <p>Use <a href=\"#expansion\">expand</a> to include additional information in the response. This parameter accepts multiple values separated by a comma:</p> <ul> <li><code>description</code> Returns the project description.</li> <li><code>projectKeys</code> Returns all project keys associated with a project.</li> <li><code>lead</code> Returns information about the the project lead.</li> <li><code>issueTypes</code> Returns all issue types associated with the project.</li> <li><code>url</code> Returns the URL associated with the project.</li> </ul>  (optional)
+   * @param id <p>Filter results by project ids.</p>
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;PageBeanProject&gt;
+   */
+  public Single<PageBeanProject> searchProjects(
+      Optional<Long> startAt, Optional<Integer> maxResults, Optional<String> orderBy,
+      Optional<String> query, Optional<String> typeKey, Optional<Long> categoryId,
+      Optional<String> searchBy, Optional<String> action, Optional<String> expand,
+      Optional<Collection<String>> id, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(ProjectApi.DEFAULT_BASE_PATH)
+        .path("/rest/api/2/project/search");
+
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (startAt.isPresent()) {
+      queryParams.put("startAt", Collections.singleton(String.valueOf(startAt.get())));
+    }
+    if (maxResults.isPresent()) {
+      queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults.get())));
+    }
+    if (orderBy.isPresent()) {
+      queryParams.put("orderBy", Collections.singleton(String.valueOf(orderBy.get())));
+    }
+    if (query.isPresent()) {
+      queryParams.put("query", Collections.singleton(String.valueOf(query.get())));
+    }
+    if (typeKey.isPresent()) {
+      queryParams.put("typeKey", Collections.singleton(String.valueOf(typeKey.get())));
+    }
+    if (categoryId.isPresent()) {
+      queryParams.put("categoryId", Collections.singleton(String.valueOf(categoryId.get())));
+    }
+    if (searchBy.isPresent()) {
+      queryParams.put("searchBy", Collections.singleton(String.valueOf(searchBy.get())));
+    }
+    if (action.isPresent()) {
+      queryParams.put("action", Collections.singleton(String.valueOf(action.get())));
+    }
+    if (expand.isPresent()) {
+      queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
+    }
+    if (id.isPresent()) {
+      queryParams.put("id", id.get());
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return this.restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer,
+        ProjectApi.returnType_searchProjects);
+  }
+  
+  /**
    * Update project
    * <p>Updates the <a href=\"https://confluence.atlassian.com/x/ahLpNw\">project details</a> of a project.</p> <p>All parameters are optional in the body of the request.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> <em>Administer Jira</em> <a href=\"https://confluence.atlassian.com/x/x4dKLg\">global permission</a>.</p> 
    * @param projectIdOrKey <p>The project ID or project key (case sensitive).</p>  (required)

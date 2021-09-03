@@ -41,7 +41,7 @@ import java.util.Map;
 
 public class ScreenTabFieldsApi {
 
-  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.com";
+  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.net";
 
   private static final TypeReference<ScreenableField> returnType_addScreenTabField = new TypeReference<ScreenableField>() {};
 

@@ -45,7 +45,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.Scope;
  * Details about the roles in a project.
  */
 @ApiModel(description = "Details about the roles in a project.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
 public class ProjectRole {
   @JsonProperty("self")
   private URI self;
@@ -71,11 +71,11 @@ public class ProjectRole {
   @JsonProperty("currentUserRole")
   private Boolean currentUserRole;
 
-  @JsonProperty("roleConfigurable")
-  private Boolean roleConfigurable;
-
   @JsonProperty("admin")
   private Boolean admin;
+
+  @JsonProperty("roleConfigurable")
+  private Boolean roleConfigurable;
 
   @JsonProperty("default")
   private Boolean _default;
@@ -180,21 +180,21 @@ public class ProjectRole {
   }
 
    /**
-   * Whether the roles are configurable for this project.
-   * @return roleConfigurable
-  **/
-  @ApiModelProperty(value = "Whether the roles are configurable for this project.")
-  public Boolean getRoleConfigurable() {
-    return roleConfigurable;
-  }
-
-   /**
    * Whether this role is the admin role for the project.
    * @return admin
   **/
   @ApiModelProperty(value = "Whether this role is the admin role for the project.")
   public Boolean getAdmin() {
     return admin;
+  }
+
+   /**
+   * Whether the roles are configurable for this project.
+   * @return roleConfigurable
+  **/
+  @ApiModelProperty(value = "Whether the roles are configurable for this project.")
+  public Boolean getRoleConfigurable() {
+    return roleConfigurable;
   }
 
    /**
@@ -224,14 +224,14 @@ public class ProjectRole {
         Objects.equals(this.scope, projectRole.scope) &&
         Objects.equals(this.translatedName, projectRole.translatedName) &&
         Objects.equals(this.currentUserRole, projectRole.currentUserRole) &&
-        Objects.equals(this.roleConfigurable, projectRole.roleConfigurable) &&
         Objects.equals(this.admin, projectRole.admin) &&
+        Objects.equals(this.roleConfigurable, projectRole.roleConfigurable) &&
         Objects.equals(this._default, projectRole._default);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, name, id, description, actors, scope, translatedName, currentUserRole, roleConfigurable, admin, _default);
+    return Objects.hash(self, name, id, description, actors, scope, translatedName, currentUserRole, admin, roleConfigurable, _default);
   }
 
 
@@ -248,8 +248,8 @@ public class ProjectRole {
     sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
     sb.append("    translatedName: ").append(toIndentedString(translatedName)).append("\n");
     sb.append("    currentUserRole: ").append(toIndentedString(currentUserRole)).append("\n");
-    sb.append("    roleConfigurable: ").append(toIndentedString(roleConfigurable)).append("\n");
     sb.append("    admin: ").append(toIndentedString(admin)).append("\n");
+    sb.append("    roleConfigurable: ").append(toIndentedString(roleConfigurable)).append("\n");
     sb.append("    _default: ").append(toIndentedString(_default)).append("\n");
     sb.append("}");
     return sb.toString();

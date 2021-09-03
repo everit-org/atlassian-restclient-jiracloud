@@ -43,11 +43,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import org.everit.atlassian.restclient.jiracloud.v2.model.AvatarUrlsBean;
-import org.everit.atlassian.restclient.jiracloud.v2.model.Component;
 import org.everit.atlassian.restclient.jiracloud.v2.model.Hierarchy;
 import org.everit.atlassian.restclient.jiracloud.v2.model.IssueTypeDetails;
 import org.everit.atlassian.restclient.jiracloud.v2.model.ProjectCategory;
+import org.everit.atlassian.restclient.jiracloud.v2.model.ProjectComponent;
 import org.everit.atlassian.restclient.jiracloud.v2.model.ProjectInsight;
+import org.everit.atlassian.restclient.jiracloud.v2.model.ProjectLandingPageInfo;
 import org.everit.atlassian.restclient.jiracloud.v2.model.ProjectPermissions;
 import org.everit.atlassian.restclient.jiracloud.v2.model.User;
 import org.everit.atlassian.restclient.jiracloud.v2.model.Version;
@@ -56,7 +57,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.Version;
  * Details about a project.
  */
 @ApiModel(description = "Details about a project.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
 public class Project {
   @JsonProperty("expand")
   private String expand;
@@ -77,7 +78,7 @@ public class Project {
   private User lead;
 
   @JsonProperty("components")
-  private List<Component> components = new ArrayList<>();
+  private List<ProjectComponent> components = new ArrayList<>();
 
   @JsonProperty("issueTypes")
   private List<IssueTypeDetails> issueTypes = new ArrayList<>();
@@ -264,6 +265,9 @@ public class Project {
   @JsonProperty("archivedBy")
   private User archivedBy;
 
+  @JsonProperty("landingPageInfo")
+  private ProjectLandingPageInfo landingPageInfo;
+
    /**
    * Expand options that include additional project details in the response.
    * @return expand
@@ -332,7 +336,7 @@ public class Project {
    * @return components
   **/
   @ApiModelProperty(value = "List of the components contained in the project.")
-  public List<Component> getComponents() {
+  public List<ProjectComponent> getComponents() {
     return components;
   }
 
@@ -481,10 +485,10 @@ public class Project {
   }
 
    /**
-   * The issue type hierarchy for the project
+   * The issue type hierarchy for the project.
    * @return issueTypeHierarchy
   **/
-  @ApiModelProperty(value = "The issue type hierarchy for the project")
+  @ApiModelProperty(value = "The issue type hierarchy for the project.")
   public Hierarchy getIssueTypeHierarchy() {
     return issueTypeHierarchy;
   }
@@ -588,6 +592,15 @@ public class Project {
     return archivedBy;
   }
 
+   /**
+   * The project landing page info.
+   * @return landingPageInfo
+  **/
+  @ApiModelProperty(value = "The project landing page info.")
+  public ProjectLandingPageInfo getLandingPageInfo() {
+    return landingPageInfo;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -630,12 +643,13 @@ public class Project {
         Objects.equals(this.deletedBy, project.deletedBy) &&
         Objects.equals(this.archived, project.archived) &&
         Objects.equals(this.archivedDate, project.archivedDate) &&
-        Objects.equals(this.archivedBy, project.archivedBy);
+        Objects.equals(this.archivedBy, project.archivedBy) &&
+        Objects.equals(this.landingPageInfo, project.landingPageInfo);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(expand, self, id, key, description, lead, components, issueTypes, url, email, assigneeType, versions, name, roles, avatarUrls, projectCategory, projectTypeKey, simplified, style, favourite, isPrivate, issueTypeHierarchy, permissions, properties, uuid, insight, deleted, retentionTillDate, deletedDate, deletedBy, archived, archivedDate, archivedBy);
+    return Objects.hash(expand, self, id, key, description, lead, components, issueTypes, url, email, assigneeType, versions, name, roles, avatarUrls, projectCategory, projectTypeKey, simplified, style, favourite, isPrivate, issueTypeHierarchy, permissions, properties, uuid, insight, deleted, retentionTillDate, deletedDate, deletedBy, archived, archivedDate, archivedBy, landingPageInfo);
   }
 
 
@@ -677,6 +691,7 @@ public class Project {
     sb.append("    archived: ").append(toIndentedString(archived)).append("\n");
     sb.append("    archivedDate: ").append(toIndentedString(archivedDate)).append("\n");
     sb.append("    archivedBy: ").append(toIndentedString(archivedBy)).append("\n");
+    sb.append("    landingPageInfo: ").append(toIndentedString(landingPageInfo)).append("\n");
     sb.append("}");
     return sb.toString();
   }

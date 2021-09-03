@@ -30,6 +30,7 @@ import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v3.model.CreateUpdateRoleRequestBean;
 import org.everit.atlassian.restclient.jiracloud.v3.model.ProjectRole;
+import org.everit.atlassian.restclient.jiracloud.v3.model.ProjectRoleDetails;
 import java.net.URI;
 
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ import java.util.Map;
 
 public class ProjectRolesApi {
 
-  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.com";
+  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.net";
 
   private static final TypeReference<ProjectRole> returnType_createProjectRole = new TypeReference<ProjectRole>() {};
 
@@ -53,7 +54,7 @@ public class ProjectRolesApi {
 
   private static final TypeReference<ProjectRole> returnType_getProjectRoleById = new TypeReference<ProjectRole>() {};
 
-  private static final TypeReference<List<ProjectRole>> returnType_getProjectRoleDetails = new TypeReference<List<ProjectRole>>() {};
+  private static final TypeReference<List<ProjectRoleDetails>> returnType_getProjectRoleDetails = new TypeReference<List<ProjectRoleDetails>>() {};
 
   private static final TypeReference<Map<String, URI>> returnType_getProjectRoles = new TypeReference<Map<String, URI>>() {};
 
@@ -248,9 +249,9 @@ public class ProjectRolesApi {
    * @param currentMember Whether the roles should be filtered to include only those the user is assigned to. (optional, default to false)
    * @param excludeConnectAddons  (optional, default to false)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
-   * @return Single&lt;List&lt;ProjectRole&gt;&gt;
+   * @return Single&lt;List&lt;ProjectRoleDetails&gt;&gt;
    */
-  public Single<List<ProjectRole>> getProjectRoleDetails(
+  public Single<List<ProjectRoleDetails>> getProjectRoleDetails(
     String projectIdOrKey, Optional<Boolean> currentMember, Optional<Boolean> excludeConnectAddons, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()

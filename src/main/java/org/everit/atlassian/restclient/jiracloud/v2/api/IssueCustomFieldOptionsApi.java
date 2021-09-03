@@ -28,13 +28,13 @@ import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
 import org.everit.http.restclient.TypeReference;
 
-import org.everit.atlassian.restclient.jiracloud.v2.model.BulkCreateCustomFieldOptionRequest;
+import org.everit.atlassian.restclient.jiracloud.v2.model.BulkCustomFieldOptionCreateRequest;
+import org.everit.atlassian.restclient.jiracloud.v2.model.BulkCustomFieldOptionUpdateRequest;
+import org.everit.atlassian.restclient.jiracloud.v2.model.CustomFieldCreatedContextOptionsList;
 import org.everit.atlassian.restclient.jiracloud.v2.model.CustomFieldOption;
-import org.everit.atlassian.restclient.jiracloud.v2.model.ErrorCollection;
+import org.everit.atlassian.restclient.jiracloud.v2.model.CustomFieldUpdatedContextOptionsList;
 import org.everit.atlassian.restclient.jiracloud.v2.model.OrderOfCustomFieldOptions;
 import org.everit.atlassian.restclient.jiracloud.v2.model.PageBeanCustomFieldContextOption;
-import org.everit.atlassian.restclient.jiracloud.v2.model.PageBeanCustomFieldOptionDetails;
-import org.everit.atlassian.restclient.jiracloud.v2.model.UpdateCustomFieldOption;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -45,19 +45,17 @@ import java.util.Map;
 
 public class IssueCustomFieldOptionsApi {
 
-  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.com";
+  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.net";
 
-  private static final TypeReference<Object> returnType_createCustomFieldOptions = new TypeReference<Object>() {};
+  private static final TypeReference<CustomFieldCreatedContextOptionsList> returnType_createCustomFieldOption = new TypeReference<CustomFieldCreatedContextOptionsList>() {};
 
   private static final TypeReference<CustomFieldOption> returnType_getCustomFieldOption = new TypeReference<CustomFieldOption>() {};
 
   private static final TypeReference<PageBeanCustomFieldContextOption> returnType_getOptionsForContext = new TypeReference<PageBeanCustomFieldContextOption>() {};
 
-  private static final TypeReference<PageBeanCustomFieldOptionDetails> returnType_getOptionsForField = new TypeReference<PageBeanCustomFieldOptionDetails>() {};
-
   private static final TypeReference<Object> returnType_reorderCustomFieldOptions = new TypeReference<Object>() {};
 
-  private static final TypeReference<Object> returnType_updateCustomFieldOptions = new TypeReference<Object>() {};
+  private static final TypeReference<CustomFieldUpdatedContextOptionsList> returnType_updateCustomFieldOption = new TypeReference<CustomFieldUpdatedContextOptionsList>() {};
 
   private final RestClient restClient;
 
@@ -66,23 +64,25 @@ public class IssueCustomFieldOptionsApi {
   }
 
   /**
-   * Create custom field options
-   * Creates options and, where the custom select field is of the type *Select List (cascading)*, cascading options for a custom select field. The options are added to the global context of the field.  Note that this operation **only works for issue field select list options created in Jira or using operations from the [Issue custom field options](#api-group-Issue-custom-field-options) resource**, it cannot be used with issue field select list options created by Connect apps.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   * @param fieldId The ID of the custom field. Note: This is the numeric part of the of the field ID. For example, for a field with the ID *customfield\\_10075* use *10075*. (required)
-   * @param bulkCreateCustomFieldOptionRequest  (required)
+   * Create custom field options (context)
+   * Creates options and, where the custom select field is of the type Select List (cascading), cascading options for a custom select field. The options are added to a context of the field.  The maximum number of options that can be created per request is 1000 and each field can have a maximum of 10000 options.  This operation works for custom field options created in Jira or the operations from this resource. **To work with issue field select list options created for Connect apps use the [Issue custom field options (apps)](#api-group-issue-custom-field-options--apps-) operations.**  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * @param fieldId The ID of the custom field. (required)
+   * @param contextId The ID of the context. (required)
+   * @param bulkCustomFieldOptionCreateRequest  (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
-   * @return Single&lt;Object&gt;
+   * @return Single&lt;CustomFieldCreatedContextOptionsList&gt;
    */
-  public Single<Object> createCustomFieldOptions(
-    Long fieldId, BulkCreateCustomFieldOptionRequest bulkCreateCustomFieldOptionRequest, Optional<RestRequestEnhancer> restRequestEnhancer) {
+  public Single<CustomFieldCreatedContextOptionsList> createCustomFieldOption(
+    String fieldId, Long contextId, BulkCustomFieldOptionCreateRequest bulkCustomFieldOptionCreateRequest, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.POST)
         .basePath(DEFAULT_BASE_PATH)
-        .path("/rest/api/2/customField/{fieldId}/option");
+        .path("/rest/api/2/field/{fieldId}/context/{contextId}/option");
 
     Map<String, String> pathParams = new HashMap<>();
     pathParams.put("fieldId", String.valueOf(fieldId));
+    pathParams.put("contextId", String.valueOf(contextId));
     requestBuilder.pathParams(pathParams);
 
     Map<String, Collection<String>> queryParams = new HashMap<>();
@@ -91,15 +91,15 @@ public class IssueCustomFieldOptionsApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    requestBuilder.requestBody(Optional.of(bulkCreateCustomFieldOptionRequest));
+    requestBuilder.requestBody(Optional.of(bulkCustomFieldOptionCreateRequest));
 
-    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_createCustomFieldOptions);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_createCustomFieldOption);
   }
 
   /**
-   * Delete custom field option (context)
+   * Delete custom field options (context)
    * Deletes a custom field option.  Options with cascading options cannot be deleted without deleting the cascading options first.  This operation works for custom field options created in Jira or the operations from this resource. **To work with issue field select list options created for Connect apps use the [Issue custom field options (apps)](#api-group-issue-custom-field-options--apps-) operations.**  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   * @param fieldId The ID of the custom field. IDs should be provided in the format *customfield\\_XXXXX*. (required)
+   * @param fieldId The ID of the custom field. (required)
    * @param contextId The ID of the context from which an option should be deleted. (required)
    * @param optionId The ID of the option to delete. (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
@@ -157,14 +157,14 @@ public class IssueCustomFieldOptionsApi {
   }
 
   /**
-   * Get options for field (context)
+   * Get custom field options (context)
    * Returns a [paginated](#pagination) list of all custom field option for a context. Options are returned first then cascading options, in the order they display in Jira.  This operation works for custom field options created in Jira or the operations from this resource. **To work with issue field select list options created for Connect apps use the [Issue custom field options (apps)](#api-group-issue-custom-field-options--apps-) operations.**  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   * @param fieldId The ID of the custom field. IDs should be provided in the format *customfield\\_XXXXX*. (required)
+   * @param fieldId The ID of the custom field. (required)
    * @param contextId The ID of the context. (required)
    * @param optionId The ID of the option. (optional)
    * @param onlyOptions Whether only options are returned. (optional, default to false)
    * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0l)
-   * @param maxResults The maximum number of items to return per page. (optional, default to 1000)
+   * @param maxResults The maximum number of items to return per page. (optional, default to 100)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PageBeanCustomFieldContextOption&gt;
    */
@@ -203,45 +203,9 @@ public class IssueCustomFieldOptionsApi {
   }
 
   /**
-   * Get options for field
-   * Returns a [paginated](#pagination) list of options and, where the custom select field is of the type *Select List (cascading)*, cascading options for custom select fields. Cascading options are included in the item count when determining pagination. Only options from the global context are returned.  Note that this operation **only works for issue field select list options created in Jira or using operations from the [Issue custom field options](#api-group-Issue-custom-field-options) resource**, it cannot be used with issue field select list options created by Connect apps.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   * @param fieldId The ID of the custom field. Note: This is the numeric part of the of the field ID. For example, for a field with the ID *customfield\\_10075* use *10075*. (required)
-   * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0l)
-   * @param maxResults The maximum number of items to return per page. (optional, default to 1000)
-   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
-   * @return Single&lt;PageBeanCustomFieldOptionDetails&gt;
-   */
-  public Single<PageBeanCustomFieldOptionDetails> getOptionsForField(
-    Long fieldId, Optional<Long> startAt, Optional<Integer> maxResults, Optional<RestRequestEnhancer> restRequestEnhancer) {
-
-    RestRequest.Builder requestBuilder = RestRequest.builder()
-        .method(HttpMethod.GET)
-        .basePath(DEFAULT_BASE_PATH)
-        .path("/rest/api/2/customField/{fieldId}/option");
-
-    Map<String, String> pathParams = new HashMap<>();
-    pathParams.put("fieldId", String.valueOf(fieldId));
-    requestBuilder.pathParams(pathParams);
-
-    Map<String, Collection<String>> queryParams = new HashMap<>();
-    if (startAt.isPresent()) {
-      queryParams.put("startAt", Collections.singleton(String.valueOf(startAt.get())));
-    }
-    if (maxResults.isPresent()) {
-      queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults.get())));
-    }
-    requestBuilder.queryParams(queryParams);
-
-    Map<String, String> headers = new HashMap<>();
-    requestBuilder.headers(headers);
-
-    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getOptionsForField);
-  }
-
-  /**
-   * Reorder options (context)
+   * Reorder custom field options (context)
    * Changes the order of custom field options or cascading options in a context.  This operation works for custom field options created in Jira or the operations from this resource. **To work with issue field select list options created for Connect apps use the [Issue custom field options (apps)](#api-group-issue-custom-field-options--apps-) operations.**  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   * @param fieldId The ID of the custom field. IDs should be provided in the format *customfield\\_XXXXX*. (required)
+   * @param fieldId The ID of the custom field. (required)
    * @param contextId The ID of the context. (required)
    * @param orderOfCustomFieldOptions  (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
@@ -272,23 +236,25 @@ public class IssueCustomFieldOptionsApi {
   }
 
   /**
-   * Update custom field options
-   * Updates the options on a custom select field. Where an updated option is in use on an issue, the value on the issue is also updated. Options that are not found are ignored. A maximum of 1000 options, including sub-options of *Select List (cascading)* fields, can be updated per request. The options are updated on the global context of the field.  Note that this operation **only works for issue field select list options created in Jira or using operations from the [Issue custom field options](#api-group-Issue-custom-field-options) resource**, it cannot be used with issue field select list options created by Connect apps.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   * @param fieldId The ID of the custom field. Note: This is the numeric part of the of the field ID. For example, for a field with the ID *customfield\\_10075* use *10075*. (required)
-   * @param updateCustomFieldOption  (required)
+   * Update custom field options (context)
+   * Updates the options of a custom field.  If any of the options are not found, no options are updated. Options where the values in the request match the current values aren't updated and aren't reported in the response.  Note that this operation **only works for issue field select list options created in Jira or using operations from the [Issue custom field options](#api-group-Issue-custom-field-options) resource**, it cannot be used with issue field select list options created by Connect apps.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * @param fieldId The ID of the custom field. (required)
+   * @param contextId The ID of the context. (required)
+   * @param bulkCustomFieldOptionUpdateRequest  (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
-   * @return Single&lt;Object&gt;
+   * @return Single&lt;CustomFieldUpdatedContextOptionsList&gt;
    */
-  public Single<Object> updateCustomFieldOptions(
-    Long fieldId, UpdateCustomFieldOption updateCustomFieldOption, Optional<RestRequestEnhancer> restRequestEnhancer) {
+  public Single<CustomFieldUpdatedContextOptionsList> updateCustomFieldOption(
+    String fieldId, Long contextId, BulkCustomFieldOptionUpdateRequest bulkCustomFieldOptionUpdateRequest, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.PUT)
         .basePath(DEFAULT_BASE_PATH)
-        .path("/rest/api/2/customField/{fieldId}/option");
+        .path("/rest/api/2/field/{fieldId}/context/{contextId}/option");
 
     Map<String, String> pathParams = new HashMap<>();
     pathParams.put("fieldId", String.valueOf(fieldId));
+    pathParams.put("contextId", String.valueOf(contextId));
     requestBuilder.pathParams(pathParams);
 
     Map<String, Collection<String>> queryParams = new HashMap<>();
@@ -297,9 +263,9 @@ public class IssueCustomFieldOptionsApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    requestBuilder.requestBody(Optional.of(updateCustomFieldOption));
+    requestBuilder.requestBody(Optional.of(bulkCustomFieldOptionUpdateRequest));
 
-    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updateCustomFieldOptions);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updateCustomFieldOption);
   }
 
 }

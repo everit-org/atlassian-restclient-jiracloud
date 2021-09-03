@@ -35,13 +35,15 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.everit.atlassian.restclient.jiracloud.v3.model.WorkflowStatusProperties;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Details of a workflow status.
  */
 @ApiModel(description = "Details of a workflow status.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
 public class WorkflowStatus {
   @JsonProperty("id")
   private String id;
@@ -50,7 +52,7 @@ public class WorkflowStatus {
   private String name;
 
   @JsonProperty("properties")
-  private WorkflowStatusProperties properties;
+  private Map<String, Object> properties = new HashMap<>();
 
   public WorkflowStatus id(String id) {
     this.id = id;
@@ -88,21 +90,29 @@ public class WorkflowStatus {
     this.name = name;
   }
 
-  public WorkflowStatus properties(WorkflowStatusProperties properties) {
+  public WorkflowStatus properties(Map<String, Object> properties) {
     this.properties = properties;
     return this;
   }
 
+  public WorkflowStatus putPropertiesItem(String key, Object propertiesItem) {
+    if (this.properties == null) {
+      this.properties = new HashMap<>();
+    }
+    this.properties.put(key, propertiesItem);
+    return this;
+  }
+
    /**
-   * Get properties
+   * Additional properties that modify the behavior of issues in this status. Supports the properties &#x60;jira.issue.editable&#x60; and &#x60;issueEditable&#x60; (deprecated) that indicate whether issues are editable.
    * @return properties
   **/
-  @ApiModelProperty(value = "")
-  public WorkflowStatusProperties getProperties() {
+  @ApiModelProperty(value = "Additional properties that modify the behavior of issues in this status. Supports the properties `jira.issue.editable` and `issueEditable` (deprecated) that indicate whether issues are editable.")
+  public Map<String, Object> getProperties() {
     return properties;
   }
 
-  public void setProperties(WorkflowStatusProperties properties) {
+  public void setProperties(Map<String, Object> properties) {
     this.properties = properties;
   }
 

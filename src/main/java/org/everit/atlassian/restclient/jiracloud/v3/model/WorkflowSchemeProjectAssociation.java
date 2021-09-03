@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * An associated workflow scheme and project.
  */
 @ApiModel(description = "An associated workflow scheme and project.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
 public class WorkflowSchemeProjectAssociation {
   @JsonProperty("workflowSchemeId")
   private String workflowSchemeId;
@@ -54,10 +54,10 @@ public class WorkflowSchemeProjectAssociation {
   }
 
    /**
-   * The ID of the workflow scheme.
+   * The ID of the workflow scheme. If the workflow scheme ID is &#x60;null&#x60;, the operation assigns the default workflow scheme.
    * @return workflowSchemeId
   **/
-  @ApiModelProperty(required = true, value = "The ID of the workflow scheme.")
+  @ApiModelProperty(value = "The ID of the workflow scheme. If the workflow scheme ID is `null`, the operation assigns the default workflow scheme.")
   public String getWorkflowSchemeId() {
     return workflowSchemeId;
   }

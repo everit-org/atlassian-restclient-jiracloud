@@ -44,7 +44,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.IssueTypeInfo;
  * Details of an issue type hierarchy level.
  */
 @ApiModel(description = "Details of an issue type hierarchy level.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
 public class ProjectIssueTypesHierarchyLevel {
   @JsonProperty("entityId")
   private UUID entityId;
@@ -59,10 +59,10 @@ public class ProjectIssueTypesHierarchyLevel {
   private List<IssueTypeInfo> issueTypes = new ArrayList<>();
 
    /**
-   * The ID of the issue type hierarchy level.
+   * The ID of the issue type hierarchy level. This property is deprecated, see [Change notice: Removing hierarchy level IDs from next-gen APIs](https://developer.atlassian.com/cloud/jira/platform/change-notice-removing-hierarchy-level-ids-from-next-gen-apis/).
    * @return entityId
   **/
-  @ApiModelProperty(value = "The ID of the issue type hierarchy level.")
+  @ApiModelProperty(value = "The ID of the issue type hierarchy level. This property is deprecated, see [Change notice: Removing hierarchy level IDs from next-gen APIs](https://developer.atlassian.com/cloud/jira/platform/change-notice-removing-hierarchy-level-ids-from-next-gen-apis/).")
   public UUID getEntityId() {
     return entityId;
   }

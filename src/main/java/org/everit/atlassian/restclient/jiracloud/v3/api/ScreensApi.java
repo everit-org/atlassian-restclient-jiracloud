@@ -29,6 +29,7 @@ import org.everit.http.restclient.RestRequestEnhancer;
 import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v3.model.PageBeanScreen;
+import org.everit.atlassian.restclient.jiracloud.v3.model.PageBeanScreenWithTab;
 import org.everit.atlassian.restclient.jiracloud.v3.model.Screen;
 import org.everit.atlassian.restclient.jiracloud.v3.model.ScreenDetails;
 import org.everit.atlassian.restclient.jiracloud.v3.model.ScreenableField;
@@ -43,7 +44,7 @@ import java.util.Map;
 
 public class ScreensApi {
 
-  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.com";
+  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.net";
 
   private static final TypeReference<Object> returnType_addFieldToDefaultScreen = new TypeReference<Object>() {};
 
@@ -53,7 +54,7 @@ public class ScreensApi {
 
   private static final TypeReference<PageBeanScreen> returnType_getScreens = new TypeReference<PageBeanScreen>() {};
 
-  private static final TypeReference<PageBeanScreen> returnType_getScreensForField = new TypeReference<PageBeanScreen>() {};
+  private static final TypeReference<PageBeanScreenWithTab> returnType_getScreensForField = new TypeReference<PageBeanScreenWithTab>() {};
 
   private static final TypeReference<Screen> returnType_updateScreen = new TypeReference<Screen>() {};
 
@@ -220,11 +221,12 @@ public class ScreensApi {
    * @param fieldId The ID of the field to return screens for. (required)
    * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0l)
    * @param maxResults The maximum number of items to return per page. (optional, default to 100)
+   * @param expand Use [expand](#expansion) to include additional information about screens in the response. This parameter accepts `tab` which returns details about the screen tabs the field is used in. (optional)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
-   * @return Single&lt;PageBeanScreen&gt;
+   * @return Single&lt;PageBeanScreenWithTab&gt;
    */
-  public Single<PageBeanScreen> getScreensForField(
-    String fieldId, Optional<Long> startAt, Optional<Integer> maxResults, Optional<RestRequestEnhancer> restRequestEnhancer) {
+  public Single<PageBeanScreenWithTab> getScreensForField(
+    String fieldId, Optional<Long> startAt, Optional<Integer> maxResults, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.GET)
@@ -241,6 +243,9 @@ public class ScreensApi {
     }
     if (maxResults.isPresent()) {
       queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults.get())));
+    }
+    if (expand.isPresent()) {
+      queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
     }
     requestBuilder.queryParams(queryParams);
 

@@ -39,7 +39,7 @@ import java.util.Map;
 
 public class WorkflowTransitionPropertiesApi {
 
-  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.com";
+  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.net";
 
   private static final TypeReference<WorkflowTransitionProperty> returnType_createWorkflowTransitionProperty = new TypeReference<WorkflowTransitionProperty>() {};
 
@@ -65,7 +65,7 @@ public class WorkflowTransitionPropertiesApi {
    * @return Single&lt;WorkflowTransitionProperty&gt;
    */
   public Single<WorkflowTransitionProperty> createWorkflowTransitionProperty(
-    Long transitionId, String key, String workflowName, WorkflowTransitionProperty requestBody, Optional<String> workflowMode, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Long transitionId, String key, String workflowName, Map<String, Object> requestBody, Optional<String> workflowMode, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.POST)
@@ -182,7 +182,7 @@ public class WorkflowTransitionPropertiesApi {
    * @return Single&lt;WorkflowTransitionProperty&gt;
    */
   public Single<WorkflowTransitionProperty> updateWorkflowTransitionProperty(
-    Long transitionId, String key, String workflowName, WorkflowTransitionProperty requestBody, Optional<String> workflowMode, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Long transitionId, String key, String workflowName, Map<String, Object> requestBody, Optional<String> workflowMode, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.PUT)

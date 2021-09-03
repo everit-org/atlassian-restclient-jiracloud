@@ -42,10 +42,58 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.User;
  * Details about a component with a count of the issues it contains.
  */
 @ApiModel(description = "Details about a component with a count of the issues it contains.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
 public class ComponentWithIssueCount {
   @JsonProperty("issueCount")
   private Long issueCount;
+
+  @JsonProperty("isAssigneeTypeValid")
+  private Boolean isAssigneeTypeValid;
+
+  /**
+   * The type of the assignee that is assigned to issues created with this component, when an assignee cannot be set from the &#x60;assigneeType&#x60;. For example, &#x60;assigneeType&#x60; is set to &#x60;COMPONENT_LEAD&#x60; but no component lead is set. This property is set to one of the following values:   *  &#x60;PROJECT_LEAD&#x60; when &#x60;assigneeType&#x60; is &#x60;PROJECT_LEAD&#x60; and the project lead has permission to be assigned issues in the project that the component is in.  *  &#x60;COMPONENT_LEAD&#x60; when &#x60;assignee&#x60;Type is &#x60;COMPONENT_LEAD&#x60; and the component lead has permission to be assigned issues in the project that the component is in.  *  &#x60;UNASSIGNED&#x60; when &#x60;assigneeType&#x60; is &#x60;UNASSIGNED&#x60; and Jira is configured to allow unassigned issues.  *  &#x60;PROJECT_DEFAULT&#x60; when none of the preceding cases are true.
+   */
+  public enum RealAssigneeTypeEnum {
+    PROJECT_DEFAULT("PROJECT_DEFAULT"),
+    
+    COMPONENT_LEAD("COMPONENT_LEAD"),
+    
+    PROJECT_LEAD("PROJECT_LEAD"),
+    
+    UNASSIGNED("UNASSIGNED");
+
+    private String value;
+
+    RealAssigneeTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static RealAssigneeTypeEnum fromValue(String value) {
+      for (RealAssigneeTypeEnum b : RealAssigneeTypeEnum.values()) {
+        if (b.value.equalsIgnoreCase(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  @JsonProperty("realAssigneeType")
+  private RealAssigneeTypeEnum realAssigneeType;
+
+  @JsonProperty("realAssignee")
+  private User realAssignee;
 
   @JsonProperty("description")
   private String description;
@@ -55,6 +103,9 @@ public class ComponentWithIssueCount {
 
   @JsonProperty("projectId")
   private Long projectId;
+
+  @JsonProperty("assignee")
+  private User assignee;
 
   @JsonProperty("project")
   private String project;
@@ -104,57 +155,6 @@ public class ComponentWithIssueCount {
   @JsonProperty("lead")
   private User lead;
 
-  @JsonProperty("realAssignee")
-  private User realAssignee;
-
-  @JsonProperty("isAssigneeTypeValid")
-  private Boolean isAssigneeTypeValid;
-
-  @JsonProperty("assignee")
-  private User assignee;
-
-  /**
-   * The type of the assignee that is assigned to issues created with this component, when an assignee cannot be set from the &#x60;assigneeType&#x60;. For example, &#x60;assigneeType&#x60; is set to &#x60;COMPONENT_LEAD&#x60; but no component lead is set. This property is set to one of the following values:   *  &#x60;PROJECT_LEAD&#x60; when &#x60;assigneeType&#x60; is &#x60;PROJECT_LEAD&#x60; and the project lead has permission to be assigned issues in the project that the component is in.  *  &#x60;COMPONENT_LEAD&#x60; when &#x60;assignee&#x60;Type is &#x60;COMPONENT_LEAD&#x60; and the component lead has permission to be assigned issues in the project that the component is in.  *  &#x60;UNASSIGNED&#x60; when &#x60;assigneeType&#x60; is &#x60;UNASSIGNED&#x60; and Jira is configured to allow unassigned issues.  *  &#x60;PROJECT_DEFAULT&#x60; when none of the preceding cases are true.
-   */
-  public enum RealAssigneeTypeEnum {
-    PROJECT_DEFAULT("PROJECT_DEFAULT"),
-    
-    COMPONENT_LEAD("COMPONENT_LEAD"),
-    
-    PROJECT_LEAD("PROJECT_LEAD"),
-    
-    UNASSIGNED("UNASSIGNED");
-
-    private String value;
-
-    RealAssigneeTypeEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static RealAssigneeTypeEnum fromValue(String value) {
-      for (RealAssigneeTypeEnum b : RealAssigneeTypeEnum.values()) {
-        if (b.value.equalsIgnoreCase(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  @JsonProperty("realAssigneeType")
-  private RealAssigneeTypeEnum realAssigneeType;
-
   @JsonProperty("name")
   private String name;
 
@@ -168,6 +168,42 @@ public class ComponentWithIssueCount {
   @ApiModelProperty(value = "Count of issues for the component.")
   public Long getIssueCount() {
     return issueCount;
+  }
+
+   /**
+   * Whether a user is associated with &#x60;assigneeType&#x60;. For example, if the &#x60;assigneeType&#x60; is set to &#x60;COMPONENT_LEAD&#x60; but the component lead is not set, then &#x60;false&#x60; is returned.
+   * @return isAssigneeTypeValid
+  **/
+  @ApiModelProperty(value = "Whether a user is associated with `assigneeType`. For example, if the `assigneeType` is set to `COMPONENT_LEAD` but the component lead is not set, then `false` is returned.")
+  public Boolean getIsAssigneeTypeValid() {
+    return isAssigneeTypeValid;
+  }
+
+   /**
+   * The type of the assignee that is assigned to issues created with this component, when an assignee cannot be set from the &#x60;assigneeType&#x60;. For example, &#x60;assigneeType&#x60; is set to &#x60;COMPONENT_LEAD&#x60; but no component lead is set. This property is set to one of the following values:   *  &#x60;PROJECT_LEAD&#x60; when &#x60;assigneeType&#x60; is &#x60;PROJECT_LEAD&#x60; and the project lead has permission to be assigned issues in the project that the component is in.  *  &#x60;COMPONENT_LEAD&#x60; when &#x60;assignee&#x60;Type is &#x60;COMPONENT_LEAD&#x60; and the component lead has permission to be assigned issues in the project that the component is in.  *  &#x60;UNASSIGNED&#x60; when &#x60;assigneeType&#x60; is &#x60;UNASSIGNED&#x60; and Jira is configured to allow unassigned issues.  *  &#x60;PROJECT_DEFAULT&#x60; when none of the preceding cases are true.
+   * @return realAssigneeType
+  **/
+  @ApiModelProperty(value = "The type of the assignee that is assigned to issues created with this component, when an assignee cannot be set from the `assigneeType`. For example, `assigneeType` is set to `COMPONENT_LEAD` but no component lead is set. This property is set to one of the following values:   *  `PROJECT_LEAD` when `assigneeType` is `PROJECT_LEAD` and the project lead has permission to be assigned issues in the project that the component is in.  *  `COMPONENT_LEAD` when `assignee`Type is `COMPONENT_LEAD` and the component lead has permission to be assigned issues in the project that the component is in.  *  `UNASSIGNED` when `assigneeType` is `UNASSIGNED` and Jira is configured to allow unassigned issues.  *  `PROJECT_DEFAULT` when none of the preceding cases are true.")
+  public RealAssigneeTypeEnum getRealAssigneeType() {
+    return realAssigneeType;
+  }
+
+  public ComponentWithIssueCount realAssignee(User realAssignee) {
+    this.realAssignee = realAssignee;
+    return this;
+  }
+
+   /**
+   * The user assigned to issues created with this component, when &#x60;assigneeType&#x60; does not identify a valid assignee.
+   * @return realAssignee
+  **/
+  @ApiModelProperty(value = "The user assigned to issues created with this component, when `assigneeType` does not identify a valid assignee.")
+  public User getRealAssignee() {
+    return realAssignee;
+  }
+
+  public void setRealAssignee(User realAssignee) {
+    this.realAssignee = realAssignee;
   }
 
    /**
@@ -195,6 +231,24 @@ public class ComponentWithIssueCount {
   @ApiModelProperty(value = "Not used.")
   public Long getProjectId() {
     return projectId;
+  }
+
+  public ComponentWithIssueCount assignee(User assignee) {
+    this.assignee = assignee;
+    return this;
+  }
+
+   /**
+   * The details of the user associated with &#x60;assigneeType&#x60;, if any. See &#x60;realAssignee&#x60; for details of the user assigned to issues created with this component.
+   * @return assignee
+  **/
+  @ApiModelProperty(value = "The details of the user associated with `assigneeType`, if any. See `realAssignee` for details of the user assigned to issues created with this component.")
+  public User getAssignee() {
+    return assignee;
+  }
+
+  public void setAssignee(User assignee) {
+    this.assignee = assignee;
   }
 
    /**
@@ -233,60 +287,6 @@ public class ComponentWithIssueCount {
     this.lead = lead;
   }
 
-  public ComponentWithIssueCount realAssignee(User realAssignee) {
-    this.realAssignee = realAssignee;
-    return this;
-  }
-
-   /**
-   * The user assigned to issues created with this component, when &#x60;assigneeType&#x60; does not identify a valid assignee.
-   * @return realAssignee
-  **/
-  @ApiModelProperty(value = "The user assigned to issues created with this component, when `assigneeType` does not identify a valid assignee.")
-  public User getRealAssignee() {
-    return realAssignee;
-  }
-
-  public void setRealAssignee(User realAssignee) {
-    this.realAssignee = realAssignee;
-  }
-
-   /**
-   * Whether a user is associated with &#x60;assigneeType&#x60;. For example, if the &#x60;assigneeType&#x60; is set to &#x60;COMPONENT_LEAD&#x60; but the component lead is not set, then &#x60;false&#x60; is returned.
-   * @return isAssigneeTypeValid
-  **/
-  @ApiModelProperty(value = "Whether a user is associated with `assigneeType`. For example, if the `assigneeType` is set to `COMPONENT_LEAD` but the component lead is not set, then `false` is returned.")
-  public Boolean getIsAssigneeTypeValid() {
-    return isAssigneeTypeValid;
-  }
-
-  public ComponentWithIssueCount assignee(User assignee) {
-    this.assignee = assignee;
-    return this;
-  }
-
-   /**
-   * The details of the user associated with &#x60;assigneeType&#x60;, if any. See &#x60;realAssignee&#x60; for details of the user assigned to issues created with this component.
-   * @return assignee
-  **/
-  @ApiModelProperty(value = "The details of the user associated with `assigneeType`, if any. See `realAssignee` for details of the user assigned to issues created with this component.")
-  public User getAssignee() {
-    return assignee;
-  }
-
-  public void setAssignee(User assignee) {
-    this.assignee = assignee;
-  }
-
-   /**
-   * The type of the assignee that is assigned to issues created with this component, when an assignee cannot be set from the &#x60;assigneeType&#x60;. For example, &#x60;assigneeType&#x60; is set to &#x60;COMPONENT_LEAD&#x60; but no component lead is set. This property is set to one of the following values:   *  &#x60;PROJECT_LEAD&#x60; when &#x60;assigneeType&#x60; is &#x60;PROJECT_LEAD&#x60; and the project lead has permission to be assigned issues in the project that the component is in.  *  &#x60;COMPONENT_LEAD&#x60; when &#x60;assignee&#x60;Type is &#x60;COMPONENT_LEAD&#x60; and the component lead has permission to be assigned issues in the project that the component is in.  *  &#x60;UNASSIGNED&#x60; when &#x60;assigneeType&#x60; is &#x60;UNASSIGNED&#x60; and Jira is configured to allow unassigned issues.  *  &#x60;PROJECT_DEFAULT&#x60; when none of the preceding cases are true.
-   * @return realAssigneeType
-  **/
-  @ApiModelProperty(value = "The type of the assignee that is assigned to issues created with this component, when an assignee cannot be set from the `assigneeType`. For example, `assigneeType` is set to `COMPONENT_LEAD` but no component lead is set. This property is set to one of the following values:   *  `PROJECT_LEAD` when `assigneeType` is `PROJECT_LEAD` and the project lead has permission to be assigned issues in the project that the component is in.  *  `COMPONENT_LEAD` when `assignee`Type is `COMPONENT_LEAD` and the component lead has permission to be assigned issues in the project that the component is in.  *  `UNASSIGNED` when `assigneeType` is `UNASSIGNED` and Jira is configured to allow unassigned issues.  *  `PROJECT_DEFAULT` when none of the preceding cases are true.")
-  public RealAssigneeTypeEnum getRealAssigneeType() {
-    return realAssigneeType;
-  }
-
    /**
    * The name for the component.
    * @return name
@@ -316,23 +316,23 @@ public class ComponentWithIssueCount {
     }
     ComponentWithIssueCount componentWithIssueCount = (ComponentWithIssueCount) o;
     return Objects.equals(this.issueCount, componentWithIssueCount.issueCount) &&
+        Objects.equals(this.isAssigneeTypeValid, componentWithIssueCount.isAssigneeTypeValid) &&
+        Objects.equals(this.realAssigneeType, componentWithIssueCount.realAssigneeType) &&
+        Objects.equals(this.realAssignee, componentWithIssueCount.realAssignee) &&
         Objects.equals(this.description, componentWithIssueCount.description) &&
         Objects.equals(this.self, componentWithIssueCount.self) &&
         Objects.equals(this.projectId, componentWithIssueCount.projectId) &&
+        Objects.equals(this.assignee, componentWithIssueCount.assignee) &&
         Objects.equals(this.project, componentWithIssueCount.project) &&
         Objects.equals(this.assigneeType, componentWithIssueCount.assigneeType) &&
         Objects.equals(this.lead, componentWithIssueCount.lead) &&
-        Objects.equals(this.realAssignee, componentWithIssueCount.realAssignee) &&
-        Objects.equals(this.isAssigneeTypeValid, componentWithIssueCount.isAssigneeTypeValid) &&
-        Objects.equals(this.assignee, componentWithIssueCount.assignee) &&
-        Objects.equals(this.realAssigneeType, componentWithIssueCount.realAssigneeType) &&
         Objects.equals(this.name, componentWithIssueCount.name) &&
         Objects.equals(this.id, componentWithIssueCount.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(issueCount, description, self, projectId, project, assigneeType, lead, realAssignee, isAssigneeTypeValid, assignee, realAssigneeType, name, id);
+    return Objects.hash(issueCount, isAssigneeTypeValid, realAssigneeType, realAssignee, description, self, projectId, assignee, project, assigneeType, lead, name, id);
   }
 
 
@@ -342,16 +342,16 @@ public class ComponentWithIssueCount {
     sb.append("class ComponentWithIssueCount {\n");
     
     sb.append("    issueCount: ").append(toIndentedString(issueCount)).append("\n");
+    sb.append("    isAssigneeTypeValid: ").append(toIndentedString(isAssigneeTypeValid)).append("\n");
+    sb.append("    realAssigneeType: ").append(toIndentedString(realAssigneeType)).append("\n");
+    sb.append("    realAssignee: ").append(toIndentedString(realAssignee)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    projectId: ").append(toIndentedString(projectId)).append("\n");
+    sb.append("    assignee: ").append(toIndentedString(assignee)).append("\n");
     sb.append("    project: ").append(toIndentedString(project)).append("\n");
     sb.append("    assigneeType: ").append(toIndentedString(assigneeType)).append("\n");
     sb.append("    lead: ").append(toIndentedString(lead)).append("\n");
-    sb.append("    realAssignee: ").append(toIndentedString(realAssignee)).append("\n");
-    sb.append("    isAssigneeTypeValid: ").append(toIndentedString(isAssigneeTypeValid)).append("\n");
-    sb.append("    assignee: ").append(toIndentedString(assignee)).append("\n");
-    sb.append("    realAssigneeType: ").append(toIndentedString(realAssigneeType)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");

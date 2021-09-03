@@ -42,7 +42,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.JsonTypeBean;
  * Details of a field.
  */
 @ApiModel(description = "Details of a field.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
 public class Field {
   @JsonProperty("id")
   private String id;
@@ -61,6 +61,9 @@ public class Field {
 
   @JsonProperty("isLocked")
   private Boolean isLocked;
+
+  @JsonProperty("searcherKey")
+  private String searcherKey;
 
   @JsonProperty("screensCount")
   private Long screensCount;
@@ -116,7 +119,7 @@ public class Field {
    * Get schema
    * @return schema
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public JsonTypeBean getSchema() {
     return schema;
   }
@@ -177,6 +180,24 @@ public class Field {
 
   public void setIsLocked(Boolean isLocked) {
     this.isLocked = isLocked;
+  }
+
+  public Field searcherKey(String searcherKey) {
+    this.searcherKey = searcherKey;
+    return this;
+  }
+
+   /**
+   * The searcher key of the field. Returned for custom fields.
+   * @return searcherKey
+  **/
+  @ApiModelProperty(value = "The searcher key of the field. Returned for custom fields.")
+  public String getSearcherKey() {
+    return searcherKey;
+  }
+
+  public void setSearcherKey(String searcherKey) {
+    this.searcherKey = searcherKey;
   }
 
   public Field screensCount(Long screensCount) {
@@ -249,6 +270,7 @@ public class Field {
         Objects.equals(this.description, field.description) &&
         Objects.equals(this.key, field.key) &&
         Objects.equals(this.isLocked, field.isLocked) &&
+        Objects.equals(this.searcherKey, field.searcherKey) &&
         Objects.equals(this.screensCount, field.screensCount) &&
         Objects.equals(this.contextsCount, field.contextsCount) &&
         Objects.equals(this.lastUsed, field.lastUsed);
@@ -256,7 +278,7 @@ public class Field {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, schema, description, key, isLocked, screensCount, contextsCount, lastUsed);
+    return Objects.hash(id, name, schema, description, key, isLocked, searcherKey, screensCount, contextsCount, lastUsed);
   }
 
 
@@ -271,6 +293,7 @@ public class Field {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    isLocked: ").append(toIndentedString(isLocked)).append("\n");
+    sb.append("    searcherKey: ").append(toIndentedString(searcherKey)).append("\n");
     sb.append("    screensCount: ").append(toIndentedString(screensCount)).append("\n");
     sb.append("    contextsCount: ").append(toIndentedString(contextsCount)).append("\n");
     sb.append("    lastUsed: ").append(toIndentedString(lastUsed)).append("\n");

@@ -40,38 +40,42 @@ import java.util.List;
 import org.everit.atlassian.restclient.jiracloud.v3.model.HierarchyLevel;
 
 /**
- * Project Issue Type Hierarchy
+ * The project issue type hierarchy.
  */
-@ApiModel(description = "Project Issue Type Hierarchy")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
+@ApiModel(description = "The project issue type hierarchy.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
 public class Hierarchy {
-  @JsonProperty("level")
-  private List<HierarchyLevel> level = new ArrayList<>();
+  @JsonProperty("baseLevelId")
+  private Long baseLevelId;
 
-  public Hierarchy level(List<HierarchyLevel> level) {
-    this.level = level;
-    return this;
-  }
+  @JsonProperty("levels")
+  private List<HierarchyLevel> levels = new ArrayList<>();
 
-  public Hierarchy addLevelItem(HierarchyLevel levelItem) {
-    if (this.level == null) {
-      this.level = new ArrayList<>();
-    }
-    this.level.add(levelItem);
+  public Hierarchy baseLevelId(Long baseLevelId) {
+    this.baseLevelId = baseLevelId;
     return this;
   }
 
    /**
-   * Get level
-   * @return level
+   * The ID of the base level. This property is deprecated, see [Change notice: Removing hierarchy level IDs from next-gen APIs](https://developer.atlassian.com/cloud/jira/platform/change-notice-removing-hierarchy-level-ids-from-next-gen-apis/).
+   * @return baseLevelId
   **/
-  @ApiModelProperty(value = "")
-  public List<HierarchyLevel> getLevel() {
-    return level;
+  @ApiModelProperty(value = "The ID of the base level. This property is deprecated, see [Change notice: Removing hierarchy level IDs from next-gen APIs](https://developer.atlassian.com/cloud/jira/platform/change-notice-removing-hierarchy-level-ids-from-next-gen-apis/).")
+  public Long getBaseLevelId() {
+    return baseLevelId;
   }
 
-  public void setLevel(List<HierarchyLevel> level) {
-    this.level = level;
+  public void setBaseLevelId(Long baseLevelId) {
+    this.baseLevelId = baseLevelId;
+  }
+
+   /**
+   * Details about the hierarchy level.
+   * @return levels
+  **/
+  @ApiModelProperty(value = "Details about the hierarchy level.")
+  public List<HierarchyLevel> getLevels() {
+    return levels;
   }
 
 
@@ -84,12 +88,13 @@ public class Hierarchy {
       return false;
     }
     Hierarchy hierarchy = (Hierarchy) o;
-    return Objects.equals(this.level, hierarchy.level);
+    return Objects.equals(this.baseLevelId, hierarchy.baseLevelId) &&
+        Objects.equals(this.levels, hierarchy.levels);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(level);
+    return Objects.hash(baseLevelId, levels);
   }
 
 
@@ -98,7 +103,8 @@ public class Hierarchy {
     StringBuilder sb = new StringBuilder();
     sb.append("class Hierarchy {\n");
     
-    sb.append("    level: ").append(toIndentedString(level)).append("\n");
+    sb.append("    baseLevelId: ").append(toIndentedString(baseLevelId)).append("\n");
+    sb.append("    levels: ").append(toIndentedString(levels)).append("\n");
     sb.append("}");
     return sb.toString();
   }

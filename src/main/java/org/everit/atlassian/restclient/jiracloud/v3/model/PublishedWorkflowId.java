@@ -40,10 +40,13 @@ import io.swagger.annotations.ApiModelProperty;
  * Properties that identify a published workflow.
  */
 @ApiModel(description = "Properties that identify a published workflow.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
 public class PublishedWorkflowId {
   @JsonProperty("name")
   private String name;
+
+  @JsonProperty("entityId")
+  private String entityId;
 
   public PublishedWorkflowId name(String name) {
     this.name = name;
@@ -63,6 +66,24 @@ public class PublishedWorkflowId {
     this.name = name;
   }
 
+  public PublishedWorkflowId entityId(String entityId) {
+    this.entityId = entityId;
+    return this;
+  }
+
+   /**
+   * The entity ID of the workflow.
+   * @return entityId
+  **/
+  @ApiModelProperty(value = "The entity ID of the workflow.")
+  public String getEntityId() {
+    return entityId;
+  }
+
+  public void setEntityId(String entityId) {
+    this.entityId = entityId;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -73,12 +94,13 @@ public class PublishedWorkflowId {
       return false;
     }
     PublishedWorkflowId publishedWorkflowId = (PublishedWorkflowId) o;
-    return Objects.equals(this.name, publishedWorkflowId.name);
+    return Objects.equals(this.name, publishedWorkflowId.name) &&
+        Objects.equals(this.entityId, publishedWorkflowId.entityId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name);
+    return Objects.hash(name, entityId);
   }
 
 
@@ -88,6 +110,7 @@ public class PublishedWorkflowId {
     sb.append("class PublishedWorkflowId {\n");
     
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    entityId: ").append(toIndentedString(entityId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

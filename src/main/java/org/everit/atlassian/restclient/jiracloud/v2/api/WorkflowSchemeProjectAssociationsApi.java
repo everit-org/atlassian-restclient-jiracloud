@@ -40,9 +40,9 @@ import java.util.Map;
 
 public class WorkflowSchemeProjectAssociationsApi {
 
-  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.com";
+  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.net";
 
-  private static final TypeReference<Object> returnType_associateSchemeWithProject = new TypeReference<Object>() {};
+  private static final TypeReference<Object> returnType_assignSchemeToProject = new TypeReference<Object>() {};
 
   private static final TypeReference<ContainerOfWorkflowSchemeAssociations> returnType_getWorkflowSchemeProjectAssociations = new TypeReference<ContainerOfWorkflowSchemeAssociations>() {};
 
@@ -59,7 +59,7 @@ public class WorkflowSchemeProjectAssociationsApi {
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Object&gt;
    */
-  public Single<Object> associateSchemeWithProject(
+  public Single<Object> assignSchemeToProject(
     WorkflowSchemeProjectAssociation workflowSchemeProjectAssociation, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
@@ -78,7 +78,7 @@ public class WorkflowSchemeProjectAssociationsApi {
 
     requestBuilder.requestBody(Optional.of(workflowSchemeProjectAssociation));
 
-    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_associateSchemeWithProject);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_assignSchemeToProject);
   }
 
   /**

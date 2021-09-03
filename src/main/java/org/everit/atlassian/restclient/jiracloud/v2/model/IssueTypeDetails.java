@@ -42,7 +42,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.Scope;
  * Details about an issue type.
  */
 @ApiModel(description = "Details about an issue type.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
 public class IssueTypeDetails {
   @JsonProperty("self")
   private String self;
@@ -67,6 +67,9 @@ public class IssueTypeDetails {
 
   @JsonProperty("entityId")
   private UUID entityId;
+
+  @JsonProperty("hierarchyLevel")
+  private Integer hierarchyLevel;
 
   @JsonProperty("scope")
   private Scope scope;
@@ -144,6 +147,15 @@ public class IssueTypeDetails {
   }
 
    /**
+   * Hierarchy level of the issue type.
+   * @return hierarchyLevel
+  **/
+  @ApiModelProperty(value = "Hierarchy level of the issue type.")
+  public Integer getHierarchyLevel() {
+    return hierarchyLevel;
+  }
+
+   /**
    * Details of the next-gen projects the issue type is available in.
    * @return scope
   **/
@@ -170,12 +182,13 @@ public class IssueTypeDetails {
         Objects.equals(this.subtask, issueTypeDetails.subtask) &&
         Objects.equals(this.avatarId, issueTypeDetails.avatarId) &&
         Objects.equals(this.entityId, issueTypeDetails.entityId) &&
+        Objects.equals(this.hierarchyLevel, issueTypeDetails.hierarchyLevel) &&
         Objects.equals(this.scope, issueTypeDetails.scope);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, id, description, iconUrl, name, subtask, avatarId, entityId, scope);
+    return Objects.hash(self, id, description, iconUrl, name, subtask, avatarId, entityId, hierarchyLevel, scope);
   }
 
 
@@ -192,6 +205,7 @@ public class IssueTypeDetails {
     sb.append("    subtask: ").append(toIndentedString(subtask)).append("\n");
     sb.append("    avatarId: ").append(toIndentedString(avatarId)).append("\n");
     sb.append("    entityId: ").append(toIndentedString(entityId)).append("\n");
+    sb.append("    hierarchyLevel: ").append(toIndentedString(hierarchyLevel)).append("\n");
     sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.SharePermission;
  * Details of a dashboard.
  */
 @ApiModel(description = "Details of a dashboard.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
 public class DashboardDetails {
   @JsonProperty("name")
   private String name;
@@ -53,6 +53,9 @@ public class DashboardDetails {
 
   @JsonProperty("sharePermissions")
   private List<SharePermission> sharePermissions = new ArrayList<>();
+
+  @JsonProperty("editPermissions")
+  private List<SharePermission> editPermissions = new ArrayList<>();
 
   public DashboardDetails name(String name) {
     this.name = name;
@@ -101,16 +104,39 @@ public class DashboardDetails {
   }
 
    /**
-   * The details of any share permissions for the dashboard.
+   * The share permissions for the dashboard.
    * @return sharePermissions
   **/
-  @ApiModelProperty(required = true, value = "The details of any share permissions for the dashboard.")
+  @ApiModelProperty(required = true, value = "The share permissions for the dashboard.")
   public List<SharePermission> getSharePermissions() {
     return sharePermissions;
   }
 
   public void setSharePermissions(List<SharePermission> sharePermissions) {
     this.sharePermissions = sharePermissions;
+  }
+
+  public DashboardDetails editPermissions(List<SharePermission> editPermissions) {
+    this.editPermissions = editPermissions;
+    return this;
+  }
+
+  public DashboardDetails addEditPermissionsItem(SharePermission editPermissionsItem) {
+    this.editPermissions.add(editPermissionsItem);
+    return this;
+  }
+
+   /**
+   * The edit permissions for the dashboard.
+   * @return editPermissions
+  **/
+  @ApiModelProperty(required = true, value = "The edit permissions for the dashboard.")
+  public List<SharePermission> getEditPermissions() {
+    return editPermissions;
+  }
+
+  public void setEditPermissions(List<SharePermission> editPermissions) {
+    this.editPermissions = editPermissions;
   }
 
 
@@ -125,12 +151,13 @@ public class DashboardDetails {
     DashboardDetails dashboardDetails = (DashboardDetails) o;
     return Objects.equals(this.name, dashboardDetails.name) &&
         Objects.equals(this.description, dashboardDetails.description) &&
-        Objects.equals(this.sharePermissions, dashboardDetails.sharePermissions);
+        Objects.equals(this.sharePermissions, dashboardDetails.sharePermissions) &&
+        Objects.equals(this.editPermissions, dashboardDetails.editPermissions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, sharePermissions);
+    return Objects.hash(name, description, sharePermissions, editPermissions);
   }
 
 
@@ -142,6 +169,7 @@ public class DashboardDetails {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    sharePermissions: ").append(toIndentedString(sharePermissions)).append("\n");
+    sb.append("    editPermissions: ").append(toIndentedString(editPermissions)).append("\n");
     sb.append("}");
     return sb.toString();
   }

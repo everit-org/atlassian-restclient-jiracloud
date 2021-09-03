@@ -39,10 +39,13 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * RichText
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
 public class RichText {
   @JsonProperty("emptyAdf")
   private Boolean emptyAdf;
+
+  @JsonProperty("finalised")
+  private Boolean finalised;
 
   @JsonProperty("valueSet")
   private Boolean valueSet;
@@ -63,6 +66,24 @@ public class RichText {
 
   public void setEmptyAdf(Boolean emptyAdf) {
     this.emptyAdf = emptyAdf;
+  }
+
+  public RichText finalised(Boolean finalised) {
+    this.finalised = finalised;
+    return this;
+  }
+
+   /**
+   * Get finalised
+   * @return finalised
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getFinalised() {
+    return finalised;
+  }
+
+  public void setFinalised(Boolean finalised) {
+    this.finalised = finalised;
   }
 
   public RichText valueSet(Boolean valueSet) {
@@ -94,12 +115,13 @@ public class RichText {
     }
     RichText richText = (RichText) o;
     return Objects.equals(this.emptyAdf, richText.emptyAdf) &&
+        Objects.equals(this.finalised, richText.finalised) &&
         Objects.equals(this.valueSet, richText.valueSet);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(emptyAdf, valueSet);
+    return Objects.hash(emptyAdf, finalised, valueSet);
   }
 
 
@@ -109,6 +131,7 @@ public class RichText {
     sb.append("class RichText {\n");
     
     sb.append("    emptyAdf: ").append(toIndentedString(emptyAdf)).append("\n");
+    sb.append("    finalised: ").append(toIndentedString(finalised)).append("\n");
     sb.append("    valueSet: ").append(toIndentedString(valueSet)).append("\n");
     sb.append("}");
     return sb.toString();

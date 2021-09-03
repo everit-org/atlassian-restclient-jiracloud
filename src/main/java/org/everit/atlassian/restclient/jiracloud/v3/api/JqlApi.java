@@ -35,6 +35,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.JQLPersonalDataMigrati
 import org.everit.atlassian.restclient.jiracloud.v3.model.JQLReferenceData;
 import org.everit.atlassian.restclient.jiracloud.v3.model.JqlQueriesToParse;
 import org.everit.atlassian.restclient.jiracloud.v3.model.ParsedJqlQueries;
+import org.everit.atlassian.restclient.jiracloud.v3.model.SearchAutoCompleteFilter;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -45,9 +46,11 @@ import java.util.Map;
 
 public class JqlApi {
 
-  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.com";
+  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.net";
 
   private static final TypeReference<JQLReferenceData> returnType_getAutoComplete = new TypeReference<JQLReferenceData>() {};
+
+  private static final TypeReference<JQLReferenceData> returnType_getAutoCompletePost = new TypeReference<JQLReferenceData>() {};
 
   private static final TypeReference<AutoCompleteSuggestions> returnType_getFieldAutoCompleteForQueryString = new TypeReference<AutoCompleteSuggestions>() {};
 
@@ -62,8 +65,8 @@ public class JqlApi {
   }
 
   /**
-   * Get field reference data
-   * Returns reference data for JQL searches. This is a downloadable version of the documentation provided in [Advanced searching - fields reference](https://confluence.atlassian.com/x/gwORLQ) and [Advanced searching - functions reference](https://confluence.atlassian.com/x/hgORLQ), along with a list of JQL-reserved words. Use this information to assist with the programmatic creation of JQL queries or the validation of queries built in a custom query builder.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** None.
+   * Get field reference data (GET)
+   * Returns reference data for JQL searches. This is a downloadable version of the documentation provided in [Advanced searching - fields reference](https://confluence.atlassian.com/x/gwORLQ) and [Advanced searching - functions reference](https://confluence.atlassian.com/x/hgORLQ), along with a list of JQL-reserved words. Use this information to assist with the programmatic creation of JQL queries or the validation of queries built in a custom query builder.  To filter visible field details by project or collapse non-unique fields by field type then [Get field reference data (POST)](#api-rest-api-3-jql-autocompletedata-post) can be used.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** None.
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;JQLReferenceData&gt;
    */
@@ -85,6 +88,35 @@ public class JqlApi {
     requestBuilder.headers(headers);
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getAutoComplete);
+  }
+
+  /**
+   * Get field reference data (POST)
+   * Returns reference data for JQL searches. This is a downloadable version of the documentation provided in [Advanced searching - fields reference](https://confluence.atlassian.com/x/gwORLQ) and [Advanced searching - functions reference](https://confluence.atlassian.com/x/hgORLQ), along with a list of JQL-reserved words. Use this information to assist with the programmatic creation of JQL queries or the validation of queries built in a custom query builder.  This operation can filter the custom fields returned by project. Invalid project IDs in `projectIds` are ignored. System fields are always returned.  It can also return the collapsed field for custom fields. Collapsed fields enable searches to be performed across all fields with the same name and of the same field type. For example, the collapsed field `Component - Component[Dropdown]` enables dropdown fields `Component - cf[10061]` and `Component - cf[10062]` to be searched simultaneously.  **[Permissions](#permissions) required:** None.
+   * @param searchAutoCompleteFilter  (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;JQLReferenceData&gt;
+   */
+  public Single<JQLReferenceData> getAutoCompletePost(
+    SearchAutoCompleteFilter searchAutoCompleteFilter, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.POST)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/jql/autocompletedata");
+
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(searchAutoCompleteFilter));
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getAutoCompletePost);
   }
 
   /**

@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.WorkflowTransitionRule
  * Details about a workflow configuration update request.
  */
 @ApiModel(description = "Details about a workflow configuration update request.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
 public class WorkflowTransitionRulesUpdate {
   @JsonProperty("workflows")
   private List<WorkflowTransitionRules> workflows = new ArrayList<>();
@@ -54,9 +54,6 @@ public class WorkflowTransitionRulesUpdate {
   }
 
   public WorkflowTransitionRulesUpdate addWorkflowsItem(WorkflowTransitionRules workflowsItem) {
-    if (this.workflows == null) {
-      this.workflows = new ArrayList<>();
-    }
     this.workflows.add(workflowsItem);
     return this;
   }
@@ -65,7 +62,7 @@ public class WorkflowTransitionRulesUpdate {
    * The list of workflows with transition rules to update.
    * @return workflows
   **/
-  @ApiModelProperty(value = "The list of workflows with transition rules to update.")
+  @ApiModelProperty(required = true, value = "The list of workflows with transition rules to update.")
   public List<WorkflowTransitionRules> getWorkflows() {
     return workflows;
   }

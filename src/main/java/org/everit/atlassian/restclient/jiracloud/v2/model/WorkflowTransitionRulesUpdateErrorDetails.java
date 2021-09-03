@@ -45,7 +45,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.WorkflowId;
  * Details of any errors encountered while updating workflow transition rules for a workflow.
  */
 @ApiModel(description = "Details of any errors encountered while updating workflow transition rules for a workflow.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
 public class WorkflowTransitionRulesUpdateErrorDetails {
   @JsonProperty("workflowId")
   private WorkflowId workflowId;
@@ -65,7 +65,7 @@ public class WorkflowTransitionRulesUpdateErrorDetails {
    * Get workflowId
    * @return workflowId
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public WorkflowId getWorkflowId() {
     return workflowId;
   }
@@ -103,9 +103,6 @@ public class WorkflowTransitionRulesUpdateErrorDetails {
   }
 
   public WorkflowTransitionRulesUpdateErrorDetails addUpdateErrorsItem(String updateErrorsItem) {
-    if (this.updateErrors == null) {
-      this.updateErrors = new ArrayList<>();
-    }
     this.updateErrors.add(updateErrorsItem);
     return this;
   }
@@ -114,7 +111,7 @@ public class WorkflowTransitionRulesUpdateErrorDetails {
    * The list of errors that specify why the workflow update failed. The workflow was not updated if the list contains any entries.
    * @return updateErrors
   **/
-  @ApiModelProperty(value = "The list of errors that specify why the workflow update failed. The workflow was not updated if the list contains any entries.")
+  @ApiModelProperty(required = true, value = "The list of errors that specify why the workflow update failed. The workflow was not updated if the list contains any entries.")
   public List<String> getUpdateErrors() {
     return updateErrors;
   }

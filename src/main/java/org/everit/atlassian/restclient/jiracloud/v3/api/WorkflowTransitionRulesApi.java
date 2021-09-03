@@ -32,6 +32,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.ErrorCollection;
 import org.everit.atlassian.restclient.jiracloud.v3.model.PageBeanWorkflowTransitionRules;
 import org.everit.atlassian.restclient.jiracloud.v3.model.WorkflowTransitionRulesUpdate;
 import org.everit.atlassian.restclient.jiracloud.v3.model.WorkflowTransitionRulesUpdateErrors;
+import org.everit.atlassian.restclient.jiracloud.v3.model.WorkflowsWithTransitionRulesDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -42,7 +43,9 @@ import java.util.Map;
 
 public class WorkflowTransitionRulesApi {
 
-  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.com";
+  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.net";
+
+  private static final TypeReference<WorkflowTransitionRulesUpdateErrors> returnType_deleteWorkflowTransitionRuleConfigurations = new TypeReference<WorkflowTransitionRulesUpdateErrors>() {};
 
   private static final TypeReference<PageBeanWorkflowTransitionRules> returnType_getWorkflowTransitionRuleConfigurations = new TypeReference<PageBeanWorkflowTransitionRules>() {};
 
@@ -55,18 +58,50 @@ public class WorkflowTransitionRulesApi {
   }
 
   /**
+   * Delete workflow transition rule configurations
+   * Deletes workflow transition rules from one or more workflows. These rule types are supported:   *  [post functions](https://developer.atlassian.com/cloud/jira/platform/modules/workflow-post-function/)  *  [conditions](https://developer.atlassian.com/cloud/jira/platform/modules/workflow-condition/)  *  [validators](https://developer.atlassian.com/cloud/jira/platform/modules/workflow-validator/)  Only rules created by the calling Connect app can be deleted.  **[Permissions](#permissions) required:** Only Connect apps can use this operation.
+   * @param workflowsWithTransitionRulesDetails  (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;WorkflowTransitionRulesUpdateErrors&gt;
+   */
+  public Single<WorkflowTransitionRulesUpdateErrors> deleteWorkflowTransitionRuleConfigurations(
+    WorkflowsWithTransitionRulesDetails workflowsWithTransitionRulesDetails, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.PUT)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/workflow/rule/config/delete");
+
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(workflowsWithTransitionRulesDetails));
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_deleteWorkflowTransitionRuleConfigurations);
+  }
+
+  /**
    * Get workflow transition rule configurations
    * Returns a [paginated](#pagination) list of workflows with transition rules. The workflows can be filtered to return only those containing workflow transition rules:   *  of one or more transition rule types, such as [workflow post functions](https://developer.atlassian.com/cloud/jira/platform/modules/workflow-post-function/).  *  matching one or more transition rule keys.  Only workflows containing transition rules created by the calling Connect app are returned. However, if a workflow is returned all transition rules that match the filters are returned for that workflow.  Due to server-side optimizations, workflows with an empty list of rules may be returned; these workflows can be ignored.  **[Permissions](#permissions) required:** Only Connect apps can use this operation.
    * @param types The types of the transition rules to return. (required)
    * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0l)
    * @param maxResults The maximum number of items to return per page. (optional, default to 10)
    * @param keys The transition rule class keys, as defined in the Connect app descriptor, of the transition rules to return. (optional, default to new ArrayList&lt;&gt;())
+   * @param workflowNames EXPERIMENTAL: The list of workflow names to filter by. (optional, default to new ArrayList&lt;&gt;())
+   * @param withTags EXPERIMENTAL: The list of `tags` to filter by. (optional, default to new ArrayList&lt;&gt;())
+   * @param draft EXPERIMENTAL: Whether draft or published workflows are returned. If not provided, both workflow types are returned. (optional)
    * @param expand Use [expand](#expansion) to include additional information in the response. This parameter accepts `transition`, which, for each rule, returns information about the transition the rule is assigned to. (optional)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PageBeanWorkflowTransitionRules&gt;
    */
   public Single<PageBeanWorkflowTransitionRules> getWorkflowTransitionRuleConfigurations(
-    List<String> types, Optional<Long> startAt, Optional<Integer> maxResults, Optional<List<String>> keys, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    List<String> types, Optional<Long> startAt, Optional<Integer> maxResults, Optional<List<String>> keys, Optional<List<String>> workflowNames, Optional<List<String>> withTags, Optional<Boolean> draft, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.GET)
@@ -87,6 +122,15 @@ public class WorkflowTransitionRulesApi {
     if (keys.isPresent()) {
       queryParams.put("keys", RestClientUtil.objectCollectionToStringCollection(keys.get()));
     }
+    if (workflowNames.isPresent()) {
+      queryParams.put("workflowNames", RestClientUtil.objectCollectionToStringCollection(workflowNames.get()));
+    }
+    if (withTags.isPresent()) {
+      queryParams.put("withTags", RestClientUtil.objectCollectionToStringCollection(withTags.get()));
+    }
+    if (draft.isPresent()) {
+      queryParams.put("draft", Collections.singleton(String.valueOf(draft.get())));
+    }
     if (expand.isPresent()) {
       queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
     }
@@ -100,7 +144,7 @@ public class WorkflowTransitionRulesApi {
 
   /**
    * Update workflow transition rule configurations
-   * Updates configuration of workflow transition rules. The following rule types are supported:   *  [post functions](https://developer.atlassian.com/cloud/jira/platform/modules/workflow-post-function/)  *  [conditions](https://developer.atlassian.com/cloud/jira/platform/modules/workflow-condition/)  *  [validators](https://developer.atlassian.com/cloud/jira/platform/modules/workflow-validator/)  Only rules created by the calling Connect app can be updated.  **[Permissions](#permissions) required:** Only Connect apps can use this operation.
+   * Updates configuration of workflow transition rules. The following rule types are supported:   *  [post functions](https://developer.atlassian.com/cloud/jira/platform/modules/workflow-post-function/)  *  [conditions](https://developer.atlassian.com/cloud/jira/platform/modules/workflow-condition/)  *  [validators](https://developer.atlassian.com/cloud/jira/platform/modules/workflow-validator/)  Only rules created by the calling Connect app can be updated.  To assist with app migration, this operation can be used to:   *  Disable a rule.  *  Add a `tag`. Use this to filter rules in the [Get workflow transition rule configurations](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflow-transition-rules/#api-rest-api-3-workflow-rule-config-get).  Rules are enabled if the `disabled` parameter is not provided.  **[Permissions](#permissions) required:** Only Connect apps can use this operation.
    * @param workflowTransitionRulesUpdate  (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;WorkflowTransitionRulesUpdateErrors&gt;

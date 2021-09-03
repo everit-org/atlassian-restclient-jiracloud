@@ -28,12 +28,10 @@ import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
 import org.everit.http.restclient.TypeReference;
 
-import org.everit.atlassian.restclient.jiracloud.v3.model.AddGroupBean;
 import org.everit.atlassian.restclient.jiracloud.v3.model.FoundGroups;
 import org.everit.atlassian.restclient.jiracloud.v3.model.Group;
 import org.everit.atlassian.restclient.jiracloud.v3.model.PageBeanGroupDetails;
 import org.everit.atlassian.restclient.jiracloud.v3.model.PageBeanUserDetails;
-import org.everit.atlassian.restclient.jiracloud.v3.model.UpdateUserToGroupBean;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -44,7 +42,7 @@ import java.util.Map;
 
 public class GroupsApi {
 
-  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.com";
+  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.net";
 
   private static final TypeReference<Group> returnType_addUserToGroup = new TypeReference<Group>() {};
 
@@ -73,7 +71,7 @@ public class GroupsApi {
    * @return Single&lt;Group&gt;
    */
   public Single<Group> addUserToGroup(
-    String groupname, UpdateUserToGroupBean requestBody, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String groupname, Map<String, Object> requestBody, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.POST)
@@ -97,15 +95,16 @@ public class GroupsApi {
 
   /**
    * Bulk get groups
-   * Returns a [paginated](#pagination) list of the groups specified by one or more group IDs.  **[Permissions](#permissions) required:** Permission to access Jira.
-   * @param groupId The ID of a group. To specify multiple groups, pass multiple `groupId` parameters. For example, `groupId=5b10a2844c20165700ede21g&groupId=5b10ac8d82e05b22cc7d4ef5`. (required)
+   * Returns a [paginated](#pagination) list of groups.  **[Permissions](#permissions) required:** *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0l)
-   * @param maxResults The maximum number of items to return per page. (optional, default to 10)
+   * @param maxResults The maximum number of items to return per page. (optional, default to 50)
+   * @param groupId The ID of a group. To specify multiple IDs, pass multiple `groupId` parameters. For example, `groupId=5b10a2844c20165700ede21g&groupId=5b10ac8d82e05b22cc7d4ef5`. (optional, default to new ArrayList&lt;&gt;())
+   * @param groupName The name of a group. To specify multiple names, pass multiple `groupName` parameters. For example, `groupName=administrators&groupName=jira-software-users`. (optional, default to new ArrayList&lt;&gt;())
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PageBeanGroupDetails&gt;
    */
   public Single<PageBeanGroupDetails> bulkGetGroups(
-    List<String> groupId, Optional<Long> startAt, Optional<Integer> maxResults, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Optional<Long> startAt, Optional<Integer> maxResults, Optional<List<String>> groupId, Optional<List<String>> groupName, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.GET)
@@ -122,7 +121,12 @@ public class GroupsApi {
     if (maxResults.isPresent()) {
       queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults.get())));
     }
-    queryParams.put("groupId", RestClientUtil.objectCollectionToStringCollection(groupId));
+    if (groupId.isPresent()) {
+      queryParams.put("groupId", RestClientUtil.objectCollectionToStringCollection(groupId.get()));
+    }
+    if (groupName.isPresent()) {
+      queryParams.put("groupName", RestClientUtil.objectCollectionToStringCollection(groupName.get()));
+    }
     requestBuilder.queryParams(queryParams);
 
     Map<String, String> headers = new HashMap<>();
@@ -139,7 +143,7 @@ public class GroupsApi {
    * @return Single&lt;Group&gt;
    */
   public Single<Group> createGroup(
-    AddGroupBean requestBody, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Map<String, Object> requestBody, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.POST)
@@ -167,7 +171,7 @@ public class GroupsApi {
    * @param query The string to find in group names. (optional)
    * @param exclude A group to exclude from the result. To exclude multiple groups, provide an ampersand-separated list. For example, `exclude=group1&exclude=group2`. (optional, default to new ArrayList&lt;&gt;())
    * @param maxResults The maximum number of groups to return. The maximum number of groups that can be returned is limited by the system property `jira.ajax.autocomplete.limit`. (optional)
-   * @param userName This parameter is no longer available and will be removed from the documentation soon. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details. (optional)
+   * @param userName This parameter is no longer available. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details. (optional)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;FoundGroups&gt;
    */
@@ -317,7 +321,7 @@ public class GroupsApi {
    * Removes a user from a group.  **[Permissions](#permissions) required:** Site administration (that is, member of the *site-admin* [group](https://confluence.atlassian.com/x/24xjL)).
    * @param groupname The name of the group. (required)
    * @param accountId The account ID of the user, which uniquely identifies the user across all Atlassian products. For example, *5b10ac8d82e05b22cc7d4ef5*. (required)
-   * @param username This parameter is no longer available and will be removed from the documentation soon. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details. (optional)
+   * @param username This parameter is no longer available. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details. (optional)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Completable
    */

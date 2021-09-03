@@ -42,7 +42,7 @@ import java.util.Map;
 
 public class IssueTypesApi {
 
-  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.com";
+  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.net";
 
   private static final TypeReference<IssueTypeDetails> returnType_createIssueType = new TypeReference<IssueTypeDetails>() {};
 
@@ -53,6 +53,8 @@ public class IssueTypesApi {
   private static final TypeReference<List<IssueTypeDetails>> returnType_getIssueAllTypes = new TypeReference<List<IssueTypeDetails>>() {};
 
   private static final TypeReference<IssueTypeDetails> returnType_getIssueType = new TypeReference<IssueTypeDetails>() {};
+
+  private static final TypeReference<List<IssueTypeDetails>> returnType_getIssueTypesForProject = new TypeReference<List<IssueTypeDetails>>() {};
 
   private static final TypeReference<IssueTypeDetails> returnType_updateIssueType = new TypeReference<IssueTypeDetails>() {};
 
@@ -244,6 +246,38 @@ public class IssueTypesApi {
     requestBuilder.headers(headers);
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getIssueType);
+  }
+
+  /**
+   * Get issue types for project
+   * Returns issue types for a project.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) in the relevant project or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * @param projectId The ID of the project. (required)
+   * @param level The level of the issue type to filter by. Use:   *  `-1` for Subtask.  *  `0` for Base.  *  `1` for Epic. (optional)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;List&lt;IssueTypeDetails&gt;&gt;
+   */
+  public Single<List<IssueTypeDetails>> getIssueTypesForProject(
+    Long projectId, Optional<Integer> level, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/issuetype/project");
+
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    queryParams.put("projectId", Collections.singleton(String.valueOf(projectId)));
+    if (level.isPresent()) {
+      queryParams.put("level", Collections.singleton(String.valueOf(level.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getIssueTypesForProject);
   }
 
   /**
