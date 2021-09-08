@@ -31,6 +31,8 @@ import org.everit.http.restclient.TypeReference;
 import org.everit.atlassian.restclient.jiracloud.v2.model.DefaultWorkflow;
 import org.everit.atlassian.restclient.jiracloud.v2.model.IssueTypeWorkflowMapping;
 import org.everit.atlassian.restclient.jiracloud.v2.model.IssueTypesWorkflowMapping;
+import org.everit.atlassian.restclient.jiracloud.v2.model.PublishDraftWorkflowScheme;
+import org.everit.atlassian.restclient.jiracloud.v2.model.TaskProgressBeanObject;
 import org.everit.atlassian.restclient.jiracloud.v2.model.WorkflowScheme;
 
 import java.util.ArrayList;
@@ -42,7 +44,7 @@ import java.util.Map;
 
 public class WorkflowSchemeDraftsApi {
 
-  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.com";
+  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.net";
 
   private static final TypeReference<WorkflowScheme> returnType_createWorkflowSchemeDraftFromParent = new TypeReference<WorkflowScheme>() {};
 
@@ -332,6 +334,41 @@ public class WorkflowSchemeDraftsApi {
     requestBuilder.headers(headers);
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getWorkflowSchemeDraftIssueType);
+  }
+
+  /**
+   * Publish draft workflow scheme
+   * Publishes a draft workflow scheme.  Where the draft workflow includes new workflow statuses for an issue type, mappings are provided to update issues with the original workflow status to the new workflow status.  This operation is [asynchronous](#async). Follow the `location` link in the response to determine the status of the task and use [Get task](#api-rest-api-2-task-taskId-get) to obtain updates.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * @param id The ID of the workflow scheme that the draft belongs to. (required)
+   * @param publishDraftWorkflowScheme Details of the status mappings. (required)
+   * @param validateOnly Whether the request only performs a validation. (optional, default to false)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Completable
+   */
+  public Completable publishDraftWorkflowScheme(
+    Long id, PublishDraftWorkflowScheme publishDraftWorkflowScheme, Optional<Boolean> validateOnly, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.POST)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/workflowscheme/{id}/draft/publish");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("id", String.valueOf(id));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (validateOnly.isPresent()) {
+      queryParams.put("validateOnly", Collections.singleton(String.valueOf(validateOnly.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(publishDraftWorkflowScheme));
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**

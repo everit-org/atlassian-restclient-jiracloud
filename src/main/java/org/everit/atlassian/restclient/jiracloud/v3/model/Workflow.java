@@ -45,7 +45,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.WorkflowStatus;
  * Details about a workflow.
  */
 @ApiModel(description = "Details about a workflow.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
 public class Workflow {
   @JsonProperty("id")
   private PublishedWorkflowId id;
@@ -59,6 +59,9 @@ public class Workflow {
   @JsonProperty("statuses")
   private List<WorkflowStatus> statuses = new ArrayList<>();
 
+  @JsonProperty("isDefault")
+  private Boolean isDefault;
+
   public Workflow id(PublishedWorkflowId id) {
     this.id = id;
     return this;
@@ -68,7 +71,7 @@ public class Workflow {
    * Get id
    * @return id
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public PublishedWorkflowId getId() {
     return id;
   }
@@ -147,6 +150,24 @@ public class Workflow {
     this.statuses = statuses;
   }
 
+  public Workflow isDefault(Boolean isDefault) {
+    this.isDefault = isDefault;
+    return this;
+  }
+
+   /**
+   * Whether this is the default workflow.
+   * @return isDefault
+  **/
+  @ApiModelProperty(value = "Whether this is the default workflow.")
+  public Boolean getIsDefault() {
+    return isDefault;
+  }
+
+  public void setIsDefault(Boolean isDefault) {
+    this.isDefault = isDefault;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -160,12 +181,13 @@ public class Workflow {
     return Objects.equals(this.id, workflow.id) &&
         Objects.equals(this.description, workflow.description) &&
         Objects.equals(this.transitions, workflow.transitions) &&
-        Objects.equals(this.statuses, workflow.statuses);
+        Objects.equals(this.statuses, workflow.statuses) &&
+        Objects.equals(this.isDefault, workflow.isDefault);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, description, transitions, statuses);
+    return Objects.hash(id, description, transitions, statuses, isDefault);
   }
 
 
@@ -178,6 +200,7 @@ public class Workflow {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    transitions: ").append(toIndentedString(transitions)).append("\n");
     sb.append("    statuses: ").append(toIndentedString(statuses)).append("\n");
+    sb.append("    isDefault: ").append(toIndentedString(isDefault)).append("\n");
     sb.append("}");
     return sb.toString();
   }

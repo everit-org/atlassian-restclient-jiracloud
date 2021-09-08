@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.LinkedIssue;
  * Details of a link between issues.
  */
 @ApiModel(description = "Details of a link between issues.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
 public class IssueLink {
   @JsonProperty("id")
   private String id;
@@ -87,7 +87,7 @@ public class IssueLink {
    * The type of link between the issues.
    * @return type
   **/
-  @ApiModelProperty(value = "The type of link between the issues.")
+  @ApiModelProperty(required = true, value = "The type of link between the issues.")
   public IssueLinkType getType() {
     return type;
   }
@@ -105,7 +105,7 @@ public class IssueLink {
    * The issue the link joins to.
    * @return inwardIssue
   **/
-  @ApiModelProperty(value = "The issue the link joins to.")
+  @ApiModelProperty(required = true, value = "The issue the link joins to.")
   public LinkedIssue getInwardIssue() {
     return inwardIssue;
   }
@@ -123,7 +123,7 @@ public class IssueLink {
    * The issue the link originates from.
    * @return outwardIssue
   **/
-  @ApiModelProperty(value = "The issue the link originates from.")
+  @ApiModelProperty(required = true, value = "The issue the link originates from.")
   public LinkedIssue getOutwardIssue() {
     return outwardIssue;
   }

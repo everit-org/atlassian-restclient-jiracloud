@@ -33,6 +33,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.ErrorCollection;
 import org.everit.atlassian.restclient.jiracloud.v3.model.FieldDetails;
 import org.everit.atlassian.restclient.jiracloud.v3.model.PageBeanContext;
 import org.everit.atlassian.restclient.jiracloud.v3.model.PageBeanField;
+import org.everit.atlassian.restclient.jiracloud.v3.model.UpdateCustomFieldDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -43,15 +44,17 @@ import java.util.Map;
 
 public class IssueFieldsApi {
 
-  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.com";
+  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.net";
 
   private static final TypeReference<FieldDetails> returnType_createCustomField = new TypeReference<FieldDetails>() {};
 
-  private static final TypeReference<PageBeanContext> returnType_getContextsForField = new TypeReference<PageBeanContext>() {};
+  private static final TypeReference<PageBeanContext> returnType_getContextsForFieldDeprecated = new TypeReference<PageBeanContext>() {};
 
   private static final TypeReference<List<FieldDetails>> returnType_getFields = new TypeReference<List<FieldDetails>>() {};
 
   private static final TypeReference<PageBeanField> returnType_getFieldsPaginated = new TypeReference<PageBeanField>() {};
+
+  private static final TypeReference<Object> returnType_updateCustomField = new TypeReference<Object>() {};
 
   private final RestClient restClient;
 
@@ -90,14 +93,16 @@ public class IssueFieldsApi {
 
   /**
    * Get contexts for a field
-   * Returns a [paginated](#pagination) list of the contexts a field is used in.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * Returns a [paginated](#pagination) list of the contexts a field is used in. Deprecated, use [ Get custom field contexts](#api-rest-api-3-field-fieldId-context-get).  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param fieldId The ID of the field to return contexts for. (required)
    * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0l)
    * @param maxResults The maximum number of items to return per page. (optional, default to 20)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PageBeanContext&gt;
+   * @deprecated
    */
-  public Single<PageBeanContext> getContextsForField(
+  @Deprecated
+  public Single<PageBeanContext> getContextsForFieldDeprecated(
     String fieldId, Optional<Long> startAt, Optional<Integer> maxResults, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
@@ -121,7 +126,7 @@ public class IssueFieldsApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getContextsForField);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getContextsForFieldDeprecated);
   }
 
   /**
@@ -156,10 +161,10 @@ public class IssueFieldsApi {
    * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0l)
    * @param maxResults The maximum number of items to return per page. (optional, default to 50)
    * @param type The type of fields to search. (optional, default to new ArrayList&lt;&gt;())
-   * @param id The IDs of the custom fields to return or, where`query is specified, filter. IDs should be provided in the format customfield_XXXXX.` (optional, default to new ArrayList&lt;&gt;())
+   * @param id The IDs of the custom fields to return or, where `query` is specified, filter. (optional, default to new ArrayList&lt;&gt;())
    * @param query String used to perform a case-insensitive partial match with field names or descriptions. (optional)
    * @param orderBy [Order](#ordering) the results by a field:   *  `contextsCount` Sorts by the number of contexts related to a field.  *  `lastUsed` Sorts by the date when the value of the field last changed.  *  `name` Sorts by the field name.  *  `screensCount` Sorts by the number of screens related to a field. (optional)
-   * @param expand Use [expand](#expansion) to include additional information in the response. This parameter accepts a comma-separated list. Expand options include:   *  `key` Returns the key for each field.  *  `lastUsed` Returns the date when the value of the field last changed.  *  `screensCount` Returns the number of screens related to a field.  *  `contextsCount` Returns the number of contexts related to a field.  *  `isLocked` Returns information about whether the field is [locked](https://confluence.atlassian.com/x/ZSN7Og). (optional)
+   * @param expand Use [expand](#expansion) to include additional information in the response. This parameter accepts a comma-separated list. Expand options include:   *  `key` Returns the key for each field.  *  `lastUsed` Returns the date when the value of the field last changed.  *  `screensCount` Returns the number of screens related to a field.  *  `contextsCount` Returns the number of contexts related to a field.  *  `isLocked` Returns information about whether the field is [locked](https://confluence.atlassian.com/x/ZSN7Og).  *  `searcherKey` Returns the searcher key for each custom field. (optional)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PageBeanField&gt;
    */
@@ -202,6 +207,37 @@ public class IssueFieldsApi {
     requestBuilder.headers(headers);
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getFieldsPaginated);
+  }
+
+  /**
+   * Update custom field
+   * Updates a custom field.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * @param fieldId The ID of the custom field. (required)
+   * @param updateCustomFieldDetails The custom field update details. (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;Object&gt;
+   */
+  public Single<Object> updateCustomField(
+    String fieldId, UpdateCustomFieldDetails updateCustomFieldDetails, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.PUT)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/field/{fieldId}");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("fieldId", String.valueOf(fieldId));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(updateCustomFieldDetails));
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updateCustomField);
   }
 
 }

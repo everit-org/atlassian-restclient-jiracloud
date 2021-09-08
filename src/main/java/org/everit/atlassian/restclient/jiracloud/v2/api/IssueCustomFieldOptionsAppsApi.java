@@ -29,7 +29,6 @@ import org.everit.http.restclient.RestRequestEnhancer;
 import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v2.model.IssueFieldOption;
-import org.everit.atlassian.restclient.jiracloud.v2.model.IssueFieldOptionCreateBean;
 import org.everit.atlassian.restclient.jiracloud.v2.model.PageBeanIssueFieldOption;
 import org.everit.atlassian.restclient.jiracloud.v2.model.TaskProgressBeanRemoveOptionFromIssuesResult;
 
@@ -42,7 +41,7 @@ import java.util.Map;
 
 public class IssueCustomFieldOptionsAppsApi {
 
-  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.com";
+  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.net";
 
   private static final TypeReference<IssueFieldOption> returnType_createIssueFieldOption = new TypeReference<IssueFieldOption>() {};
 
@@ -73,7 +72,7 @@ public class IssueCustomFieldOptionsAppsApi {
    * @return Single&lt;IssueFieldOption&gt;
    */
   public Single<IssueFieldOption> createIssueFieldOption(
-    String fieldKey, IssueFieldOptionCreateBean requestBody, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String fieldKey, Map<String, Object> requestBody, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.POST)

@@ -39,7 +39,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * IssueTypeCreateBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
 public class IssueTypeCreateBean {
   @JsonProperty("name")
   private String name;
@@ -48,7 +48,7 @@ public class IssueTypeCreateBean {
   private String description;
 
   /**
-   * Whether the issue type is &#x60;subtype&#x60; or &#x60;standard&#x60;. Defaults to &#x60;standard&#x60;.
+   * Deprecated. Use &#x60;hierarchyLevel&#x60; instead.  Whether the issue type is &#x60;subtype&#x60; or &#x60;standard&#x60;. Defaults to &#x60;standard&#x60;.
    */
   public enum TypeEnum {
     SUBTASK("subtask"),
@@ -84,6 +84,9 @@ public class IssueTypeCreateBean {
 
   @JsonProperty("type")
   private TypeEnum type;
+
+  @JsonProperty("hierarchyLevel")
+  private Integer hierarchyLevel;
 
   public IssueTypeCreateBean name(String name) {
     this.name = name;
@@ -127,16 +130,34 @@ public class IssueTypeCreateBean {
   }
 
    /**
-   * Whether the issue type is &#x60;subtype&#x60; or &#x60;standard&#x60;. Defaults to &#x60;standard&#x60;.
+   * Deprecated. Use &#x60;hierarchyLevel&#x60; instead.  Whether the issue type is &#x60;subtype&#x60; or &#x60;standard&#x60;. Defaults to &#x60;standard&#x60;.
    * @return type
   **/
-  @ApiModelProperty(value = "Whether the issue type is `subtype` or `standard`. Defaults to `standard`.")
+  @ApiModelProperty(value = "Deprecated. Use `hierarchyLevel` instead.  Whether the issue type is `subtype` or `standard`. Defaults to `standard`.")
   public TypeEnum getType() {
     return type;
   }
 
   public void setType(TypeEnum type) {
     this.type = type;
+  }
+
+  public IssueTypeCreateBean hierarchyLevel(Integer hierarchyLevel) {
+    this.hierarchyLevel = hierarchyLevel;
+    return this;
+  }
+
+   /**
+   * The hierarchy level of the issue type. Use:   *  &#x60;-1&#x60; for Subtask.  *  &#x60;0&#x60; for Base.  Defaults to &#x60;0&#x60;.
+   * @return hierarchyLevel
+  **/
+  @ApiModelProperty(value = "The hierarchy level of the issue type. Use:   *  `-1` for Subtask.  *  `0` for Base.  Defaults to `0`.")
+  public Integer getHierarchyLevel() {
+    return hierarchyLevel;
+  }
+
+  public void setHierarchyLevel(Integer hierarchyLevel) {
+    this.hierarchyLevel = hierarchyLevel;
   }
 
 
@@ -151,12 +172,13 @@ public class IssueTypeCreateBean {
     IssueTypeCreateBean issueTypeCreateBean = (IssueTypeCreateBean) o;
     return Objects.equals(this.name, issueTypeCreateBean.name) &&
         Objects.equals(this.description, issueTypeCreateBean.description) &&
-        Objects.equals(this.type, issueTypeCreateBean.type);
+        Objects.equals(this.type, issueTypeCreateBean.type) &&
+        Objects.equals(this.hierarchyLevel, issueTypeCreateBean.hierarchyLevel);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, type);
+    return Objects.hash(name, description, type, hierarchyLevel);
   }
 
 
@@ -168,6 +190,7 @@ public class IssueTypeCreateBean {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    hierarchyLevel: ").append(toIndentedString(hierarchyLevel)).append("\n");
     sb.append("}");
     return sb.toString();
   }

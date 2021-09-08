@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.WebhookDetails;
  * Details of webhooks to register.
  */
 @ApiModel(description = "Details of webhooks to register.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
 public class WebhookRegistrationDetails {
   @JsonProperty("webhooks")
   private List<WebhookDetails> webhooks = new ArrayList<>();
@@ -80,10 +80,10 @@ public class WebhookRegistrationDetails {
   }
 
    /**
-   * The URL that specifies where to send the webhooks.
+   * The URL that specifies where to send the webhooks. This URL must use the same base URL as the Connect app.
    * @return url
   **/
-  @ApiModelProperty(required = true, value = "The URL that specifies where to send the webhooks.")
+  @ApiModelProperty(required = true, value = "The URL that specifies where to send the webhooks. This URL must use the same base URL as the Connect app.")
   public String getUrl() {
     return url;
   }

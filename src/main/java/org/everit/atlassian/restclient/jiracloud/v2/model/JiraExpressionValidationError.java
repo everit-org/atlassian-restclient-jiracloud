@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Details about syntax and type errors. The error details apply to the entire expression, unless the object includes:   *  &#x60;line&#x60; and &#x60;column&#x60;  *  &#x60;expression&#x60;
  */
 @ApiModel(description = "Details about syntax and type errors. The error details apply to the entire expression, unless the object includes:   *  `line` and `column`  *  `expression`")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
 public class JiraExpressionValidationError {
   @JsonProperty("line")
   private Integer line;
@@ -157,7 +157,7 @@ public class JiraExpressionValidationError {
    * Details about the error.
    * @return message
   **/
-  @ApiModelProperty(example = "!, -, typeof, (, IDENTIFIER, null, true, false, NUMBER, STRING, new, [ or { expected, > encountered.", required = true, value = "Details about the error.")
+  @ApiModelProperty(example = "!, -, typeof, (, IDENTIFIER, null, true, false, NUMBER, STRING, TEMPLATE_LITERAL, new, [ or { expected, > encountered.", required = true, value = "Details about the error.")
   public String getMessage() {
     return message;
   }

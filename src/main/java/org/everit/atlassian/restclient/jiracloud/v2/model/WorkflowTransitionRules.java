@@ -44,7 +44,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.WorkflowId;
  * A workflow with transition rules.
  */
 @ApiModel(description = "A workflow with transition rules.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
 public class WorkflowTransitionRules {
   @JsonProperty("workflowId")
   private WorkflowId workflowId;
@@ -67,7 +67,7 @@ public class WorkflowTransitionRules {
    * Get workflowId
    * @return workflowId
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public WorkflowId getWorkflowId() {
     return workflowId;
   }
@@ -82,9 +82,6 @@ public class WorkflowTransitionRules {
   }
 
   public WorkflowTransitionRules addPostFunctionsItem(ConnectWorkflowTransitionRule postFunctionsItem) {
-    if (this.postFunctions == null) {
-      this.postFunctions = new ArrayList<>();
-    }
     this.postFunctions.add(postFunctionsItem);
     return this;
   }
@@ -93,7 +90,7 @@ public class WorkflowTransitionRules {
    * The list of post functions within the workflow.
    * @return postFunctions
   **/
-  @ApiModelProperty(value = "The list of post functions within the workflow.")
+  @ApiModelProperty(required = true, value = "The list of post functions within the workflow.")
   public List<ConnectWorkflowTransitionRule> getPostFunctions() {
     return postFunctions;
   }
@@ -108,9 +105,6 @@ public class WorkflowTransitionRules {
   }
 
   public WorkflowTransitionRules addConditionsItem(ConnectWorkflowTransitionRule conditionsItem) {
-    if (this.conditions == null) {
-      this.conditions = new ArrayList<>();
-    }
     this.conditions.add(conditionsItem);
     return this;
   }
@@ -119,7 +113,7 @@ public class WorkflowTransitionRules {
    * The list of conditions within the workflow.
    * @return conditions
   **/
-  @ApiModelProperty(value = "The list of conditions within the workflow.")
+  @ApiModelProperty(required = true, value = "The list of conditions within the workflow.")
   public List<ConnectWorkflowTransitionRule> getConditions() {
     return conditions;
   }
@@ -134,9 +128,6 @@ public class WorkflowTransitionRules {
   }
 
   public WorkflowTransitionRules addValidatorsItem(ConnectWorkflowTransitionRule validatorsItem) {
-    if (this.validators == null) {
-      this.validators = new ArrayList<>();
-    }
     this.validators.add(validatorsItem);
     return this;
   }
@@ -145,7 +136,7 @@ public class WorkflowTransitionRules {
    * The list of validators within the workflow.
    * @return validators
   **/
-  @ApiModelProperty(value = "The list of validators within the workflow.")
+  @ApiModelProperty(required = true, value = "The list of validators within the workflow.")
   public List<ConnectWorkflowTransitionRule> getValidators() {
     return validators;
   }

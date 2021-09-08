@@ -37,13 +37,13 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.HashMap;
 import java.util.Map;
-import org.everit.atlassian.restclient.jiracloud.v2.model.ProjectForScope;
+import org.everit.atlassian.restclient.jiracloud.v2.model.ProjectDetails;
 
 /**
  * The projects the item is associated with. Indicated for items associated with [next-gen projects](https://confluence.atlassian.com/x/loMyO).
  */
 @ApiModel(description = "The projects the item is associated with. Indicated for items associated with [next-gen projects](https://confluence.atlassian.com/x/loMyO).")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
 public class Scope {
   /**
    * The type of scope.
@@ -84,7 +84,7 @@ public class Scope {
   private TypeEnum type;
 
   @JsonProperty("project")
-  private ProjectForScope project;
+  private ProjectDetails project;
 
   private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
 
@@ -102,7 +102,7 @@ public class Scope {
    * @return project
   **/
   @ApiModelProperty(value = "The project the item has scope in.")
-  public ProjectForScope getProject() {
+  public ProjectDetails getProject() {
     return project;
   }
 

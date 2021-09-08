@@ -39,15 +39,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A list of issue type IDs.
+ * The list of issue type IDs.
  */
-@ApiModel(description = "A list of issue type IDs.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
+@ApiModel(description = "The list of issue type IDs.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
 public class IssueTypeIDs {
   @JsonProperty("issueTypeIds")
   private List<String> issueTypeIds = new ArrayList<>();
 
-  public IssueTypeIDs issueTypeIds(List<String> issueTypeIds) {
+  public IssueTypeIDs issueTypeIDs(List<String> issueTypeIds) {
     this.issueTypeIds = issueTypeIds;
     return this;
   }
@@ -58,10 +58,10 @@ public class IssueTypeIDs {
   }
 
    /**
-   * List of issue type IDs.
+   * The list of issue type IDs.
    * @return issueTypeIds
   **/
-  @ApiModelProperty(required = true, value = "List of issue type IDs.")
+  @ApiModelProperty(required = true, value = "The list of issue type IDs.")
   public List<String> getIssueTypeIds() {
     return issueTypeIds;
   }
@@ -92,7 +92,7 @@ public class IssueTypeIDs {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class IssueTypeIDs {\n");
+    sb.append("class IssueTypeIds {\n");
     
     sb.append("    issueTypeIds: ").append(toIndentedString(issueTypeIds)).append("\n");
     sb.append("}");

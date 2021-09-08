@@ -565,6 +565,7 @@ public class ProjectApi {
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_searchProjects);
   }
 
+  
   /**
    * Update project
    * <p>Updates the <a href=\"https://confluence.atlassian.com/x/ahLpNw\">project details</a> of a project.</p> <p>All parameters are optional in the body of the request.</p> <p><strong><a href=\"#permissions\">Permissions</a> required:</strong> <em>Administer Jira</em> <a href=\"https://confluence.atlassian.com/x/x4dKLg\">global permission</a>.</p> 

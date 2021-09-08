@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * The screen scheme for an issue type.
  */
 @ApiModel(description = "The screen scheme for an issue type.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
 public class IssueTypeScreenSchemeItem {
   @JsonProperty("issueTypeScreenSchemeId")
   private String issueTypeScreenSchemeId;
@@ -75,10 +75,10 @@ public class IssueTypeScreenSchemeItem {
   }
 
    /**
-   * The ID of the issue type or *default*. When set to *default* this issue type screen scheme item applies to all issue types without a screen scheme.
+   * The ID of the issue type or *default*. Only issue types used in classic projects are accepted. When creating an issue screen scheme, an entry for *default* must be provided and defines the mapping for all issue types without a screen scheme. Otherwise, a *default* entry can&#39;t be provided.
    * @return issueTypeId
   **/
-  @ApiModelProperty(required = true, value = "The ID of the issue type or *default*. When set to *default* this issue type screen scheme item applies to all issue types without a screen scheme.")
+  @ApiModelProperty(required = true, value = "The ID of the issue type or *default*. Only issue types used in classic projects are accepted. When creating an issue screen scheme, an entry for *default* must be provided and defines the mapping for all issue types without a screen scheme. Otherwise, a *default* entry can't be provided.")
   public String getIssueTypeId() {
     return issueTypeId;
   }

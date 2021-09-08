@@ -45,7 +45,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.StatusDetails;
  * Details of an issue transition.
  */
 @ApiModel(description = "Details of an issue transition.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
 public class IssueTransition {
   @JsonProperty("id")
   private String id;
@@ -76,6 +76,9 @@ public class IssueTransition {
 
   @JsonProperty("expand")
   private String expand;
+
+  @JsonProperty("looped")
+  private Boolean looped;
 
   private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
 
@@ -178,6 +181,24 @@ public class IssueTransition {
     return expand;
   }
 
+  public IssueTransition looped(Boolean looped) {
+    this.looped = looped;
+    return this;
+  }
+
+   /**
+   * Get looped
+   * @return looped
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getLooped() {
+    return looped;
+  }
+
+  public void setLooped(Boolean looped) {
+    this.looped = looped;
+  }
+
 
   @com.fasterxml.jackson.annotation.JsonAnyGetter
   public Map<String, Object> any() {
@@ -208,12 +229,13 @@ public class IssueTransition {
         Objects.equals(this.isConditional, issueTransition.isConditional) &&
         Objects.equals(this.fields, issueTransition.fields) &&
         Objects.equals(this.expand, issueTransition.expand) &&
+        Objects.equals(this.looped, issueTransition.looped) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, to, hasScreen, isGlobal, isInitial, isAvailable, isConditional, fields, expand, super.hashCode());
+    return Objects.hash(id, name, to, hasScreen, isGlobal, isInitial, isAvailable, isConditional, fields, expand, looped, super.hashCode());
   }
 
 
@@ -232,6 +254,7 @@ public class IssueTransition {
     sb.append("    isConditional: ").append(toIndentedString(isConditional)).append("\n");
     sb.append("    fields: ").append(toIndentedString(fields)).append("\n");
     sb.append("    expand: ").append(toIndentedString(expand)).append("\n");
+    sb.append("    looped: ").append(toIndentedString(looped)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -39,30 +39,33 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * RichText
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
 public class RichText {
-  @JsonProperty("emptyAdf")
-  private Boolean emptyAdf;
+  @JsonProperty("finalised")
+  private Boolean finalised;
 
   @JsonProperty("valueSet")
   private Boolean valueSet;
 
-  public RichText emptyAdf(Boolean emptyAdf) {
-    this.emptyAdf = emptyAdf;
+  @JsonProperty("emptyAdf")
+  private Boolean emptyAdf;
+
+  public RichText finalised(Boolean finalised) {
+    this.finalised = finalised;
     return this;
   }
 
    /**
-   * Get emptyAdf
-   * @return emptyAdf
+   * Get finalised
+   * @return finalised
   **/
   @ApiModelProperty(value = "")
-  public Boolean getEmptyAdf() {
-    return emptyAdf;
+  public Boolean getFinalised() {
+    return finalised;
   }
 
-  public void setEmptyAdf(Boolean emptyAdf) {
-    this.emptyAdf = emptyAdf;
+  public void setFinalised(Boolean finalised) {
+    this.finalised = finalised;
   }
 
   public RichText valueSet(Boolean valueSet) {
@@ -83,6 +86,24 @@ public class RichText {
     this.valueSet = valueSet;
   }
 
+  public RichText emptyAdf(Boolean emptyAdf) {
+    this.emptyAdf = emptyAdf;
+    return this;
+  }
+
+   /**
+   * Get emptyAdf
+   * @return emptyAdf
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getEmptyAdf() {
+    return emptyAdf;
+  }
+
+  public void setEmptyAdf(Boolean emptyAdf) {
+    this.emptyAdf = emptyAdf;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -93,13 +114,14 @@ public class RichText {
       return false;
     }
     RichText richText = (RichText) o;
-    return Objects.equals(this.emptyAdf, richText.emptyAdf) &&
-        Objects.equals(this.valueSet, richText.valueSet);
+    return Objects.equals(this.finalised, richText.finalised) &&
+        Objects.equals(this.valueSet, richText.valueSet) &&
+        Objects.equals(this.emptyAdf, richText.emptyAdf);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(emptyAdf, valueSet);
+    return Objects.hash(finalised, valueSet, emptyAdf);
   }
 
 
@@ -108,8 +130,9 @@ public class RichText {
     StringBuilder sb = new StringBuilder();
     sb.append("class RichText {\n");
     
-    sb.append("    emptyAdf: ").append(toIndentedString(emptyAdf)).append("\n");
+    sb.append("    finalised: ").append(toIndentedString(finalised)).append("\n");
     sb.append("    valueSet: ").append(toIndentedString(valueSet)).append("\n");
+    sb.append("    emptyAdf: ").append(toIndentedString(emptyAdf)).append("\n");
     sb.append("}");
     return sb.toString();
   }

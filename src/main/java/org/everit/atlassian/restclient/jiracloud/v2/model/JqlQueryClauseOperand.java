@@ -47,7 +47,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.ValueOperand;
  * Details of an operand in a JQL clause.
  */
 @ApiModel(description = "Details of an operand in a JQL clause.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
 public class JqlQueryClauseOperand {
   @JsonProperty("values")
   private List<JqlQueryUnitaryOperand> values = new ArrayList<>();
@@ -103,9 +103,6 @@ public class JqlQueryClauseOperand {
   }
 
   public JqlQueryClauseOperand addValuesItem(JqlQueryUnitaryOperand valuesItem) {
-    if (this.values == null) {
-      this.values = new ArrayList<>();
-    }
     this.values.add(valuesItem);
     return this;
   }
@@ -114,7 +111,7 @@ public class JqlQueryClauseOperand {
    * The list of operand values.
    * @return values
   **/
-  @ApiModelProperty(value = "The list of operand values.")
+  @ApiModelProperty(required = true, value = "The list of operand values.")
   public List<JqlQueryUnitaryOperand> getValues() {
     return values;
   }
@@ -165,9 +162,6 @@ public class JqlQueryClauseOperand {
   }
 
   public JqlQueryClauseOperand addArgumentsItem(String argumentsItem) {
-    if (this.arguments == null) {
-      this.arguments = new ArrayList<>();
-    }
     this.arguments.add(argumentsItem);
     return this;
   }
@@ -176,7 +170,7 @@ public class JqlQueryClauseOperand {
    * The list of function arguments.
    * @return arguments
   **/
-  @ApiModelProperty(value = "The list of function arguments.")
+  @ApiModelProperty(required = true, value = "The list of function arguments.")
   public List<String> getArguments() {
     return arguments;
   }

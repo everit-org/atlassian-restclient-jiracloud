@@ -42,7 +42,7 @@ import java.util.Map;
  * A status category.
  */
 @ApiModel(description = "A status category.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
 public class StatusCategory {
   @JsonProperty("self")
   private String self;

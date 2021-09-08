@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.User;
  * A paginated list of users sharing the filter. This includes users that are members of the groups or can browse the projects that the filter is shared with.
  */
 @ApiModel(description = "A paginated list of users sharing the filter. This includes users that are members of the groups or can browse the projects that the filter is shared with.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
 public class UserList {
   @JsonProperty("size")
   private Integer size;

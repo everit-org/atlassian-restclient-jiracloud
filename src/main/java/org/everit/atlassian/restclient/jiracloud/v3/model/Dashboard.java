@@ -45,7 +45,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.UserBean;
  * Details of a dashboard.
  */
 @ApiModel(description = "Details of a dashboard.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
 public class Dashboard {
   @JsonProperty("description")
   private String description;
@@ -74,8 +74,14 @@ public class Dashboard {
   @JsonProperty("sharePermissions")
   private List<SharePermission> sharePermissions = new ArrayList<>();
 
+  @JsonProperty("editPermissions")
+  private List<SharePermission> editPermissions = new ArrayList<>();
+
   @JsonProperty("view")
   private String view;
+
+  @JsonProperty("isWritable")
+  private Boolean isWritable;
 
   public Dashboard description(String description) {
     this.description = description;
@@ -159,12 +165,21 @@ public class Dashboard {
   }
 
    /**
-   * The details of any share permissions for the dashboard.
+   * The details of any view share permissions for the dashboard.
    * @return sharePermissions
   **/
-  @ApiModelProperty(value = "The details of any share permissions for the dashboard.")
+  @ApiModelProperty(value = "The details of any view share permissions for the dashboard.")
   public List<SharePermission> getSharePermissions() {
     return sharePermissions;
+  }
+
+   /**
+   * The details of any edit share permissions for the dashboard.
+   * @return editPermissions
+  **/
+  @ApiModelProperty(value = "The details of any edit share permissions for the dashboard.")
+  public List<SharePermission> getEditPermissions() {
+    return editPermissions;
   }
 
    /**
@@ -174,6 +189,15 @@ public class Dashboard {
   @ApiModelProperty(value = "The URL of the dashboard.")
   public String getView() {
     return view;
+  }
+
+   /**
+   * Whether the current user has permission to edit the dashboard.
+   * @return isWritable
+  **/
+  @ApiModelProperty(value = "Whether the current user has permission to edit the dashboard.")
+  public Boolean getIsWritable() {
+    return isWritable;
   }
 
 
@@ -195,12 +219,14 @@ public class Dashboard {
         Objects.equals(this.rank, dashboard.rank) &&
         Objects.equals(this.self, dashboard.self) &&
         Objects.equals(this.sharePermissions, dashboard.sharePermissions) &&
-        Objects.equals(this.view, dashboard.view);
+        Objects.equals(this.editPermissions, dashboard.editPermissions) &&
+        Objects.equals(this.view, dashboard.view) &&
+        Objects.equals(this.isWritable, dashboard.isWritable);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, id, isFavourite, name, owner, popularity, rank, self, sharePermissions, view);
+    return Objects.hash(description, id, isFavourite, name, owner, popularity, rank, self, sharePermissions, editPermissions, view, isWritable);
   }
 
 
@@ -218,7 +244,9 @@ public class Dashboard {
     sb.append("    rank: ").append(toIndentedString(rank)).append("\n");
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    sharePermissions: ").append(toIndentedString(sharePermissions)).append("\n");
+    sb.append("    editPermissions: ").append(toIndentedString(editPermissions)).append("\n");
     sb.append("    view: ").append(toIndentedString(view)).append("\n");
+    sb.append("    isWritable: ").append(toIndentedString(isWritable)).append("\n");
     sb.append("}");
     return sb.toString();
   }

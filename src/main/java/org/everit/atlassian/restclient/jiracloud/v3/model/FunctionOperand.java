@@ -42,7 +42,7 @@ import java.util.List;
  * An operand that is a function. See [Advanced searching - functions reference](https://confluence.atlassian.com/x/dwiiLQ) for more information about JQL functions.
  */
 @ApiModel(description = "An operand that is a function. See [Advanced searching - functions reference](https://confluence.atlassian.com/x/dwiiLQ) for more information about JQL functions.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
 public class FunctionOperand {
   @JsonProperty("function")
   private String function;
@@ -74,9 +74,6 @@ public class FunctionOperand {
   }
 
   public FunctionOperand addArgumentsItem(String argumentsItem) {
-    if (this.arguments == null) {
-      this.arguments = new ArrayList<>();
-    }
     this.arguments.add(argumentsItem);
     return this;
   }
@@ -85,7 +82,7 @@ public class FunctionOperand {
    * The list of function arguments.
    * @return arguments
   **/
-  @ApiModelProperty(value = "The list of function arguments.")
+  @ApiModelProperty(required = true, value = "The list of function arguments.")
   public List<String> getArguments() {
     return arguments;
   }

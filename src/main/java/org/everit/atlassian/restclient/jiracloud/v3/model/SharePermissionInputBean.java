@@ -39,12 +39,14 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * SharePermissionInputBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
 public class SharePermissionInputBean {
   /**
-   * The type of the share permission.Specify the type as follows:   *  &#x60;group&#x60; Share with a group. Specify &#x60;groupname&#x60; as well.  *  &#x60;project&#x60; Share with a project. Specify &#x60;projectId&#x60; as well.  *  &#x60;projectRole&#x60; Share with a project role in a project. Specify &#x60;projectId&#x60; and &#x60;projectRoleId&#x60; as well.  *  &#x60;global&#x60; Share globally, including anonymous users. If set, this type overrides all existing share permissions and must be deleted before any non-global share permissions is set.  *  &#x60;authenticated&#x60; Share with all logged-in users. This shows as &#x60;loggedin&#x60; in the response. If set, this type overrides all existing share permissions and must be deleted before any non-global share permissions is set.
+   * The type of the share permission.Specify the type as follows:   *  &#x60;user&#x60; Share with a user.  *  &#x60;group&#x60; Share with a group. Specify &#x60;groupname&#x60; as well.  *  &#x60;project&#x60; Share with a project. Specify &#x60;projectId&#x60; as well.  *  &#x60;projectRole&#x60; Share with a project role in a project. Specify &#x60;projectId&#x60; and &#x60;projectRoleId&#x60; as well.  *  &#x60;global&#x60; Share globally, including anonymous users. If set, this type overrides all existing share permissions and must be deleted before any non-global share permissions is set.  *  &#x60;authenticated&#x60; Share with all logged-in users. This shows as &#x60;loggedin&#x60; in the response. If set, this type overrides all existing share permissions and must be deleted before any non-global share permissions is set.
    */
   public enum TypeEnum {
+    USER("user"),
+    
     PROJECT("project"),
     
     GROUP("group"),
@@ -94,16 +96,22 @@ public class SharePermissionInputBean {
   @JsonProperty("projectRoleId")
   private String projectRoleId;
 
+  @JsonProperty("accountId")
+  private String accountId;
+
+  @JsonProperty("rights")
+  private Integer rights;
+
   public SharePermissionInputBean type(TypeEnum type) {
     this.type = type;
     return this;
   }
 
    /**
-   * The type of the share permission.Specify the type as follows:   *  &#x60;group&#x60; Share with a group. Specify &#x60;groupname&#x60; as well.  *  &#x60;project&#x60; Share with a project. Specify &#x60;projectId&#x60; as well.  *  &#x60;projectRole&#x60; Share with a project role in a project. Specify &#x60;projectId&#x60; and &#x60;projectRoleId&#x60; as well.  *  &#x60;global&#x60; Share globally, including anonymous users. If set, this type overrides all existing share permissions and must be deleted before any non-global share permissions is set.  *  &#x60;authenticated&#x60; Share with all logged-in users. This shows as &#x60;loggedin&#x60; in the response. If set, this type overrides all existing share permissions and must be deleted before any non-global share permissions is set.
+   * The type of the share permission.Specify the type as follows:   *  &#x60;user&#x60; Share with a user.  *  &#x60;group&#x60; Share with a group. Specify &#x60;groupname&#x60; as well.  *  &#x60;project&#x60; Share with a project. Specify &#x60;projectId&#x60; as well.  *  &#x60;projectRole&#x60; Share with a project role in a project. Specify &#x60;projectId&#x60; and &#x60;projectRoleId&#x60; as well.  *  &#x60;global&#x60; Share globally, including anonymous users. If set, this type overrides all existing share permissions and must be deleted before any non-global share permissions is set.  *  &#x60;authenticated&#x60; Share with all logged-in users. This shows as &#x60;loggedin&#x60; in the response. If set, this type overrides all existing share permissions and must be deleted before any non-global share permissions is set.
    * @return type
   **/
-  @ApiModelProperty(required = true, value = "The type of the share permission.Specify the type as follows:   *  `group` Share with a group. Specify `groupname` as well.  *  `project` Share with a project. Specify `projectId` as well.  *  `projectRole` Share with a project role in a project. Specify `projectId` and `projectRoleId` as well.  *  `global` Share globally, including anonymous users. If set, this type overrides all existing share permissions and must be deleted before any non-global share permissions is set.  *  `authenticated` Share with all logged-in users. This shows as `loggedin` in the response. If set, this type overrides all existing share permissions and must be deleted before any non-global share permissions is set.")
+  @ApiModelProperty(required = true, value = "The type of the share permission.Specify the type as follows:   *  `user` Share with a user.  *  `group` Share with a group. Specify `groupname` as well.  *  `project` Share with a project. Specify `projectId` as well.  *  `projectRole` Share with a project role in a project. Specify `projectId` and `projectRoleId` as well.  *  `global` Share globally, including anonymous users. If set, this type overrides all existing share permissions and must be deleted before any non-global share permissions is set.  *  `authenticated` Share with all logged-in users. This shows as `loggedin` in the response. If set, this type overrides all existing share permissions and must be deleted before any non-global share permissions is set.")
   public TypeEnum getType() {
     return type;
   }
@@ -166,6 +174,42 @@ public class SharePermissionInputBean {
     this.projectRoleId = projectRoleId;
   }
 
+  public SharePermissionInputBean accountId(String accountId) {
+    this.accountId = accountId;
+    return this;
+  }
+
+   /**
+   * The user account ID that the filter is shared with. For a request, specify the &#x60;accountId&#x60; property for the user.
+   * @return accountId
+  **/
+  @ApiModelProperty(value = "The user account ID that the filter is shared with. For a request, specify the `accountId` property for the user.")
+  public String getAccountId() {
+    return accountId;
+  }
+
+  public void setAccountId(String accountId) {
+    this.accountId = accountId;
+  }
+
+  public SharePermissionInputBean rights(Integer rights) {
+    this.rights = rights;
+    return this;
+  }
+
+   /**
+   * The rights for the share permission.
+   * @return rights
+  **/
+  @ApiModelProperty(value = "The rights for the share permission.")
+  public Integer getRights() {
+    return rights;
+  }
+
+  public void setRights(Integer rights) {
+    this.rights = rights;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -179,12 +223,14 @@ public class SharePermissionInputBean {
     return Objects.equals(this.type, sharePermissionInputBean.type) &&
         Objects.equals(this.projectId, sharePermissionInputBean.projectId) &&
         Objects.equals(this.groupname, sharePermissionInputBean.groupname) &&
-        Objects.equals(this.projectRoleId, sharePermissionInputBean.projectRoleId);
+        Objects.equals(this.projectRoleId, sharePermissionInputBean.projectRoleId) &&
+        Objects.equals(this.accountId, sharePermissionInputBean.accountId) &&
+        Objects.equals(this.rights, sharePermissionInputBean.rights);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, projectId, groupname, projectRoleId);
+    return Objects.hash(type, projectId, groupname, projectRoleId, accountId, rights);
   }
 
 
@@ -197,6 +243,8 @@ public class SharePermissionInputBean {
     sb.append("    projectId: ").append(toIndentedString(projectId)).append("\n");
     sb.append("    groupname: ").append(toIndentedString(groupname)).append("\n");
     sb.append("    projectRoleId: ").append(toIndentedString(projectRoleId)).append("\n");
+    sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
+    sb.append("    rights: ").append(toIndentedString(rights)).append("\n");
     sb.append("}");
     return sb.toString();
   }

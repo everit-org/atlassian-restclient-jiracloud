@@ -40,10 +40,16 @@ import io.swagger.annotations.ApiModelProperty;
  * A rule configuration.
  */
 @ApiModel(description = "A rule configuration.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
 public class RuleConfiguration {
   @JsonProperty("value")
   private String value;
+
+  @JsonProperty("disabled")
+  private Boolean disabled = false;
+
+  @JsonProperty("tag")
+  private String tag;
 
   public RuleConfiguration value(String value) {
     this.value = value;
@@ -63,6 +69,42 @@ public class RuleConfiguration {
     this.value = value;
   }
 
+  public RuleConfiguration disabled(Boolean disabled) {
+    this.disabled = disabled;
+    return this;
+  }
+
+   /**
+   * EXPERIMENTAL: Whether the rule is disabled.
+   * @return disabled
+  **/
+  @ApiModelProperty(value = "EXPERIMENTAL: Whether the rule is disabled.")
+  public Boolean getDisabled() {
+    return disabled;
+  }
+
+  public void setDisabled(Boolean disabled) {
+    this.disabled = disabled;
+  }
+
+  public RuleConfiguration tag(String tag) {
+    this.tag = tag;
+    return this;
+  }
+
+   /**
+   * EXPERIMENTAL: A tag used to filter rules in [Get workflow transition rule configurations](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflow-transition-rules/#api-rest-api-3-workflow-rule-config-get).
+   * @return tag
+  **/
+  @ApiModelProperty(value = "EXPERIMENTAL: A tag used to filter rules in [Get workflow transition rule configurations](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflow-transition-rules/#api-rest-api-3-workflow-rule-config-get).")
+  public String getTag() {
+    return tag;
+  }
+
+  public void setTag(String tag) {
+    this.tag = tag;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -73,12 +115,14 @@ public class RuleConfiguration {
       return false;
     }
     RuleConfiguration ruleConfiguration = (RuleConfiguration) o;
-    return Objects.equals(this.value, ruleConfiguration.value);
+    return Objects.equals(this.value, ruleConfiguration.value) &&
+        Objects.equals(this.disabled, ruleConfiguration.disabled) &&
+        Objects.equals(this.tag, ruleConfiguration.tag);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value);
+    return Objects.hash(value, disabled, tag);
   }
 
 
@@ -88,6 +132,8 @@ public class RuleConfiguration {
     sb.append("class RuleConfiguration {\n");
     
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("    disabled: ").append(toIndentedString(disabled)).append("\n");
+    sb.append("    tag: ").append(toIndentedString(tag)).append("\n");
     sb.append("}");
     return sb.toString();
   }

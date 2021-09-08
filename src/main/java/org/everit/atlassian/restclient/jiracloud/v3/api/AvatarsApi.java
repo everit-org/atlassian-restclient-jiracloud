@@ -41,7 +41,7 @@ import java.util.Map;
 
 public class AvatarsApi {
 
-  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.com";
+  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.net";
 
   private static final TypeReference<SystemAvatars> returnType_getAllSystemAvatars = new TypeReference<SystemAvatars>() {};
 
@@ -117,7 +117,7 @@ public class AvatarsApi {
 
   /**
    * Get avatars
-   * Returns the system and custom avatars for a project or issue type.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** None.
+   * Returns the system and custom avatars for a project or issue type.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:**   *  for custom project avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project the avatar belongs to.  *  for custom issue type avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for at least one project the issue type is used in.  *  for system avatars, none.
    * @param type The avatar type. (required)
    * @param entityId The ID of the item the avatar is associated with. (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>

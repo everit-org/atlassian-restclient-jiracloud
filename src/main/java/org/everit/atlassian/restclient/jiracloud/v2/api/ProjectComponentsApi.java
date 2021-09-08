@@ -28,9 +28,9 @@ import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
 import org.everit.http.restclient.TypeReference;
 
-import org.everit.atlassian.restclient.jiracloud.v2.model.Component;
 import org.everit.atlassian.restclient.jiracloud.v2.model.ComponentIssuesCount;
 import org.everit.atlassian.restclient.jiracloud.v2.model.PageBeanComponentWithIssueCount;
+import org.everit.atlassian.restclient.jiracloud.v2.model.ProjectComponent;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -41,19 +41,19 @@ import java.util.Map;
 
 public class ProjectComponentsApi {
 
-  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.com";
+  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.net";
 
-  private static final TypeReference<Component> returnType_createComponent = new TypeReference<Component>() {};
+  private static final TypeReference<ProjectComponent> returnType_createComponent = new TypeReference<ProjectComponent>() {};
 
-  private static final TypeReference<Component> returnType_getComponent = new TypeReference<Component>() {};
+  private static final TypeReference<ProjectComponent> returnType_getComponent = new TypeReference<ProjectComponent>() {};
 
   private static final TypeReference<ComponentIssuesCount> returnType_getComponentRelatedIssues = new TypeReference<ComponentIssuesCount>() {};
 
-  private static final TypeReference<List<Component>> returnType_getProjectComponents = new TypeReference<List<Component>>() {};
+  private static final TypeReference<List<ProjectComponent>> returnType_getProjectComponents = new TypeReference<List<ProjectComponent>>() {};
 
   private static final TypeReference<PageBeanComponentWithIssueCount> returnType_getProjectComponentsPaginated = new TypeReference<PageBeanComponentWithIssueCount>() {};
 
-  private static final TypeReference<Component> returnType_updateComponent = new TypeReference<Component>() {};
+  private static final TypeReference<ProjectComponent> returnType_updateComponent = new TypeReference<ProjectComponent>() {};
 
   private final RestClient restClient;
 
@@ -64,12 +64,12 @@ public class ProjectComponentsApi {
   /**
    * Create component
    * Creates a component. Use components to provide containers for issues within a project.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project in which the component is created or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   * @param component  (required)
+   * @param projectComponent  (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
-   * @return Single&lt;Component&gt;
+   * @return Single&lt;ProjectComponent&gt;
    */
-  public Single<Component> createComponent(
-    Component component, Optional<RestRequestEnhancer> restRequestEnhancer) {
+  public Single<ProjectComponent> createComponent(
+    ProjectComponent projectComponent, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.POST)
@@ -85,7 +85,7 @@ public class ProjectComponentsApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    requestBuilder.requestBody(Optional.of(component));
+    requestBuilder.requestBody(Optional.of(projectComponent));
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_createComponent);
   }
@@ -127,9 +127,9 @@ public class ProjectComponentsApi {
    * Returns a component.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for project containing the component.
    * @param id The ID of the component. (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
-   * @return Single&lt;Component&gt;
+   * @return Single&lt;ProjectComponent&gt;
    */
-  public Single<Component> getComponent(
+  public Single<ProjectComponent> getComponent(
     String id, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
@@ -183,9 +183,9 @@ public class ProjectComponentsApi {
    * Returns all components in a project. See the [Get project components paginated](#api-rest-api-2-project-projectIdOrKey-component-get) resource if you want to get a full list of components with pagination.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    * @param projectIdOrKey The project ID or project key (case sensitive). (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
-   * @return Single&lt;List&lt;Component&gt;&gt;
+   * @return Single&lt;List&lt;ProjectComponent&gt;&gt;
    */
-  public Single<List<Component>> getProjectComponents(
+  public Single<List<ProjectComponent>> getProjectComponents(
     String projectIdOrKey, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
@@ -254,12 +254,12 @@ public class ProjectComponentsApi {
    * Update component
    * Updates a component. Any fields included in the request are overwritten. If `leadAccountId` is an empty string (\"\") the component lead is removed.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the component or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param id The ID of the component. (required)
-   * @param component  (required)
+   * @param projectComponent  (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
-   * @return Single&lt;Component&gt;
+   * @return Single&lt;ProjectComponent&gt;
    */
-  public Single<Component> updateComponent(
-    String id, Component component, Optional<RestRequestEnhancer> restRequestEnhancer) {
+  public Single<ProjectComponent> updateComponent(
+    String id, ProjectComponent projectComponent, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.PUT)
@@ -276,7 +276,7 @@ public class ProjectComponentsApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    requestBuilder.requestBody(Optional.of(component));
+    requestBuilder.requestBody(Optional.of(projectComponent));
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updateComponent);
   }

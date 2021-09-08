@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.IssueTypeScreenScheme;
  * Issue type screen scheme with a list of the projects that use it.
  */
 @ApiModel(description = "Issue type screen scheme with a list of the projects that use it.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
 public class IssueTypeScreenSchemesProjects {
   @JsonProperty("issueTypeScreenScheme")
   private IssueTypeScreenScheme issueTypeScreenScheme;
@@ -60,7 +60,7 @@ public class IssueTypeScreenSchemesProjects {
    * Details of an issue type screen scheme.
    * @return issueTypeScreenScheme
   **/
-  @ApiModelProperty(value = "Details of an issue type screen scheme.")
+  @ApiModelProperty(required = true, value = "Details of an issue type screen scheme.")
   public IssueTypeScreenScheme getIssueTypeScreenScheme() {
     return issueTypeScreenScheme;
   }

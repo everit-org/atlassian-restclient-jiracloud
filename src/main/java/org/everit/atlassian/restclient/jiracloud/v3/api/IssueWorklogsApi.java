@@ -42,7 +42,7 @@ import java.util.Map;
 
 public class IssueWorklogsApi {
 
-  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.com";
+  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.net";
 
   private static final TypeReference<Worklog> returnType_addWorklog = new TypeReference<Worklog>() {};
 
@@ -79,7 +79,7 @@ public class IssueWorklogsApi {
    * @return Single&lt;Worklog&gt;
    */
   public Single<Worklog> addWorklog(
-    String issueIdOrKey, Worklog requestBody, Optional<Boolean> notifyUsers, Optional<String> adjustEstimate, Optional<String> newEstimate, Optional<String> reduceBy, Optional<String> expand, Optional<Boolean> overrideEditableFlag, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String issueIdOrKey, Map<String, Object> requestBody, Optional<Boolean> notifyUsers, Optional<String> adjustEstimate, Optional<String> newEstimate, Optional<String> reduceBy, Optional<String> expand, Optional<Boolean> overrideEditableFlag, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.POST)
@@ -359,7 +359,7 @@ public class IssueWorklogsApi {
    * @return Single&lt;Worklog&gt;
    */
   public Single<Worklog> updateWorklog(
-    String issueIdOrKey, String id, Worklog requestBody, Optional<Boolean> notifyUsers, Optional<String> adjustEstimate, Optional<String> newEstimate, Optional<String> expand, Optional<Boolean> overrideEditableFlag, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String issueIdOrKey, String id, Map<String, Object> requestBody, Optional<Boolean> notifyUsers, Optional<String> adjustEstimate, Optional<String> newEstimate, Optional<String> expand, Optional<Boolean> overrideEditableFlag, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.PUT)

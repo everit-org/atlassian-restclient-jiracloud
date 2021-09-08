@@ -42,7 +42,7 @@ import java.util.Map;
 
 public class PermissionSchemesApi {
 
-  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.com";
+  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.net";
 
   private static final TypeReference<PermissionGrant> returnType_createPermissionGrant = new TypeReference<PermissionGrant>() {};
 
@@ -108,7 +108,7 @@ public class PermissionSchemesApi {
    * @return Single&lt;PermissionScheme&gt;
    */
   public Single<PermissionScheme> createPermissionScheme(
-    PermissionScheme requestBody, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Map<String, Object> requestBody, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.POST)
@@ -162,7 +162,7 @@ public class PermissionSchemesApi {
 
   /**
    * Delete permission scheme grant
-   * Deletes a permission grant from a permission scheme. See [About permission schemes and grants](#about-permission-schemes) for more details.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * Deletes a permission grant from a permission scheme. See [About permission schemes and grants](../api-group-permission-schemes/#about-permission-schemes-and-grants) for more details.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param schemeId The ID of the permission scheme to delete the permission grant from. (required)
    * @param permissionId The ID of the permission grant to delete. (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
@@ -320,7 +320,7 @@ public class PermissionSchemesApi {
 
   /**
    * Update permission scheme
-   * Updates a permission scheme. Below are some important things to note when using this resource:   *  If a permissions list is present in the request, then it is set in the permission scheme, overwriting *all existing* grants.  *  If you want to update only the name and description, then do not send a permissions list in the request.  *  Sending an empty list will remove all permission grants from the permission scheme.  If you want to add or delete a permission grant instead of updating the whole list, see [Create permission grant](#api-rest-api-3-permissionscheme-schemeId-permission-post) or [Delete permission scheme entity](#api-rest-api-3-permissionscheme-schemeId-permission-permissionId-delete).  See [About permission schemes and grants](#about-permission-schemes) for more details.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * Updates a permission scheme. Below are some important things to note when using this resource:   *  If a permissions list is present in the request, then it is set in the permission scheme, overwriting *all existing* grants.  *  If you want to update only the name and description, then do not send a permissions list in the request.  *  Sending an empty list will remove all permission grants from the permission scheme.  If you want to add or delete a permission grant instead of updating the whole list, see [Create permission grant](#api-rest-api-3-permissionscheme-schemeId-permission-post) or [Delete permission scheme entity](#api-rest-api-3-permissionscheme-schemeId-permission-permissionId-delete).  See [About permission schemes and grants](../api-group-permission-schemes/#about-permission-schemes-and-grants) for more details.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param schemeId The ID of the permission scheme to update. (required)
    * @param requestBody  (required)
    * @param expand Use expand to include additional information in the response. This parameter accepts a comma-separated list. Note that permissions are always included when you specify any value. Expand options include:   *  `all` Returns all expandable information.  *  `field` Returns information about the custom field granted the permission.  *  `group` Returns information about the group that is granted the permission.  *  `permissions` Returns all permission grants for each permission scheme.  *  `projectRole` Returns information about the project role granted the permission.  *  `user` Returns information about the user who is granted the permission. (optional)
@@ -328,7 +328,7 @@ public class PermissionSchemesApi {
    * @return Single&lt;PermissionScheme&gt;
    */
   public Single<PermissionScheme> updatePermissionScheme(
-    Long schemeId, PermissionScheme requestBody, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Long schemeId, Map<String, Object> requestBody, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.PUT)

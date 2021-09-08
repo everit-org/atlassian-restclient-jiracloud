@@ -32,12 +32,11 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.CreatedIssue;
 import org.everit.atlassian.restclient.jiracloud.v3.model.CreatedIssues;
 import org.everit.atlassian.restclient.jiracloud.v3.model.ErrorCollection;
 import org.everit.atlassian.restclient.jiracloud.v3.model.IssueBean;
+import org.everit.atlassian.restclient.jiracloud.v3.model.IssueChangelogIds;
 import org.everit.atlassian.restclient.jiracloud.v3.model.IssueCreateMetadata;
-import org.everit.atlassian.restclient.jiracloud.v3.model.IssueUpdateDetails;
 import org.everit.atlassian.restclient.jiracloud.v3.model.IssueUpdateMetadata;
-import org.everit.atlassian.restclient.jiracloud.v3.model.IssuesUpdateBean;
-import org.everit.atlassian.restclient.jiracloud.v3.model.Notification;
 import org.everit.atlassian.restclient.jiracloud.v3.model.PageBeanChangelog;
+import org.everit.atlassian.restclient.jiracloud.v3.model.PageOfChangelogs;
 import org.everit.atlassian.restclient.jiracloud.v3.model.Transitions;
 import org.everit.atlassian.restclient.jiracloud.v3.model.User;
 
@@ -50,7 +49,7 @@ import java.util.Map;
 
 public class IssuesApi {
 
-  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.com";
+  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.net";
 
   private static final TypeReference<Object> returnType_assignIssue = new TypeReference<Object>() {};
 
@@ -63,6 +62,8 @@ public class IssuesApi {
   private static final TypeReference<Object> returnType_editIssue = new TypeReference<Object>() {};
 
   private static final TypeReference<PageBeanChangelog> returnType_getChangeLogs = new TypeReference<PageBeanChangelog>() {};
+
+  private static final TypeReference<PageOfChangelogs> returnType_getChangeLogsByIds = new TypeReference<PageOfChangelogs>() {};
 
   private static final TypeReference<IssueCreateMetadata> returnType_getCreateIssueMeta = new TypeReference<IssueCreateMetadata>() {};
 
@@ -115,12 +116,12 @@ public class IssuesApi {
    * Create issue
    * Creates an issue or, where the option to create subtasks is enabled in Jira, a subtask. A transition may be applied, to move the issue or subtask to a workflow step other than the default start step, and issue properties set.  The content of the issue or subtask is defined using `update` and `fields`. The fields that can be set in the issue or subtask are determined using the [ Get create issue metadata](#api-rest-api-3-issue-createmeta-get). These are the same fields that appear on the issue's create screen. Note that the `description`, `environment`, and any `textarea` type custom fields (multi-line text fields) take Atlassian Document Format content. Single line custom fields (`textfield`) accept a string and don't handle Atlassian Document Format content.  Creating a subtask differs from creating an issue as follows:   *  `issueType` must be set to a subtask issue type (use [ Get create issue metadata](#api-rest-api-3-issue-createmeta-get) to find subtask issue types).  *  `parent` must contain the ID or key of the parent issue.  In a next-gen project any issue may be made a child providing that the parent and child are members of the same project. In a classic project the parent field is only valid for subtasks.  **[Permissions](#permissions) required:** *Browse projects* and *Create issues* [project permissions](https://confluence.atlassian.com/x/yodKLg) for the project in which the issue or subtask is created.
    * @param requestBody  (required)
-   * @param updateHistory Whether the project in which the issue is created is added to the user's **Recently viewed** project list, as shown under **Projects** in Jira. (optional, default to false)
+   * @param updateHistory Whether the project in which the issue is created is added to the user's **Recently viewed** project list, as shown under **Projects** in Jira. When provided, the issue type and request type are added to the user's history for a project. These values are then used to provide defaults on the issue create screen. (optional, default to false)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;CreatedIssue&gt;
    */
   public Single<CreatedIssue> createIssue(
-    IssueUpdateDetails requestBody, Optional<Boolean> updateHistory, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Map<String, Object> requestBody, Optional<Boolean> updateHistory, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.POST)
@@ -152,7 +153,7 @@ public class IssuesApi {
    * @return Single&lt;CreatedIssues&gt;
    */
   public Single<CreatedIssues> createIssues(
-    IssuesUpdateBean requestBody, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Map<String, Object> requestBody, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.POST)
@@ -214,7 +215,7 @@ public class IssuesApi {
    * @return Single&lt;Object&gt;
    */
   public Single<Object> doTransition(
-    String issueIdOrKey, IssueUpdateDetails requestBody, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String issueIdOrKey, Map<String, Object> requestBody, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.POST)
@@ -248,7 +249,7 @@ public class IssuesApi {
    * @return Single&lt;Object&gt;
    */
   public Single<Object> editIssue(
-    String issueIdOrKey, IssueUpdateDetails requestBody, Optional<Boolean> notifyUsers, Optional<Boolean> overrideScreenSecurity, Optional<Boolean> overrideEditableFlag, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String issueIdOrKey, Map<String, Object> requestBody, Optional<Boolean> notifyUsers, Optional<Boolean> overrideScreenSecurity, Optional<Boolean> overrideEditableFlag, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.PUT)
@@ -280,7 +281,7 @@ public class IssuesApi {
   }
 
   /**
-   * Get change logs
+   * Get changelogs
    * Returns a [paginated](#pagination) list of all changelogs for an issue sorted by date, starting from the oldest.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:**   *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
    * @param issueIdOrKey The ID or key of the issue. (required)
    * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0)
@@ -313,6 +314,37 @@ public class IssuesApi {
     requestBuilder.headers(headers);
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getChangeLogs);
+  }
+
+  /**
+   * Get changelogs by IDs
+   * Returns changelogs for an issue specified by a list of changelog IDs.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:**   *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
+   * @param issueIdOrKey The ID or key of the issue. (required)
+   * @param issueChangelogIds  (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;PageOfChangelogs&gt;
+   */
+  public Single<PageOfChangelogs> getChangeLogsByIds(
+    String issueIdOrKey, IssueChangelogIds issueChangelogIds, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.POST)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/issue/{issueIdOrKey}/changelog/list");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("issueIdOrKey", String.valueOf(issueIdOrKey));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(issueChangelogIds));
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getChangeLogsByIds);
   }
 
   /**
@@ -502,7 +534,7 @@ public class IssuesApi {
    * @return Single&lt;Object&gt;
    */
   public Single<Object> notify(
-    String issueIdOrKey, Notification requestBody, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String issueIdOrKey, Map<String, Object> requestBody, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.POST)

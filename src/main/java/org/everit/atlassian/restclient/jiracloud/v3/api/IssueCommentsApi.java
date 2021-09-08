@@ -42,7 +42,7 @@ import java.util.Map;
 
 public class IssueCommentsApi {
 
-  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.com";
+  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.net";
 
   private static final TypeReference<Comment> returnType_addComment = new TypeReference<Comment>() {};
 
@@ -70,7 +70,7 @@ public class IssueCommentsApi {
    * @return Single&lt;Comment&gt;
    */
   public Single<Comment> addComment(
-    String issueIdOrKey, Comment requestBody, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String issueIdOrKey, Map<String, Object> requestBody, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.POST)
@@ -205,7 +205,7 @@ public class IssueCommentsApi {
 
   /**
    * Get comments by IDs
-   * Returns a [paginated](#pagination) list of just the comments for a list of comments specified by comment IDs.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** Comments are returned where the user:   *  has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.  *  If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to.
+   * Returns a [paginated](#pagination) list of comments specified by a list of comment IDs.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** Comments are returned where the user:   *  has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.  *  If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    * @param issueCommentListRequestBean The list of comment IDs. (required)
    * @param expand Use [expand](#expansion) to include additional information about comments in the response. This parameter accepts a comma-separated list. Expand options include:   *  `renderedBody` Returns the comment body rendered in HTML.  *  `properties` Returns the comment's properties. (optional)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
@@ -247,7 +247,7 @@ public class IssueCommentsApi {
    * @return Single&lt;Comment&gt;
    */
   public Single<Comment> updateComment(
-    String issueIdOrKey, String id, Comment requestBody, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String issueIdOrKey, String id, Map<String, Object> requestBody, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.PUT)

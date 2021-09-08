@@ -44,16 +44,16 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.FieldMetadata;
  * A list of editable field details.
  */
 @ApiModel(description = "A list of editable field details.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:40.546+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
 public class IssueUpdateMetadata {
   @JsonProperty("fields")
   private Map<String, FieldMetadata> fields = new HashMap<>();
 
    /**
-   * A list of editable field details.
+   * Get fields
    * @return fields
   **/
-  @ApiModelProperty(value = "A list of editable field details.")
+  @ApiModelProperty(value = "")
   public Map<String, FieldMetadata> getFields() {
     return fields;
   }

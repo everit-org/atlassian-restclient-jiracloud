@@ -39,7 +39,7 @@ import java.util.Map;
 
 public class IssueResolutionsApi {
 
-  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.com";
+  private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.net";
 
   private static final TypeReference<Resolution> returnType_getResolution = new TypeReference<Resolution>() {};
 

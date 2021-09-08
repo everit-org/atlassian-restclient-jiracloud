@@ -42,7 +42,7 @@ import java.util.UUID;
 /**
  * HierarchyLevel
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
 public class HierarchyLevel {
   @JsonProperty("id")
   private Long id;
@@ -59,11 +59,54 @@ public class HierarchyLevel {
   @JsonProperty("projectConfigurationId")
   private Long projectConfigurationId;
 
+  @JsonProperty("level")
+  private Integer level;
+
   @JsonProperty("issueTypeIds")
   private List<Long> issueTypeIds = new ArrayList<>();
 
   @JsonProperty("externalUuid")
   private UUID externalUuid;
+
+  /**
+   * Gets or Sets globalHierarchyLevel
+   */
+  public enum GlobalHierarchyLevelEnum {
+    SUBTASK("SUBTASK"),
+    
+    BASE("BASE"),
+    
+    EPIC("EPIC");
+
+    private String value;
+
+    GlobalHierarchyLevelEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static GlobalHierarchyLevelEnum fromValue(String value) {
+      for (GlobalHierarchyLevelEnum b : GlobalHierarchyLevelEnum.values()) {
+        if (b.value.equalsIgnoreCase(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  @JsonProperty("globalHierarchyLevel")
+  private GlobalHierarchyLevelEnum globalHierarchyLevel;
 
   public HierarchyLevel id(Long id) {
     this.id = id;
@@ -71,10 +114,10 @@ public class HierarchyLevel {
   }
 
    /**
-   * Get id
+   * The ID of the hierarchy level. This property is deprecated, see [Change notice: Removing hierarchy level IDs from next-gen APIs](https://developer.atlassian.com/cloud/jira/platform/change-notice-removing-hierarchy-level-ids-from-next-gen-apis/).
    * @return id
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The ID of the hierarchy level. This property is deprecated, see [Change notice: Removing hierarchy level IDs from next-gen APIs](https://developer.atlassian.com/cloud/jira/platform/change-notice-removing-hierarchy-level-ids-from-next-gen-apis/).")
   public Long getId() {
     return id;
   }
@@ -89,10 +132,10 @@ public class HierarchyLevel {
   }
 
    /**
-   * Get name
+   * The name of this hierarchy level.
    * @return name
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The name of this hierarchy level.")
   public String getName() {
     return name;
   }
@@ -107,10 +150,10 @@ public class HierarchyLevel {
   }
 
    /**
-   * Get aboveLevelId
+   * The ID of the level above this one in the hierarchy. This property is deprecated, see [Change notice: Removing hierarchy level IDs from next-gen APIs](https://developer.atlassian.com/cloud/jira/platform/change-notice-removing-hierarchy-level-ids-from-next-gen-apis/).
    * @return aboveLevelId
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The ID of the level above this one in the hierarchy. This property is deprecated, see [Change notice: Removing hierarchy level IDs from next-gen APIs](https://developer.atlassian.com/cloud/jira/platform/change-notice-removing-hierarchy-level-ids-from-next-gen-apis/).")
   public Long getAboveLevelId() {
     return aboveLevelId;
   }
@@ -125,10 +168,10 @@ public class HierarchyLevel {
   }
 
    /**
-   * Get belowLevelId
+   * The ID of the level below this one in the hierarchy. This property is deprecated, see [Change notice: Removing hierarchy level IDs from next-gen APIs](https://developer.atlassian.com/cloud/jira/platform/change-notice-removing-hierarchy-level-ids-from-next-gen-apis/).
    * @return belowLevelId
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The ID of the level below this one in the hierarchy. This property is deprecated, see [Change notice: Removing hierarchy level IDs from next-gen APIs](https://developer.atlassian.com/cloud/jira/platform/change-notice-removing-hierarchy-level-ids-from-next-gen-apis/).")
   public Long getBelowLevelId() {
     return belowLevelId;
   }
@@ -143,16 +186,34 @@ public class HierarchyLevel {
   }
 
    /**
-   * Get projectConfigurationId
+   * The ID of the project configuration. This property is deprecated, see [Change oticen: Removing hierarchy level IDs from next-gen APIs](https://developer.atlassian.com/cloud/jira/platform/change-notice-removing-hierarchy-level-ids-from-next-gen-apis/).
    * @return projectConfigurationId
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The ID of the project configuration. This property is deprecated, see [Change oticen: Removing hierarchy level IDs from next-gen APIs](https://developer.atlassian.com/cloud/jira/platform/change-notice-removing-hierarchy-level-ids-from-next-gen-apis/).")
   public Long getProjectConfigurationId() {
     return projectConfigurationId;
   }
 
   public void setProjectConfigurationId(Long projectConfigurationId) {
     this.projectConfigurationId = projectConfigurationId;
+  }
+
+  public HierarchyLevel level(Integer level) {
+    this.level = level;
+    return this;
+  }
+
+   /**
+   * The level of this item in the hierarchy.
+   * @return level
+  **/
+  @ApiModelProperty(value = "The level of this item in the hierarchy.")
+  public Integer getLevel() {
+    return level;
+  }
+
+  public void setLevel(Integer level) {
+    this.level = level;
   }
 
   public HierarchyLevel issueTypeIds(List<Long> issueTypeIds) {
@@ -169,10 +230,10 @@ public class HierarchyLevel {
   }
 
    /**
-   * Get issueTypeIds
+   * The issue types available in this hierarchy level.
    * @return issueTypeIds
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The issue types available in this hierarchy level.")
   public List<Long> getIssueTypeIds() {
     return issueTypeIds;
   }
@@ -187,16 +248,34 @@ public class HierarchyLevel {
   }
 
    /**
-   * Get externalUuid
+   * The external UUID of the hierarchy level. This property is deprecated, see [Change notice: Removing hierarchy level IDs from next-gen APIs](https://developer.atlassian.com/cloud/jira/platform/change-notice-removing-hierarchy-level-ids-from-next-gen-apis/).
    * @return externalUuid
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The external UUID of the hierarchy level. This property is deprecated, see [Change notice: Removing hierarchy level IDs from next-gen APIs](https://developer.atlassian.com/cloud/jira/platform/change-notice-removing-hierarchy-level-ids-from-next-gen-apis/).")
   public UUID getExternalUuid() {
     return externalUuid;
   }
 
   public void setExternalUuid(UUID externalUuid) {
     this.externalUuid = externalUuid;
+  }
+
+  public HierarchyLevel globalHierarchyLevel(GlobalHierarchyLevelEnum globalHierarchyLevel) {
+    this.globalHierarchyLevel = globalHierarchyLevel;
+    return this;
+  }
+
+   /**
+   * Get globalHierarchyLevel
+   * @return globalHierarchyLevel
+  **/
+  @ApiModelProperty(value = "")
+  public GlobalHierarchyLevelEnum getGlobalHierarchyLevel() {
+    return globalHierarchyLevel;
+  }
+
+  public void setGlobalHierarchyLevel(GlobalHierarchyLevelEnum globalHierarchyLevel) {
+    this.globalHierarchyLevel = globalHierarchyLevel;
   }
 
 
@@ -214,13 +293,15 @@ public class HierarchyLevel {
         Objects.equals(this.aboveLevelId, hierarchyLevel.aboveLevelId) &&
         Objects.equals(this.belowLevelId, hierarchyLevel.belowLevelId) &&
         Objects.equals(this.projectConfigurationId, hierarchyLevel.projectConfigurationId) &&
+        Objects.equals(this.level, hierarchyLevel.level) &&
         Objects.equals(this.issueTypeIds, hierarchyLevel.issueTypeIds) &&
-        Objects.equals(this.externalUuid, hierarchyLevel.externalUuid);
+        Objects.equals(this.externalUuid, hierarchyLevel.externalUuid) &&
+        Objects.equals(this.globalHierarchyLevel, hierarchyLevel.globalHierarchyLevel);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, aboveLevelId, belowLevelId, projectConfigurationId, issueTypeIds, externalUuid);
+    return Objects.hash(id, name, aboveLevelId, belowLevelId, projectConfigurationId, level, issueTypeIds, externalUuid, globalHierarchyLevel);
   }
 
 
@@ -234,8 +315,10 @@ public class HierarchyLevel {
     sb.append("    aboveLevelId: ").append(toIndentedString(aboveLevelId)).append("\n");
     sb.append("    belowLevelId: ").append(toIndentedString(belowLevelId)).append("\n");
     sb.append("    projectConfigurationId: ").append(toIndentedString(projectConfigurationId)).append("\n");
+    sb.append("    level: ").append(toIndentedString(level)).append("\n");
     sb.append("    issueTypeIds: ").append(toIndentedString(issueTypeIds)).append("\n");
     sb.append("    externalUuid: ").append(toIndentedString(externalUuid)).append("\n");
+    sb.append("    globalHierarchyLevel: ").append(toIndentedString(globalHierarchyLevel)).append("\n");
     sb.append("}");
     return sb.toString();
   }

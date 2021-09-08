@@ -43,10 +43,13 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.WorkflowTransitionRule
  * A collection of transition rules.
  */
 @ApiModel(description = "A collection of transition rules.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
 public class WorkflowRules {
   @JsonProperty("conditions")
   private List<WorkflowTransitionRule> conditions = new ArrayList<>();
+
+  @JsonProperty("conditionsTree")
+  private Object conditionsTree = null;
 
   @JsonProperty("validators")
   private List<WorkflowTransitionRule> validators = new ArrayList<>();
@@ -60,15 +63,18 @@ public class WorkflowRules {
   }
 
   public WorkflowRules addConditionsItem(WorkflowTransitionRule conditionsItem) {
+    if (this.conditions == null) {
+      this.conditions = new ArrayList<>();
+    }
     this.conditions.add(conditionsItem);
     return this;
   }
 
    /**
-   * The workflow conditions.
+   * The workflow conditions. ([Deprecated](https://community.developer.atlassian.com/t/deprecation-of-conditions-body-param/48884))
    * @return conditions
   **/
-  @ApiModelProperty(required = true, value = "The workflow conditions.")
+  @ApiModelProperty(value = "The workflow conditions. ([Deprecated](https://community.developer.atlassian.com/t/deprecation-of-conditions-body-param/48884))")
   public List<WorkflowTransitionRule> getConditions() {
     return conditions;
   }
@@ -77,12 +83,33 @@ public class WorkflowRules {
     this.conditions = conditions;
   }
 
+  public WorkflowRules conditionsTree(Object conditionsTree) {
+    this.conditionsTree = conditionsTree;
+    return this;
+  }
+
+   /**
+   * The workflow transition rule conditions tree.
+   * @return conditionsTree
+  **/
+  @ApiModelProperty(value = "The workflow transition rule conditions tree.")
+  public Object getConditionsTree() {
+    return conditionsTree;
+  }
+
+  public void setConditionsTree(Object conditionsTree) {
+    this.conditionsTree = conditionsTree;
+  }
+
   public WorkflowRules validators(List<WorkflowTransitionRule> validators) {
     this.validators = validators;
     return this;
   }
 
   public WorkflowRules addValidatorsItem(WorkflowTransitionRule validatorsItem) {
+    if (this.validators == null) {
+      this.validators = new ArrayList<>();
+    }
     this.validators.add(validatorsItem);
     return this;
   }
@@ -91,7 +118,7 @@ public class WorkflowRules {
    * The workflow validators.
    * @return validators
   **/
-  @ApiModelProperty(required = true, value = "The workflow validators.")
+  @ApiModelProperty(value = "The workflow validators.")
   public List<WorkflowTransitionRule> getValidators() {
     return validators;
   }
@@ -106,6 +133,9 @@ public class WorkflowRules {
   }
 
   public WorkflowRules addPostFunctionsItem(WorkflowTransitionRule postFunctionsItem) {
+    if (this.postFunctions == null) {
+      this.postFunctions = new ArrayList<>();
+    }
     this.postFunctions.add(postFunctionsItem);
     return this;
   }
@@ -114,7 +144,7 @@ public class WorkflowRules {
    * The workflow post functions.
    * @return postFunctions
   **/
-  @ApiModelProperty(required = true, value = "The workflow post functions.")
+  @ApiModelProperty(value = "The workflow post functions.")
   public List<WorkflowTransitionRule> getPostFunctions() {
     return postFunctions;
   }
@@ -134,13 +164,14 @@ public class WorkflowRules {
     }
     WorkflowRules workflowRules = (WorkflowRules) o;
     return Objects.equals(this.conditions, workflowRules.conditions) &&
+        Objects.equals(this.conditionsTree, workflowRules.conditionsTree) &&
         Objects.equals(this.validators, workflowRules.validators) &&
         Objects.equals(this.postFunctions, workflowRules.postFunctions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(conditions, validators, postFunctions);
+    return Objects.hash(conditions, conditionsTree, validators, postFunctions);
   }
 
 
@@ -150,6 +181,7 @@ public class WorkflowRules {
     sb.append("class WorkflowRules {\n");
     
     sb.append("    conditions: ").append(toIndentedString(conditions)).append("\n");
+    sb.append("    conditionsTree: ").append(toIndentedString(conditionsTree)).append("\n");
     sb.append("    validators: ").append(toIndentedString(validators)).append("\n");
     sb.append("    postFunctions: ").append(toIndentedString(postFunctions)).append("\n");
     sb.append("}");

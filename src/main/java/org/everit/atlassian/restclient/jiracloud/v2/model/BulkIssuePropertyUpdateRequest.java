@@ -41,10 +41,13 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.IssueFilterForBulkProp
  * Bulk issue property update request details.
  */
 @ApiModel(description = "Bulk issue property update request details.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
 public class BulkIssuePropertyUpdateRequest {
   @JsonProperty("value")
   private Object value = null;
+
+  @JsonProperty("expression")
+  private String expression;
 
   @JsonProperty("filter")
   private IssueFilterForBulkPropertySet filter;
@@ -55,16 +58,34 @@ public class BulkIssuePropertyUpdateRequest {
   }
 
    /**
-   * The value of the property. The value must be a [valid](http://tools.ietf.org/html/rfc4627), non-empty JSON blob. The maximum length is 32768 characters.
+   * The value of the property. The value must be a [valid](https://tools.ietf.org/html/rfc4627), non-empty JSON blob. The maximum length is 32768 characters.
    * @return value
   **/
-  @ApiModelProperty(value = "The value of the property. The value must be a [valid](http://tools.ietf.org/html/rfc4627), non-empty JSON blob. The maximum length is 32768 characters.")
+  @ApiModelProperty(value = "The value of the property. The value must be a [valid](https://tools.ietf.org/html/rfc4627), non-empty JSON blob. The maximum length is 32768 characters.")
   public Object getValue() {
     return value;
   }
 
   public void setValue(Object value) {
     this.value = value;
+  }
+
+  public BulkIssuePropertyUpdateRequest expression(String expression) {
+    this.expression = expression;
+    return this;
+  }
+
+   /**
+   * EXPERIMENTAL. The Jira expression to calculate the value of the property. The value of the expression must be an object that can be converted to JSON, such as a number, boolean, string, list, or map. The context variables available to the expression are &#x60;issue&#x60; and &#x60;user&#x60;. Issues for which the expression returns a value whose JSON representation is longer than 32768 characters are ignored.
+   * @return expression
+  **/
+  @ApiModelProperty(value = "EXPERIMENTAL. The Jira expression to calculate the value of the property. The value of the expression must be an object that can be converted to JSON, such as a number, boolean, string, list, or map. The context variables available to the expression are `issue` and `user`. Issues for which the expression returns a value whose JSON representation is longer than 32768 characters are ignored.")
+  public String getExpression() {
+    return expression;
+  }
+
+  public void setExpression(String expression) {
+    this.expression = expression;
   }
 
   public BulkIssuePropertyUpdateRequest filter(IssueFilterForBulkPropertySet filter) {
@@ -96,12 +117,13 @@ public class BulkIssuePropertyUpdateRequest {
     }
     BulkIssuePropertyUpdateRequest bulkIssuePropertyUpdateRequest = (BulkIssuePropertyUpdateRequest) o;
     return Objects.equals(this.value, bulkIssuePropertyUpdateRequest.value) &&
+        Objects.equals(this.expression, bulkIssuePropertyUpdateRequest.expression) &&
         Objects.equals(this.filter, bulkIssuePropertyUpdateRequest.filter);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value, filter);
+    return Objects.hash(value, expression, filter);
   }
 
 
@@ -111,6 +133,7 @@ public class BulkIssuePropertyUpdateRequest {
     sb.append("class BulkIssuePropertyUpdateRequest {\n");
     
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("    expression: ").append(toIndentedString(expression)).append("\n");
     sb.append("    filter: ").append(toIndentedString(filter)).append("\n");
     sb.append("}");
     return sb.toString();

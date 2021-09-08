@@ -42,13 +42,19 @@ import java.util.List;
  * A webhook.
  */
 @ApiModel(description = "A webhook.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-28T14:12:34.799+01:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
 public class Webhook {
   @JsonProperty("id")
   private Long id;
 
   @JsonProperty("jqlFilter")
   private String jqlFilter;
+
+  @JsonProperty("fieldIdsFilter")
+  private List<String> fieldIdsFilter = new ArrayList<>();
+
+  @JsonProperty("issuePropertyKeysFilter")
+  private List<String> issuePropertyKeysFilter = new ArrayList<>();
 
   /**
    * Gets or Sets events
@@ -139,15 +145,64 @@ public class Webhook {
     this.jqlFilter = jqlFilter;
   }
 
+  public Webhook fieldIdsFilter(List<String> fieldIdsFilter) {
+    this.fieldIdsFilter = fieldIdsFilter;
+    return this;
+  }
+
+  public Webhook addFieldIdsFilterItem(String fieldIdsFilterItem) {
+    if (this.fieldIdsFilter == null) {
+      this.fieldIdsFilter = new ArrayList<>();
+    }
+    this.fieldIdsFilter.add(fieldIdsFilterItem);
+    return this;
+  }
+
+   /**
+   * A list of field IDs. When the issue changelog contains any of the fields, the webhook &#x60;jira:issue_updated&#x60; is sent. If this parameter is not present, the app is notified about all field updates.
+   * @return fieldIdsFilter
+  **/
+  @ApiModelProperty(value = "A list of field IDs. When the issue changelog contains any of the fields, the webhook `jira:issue_updated` is sent. If this parameter is not present, the app is notified about all field updates.")
+  public List<String> getFieldIdsFilter() {
+    return fieldIdsFilter;
+  }
+
+  public void setFieldIdsFilter(List<String> fieldIdsFilter) {
+    this.fieldIdsFilter = fieldIdsFilter;
+  }
+
+  public Webhook issuePropertyKeysFilter(List<String> issuePropertyKeysFilter) {
+    this.issuePropertyKeysFilter = issuePropertyKeysFilter;
+    return this;
+  }
+
+  public Webhook addIssuePropertyKeysFilterItem(String issuePropertyKeysFilterItem) {
+    if (this.issuePropertyKeysFilter == null) {
+      this.issuePropertyKeysFilter = new ArrayList<>();
+    }
+    this.issuePropertyKeysFilter.add(issuePropertyKeysFilterItem);
+    return this;
+  }
+
+   /**
+   * A list of issue property keys. A change of those issue properties triggers the &#x60;issue_property_set&#x60; or &#x60;issue_property_deleted&#x60; webhooks. If this parameter is not present, the app is notified about all issue property updates.
+   * @return issuePropertyKeysFilter
+  **/
+  @ApiModelProperty(value = "A list of issue property keys. A change of those issue properties triggers the `issue_property_set` or `issue_property_deleted` webhooks. If this parameter is not present, the app is notified about all issue property updates.")
+  public List<String> getIssuePropertyKeysFilter() {
+    return issuePropertyKeysFilter;
+  }
+
+  public void setIssuePropertyKeysFilter(List<String> issuePropertyKeysFilter) {
+    this.issuePropertyKeysFilter = issuePropertyKeysFilter;
+  }
+
   public Webhook events(List<EventsEnum> events) {
     this.events = events;
     return this;
   }
 
   public Webhook addEventsItem(EventsEnum eventsItem) {
-    if (this.events == null) {
-      this.events = new ArrayList<>();
-    }
     this.events.add(eventsItem);
     return this;
   }
@@ -156,7 +211,7 @@ public class Webhook {
    * The Jira events that trigger the webhook.
    * @return events
   **/
-  @ApiModelProperty(value = "The Jira events that trigger the webhook.")
+  @ApiModelProperty(required = true, value = "The Jira events that trigger the webhook.")
   public List<EventsEnum> getEvents() {
     return events;
   }
@@ -169,7 +224,7 @@ public class Webhook {
    * Get expirationDate
    * @return expirationDate
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(value = "")
   public Long getExpirationDate() {
     return expirationDate;
   }
@@ -186,13 +241,15 @@ public class Webhook {
     Webhook webhook = (Webhook) o;
     return Objects.equals(this.id, webhook.id) &&
         Objects.equals(this.jqlFilter, webhook.jqlFilter) &&
+        Objects.equals(this.fieldIdsFilter, webhook.fieldIdsFilter) &&
+        Objects.equals(this.issuePropertyKeysFilter, webhook.issuePropertyKeysFilter) &&
         Objects.equals(this.events, webhook.events) &&
         Objects.equals(this.expirationDate, webhook.expirationDate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, jqlFilter, events, expirationDate);
+    return Objects.hash(id, jqlFilter, fieldIdsFilter, issuePropertyKeysFilter, events, expirationDate);
   }
 
 
@@ -203,6 +260,8 @@ public class Webhook {
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    jqlFilter: ").append(toIndentedString(jqlFilter)).append("\n");
+    sb.append("    fieldIdsFilter: ").append(toIndentedString(fieldIdsFilter)).append("\n");
+    sb.append("    issuePropertyKeysFilter: ").append(toIndentedString(issuePropertyKeysFilter)).append("\n");
     sb.append("    events: ").append(toIndentedString(events)).append("\n");
     sb.append("    expirationDate: ").append(toIndentedString(expirationDate)).append("\n");
     sb.append("}");
