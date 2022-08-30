@@ -138,19 +138,19 @@
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
-      <version>${com.fasterxml.jackson.version}</version>
+      <version>2.12.6.1</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.datatype</groupId>
       <artifactId>jackson-datatype-jsr310</artifactId>
-      <version>${com.fasterxml.jackson.version}</version>
+      <version>2.13.3</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.datatype</groupId>
       <artifactId>jackson-datatype-jdk8</artifactId>
-      <version>${com.fasterxml.jackson.version}</version>
+      <version>2.13.3</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
