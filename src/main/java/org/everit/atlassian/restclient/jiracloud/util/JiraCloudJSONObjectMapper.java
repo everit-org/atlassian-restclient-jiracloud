@@ -154,6 +154,11 @@ public class JiraCloudJSONObjectMapper implements JSONObjectMapper {
     this.objectMapper.registerModule(new Jdk8Module());
   }
 
+  public JiraCloudJSONObjectMapper(final ObjectMapper objectMapper) {
+    super();
+    this.objectMapper = objectMapper;
+  }
+
   @Override
   public <T> T convertValue(Object fromValue, Class<T> toValueType) {
     return this.objectMapper.convertValue(fromValue, toValueType);
