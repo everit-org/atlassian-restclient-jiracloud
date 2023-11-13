@@ -41,22 +41,16 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.AvatarUrlsBean;
  * User details permitted by the user&#39;s Atlassian Account privacy settings. However, be aware of these exceptions:   *  User record deleted from Atlassian: This occurs as the result of a right to be forgotten request. In this case, &#x60;displayName&#x60; provides an indication and other parameters have default values or are blank (for example, email is blank).  *  User record corrupted: This occurs as a results of events such as a server import and can only happen to deleted users. In this case, &#x60;accountId&#x60; returns *unknown* and all other parameters have fallback values.  *  User record unavailable: This usually occurs due to an internal service outage. In this case, all parameters have fallback values.
  */
 @ApiModel(description = "User details permitted by the user's Atlassian Account privacy settings. However, be aware of these exceptions:   *  User record deleted from Atlassian: This occurs as the result of a right to be forgotten request. In this case, `displayName` provides an indication and other parameters have default values or are blank (for example, email is blank).  *  User record corrupted: This occurs as a results of events such as a server import and can only happen to deleted users. In this case, `accountId` returns *unknown* and all other parameters have fallback values.  *  User record unavailable: This usually occurs due to an internal service outage. In this case, all parameters have fallback values.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class UserDetails {
-  @JsonProperty("self")
-  private String self;
-
-  @JsonProperty("name")
-  private String name;
-
-  @JsonProperty("key")
-  private String key;
-
   @JsonProperty("accountId")
   private String accountId;
 
-  @JsonProperty("emailAddress")
-  private String emailAddress;
+  @JsonProperty("accountType")
+  private String accountType;
+
+  @JsonProperty("active")
+  private Boolean active;
 
   @JsonProperty("avatarUrls")
   private AvatarUrlsBean avatarUrls;
@@ -64,41 +58,20 @@ public class UserDetails {
   @JsonProperty("displayName")
   private String displayName;
 
-  @JsonProperty("active")
-  private Boolean active;
+  @JsonProperty("emailAddress")
+  private String emailAddress;
+
+  @JsonProperty("key")
+  private String key;
+
+  @JsonProperty("name")
+  private String name;
+
+  @JsonProperty("self")
+  private String self;
 
   @JsonProperty("timeZone")
   private String timeZone;
-
-  @JsonProperty("accountType")
-  private String accountType;
-
-   /**
-   * The URL of the user.
-   * @return self
-  **/
-  @ApiModelProperty(value = "The URL of the user.")
-  public String getSelf() {
-    return self;
-  }
-
-   /**
-   * This property is no longer available and will be removed from the documentation soon. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details.
-   * @return name
-  **/
-  @ApiModelProperty(value = "This property is no longer available and will be removed from the documentation soon. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details.")
-  public String getName() {
-    return name;
-  }
-
-   /**
-   * This property is no longer available and will be removed from the documentation soon. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details.
-   * @return key
-  **/
-  @ApiModelProperty(value = "This property is no longer available and will be removed from the documentation soon. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details.")
-  public String getKey() {
-    return key;
-  }
 
   public UserDetails accountId(String accountId) {
     this.accountId = accountId;
@@ -119,12 +92,21 @@ public class UserDetails {
   }
 
    /**
-   * The email address of the user. Depending on the user’s privacy settings, this may be returned as null.
-   * @return emailAddress
+   * The type of account represented by this user. This will be one of &#39;atlassian&#39; (normal users), &#39;app&#39; (application user) or &#39;customer&#39; (Jira Service Desk customer user)
+   * @return accountType
   **/
-  @ApiModelProperty(value = "The email address of the user. Depending on the user’s privacy settings, this may be returned as null.")
-  public String getEmailAddress() {
-    return emailAddress;
+  @ApiModelProperty(value = "The type of account represented by this user. This will be one of 'atlassian' (normal users), 'app' (application user) or 'customer' (Jira Service Desk customer user)")
+  public String getAccountType() {
+    return accountType;
+  }
+
+   /**
+   * Whether the user is active.
+   * @return active
+  **/
+  @ApiModelProperty(value = "Whether the user is active.")
+  public Boolean getActive() {
+    return active;
   }
 
    /**
@@ -146,12 +128,39 @@ public class UserDetails {
   }
 
    /**
-   * Whether the user is active.
-   * @return active
+   * The email address of the user. Depending on the user’s privacy settings, this may be returned as null.
+   * @return emailAddress
   **/
-  @ApiModelProperty(value = "Whether the user is active.")
-  public Boolean getActive() {
-    return active;
+  @ApiModelProperty(value = "The email address of the user. Depending on the user’s privacy settings, this may be returned as null.")
+  public String getEmailAddress() {
+    return emailAddress;
+  }
+
+   /**
+   * This property is no longer available and will be removed from the documentation soon. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details.
+   * @return key
+  **/
+  @ApiModelProperty(value = "This property is no longer available and will be removed from the documentation soon. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details.")
+  public String getKey() {
+    return key;
+  }
+
+   /**
+   * This property is no longer available and will be removed from the documentation soon. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details.
+   * @return name
+  **/
+  @ApiModelProperty(value = "This property is no longer available and will be removed from the documentation soon. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details.")
+  public String getName() {
+    return name;
+  }
+
+   /**
+   * The URL of the user.
+   * @return self
+  **/
+  @ApiModelProperty(value = "The URL of the user.")
+  public String getSelf() {
+    return self;
   }
 
    /**
@@ -161,15 +170,6 @@ public class UserDetails {
   @ApiModelProperty(value = "The time zone specified in the user's profile. Depending on the user’s privacy settings, this may be returned as null.")
   public String getTimeZone() {
     return timeZone;
-  }
-
-   /**
-   * The type of account represented by this user. This will be one of &#39;atlassian&#39; (normal users), &#39;app&#39; (application user) or &#39;customer&#39; (Jira Service Desk customer user)
-   * @return accountType
-  **/
-  @ApiModelProperty(value = "The type of account represented by this user. This will be one of 'atlassian' (normal users), 'app' (application user) or 'customer' (Jira Service Desk customer user)")
-  public String getAccountType() {
-    return accountType;
   }
 
 
@@ -182,21 +182,21 @@ public class UserDetails {
       return false;
     }
     UserDetails userDetails = (UserDetails) o;
-    return Objects.equals(this.self, userDetails.self) &&
-        Objects.equals(this.name, userDetails.name) &&
-        Objects.equals(this.key, userDetails.key) &&
-        Objects.equals(this.accountId, userDetails.accountId) &&
-        Objects.equals(this.emailAddress, userDetails.emailAddress) &&
+    return Objects.equals(this.accountId, userDetails.accountId) &&
+        Objects.equals(this.accountType, userDetails.accountType) &&
+        Objects.equals(this.active, userDetails.active) &&
         Objects.equals(this.avatarUrls, userDetails.avatarUrls) &&
         Objects.equals(this.displayName, userDetails.displayName) &&
-        Objects.equals(this.active, userDetails.active) &&
-        Objects.equals(this.timeZone, userDetails.timeZone) &&
-        Objects.equals(this.accountType, userDetails.accountType);
+        Objects.equals(this.emailAddress, userDetails.emailAddress) &&
+        Objects.equals(this.key, userDetails.key) &&
+        Objects.equals(this.name, userDetails.name) &&
+        Objects.equals(this.self, userDetails.self) &&
+        Objects.equals(this.timeZone, userDetails.timeZone);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, name, key, accountId, emailAddress, avatarUrls, displayName, active, timeZone, accountType);
+    return Objects.hash(accountId, accountType, active, avatarUrls, displayName, emailAddress, key, name, self, timeZone);
   }
 
 
@@ -205,16 +205,16 @@ public class UserDetails {
     StringBuilder sb = new StringBuilder();
     sb.append("class UserDetails {\n");
     
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
-    sb.append("    emailAddress: ").append(toIndentedString(emailAddress)).append("\n");
+    sb.append("    accountType: ").append(toIndentedString(accountType)).append("\n");
+    sb.append("    active: ").append(toIndentedString(active)).append("\n");
     sb.append("    avatarUrls: ").append(toIndentedString(avatarUrls)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
-    sb.append("    active: ").append(toIndentedString(active)).append("\n");
+    sb.append("    emailAddress: ").append(toIndentedString(emailAddress)).append("\n");
+    sb.append("    key: ").append(toIndentedString(key)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    timeZone: ").append(toIndentedString(timeZone)).append("\n");
-    sb.append("    accountType: ").append(toIndentedString(accountType)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -44,28 +44,49 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.Scope;
  * Details about a notification scheme.
  */
 @ApiModel(description = "Details about a notification scheme.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class NotificationScheme {
+  @JsonProperty("description")
+  private String description;
+
   @JsonProperty("expand")
   private String expand;
 
   @JsonProperty("id")
   private Long id;
 
-  @JsonProperty("self")
-  private String self;
-
   @JsonProperty("name")
   private String name;
-
-  @JsonProperty("description")
-  private String description;
 
   @JsonProperty("notificationSchemeEvents")
   private List<NotificationSchemeEvent> notificationSchemeEvents = new ArrayList<>();
 
+  @JsonProperty("projects")
+  private List<Long> projects = new ArrayList<>();
+
   @JsonProperty("scope")
   private Scope scope;
+
+  @JsonProperty("self")
+  private String self;
+
+  public NotificationScheme description(String description) {
+    this.description = description;
+    return this;
+  }
+
+   /**
+   * The description of the notification scheme.
+   * @return description
+  **/
+  @ApiModelProperty(value = "The description of the notification scheme.")
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
   public NotificationScheme expand(String expand) {
     this.expand = expand;
@@ -103,24 +124,6 @@ public class NotificationScheme {
     this.id = id;
   }
 
-  public NotificationScheme self(String self) {
-    this.self = self;
-    return this;
-  }
-
-   /**
-   * Get self
-   * @return self
-  **/
-  @ApiModelProperty(value = "")
-  public String getSelf() {
-    return self;
-  }
-
-  public void setSelf(String self) {
-    this.self = self;
-  }
-
   public NotificationScheme name(String name) {
     this.name = name;
     return this;
@@ -137,24 +140,6 @@ public class NotificationScheme {
 
   public void setName(String name) {
     this.name = name;
-  }
-
-  public NotificationScheme description(String description) {
-    this.description = description;
-    return this;
-  }
-
-   /**
-   * The description of the notification scheme.
-   * @return description
-  **/
-  @ApiModelProperty(value = "The description of the notification scheme.")
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
   }
 
   public NotificationScheme notificationSchemeEvents(List<NotificationSchemeEvent> notificationSchemeEvents) {
@@ -183,6 +168,32 @@ public class NotificationScheme {
     this.notificationSchemeEvents = notificationSchemeEvents;
   }
 
+  public NotificationScheme projects(List<Long> projects) {
+    this.projects = projects;
+    return this;
+  }
+
+  public NotificationScheme addProjectsItem(Long projectsItem) {
+    if (this.projects == null) {
+      this.projects = new ArrayList<>();
+    }
+    this.projects.add(projectsItem);
+    return this;
+  }
+
+   /**
+   * The list of project IDs associated with the notification scheme.
+   * @return projects
+  **/
+  @ApiModelProperty(value = "The list of project IDs associated with the notification scheme.")
+  public List<Long> getProjects() {
+    return projects;
+  }
+
+  public void setProjects(List<Long> projects) {
+    this.projects = projects;
+  }
+
   public NotificationScheme scope(Scope scope) {
     this.scope = scope;
     return this;
@@ -201,6 +212,24 @@ public class NotificationScheme {
     this.scope = scope;
   }
 
+  public NotificationScheme self(String self) {
+    this.self = self;
+    return this;
+  }
+
+   /**
+   * Get self
+   * @return self
+  **/
+  @ApiModelProperty(value = "")
+  public String getSelf() {
+    return self;
+  }
+
+  public void setSelf(String self) {
+    this.self = self;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -211,18 +240,19 @@ public class NotificationScheme {
       return false;
     }
     NotificationScheme notificationScheme = (NotificationScheme) o;
-    return Objects.equals(this.expand, notificationScheme.expand) &&
+    return Objects.equals(this.description, notificationScheme.description) &&
+        Objects.equals(this.expand, notificationScheme.expand) &&
         Objects.equals(this.id, notificationScheme.id) &&
-        Objects.equals(this.self, notificationScheme.self) &&
         Objects.equals(this.name, notificationScheme.name) &&
-        Objects.equals(this.description, notificationScheme.description) &&
         Objects.equals(this.notificationSchemeEvents, notificationScheme.notificationSchemeEvents) &&
-        Objects.equals(this.scope, notificationScheme.scope);
+        Objects.equals(this.projects, notificationScheme.projects) &&
+        Objects.equals(this.scope, notificationScheme.scope) &&
+        Objects.equals(this.self, notificationScheme.self);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(expand, id, self, name, description, notificationSchemeEvents, scope);
+    return Objects.hash(description, expand, id, name, notificationSchemeEvents, projects, scope, self);
   }
 
 
@@ -231,13 +261,14 @@ public class NotificationScheme {
     StringBuilder sb = new StringBuilder();
     sb.append("class NotificationScheme {\n");
     
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    expand: ").append(toIndentedString(expand)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    notificationSchemeEvents: ").append(toIndentedString(notificationSchemeEvents)).append("\n");
+    sb.append("    projects: ").append(toIndentedString(projects)).append("\n");
     sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("}");
     return sb.toString();
   }

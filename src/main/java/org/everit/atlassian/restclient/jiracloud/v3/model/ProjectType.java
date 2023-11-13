@@ -40,39 +40,30 @@ import io.swagger.annotations.ApiModelProperty;
  * Details about a project type.
  */
 @ApiModel(description = "Details about a project type.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class ProjectType {
-  @JsonProperty("key")
-  private String key;
-
-  @JsonProperty("formattedKey")
-  private String formattedKey;
+  @JsonProperty("color")
+  private String color;
 
   @JsonProperty("descriptionI18nKey")
   private String descriptionI18nKey;
 
+  @JsonProperty("formattedKey")
+  private String formattedKey;
+
   @JsonProperty("icon")
   private String icon;
 
-  @JsonProperty("color")
-  private String color;
+  @JsonProperty("key")
+  private String key;
 
    /**
-   * The key of the project type.
-   * @return key
+   * The color of the project type.
+   * @return color
   **/
-  @ApiModelProperty(value = "The key of the project type.")
-  public String getKey() {
-    return key;
-  }
-
-   /**
-   * The formatted key of the project type.
-   * @return formattedKey
-  **/
-  @ApiModelProperty(value = "The formatted key of the project type.")
-  public String getFormattedKey() {
-    return formattedKey;
+  @ApiModelProperty(value = "The color of the project type.")
+  public String getColor() {
+    return color;
   }
 
    /**
@@ -85,6 +76,15 @@ public class ProjectType {
   }
 
    /**
+   * The formatted key of the project type.
+   * @return formattedKey
+  **/
+  @ApiModelProperty(value = "The formatted key of the project type.")
+  public String getFormattedKey() {
+    return formattedKey;
+  }
+
+   /**
    * The icon of the project type.
    * @return icon
   **/
@@ -94,12 +94,12 @@ public class ProjectType {
   }
 
    /**
-   * The color of the project type.
-   * @return color
+   * The key of the project type.
+   * @return key
   **/
-  @ApiModelProperty(value = "The color of the project type.")
-  public String getColor() {
-    return color;
+  @ApiModelProperty(value = "The key of the project type.")
+  public String getKey() {
+    return key;
   }
 
 
@@ -112,16 +112,16 @@ public class ProjectType {
       return false;
     }
     ProjectType projectType = (ProjectType) o;
-    return Objects.equals(this.key, projectType.key) &&
-        Objects.equals(this.formattedKey, projectType.formattedKey) &&
+    return Objects.equals(this.color, projectType.color) &&
         Objects.equals(this.descriptionI18nKey, projectType.descriptionI18nKey) &&
+        Objects.equals(this.formattedKey, projectType.formattedKey) &&
         Objects.equals(this.icon, projectType.icon) &&
-        Objects.equals(this.color, projectType.color);
+        Objects.equals(this.key, projectType.key);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(key, formattedKey, descriptionI18nKey, icon, color);
+    return Objects.hash(color, descriptionI18nKey, formattedKey, icon, key);
   }
 
 
@@ -130,11 +130,11 @@ public class ProjectType {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProjectType {\n");
     
-    sb.append("    key: ").append(toIndentedString(key)).append("\n");
-    sb.append("    formattedKey: ").append(toIndentedString(formattedKey)).append("\n");
-    sb.append("    descriptionI18nKey: ").append(toIndentedString(descriptionI18nKey)).append("\n");
-    sb.append("    icon: ").append(toIndentedString(icon)).append("\n");
     sb.append("    color: ").append(toIndentedString(color)).append("\n");
+    sb.append("    descriptionI18nKey: ").append(toIndentedString(descriptionI18nKey)).append("\n");
+    sb.append("    formattedKey: ").append(toIndentedString(formattedKey)).append("\n");
+    sb.append("    icon: ").append(toIndentedString(icon)).append("\n");
+    sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("}");
     return sb.toString();
   }

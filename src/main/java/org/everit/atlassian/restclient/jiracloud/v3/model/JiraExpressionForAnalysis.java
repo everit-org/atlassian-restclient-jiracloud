@@ -44,36 +44,13 @@ import java.util.Map;
  * Details of Jira expressions for analysis.
  */
 @ApiModel(description = "Details of Jira expressions for analysis.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class JiraExpressionForAnalysis {
-  @JsonProperty("expressions")
-  private List<String> expressions = new ArrayList<>();
-
   @JsonProperty("contextVariables")
   private Map<String, String> contextVariables = new HashMap<>();
 
-  public JiraExpressionForAnalysis expressions(List<String> expressions) {
-    this.expressions = expressions;
-    return this;
-  }
-
-  public JiraExpressionForAnalysis addExpressionsItem(String expressionsItem) {
-    this.expressions.add(expressionsItem);
-    return this;
-  }
-
-   /**
-   * The list of Jira expressions to analyse.
-   * @return expressions
-  **/
-  @ApiModelProperty(example = "issues.map(issue => issue.properties['property_key'])", required = true, value = "The list of Jira expressions to analyse.")
-  public List<String> getExpressions() {
-    return expressions;
-  }
-
-  public void setExpressions(List<String> expressions) {
-    this.expressions = expressions;
-  }
+  @JsonProperty("expressions")
+  private List<String> expressions = new ArrayList<>();
 
   public JiraExpressionForAnalysis contextVariables(Map<String, String> contextVariables) {
     this.contextVariables = contextVariables;
@@ -101,6 +78,29 @@ public class JiraExpressionForAnalysis {
     this.contextVariables = contextVariables;
   }
 
+  public JiraExpressionForAnalysis expressions(List<String> expressions) {
+    this.expressions = expressions;
+    return this;
+  }
+
+  public JiraExpressionForAnalysis addExpressionsItem(String expressionsItem) {
+    this.expressions.add(expressionsItem);
+    return this;
+  }
+
+   /**
+   * The list of Jira expressions to analyse.
+   * @return expressions
+  **/
+  @ApiModelProperty(example = "issues.map(issue => issue.properties['property_key'])", required = true, value = "The list of Jira expressions to analyse.")
+  public List<String> getExpressions() {
+    return expressions;
+  }
+
+  public void setExpressions(List<String> expressions) {
+    this.expressions = expressions;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -111,13 +111,13 @@ public class JiraExpressionForAnalysis {
       return false;
     }
     JiraExpressionForAnalysis jiraExpressionForAnalysis = (JiraExpressionForAnalysis) o;
-    return Objects.equals(this.expressions, jiraExpressionForAnalysis.expressions) &&
-        Objects.equals(this.contextVariables, jiraExpressionForAnalysis.contextVariables);
+    return Objects.equals(this.contextVariables, jiraExpressionForAnalysis.contextVariables) &&
+        Objects.equals(this.expressions, jiraExpressionForAnalysis.expressions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(expressions, contextVariables);
+    return Objects.hash(contextVariables, expressions);
   }
 
 
@@ -126,8 +126,8 @@ public class JiraExpressionForAnalysis {
     StringBuilder sb = new StringBuilder();
     sb.append("class JiraExpressionForAnalysis {\n");
     
-    sb.append("    expressions: ").append(toIndentedString(expressions)).append("\n");
     sb.append("    contextVariables: ").append(toIndentedString(contextVariables)).append("\n");
+    sb.append("    expressions: ").append(toIndentedString(expressions)).append("\n");
     sb.append("}");
     return sb.toString();
   }

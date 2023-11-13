@@ -43,16 +43,52 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.UserPickerUser;
  * The list of users found in a search, including header text (Showing X of Y matching users) and total of matched users.
  */
 @ApiModel(description = "The list of users found in a search, including header text (Showing X of Y matching users) and total of matched users.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class FoundUsers {
-  @JsonProperty("users")
-  private List<UserPickerUser> users = new ArrayList<>();
+  @JsonProperty("header")
+  private String header;
 
   @JsonProperty("total")
   private Integer total;
 
-  @JsonProperty("header")
-  private String header;
+  @JsonProperty("users")
+  private List<UserPickerUser> users = new ArrayList<>();
+
+  public FoundUsers header(String header) {
+    this.header = header;
+    return this;
+  }
+
+   /**
+   * Header text indicating the number of users in the response and the total number of users found in the search.
+   * @return header
+  **/
+  @ApiModelProperty(value = "Header text indicating the number of users in the response and the total number of users found in the search.")
+  public String getHeader() {
+    return header;
+  }
+
+  public void setHeader(String header) {
+    this.header = header;
+  }
+
+  public FoundUsers total(Integer total) {
+    this.total = total;
+    return this;
+  }
+
+   /**
+   * The total number of users found in the search.
+   * @return total
+  **/
+  @ApiModelProperty(value = "The total number of users found in the search.")
+  public Integer getTotal() {
+    return total;
+  }
+
+  public void setTotal(Integer total) {
+    this.total = total;
+  }
 
   public FoundUsers users(List<UserPickerUser> users) {
     this.users = users;
@@ -80,42 +116,6 @@ public class FoundUsers {
     this.users = users;
   }
 
-  public FoundUsers total(Integer total) {
-    this.total = total;
-    return this;
-  }
-
-   /**
-   * The total number of users found in the search.
-   * @return total
-  **/
-  @ApiModelProperty(value = "The total number of users found in the search.")
-  public Integer getTotal() {
-    return total;
-  }
-
-  public void setTotal(Integer total) {
-    this.total = total;
-  }
-
-  public FoundUsers header(String header) {
-    this.header = header;
-    return this;
-  }
-
-   /**
-   * Header text indicating the number of users in the response and the total number of users found in the search.
-   * @return header
-  **/
-  @ApiModelProperty(value = "Header text indicating the number of users in the response and the total number of users found in the search.")
-  public String getHeader() {
-    return header;
-  }
-
-  public void setHeader(String header) {
-    this.header = header;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -126,14 +126,14 @@ public class FoundUsers {
       return false;
     }
     FoundUsers foundUsers = (FoundUsers) o;
-    return Objects.equals(this.users, foundUsers.users) &&
+    return Objects.equals(this.header, foundUsers.header) &&
         Objects.equals(this.total, foundUsers.total) &&
-        Objects.equals(this.header, foundUsers.header);
+        Objects.equals(this.users, foundUsers.users);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(users, total, header);
+    return Objects.hash(header, total, users);
   }
 
 
@@ -142,9 +142,9 @@ public class FoundUsers {
     StringBuilder sb = new StringBuilder();
     sb.append("class FoundUsers {\n");
     
-    sb.append("    users: ").append(toIndentedString(users)).append("\n");
-    sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("    header: ").append(toIndentedString(header)).append("\n");
+    sb.append("    total: ").append(toIndentedString(total)).append("\n");
+    sb.append("    users: ").append(toIndentedString(users)).append("\n");
     sb.append("}");
     return sb.toString();
   }

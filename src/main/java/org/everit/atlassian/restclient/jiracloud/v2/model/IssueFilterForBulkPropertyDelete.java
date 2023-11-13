@@ -42,13 +42,31 @@ import java.util.List;
  * Bulk operation filter details.
  */
 @ApiModel(description = "Bulk operation filter details.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class IssueFilterForBulkPropertyDelete {
+  @JsonProperty("currentValue")
+  private Object currentValue = null;
+
   @JsonProperty("entityIds")
   private List<Long> entityIds = new ArrayList<>();
 
-  @JsonProperty("currentValue")
-  private Object currentValue = null;
+  public IssueFilterForBulkPropertyDelete currentValue(Object currentValue) {
+    this.currentValue = currentValue;
+    return this;
+  }
+
+   /**
+   * The value of properties to perform the bulk operation on.
+   * @return currentValue
+  **/
+  @ApiModelProperty(value = "The value of properties to perform the bulk operation on.")
+  public Object getCurrentValue() {
+    return currentValue;
+  }
+
+  public void setCurrentValue(Object currentValue) {
+    this.currentValue = currentValue;
+  }
 
   public IssueFilterForBulkPropertyDelete entityIds(List<Long> entityIds) {
     this.entityIds = entityIds;
@@ -76,24 +94,6 @@ public class IssueFilterForBulkPropertyDelete {
     this.entityIds = entityIds;
   }
 
-  public IssueFilterForBulkPropertyDelete currentValue(Object currentValue) {
-    this.currentValue = currentValue;
-    return this;
-  }
-
-   /**
-   * The value of properties to perform the bulk operation on.
-   * @return currentValue
-  **/
-  @ApiModelProperty(value = "The value of properties to perform the bulk operation on.")
-  public Object getCurrentValue() {
-    return currentValue;
-  }
-
-  public void setCurrentValue(Object currentValue) {
-    this.currentValue = currentValue;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -104,13 +104,13 @@ public class IssueFilterForBulkPropertyDelete {
       return false;
     }
     IssueFilterForBulkPropertyDelete issueFilterForBulkPropertyDelete = (IssueFilterForBulkPropertyDelete) o;
-    return Objects.equals(this.entityIds, issueFilterForBulkPropertyDelete.entityIds) &&
-        Objects.equals(this.currentValue, issueFilterForBulkPropertyDelete.currentValue);
+    return Objects.equals(this.currentValue, issueFilterForBulkPropertyDelete.currentValue) &&
+        Objects.equals(this.entityIds, issueFilterForBulkPropertyDelete.entityIds);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(entityIds, currentValue);
+    return Objects.hash(currentValue, entityIds);
   }
 
 
@@ -119,8 +119,8 @@ public class IssueFilterForBulkPropertyDelete {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueFilterForBulkPropertyDelete {\n");
     
-    sb.append("    entityIds: ").append(toIndentedString(entityIds)).append("\n");
     sb.append("    currentValue: ").append(toIndentedString(currentValue)).append("\n");
+    sb.append("    entityIds: ").append(toIndentedString(entityIds)).append("\n");
     sb.append("}");
     return sb.toString();
   }

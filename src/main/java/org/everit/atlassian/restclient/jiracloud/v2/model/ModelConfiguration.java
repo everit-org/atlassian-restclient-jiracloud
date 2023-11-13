@@ -41,31 +41,85 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.TimeTrackingConfigurat
  * Details about the configuration of Jira.
  */
 @ApiModel(description = "Details about the configuration of Jira.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class ModelConfiguration {
+  @JsonProperty("attachmentsEnabled")
+  private Boolean attachmentsEnabled;
+
+  @JsonProperty("issueLinkingEnabled")
+  private Boolean issueLinkingEnabled;
+
+  @JsonProperty("subTasksEnabled")
+  private Boolean subTasksEnabled;
+
+  @JsonProperty("timeTrackingConfiguration")
+  private TimeTrackingConfiguration timeTrackingConfiguration;
+
+  @JsonProperty("timeTrackingEnabled")
+  private Boolean timeTrackingEnabled;
+
+  @JsonProperty("unassignedIssuesAllowed")
+  private Boolean unassignedIssuesAllowed;
+
   @JsonProperty("votingEnabled")
   private Boolean votingEnabled;
 
   @JsonProperty("watchingEnabled")
   private Boolean watchingEnabled;
 
-  @JsonProperty("unassignedIssuesAllowed")
-  private Boolean unassignedIssuesAllowed;
+   /**
+   * Whether the ability to add attachments to issues is enabled.
+   * @return attachmentsEnabled
+  **/
+  @ApiModelProperty(value = "Whether the ability to add attachments to issues is enabled.")
+  public Boolean getAttachmentsEnabled() {
+    return attachmentsEnabled;
+  }
 
-  @JsonProperty("subTasksEnabled")
-  private Boolean subTasksEnabled;
+   /**
+   * Whether the ability to link issues is enabled.
+   * @return issueLinkingEnabled
+  **/
+  @ApiModelProperty(value = "Whether the ability to link issues is enabled.")
+  public Boolean getIssueLinkingEnabled() {
+    return issueLinkingEnabled;
+  }
 
-  @JsonProperty("issueLinkingEnabled")
-  private Boolean issueLinkingEnabled;
+   /**
+   * Whether the ability to create subtasks for issues is enabled.
+   * @return subTasksEnabled
+  **/
+  @ApiModelProperty(value = "Whether the ability to create subtasks for issues is enabled.")
+  public Boolean getSubTasksEnabled() {
+    return subTasksEnabled;
+  }
 
-  @JsonProperty("timeTrackingEnabled")
-  private Boolean timeTrackingEnabled;
+   /**
+   * The configuration of time tracking.
+   * @return timeTrackingConfiguration
+  **/
+  @ApiModelProperty(value = "The configuration of time tracking.")
+  public TimeTrackingConfiguration getTimeTrackingConfiguration() {
+    return timeTrackingConfiguration;
+  }
 
-  @JsonProperty("attachmentsEnabled")
-  private Boolean attachmentsEnabled;
+   /**
+   * Whether the ability to track time is enabled. This property is deprecated.
+   * @return timeTrackingEnabled
+  **/
+  @ApiModelProperty(value = "Whether the ability to track time is enabled. This property is deprecated.")
+  public Boolean getTimeTrackingEnabled() {
+    return timeTrackingEnabled;
+  }
 
-  @JsonProperty("timeTrackingConfiguration")
-  private TimeTrackingConfiguration timeTrackingConfiguration;
+   /**
+   * Whether the ability to create unassigned issues is enabled. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for details.
+   * @return unassignedIssuesAllowed
+  **/
+  @ApiModelProperty(value = "Whether the ability to create unassigned issues is enabled. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for details.")
+  public Boolean getUnassignedIssuesAllowed() {
+    return unassignedIssuesAllowed;
+  }
 
    /**
    * Whether the ability for users to vote on issues is enabled. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for details.
@@ -85,60 +139,6 @@ public class ModelConfiguration {
     return watchingEnabled;
   }
 
-   /**
-   * Whether the ability to create unassigned issues is enabled. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for details.
-   * @return unassignedIssuesAllowed
-  **/
-  @ApiModelProperty(value = "Whether the ability to create unassigned issues is enabled. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for details.")
-  public Boolean getUnassignedIssuesAllowed() {
-    return unassignedIssuesAllowed;
-  }
-
-   /**
-   * Whether the ability to create subtasks for issues is enabled.
-   * @return subTasksEnabled
-  **/
-  @ApiModelProperty(value = "Whether the ability to create subtasks for issues is enabled.")
-  public Boolean getSubTasksEnabled() {
-    return subTasksEnabled;
-  }
-
-   /**
-   * Whether the ability to link issues is enabled.
-   * @return issueLinkingEnabled
-  **/
-  @ApiModelProperty(value = "Whether the ability to link issues is enabled.")
-  public Boolean getIssueLinkingEnabled() {
-    return issueLinkingEnabled;
-  }
-
-   /**
-   * Whether the ability to track time is enabled. This property is deprecated.
-   * @return timeTrackingEnabled
-  **/
-  @ApiModelProperty(value = "Whether the ability to track time is enabled. This property is deprecated.")
-  public Boolean getTimeTrackingEnabled() {
-    return timeTrackingEnabled;
-  }
-
-   /**
-   * Whether the ability to add attachments to issues is enabled.
-   * @return attachmentsEnabled
-  **/
-  @ApiModelProperty(value = "Whether the ability to add attachments to issues is enabled.")
-  public Boolean getAttachmentsEnabled() {
-    return attachmentsEnabled;
-  }
-
-   /**
-   * The configuration of time tracking.
-   * @return timeTrackingConfiguration
-  **/
-  @ApiModelProperty(value = "The configuration of time tracking.")
-  public TimeTrackingConfiguration getTimeTrackingConfiguration() {
-    return timeTrackingConfiguration;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -149,19 +149,19 @@ public class ModelConfiguration {
       return false;
     }
     ModelConfiguration _configuration = (ModelConfiguration) o;
-    return Objects.equals(this.votingEnabled, _configuration.votingEnabled) &&
-        Objects.equals(this.watchingEnabled, _configuration.watchingEnabled) &&
-        Objects.equals(this.unassignedIssuesAllowed, _configuration.unassignedIssuesAllowed) &&
-        Objects.equals(this.subTasksEnabled, _configuration.subTasksEnabled) &&
+    return Objects.equals(this.attachmentsEnabled, _configuration.attachmentsEnabled) &&
         Objects.equals(this.issueLinkingEnabled, _configuration.issueLinkingEnabled) &&
+        Objects.equals(this.subTasksEnabled, _configuration.subTasksEnabled) &&
+        Objects.equals(this.timeTrackingConfiguration, _configuration.timeTrackingConfiguration) &&
         Objects.equals(this.timeTrackingEnabled, _configuration.timeTrackingEnabled) &&
-        Objects.equals(this.attachmentsEnabled, _configuration.attachmentsEnabled) &&
-        Objects.equals(this.timeTrackingConfiguration, _configuration.timeTrackingConfiguration);
+        Objects.equals(this.unassignedIssuesAllowed, _configuration.unassignedIssuesAllowed) &&
+        Objects.equals(this.votingEnabled, _configuration.votingEnabled) &&
+        Objects.equals(this.watchingEnabled, _configuration.watchingEnabled);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(votingEnabled, watchingEnabled, unassignedIssuesAllowed, subTasksEnabled, issueLinkingEnabled, timeTrackingEnabled, attachmentsEnabled, timeTrackingConfiguration);
+    return Objects.hash(attachmentsEnabled, issueLinkingEnabled, subTasksEnabled, timeTrackingConfiguration, timeTrackingEnabled, unassignedIssuesAllowed, votingEnabled, watchingEnabled);
   }
 
 
@@ -170,14 +170,14 @@ public class ModelConfiguration {
     StringBuilder sb = new StringBuilder();
     sb.append("class ModelConfiguration {\n");
     
+    sb.append("    attachmentsEnabled: ").append(toIndentedString(attachmentsEnabled)).append("\n");
+    sb.append("    issueLinkingEnabled: ").append(toIndentedString(issueLinkingEnabled)).append("\n");
+    sb.append("    subTasksEnabled: ").append(toIndentedString(subTasksEnabled)).append("\n");
+    sb.append("    timeTrackingConfiguration: ").append(toIndentedString(timeTrackingConfiguration)).append("\n");
+    sb.append("    timeTrackingEnabled: ").append(toIndentedString(timeTrackingEnabled)).append("\n");
+    sb.append("    unassignedIssuesAllowed: ").append(toIndentedString(unassignedIssuesAllowed)).append("\n");
     sb.append("    votingEnabled: ").append(toIndentedString(votingEnabled)).append("\n");
     sb.append("    watchingEnabled: ").append(toIndentedString(watchingEnabled)).append("\n");
-    sb.append("    unassignedIssuesAllowed: ").append(toIndentedString(unassignedIssuesAllowed)).append("\n");
-    sb.append("    subTasksEnabled: ").append(toIndentedString(subTasksEnabled)).append("\n");
-    sb.append("    issueLinkingEnabled: ").append(toIndentedString(issueLinkingEnabled)).append("\n");
-    sb.append("    timeTrackingEnabled: ").append(toIndentedString(timeTrackingEnabled)).append("\n");
-    sb.append("    attachmentsEnabled: ").append(toIndentedString(attachmentsEnabled)).append("\n");
-    sb.append("    timeTrackingConfiguration: ").append(toIndentedString(timeTrackingConfiguration)).append("\n");
     sb.append("}");
     return sb.toString();
   }

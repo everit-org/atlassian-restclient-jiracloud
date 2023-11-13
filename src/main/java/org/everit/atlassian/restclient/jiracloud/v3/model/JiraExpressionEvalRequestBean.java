@@ -40,31 +40,13 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.JiraExpressionEvalCont
 /**
  * JiraExpressionEvalRequestBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class JiraExpressionEvalRequestBean {
-  @JsonProperty("expression")
-  private String expression;
-
   @JsonProperty("context")
   private JiraExpressionEvalContextBean context;
 
-  public JiraExpressionEvalRequestBean expression(String expression) {
-    this.expression = expression;
-    return this;
-  }
-
-   /**
-   * The Jira expression to evaluate.
-   * @return expression
-  **/
-  @ApiModelProperty(example = "{ key: issue.key, type: issue.issueType.name, links: issue.links.map(link => link.linkedIssue.id) }", required = true, value = "The Jira expression to evaluate.")
-  public String getExpression() {
-    return expression;
-  }
-
-  public void setExpression(String expression) {
-    this.expression = expression;
-  }
+  @JsonProperty("expression")
+  private String expression;
 
   public JiraExpressionEvalRequestBean context(JiraExpressionEvalContextBean context) {
     this.context = context;
@@ -84,6 +66,24 @@ public class JiraExpressionEvalRequestBean {
     this.context = context;
   }
 
+  public JiraExpressionEvalRequestBean expression(String expression) {
+    this.expression = expression;
+    return this;
+  }
+
+   /**
+   * The Jira expression to evaluate.
+   * @return expression
+  **/
+  @ApiModelProperty(example = "{ key: issue.key, type: issue.issueType.name, links: issue.links.map(link => link.linkedIssue.id) }", required = true, value = "The Jira expression to evaluate.")
+  public String getExpression() {
+    return expression;
+  }
+
+  public void setExpression(String expression) {
+    this.expression = expression;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -94,13 +94,13 @@ public class JiraExpressionEvalRequestBean {
       return false;
     }
     JiraExpressionEvalRequestBean jiraExpressionEvalRequestBean = (JiraExpressionEvalRequestBean) o;
-    return Objects.equals(this.expression, jiraExpressionEvalRequestBean.expression) &&
-        Objects.equals(this.context, jiraExpressionEvalRequestBean.context);
+    return Objects.equals(this.context, jiraExpressionEvalRequestBean.context) &&
+        Objects.equals(this.expression, jiraExpressionEvalRequestBean.expression);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(expression, context);
+    return Objects.hash(context, expression);
   }
 
 
@@ -109,8 +109,8 @@ public class JiraExpressionEvalRequestBean {
     StringBuilder sb = new StringBuilder();
     sb.append("class JiraExpressionEvalRequestBean {\n");
     
-    sb.append("    expression: ").append(toIndentedString(expression)).append("\n");
     sb.append("    context: ").append(toIndentedString(context)).append("\n");
+    sb.append("    expression: ").append(toIndentedString(expression)).append("\n");
     sb.append("}");
     return sb.toString();
   }

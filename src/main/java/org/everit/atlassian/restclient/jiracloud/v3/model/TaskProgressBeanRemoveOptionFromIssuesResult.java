@@ -42,16 +42,37 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.RemoveOptionFromIssues
  * Details about a task.
  */
 @ApiModel(description = "Details about a task.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class TaskProgressBeanRemoveOptionFromIssuesResult {
-  @JsonProperty("self")
-  private URI self;
+  @JsonProperty("description")
+  private String description;
+
+  @JsonProperty("elapsedRuntime")
+  private Long elapsedRuntime;
+
+  @JsonProperty("finished")
+  private Long finished;
 
   @JsonProperty("id")
   private String id;
 
-  @JsonProperty("description")
-  private String description;
+  @JsonProperty("lastUpdate")
+  private Long lastUpdate;
+
+  @JsonProperty("message")
+  private String message;
+
+  @JsonProperty("progress")
+  private Long progress;
+
+  @JsonProperty("result")
+  private RemoveOptionFromIssuesResult result;
+
+  @JsonProperty("self")
+  private URI self;
+
+  @JsonProperty("started")
+  private Long started;
 
   /**
    * The status of the task.
@@ -101,68 +122,11 @@ public class TaskProgressBeanRemoveOptionFromIssuesResult {
   @JsonProperty("status")
   private StatusEnum status;
 
-  @JsonProperty("message")
-  private String message;
-
-  @JsonProperty("result")
-  private RemoveOptionFromIssuesResult result;
-
-  @JsonProperty("submittedBy")
-  private Long submittedBy;
-
-  @JsonProperty("progress")
-  private Long progress;
-
-  @JsonProperty("elapsedRuntime")
-  private Long elapsedRuntime;
-
   @JsonProperty("submitted")
   private Long submitted;
 
-  @JsonProperty("started")
-  private Long started;
-
-  @JsonProperty("finished")
-  private Long finished;
-
-  @JsonProperty("lastUpdate")
-  private Long lastUpdate;
-
-  public TaskProgressBeanRemoveOptionFromIssuesResult self(URI self) {
-    this.self = self;
-    return this;
-  }
-
-   /**
-   * The URL of the task.
-   * @return self
-  **/
-  @ApiModelProperty(required = true, value = "The URL of the task.")
-  public URI getSelf() {
-    return self;
-  }
-
-  public void setSelf(URI self) {
-    this.self = self;
-  }
-
-  public TaskProgressBeanRemoveOptionFromIssuesResult id(String id) {
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * The ID of the task.
-   * @return id
-  **/
-  @ApiModelProperty(required = true, value = "The ID of the task.")
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
+  @JsonProperty("submittedBy")
+  private Long submittedBy;
 
   public TaskProgressBeanRemoveOptionFromIssuesResult description(String description) {
     this.description = description;
@@ -180,96 +144,6 @@ public class TaskProgressBeanRemoveOptionFromIssuesResult {
 
   public void setDescription(String description) {
     this.description = description;
-  }
-
-  public TaskProgressBeanRemoveOptionFromIssuesResult status(StatusEnum status) {
-    this.status = status;
-    return this;
-  }
-
-   /**
-   * The status of the task.
-   * @return status
-  **/
-  @ApiModelProperty(required = true, value = "The status of the task.")
-  public StatusEnum getStatus() {
-    return status;
-  }
-
-  public void setStatus(StatusEnum status) {
-    this.status = status;
-  }
-
-  public TaskProgressBeanRemoveOptionFromIssuesResult message(String message) {
-    this.message = message;
-    return this;
-  }
-
-   /**
-   * Information about the progress of the task.
-   * @return message
-  **/
-  @ApiModelProperty(value = "Information about the progress of the task.")
-  public String getMessage() {
-    return message;
-  }
-
-  public void setMessage(String message) {
-    this.message = message;
-  }
-
-  public TaskProgressBeanRemoveOptionFromIssuesResult result(RemoveOptionFromIssuesResult result) {
-    this.result = result;
-    return this;
-  }
-
-   /**
-   * The result of the task execution.
-   * @return result
-  **/
-  @ApiModelProperty(value = "The result of the task execution.")
-  public RemoveOptionFromIssuesResult getResult() {
-    return result;
-  }
-
-  public void setResult(RemoveOptionFromIssuesResult result) {
-    this.result = result;
-  }
-
-  public TaskProgressBeanRemoveOptionFromIssuesResult submittedBy(Long submittedBy) {
-    this.submittedBy = submittedBy;
-    return this;
-  }
-
-   /**
-   * The ID of the user who submitted the task.
-   * @return submittedBy
-  **/
-  @ApiModelProperty(required = true, value = "The ID of the user who submitted the task.")
-  public Long getSubmittedBy() {
-    return submittedBy;
-  }
-
-  public void setSubmittedBy(Long submittedBy) {
-    this.submittedBy = submittedBy;
-  }
-
-  public TaskProgressBeanRemoveOptionFromIssuesResult progress(Long progress) {
-    this.progress = progress;
-    return this;
-  }
-
-   /**
-   * The progress of the task, as a percentage complete.
-   * @return progress
-  **/
-  @ApiModelProperty(required = true, value = "The progress of the task, as a percentage complete.")
-  public Long getProgress() {
-    return progress;
-  }
-
-  public void setProgress(Long progress) {
-    this.progress = progress;
   }
 
   public TaskProgressBeanRemoveOptionFromIssuesResult elapsedRuntime(Long elapsedRuntime) {
@@ -290,42 +164,6 @@ public class TaskProgressBeanRemoveOptionFromIssuesResult {
     this.elapsedRuntime = elapsedRuntime;
   }
 
-  public TaskProgressBeanRemoveOptionFromIssuesResult submitted(Long submitted) {
-    this.submitted = submitted;
-    return this;
-  }
-
-   /**
-   * A timestamp recording when the task was submitted.
-   * @return submitted
-  **/
-  @ApiModelProperty(required = true, value = "A timestamp recording when the task was submitted.")
-  public Long getSubmitted() {
-    return submitted;
-  }
-
-  public void setSubmitted(Long submitted) {
-    this.submitted = submitted;
-  }
-
-  public TaskProgressBeanRemoveOptionFromIssuesResult started(Long started) {
-    this.started = started;
-    return this;
-  }
-
-   /**
-   * A timestamp recording when the task was started.
-   * @return started
-  **/
-  @ApiModelProperty(value = "A timestamp recording when the task was started.")
-  public Long getStarted() {
-    return started;
-  }
-
-  public void setStarted(Long started) {
-    this.started = started;
-  }
-
   public TaskProgressBeanRemoveOptionFromIssuesResult finished(Long finished) {
     this.finished = finished;
     return this;
@@ -342,6 +180,24 @@ public class TaskProgressBeanRemoveOptionFromIssuesResult {
 
   public void setFinished(Long finished) {
     this.finished = finished;
+  }
+
+  public TaskProgressBeanRemoveOptionFromIssuesResult id(String id) {
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * The ID of the task.
+   * @return id
+  **/
+  @ApiModelProperty(required = true, value = "The ID of the task.")
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
   }
 
   public TaskProgressBeanRemoveOptionFromIssuesResult lastUpdate(Long lastUpdate) {
@@ -362,6 +218,150 @@ public class TaskProgressBeanRemoveOptionFromIssuesResult {
     this.lastUpdate = lastUpdate;
   }
 
+  public TaskProgressBeanRemoveOptionFromIssuesResult message(String message) {
+    this.message = message;
+    return this;
+  }
+
+   /**
+   * Information about the progress of the task.
+   * @return message
+  **/
+  @ApiModelProperty(value = "Information about the progress of the task.")
+  public String getMessage() {
+    return message;
+  }
+
+  public void setMessage(String message) {
+    this.message = message;
+  }
+
+  public TaskProgressBeanRemoveOptionFromIssuesResult progress(Long progress) {
+    this.progress = progress;
+    return this;
+  }
+
+   /**
+   * The progress of the task, as a percentage complete.
+   * @return progress
+  **/
+  @ApiModelProperty(required = true, value = "The progress of the task, as a percentage complete.")
+  public Long getProgress() {
+    return progress;
+  }
+
+  public void setProgress(Long progress) {
+    this.progress = progress;
+  }
+
+  public TaskProgressBeanRemoveOptionFromIssuesResult result(RemoveOptionFromIssuesResult result) {
+    this.result = result;
+    return this;
+  }
+
+   /**
+   * The result of the task execution.
+   * @return result
+  **/
+  @ApiModelProperty(value = "The result of the task execution.")
+  public RemoveOptionFromIssuesResult getResult() {
+    return result;
+  }
+
+  public void setResult(RemoveOptionFromIssuesResult result) {
+    this.result = result;
+  }
+
+  public TaskProgressBeanRemoveOptionFromIssuesResult self(URI self) {
+    this.self = self;
+    return this;
+  }
+
+   /**
+   * The URL of the task.
+   * @return self
+  **/
+  @ApiModelProperty(required = true, value = "The URL of the task.")
+  public URI getSelf() {
+    return self;
+  }
+
+  public void setSelf(URI self) {
+    this.self = self;
+  }
+
+  public TaskProgressBeanRemoveOptionFromIssuesResult started(Long started) {
+    this.started = started;
+    return this;
+  }
+
+   /**
+   * A timestamp recording when the task was started.
+   * @return started
+  **/
+  @ApiModelProperty(value = "A timestamp recording when the task was started.")
+  public Long getStarted() {
+    return started;
+  }
+
+  public void setStarted(Long started) {
+    this.started = started;
+  }
+
+  public TaskProgressBeanRemoveOptionFromIssuesResult status(StatusEnum status) {
+    this.status = status;
+    return this;
+  }
+
+   /**
+   * The status of the task.
+   * @return status
+  **/
+  @ApiModelProperty(required = true, value = "The status of the task.")
+  public StatusEnum getStatus() {
+    return status;
+  }
+
+  public void setStatus(StatusEnum status) {
+    this.status = status;
+  }
+
+  public TaskProgressBeanRemoveOptionFromIssuesResult submitted(Long submitted) {
+    this.submitted = submitted;
+    return this;
+  }
+
+   /**
+   * A timestamp recording when the task was submitted.
+   * @return submitted
+  **/
+  @ApiModelProperty(required = true, value = "A timestamp recording when the task was submitted.")
+  public Long getSubmitted() {
+    return submitted;
+  }
+
+  public void setSubmitted(Long submitted) {
+    this.submitted = submitted;
+  }
+
+  public TaskProgressBeanRemoveOptionFromIssuesResult submittedBy(Long submittedBy) {
+    this.submittedBy = submittedBy;
+    return this;
+  }
+
+   /**
+   * The ID of the user who submitted the task.
+   * @return submittedBy
+  **/
+  @ApiModelProperty(required = true, value = "The ID of the user who submitted the task.")
+  public Long getSubmittedBy() {
+    return submittedBy;
+  }
+
+  public void setSubmittedBy(Long submittedBy) {
+    this.submittedBy = submittedBy;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -372,24 +372,24 @@ public class TaskProgressBeanRemoveOptionFromIssuesResult {
       return false;
     }
     TaskProgressBeanRemoveOptionFromIssuesResult taskProgressBeanRemoveOptionFromIssuesResult = (TaskProgressBeanRemoveOptionFromIssuesResult) o;
-    return Objects.equals(this.self, taskProgressBeanRemoveOptionFromIssuesResult.self) &&
-        Objects.equals(this.id, taskProgressBeanRemoveOptionFromIssuesResult.id) &&
-        Objects.equals(this.description, taskProgressBeanRemoveOptionFromIssuesResult.description) &&
-        Objects.equals(this.status, taskProgressBeanRemoveOptionFromIssuesResult.status) &&
-        Objects.equals(this.message, taskProgressBeanRemoveOptionFromIssuesResult.message) &&
-        Objects.equals(this.result, taskProgressBeanRemoveOptionFromIssuesResult.result) &&
-        Objects.equals(this.submittedBy, taskProgressBeanRemoveOptionFromIssuesResult.submittedBy) &&
-        Objects.equals(this.progress, taskProgressBeanRemoveOptionFromIssuesResult.progress) &&
+    return Objects.equals(this.description, taskProgressBeanRemoveOptionFromIssuesResult.description) &&
         Objects.equals(this.elapsedRuntime, taskProgressBeanRemoveOptionFromIssuesResult.elapsedRuntime) &&
-        Objects.equals(this.submitted, taskProgressBeanRemoveOptionFromIssuesResult.submitted) &&
-        Objects.equals(this.started, taskProgressBeanRemoveOptionFromIssuesResult.started) &&
         Objects.equals(this.finished, taskProgressBeanRemoveOptionFromIssuesResult.finished) &&
-        Objects.equals(this.lastUpdate, taskProgressBeanRemoveOptionFromIssuesResult.lastUpdate);
+        Objects.equals(this.id, taskProgressBeanRemoveOptionFromIssuesResult.id) &&
+        Objects.equals(this.lastUpdate, taskProgressBeanRemoveOptionFromIssuesResult.lastUpdate) &&
+        Objects.equals(this.message, taskProgressBeanRemoveOptionFromIssuesResult.message) &&
+        Objects.equals(this.progress, taskProgressBeanRemoveOptionFromIssuesResult.progress) &&
+        Objects.equals(this.result, taskProgressBeanRemoveOptionFromIssuesResult.result) &&
+        Objects.equals(this.self, taskProgressBeanRemoveOptionFromIssuesResult.self) &&
+        Objects.equals(this.started, taskProgressBeanRemoveOptionFromIssuesResult.started) &&
+        Objects.equals(this.status, taskProgressBeanRemoveOptionFromIssuesResult.status) &&
+        Objects.equals(this.submitted, taskProgressBeanRemoveOptionFromIssuesResult.submitted) &&
+        Objects.equals(this.submittedBy, taskProgressBeanRemoveOptionFromIssuesResult.submittedBy);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, id, description, status, message, result, submittedBy, progress, elapsedRuntime, submitted, started, finished, lastUpdate);
+    return Objects.hash(description, elapsedRuntime, finished, id, lastUpdate, message, progress, result, self, started, status, submitted, submittedBy);
   }
 
 
@@ -398,19 +398,19 @@ public class TaskProgressBeanRemoveOptionFromIssuesResult {
     StringBuilder sb = new StringBuilder();
     sb.append("class TaskProgressBeanRemoveOptionFromIssuesResult {\n");
     
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
-    sb.append("    result: ").append(toIndentedString(result)).append("\n");
-    sb.append("    submittedBy: ").append(toIndentedString(submittedBy)).append("\n");
-    sb.append("    progress: ").append(toIndentedString(progress)).append("\n");
     sb.append("    elapsedRuntime: ").append(toIndentedString(elapsedRuntime)).append("\n");
-    sb.append("    submitted: ").append(toIndentedString(submitted)).append("\n");
-    sb.append("    started: ").append(toIndentedString(started)).append("\n");
     sb.append("    finished: ").append(toIndentedString(finished)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    lastUpdate: ").append(toIndentedString(lastUpdate)).append("\n");
+    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    progress: ").append(toIndentedString(progress)).append("\n");
+    sb.append("    result: ").append(toIndentedString(result)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
+    sb.append("    started: ").append(toIndentedString(started)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    submitted: ").append(toIndentedString(submitted)).append("\n");
+    sb.append("    submittedBy: ").append(toIndentedString(submittedBy)).append("\n");
     sb.append("}");
     return sb.toString();
   }

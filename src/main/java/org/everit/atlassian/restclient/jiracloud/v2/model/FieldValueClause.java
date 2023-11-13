@@ -42,10 +42,13 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.JqlQueryField;
  * A clause that asserts the current value of a field. For example, &#x60;summary ~ test&#x60;.
  */
 @ApiModel(description = "A clause that asserts the current value of a field. For example, `summary ~ test`.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class FieldValueClause {
   @JsonProperty("field")
   private JqlQueryField field;
+
+  @JsonProperty("operand")
+  private JqlQueryClauseOperand operand;
 
   /**
    * The operator between the field and operand.
@@ -105,9 +108,6 @@ public class FieldValueClause {
   @JsonProperty("operator")
   private OperatorEnum operator;
 
-  @JsonProperty("operand")
-  private JqlQueryClauseOperand operand;
-
   public FieldValueClause field(JqlQueryField field) {
     this.field = field;
     return this;
@@ -124,24 +124,6 @@ public class FieldValueClause {
 
   public void setField(JqlQueryField field) {
     this.field = field;
-  }
-
-  public FieldValueClause operator(OperatorEnum operator) {
-    this.operator = operator;
-    return this;
-  }
-
-   /**
-   * The operator between the field and operand.
-   * @return operator
-  **/
-  @ApiModelProperty(required = true, value = "The operator between the field and operand.")
-  public OperatorEnum getOperator() {
-    return operator;
-  }
-
-  public void setOperator(OperatorEnum operator) {
-    this.operator = operator;
   }
 
   public FieldValueClause operand(JqlQueryClauseOperand operand) {
@@ -162,6 +144,24 @@ public class FieldValueClause {
     this.operand = operand;
   }
 
+  public FieldValueClause operator(OperatorEnum operator) {
+    this.operator = operator;
+    return this;
+  }
+
+   /**
+   * The operator between the field and operand.
+   * @return operator
+  **/
+  @ApiModelProperty(required = true, value = "The operator between the field and operand.")
+  public OperatorEnum getOperator() {
+    return operator;
+  }
+
+  public void setOperator(OperatorEnum operator) {
+    this.operator = operator;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -173,13 +173,13 @@ public class FieldValueClause {
     }
     FieldValueClause fieldValueClause = (FieldValueClause) o;
     return Objects.equals(this.field, fieldValueClause.field) &&
-        Objects.equals(this.operator, fieldValueClause.operator) &&
-        Objects.equals(this.operand, fieldValueClause.operand);
+        Objects.equals(this.operand, fieldValueClause.operand) &&
+        Objects.equals(this.operator, fieldValueClause.operator);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(field, operator, operand);
+    return Objects.hash(field, operand, operator);
   }
 
 
@@ -189,8 +189,8 @@ public class FieldValueClause {
     sb.append("class FieldValueClause {\n");
     
     sb.append("    field: ").append(toIndentedString(field)).append("\n");
-    sb.append("    operator: ").append(toIndentedString(operator)).append("\n");
     sb.append("    operand: ").append(toIndentedString(operand)).append("\n");
+    sb.append("    operator: ").append(toIndentedString(operator)).append("\n");
     sb.append("}");
     return sb.toString();
   }

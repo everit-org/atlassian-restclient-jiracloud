@@ -43,24 +43,24 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.EntityProperty;
  * Details of a changed worklog.
  */
 @ApiModel(description = "Details of a changed worklog.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class ChangedWorklog {
-  @JsonProperty("worklogId")
-  private Long worklogId;
+  @JsonProperty("properties")
+  private List<EntityProperty> properties = new ArrayList<>();
 
   @JsonProperty("updatedTime")
   private Long updatedTime;
 
-  @JsonProperty("properties")
-  private List<EntityProperty> properties = new ArrayList<>();
+  @JsonProperty("worklogId")
+  private Long worklogId;
 
    /**
-   * The ID of the worklog.
-   * @return worklogId
+   * Details of properties associated with the change.
+   * @return properties
   **/
-  @ApiModelProperty(value = "The ID of the worklog.")
-  public Long getWorklogId() {
-    return worklogId;
+  @ApiModelProperty(value = "Details of properties associated with the change.")
+  public List<EntityProperty> getProperties() {
+    return properties;
   }
 
    /**
@@ -73,12 +73,12 @@ public class ChangedWorklog {
   }
 
    /**
-   * Details of properties associated with the change.
-   * @return properties
+   * The ID of the worklog.
+   * @return worklogId
   **/
-  @ApiModelProperty(value = "Details of properties associated with the change.")
-  public List<EntityProperty> getProperties() {
-    return properties;
+  @ApiModelProperty(value = "The ID of the worklog.")
+  public Long getWorklogId() {
+    return worklogId;
   }
 
 
@@ -91,14 +91,14 @@ public class ChangedWorklog {
       return false;
     }
     ChangedWorklog changedWorklog = (ChangedWorklog) o;
-    return Objects.equals(this.worklogId, changedWorklog.worklogId) &&
+    return Objects.equals(this.properties, changedWorklog.properties) &&
         Objects.equals(this.updatedTime, changedWorklog.updatedTime) &&
-        Objects.equals(this.properties, changedWorklog.properties);
+        Objects.equals(this.worklogId, changedWorklog.worklogId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(worklogId, updatedTime, properties);
+    return Objects.hash(properties, updatedTime, worklogId);
   }
 
 
@@ -107,9 +107,9 @@ public class ChangedWorklog {
     StringBuilder sb = new StringBuilder();
     sb.append("class ChangedWorklog {\n");
     
-    sb.append("    worklogId: ").append(toIndentedString(worklogId)).append("\n");
-    sb.append("    updatedTime: ").append(toIndentedString(updatedTime)).append("\n");
     sb.append("    properties: ").append(toIndentedString(properties)).append("\n");
+    sb.append("    updatedTime: ").append(toIndentedString(updatedTime)).append("\n");
+    sb.append("    worklogId: ").append(toIndentedString(worklogId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

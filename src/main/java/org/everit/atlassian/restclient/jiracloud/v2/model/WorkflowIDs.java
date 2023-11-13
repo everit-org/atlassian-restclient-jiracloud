@@ -40,31 +40,13 @@ import io.swagger.annotations.ApiModelProperty;
  * The classic workflow identifiers.
  */
 @ApiModel(description = "The classic workflow identifiers.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class WorkflowIDs {
-  @JsonProperty("name")
-  private String name;
-
   @JsonProperty("entityId")
   private String entityId;
 
-  public WorkflowIDs name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * The name of the workflow.
-   * @return name
-  **/
-  @ApiModelProperty(required = true, value = "The name of the workflow.")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
+  @JsonProperty("name")
+  private String name;
 
   public WorkflowIDs entityId(String entityId) {
     this.entityId = entityId;
@@ -84,6 +66,24 @@ public class WorkflowIDs {
     this.entityId = entityId;
   }
 
+  public WorkflowIDs name(String name) {
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * The name of the workflow.
+   * @return name
+  **/
+  @ApiModelProperty(required = true, value = "The name of the workflow.")
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -94,13 +94,13 @@ public class WorkflowIDs {
       return false;
     }
     WorkflowIDs workflowIDs = (WorkflowIDs) o;
-    return Objects.equals(this.name, workflowIDs.name) &&
-        Objects.equals(this.entityId, workflowIDs.entityId);
+    return Objects.equals(this.entityId, workflowIDs.entityId) &&
+        Objects.equals(this.name, workflowIDs.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, entityId);
+    return Objects.hash(entityId, name);
   }
 
 
@@ -109,8 +109,8 @@ public class WorkflowIDs {
     StringBuilder sb = new StringBuilder();
     sb.append("class WorkflowIDs {\n");
     
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    entityId: ").append(toIndentedString(entityId)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }

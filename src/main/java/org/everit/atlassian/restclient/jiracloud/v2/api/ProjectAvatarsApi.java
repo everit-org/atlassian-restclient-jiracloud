@@ -159,12 +159,12 @@ public class ProjectAvatarsApi {
    * Set project avatar
    * Sets the avatar displayed for a project.  Use [Load project avatar](#api-rest-api-2-project-projectIdOrKey-avatar2-post) to store avatars against the project, before using this operation to set the displayed avatar.  **[Permissions](#permissions) required:** *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg).
    * @param projectIdOrKey The ID or (case-sensitive) key of the project. (required)
-   * @param avatar  (required)
+   * @param requestBody  (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Object&gt;
    */
   public Single<Object> updateProjectAvatar(
-    String projectIdOrKey, Avatar avatar, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String projectIdOrKey, Map<String, Object> requestBody, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.PUT)
@@ -181,7 +181,7 @@ public class ProjectAvatarsApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    requestBuilder.requestBody(Optional.of(avatar));
+    requestBuilder.requestBody(Optional.of(requestBody));
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updateProjectAvatar);
   }

@@ -41,31 +41,13 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.JiraExpressionEvaluati
  * The result of evaluating a Jira expression.
  */
 @ApiModel(description = "The result of evaluating a Jira expression.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class JiraExpressionResult {
-  @JsonProperty("value")
-  private Object value = null;
-
   @JsonProperty("meta")
   private JiraExpressionEvaluationMetaDataBean meta;
 
-  public JiraExpressionResult value(Object value) {
-    this.value = value;
-    return this;
-  }
-
-   /**
-   * The value of the evaluated expression. It may be a primitive JSON value or a Jira REST API object. (Some expressions do not produce any meaningful results—for example, an expression that returns a lambda function—if that&#39;s the case a simple string representation is returned. These string representations should not be relied upon and may change without notice.)
-   * @return value
-  **/
-  @ApiModelProperty(required = true, value = "The value of the evaluated expression. It may be a primitive JSON value or a Jira REST API object. (Some expressions do not produce any meaningful results—for example, an expression that returns a lambda function—if that's the case a simple string representation is returned. These string representations should not be relied upon and may change without notice.)")
-  public Object getValue() {
-    return value;
-  }
-
-  public void setValue(Object value) {
-    this.value = value;
-  }
+  @JsonProperty("value")
+  private Object value = null;
 
   public JiraExpressionResult meta(JiraExpressionEvaluationMetaDataBean meta) {
     this.meta = meta;
@@ -85,6 +67,24 @@ public class JiraExpressionResult {
     this.meta = meta;
   }
 
+  public JiraExpressionResult value(Object value) {
+    this.value = value;
+    return this;
+  }
+
+   /**
+   * The value of the evaluated expression. It may be a primitive JSON value or a Jira REST API object. (Some expressions do not produce any meaningful results—for example, an expression that returns a lambda function—if that&#39;s the case a simple string representation is returned. These string representations should not be relied upon and may change without notice.)
+   * @return value
+  **/
+  @ApiModelProperty(required = true, value = "The value of the evaluated expression. It may be a primitive JSON value or a Jira REST API object. (Some expressions do not produce any meaningful results—for example, an expression that returns a lambda function—if that's the case a simple string representation is returned. These string representations should not be relied upon and may change without notice.)")
+  public Object getValue() {
+    return value;
+  }
+
+  public void setValue(Object value) {
+    this.value = value;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -95,13 +95,13 @@ public class JiraExpressionResult {
       return false;
     }
     JiraExpressionResult jiraExpressionResult = (JiraExpressionResult) o;
-    return Objects.equals(this.value, jiraExpressionResult.value) &&
-        Objects.equals(this.meta, jiraExpressionResult.meta);
+    return Objects.equals(this.meta, jiraExpressionResult.meta) &&
+        Objects.equals(this.value, jiraExpressionResult.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value, meta);
+    return Objects.hash(meta, value);
   }
 
 
@@ -110,8 +110,8 @@ public class JiraExpressionResult {
     StringBuilder sb = new StringBuilder();
     sb.append("class JiraExpressionResult {\n");
     
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }

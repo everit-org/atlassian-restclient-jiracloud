@@ -40,55 +40,19 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of a field configuration.
  */
 @ApiModel(description = "Details of a field configuration.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class FieldConfiguration {
-  @JsonProperty("id")
-  private Long id;
-
-  @JsonProperty("name")
-  private String name;
-
   @JsonProperty("description")
   private String description;
+
+  @JsonProperty("id")
+  private Long id;
 
   @JsonProperty("isDefault")
   private Boolean isDefault;
 
-  public FieldConfiguration id(Long id) {
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * The ID of the field configuration.
-   * @return id
-  **/
-  @ApiModelProperty(required = true, value = "The ID of the field configuration.")
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public FieldConfiguration name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * The name of the field configuration.
-   * @return name
-  **/
-  @ApiModelProperty(required = true, value = "The name of the field configuration.")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
+  @JsonProperty("name")
+  private String name;
 
   public FieldConfiguration description(String description) {
     this.description = description;
@@ -106,6 +70,24 @@ public class FieldConfiguration {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public FieldConfiguration id(Long id) {
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * The ID of the field configuration.
+   * @return id
+  **/
+  @ApiModelProperty(required = true, value = "The ID of the field configuration.")
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public FieldConfiguration isDefault(Boolean isDefault) {
@@ -126,6 +108,24 @@ public class FieldConfiguration {
     this.isDefault = isDefault;
   }
 
+  public FieldConfiguration name(String name) {
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * The name of the field configuration.
+   * @return name
+  **/
+  @ApiModelProperty(required = true, value = "The name of the field configuration.")
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -136,15 +136,15 @@ public class FieldConfiguration {
       return false;
     }
     FieldConfiguration fieldConfiguration = (FieldConfiguration) o;
-    return Objects.equals(this.id, fieldConfiguration.id) &&
-        Objects.equals(this.name, fieldConfiguration.name) &&
-        Objects.equals(this.description, fieldConfiguration.description) &&
-        Objects.equals(this.isDefault, fieldConfiguration.isDefault);
+    return Objects.equals(this.description, fieldConfiguration.description) &&
+        Objects.equals(this.id, fieldConfiguration.id) &&
+        Objects.equals(this.isDefault, fieldConfiguration.isDefault) &&
+        Objects.equals(this.name, fieldConfiguration.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, isDefault);
+    return Objects.hash(description, id, isDefault, name);
   }
 
 
@@ -153,10 +153,10 @@ public class FieldConfiguration {
     StringBuilder sb = new StringBuilder();
     sb.append("class FieldConfiguration {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    isDefault: ").append(toIndentedString(isDefault)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }

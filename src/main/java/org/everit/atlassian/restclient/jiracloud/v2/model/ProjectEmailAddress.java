@@ -35,15 +35,20 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A project&#39;s sender email address.
  */
 @ApiModel(description = "A project's sender email address.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class ProjectEmailAddress {
   @JsonProperty("emailAddress")
   private String emailAddress;
+
+  @JsonProperty("emailAddressStatus")
+  private List<String> emailAddressStatus = new ArrayList<>();
 
   public ProjectEmailAddress emailAddress(String emailAddress) {
     this.emailAddress = emailAddress;
@@ -63,6 +68,32 @@ public class ProjectEmailAddress {
     this.emailAddress = emailAddress;
   }
 
+  public ProjectEmailAddress emailAddressStatus(List<String> emailAddressStatus) {
+    this.emailAddressStatus = emailAddressStatus;
+    return this;
+  }
+
+  public ProjectEmailAddress addEmailAddressStatusItem(String emailAddressStatusItem) {
+    if (this.emailAddressStatus == null) {
+      this.emailAddressStatus = new ArrayList<>();
+    }
+    this.emailAddressStatus.add(emailAddressStatusItem);
+    return this;
+  }
+
+   /**
+   * When using a custom domain, the status of the email address.
+   * @return emailAddressStatus
+  **/
+  @ApiModelProperty(value = "When using a custom domain, the status of the email address.")
+  public List<String> getEmailAddressStatus() {
+    return emailAddressStatus;
+  }
+
+  public void setEmailAddressStatus(List<String> emailAddressStatus) {
+    this.emailAddressStatus = emailAddressStatus;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -73,12 +104,13 @@ public class ProjectEmailAddress {
       return false;
     }
     ProjectEmailAddress projectEmailAddress = (ProjectEmailAddress) o;
-    return Objects.equals(this.emailAddress, projectEmailAddress.emailAddress);
+    return Objects.equals(this.emailAddress, projectEmailAddress.emailAddress) &&
+        Objects.equals(this.emailAddressStatus, projectEmailAddress.emailAddressStatus);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(emailAddress);
+    return Objects.hash(emailAddress, emailAddressStatus);
   }
 
 
@@ -88,6 +120,7 @@ public class ProjectEmailAddress {
     sb.append("class ProjectEmailAddress {\n");
     
     sb.append("    emailAddress: ").append(toIndentedString(emailAddress)).append("\n");
+    sb.append("    emailAddressStatus: ").append(toIndentedString(emailAddressStatus)).append("\n");
     sb.append("}");
     return sb.toString();
   }

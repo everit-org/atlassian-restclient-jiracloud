@@ -44,16 +44,42 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.FunctionReferenceData;
  * Lists of JQL reference data.
  */
 @ApiModel(description = "Lists of JQL reference data.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class JQLReferenceData {
+  @JsonProperty("jqlReservedWords")
+  private List<String> jqlReservedWords = new ArrayList<>();
+
   @JsonProperty("visibleFieldNames")
   private List<FieldReferenceData> visibleFieldNames = new ArrayList<>();
 
   @JsonProperty("visibleFunctionNames")
   private List<FunctionReferenceData> visibleFunctionNames = new ArrayList<>();
 
-  @JsonProperty("jqlReservedWords")
-  private List<String> jqlReservedWords = new ArrayList<>();
+  public JQLReferenceData jqlReservedWords(List<String> jqlReservedWords) {
+    this.jqlReservedWords = jqlReservedWords;
+    return this;
+  }
+
+  public JQLReferenceData addJqlReservedWordsItem(String jqlReservedWordsItem) {
+    if (this.jqlReservedWords == null) {
+      this.jqlReservedWords = new ArrayList<>();
+    }
+    this.jqlReservedWords.add(jqlReservedWordsItem);
+    return this;
+  }
+
+   /**
+   * List of JQL query reserved words.
+   * @return jqlReservedWords
+  **/
+  @ApiModelProperty(value = "List of JQL query reserved words.")
+  public List<String> getJqlReservedWords() {
+    return jqlReservedWords;
+  }
+
+  public void setJqlReservedWords(List<String> jqlReservedWords) {
+    this.jqlReservedWords = jqlReservedWords;
+  }
 
   public JQLReferenceData visibleFieldNames(List<FieldReferenceData> visibleFieldNames) {
     this.visibleFieldNames = visibleFieldNames;
@@ -107,32 +133,6 @@ public class JQLReferenceData {
     this.visibleFunctionNames = visibleFunctionNames;
   }
 
-  public JQLReferenceData jqlReservedWords(List<String> jqlReservedWords) {
-    this.jqlReservedWords = jqlReservedWords;
-    return this;
-  }
-
-  public JQLReferenceData addJqlReservedWordsItem(String jqlReservedWordsItem) {
-    if (this.jqlReservedWords == null) {
-      this.jqlReservedWords = new ArrayList<>();
-    }
-    this.jqlReservedWords.add(jqlReservedWordsItem);
-    return this;
-  }
-
-   /**
-   * List of JQL query reserved words.
-   * @return jqlReservedWords
-  **/
-  @ApiModelProperty(value = "List of JQL query reserved words.")
-  public List<String> getJqlReservedWords() {
-    return jqlReservedWords;
-  }
-
-  public void setJqlReservedWords(List<String> jqlReservedWords) {
-    this.jqlReservedWords = jqlReservedWords;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -143,14 +143,14 @@ public class JQLReferenceData {
       return false;
     }
     JQLReferenceData jqLReferenceData = (JQLReferenceData) o;
-    return Objects.equals(this.visibleFieldNames, jqLReferenceData.visibleFieldNames) &&
-        Objects.equals(this.visibleFunctionNames, jqLReferenceData.visibleFunctionNames) &&
-        Objects.equals(this.jqlReservedWords, jqLReferenceData.jqlReservedWords);
+    return Objects.equals(this.jqlReservedWords, jqLReferenceData.jqlReservedWords) &&
+        Objects.equals(this.visibleFieldNames, jqLReferenceData.visibleFieldNames) &&
+        Objects.equals(this.visibleFunctionNames, jqLReferenceData.visibleFunctionNames);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(visibleFieldNames, visibleFunctionNames, jqlReservedWords);
+    return Objects.hash(jqlReservedWords, visibleFieldNames, visibleFunctionNames);
   }
 
 
@@ -159,9 +159,9 @@ public class JQLReferenceData {
     StringBuilder sb = new StringBuilder();
     sb.append("class JQLReferenceData {\n");
     
+    sb.append("    jqlReservedWords: ").append(toIndentedString(jqlReservedWords)).append("\n");
     sb.append("    visibleFieldNames: ").append(toIndentedString(visibleFieldNames)).append("\n");
     sb.append("    visibleFunctionNames: ").append(toIndentedString(visibleFunctionNames)).append("\n");
-    sb.append("    jqlReservedWords: ").append(toIndentedString(jqlReservedWords)).append("\n");
     sb.append("}");
     return sb.toString();
   }

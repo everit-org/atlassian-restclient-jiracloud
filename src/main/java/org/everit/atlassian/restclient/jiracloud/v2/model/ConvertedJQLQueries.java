@@ -43,39 +43,13 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.JQLQueryWithUnknownUse
  * The converted JQL queries.
  */
 @ApiModel(description = "The converted JQL queries.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class ConvertedJQLQueries {
-  @JsonProperty("queryStrings")
-  private List<String> queryStrings = new ArrayList<>();
-
   @JsonProperty("queriesWithUnknownUsers")
   private List<JQLQueryWithUnknownUsers> queriesWithUnknownUsers = new ArrayList<>();
 
-  public ConvertedJQLQueries queryStrings(List<String> queryStrings) {
-    this.queryStrings = queryStrings;
-    return this;
-  }
-
-  public ConvertedJQLQueries addQueryStringsItem(String queryStringsItem) {
-    if (this.queryStrings == null) {
-      this.queryStrings = new ArrayList<>();
-    }
-    this.queryStrings.add(queryStringsItem);
-    return this;
-  }
-
-   /**
-   * The list of converted query strings with account IDs in place of user identifiers.
-   * @return queryStrings
-  **/
-  @ApiModelProperty(value = "The list of converted query strings with account IDs in place of user identifiers.")
-  public List<String> getQueryStrings() {
-    return queryStrings;
-  }
-
-  public void setQueryStrings(List<String> queryStrings) {
-    this.queryStrings = queryStrings;
-  }
+  @JsonProperty("queryStrings")
+  private List<String> queryStrings = new ArrayList<>();
 
   public ConvertedJQLQueries queriesWithUnknownUsers(List<JQLQueryWithUnknownUsers> queriesWithUnknownUsers) {
     this.queriesWithUnknownUsers = queriesWithUnknownUsers;
@@ -103,6 +77,32 @@ public class ConvertedJQLQueries {
     this.queriesWithUnknownUsers = queriesWithUnknownUsers;
   }
 
+  public ConvertedJQLQueries queryStrings(List<String> queryStrings) {
+    this.queryStrings = queryStrings;
+    return this;
+  }
+
+  public ConvertedJQLQueries addQueryStringsItem(String queryStringsItem) {
+    if (this.queryStrings == null) {
+      this.queryStrings = new ArrayList<>();
+    }
+    this.queryStrings.add(queryStringsItem);
+    return this;
+  }
+
+   /**
+   * The list of converted query strings with account IDs in place of user identifiers.
+   * @return queryStrings
+  **/
+  @ApiModelProperty(value = "The list of converted query strings with account IDs in place of user identifiers.")
+  public List<String> getQueryStrings() {
+    return queryStrings;
+  }
+
+  public void setQueryStrings(List<String> queryStrings) {
+    this.queryStrings = queryStrings;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -113,13 +113,13 @@ public class ConvertedJQLQueries {
       return false;
     }
     ConvertedJQLQueries convertedJQLQueries = (ConvertedJQLQueries) o;
-    return Objects.equals(this.queryStrings, convertedJQLQueries.queryStrings) &&
-        Objects.equals(this.queriesWithUnknownUsers, convertedJQLQueries.queriesWithUnknownUsers);
+    return Objects.equals(this.queriesWithUnknownUsers, convertedJQLQueries.queriesWithUnknownUsers) &&
+        Objects.equals(this.queryStrings, convertedJQLQueries.queryStrings);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(queryStrings, queriesWithUnknownUsers);
+    return Objects.hash(queriesWithUnknownUsers, queryStrings);
   }
 
 
@@ -128,8 +128,8 @@ public class ConvertedJQLQueries {
     StringBuilder sb = new StringBuilder();
     sb.append("class ConvertedJQLQueries {\n");
     
-    sb.append("    queryStrings: ").append(toIndentedString(queryStrings)).append("\n");
     sb.append("    queriesWithUnknownUsers: ").append(toIndentedString(queriesWithUnknownUsers)).append("\n");
+    sb.append("    queryStrings: ").append(toIndentedString(queryStrings)).append("\n");
     sb.append("}");
     return sb.toString();
   }

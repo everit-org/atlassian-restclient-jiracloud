@@ -44,16 +44,19 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.IssueTypeScheme;
  * A page of items.
  */
 @ApiModel(description = "A page of items.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class PageBeanIssueTypeScheme {
-  @JsonProperty("self")
-  private URI self;
+  @JsonProperty("isLast")
+  private Boolean isLast;
+
+  @JsonProperty("maxResults")
+  private Integer maxResults;
 
   @JsonProperty("nextPage")
   private URI nextPage;
 
-  @JsonProperty("maxResults")
-  private Integer maxResults;
+  @JsonProperty("self")
+  private URI self;
 
   @JsonProperty("startAt")
   private Long startAt;
@@ -61,19 +64,25 @@ public class PageBeanIssueTypeScheme {
   @JsonProperty("total")
   private Long total;
 
-  @JsonProperty("isLast")
-  private Boolean isLast;
-
   @JsonProperty("values")
   private List<IssueTypeScheme> values = new ArrayList<>();
 
    /**
-   * The URL of the page.
-   * @return self
+   * Whether this is the last page.
+   * @return isLast
   **/
-  @ApiModelProperty(value = "The URL of the page.")
-  public URI getSelf() {
-    return self;
+  @ApiModelProperty(value = "Whether this is the last page.")
+  public Boolean getIsLast() {
+    return isLast;
+  }
+
+   /**
+   * The maximum number of items that could be returned.
+   * @return maxResults
+  **/
+  @ApiModelProperty(value = "The maximum number of items that could be returned.")
+  public Integer getMaxResults() {
+    return maxResults;
   }
 
    /**
@@ -86,12 +95,12 @@ public class PageBeanIssueTypeScheme {
   }
 
    /**
-   * The maximum number of items that could be returned.
-   * @return maxResults
+   * The URL of the page.
+   * @return self
   **/
-  @ApiModelProperty(value = "The maximum number of items that could be returned.")
-  public Integer getMaxResults() {
-    return maxResults;
+  @ApiModelProperty(value = "The URL of the page.")
+  public URI getSelf() {
+    return self;
   }
 
    /**
@@ -113,15 +122,6 @@ public class PageBeanIssueTypeScheme {
   }
 
    /**
-   * Whether this is the last page.
-   * @return isLast
-  **/
-  @ApiModelProperty(value = "Whether this is the last page.")
-  public Boolean getIsLast() {
-    return isLast;
-  }
-
-   /**
    * The list of items.
    * @return values
   **/
@@ -140,18 +140,18 @@ public class PageBeanIssueTypeScheme {
       return false;
     }
     PageBeanIssueTypeScheme pageBeanIssueTypeScheme = (PageBeanIssueTypeScheme) o;
-    return Objects.equals(this.self, pageBeanIssueTypeScheme.self) &&
-        Objects.equals(this.nextPage, pageBeanIssueTypeScheme.nextPage) &&
+    return Objects.equals(this.isLast, pageBeanIssueTypeScheme.isLast) &&
         Objects.equals(this.maxResults, pageBeanIssueTypeScheme.maxResults) &&
+        Objects.equals(this.nextPage, pageBeanIssueTypeScheme.nextPage) &&
+        Objects.equals(this.self, pageBeanIssueTypeScheme.self) &&
         Objects.equals(this.startAt, pageBeanIssueTypeScheme.startAt) &&
         Objects.equals(this.total, pageBeanIssueTypeScheme.total) &&
-        Objects.equals(this.isLast, pageBeanIssueTypeScheme.isLast) &&
         Objects.equals(this.values, pageBeanIssueTypeScheme.values);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, nextPage, maxResults, startAt, total, isLast, values);
+    return Objects.hash(isLast, maxResults, nextPage, self, startAt, total, values);
   }
 
 
@@ -160,12 +160,12 @@ public class PageBeanIssueTypeScheme {
     StringBuilder sb = new StringBuilder();
     sb.append("class PageBeanIssueTypeScheme {\n");
     
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    nextPage: ").append(toIndentedString(nextPage)).append("\n");
+    sb.append("    isLast: ").append(toIndentedString(isLast)).append("\n");
     sb.append("    maxResults: ").append(toIndentedString(maxResults)).append("\n");
+    sb.append("    nextPage: ").append(toIndentedString(nextPage)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    startAt: ").append(toIndentedString(startAt)).append("\n");
     sb.append("    total: ").append(toIndentedString(total)).append("\n");
-    sb.append("    isLast: ").append(toIndentedString(isLast)).append("\n");
     sb.append("    values: ").append(toIndentedString(values)).append("\n");
     sb.append("}");
     return sb.toString();

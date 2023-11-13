@@ -37,22 +37,40 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * Default value for a cascading select custom field.
+ * The default value for a cascading select custom field.
  */
-@ApiModel(description = "Default value for a cascading select custom field.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@ApiModel(description = "The default value for a cascading select custom field.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class CustomFieldContextDefaultValueCascadingOption {
+  @JsonProperty("cascadingOptionId")
+  private String cascadingOptionId;
+
   @JsonProperty("contextId")
   private String contextId;
 
   @JsonProperty("optionId")
   private String optionId;
 
-  @JsonProperty("cascadingOptionId")
-  private String cascadingOptionId;
-
   @JsonProperty("type")
   private String type;
+
+  public CustomFieldContextDefaultValueCascadingOption cascadingOptionId(String cascadingOptionId) {
+    this.cascadingOptionId = cascadingOptionId;
+    return this;
+  }
+
+   /**
+   * The ID of the default cascading option.
+   * @return cascadingOptionId
+  **/
+  @ApiModelProperty(value = "The ID of the default cascading option.")
+  public String getCascadingOptionId() {
+    return cascadingOptionId;
+  }
+
+  public void setCascadingOptionId(String cascadingOptionId) {
+    this.cascadingOptionId = cascadingOptionId;
+  }
 
   public CustomFieldContextDefaultValueCascadingOption contextId(String contextId) {
     this.contextId = contextId;
@@ -90,24 +108,6 @@ public class CustomFieldContextDefaultValueCascadingOption {
     this.optionId = optionId;
   }
 
-  public CustomFieldContextDefaultValueCascadingOption cascadingOptionId(String cascadingOptionId) {
-    this.cascadingOptionId = cascadingOptionId;
-    return this;
-  }
-
-   /**
-   * The ID of the default cascading option.
-   * @return cascadingOptionId
-  **/
-  @ApiModelProperty(value = "The ID of the default cascading option.")
-  public String getCascadingOptionId() {
-    return cascadingOptionId;
-  }
-
-  public void setCascadingOptionId(String cascadingOptionId) {
-    this.cascadingOptionId = cascadingOptionId;
-  }
-
   public CustomFieldContextDefaultValueCascadingOption type(String type) {
     this.type = type;
     return this;
@@ -136,15 +136,15 @@ public class CustomFieldContextDefaultValueCascadingOption {
       return false;
     }
     CustomFieldContextDefaultValueCascadingOption customFieldContextDefaultValueCascadingOption = (CustomFieldContextDefaultValueCascadingOption) o;
-    return Objects.equals(this.contextId, customFieldContextDefaultValueCascadingOption.contextId) &&
+    return Objects.equals(this.cascadingOptionId, customFieldContextDefaultValueCascadingOption.cascadingOptionId) &&
+        Objects.equals(this.contextId, customFieldContextDefaultValueCascadingOption.contextId) &&
         Objects.equals(this.optionId, customFieldContextDefaultValueCascadingOption.optionId) &&
-        Objects.equals(this.cascadingOptionId, customFieldContextDefaultValueCascadingOption.cascadingOptionId) &&
         Objects.equals(this.type, customFieldContextDefaultValueCascadingOption.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(contextId, optionId, cascadingOptionId, type);
+    return Objects.hash(cascadingOptionId, contextId, optionId, type);
   }
 
 
@@ -153,9 +153,9 @@ public class CustomFieldContextDefaultValueCascadingOption {
     StringBuilder sb = new StringBuilder();
     sb.append("class CustomFieldContextDefaultValueCascadingOption {\n");
     
+    sb.append("    cascadingOptionId: ").append(toIndentedString(cascadingOptionId)).append("\n");
     sb.append("    contextId: ").append(toIndentedString(contextId)).append("\n");
     sb.append("    optionId: ").append(toIndentedString(optionId)).append("\n");
-    sb.append("    cascadingOptionId: ").append(toIndentedString(cascadingOptionId)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();

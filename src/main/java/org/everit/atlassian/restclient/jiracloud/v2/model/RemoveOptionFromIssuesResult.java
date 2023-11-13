@@ -42,16 +42,34 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.SimpleErrorCollection;
 /**
  * RemoveOptionFromIssuesResult
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class RemoveOptionFromIssuesResult {
+  @JsonProperty("errors")
+  private SimpleErrorCollection errors;
+
   @JsonProperty("modifiedIssues")
   private List<Long> modifiedIssues = new ArrayList<>();
 
   @JsonProperty("unmodifiedIssues")
   private List<Long> unmodifiedIssues = new ArrayList<>();
 
-  @JsonProperty("errors")
-  private SimpleErrorCollection errors;
+  public RemoveOptionFromIssuesResult errors(SimpleErrorCollection errors) {
+    this.errors = errors;
+    return this;
+  }
+
+   /**
+   * A collection of errors related to unchanged issues. The collection size is limited, which means not all errors may be returned.
+   * @return errors
+  **/
+  @ApiModelProperty(value = "A collection of errors related to unchanged issues. The collection size is limited, which means not all errors may be returned.")
+  public SimpleErrorCollection getErrors() {
+    return errors;
+  }
+
+  public void setErrors(SimpleErrorCollection errors) {
+    this.errors = errors;
+  }
 
   public RemoveOptionFromIssuesResult modifiedIssues(List<Long> modifiedIssues) {
     this.modifiedIssues = modifiedIssues;
@@ -105,24 +123,6 @@ public class RemoveOptionFromIssuesResult {
     this.unmodifiedIssues = unmodifiedIssues;
   }
 
-  public RemoveOptionFromIssuesResult errors(SimpleErrorCollection errors) {
-    this.errors = errors;
-    return this;
-  }
-
-   /**
-   * A collection of errors related to unchanged issues. The collection size is limited, which means not all errors may be returned.
-   * @return errors
-  **/
-  @ApiModelProperty(value = "A collection of errors related to unchanged issues. The collection size is limited, which means not all errors may be returned.")
-  public SimpleErrorCollection getErrors() {
-    return errors;
-  }
-
-  public void setErrors(SimpleErrorCollection errors) {
-    this.errors = errors;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -133,14 +133,14 @@ public class RemoveOptionFromIssuesResult {
       return false;
     }
     RemoveOptionFromIssuesResult removeOptionFromIssuesResult = (RemoveOptionFromIssuesResult) o;
-    return Objects.equals(this.modifiedIssues, removeOptionFromIssuesResult.modifiedIssues) &&
-        Objects.equals(this.unmodifiedIssues, removeOptionFromIssuesResult.unmodifiedIssues) &&
-        Objects.equals(this.errors, removeOptionFromIssuesResult.errors);
+    return Objects.equals(this.errors, removeOptionFromIssuesResult.errors) &&
+        Objects.equals(this.modifiedIssues, removeOptionFromIssuesResult.modifiedIssues) &&
+        Objects.equals(this.unmodifiedIssues, removeOptionFromIssuesResult.unmodifiedIssues);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(modifiedIssues, unmodifiedIssues, errors);
+    return Objects.hash(errors, modifiedIssues, unmodifiedIssues);
   }
 
 
@@ -149,9 +149,9 @@ public class RemoveOptionFromIssuesResult {
     StringBuilder sb = new StringBuilder();
     sb.append("class RemoveOptionFromIssuesResult {\n");
     
+    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
     sb.append("    modifiedIssues: ").append(toIndentedString(modifiedIssues)).append("\n");
     sb.append("    unmodifiedIssues: ").append(toIndentedString(unmodifiedIssues)).append("\n");
-    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
     sb.append("}");
     return sb.toString();
   }

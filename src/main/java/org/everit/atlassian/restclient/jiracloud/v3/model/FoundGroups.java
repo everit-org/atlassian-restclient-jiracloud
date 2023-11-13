@@ -43,16 +43,42 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.FoundGroup;
  * The list of groups found in a search, including header text (Showing X of Y matching groups) and total of matched groups.
  */
 @ApiModel(description = "The list of groups found in a search, including header text (Showing X of Y matching groups) and total of matched groups.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class FoundGroups {
+  @JsonProperty("groups")
+  private List<FoundGroup> groups = new ArrayList<>();
+
   @JsonProperty("header")
   private String header;
 
   @JsonProperty("total")
   private Integer total;
 
-  @JsonProperty("groups")
-  private List<FoundGroup> groups = new ArrayList<>();
+  public FoundGroups groups(List<FoundGroup> groups) {
+    this.groups = groups;
+    return this;
+  }
+
+  public FoundGroups addGroupsItem(FoundGroup groupsItem) {
+    if (this.groups == null) {
+      this.groups = new ArrayList<>();
+    }
+    this.groups.add(groupsItem);
+    return this;
+  }
+
+   /**
+   * Get groups
+   * @return groups
+  **/
+  @ApiModelProperty(value = "")
+  public List<FoundGroup> getGroups() {
+    return groups;
+  }
+
+  public void setGroups(List<FoundGroup> groups) {
+    this.groups = groups;
+  }
 
   public FoundGroups header(String header) {
     this.header = header;
@@ -90,32 +116,6 @@ public class FoundGroups {
     this.total = total;
   }
 
-  public FoundGroups groups(List<FoundGroup> groups) {
-    this.groups = groups;
-    return this;
-  }
-
-  public FoundGroups addGroupsItem(FoundGroup groupsItem) {
-    if (this.groups == null) {
-      this.groups = new ArrayList<>();
-    }
-    this.groups.add(groupsItem);
-    return this;
-  }
-
-   /**
-   * Get groups
-   * @return groups
-  **/
-  @ApiModelProperty(value = "")
-  public List<FoundGroup> getGroups() {
-    return groups;
-  }
-
-  public void setGroups(List<FoundGroup> groups) {
-    this.groups = groups;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -126,14 +126,14 @@ public class FoundGroups {
       return false;
     }
     FoundGroups foundGroups = (FoundGroups) o;
-    return Objects.equals(this.header, foundGroups.header) &&
-        Objects.equals(this.total, foundGroups.total) &&
-        Objects.equals(this.groups, foundGroups.groups);
+    return Objects.equals(this.groups, foundGroups.groups) &&
+        Objects.equals(this.header, foundGroups.header) &&
+        Objects.equals(this.total, foundGroups.total);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(header, total, groups);
+    return Objects.hash(groups, header, total);
   }
 
 
@@ -142,9 +142,9 @@ public class FoundGroups {
     StringBuilder sb = new StringBuilder();
     sb.append("class FoundGroups {\n");
     
+    sb.append("    groups: ").append(toIndentedString(groups)).append("\n");
     sb.append("    header: ").append(toIndentedString(header)).append("\n");
     sb.append("    total: ").append(toIndentedString(total)).append("\n");
-    sb.append("    groups: ").append(toIndentedString(groups)).append("\n");
     sb.append("}");
     return sb.toString();
   }

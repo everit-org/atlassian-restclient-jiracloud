@@ -45,66 +45,48 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.ChangedValueBean;
  * An audit record.
  */
 @ApiModel(description = "An audit record.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class AuditRecordBean {
-  @JsonProperty("id")
-  private Long id;
-
-  @JsonProperty("summary")
-  private String summary;
-
-  @JsonProperty("remoteAddress")
-  private String remoteAddress;
+  @JsonProperty("associatedItems")
+  private List<AssociatedItemBean> associatedItems = new ArrayList<>();
 
   @JsonProperty("authorKey")
   private String authorKey;
 
-  @JsonProperty("created")
-  private OffsetDateTime created;
-
   @JsonProperty("category")
   private String category;
-
-  @JsonProperty("eventSource")
-  private String eventSource;
-
-  @JsonProperty("description")
-  private String description;
-
-  @JsonProperty("objectItem")
-  private AssociatedItemBean objectItem;
 
   @JsonProperty("changedValues")
   private List<ChangedValueBean> changedValues = new ArrayList<>();
 
-  @JsonProperty("associatedItems")
-  private List<AssociatedItemBean> associatedItems = new ArrayList<>();
+  @JsonProperty("created")
+  private OffsetDateTime created;
+
+  @JsonProperty("description")
+  private String description;
+
+  @JsonProperty("eventSource")
+  private String eventSource;
+
+  @JsonProperty("id")
+  private Long id;
+
+  @JsonProperty("objectItem")
+  private AssociatedItemBean objectItem;
+
+  @JsonProperty("remoteAddress")
+  private String remoteAddress;
+
+  @JsonProperty("summary")
+  private String summary;
 
    /**
-   * The ID of the audit record.
-   * @return id
+   * The list of items associated with the changed record.
+   * @return associatedItems
   **/
-  @ApiModelProperty(value = "The ID of the audit record.")
-  public Long getId() {
-    return id;
-  }
-
-   /**
-   * The summary of the audit record.
-   * @return summary
-  **/
-  @ApiModelProperty(value = "The summary of the audit record.")
-  public String getSummary() {
-    return summary;
-  }
-
-   /**
-   * The URL of the computer where the creation of the audit record was initiated.
-   * @return remoteAddress
-  **/
-  @ApiModelProperty(value = "The URL of the computer where the creation of the audit record was initiated.")
-  public String getRemoteAddress() {
-    return remoteAddress;
+  @ApiModelProperty(value = "The list of items associated with the changed record.")
+  public List<AssociatedItemBean> getAssociatedItems() {
+    return associatedItems;
   }
 
    /**
@@ -117,6 +99,24 @@ public class AuditRecordBean {
   }
 
    /**
+   * The category of the audit record. For a list of these categories, see the help article [Auditing in Jira applications](https://confluence.atlassian.com/x/noXKM).
+   * @return category
+  **/
+  @ApiModelProperty(value = "The category of the audit record. For a list of these categories, see the help article [Auditing in Jira applications](https://confluence.atlassian.com/x/noXKM).")
+  public String getCategory() {
+    return category;
+  }
+
+   /**
+   * The list of values changed in the record event.
+   * @return changedValues
+  **/
+  @ApiModelProperty(value = "The list of values changed in the record event.")
+  public List<ChangedValueBean> getChangedValues() {
+    return changedValues;
+  }
+
+   /**
    * The date and time on which the audit record was created.
    * @return created
   **/
@@ -126,12 +126,12 @@ public class AuditRecordBean {
   }
 
    /**
-   * The category of the audit record. For a list of these categories, see the help article [Auditing in Jira applications](https://confluence.atlassian.com/x/noXKM).
-   * @return category
+   * The description of the audit record.
+   * @return description
   **/
-  @ApiModelProperty(value = "The category of the audit record. For a list of these categories, see the help article [Auditing in Jira applications](https://confluence.atlassian.com/x/noXKM).")
-  public String getCategory() {
-    return category;
+  @ApiModelProperty(value = "The description of the audit record.")
+  public String getDescription() {
+    return description;
   }
 
    /**
@@ -144,12 +144,12 @@ public class AuditRecordBean {
   }
 
    /**
-   * The description of the audit record.
-   * @return description
+   * The ID of the audit record.
+   * @return id
   **/
-  @ApiModelProperty(value = "The description of the audit record.")
-  public String getDescription() {
-    return description;
+  @ApiModelProperty(value = "The ID of the audit record.")
+  public Long getId() {
+    return id;
   }
 
   public AuditRecordBean objectItem(AssociatedItemBean objectItem) {
@@ -171,21 +171,21 @@ public class AuditRecordBean {
   }
 
    /**
-   * The list of values changed in the record event.
-   * @return changedValues
+   * The URL of the computer where the creation of the audit record was initiated.
+   * @return remoteAddress
   **/
-  @ApiModelProperty(value = "The list of values changed in the record event.")
-  public List<ChangedValueBean> getChangedValues() {
-    return changedValues;
+  @ApiModelProperty(value = "The URL of the computer where the creation of the audit record was initiated.")
+  public String getRemoteAddress() {
+    return remoteAddress;
   }
 
    /**
-   * The list of items associated with the changed record.
-   * @return associatedItems
+   * The summary of the audit record.
+   * @return summary
   **/
-  @ApiModelProperty(value = "The list of items associated with the changed record.")
-  public List<AssociatedItemBean> getAssociatedItems() {
-    return associatedItems;
+  @ApiModelProperty(value = "The summary of the audit record.")
+  public String getSummary() {
+    return summary;
   }
 
 
@@ -198,22 +198,22 @@ public class AuditRecordBean {
       return false;
     }
     AuditRecordBean auditRecordBean = (AuditRecordBean) o;
-    return Objects.equals(this.id, auditRecordBean.id) &&
-        Objects.equals(this.summary, auditRecordBean.summary) &&
-        Objects.equals(this.remoteAddress, auditRecordBean.remoteAddress) &&
+    return Objects.equals(this.associatedItems, auditRecordBean.associatedItems) &&
         Objects.equals(this.authorKey, auditRecordBean.authorKey) &&
-        Objects.equals(this.created, auditRecordBean.created) &&
         Objects.equals(this.category, auditRecordBean.category) &&
-        Objects.equals(this.eventSource, auditRecordBean.eventSource) &&
-        Objects.equals(this.description, auditRecordBean.description) &&
-        Objects.equals(this.objectItem, auditRecordBean.objectItem) &&
         Objects.equals(this.changedValues, auditRecordBean.changedValues) &&
-        Objects.equals(this.associatedItems, auditRecordBean.associatedItems);
+        Objects.equals(this.created, auditRecordBean.created) &&
+        Objects.equals(this.description, auditRecordBean.description) &&
+        Objects.equals(this.eventSource, auditRecordBean.eventSource) &&
+        Objects.equals(this.id, auditRecordBean.id) &&
+        Objects.equals(this.objectItem, auditRecordBean.objectItem) &&
+        Objects.equals(this.remoteAddress, auditRecordBean.remoteAddress) &&
+        Objects.equals(this.summary, auditRecordBean.summary);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, summary, remoteAddress, authorKey, created, category, eventSource, description, objectItem, changedValues, associatedItems);
+    return Objects.hash(associatedItems, authorKey, category, changedValues, created, description, eventSource, id, objectItem, remoteAddress, summary);
   }
 
 
@@ -222,17 +222,17 @@ public class AuditRecordBean {
     StringBuilder sb = new StringBuilder();
     sb.append("class AuditRecordBean {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    summary: ").append(toIndentedString(summary)).append("\n");
-    sb.append("    remoteAddress: ").append(toIndentedString(remoteAddress)).append("\n");
-    sb.append("    authorKey: ").append(toIndentedString(authorKey)).append("\n");
-    sb.append("    created: ").append(toIndentedString(created)).append("\n");
-    sb.append("    category: ").append(toIndentedString(category)).append("\n");
-    sb.append("    eventSource: ").append(toIndentedString(eventSource)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    objectItem: ").append(toIndentedString(objectItem)).append("\n");
-    sb.append("    changedValues: ").append(toIndentedString(changedValues)).append("\n");
     sb.append("    associatedItems: ").append(toIndentedString(associatedItems)).append("\n");
+    sb.append("    authorKey: ").append(toIndentedString(authorKey)).append("\n");
+    sb.append("    category: ").append(toIndentedString(category)).append("\n");
+    sb.append("    changedValues: ").append(toIndentedString(changedValues)).append("\n");
+    sb.append("    created: ").append(toIndentedString(created)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    eventSource: ").append(toIndentedString(eventSource)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    objectItem: ").append(toIndentedString(objectItem)).append("\n");
+    sb.append("    remoteAddress: ").append(toIndentedString(remoteAddress)).append("\n");
+    sb.append("    summary: ").append(toIndentedString(summary)).append("\n");
     sb.append("}");
     return sb.toString();
   }

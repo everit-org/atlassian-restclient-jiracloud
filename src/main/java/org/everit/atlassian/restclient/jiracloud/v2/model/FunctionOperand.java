@@ -42,31 +42,16 @@ import java.util.List;
  * An operand that is a function. See [Advanced searching - functions reference](https://confluence.atlassian.com/x/dwiiLQ) for more information about JQL functions.
  */
 @ApiModel(description = "An operand that is a function. See [Advanced searching - functions reference](https://confluence.atlassian.com/x/dwiiLQ) for more information about JQL functions.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class FunctionOperand {
-  @JsonProperty("function")
-  private String function;
-
   @JsonProperty("arguments")
   private List<String> arguments = new ArrayList<>();
 
-  public FunctionOperand function(String function) {
-    this.function = function;
-    return this;
-  }
+  @JsonProperty("encodedOperand")
+  private String encodedOperand;
 
-   /**
-   * The name of the function.
-   * @return function
-  **/
-  @ApiModelProperty(required = true, value = "The name of the function.")
-  public String getFunction() {
-    return function;
-  }
-
-  public void setFunction(String function) {
-    this.function = function;
-  }
+  @JsonProperty("function")
+  private String function;
 
   public FunctionOperand arguments(List<String> arguments) {
     this.arguments = arguments;
@@ -91,6 +76,42 @@ public class FunctionOperand {
     this.arguments = arguments;
   }
 
+  public FunctionOperand encodedOperand(String encodedOperand) {
+    this.encodedOperand = encodedOperand;
+    return this;
+  }
+
+   /**
+   * Encoded operand, which can be used directly in a JQL query.
+   * @return encodedOperand
+  **/
+  @ApiModelProperty(value = "Encoded operand, which can be used directly in a JQL query.")
+  public String getEncodedOperand() {
+    return encodedOperand;
+  }
+
+  public void setEncodedOperand(String encodedOperand) {
+    this.encodedOperand = encodedOperand;
+  }
+
+  public FunctionOperand function(String function) {
+    this.function = function;
+    return this;
+  }
+
+   /**
+   * The name of the function.
+   * @return function
+  **/
+  @ApiModelProperty(required = true, value = "The name of the function.")
+  public String getFunction() {
+    return function;
+  }
+
+  public void setFunction(String function) {
+    this.function = function;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -101,13 +122,14 @@ public class FunctionOperand {
       return false;
     }
     FunctionOperand functionOperand = (FunctionOperand) o;
-    return Objects.equals(this.function, functionOperand.function) &&
-        Objects.equals(this.arguments, functionOperand.arguments);
+    return Objects.equals(this.arguments, functionOperand.arguments) &&
+        Objects.equals(this.encodedOperand, functionOperand.encodedOperand) &&
+        Objects.equals(this.function, functionOperand.function);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(function, arguments);
+    return Objects.hash(arguments, encodedOperand, function);
   }
 
 
@@ -116,8 +138,9 @@ public class FunctionOperand {
     StringBuilder sb = new StringBuilder();
     sb.append("class FunctionOperand {\n");
     
-    sb.append("    function: ").append(toIndentedString(function)).append("\n");
     sb.append("    arguments: ").append(toIndentedString(arguments)).append("\n");
+    sb.append("    encodedOperand: ").append(toIndentedString(encodedOperand)).append("\n");
+    sb.append("    function: ").append(toIndentedString(function)).append("\n");
     sb.append("}");
     return sb.toString();
   }

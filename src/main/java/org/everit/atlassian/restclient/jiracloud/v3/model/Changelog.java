@@ -43,34 +43,25 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.HistoryMetadata;
 import org.everit.atlassian.restclient.jiracloud.v3.model.UserDetails;
 
 /**
- * A changelog.
+ * A log of changes made to issue fields. Changelogs related to workflow associations are currently being deprecated.
  */
-@ApiModel(description = "A changelog.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@ApiModel(description = "A log of changes made to issue fields. Changelogs related to workflow associations are currently being deprecated.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class Changelog {
-  @JsonProperty("id")
-  private String id;
-
   @JsonProperty("author")
   private UserDetails author;
 
   @JsonProperty("created")
   private OffsetDateTime created;
 
-  @JsonProperty("items")
-  private List<ChangeDetails> items = new ArrayList<>();
-
   @JsonProperty("historyMetadata")
   private HistoryMetadata historyMetadata;
 
-   /**
-   * The ID of the changelog.
-   * @return id
-  **/
-  @ApiModelProperty(value = "The ID of the changelog.")
-  public String getId() {
-    return id;
-  }
+  @JsonProperty("id")
+  private String id;
+
+  @JsonProperty("items")
+  private List<ChangeDetails> items = new ArrayList<>();
 
    /**
    * The user who made the change.
@@ -91,21 +82,30 @@ public class Changelog {
   }
 
    /**
-   * The list of items changed.
-   * @return items
-  **/
-  @ApiModelProperty(value = "The list of items changed.")
-  public List<ChangeDetails> getItems() {
-    return items;
-  }
-
-   /**
    * The history metadata associated with the changed.
    * @return historyMetadata
   **/
   @ApiModelProperty(value = "The history metadata associated with the changed.")
   public HistoryMetadata getHistoryMetadata() {
     return historyMetadata;
+  }
+
+   /**
+   * The ID of the changelog.
+   * @return id
+  **/
+  @ApiModelProperty(value = "The ID of the changelog.")
+  public String getId() {
+    return id;
+  }
+
+   /**
+   * The list of items changed.
+   * @return items
+  **/
+  @ApiModelProperty(value = "The list of items changed.")
+  public List<ChangeDetails> getItems() {
+    return items;
   }
 
 
@@ -118,16 +118,16 @@ public class Changelog {
       return false;
     }
     Changelog changelog = (Changelog) o;
-    return Objects.equals(this.id, changelog.id) &&
-        Objects.equals(this.author, changelog.author) &&
+    return Objects.equals(this.author, changelog.author) &&
         Objects.equals(this.created, changelog.created) &&
-        Objects.equals(this.items, changelog.items) &&
-        Objects.equals(this.historyMetadata, changelog.historyMetadata);
+        Objects.equals(this.historyMetadata, changelog.historyMetadata) &&
+        Objects.equals(this.id, changelog.id) &&
+        Objects.equals(this.items, changelog.items);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, author, created, items, historyMetadata);
+    return Objects.hash(author, created, historyMetadata, id, items);
   }
 
 
@@ -136,11 +136,11 @@ public class Changelog {
     StringBuilder sb = new StringBuilder();
     sb.append("class Changelog {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    author: ").append(toIndentedString(author)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
-    sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("    historyMetadata: ").append(toIndentedString(historyMetadata)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("}");
     return sb.toString();
   }

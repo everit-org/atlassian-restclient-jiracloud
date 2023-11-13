@@ -26,7 +26,7 @@
  */
 
 
-package org.everit.atlassian.restclient.jiracloud.v2.model;
+package org.everit.atlassian.restclient.jiracloud.v3.model;
 
 import java.util.Objects;
 import java.util.Arrays;
@@ -35,41 +35,39 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * The list of issue type IDs.
+ * The ID of the issue security scheme.
  */
-@ApiModel(description = "The list of issue type IDs.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
-public class IssueTypeIDs {
-  @JsonProperty("issueTypeIds")
-  private List<String> issueTypeIds = new ArrayList<>();
+@ApiModel(description = "The ID of the issue security scheme.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
+public class SecuritySchemeId {
+  @JsonProperty("id")
+  private String id;
 
-  public IssueTypeIDs issueTypeIDs(List<String> issueTypeIds) {
-    this.issueTypeIds = issueTypeIds;
-    return this;
-  }
-
-  public IssueTypeIDs addIssueTypeIdsItem(String issueTypeIdsItem) {
-    this.issueTypeIds.add(issueTypeIdsItem);
-    return this;
-  }
+  private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
 
    /**
-   * The list of issue type IDs.
-   * @return issueTypeIds
+   * The ID of the issue security scheme.
+   * @return id
   **/
-  @ApiModelProperty(required = true, value = "The list of issue type IDs.")
-  public List<String> getIssueTypeIds() {
-    return issueTypeIds;
+  @ApiModelProperty(required = true, value = "The ID of the issue security scheme.")
+  public String getId() {
+    return id;
   }
 
-  public void setIssueTypeIds(List<String> issueTypeIds) {
-    this.issueTypeIds = issueTypeIds;
+
+  @com.fasterxml.jackson.annotation.JsonAnyGetter
+  public Map<String, Object> any() {
+   return this.additionalProperties_;
   }
 
+  @com.fasterxml.jackson.annotation.JsonAnySetter
+  public void set(String name, Object value) {
+   this.additionalProperties_.put(name, value);
+  }
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -79,22 +77,24 @@ public class IssueTypeIDs {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    IssueTypeIDs issueTypeIDs = (IssueTypeIDs) o;
-    return Objects.equals(this.issueTypeIds, issueTypeIDs.issueTypeIds);
+    SecuritySchemeId securitySchemeId = (SecuritySchemeId) o;
+    return Objects.equals(this.id, securitySchemeId.id) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(issueTypeIds);
+    return Objects.hash(id, super.hashCode());
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class IssueTypeIds {\n");
+    sb.append("class SecuritySchemeId {\n");
     
-    sb.append("    issueTypeIds: ").append(toIndentedString(issueTypeIds)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();
   }

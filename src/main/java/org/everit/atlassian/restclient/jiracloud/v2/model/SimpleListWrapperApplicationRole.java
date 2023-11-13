@@ -42,39 +42,39 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.ApplicationRole;
 /**
  * SimpleListWrapperApplicationRole
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class SimpleListWrapperApplicationRole {
-  @JsonProperty("size")
-  private Integer size;
+  @JsonProperty("callback")
+  private Object callback = null;
 
   @JsonProperty("items")
   private List<ApplicationRole> items = new ArrayList<>();
 
-  @JsonProperty("pagingCallback")
-  private Object pagingCallback = null;
-
-  @JsonProperty("callback")
-  private Object callback = null;
-
   @JsonProperty("max-results")
   private Integer maxResults;
 
-  public SimpleListWrapperApplicationRole size(Integer size) {
-    this.size = size;
+  @JsonProperty("pagingCallback")
+  private Object pagingCallback = null;
+
+  @JsonProperty("size")
+  private Integer size;
+
+  public SimpleListWrapperApplicationRole callback(Object callback) {
+    this.callback = callback;
     return this;
   }
 
    /**
-   * Get size
-   * @return size
+   * Get callback
+   * @return callback
   **/
   @ApiModelProperty(value = "")
-  public Integer getSize() {
-    return size;
+  public Object getCallback() {
+    return callback;
   }
 
-  public void setSize(Integer size) {
-    this.size = size;
+  public void setCallback(Object callback) {
+    this.callback = callback;
   }
 
   public SimpleListWrapperApplicationRole items(List<ApplicationRole> items) {
@@ -103,42 +103,6 @@ public class SimpleListWrapperApplicationRole {
     this.items = items;
   }
 
-  public SimpleListWrapperApplicationRole pagingCallback(Object pagingCallback) {
-    this.pagingCallback = pagingCallback;
-    return this;
-  }
-
-   /**
-   * Get pagingCallback
-   * @return pagingCallback
-  **/
-  @ApiModelProperty(value = "")
-  public Object getPagingCallback() {
-    return pagingCallback;
-  }
-
-  public void setPagingCallback(Object pagingCallback) {
-    this.pagingCallback = pagingCallback;
-  }
-
-  public SimpleListWrapperApplicationRole callback(Object callback) {
-    this.callback = callback;
-    return this;
-  }
-
-   /**
-   * Get callback
-   * @return callback
-  **/
-  @ApiModelProperty(value = "")
-  public Object getCallback() {
-    return callback;
-  }
-
-  public void setCallback(Object callback) {
-    this.callback = callback;
-  }
-
   public SimpleListWrapperApplicationRole maxResults(Integer maxResults) {
     this.maxResults = maxResults;
     return this;
@@ -157,6 +121,42 @@ public class SimpleListWrapperApplicationRole {
     this.maxResults = maxResults;
   }
 
+  public SimpleListWrapperApplicationRole pagingCallback(Object pagingCallback) {
+    this.pagingCallback = pagingCallback;
+    return this;
+  }
+
+   /**
+   * Get pagingCallback
+   * @return pagingCallback
+  **/
+  @ApiModelProperty(value = "")
+  public Object getPagingCallback() {
+    return pagingCallback;
+  }
+
+  public void setPagingCallback(Object pagingCallback) {
+    this.pagingCallback = pagingCallback;
+  }
+
+  public SimpleListWrapperApplicationRole size(Integer size) {
+    this.size = size;
+    return this;
+  }
+
+   /**
+   * Get size
+   * @return size
+  **/
+  @ApiModelProperty(value = "")
+  public Integer getSize() {
+    return size;
+  }
+
+  public void setSize(Integer size) {
+    this.size = size;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -167,16 +167,16 @@ public class SimpleListWrapperApplicationRole {
       return false;
     }
     SimpleListWrapperApplicationRole simpleListWrapperApplicationRole = (SimpleListWrapperApplicationRole) o;
-    return Objects.equals(this.size, simpleListWrapperApplicationRole.size) &&
+    return Objects.equals(this.callback, simpleListWrapperApplicationRole.callback) &&
         Objects.equals(this.items, simpleListWrapperApplicationRole.items) &&
+        Objects.equals(this.maxResults, simpleListWrapperApplicationRole.maxResults) &&
         Objects.equals(this.pagingCallback, simpleListWrapperApplicationRole.pagingCallback) &&
-        Objects.equals(this.callback, simpleListWrapperApplicationRole.callback) &&
-        Objects.equals(this.maxResults, simpleListWrapperApplicationRole.maxResults);
+        Objects.equals(this.size, simpleListWrapperApplicationRole.size);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(size, items, pagingCallback, callback, maxResults);
+    return Objects.hash(callback, items, maxResults, pagingCallback, size);
   }
 
 
@@ -185,11 +185,11 @@ public class SimpleListWrapperApplicationRole {
     StringBuilder sb = new StringBuilder();
     sb.append("class SimpleListWrapperApplicationRole {\n");
     
-    sb.append("    size: ").append(toIndentedString(size)).append("\n");
-    sb.append("    items: ").append(toIndentedString(items)).append("\n");
-    sb.append("    pagingCallback: ").append(toIndentedString(pagingCallback)).append("\n");
     sb.append("    callback: ").append(toIndentedString(callback)).append("\n");
+    sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("    maxResults: ").append(toIndentedString(maxResults)).append("\n");
+    sb.append("    pagingCallback: ").append(toIndentedString(pagingCallback)).append("\n");
+    sb.append("    size: ").append(toIndentedString(size)).append("\n");
     sb.append("}");
     return sb.toString();
   }

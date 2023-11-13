@@ -43,22 +43,13 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.ProjectIssueTypesHiera
  * The hierarchy of issue types within a project.
  */
 @ApiModel(description = "The hierarchy of issue types within a project.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class ProjectIssueTypeHierarchy {
-  @JsonProperty("projectId")
-  private Long projectId;
-
   @JsonProperty("hierarchy")
   private List<ProjectIssueTypesHierarchyLevel> hierarchy = new ArrayList<>();
 
-   /**
-   * The ID of the project.
-   * @return projectId
-  **/
-  @ApiModelProperty(value = "The ID of the project.")
-  public Long getProjectId() {
-    return projectId;
-  }
+  @JsonProperty("projectId")
+  private Long projectId;
 
    /**
    * Details of an issue type hierarchy level.
@@ -67,6 +58,15 @@ public class ProjectIssueTypeHierarchy {
   @ApiModelProperty(value = "Details of an issue type hierarchy level.")
   public List<ProjectIssueTypesHierarchyLevel> getHierarchy() {
     return hierarchy;
+  }
+
+   /**
+   * The ID of the project.
+   * @return projectId
+  **/
+  @ApiModelProperty(value = "The ID of the project.")
+  public Long getProjectId() {
+    return projectId;
   }
 
 
@@ -79,13 +79,13 @@ public class ProjectIssueTypeHierarchy {
       return false;
     }
     ProjectIssueTypeHierarchy projectIssueTypeHierarchy = (ProjectIssueTypeHierarchy) o;
-    return Objects.equals(this.projectId, projectIssueTypeHierarchy.projectId) &&
-        Objects.equals(this.hierarchy, projectIssueTypeHierarchy.hierarchy);
+    return Objects.equals(this.hierarchy, projectIssueTypeHierarchy.hierarchy) &&
+        Objects.equals(this.projectId, projectIssueTypeHierarchy.projectId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(projectId, hierarchy);
+    return Objects.hash(hierarchy, projectId);
   }
 
 
@@ -94,8 +94,8 @@ public class ProjectIssueTypeHierarchy {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProjectIssueTypeHierarchy {\n");
     
-    sb.append("    projectId: ").append(toIndentedString(projectId)).append("\n");
     sb.append("    hierarchy: ").append(toIndentedString(hierarchy)).append("\n");
+    sb.append("    projectId: ").append(toIndentedString(projectId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

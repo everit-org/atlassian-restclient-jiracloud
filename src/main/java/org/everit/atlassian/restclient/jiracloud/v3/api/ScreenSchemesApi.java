@@ -119,11 +119,14 @@ public class ScreenSchemesApi {
    * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0l)
    * @param maxResults The maximum number of items to return per page. (optional, default to 25)
    * @param id The list of screen scheme IDs. To include multiple IDs, provide an ampersand-separated list. For example, `id=10000&id=10001`. (optional, default to new ArrayList&lt;&gt;())
+   * @param expand Use [expand](#expansion) include additional information in the response. This parameter accepts `issueTypeScreenSchemes` that, for each screen schemes, returns information about the issue type screen scheme the screen scheme is assigned to. (optional, default to &quot;&quot;)
+   * @param queryString String used to perform a case-insensitive partial match with screen scheme name. (optional, default to &quot;&quot;)
+   * @param orderBy [Order](#ordering) the results by a field:   *  `id` Sorts by screen scheme ID.  *  `name` Sorts by screen scheme name. (optional)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PageBeanScreenScheme&gt;
    */
   public Single<PageBeanScreenScheme> getScreenSchemes(
-    Optional<Long> startAt, Optional<Integer> maxResults, Optional<List<Long>> id, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Optional<Long> startAt, Optional<Integer> maxResults, Optional<List<Long>> id, Optional<String> expand, Optional<String> queryString, Optional<String> orderBy, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.GET)
@@ -142,6 +145,15 @@ public class ScreenSchemesApi {
     }
     if (id.isPresent()) {
       queryParams.put("id", RestClientUtil.objectCollectionToStringCollection(id.get()));
+    }
+    if (expand.isPresent()) {
+      queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
+    }
+    if (queryString.isPresent()) {
+      queryParams.put("queryString", Collections.singleton(String.valueOf(queryString.get())));
+    }
+    if (orderBy.isPresent()) {
+      queryParams.put("orderBy", Collections.singleton(String.valueOf(orderBy.get())));
     }
     requestBuilder.queryParams(queryParams);
 

@@ -42,16 +42,34 @@ import java.util.List;
  * Bulk operation filter details.
  */
 @ApiModel(description = "Bulk operation filter details.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class IssueFilterForBulkPropertySet {
-  @JsonProperty("entityIds")
-  private List<Long> entityIds = new ArrayList<>();
-
   @JsonProperty("currentValue")
   private Object currentValue = null;
 
+  @JsonProperty("entityIds")
+  private List<Long> entityIds = new ArrayList<>();
+
   @JsonProperty("hasProperty")
   private Boolean hasProperty;
+
+  public IssueFilterForBulkPropertySet currentValue(Object currentValue) {
+    this.currentValue = currentValue;
+    return this;
+  }
+
+   /**
+   * The value of properties to perform the bulk operation on.
+   * @return currentValue
+  **/
+  @ApiModelProperty(value = "The value of properties to perform the bulk operation on.")
+  public Object getCurrentValue() {
+    return currentValue;
+  }
+
+  public void setCurrentValue(Object currentValue) {
+    this.currentValue = currentValue;
+  }
 
   public IssueFilterForBulkPropertySet entityIds(List<Long> entityIds) {
     this.entityIds = entityIds;
@@ -77,24 +95,6 @@ public class IssueFilterForBulkPropertySet {
 
   public void setEntityIds(List<Long> entityIds) {
     this.entityIds = entityIds;
-  }
-
-  public IssueFilterForBulkPropertySet currentValue(Object currentValue) {
-    this.currentValue = currentValue;
-    return this;
-  }
-
-   /**
-   * The value of properties to perform the bulk operation on.
-   * @return currentValue
-  **/
-  @ApiModelProperty(value = "The value of properties to perform the bulk operation on.")
-  public Object getCurrentValue() {
-    return currentValue;
-  }
-
-  public void setCurrentValue(Object currentValue) {
-    this.currentValue = currentValue;
   }
 
   public IssueFilterForBulkPropertySet hasProperty(Boolean hasProperty) {
@@ -125,14 +125,14 @@ public class IssueFilterForBulkPropertySet {
       return false;
     }
     IssueFilterForBulkPropertySet issueFilterForBulkPropertySet = (IssueFilterForBulkPropertySet) o;
-    return Objects.equals(this.entityIds, issueFilterForBulkPropertySet.entityIds) &&
-        Objects.equals(this.currentValue, issueFilterForBulkPropertySet.currentValue) &&
+    return Objects.equals(this.currentValue, issueFilterForBulkPropertySet.currentValue) &&
+        Objects.equals(this.entityIds, issueFilterForBulkPropertySet.entityIds) &&
         Objects.equals(this.hasProperty, issueFilterForBulkPropertySet.hasProperty);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(entityIds, currentValue, hasProperty);
+    return Objects.hash(currentValue, entityIds, hasProperty);
   }
 
 
@@ -141,8 +141,8 @@ public class IssueFilterForBulkPropertySet {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueFilterForBulkPropertySet {\n");
     
-    sb.append("    entityIds: ").append(toIndentedString(entityIds)).append("\n");
     sb.append("    currentValue: ").append(toIndentedString(currentValue)).append("\n");
+    sb.append("    entityIds: ").append(toIndentedString(entityIds)).append("\n");
     sb.append("    hasProperty: ").append(toIndentedString(hasProperty)).append("\n");
     sb.append("}");
     return sb.toString();

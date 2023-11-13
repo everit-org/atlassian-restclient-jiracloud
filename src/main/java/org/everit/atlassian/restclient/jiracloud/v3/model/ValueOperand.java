@@ -40,10 +40,31 @@ import io.swagger.annotations.ApiModelProperty;
  * An operand that is a user-provided value.
  */
 @ApiModel(description = "An operand that is a user-provided value.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class ValueOperand {
+  @JsonProperty("encodedValue")
+  private String encodedValue;
+
   @JsonProperty("value")
   private String value;
+
+  public ValueOperand encodedValue(String encodedValue) {
+    this.encodedValue = encodedValue;
+    return this;
+  }
+
+   /**
+   * Encoded value, which can be used directly in a JQL query.
+   * @return encodedValue
+  **/
+  @ApiModelProperty(value = "Encoded value, which can be used directly in a JQL query.")
+  public String getEncodedValue() {
+    return encodedValue;
+  }
+
+  public void setEncodedValue(String encodedValue) {
+    this.encodedValue = encodedValue;
+  }
 
   public ValueOperand value(String value) {
     this.value = value;
@@ -73,12 +94,13 @@ public class ValueOperand {
       return false;
     }
     ValueOperand valueOperand = (ValueOperand) o;
-    return Objects.equals(this.value, valueOperand.value);
+    return Objects.equals(this.encodedValue, valueOperand.encodedValue) &&
+        Objects.equals(this.value, valueOperand.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value);
+    return Objects.hash(encodedValue, value);
   }
 
 
@@ -87,6 +109,7 @@ public class ValueOperand {
     StringBuilder sb = new StringBuilder();
     sb.append("class ValueOperand {\n");
     
+    sb.append("    encodedValue: ").append(toIndentedString(encodedValue)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();

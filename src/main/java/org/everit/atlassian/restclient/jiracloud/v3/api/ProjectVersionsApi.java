@@ -33,6 +33,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.PageBeanVersion;
 import org.everit.atlassian.restclient.jiracloud.v3.model.Version;
 import org.everit.atlassian.restclient.jiracloud.v3.model.VersionIssueCounts;
 import org.everit.atlassian.restclient.jiracloud.v3.model.VersionMoveBean;
+import org.everit.atlassian.restclient.jiracloud.v3.model.VersionRelatedWork;
 import org.everit.atlassian.restclient.jiracloud.v3.model.VersionUnresolvedIssuesCount;
 
 import java.util.ArrayList;
@@ -46,6 +47,8 @@ public class ProjectVersionsApi {
 
   private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.net";
 
+  private static final TypeReference<VersionRelatedWork> returnType_createRelatedWork = new TypeReference<VersionRelatedWork>() {};
+
   private static final TypeReference<Version> returnType_createVersion = new TypeReference<Version>() {};
 
   private static final TypeReference<Object> returnType_deleteAndReplaceVersion = new TypeReference<Object>() {};
@@ -53,6 +56,8 @@ public class ProjectVersionsApi {
   private static final TypeReference<List<Version>> returnType_getProjectVersions = new TypeReference<List<Version>>() {};
 
   private static final TypeReference<PageBeanVersion> returnType_getProjectVersionsPaginated = new TypeReference<PageBeanVersion>() {};
+
+  private static final TypeReference<List<VersionRelatedWork>> returnType_getRelatedWork = new TypeReference<List<VersionRelatedWork>>() {};
 
   private static final TypeReference<Version> returnType_getVersion = new TypeReference<Version>() {};
 
@@ -64,12 +69,45 @@ public class ProjectVersionsApi {
 
   private static final TypeReference<Version> returnType_moveVersion = new TypeReference<Version>() {};
 
+  private static final TypeReference<VersionRelatedWork> returnType_updateRelatedWork = new TypeReference<VersionRelatedWork>() {};
+
   private static final TypeReference<Version> returnType_updateVersion = new TypeReference<Version>() {};
 
   private final RestClient restClient;
 
   public ProjectVersionsApi(RestClient restClient) {
     this.restClient = restClient;
+  }
+
+  /**
+   * Create related work
+   * Creates a related work for the given version. You can only create a generic link type of related works via this API. relatedWorkId will be auto-generated UUID, that does not need to be provided.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** *Resolve issues:* and *Edit issues* [Managing project permissions](https://confluence.atlassian.com/adminjiraserver/managing-project-permissions-938847145.html) for the project that contains the version.
+   * @param id  (required)
+   * @param versionRelatedWork  (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;VersionRelatedWork&gt;
+   */
+  public Single<VersionRelatedWork> createRelatedWork(
+    String id, VersionRelatedWork versionRelatedWork, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.POST)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/version/{id}/relatedwork");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("id", String.valueOf(id));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(versionRelatedWork));
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_createRelatedWork);
   }
 
   /**
@@ -130,6 +168,36 @@ public class ProjectVersionsApi {
     requestBuilder.requestBody(Optional.of(deleteAndReplaceVersionBean));
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_deleteAndReplaceVersion);
+  }
+
+  /**
+   * Delete related work
+   * Deletes the given related work for the given version.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** *Resolve issues:* and *Edit issues* [Managing project permissions](https://confluence.atlassian.com/adminjiraserver/managing-project-permissions-938847145.html) for the project that contains the version.
+   * @param versionId The ID of the version that the target related work belongs to. (required)
+   * @param relatedWorkId The ID of the related work to delete. (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Completable
+   */
+  public Completable deleteRelatedWork(
+    String versionId, String relatedWorkId, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.DELETE)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/version/{versionId}/relatedwork/{relatedWorkId}");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("versionId", String.valueOf(versionId));
+    pathParams.put("relatedWorkId", String.valueOf(relatedWorkId));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -211,7 +279,7 @@ public class ProjectVersionsApi {
    * @param orderBy [Order](#ordering) the results by a field:   *  `description` Sorts by version description.  *  `name` Sorts by version name.  *  `releaseDate` Sorts by release date, starting with the oldest date. Versions with no release date are listed last.  *  `sequence` Sorts by the order of appearance in the user interface.  *  `startDate` Sorts by start date, starting with the oldest date. Versions with no start date are listed last. (optional)
    * @param query Filter the results using a literal string. Versions with matching `name` or `description` are returned (case insensitive). (optional)
    * @param status A list of status values used to filter the results by version status. This parameter accepts a comma-separated list. The status values are `released`, `unreleased`, and `archived`. (optional)
-   * @param expand Use [expand](#expansion) to include additional information in the response. This parameter accepts a comma-separated list. Expand options include:   *  `issuesstatus` Returns the number of issues in each status category for each version.  *  `operations` Returns actions that can be performed on the specified version. (optional)
+   * @param expand Use [expand](#expansion) to include additional information in the response. This parameter accepts a comma-separated list. Expand options include:   *  `issuesstatus` Returns the number of issues in each status category for each version.  *  `operations` Returns actions that can be performed on the specified version.  *  `driver` Returns the Atlassian account ID of the version driver.  *  `approvers` Returns a list containing the approvers for this version. (optional)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PageBeanVersion&gt;
    */
@@ -255,10 +323,38 @@ public class ProjectVersionsApi {
   }
 
   /**
+   * Get related work
+   * Returns related work items for the given version id.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the version.
+   * @param id The ID of the version. (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;List&lt;VersionRelatedWork&gt;&gt;
+   */
+  public Single<List<VersionRelatedWork>> getRelatedWork(
+    String id, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/version/{id}/relatedwork");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("id", String.valueOf(id));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getRelatedWork);
+  }
+
+  /**
    * Get version
    * Returns a project version.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the version.
    * @param id The ID of the version. (required)
-   * @param expand Use [expand](#expansion) to include additional information about version in the response. This parameter accepts a comma-separated list. Expand options include:   *  `operations` Returns the list of operations available for this version.  *  `issuesstatus` Returns the count of issues in this version for each of the status categories *to do*, *in progress*, *done*, and *unmapped*. The *unmapped* property represents the number of issues with a status other than *to do*, *in progress*, and *done*. (optional)
+   * @param expand Use [expand](#expansion) to include additional information about version in the response. This parameter accepts a comma-separated list. Expand options include:   *  `operations` Returns the list of operations available for this version.  *  `issuesstatus` Returns the count of issues in this version for each of the status categories *to do*, *in progress*, *done*, and *unmapped*. The *unmapped* property represents the number of issues with a status other than *to do*, *in progress*, and *done*.  *  `driver` Returns the Atlassian account ID of the version driver.  *  `approvers` Returns a list containing the Atlassian account IDs of approvers for this version. (optional)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Version&gt;
    */
@@ -401,6 +497,37 @@ public class ProjectVersionsApi {
     requestBuilder.requestBody(Optional.of(versionMoveBean));
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_moveVersion);
+  }
+
+  /**
+   * Update related work
+   * Updates the given related work. You can only update generic link related works via Rest APIs. Any archived version related works can't be edited.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** *Resolve issues:* and *Edit issues* [Managing project permissions](https://confluence.atlassian.com/adminjiraserver/managing-project-permissions-938847145.html) for the project that contains the version.
+   * @param id The ID of the version to update the related work on. For the related work id, pass it to the input JSON. (required)
+   * @param versionRelatedWork  (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;VersionRelatedWork&gt;
+   */
+  public Single<VersionRelatedWork> updateRelatedWork(
+    String id, VersionRelatedWork versionRelatedWork, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.PUT)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/version/{id}/relatedwork");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("id", String.valueOf(id));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(versionRelatedWork));
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updateRelatedWork);
   }
 
   /**

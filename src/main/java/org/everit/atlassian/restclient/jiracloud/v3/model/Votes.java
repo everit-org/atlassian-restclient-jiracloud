@@ -44,37 +44,19 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.User;
  * The details of votes on an issue.
  */
 @ApiModel(description = "The details of votes on an issue.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class Votes {
-  @JsonProperty("self")
-  private URI self;
-
-  @JsonProperty("votes")
-  private Long votes;
-
   @JsonProperty("hasVoted")
   private Boolean hasVoted;
+
+  @JsonProperty("self")
+  private URI self;
 
   @JsonProperty("voters")
   private List<User> voters = new ArrayList<>();
 
-   /**
-   * The URL of these issue vote details.
-   * @return self
-  **/
-  @ApiModelProperty(value = "The URL of these issue vote details.")
-  public URI getSelf() {
-    return self;
-  }
-
-   /**
-   * The number of votes on the issue.
-   * @return votes
-  **/
-  @ApiModelProperty(value = "The number of votes on the issue.")
-  public Long getVotes() {
-    return votes;
-  }
+  @JsonProperty("votes")
+  private Long votes;
 
    /**
    * Whether the user making this request has voted on the issue.
@@ -86,12 +68,30 @@ public class Votes {
   }
 
    /**
+   * The URL of these issue vote details.
+   * @return self
+  **/
+  @ApiModelProperty(value = "The URL of these issue vote details.")
+  public URI getSelf() {
+    return self;
+  }
+
+   /**
    * List of the users who have voted on this issue. An empty list is returned when the calling user doesn&#39;t have the *View voters and watchers* project permission.
    * @return voters
   **/
   @ApiModelProperty(value = "List of the users who have voted on this issue. An empty list is returned when the calling user doesn't have the *View voters and watchers* project permission.")
   public List<User> getVoters() {
     return voters;
+  }
+
+   /**
+   * The number of votes on the issue.
+   * @return votes
+  **/
+  @ApiModelProperty(value = "The number of votes on the issue.")
+  public Long getVotes() {
+    return votes;
   }
 
 
@@ -104,15 +104,15 @@ public class Votes {
       return false;
     }
     Votes votes = (Votes) o;
-    return Objects.equals(this.self, votes.self) &&
-        Objects.equals(this.votes, votes.votes) &&
-        Objects.equals(this.hasVoted, votes.hasVoted) &&
-        Objects.equals(this.voters, votes.voters);
+    return Objects.equals(this.hasVoted, votes.hasVoted) &&
+        Objects.equals(this.self, votes.self) &&
+        Objects.equals(this.voters, votes.voters) &&
+        Objects.equals(this.votes, votes.votes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, votes, hasVoted, voters);
+    return Objects.hash(hasVoted, self, voters, votes);
   }
 
 
@@ -121,10 +121,10 @@ public class Votes {
     StringBuilder sb = new StringBuilder();
     sb.append("class Votes {\n");
     
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    votes: ").append(toIndentedString(votes)).append("\n");
     sb.append("    hasVoted: ").append(toIndentedString(hasVoted)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    voters: ").append(toIndentedString(voters)).append("\n");
+    sb.append("    votes: ").append(toIndentedString(votes)).append("\n");
     sb.append("}");
     return sb.toString();
   }

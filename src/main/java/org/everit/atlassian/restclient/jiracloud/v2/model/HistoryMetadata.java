@@ -44,10 +44,19 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.HistoryMetadataPartici
  * Details of issue history metadata.
  */
 @ApiModel(description = "Details of issue history metadata.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class HistoryMetadata {
-  @JsonProperty("type")
-  private String type;
+  @JsonProperty("activityDescription")
+  private String activityDescription;
+
+  @JsonProperty("activityDescriptionKey")
+  private String activityDescriptionKey;
+
+  @JsonProperty("actor")
+  private HistoryMetadataParticipant actor;
+
+  @JsonProperty("cause")
+  private HistoryMetadataParticipant cause;
 
   @JsonProperty("description")
   private String description;
@@ -55,48 +64,93 @@ public class HistoryMetadata {
   @JsonProperty("descriptionKey")
   private String descriptionKey;
 
-  @JsonProperty("activityDescription")
-  private String activityDescription;
-
-  @JsonProperty("activityDescriptionKey")
-  private String activityDescriptionKey;
-
   @JsonProperty("emailDescription")
   private String emailDescription;
 
   @JsonProperty("emailDescriptionKey")
   private String emailDescriptionKey;
 
-  @JsonProperty("actor")
-  private HistoryMetadataParticipant actor;
+  @JsonProperty("extraData")
+  private Map<String, String> extraData = new HashMap<>();
 
   @JsonProperty("generator")
   private HistoryMetadataParticipant generator;
 
-  @JsonProperty("cause")
-  private HistoryMetadataParticipant cause;
-
-  @JsonProperty("extraData")
-  private Map<String, String> extraData = new HashMap<>();
+  @JsonProperty("type")
+  private String type;
 
   private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
 
-  public HistoryMetadata type(String type) {
-    this.type = type;
+  public HistoryMetadata activityDescription(String activityDescription) {
+    this.activityDescription = activityDescription;
     return this;
   }
 
    /**
-   * The type of the history record.
-   * @return type
+   * The activity described in the history record.
+   * @return activityDescription
   **/
-  @ApiModelProperty(value = "The type of the history record.")
-  public String getType() {
-    return type;
+  @ApiModelProperty(value = "The activity described in the history record.")
+  public String getActivityDescription() {
+    return activityDescription;
   }
 
-  public void setType(String type) {
-    this.type = type;
+  public void setActivityDescription(String activityDescription) {
+    this.activityDescription = activityDescription;
+  }
+
+  public HistoryMetadata activityDescriptionKey(String activityDescriptionKey) {
+    this.activityDescriptionKey = activityDescriptionKey;
+    return this;
+  }
+
+   /**
+   * The key of the activity described in the history record.
+   * @return activityDescriptionKey
+  **/
+  @ApiModelProperty(value = "The key of the activity described in the history record.")
+  public String getActivityDescriptionKey() {
+    return activityDescriptionKey;
+  }
+
+  public void setActivityDescriptionKey(String activityDescriptionKey) {
+    this.activityDescriptionKey = activityDescriptionKey;
+  }
+
+  public HistoryMetadata actor(HistoryMetadataParticipant actor) {
+    this.actor = actor;
+    return this;
+  }
+
+   /**
+   * Details of the user whose action created the history record.
+   * @return actor
+  **/
+  @ApiModelProperty(value = "Details of the user whose action created the history record.")
+  public HistoryMetadataParticipant getActor() {
+    return actor;
+  }
+
+  public void setActor(HistoryMetadataParticipant actor) {
+    this.actor = actor;
+  }
+
+  public HistoryMetadata cause(HistoryMetadataParticipant cause) {
+    this.cause = cause;
+    return this;
+  }
+
+   /**
+   * Details of the cause that triggered the creation the history record.
+   * @return cause
+  **/
+  @ApiModelProperty(value = "Details of the cause that triggered the creation the history record.")
+  public HistoryMetadataParticipant getCause() {
+    return cause;
+  }
+
+  public void setCause(HistoryMetadataParticipant cause) {
+    this.cause = cause;
   }
 
   public HistoryMetadata description(String description) {
@@ -135,42 +189,6 @@ public class HistoryMetadata {
     this.descriptionKey = descriptionKey;
   }
 
-  public HistoryMetadata activityDescription(String activityDescription) {
-    this.activityDescription = activityDescription;
-    return this;
-  }
-
-   /**
-   * The activity described in the history record.
-   * @return activityDescription
-  **/
-  @ApiModelProperty(value = "The activity described in the history record.")
-  public String getActivityDescription() {
-    return activityDescription;
-  }
-
-  public void setActivityDescription(String activityDescription) {
-    this.activityDescription = activityDescription;
-  }
-
-  public HistoryMetadata activityDescriptionKey(String activityDescriptionKey) {
-    this.activityDescriptionKey = activityDescriptionKey;
-    return this;
-  }
-
-   /**
-   * The key of the activity described in the history record.
-   * @return activityDescriptionKey
-  **/
-  @ApiModelProperty(value = "The key of the activity described in the history record.")
-  public String getActivityDescriptionKey() {
-    return activityDescriptionKey;
-  }
-
-  public void setActivityDescriptionKey(String activityDescriptionKey) {
-    this.activityDescriptionKey = activityDescriptionKey;
-  }
-
   public HistoryMetadata emailDescription(String emailDescription) {
     this.emailDescription = emailDescription;
     return this;
@@ -207,60 +225,6 @@ public class HistoryMetadata {
     this.emailDescriptionKey = emailDescriptionKey;
   }
 
-  public HistoryMetadata actor(HistoryMetadataParticipant actor) {
-    this.actor = actor;
-    return this;
-  }
-
-   /**
-   * Details of the user whose action created the history record.
-   * @return actor
-  **/
-  @ApiModelProperty(value = "Details of the user whose action created the history record.")
-  public HistoryMetadataParticipant getActor() {
-    return actor;
-  }
-
-  public void setActor(HistoryMetadataParticipant actor) {
-    this.actor = actor;
-  }
-
-  public HistoryMetadata generator(HistoryMetadataParticipant generator) {
-    this.generator = generator;
-    return this;
-  }
-
-   /**
-   * Details of the system that generated the history record.
-   * @return generator
-  **/
-  @ApiModelProperty(value = "Details of the system that generated the history record.")
-  public HistoryMetadataParticipant getGenerator() {
-    return generator;
-  }
-
-  public void setGenerator(HistoryMetadataParticipant generator) {
-    this.generator = generator;
-  }
-
-  public HistoryMetadata cause(HistoryMetadataParticipant cause) {
-    this.cause = cause;
-    return this;
-  }
-
-   /**
-   * Details of the cause that triggered the creation the history record.
-   * @return cause
-  **/
-  @ApiModelProperty(value = "Details of the cause that triggered the creation the history record.")
-  public HistoryMetadataParticipant getCause() {
-    return cause;
-  }
-
-  public void setCause(HistoryMetadataParticipant cause) {
-    this.cause = cause;
-  }
-
   public HistoryMetadata extraData(Map<String, String> extraData) {
     this.extraData = extraData;
     return this;
@@ -287,6 +251,42 @@ public class HistoryMetadata {
     this.extraData = extraData;
   }
 
+  public HistoryMetadata generator(HistoryMetadataParticipant generator) {
+    this.generator = generator;
+    return this;
+  }
+
+   /**
+   * Details of the system that generated the history record.
+   * @return generator
+  **/
+  @ApiModelProperty(value = "Details of the system that generated the history record.")
+  public HistoryMetadataParticipant getGenerator() {
+    return generator;
+  }
+
+  public void setGenerator(HistoryMetadataParticipant generator) {
+    this.generator = generator;
+  }
+
+  public HistoryMetadata type(String type) {
+    this.type = type;
+    return this;
+  }
+
+   /**
+   * The type of the history record.
+   * @return type
+  **/
+  @ApiModelProperty(value = "The type of the history record.")
+  public String getType() {
+    return type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
+  }
+
 
   @com.fasterxml.jackson.annotation.JsonAnyGetter
   public Map<String, Object> any() {
@@ -307,23 +307,23 @@ public class HistoryMetadata {
       return false;
     }
     HistoryMetadata historyMetadata = (HistoryMetadata) o;
-    return Objects.equals(this.type, historyMetadata.type) &&
+    return Objects.equals(this.activityDescription, historyMetadata.activityDescription) &&
+        Objects.equals(this.activityDescriptionKey, historyMetadata.activityDescriptionKey) &&
+        Objects.equals(this.actor, historyMetadata.actor) &&
+        Objects.equals(this.cause, historyMetadata.cause) &&
         Objects.equals(this.description, historyMetadata.description) &&
         Objects.equals(this.descriptionKey, historyMetadata.descriptionKey) &&
-        Objects.equals(this.activityDescription, historyMetadata.activityDescription) &&
-        Objects.equals(this.activityDescriptionKey, historyMetadata.activityDescriptionKey) &&
         Objects.equals(this.emailDescription, historyMetadata.emailDescription) &&
         Objects.equals(this.emailDescriptionKey, historyMetadata.emailDescriptionKey) &&
-        Objects.equals(this.actor, historyMetadata.actor) &&
-        Objects.equals(this.generator, historyMetadata.generator) &&
-        Objects.equals(this.cause, historyMetadata.cause) &&
         Objects.equals(this.extraData, historyMetadata.extraData) &&
+        Objects.equals(this.generator, historyMetadata.generator) &&
+        Objects.equals(this.type, historyMetadata.type) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, description, descriptionKey, activityDescription, activityDescriptionKey, emailDescription, emailDescriptionKey, actor, generator, cause, extraData, super.hashCode());
+    return Objects.hash(activityDescription, activityDescriptionKey, actor, cause, description, descriptionKey, emailDescription, emailDescriptionKey, extraData, generator, type, super.hashCode());
   }
 
 
@@ -332,17 +332,17 @@ public class HistoryMetadata {
     StringBuilder sb = new StringBuilder();
     sb.append("class HistoryMetadata {\n");
     
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    descriptionKey: ").append(toIndentedString(descriptionKey)).append("\n");
     sb.append("    activityDescription: ").append(toIndentedString(activityDescription)).append("\n");
     sb.append("    activityDescriptionKey: ").append(toIndentedString(activityDescriptionKey)).append("\n");
+    sb.append("    actor: ").append(toIndentedString(actor)).append("\n");
+    sb.append("    cause: ").append(toIndentedString(cause)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    descriptionKey: ").append(toIndentedString(descriptionKey)).append("\n");
     sb.append("    emailDescription: ").append(toIndentedString(emailDescription)).append("\n");
     sb.append("    emailDescriptionKey: ").append(toIndentedString(emailDescriptionKey)).append("\n");
-    sb.append("    actor: ").append(toIndentedString(actor)).append("\n");
-    sb.append("    generator: ").append(toIndentedString(generator)).append("\n");
-    sb.append("    cause: ").append(toIndentedString(cause)).append("\n");
     sb.append("    extraData: ").append(toIndentedString(extraData)).append("\n");
+    sb.append("    generator: ").append(toIndentedString(generator)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();

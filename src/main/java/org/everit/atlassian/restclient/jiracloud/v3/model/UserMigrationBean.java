@@ -39,16 +39,34 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * UserMigrationBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class UserMigrationBean {
+  @JsonProperty("accountId")
+  private String accountId;
+
   @JsonProperty("key")
   private String key;
 
   @JsonProperty("username")
   private String username;
 
-  @JsonProperty("accountId")
-  private String accountId;
+  public UserMigrationBean accountId(String accountId) {
+    this.accountId = accountId;
+    return this;
+  }
+
+   /**
+   * Get accountId
+   * @return accountId
+  **/
+  @ApiModelProperty(value = "")
+  public String getAccountId() {
+    return accountId;
+  }
+
+  public void setAccountId(String accountId) {
+    this.accountId = accountId;
+  }
 
   public UserMigrationBean key(String key) {
     this.key = key;
@@ -86,24 +104,6 @@ public class UserMigrationBean {
     this.username = username;
   }
 
-  public UserMigrationBean accountId(String accountId) {
-    this.accountId = accountId;
-    return this;
-  }
-
-   /**
-   * Get accountId
-   * @return accountId
-  **/
-  @ApiModelProperty(value = "")
-  public String getAccountId() {
-    return accountId;
-  }
-
-  public void setAccountId(String accountId) {
-    this.accountId = accountId;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -114,14 +114,14 @@ public class UserMigrationBean {
       return false;
     }
     UserMigrationBean userMigrationBean = (UserMigrationBean) o;
-    return Objects.equals(this.key, userMigrationBean.key) &&
-        Objects.equals(this.username, userMigrationBean.username) &&
-        Objects.equals(this.accountId, userMigrationBean.accountId);
+    return Objects.equals(this.accountId, userMigrationBean.accountId) &&
+        Objects.equals(this.key, userMigrationBean.key) &&
+        Objects.equals(this.username, userMigrationBean.username);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(key, username, accountId);
+    return Objects.hash(accountId, key, username);
   }
 
 
@@ -130,9 +130,9 @@ public class UserMigrationBean {
     StringBuilder sb = new StringBuilder();
     sb.append("class UserMigrationBean {\n");
     
+    sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
-    sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

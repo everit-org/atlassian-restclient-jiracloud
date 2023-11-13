@@ -44,24 +44,60 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.NotificationRecipients
  * Details about a notification.
  */
 @ApiModel(description = "Details about a notification.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class Notification {
+  @JsonProperty("htmlBody")
+  private String htmlBody;
+
+  @JsonProperty("restrict")
+  private NotificationRecipientsRestrictions restrict;
+
   @JsonProperty("subject")
   private String subject;
 
   @JsonProperty("textBody")
   private String textBody;
 
-  @JsonProperty("htmlBody")
-  private String htmlBody;
-
   @JsonProperty("to")
   private NotificationRecipients to;
 
-  @JsonProperty("restrict")
-  private NotificationRecipientsRestrictions restrict;
-
   private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
+
+  public Notification htmlBody(String htmlBody) {
+    this.htmlBody = htmlBody;
+    return this;
+  }
+
+   /**
+   * The HTML body of the email notification for the issue.
+   * @return htmlBody
+  **/
+  @ApiModelProperty(value = "The HTML body of the email notification for the issue.")
+  public String getHtmlBody() {
+    return htmlBody;
+  }
+
+  public void setHtmlBody(String htmlBody) {
+    this.htmlBody = htmlBody;
+  }
+
+  public Notification restrict(NotificationRecipientsRestrictions restrict) {
+    this.restrict = restrict;
+    return this;
+  }
+
+   /**
+   * Restricts the notifications to users with the specified permissions.
+   * @return restrict
+  **/
+  @ApiModelProperty(value = "Restricts the notifications to users with the specified permissions.")
+  public NotificationRecipientsRestrictions getRestrict() {
+    return restrict;
+  }
+
+  public void setRestrict(NotificationRecipientsRestrictions restrict) {
+    this.restrict = restrict;
+  }
 
   public Notification subject(String subject) {
     this.subject = subject;
@@ -99,24 +135,6 @@ public class Notification {
     this.textBody = textBody;
   }
 
-  public Notification htmlBody(String htmlBody) {
-    this.htmlBody = htmlBody;
-    return this;
-  }
-
-   /**
-   * The HTML body of the email notification for the issue.
-   * @return htmlBody
-  **/
-  @ApiModelProperty(value = "The HTML body of the email notification for the issue.")
-  public String getHtmlBody() {
-    return htmlBody;
-  }
-
-  public void setHtmlBody(String htmlBody) {
-    this.htmlBody = htmlBody;
-  }
-
   public Notification to(NotificationRecipients to) {
     this.to = to;
     return this;
@@ -133,24 +151,6 @@ public class Notification {
 
   public void setTo(NotificationRecipients to) {
     this.to = to;
-  }
-
-  public Notification restrict(NotificationRecipientsRestrictions restrict) {
-    this.restrict = restrict;
-    return this;
-  }
-
-   /**
-   * Restricts the notifications to users with the specified permissions.
-   * @return restrict
-  **/
-  @ApiModelProperty(value = "Restricts the notifications to users with the specified permissions.")
-  public NotificationRecipientsRestrictions getRestrict() {
-    return restrict;
-  }
-
-  public void setRestrict(NotificationRecipientsRestrictions restrict) {
-    this.restrict = restrict;
   }
 
 
@@ -173,17 +173,17 @@ public class Notification {
       return false;
     }
     Notification notification = (Notification) o;
-    return Objects.equals(this.subject, notification.subject) &&
-        Objects.equals(this.textBody, notification.textBody) &&
-        Objects.equals(this.htmlBody, notification.htmlBody) &&
-        Objects.equals(this.to, notification.to) &&
+    return Objects.equals(this.htmlBody, notification.htmlBody) &&
         Objects.equals(this.restrict, notification.restrict) &&
+        Objects.equals(this.subject, notification.subject) &&
+        Objects.equals(this.textBody, notification.textBody) &&
+        Objects.equals(this.to, notification.to) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(subject, textBody, htmlBody, to, restrict, super.hashCode());
+    return Objects.hash(htmlBody, restrict, subject, textBody, to, super.hashCode());
   }
 
 
@@ -192,11 +192,11 @@ public class Notification {
     StringBuilder sb = new StringBuilder();
     sb.append("class Notification {\n");
     
+    sb.append("    htmlBody: ").append(toIndentedString(htmlBody)).append("\n");
+    sb.append("    restrict: ").append(toIndentedString(restrict)).append("\n");
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("    textBody: ").append(toIndentedString(textBody)).append("\n");
-    sb.append("    htmlBody: ").append(toIndentedString(htmlBody)).append("\n");
     sb.append("    to: ").append(toIndentedString(to)).append("\n");
-    sb.append("    restrict: ").append(toIndentedString(restrict)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();

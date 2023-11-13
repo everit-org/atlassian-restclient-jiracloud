@@ -45,55 +45,28 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.UserDetails;
  * Key fields from the linked issue.
  */
 @ApiModel(description = "Key fields from the linked issue.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class Fields {
-  @JsonProperty("summary")
-  private String summary;
-
-  @JsonProperty("status")
-  private StatusDetails status;
-
-  @JsonProperty("priority")
-  private Priority priority;
-
   @JsonProperty("assignee")
   private UserDetails assignee;
-
-  @JsonProperty("timetracking")
-  private TimeTrackingDetails timetracking;
-
-  @JsonProperty("issuetype")
-  private IssueTypeDetails issuetype;
 
   @JsonProperty("issueType")
   private IssueTypeDetails issueType;
 
-   /**
-   * The summary description of the linked issue.
-   * @return summary
-  **/
-  @ApiModelProperty(value = "The summary description of the linked issue.")
-  public String getSummary() {
-    return summary;
-  }
+  @JsonProperty("issuetype")
+  private IssueTypeDetails issuetype;
 
-   /**
-   * The status of the linked issue.
-   * @return status
-  **/
-  @ApiModelProperty(value = "The status of the linked issue.")
-  public StatusDetails getStatus() {
-    return status;
-  }
+  @JsonProperty("priority")
+  private Priority priority;
 
-   /**
-   * The priority of the linked issue.
-   * @return priority
-  **/
-  @ApiModelProperty(value = "The priority of the linked issue.")
-  public Priority getPriority() {
-    return priority;
-  }
+  @JsonProperty("status")
+  private StatusDetails status;
+
+  @JsonProperty("summary")
+  private String summary;
+
+  @JsonProperty("timetracking")
+  private TimeTrackingDetails timetracking;
 
    /**
    * The assignee of the linked issue.
@@ -105,12 +78,12 @@ public class Fields {
   }
 
    /**
-   * The time tracking of the linked issue.
-   * @return timetracking
+   * The type of the linked issue.
+   * @return issueType
   **/
-  @ApiModelProperty(value = "The time tracking of the linked issue.")
-  public TimeTrackingDetails getTimetracking() {
-    return timetracking;
+  @ApiModelProperty(value = "The type of the linked issue.")
+  public IssueTypeDetails getIssueType() {
+    return issueType;
   }
 
   public Fields issuetype(IssueTypeDetails issuetype) {
@@ -132,12 +105,39 @@ public class Fields {
   }
 
    /**
-   * The type of the linked issue.
-   * @return issueType
+   * The priority of the linked issue.
+   * @return priority
   **/
-  @ApiModelProperty(value = "The type of the linked issue.")
-  public IssueTypeDetails getIssueType() {
-    return issueType;
+  @ApiModelProperty(value = "The priority of the linked issue.")
+  public Priority getPriority() {
+    return priority;
+  }
+
+   /**
+   * The status of the linked issue.
+   * @return status
+  **/
+  @ApiModelProperty(value = "The status of the linked issue.")
+  public StatusDetails getStatus() {
+    return status;
+  }
+
+   /**
+   * The summary description of the linked issue.
+   * @return summary
+  **/
+  @ApiModelProperty(value = "The summary description of the linked issue.")
+  public String getSummary() {
+    return summary;
+  }
+
+   /**
+   * The time tracking of the linked issue.
+   * @return timetracking
+  **/
+  @ApiModelProperty(value = "The time tracking of the linked issue.")
+  public TimeTrackingDetails getTimetracking() {
+    return timetracking;
   }
 
 
@@ -150,18 +150,18 @@ public class Fields {
       return false;
     }
     Fields fields = (Fields) o;
-    return Objects.equals(this.summary, fields.summary) &&
-        Objects.equals(this.status, fields.status) &&
-        Objects.equals(this.priority, fields.priority) &&
-        Objects.equals(this.assignee, fields.assignee) &&
-        Objects.equals(this.timetracking, fields.timetracking) &&
+    return Objects.equals(this.assignee, fields.assignee) &&
+        Objects.equals(this.issueType, fields.issueType) &&
         Objects.equals(this.issuetype, fields.issuetype) &&
-        Objects.equals(this.issueType, fields.issueType);
+        Objects.equals(this.priority, fields.priority) &&
+        Objects.equals(this.status, fields.status) &&
+        Objects.equals(this.summary, fields.summary) &&
+        Objects.equals(this.timetracking, fields.timetracking);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(summary, status, priority, assignee, timetracking, issuetype, issueType);
+    return Objects.hash(assignee, issueType, issuetype, priority, status, summary, timetracking);
   }
 
 
@@ -170,13 +170,13 @@ public class Fields {
     StringBuilder sb = new StringBuilder();
     sb.append("class Fields {\n");
     
-    sb.append("    summary: ").append(toIndentedString(summary)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    priority: ").append(toIndentedString(priority)).append("\n");
     sb.append("    assignee: ").append(toIndentedString(assignee)).append("\n");
-    sb.append("    timetracking: ").append(toIndentedString(timetracking)).append("\n");
-    sb.append("    issuetype: ").append(toIndentedString(issuetype)).append("\n");
     sb.append("    issueType: ").append(toIndentedString(issueType)).append("\n");
+    sb.append("    issuetype: ").append(toIndentedString(issuetype)).append("\n");
+    sb.append("    priority: ").append(toIndentedString(priority)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    summary: ").append(toIndentedString(summary)).append("\n");
+    sb.append("    timetracking: ").append(toIndentedString(timetracking)).append("\n");
     sb.append("}");
     return sb.toString();
   }

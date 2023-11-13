@@ -44,10 +44,16 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.ChangedWorklog;
  * List of changed worklogs.
  */
 @ApiModel(description = "List of changed worklogs.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class ChangedWorklogs {
-  @JsonProperty("values")
-  private List<ChangedWorklog> values = new ArrayList<>();
+  @JsonProperty("lastPage")
+  private Boolean lastPage;
+
+  @JsonProperty("nextPage")
+  private URI nextPage;
+
+  @JsonProperty("self")
+  private URI self;
 
   @JsonProperty("since")
   private Long since;
@@ -55,22 +61,43 @@ public class ChangedWorklogs {
   @JsonProperty("until")
   private Long until;
 
-  @JsonProperty("self")
-  private URI self;
+  @JsonProperty("values")
+  private List<ChangedWorklog> values = new ArrayList<>();
 
-  @JsonProperty("nextPage")
-  private URI nextPage;
-
-  @JsonProperty("lastPage")
-  private Boolean lastPage;
+  public ChangedWorklogs lastPage(Boolean lastPage) {
+    this.lastPage = lastPage;
+    return this;
+  }
 
    /**
-   * Changed worklog list.
-   * @return values
+   * Get lastPage
+   * @return lastPage
   **/
-  @ApiModelProperty(value = "Changed worklog list.")
-  public List<ChangedWorklog> getValues() {
-    return values;
+  @ApiModelProperty(value = "")
+  public Boolean getLastPage() {
+    return lastPage;
+  }
+
+  public void setLastPage(Boolean lastPage) {
+    this.lastPage = lastPage;
+  }
+
+   /**
+   * The URL of the next list of changed worklogs.
+   * @return nextPage
+  **/
+  @ApiModelProperty(value = "The URL of the next list of changed worklogs.")
+  public URI getNextPage() {
+    return nextPage;
+  }
+
+   /**
+   * The URL of this changed worklogs list.
+   * @return self
+  **/
+  @ApiModelProperty(value = "The URL of this changed worklogs list.")
+  public URI getSelf() {
+    return self;
   }
 
    /**
@@ -92,39 +119,12 @@ public class ChangedWorklogs {
   }
 
    /**
-   * The URL of this changed worklogs list.
-   * @return self
+   * Changed worklog list.
+   * @return values
   **/
-  @ApiModelProperty(value = "The URL of this changed worklogs list.")
-  public URI getSelf() {
-    return self;
-  }
-
-   /**
-   * The URL of the next list of changed worklogs.
-   * @return nextPage
-  **/
-  @ApiModelProperty(value = "The URL of the next list of changed worklogs.")
-  public URI getNextPage() {
-    return nextPage;
-  }
-
-  public ChangedWorklogs lastPage(Boolean lastPage) {
-    this.lastPage = lastPage;
-    return this;
-  }
-
-   /**
-   * Get lastPage
-   * @return lastPage
-  **/
-  @ApiModelProperty(value = "")
-  public Boolean getLastPage() {
-    return lastPage;
-  }
-
-  public void setLastPage(Boolean lastPage) {
-    this.lastPage = lastPage;
+  @ApiModelProperty(value = "Changed worklog list.")
+  public List<ChangedWorklog> getValues() {
+    return values;
   }
 
 
@@ -137,17 +137,17 @@ public class ChangedWorklogs {
       return false;
     }
     ChangedWorklogs changedWorklogs = (ChangedWorklogs) o;
-    return Objects.equals(this.values, changedWorklogs.values) &&
+    return Objects.equals(this.lastPage, changedWorklogs.lastPage) &&
+        Objects.equals(this.nextPage, changedWorklogs.nextPage) &&
+        Objects.equals(this.self, changedWorklogs.self) &&
         Objects.equals(this.since, changedWorklogs.since) &&
         Objects.equals(this.until, changedWorklogs.until) &&
-        Objects.equals(this.self, changedWorklogs.self) &&
-        Objects.equals(this.nextPage, changedWorklogs.nextPage) &&
-        Objects.equals(this.lastPage, changedWorklogs.lastPage);
+        Objects.equals(this.values, changedWorklogs.values);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(values, since, until, self, nextPage, lastPage);
+    return Objects.hash(lastPage, nextPage, self, since, until, values);
   }
 
 
@@ -156,12 +156,12 @@ public class ChangedWorklogs {
     StringBuilder sb = new StringBuilder();
     sb.append("class ChangedWorklogs {\n");
     
-    sb.append("    values: ").append(toIndentedString(values)).append("\n");
+    sb.append("    lastPage: ").append(toIndentedString(lastPage)).append("\n");
+    sb.append("    nextPage: ").append(toIndentedString(nextPage)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    since: ").append(toIndentedString(since)).append("\n");
     sb.append("    until: ").append(toIndentedString(until)).append("\n");
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    nextPage: ").append(toIndentedString(nextPage)).append("\n");
-    sb.append("    lastPage: ").append(toIndentedString(lastPage)).append("\n");
+    sb.append("    values: ").append(toIndentedString(values)).append("\n");
     sb.append("}");
     return sb.toString();
   }

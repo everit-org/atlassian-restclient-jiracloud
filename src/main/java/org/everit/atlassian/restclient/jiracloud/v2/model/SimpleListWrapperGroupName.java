@@ -42,39 +42,39 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.GroupName;
 /**
  * SimpleListWrapperGroupName
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class SimpleListWrapperGroupName {
-  @JsonProperty("size")
-  private Integer size;
+  @JsonProperty("callback")
+  private Object callback = null;
 
   @JsonProperty("items")
   private List<GroupName> items = new ArrayList<>();
 
-  @JsonProperty("pagingCallback")
-  private Object pagingCallback = null;
-
-  @JsonProperty("callback")
-  private Object callback = null;
-
   @JsonProperty("max-results")
   private Integer maxResults;
 
-  public SimpleListWrapperGroupName size(Integer size) {
-    this.size = size;
+  @JsonProperty("pagingCallback")
+  private Object pagingCallback = null;
+
+  @JsonProperty("size")
+  private Integer size;
+
+  public SimpleListWrapperGroupName callback(Object callback) {
+    this.callback = callback;
     return this;
   }
 
    /**
-   * Get size
-   * @return size
+   * Get callback
+   * @return callback
   **/
   @ApiModelProperty(value = "")
-  public Integer getSize() {
-    return size;
+  public Object getCallback() {
+    return callback;
   }
 
-  public void setSize(Integer size) {
-    this.size = size;
+  public void setCallback(Object callback) {
+    this.callback = callback;
   }
 
   public SimpleListWrapperGroupName items(List<GroupName> items) {
@@ -103,42 +103,6 @@ public class SimpleListWrapperGroupName {
     this.items = items;
   }
 
-  public SimpleListWrapperGroupName pagingCallback(Object pagingCallback) {
-    this.pagingCallback = pagingCallback;
-    return this;
-  }
-
-   /**
-   * Get pagingCallback
-   * @return pagingCallback
-  **/
-  @ApiModelProperty(value = "")
-  public Object getPagingCallback() {
-    return pagingCallback;
-  }
-
-  public void setPagingCallback(Object pagingCallback) {
-    this.pagingCallback = pagingCallback;
-  }
-
-  public SimpleListWrapperGroupName callback(Object callback) {
-    this.callback = callback;
-    return this;
-  }
-
-   /**
-   * Get callback
-   * @return callback
-  **/
-  @ApiModelProperty(value = "")
-  public Object getCallback() {
-    return callback;
-  }
-
-  public void setCallback(Object callback) {
-    this.callback = callback;
-  }
-
   public SimpleListWrapperGroupName maxResults(Integer maxResults) {
     this.maxResults = maxResults;
     return this;
@@ -157,6 +121,42 @@ public class SimpleListWrapperGroupName {
     this.maxResults = maxResults;
   }
 
+  public SimpleListWrapperGroupName pagingCallback(Object pagingCallback) {
+    this.pagingCallback = pagingCallback;
+    return this;
+  }
+
+   /**
+   * Get pagingCallback
+   * @return pagingCallback
+  **/
+  @ApiModelProperty(value = "")
+  public Object getPagingCallback() {
+    return pagingCallback;
+  }
+
+  public void setPagingCallback(Object pagingCallback) {
+    this.pagingCallback = pagingCallback;
+  }
+
+  public SimpleListWrapperGroupName size(Integer size) {
+    this.size = size;
+    return this;
+  }
+
+   /**
+   * Get size
+   * @return size
+  **/
+  @ApiModelProperty(value = "")
+  public Integer getSize() {
+    return size;
+  }
+
+  public void setSize(Integer size) {
+    this.size = size;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -167,16 +167,16 @@ public class SimpleListWrapperGroupName {
       return false;
     }
     SimpleListWrapperGroupName simpleListWrapperGroupName = (SimpleListWrapperGroupName) o;
-    return Objects.equals(this.size, simpleListWrapperGroupName.size) &&
+    return Objects.equals(this.callback, simpleListWrapperGroupName.callback) &&
         Objects.equals(this.items, simpleListWrapperGroupName.items) &&
+        Objects.equals(this.maxResults, simpleListWrapperGroupName.maxResults) &&
         Objects.equals(this.pagingCallback, simpleListWrapperGroupName.pagingCallback) &&
-        Objects.equals(this.callback, simpleListWrapperGroupName.callback) &&
-        Objects.equals(this.maxResults, simpleListWrapperGroupName.maxResults);
+        Objects.equals(this.size, simpleListWrapperGroupName.size);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(size, items, pagingCallback, callback, maxResults);
+    return Objects.hash(callback, items, maxResults, pagingCallback, size);
   }
 
 
@@ -185,11 +185,11 @@ public class SimpleListWrapperGroupName {
     StringBuilder sb = new StringBuilder();
     sb.append("class SimpleListWrapperGroupName {\n");
     
-    sb.append("    size: ").append(toIndentedString(size)).append("\n");
-    sb.append("    items: ").append(toIndentedString(items)).append("\n");
-    sb.append("    pagingCallback: ").append(toIndentedString(pagingCallback)).append("\n");
     sb.append("    callback: ").append(toIndentedString(callback)).append("\n");
+    sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("    maxResults: ").append(toIndentedString(maxResults)).append("\n");
+    sb.append("    pagingCallback: ").append(toIndentedString(pagingCallback)).append("\n");
+    sb.append("    size: ").append(toIndentedString(size)).append("\n");
     sb.append("}");
     return sb.toString();
   }

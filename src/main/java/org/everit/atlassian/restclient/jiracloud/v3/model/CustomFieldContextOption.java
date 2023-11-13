@@ -40,19 +40,37 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of the custom field options for a context.
  */
 @ApiModel(description = "Details of the custom field options for a context.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class CustomFieldContextOption {
+  @JsonProperty("disabled")
+  private Boolean disabled;
+
   @JsonProperty("id")
   private String id;
-
-  @JsonProperty("value")
-  private String value;
 
   @JsonProperty("optionId")
   private String optionId;
 
-  @JsonProperty("disabled")
-  private Boolean disabled;
+  @JsonProperty("value")
+  private String value;
+
+  public CustomFieldContextOption disabled(Boolean disabled) {
+    this.disabled = disabled;
+    return this;
+  }
+
+   /**
+   * Whether the option is disabled.
+   * @return disabled
+  **/
+  @ApiModelProperty(required = true, value = "Whether the option is disabled.")
+  public Boolean getDisabled() {
+    return disabled;
+  }
+
+  public void setDisabled(Boolean disabled) {
+    this.disabled = disabled;
+  }
 
   public CustomFieldContextOption id(String id) {
     this.id = id;
@@ -70,24 +88,6 @@ public class CustomFieldContextOption {
 
   public void setId(String id) {
     this.id = id;
-  }
-
-  public CustomFieldContextOption value(String value) {
-    this.value = value;
-    return this;
-  }
-
-   /**
-   * The value of the custom field option.
-   * @return value
-  **/
-  @ApiModelProperty(required = true, value = "The value of the custom field option.")
-  public String getValue() {
-    return value;
-  }
-
-  public void setValue(String value) {
-    this.value = value;
   }
 
   public CustomFieldContextOption optionId(String optionId) {
@@ -108,22 +108,22 @@ public class CustomFieldContextOption {
     this.optionId = optionId;
   }
 
-  public CustomFieldContextOption disabled(Boolean disabled) {
-    this.disabled = disabled;
+  public CustomFieldContextOption value(String value) {
+    this.value = value;
     return this;
   }
 
    /**
-   * Whether the option is disabled.
-   * @return disabled
+   * The value of the custom field option.
+   * @return value
   **/
-  @ApiModelProperty(required = true, value = "Whether the option is disabled.")
-  public Boolean getDisabled() {
-    return disabled;
+  @ApiModelProperty(required = true, value = "The value of the custom field option.")
+  public String getValue() {
+    return value;
   }
 
-  public void setDisabled(Boolean disabled) {
-    this.disabled = disabled;
+  public void setValue(String value) {
+    this.value = value;
   }
 
 
@@ -136,15 +136,15 @@ public class CustomFieldContextOption {
       return false;
     }
     CustomFieldContextOption customFieldContextOption = (CustomFieldContextOption) o;
-    return Objects.equals(this.id, customFieldContextOption.id) &&
-        Objects.equals(this.value, customFieldContextOption.value) &&
+    return Objects.equals(this.disabled, customFieldContextOption.disabled) &&
+        Objects.equals(this.id, customFieldContextOption.id) &&
         Objects.equals(this.optionId, customFieldContextOption.optionId) &&
-        Objects.equals(this.disabled, customFieldContextOption.disabled);
+        Objects.equals(this.value, customFieldContextOption.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, value, optionId, disabled);
+    return Objects.hash(disabled, id, optionId, value);
   }
 
 
@@ -153,10 +153,10 @@ public class CustomFieldContextOption {
     StringBuilder sb = new StringBuilder();
     sb.append("class CustomFieldContextOption {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
-    sb.append("    optionId: ").append(toIndentedString(optionId)).append("\n");
     sb.append("    disabled: ").append(toIndentedString(disabled)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    optionId: ").append(toIndentedString(optionId)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }

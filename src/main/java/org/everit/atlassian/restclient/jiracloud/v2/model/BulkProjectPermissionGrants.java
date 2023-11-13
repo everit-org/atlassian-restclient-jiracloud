@@ -42,34 +42,16 @@ import java.util.List;
  * List of project permissions and the projects and issues those permissions grant access to.
  */
 @ApiModel(description = "List of project permissions and the projects and issues those permissions grant access to.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class BulkProjectPermissionGrants {
-  @JsonProperty("permission")
-  private String permission;
-
   @JsonProperty("issues")
   private List<Long> issues = new ArrayList<>();
 
+  @JsonProperty("permission")
+  private String permission;
+
   @JsonProperty("projects")
   private List<Long> projects = new ArrayList<>();
-
-  public BulkProjectPermissionGrants permission(String permission) {
-    this.permission = permission;
-    return this;
-  }
-
-   /**
-   * A project permission,
-   * @return permission
-  **/
-  @ApiModelProperty(required = true, value = "A project permission,")
-  public String getPermission() {
-    return permission;
-  }
-
-  public void setPermission(String permission) {
-    this.permission = permission;
-  }
 
   public BulkProjectPermissionGrants issues(List<Long> issues) {
     this.issues = issues;
@@ -92,6 +74,24 @@ public class BulkProjectPermissionGrants {
 
   public void setIssues(List<Long> issues) {
     this.issues = issues;
+  }
+
+  public BulkProjectPermissionGrants permission(String permission) {
+    this.permission = permission;
+    return this;
+  }
+
+   /**
+   * A project permission,
+   * @return permission
+  **/
+  @ApiModelProperty(required = true, value = "A project permission,")
+  public String getPermission() {
+    return permission;
+  }
+
+  public void setPermission(String permission) {
+    this.permission = permission;
   }
 
   public BulkProjectPermissionGrants projects(List<Long> projects) {
@@ -127,14 +127,14 @@ public class BulkProjectPermissionGrants {
       return false;
     }
     BulkProjectPermissionGrants bulkProjectPermissionGrants = (BulkProjectPermissionGrants) o;
-    return Objects.equals(this.permission, bulkProjectPermissionGrants.permission) &&
-        Objects.equals(this.issues, bulkProjectPermissionGrants.issues) &&
+    return Objects.equals(this.issues, bulkProjectPermissionGrants.issues) &&
+        Objects.equals(this.permission, bulkProjectPermissionGrants.permission) &&
         Objects.equals(this.projects, bulkProjectPermissionGrants.projects);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(permission, issues, projects);
+    return Objects.hash(issues, permission, projects);
   }
 
 
@@ -143,8 +143,8 @@ public class BulkProjectPermissionGrants {
     StringBuilder sb = new StringBuilder();
     sb.append("class BulkProjectPermissionGrants {\n");
     
-    sb.append("    permission: ").append(toIndentedString(permission)).append("\n");
     sb.append("    issues: ").append(toIndentedString(issues)).append("\n");
+    sb.append("    permission: ").append(toIndentedString(permission)).append("\n");
     sb.append("    projects: ").append(toIndentedString(projects)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -43,33 +43,33 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.Dashboard;
  * A page containing dashboard details.
  */
 @ApiModel(description = "A page containing dashboard details.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class PageOfDashboards {
-  @JsonProperty("startAt")
-  private Integer startAt;
+  @JsonProperty("dashboards")
+  private List<Dashboard> dashboards = new ArrayList<>();
 
   @JsonProperty("maxResults")
   private Integer maxResults;
 
-  @JsonProperty("total")
-  private Integer total;
+  @JsonProperty("next")
+  private String next;
 
   @JsonProperty("prev")
   private String prev;
 
-  @JsonProperty("next")
-  private String next;
+  @JsonProperty("startAt")
+  private Integer startAt;
 
-  @JsonProperty("dashboards")
-  private List<Dashboard> dashboards = new ArrayList<>();
+  @JsonProperty("total")
+  private Integer total;
 
    /**
-   * The index of the first item returned on the page.
-   * @return startAt
+   * List of dashboards.
+   * @return dashboards
   **/
-  @ApiModelProperty(value = "The index of the first item returned on the page.")
-  public Integer getStartAt() {
-    return startAt;
+  @ApiModelProperty(value = "List of dashboards.")
+  public List<Dashboard> getDashboards() {
+    return dashboards;
   }
 
    /**
@@ -82,12 +82,12 @@ public class PageOfDashboards {
   }
 
    /**
-   * The number of results on the page.
-   * @return total
+   * The URL of the next page of results, if any.
+   * @return next
   **/
-  @ApiModelProperty(value = "The number of results on the page.")
-  public Integer getTotal() {
-    return total;
+  @ApiModelProperty(value = "The URL of the next page of results, if any.")
+  public String getNext() {
+    return next;
   }
 
    /**
@@ -100,21 +100,21 @@ public class PageOfDashboards {
   }
 
    /**
-   * The URL of the next page of results, if any.
-   * @return next
+   * The index of the first item returned on the page.
+   * @return startAt
   **/
-  @ApiModelProperty(value = "The URL of the next page of results, if any.")
-  public String getNext() {
-    return next;
+  @ApiModelProperty(value = "The index of the first item returned on the page.")
+  public Integer getStartAt() {
+    return startAt;
   }
 
    /**
-   * List of dashboards.
-   * @return dashboards
+   * The number of results on the page.
+   * @return total
   **/
-  @ApiModelProperty(value = "List of dashboards.")
-  public List<Dashboard> getDashboards() {
-    return dashboards;
+  @ApiModelProperty(value = "The number of results on the page.")
+  public Integer getTotal() {
+    return total;
   }
 
 
@@ -127,17 +127,17 @@ public class PageOfDashboards {
       return false;
     }
     PageOfDashboards pageOfDashboards = (PageOfDashboards) o;
-    return Objects.equals(this.startAt, pageOfDashboards.startAt) &&
+    return Objects.equals(this.dashboards, pageOfDashboards.dashboards) &&
         Objects.equals(this.maxResults, pageOfDashboards.maxResults) &&
-        Objects.equals(this.total, pageOfDashboards.total) &&
-        Objects.equals(this.prev, pageOfDashboards.prev) &&
         Objects.equals(this.next, pageOfDashboards.next) &&
-        Objects.equals(this.dashboards, pageOfDashboards.dashboards);
+        Objects.equals(this.prev, pageOfDashboards.prev) &&
+        Objects.equals(this.startAt, pageOfDashboards.startAt) &&
+        Objects.equals(this.total, pageOfDashboards.total);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(startAt, maxResults, total, prev, next, dashboards);
+    return Objects.hash(dashboards, maxResults, next, prev, startAt, total);
   }
 
 
@@ -146,12 +146,12 @@ public class PageOfDashboards {
     StringBuilder sb = new StringBuilder();
     sb.append("class PageOfDashboards {\n");
     
-    sb.append("    startAt: ").append(toIndentedString(startAt)).append("\n");
-    sb.append("    maxResults: ").append(toIndentedString(maxResults)).append("\n");
-    sb.append("    total: ").append(toIndentedString(total)).append("\n");
-    sb.append("    prev: ").append(toIndentedString(prev)).append("\n");
-    sb.append("    next: ").append(toIndentedString(next)).append("\n");
     sb.append("    dashboards: ").append(toIndentedString(dashboards)).append("\n");
+    sb.append("    maxResults: ").append(toIndentedString(maxResults)).append("\n");
+    sb.append("    next: ").append(toIndentedString(next)).append("\n");
+    sb.append("    prev: ").append(toIndentedString(prev)).append("\n");
+    sb.append("    startAt: ").append(toIndentedString(startAt)).append("\n");
+    sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("}");
     return sb.toString();
   }

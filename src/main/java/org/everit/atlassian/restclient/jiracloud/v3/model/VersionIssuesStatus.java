@@ -42,38 +42,29 @@ import java.util.Map;
  * Counts of the number of issues in various statuses.
  */
 @ApiModel(description = "Counts of the number of issues in various statuses.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class VersionIssuesStatus {
-  @JsonProperty("unmapped")
-  private Long unmapped;
-
-  @JsonProperty("toDo")
-  private Long toDo;
+  @JsonProperty("done")
+  private Long done;
 
   @JsonProperty("inProgress")
   private Long inProgress;
 
-  @JsonProperty("done")
-  private Long done;
+  @JsonProperty("toDo")
+  private Long toDo;
+
+  @JsonProperty("unmapped")
+  private Long unmapped;
 
   private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
 
    /**
-   * Count of issues with a status other than *to do*, *in progress*, and *done*.
-   * @return unmapped
+   * Count of issues with status *done*.
+   * @return done
   **/
-  @ApiModelProperty(value = "Count of issues with a status other than *to do*, *in progress*, and *done*.")
-  public Long getUnmapped() {
-    return unmapped;
-  }
-
-   /**
-   * Count of issues with status *to do*.
-   * @return toDo
-  **/
-  @ApiModelProperty(value = "Count of issues with status *to do*.")
-  public Long getToDo() {
-    return toDo;
+  @ApiModelProperty(value = "Count of issues with status *done*.")
+  public Long getDone() {
+    return done;
   }
 
    /**
@@ -86,12 +77,21 @@ public class VersionIssuesStatus {
   }
 
    /**
-   * Count of issues with status *done*.
-   * @return done
+   * Count of issues with status *to do*.
+   * @return toDo
   **/
-  @ApiModelProperty(value = "Count of issues with status *done*.")
-  public Long getDone() {
-    return done;
+  @ApiModelProperty(value = "Count of issues with status *to do*.")
+  public Long getToDo() {
+    return toDo;
+  }
+
+   /**
+   * Count of issues with a status other than *to do*, *in progress*, and *done*.
+   * @return unmapped
+  **/
+  @ApiModelProperty(value = "Count of issues with a status other than *to do*, *in progress*, and *done*.")
+  public Long getUnmapped() {
+    return unmapped;
   }
 
 
@@ -114,16 +114,16 @@ public class VersionIssuesStatus {
       return false;
     }
     VersionIssuesStatus versionIssuesStatus = (VersionIssuesStatus) o;
-    return Objects.equals(this.unmapped, versionIssuesStatus.unmapped) &&
-        Objects.equals(this.toDo, versionIssuesStatus.toDo) &&
+    return Objects.equals(this.done, versionIssuesStatus.done) &&
         Objects.equals(this.inProgress, versionIssuesStatus.inProgress) &&
-        Objects.equals(this.done, versionIssuesStatus.done) &&
+        Objects.equals(this.toDo, versionIssuesStatus.toDo) &&
+        Objects.equals(this.unmapped, versionIssuesStatus.unmapped) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(unmapped, toDo, inProgress, done, super.hashCode());
+    return Objects.hash(done, inProgress, toDo, unmapped, super.hashCode());
   }
 
 
@@ -132,10 +132,10 @@ public class VersionIssuesStatus {
     StringBuilder sb = new StringBuilder();
     sb.append("class VersionIssuesStatus {\n");
     
-    sb.append("    unmapped: ").append(toIndentedString(unmapped)).append("\n");
-    sb.append("    toDo: ").append(toIndentedString(toDo)).append("\n");
-    sb.append("    inProgress: ").append(toIndentedString(inProgress)).append("\n");
     sb.append("    done: ").append(toIndentedString(done)).append("\n");
+    sb.append("    inProgress: ").append(toIndentedString(inProgress)).append("\n");
+    sb.append("    toDo: ").append(toIndentedString(toDo)).append("\n");
+    sb.append("    unmapped: ").append(toIndentedString(unmapped)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();

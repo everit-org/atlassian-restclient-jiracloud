@@ -42,20 +42,8 @@ import java.util.List;
  * A webhook.
  */
 @ApiModel(description = "A webhook.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class Webhook {
-  @JsonProperty("id")
-  private Long id;
-
-  @JsonProperty("jqlFilter")
-  private String jqlFilter;
-
-  @JsonProperty("fieldIdsFilter")
-  private List<String> fieldIdsFilter = new ArrayList<>();
-
-  @JsonProperty("issuePropertyKeysFilter")
-  private List<String> issuePropertyKeysFilter = new ArrayList<>();
-
   /**
    * Gets or Sets events
    */
@@ -109,40 +97,48 @@ public class Webhook {
   @JsonProperty("expirationDate")
   private Long expirationDate;
 
-  public Webhook id(Long id) {
-    this.id = id;
+  @JsonProperty("fieldIdsFilter")
+  private List<String> fieldIdsFilter = new ArrayList<>();
+
+  @JsonProperty("id")
+  private Long id;
+
+  @JsonProperty("issuePropertyKeysFilter")
+  private List<String> issuePropertyKeysFilter = new ArrayList<>();
+
+  @JsonProperty("jqlFilter")
+  private String jqlFilter;
+
+  public Webhook events(List<EventsEnum> events) {
+    this.events = events;
+    return this;
+  }
+
+  public Webhook addEventsItem(EventsEnum eventsItem) {
+    this.events.add(eventsItem);
     return this;
   }
 
    /**
-   * The ID of the webhook.
-   * @return id
+   * The Jira events that trigger the webhook.
+   * @return events
   **/
-  @ApiModelProperty(required = true, value = "The ID of the webhook.")
-  public Long getId() {
-    return id;
+  @ApiModelProperty(required = true, value = "The Jira events that trigger the webhook.")
+  public List<EventsEnum> getEvents() {
+    return events;
   }
 
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public Webhook jqlFilter(String jqlFilter) {
-    this.jqlFilter = jqlFilter;
-    return this;
+  public void setEvents(List<EventsEnum> events) {
+    this.events = events;
   }
 
    /**
-   * The JQL filter that specifies which issues the webhook is sent for.
-   * @return jqlFilter
+   * The date after which the webhook is no longer sent. Use [Extend webhook life](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-webhooks/#api-rest-api-3-webhook-refresh-put) to extend the date.
+   * @return expirationDate
   **/
-  @ApiModelProperty(required = true, value = "The JQL filter that specifies which issues the webhook is sent for.")
-  public String getJqlFilter() {
-    return jqlFilter;
-  }
-
-  public void setJqlFilter(String jqlFilter) {
-    this.jqlFilter = jqlFilter;
+  @ApiModelProperty(value = "The date after which the webhook is no longer sent. Use [Extend webhook life](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-webhooks/#api-rest-api-3-webhook-refresh-put) to extend the date.")
+  public Long getExpirationDate() {
+    return expirationDate;
   }
 
   public Webhook fieldIdsFilter(List<String> fieldIdsFilter) {
@@ -171,6 +167,24 @@ public class Webhook {
     this.fieldIdsFilter = fieldIdsFilter;
   }
 
+  public Webhook id(Long id) {
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * The ID of the webhook.
+   * @return id
+  **/
+  @ApiModelProperty(required = true, value = "The ID of the webhook.")
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
   public Webhook issuePropertyKeysFilter(List<String> issuePropertyKeysFilter) {
     this.issuePropertyKeysFilter = issuePropertyKeysFilter;
     return this;
@@ -197,36 +211,22 @@ public class Webhook {
     this.issuePropertyKeysFilter = issuePropertyKeysFilter;
   }
 
-  public Webhook events(List<EventsEnum> events) {
-    this.events = events;
-    return this;
-  }
-
-  public Webhook addEventsItem(EventsEnum eventsItem) {
-    this.events.add(eventsItem);
+  public Webhook jqlFilter(String jqlFilter) {
+    this.jqlFilter = jqlFilter;
     return this;
   }
 
    /**
-   * The Jira events that trigger the webhook.
-   * @return events
+   * The JQL filter that specifies which issues the webhook is sent for.
+   * @return jqlFilter
   **/
-  @ApiModelProperty(required = true, value = "The Jira events that trigger the webhook.")
-  public List<EventsEnum> getEvents() {
-    return events;
+  @ApiModelProperty(required = true, value = "The JQL filter that specifies which issues the webhook is sent for.")
+  public String getJqlFilter() {
+    return jqlFilter;
   }
 
-  public void setEvents(List<EventsEnum> events) {
-    this.events = events;
-  }
-
-   /**
-   * Get expirationDate
-   * @return expirationDate
-  **/
-  @ApiModelProperty(value = "")
-  public Long getExpirationDate() {
-    return expirationDate;
+  public void setJqlFilter(String jqlFilter) {
+    this.jqlFilter = jqlFilter;
   }
 
 
@@ -239,17 +239,17 @@ public class Webhook {
       return false;
     }
     Webhook webhook = (Webhook) o;
-    return Objects.equals(this.id, webhook.id) &&
-        Objects.equals(this.jqlFilter, webhook.jqlFilter) &&
+    return Objects.equals(this.events, webhook.events) &&
+        Objects.equals(this.expirationDate, webhook.expirationDate) &&
         Objects.equals(this.fieldIdsFilter, webhook.fieldIdsFilter) &&
+        Objects.equals(this.id, webhook.id) &&
         Objects.equals(this.issuePropertyKeysFilter, webhook.issuePropertyKeysFilter) &&
-        Objects.equals(this.events, webhook.events) &&
-        Objects.equals(this.expirationDate, webhook.expirationDate);
+        Objects.equals(this.jqlFilter, webhook.jqlFilter);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, jqlFilter, fieldIdsFilter, issuePropertyKeysFilter, events, expirationDate);
+    return Objects.hash(events, expirationDate, fieldIdsFilter, id, issuePropertyKeysFilter, jqlFilter);
   }
 
 
@@ -258,12 +258,12 @@ public class Webhook {
     StringBuilder sb = new StringBuilder();
     sb.append("class Webhook {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    jqlFilter: ").append(toIndentedString(jqlFilter)).append("\n");
-    sb.append("    fieldIdsFilter: ").append(toIndentedString(fieldIdsFilter)).append("\n");
-    sb.append("    issuePropertyKeysFilter: ").append(toIndentedString(issuePropertyKeysFilter)).append("\n");
     sb.append("    events: ").append(toIndentedString(events)).append("\n");
     sb.append("    expirationDate: ").append(toIndentedString(expirationDate)).append("\n");
+    sb.append("    fieldIdsFilter: ").append(toIndentedString(fieldIdsFilter)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    issuePropertyKeysFilter: ").append(toIndentedString(issuePropertyKeysFilter)).append("\n");
+    sb.append("    jqlFilter: ").append(toIndentedString(jqlFilter)).append("\n");
     sb.append("}");
     return sb.toString();
   }

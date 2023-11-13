@@ -51,141 +51,60 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.PageOfChangelogs;
  * Details about an issue.
  */
 @ApiModel(description = "Details about an issue.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class IssueBean {
-  @JsonProperty("expand")
-  private String expand;
-
-  @JsonProperty("id")
-  private String id;
-
-  @JsonProperty("self")
-  private URI self;
-
-  @JsonProperty("key")
-  private String key;
-
-  @JsonProperty("renderedFields")
-  private Map<String, Object> renderedFields = new HashMap<>();
-
-  @JsonProperty("properties")
-  private Map<String, Object> properties = new HashMap<>();
-
-  @JsonProperty("names")
-  private Map<String, String> names = new HashMap<>();
-
-  @JsonProperty("schema")
-  private Map<String, JsonTypeBean> schema = new HashMap<>();
-
-  @JsonProperty("transitions")
-  private List<IssueTransition> transitions = new ArrayList<>();
-
-  @JsonProperty("operations")
-  private Operations operations;
+  @JsonProperty("changelog")
+  private PageOfChangelogs changelog;
 
   @JsonProperty("editmeta")
   private IssueUpdateMetadata editmeta;
 
-  @JsonProperty("changelog")
-  private PageOfChangelogs changelog;
-
-  @JsonProperty("versionedRepresentations")
-  private Map<String, Map<String, Object>> versionedRepresentations = new HashMap<>();
-
-  @JsonProperty("fieldsToInclude")
-  private IncludedFields fieldsToInclude;
+  @JsonProperty("expand")
+  private String expand;
 
   @JsonProperty("fields")
   private Map<String, Object> fields = new HashMap<>();
 
-   /**
-   * Expand options that include additional issue details in the response.
-   * @return expand
-  **/
-  @ApiModelProperty(value = "Expand options that include additional issue details in the response.")
-  public String getExpand() {
-    return expand;
-  }
+  @JsonProperty("fieldsToInclude")
+  private IncludedFields fieldsToInclude;
+
+  @JsonProperty("id")
+  private String id;
+
+  @JsonProperty("key")
+  private String key;
+
+  @JsonProperty("names")
+  private Map<String, String> names = new HashMap<>();
+
+  @JsonProperty("operations")
+  private Operations operations;
+
+  @JsonProperty("properties")
+  private Map<String, Object> properties = new HashMap<>();
+
+  @JsonProperty("renderedFields")
+  private Map<String, Object> renderedFields = new HashMap<>();
+
+  @JsonProperty("schema")
+  private Map<String, JsonTypeBean> schema = new HashMap<>();
+
+  @JsonProperty("self")
+  private URI self;
+
+  @JsonProperty("transitions")
+  private List<IssueTransition> transitions = new ArrayList<>();
+
+  @JsonProperty("versionedRepresentations")
+  private Map<String, Map<String, Object>> versionedRepresentations = new HashMap<>();
 
    /**
-   * The ID of the issue.
-   * @return id
+   * Details of changelogs associated with the issue.
+   * @return changelog
   **/
-  @ApiModelProperty(value = "The ID of the issue.")
-  public String getId() {
-    return id;
-  }
-
-   /**
-   * The URL of the issue details.
-   * @return self
-  **/
-  @ApiModelProperty(value = "The URL of the issue details.")
-  public URI getSelf() {
-    return self;
-  }
-
-   /**
-   * The key of the issue.
-   * @return key
-  **/
-  @ApiModelProperty(value = "The key of the issue.")
-  public String getKey() {
-    return key;
-  }
-
-   /**
-   * The rendered value of each field present on the issue.
-   * @return renderedFields
-  **/
-  @ApiModelProperty(value = "The rendered value of each field present on the issue.")
-  public Map<String, Object> getRenderedFields() {
-    return renderedFields;
-  }
-
-   /**
-   * Details of the issue properties identified in the request.
-   * @return properties
-  **/
-  @ApiModelProperty(value = "Details of the issue properties identified in the request.")
-  public Map<String, Object> getProperties() {
-    return properties;
-  }
-
-   /**
-   * The ID and name of each field present on the issue.
-   * @return names
-  **/
-  @ApiModelProperty(value = "The ID and name of each field present on the issue.")
-  public Map<String, String> getNames() {
-    return names;
-  }
-
-   /**
-   * The schema describing each field present on the issue.
-   * @return schema
-  **/
-  @ApiModelProperty(value = "The schema describing each field present on the issue.")
-  public Map<String, JsonTypeBean> getSchema() {
-    return schema;
-  }
-
-   /**
-   * The transitions that can be performed on the issue.
-   * @return transitions
-  **/
-  @ApiModelProperty(value = "The transitions that can be performed on the issue.")
-  public List<IssueTransition> getTransitions() {
-    return transitions;
-  }
-
-   /**
-   * The operations that can be performed on the issue.
-   * @return operations
-  **/
-  @ApiModelProperty(value = "The operations that can be performed on the issue.")
-  public Operations getOperations() {
-    return operations;
+  @ApiModelProperty(value = "Details of changelogs associated with the issue.")
+  public PageOfChangelogs getChangelog() {
+    return changelog;
   }
 
    /**
@@ -198,39 +117,12 @@ public class IssueBean {
   }
 
    /**
-   * Details of changelogs associated with the issue.
-   * @return changelog
+   * Expand options that include additional issue details in the response.
+   * @return expand
   **/
-  @ApiModelProperty(value = "Details of changelogs associated with the issue.")
-  public PageOfChangelogs getChangelog() {
-    return changelog;
-  }
-
-   /**
-   * The versions of each field on the issue.
-   * @return versionedRepresentations
-  **/
-  @ApiModelProperty(value = "The versions of each field on the issue.")
-  public Map<String, Map<String, Object>> getVersionedRepresentations() {
-    return versionedRepresentations;
-  }
-
-  public IssueBean fieldsToInclude(IncludedFields fieldsToInclude) {
-    this.fieldsToInclude = fieldsToInclude;
-    return this;
-  }
-
-   /**
-   * Get fieldsToInclude
-   * @return fieldsToInclude
-  **/
-  @ApiModelProperty(value = "")
-  public IncludedFields getFieldsToInclude() {
-    return fieldsToInclude;
-  }
-
-  public void setFieldsToInclude(IncludedFields fieldsToInclude) {
-    this.fieldsToInclude = fieldsToInclude;
+  @ApiModelProperty(value = "Expand options that include additional issue details in the response.")
+  public String getExpand() {
+    return expand;
   }
 
   public IssueBean fields(Map<String, Object> fields) {
@@ -259,6 +151,114 @@ public class IssueBean {
     this.fields = fields;
   }
 
+  public IssueBean fieldsToInclude(IncludedFields fieldsToInclude) {
+    this.fieldsToInclude = fieldsToInclude;
+    return this;
+  }
+
+   /**
+   * Get fieldsToInclude
+   * @return fieldsToInclude
+  **/
+  @ApiModelProperty(value = "")
+  public IncludedFields getFieldsToInclude() {
+    return fieldsToInclude;
+  }
+
+  public void setFieldsToInclude(IncludedFields fieldsToInclude) {
+    this.fieldsToInclude = fieldsToInclude;
+  }
+
+   /**
+   * The ID of the issue.
+   * @return id
+  **/
+  @ApiModelProperty(value = "The ID of the issue.")
+  public String getId() {
+    return id;
+  }
+
+   /**
+   * The key of the issue.
+   * @return key
+  **/
+  @ApiModelProperty(value = "The key of the issue.")
+  public String getKey() {
+    return key;
+  }
+
+   /**
+   * The ID and name of each field present on the issue.
+   * @return names
+  **/
+  @ApiModelProperty(value = "The ID and name of each field present on the issue.")
+  public Map<String, String> getNames() {
+    return names;
+  }
+
+   /**
+   * The operations that can be performed on the issue.
+   * @return operations
+  **/
+  @ApiModelProperty(value = "The operations that can be performed on the issue.")
+  public Operations getOperations() {
+    return operations;
+  }
+
+   /**
+   * Details of the issue properties identified in the request.
+   * @return properties
+  **/
+  @ApiModelProperty(value = "Details of the issue properties identified in the request.")
+  public Map<String, Object> getProperties() {
+    return properties;
+  }
+
+   /**
+   * The rendered value of each field present on the issue.
+   * @return renderedFields
+  **/
+  @ApiModelProperty(value = "The rendered value of each field present on the issue.")
+  public Map<String, Object> getRenderedFields() {
+    return renderedFields;
+  }
+
+   /**
+   * The schema describing each field present on the issue.
+   * @return schema
+  **/
+  @ApiModelProperty(value = "The schema describing each field present on the issue.")
+  public Map<String, JsonTypeBean> getSchema() {
+    return schema;
+  }
+
+   /**
+   * The URL of the issue details.
+   * @return self
+  **/
+  @ApiModelProperty(value = "The URL of the issue details.")
+  public URI getSelf() {
+    return self;
+  }
+
+   /**
+   * The transitions that can be performed on the issue.
+   * @return transitions
+  **/
+  @ApiModelProperty(value = "The transitions that can be performed on the issue.")
+  public List<IssueTransition> getTransitions() {
+    return transitions;
+  }
+
+   /**
+   * The versions of each field on the issue.
+   * @return versionedRepresentations
+  **/
+  @ApiModelProperty(value = "The versions of each field on the issue.")
+  public Map<String, Map<String, Object>> getVersionedRepresentations() {
+    return versionedRepresentations;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -269,26 +269,26 @@ public class IssueBean {
       return false;
     }
     IssueBean issueBean = (IssueBean) o;
-    return Objects.equals(this.expand, issueBean.expand) &&
-        Objects.equals(this.id, issueBean.id) &&
-        Objects.equals(this.self, issueBean.self) &&
-        Objects.equals(this.key, issueBean.key) &&
-        Objects.equals(this.renderedFields, issueBean.renderedFields) &&
-        Objects.equals(this.properties, issueBean.properties) &&
-        Objects.equals(this.names, issueBean.names) &&
-        Objects.equals(this.schema, issueBean.schema) &&
-        Objects.equals(this.transitions, issueBean.transitions) &&
-        Objects.equals(this.operations, issueBean.operations) &&
+    return Objects.equals(this.changelog, issueBean.changelog) &&
         Objects.equals(this.editmeta, issueBean.editmeta) &&
-        Objects.equals(this.changelog, issueBean.changelog) &&
-        Objects.equals(this.versionedRepresentations, issueBean.versionedRepresentations) &&
+        Objects.equals(this.expand, issueBean.expand) &&
+        Objects.equals(this.fields, issueBean.fields) &&
         Objects.equals(this.fieldsToInclude, issueBean.fieldsToInclude) &&
-        Objects.equals(this.fields, issueBean.fields);
+        Objects.equals(this.id, issueBean.id) &&
+        Objects.equals(this.key, issueBean.key) &&
+        Objects.equals(this.names, issueBean.names) &&
+        Objects.equals(this.operations, issueBean.operations) &&
+        Objects.equals(this.properties, issueBean.properties) &&
+        Objects.equals(this.renderedFields, issueBean.renderedFields) &&
+        Objects.equals(this.schema, issueBean.schema) &&
+        Objects.equals(this.self, issueBean.self) &&
+        Objects.equals(this.transitions, issueBean.transitions) &&
+        Objects.equals(this.versionedRepresentations, issueBean.versionedRepresentations);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(expand, id, self, key, renderedFields, properties, names, schema, transitions, operations, editmeta, changelog, versionedRepresentations, fieldsToInclude, fields);
+    return Objects.hash(changelog, editmeta, expand, fields, fieldsToInclude, id, key, names, operations, properties, renderedFields, schema, self, transitions, versionedRepresentations);
   }
 
 
@@ -297,21 +297,21 @@ public class IssueBean {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueBean {\n");
     
-    sb.append("    expand: ").append(toIndentedString(expand)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    key: ").append(toIndentedString(key)).append("\n");
-    sb.append("    renderedFields: ").append(toIndentedString(renderedFields)).append("\n");
-    sb.append("    properties: ").append(toIndentedString(properties)).append("\n");
-    sb.append("    names: ").append(toIndentedString(names)).append("\n");
-    sb.append("    schema: ").append(toIndentedString(schema)).append("\n");
-    sb.append("    transitions: ").append(toIndentedString(transitions)).append("\n");
-    sb.append("    operations: ").append(toIndentedString(operations)).append("\n");
-    sb.append("    editmeta: ").append(toIndentedString(editmeta)).append("\n");
     sb.append("    changelog: ").append(toIndentedString(changelog)).append("\n");
-    sb.append("    versionedRepresentations: ").append(toIndentedString(versionedRepresentations)).append("\n");
-    sb.append("    fieldsToInclude: ").append(toIndentedString(fieldsToInclude)).append("\n");
+    sb.append("    editmeta: ").append(toIndentedString(editmeta)).append("\n");
+    sb.append("    expand: ").append(toIndentedString(expand)).append("\n");
     sb.append("    fields: ").append(toIndentedString(fields)).append("\n");
+    sb.append("    fieldsToInclude: ").append(toIndentedString(fieldsToInclude)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    key: ").append(toIndentedString(key)).append("\n");
+    sb.append("    names: ").append(toIndentedString(names)).append("\n");
+    sb.append("    operations: ").append(toIndentedString(operations)).append("\n");
+    sb.append("    properties: ").append(toIndentedString(properties)).append("\n");
+    sb.append("    renderedFields: ").append(toIndentedString(renderedFields)).append("\n");
+    sb.append("    schema: ").append(toIndentedString(schema)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
+    sb.append("    transitions: ").append(toIndentedString(transitions)).append("\n");
+    sb.append("    versionedRepresentations: ").append(toIndentedString(versionedRepresentations)).append("\n");
     sb.append("}");
     return sb.toString();
   }

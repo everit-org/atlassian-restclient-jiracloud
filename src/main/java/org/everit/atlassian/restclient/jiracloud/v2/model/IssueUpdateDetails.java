@@ -48,16 +48,10 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.IssueTransition;
  * Details of an issue update request.
  */
 @ApiModel(description = "Details of an issue update request.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class IssueUpdateDetails {
-  @JsonProperty("transition")
-  private IssueTransition transition;
-
   @JsonProperty("fields")
   private Map<String, Object> fields = new HashMap<>();
-
-  @JsonProperty("update")
-  private Map<String, List<FieldUpdateOperation>> update = new HashMap<>();
 
   @JsonProperty("historyMetadata")
   private HistoryMetadata historyMetadata;
@@ -65,25 +59,13 @@ public class IssueUpdateDetails {
   @JsonProperty("properties")
   private List<EntityProperty> properties = new ArrayList<>();
 
+  @JsonProperty("transition")
+  private IssueTransition transition;
+
+  @JsonProperty("update")
+  private Map<String, List<FieldUpdateOperation>> update = new HashMap<>();
+
   private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
-
-  public IssueUpdateDetails transition(IssueTransition transition) {
-    this.transition = transition;
-    return this;
-  }
-
-   /**
-   * Details of a transition. Required when performing a transition, optional when creating or editing an issue.
-   * @return transition
-  **/
-  @ApiModelProperty(value = "Details of a transition. Required when performing a transition, optional when creating or editing an issue.")
-  public IssueTransition getTransition() {
-    return transition;
-  }
-
-  public void setTransition(IssueTransition transition) {
-    this.transition = transition;
-  }
 
   public IssueUpdateDetails fields(Map<String, Object> fields) {
     this.fields = fields;
@@ -109,32 +91,6 @@ public class IssueUpdateDetails {
 
   public void setFields(Map<String, Object> fields) {
     this.fields = fields;
-  }
-
-  public IssueUpdateDetails update(Map<String, List<FieldUpdateOperation>> update) {
-    this.update = update;
-    return this;
-  }
-
-  public IssueUpdateDetails putUpdateItem(String key, List<FieldUpdateOperation> updateItem) {
-    if (this.update == null) {
-      this.update = new HashMap<>();
-    }
-    this.update.put(key, updateItem);
-    return this;
-  }
-
-   /**
-   * List of operations to perform on issue screen fields. Note that fields included in here cannot be included in &#x60;fields&#x60;.
-   * @return update
-  **/
-  @ApiModelProperty(value = "List of operations to perform on issue screen fields. Note that fields included in here cannot be included in `fields`.")
-  public Map<String, List<FieldUpdateOperation>> getUpdate() {
-    return update;
-  }
-
-  public void setUpdate(Map<String, List<FieldUpdateOperation>> update) {
-    this.update = update;
   }
 
   public IssueUpdateDetails historyMetadata(HistoryMetadata historyMetadata) {
@@ -181,6 +137,50 @@ public class IssueUpdateDetails {
     this.properties = properties;
   }
 
+  public IssueUpdateDetails transition(IssueTransition transition) {
+    this.transition = transition;
+    return this;
+  }
+
+   /**
+   * Details of a transition. Required when performing a transition, optional when creating or editing an issue.
+   * @return transition
+  **/
+  @ApiModelProperty(value = "Details of a transition. Required when performing a transition, optional when creating or editing an issue.")
+  public IssueTransition getTransition() {
+    return transition;
+  }
+
+  public void setTransition(IssueTransition transition) {
+    this.transition = transition;
+  }
+
+  public IssueUpdateDetails update(Map<String, List<FieldUpdateOperation>> update) {
+    this.update = update;
+    return this;
+  }
+
+  public IssueUpdateDetails putUpdateItem(String key, List<FieldUpdateOperation> updateItem) {
+    if (this.update == null) {
+      this.update = new HashMap<>();
+    }
+    this.update.put(key, updateItem);
+    return this;
+  }
+
+   /**
+   * A Map containing the field field name and a list of operations to perform on the issue screen field. Note that fields included in here cannot be included in &#x60;fields&#x60;.
+   * @return update
+  **/
+  @ApiModelProperty(value = "A Map containing the field field name and a list of operations to perform on the issue screen field. Note that fields included in here cannot be included in `fields`.")
+  public Map<String, List<FieldUpdateOperation>> getUpdate() {
+    return update;
+  }
+
+  public void setUpdate(Map<String, List<FieldUpdateOperation>> update) {
+    this.update = update;
+  }
+
 
   @com.fasterxml.jackson.annotation.JsonAnyGetter
   public Map<String, Object> any() {
@@ -201,17 +201,17 @@ public class IssueUpdateDetails {
       return false;
     }
     IssueUpdateDetails issueUpdateDetails = (IssueUpdateDetails) o;
-    return Objects.equals(this.transition, issueUpdateDetails.transition) &&
-        Objects.equals(this.fields, issueUpdateDetails.fields) &&
-        Objects.equals(this.update, issueUpdateDetails.update) &&
+    return Objects.equals(this.fields, issueUpdateDetails.fields) &&
         Objects.equals(this.historyMetadata, issueUpdateDetails.historyMetadata) &&
         Objects.equals(this.properties, issueUpdateDetails.properties) &&
+        Objects.equals(this.transition, issueUpdateDetails.transition) &&
+        Objects.equals(this.update, issueUpdateDetails.update) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(transition, fields, update, historyMetadata, properties, super.hashCode());
+    return Objects.hash(fields, historyMetadata, properties, transition, update, super.hashCode());
   }
 
 
@@ -220,11 +220,11 @@ public class IssueUpdateDetails {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueUpdateDetails {\n");
     
-    sb.append("    transition: ").append(toIndentedString(transition)).append("\n");
     sb.append("    fields: ").append(toIndentedString(fields)).append("\n");
-    sb.append("    update: ").append(toIndentedString(update)).append("\n");
     sb.append("    historyMetadata: ").append(toIndentedString(historyMetadata)).append("\n");
     sb.append("    properties: ").append(toIndentedString(properties)).append("\n");
+    sb.append("    transition: ").append(toIndentedString(transition)).append("\n");
+    sb.append("    update: ").append(toIndentedString(update)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();

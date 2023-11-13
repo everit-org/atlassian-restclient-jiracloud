@@ -272,16 +272,18 @@ public class IssueCustomFieldOptionsAppsApi {
 
   /**
    * Replace issue field option
-   * Deselects an issue-field select-list option from all issues where it is selected. A different option can be selected to replace the deselected option. The update can also be limited to a smaller set of issues by using a JQL query.  This is an [asynchronous operation](#async). The response object contains a link to the long-running task.  Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be used with issue field select list options created in Jira or using operations from the [Issue custom field options](#api-group-Issue-custom-field-options) resource.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required for the app providing the field.
+   * Deselects an issue-field select-list option from all issues where it is selected. A different option can be selected to replace the deselected option. The update can also be limited to a smaller set of issues by using a JQL query.  Connect and Forge app users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) can override the screen security configuration using `overrideScreenSecurity` and `overrideEditableFlag`.  This is an [asynchronous operation](#async). The response object contains a link to the long-running task.  Note that this operation **only works for issue field select list options added by Connect apps**, it cannot be used with issue field select list options created in Jira or using operations from the [Issue custom field options](#api-group-Issue-custom-field-options) resource.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required for the app providing the field.
    * @param fieldKey The field key is specified in the following format: **$(app-key)\\_\\_$(field-key)**. For example, *example-add-on\\_\\_example-issue-field*. To determine the `fieldKey` value, do one of the following:   *  open the app's plugin descriptor, then **app-key** is the key at the top and **field-key** is the key in the `jiraIssueFields` module. **app-key** can also be found in the app listing in the Atlassian Universal Plugin Manager.  *  run [Get fields](#api-rest-api-3-field-get) and in the field details the value is returned in `key`. For example, `\"key\": \"teams-add-on__team-issue-field\"` (required)
    * @param optionId The ID of the option to be deselected. (required)
    * @param replaceWith The ID of the option that will replace the currently selected option. (optional)
    * @param jql A JQL query that specifies the issues to be updated. For example, *project=10000*. (optional)
+   * @param overrideScreenSecurity Whether screen security is overridden to enable hidden fields to be edited. Available to Connect and Forge app users with admin permission. (optional, default to false)
+   * @param overrideEditableFlag Whether screen security is overridden to enable uneditable fields to be edited. Available to Connect and Forge app users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). (optional, default to false)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Completable
    */
   public Completable replaceIssueFieldOption(
-    String fieldKey, Long optionId, Optional<Long> replaceWith, Optional<String> jql, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String fieldKey, Long optionId, Optional<Long> replaceWith, Optional<String> jql, Optional<Boolean> overrideScreenSecurity, Optional<Boolean> overrideEditableFlag, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.DELETE)
@@ -299,6 +301,12 @@ public class IssueCustomFieldOptionsAppsApi {
     }
     if (jql.isPresent()) {
       queryParams.put("jql", Collections.singleton(String.valueOf(jql.get())));
+    }
+    if (overrideScreenSecurity.isPresent()) {
+      queryParams.put("overrideScreenSecurity", Collections.singleton(String.valueOf(overrideScreenSecurity.get())));
+    }
+    if (overrideEditableFlag.isPresent()) {
+      queryParams.put("overrideEditableFlag", Collections.singleton(String.valueOf(overrideEditableFlag.get())));
     }
     requestBuilder.queryParams(queryParams);
 

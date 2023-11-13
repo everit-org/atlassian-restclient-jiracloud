@@ -40,13 +40,13 @@ import io.swagger.annotations.ApiModelProperty;
  * A field within a field configuration.
  */
 @ApiModel(description = "A field within a field configuration.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class FieldConfigurationItem {
-  @JsonProperty("id")
-  private String id;
-
   @JsonProperty("description")
   private String description;
+
+  @JsonProperty("id")
+  private String id;
 
   @JsonProperty("isHidden")
   private Boolean isHidden;
@@ -54,23 +54,8 @@ public class FieldConfigurationItem {
   @JsonProperty("isRequired")
   private Boolean isRequired;
 
-  public FieldConfigurationItem id(String id) {
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * The ID of the field within the field configuration.
-   * @return id
-  **/
-  @ApiModelProperty(required = true, value = "The ID of the field within the field configuration.")
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
+  @JsonProperty("renderer")
+  private String renderer;
 
   public FieldConfigurationItem description(String description) {
     this.description = description;
@@ -88,6 +73,24 @@ public class FieldConfigurationItem {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public FieldConfigurationItem id(String id) {
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * The ID of the field within the field configuration.
+   * @return id
+  **/
+  @ApiModelProperty(required = true, value = "The ID of the field within the field configuration.")
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
   }
 
   public FieldConfigurationItem isHidden(Boolean isHidden) {
@@ -126,6 +129,24 @@ public class FieldConfigurationItem {
     this.isRequired = isRequired;
   }
 
+  public FieldConfigurationItem renderer(String renderer) {
+    this.renderer = renderer;
+    return this;
+  }
+
+   /**
+   * The renderer type for the field within the field configuration.
+   * @return renderer
+  **/
+  @ApiModelProperty(value = "The renderer type for the field within the field configuration.")
+  public String getRenderer() {
+    return renderer;
+  }
+
+  public void setRenderer(String renderer) {
+    this.renderer = renderer;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -136,15 +157,16 @@ public class FieldConfigurationItem {
       return false;
     }
     FieldConfigurationItem fieldConfigurationItem = (FieldConfigurationItem) o;
-    return Objects.equals(this.id, fieldConfigurationItem.id) &&
-        Objects.equals(this.description, fieldConfigurationItem.description) &&
+    return Objects.equals(this.description, fieldConfigurationItem.description) &&
+        Objects.equals(this.id, fieldConfigurationItem.id) &&
         Objects.equals(this.isHidden, fieldConfigurationItem.isHidden) &&
-        Objects.equals(this.isRequired, fieldConfigurationItem.isRequired);
+        Objects.equals(this.isRequired, fieldConfigurationItem.isRequired) &&
+        Objects.equals(this.renderer, fieldConfigurationItem.renderer);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, description, isHidden, isRequired);
+    return Objects.hash(description, id, isHidden, isRequired, renderer);
   }
 
 
@@ -153,10 +175,11 @@ public class FieldConfigurationItem {
     StringBuilder sb = new StringBuilder();
     sb.append("class FieldConfigurationItem {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    isHidden: ").append(toIndentedString(isHidden)).append("\n");
     sb.append("    isRequired: ").append(toIndentedString(isRequired)).append("\n");
+    sb.append("    renderer: ").append(toIndentedString(renderer)).append("\n");
     sb.append("}");
     return sb.toString();
   }

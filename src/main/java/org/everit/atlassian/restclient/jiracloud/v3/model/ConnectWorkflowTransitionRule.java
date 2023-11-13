@@ -42,46 +42,19 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.WorkflowTransition;
  * A workflow transition rule.
  */
 @ApiModel(description = "A workflow transition rule.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class ConnectWorkflowTransitionRule {
+  @JsonProperty("configuration")
+  private RuleConfiguration _configuration;
+
   @JsonProperty("id")
   private String id;
 
   @JsonProperty("key")
   private String key;
 
-  @JsonProperty("configuration")
-  private RuleConfiguration _configuration;
-
   @JsonProperty("transition")
   private WorkflowTransition transition;
-
-  public ConnectWorkflowTransitionRule id(String id) {
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * The ID of the transition rule.
-   * @return id
-  **/
-  @ApiModelProperty(required = true, value = "The ID of the transition rule.")
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-   /**
-   * The key of the rule, as defined in the Connect app descriptor.
-   * @return key
-  **/
-  @ApiModelProperty(required = true, value = "The key of the rule, as defined in the Connect app descriptor.")
-  public String getKey() {
-    return key;
-  }
 
   public ConnectWorkflowTransitionRule _configuration(RuleConfiguration _configuration) {
     this._configuration = _configuration;
@@ -101,6 +74,47 @@ public class ConnectWorkflowTransitionRule {
     this._configuration = _configuration;
   }
 
+  public ConnectWorkflowTransitionRule id(String id) {
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * The ID of the transition rule.
+   * @return id
+  **/
+  @ApiModelProperty(example = "123", required = true, value = "The ID of the transition rule.")
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public ConnectWorkflowTransitionRule key(String key) {
+    this.key = key;
+    return this;
+  }
+
+   /**
+   * The key of the rule, as defined in the Connect app descriptor.
+   * @return key
+  **/
+  @ApiModelProperty(example = "WorkflowKey", required = true, value = "The key of the rule, as defined in the Connect app descriptor.")
+  public String getKey() {
+    return key;
+  }
+
+  public void setKey(String key) {
+    this.key = key;
+  }
+
+  public ConnectWorkflowTransitionRule transition(WorkflowTransition transition) {
+    this.transition = transition;
+    return this;
+  }
+
    /**
    * Get transition
    * @return transition
@@ -108,6 +122,10 @@ public class ConnectWorkflowTransitionRule {
   @ApiModelProperty(value = "")
   public WorkflowTransition getTransition() {
     return transition;
+  }
+
+  public void setTransition(WorkflowTransition transition) {
+    this.transition = transition;
   }
 
 
@@ -120,15 +138,15 @@ public class ConnectWorkflowTransitionRule {
       return false;
     }
     ConnectWorkflowTransitionRule connectWorkflowTransitionRule = (ConnectWorkflowTransitionRule) o;
-    return Objects.equals(this.id, connectWorkflowTransitionRule.id) &&
+    return Objects.equals(this._configuration, connectWorkflowTransitionRule._configuration) &&
+        Objects.equals(this.id, connectWorkflowTransitionRule.id) &&
         Objects.equals(this.key, connectWorkflowTransitionRule.key) &&
-        Objects.equals(this._configuration, connectWorkflowTransitionRule._configuration) &&
         Objects.equals(this.transition, connectWorkflowTransitionRule.transition);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, key, _configuration, transition);
+    return Objects.hash(_configuration, id, key, transition);
   }
 
 
@@ -137,9 +155,9 @@ public class ConnectWorkflowTransitionRule {
     StringBuilder sb = new StringBuilder();
     sb.append("class ConnectWorkflowTransitionRule {\n");
     
+    sb.append("    _configuration: ").append(toIndentedString(_configuration)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
-    sb.append("    _configuration: ").append(toIndentedString(_configuration)).append("\n");
     sb.append("    transition: ").append(toIndentedString(transition)).append("\n");
     sb.append("}");
     return sb.toString();

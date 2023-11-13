@@ -39,31 +39,13 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * CreateUpdateRoleRequestBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class CreateUpdateRoleRequestBean {
-  @JsonProperty("name")
-  private String name;
-
   @JsonProperty("description")
   private String description;
 
-  public CreateUpdateRoleRequestBean name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * The name of the project role. Must be unique. Cannot begin or end with whitespace. The maximum length is 255 characters. Required when creating a project role. Optional when partially updating a project role.
-   * @return name
-  **/
-  @ApiModelProperty(value = "The name of the project role. Must be unique. Cannot begin or end with whitespace. The maximum length is 255 characters. Required when creating a project role. Optional when partially updating a project role.")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
+  @JsonProperty("name")
+  private String name;
 
   public CreateUpdateRoleRequestBean description(String description) {
     this.description = description;
@@ -83,6 +65,24 @@ public class CreateUpdateRoleRequestBean {
     this.description = description;
   }
 
+  public CreateUpdateRoleRequestBean name(String name) {
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * The name of the project role. Must be unique. Cannot begin or end with whitespace. The maximum length is 255 characters. Required when creating a project role. Optional when partially updating a project role.
+   * @return name
+  **/
+  @ApiModelProperty(value = "The name of the project role. Must be unique. Cannot begin or end with whitespace. The maximum length is 255 characters. Required when creating a project role. Optional when partially updating a project role.")
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -93,13 +93,13 @@ public class CreateUpdateRoleRequestBean {
       return false;
     }
     CreateUpdateRoleRequestBean createUpdateRoleRequestBean = (CreateUpdateRoleRequestBean) o;
-    return Objects.equals(this.name, createUpdateRoleRequestBean.name) &&
-        Objects.equals(this.description, createUpdateRoleRequestBean.description);
+    return Objects.equals(this.description, createUpdateRoleRequestBean.description) &&
+        Objects.equals(this.name, createUpdateRoleRequestBean.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description);
+    return Objects.hash(description, name);
   }
 
 
@@ -108,8 +108,8 @@ public class CreateUpdateRoleRequestBean {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateUpdateRoleRequestBean {\n");
     
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }

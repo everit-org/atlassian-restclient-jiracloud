@@ -42,16 +42,16 @@ import java.util.List;
  * The description of the page of issues loaded by the provided JQL query.
  */
 @ApiModel(description = "The description of the page of issues loaded by the provided JQL query.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class IssuesJqlMetaDataBean {
-  @JsonProperty("startAt")
-  private Long startAt;
+  @JsonProperty("count")
+  private Integer count;
 
   @JsonProperty("maxResults")
   private Integer maxResults;
 
-  @JsonProperty("count")
-  private Integer count;
+  @JsonProperty("startAt")
+  private Long startAt;
 
   @JsonProperty("totalCount")
   private Long totalCount;
@@ -59,22 +59,22 @@ public class IssuesJqlMetaDataBean {
   @JsonProperty("validationWarnings")
   private List<String> validationWarnings = new ArrayList<>();
 
-  public IssuesJqlMetaDataBean startAt(Long startAt) {
-    this.startAt = startAt;
+  public IssuesJqlMetaDataBean count(Integer count) {
+    this.count = count;
     return this;
   }
 
    /**
-   * The index of the first issue.
-   * @return startAt
+   * The number of issues that were loaded in this evaluation.
+   * @return count
   **/
-  @ApiModelProperty(required = true, value = "The index of the first issue.")
-  public Long getStartAt() {
-    return startAt;
+  @ApiModelProperty(required = true, value = "The number of issues that were loaded in this evaluation.")
+  public Integer getCount() {
+    return count;
   }
 
-  public void setStartAt(Long startAt) {
-    this.startAt = startAt;
+  public void setCount(Integer count) {
+    this.count = count;
   }
 
   public IssuesJqlMetaDataBean maxResults(Integer maxResults) {
@@ -95,22 +95,22 @@ public class IssuesJqlMetaDataBean {
     this.maxResults = maxResults;
   }
 
-  public IssuesJqlMetaDataBean count(Integer count) {
-    this.count = count;
+  public IssuesJqlMetaDataBean startAt(Long startAt) {
+    this.startAt = startAt;
     return this;
   }
 
    /**
-   * The number of issues that were loaded in this evaluation.
-   * @return count
+   * The index of the first issue.
+   * @return startAt
   **/
-  @ApiModelProperty(required = true, value = "The number of issues that were loaded in this evaluation.")
-  public Integer getCount() {
-    return count;
+  @ApiModelProperty(required = true, value = "The index of the first issue.")
+  public Long getStartAt() {
+    return startAt;
   }
 
-  public void setCount(Integer count) {
-    this.count = count;
+  public void setStartAt(Long startAt) {
+    this.startAt = startAt;
   }
 
   public IssuesJqlMetaDataBean totalCount(Long totalCount) {
@@ -167,16 +167,16 @@ public class IssuesJqlMetaDataBean {
       return false;
     }
     IssuesJqlMetaDataBean issuesJqlMetaDataBean = (IssuesJqlMetaDataBean) o;
-    return Objects.equals(this.startAt, issuesJqlMetaDataBean.startAt) &&
+    return Objects.equals(this.count, issuesJqlMetaDataBean.count) &&
         Objects.equals(this.maxResults, issuesJqlMetaDataBean.maxResults) &&
-        Objects.equals(this.count, issuesJqlMetaDataBean.count) &&
+        Objects.equals(this.startAt, issuesJqlMetaDataBean.startAt) &&
         Objects.equals(this.totalCount, issuesJqlMetaDataBean.totalCount) &&
         Objects.equals(this.validationWarnings, issuesJqlMetaDataBean.validationWarnings);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(startAt, maxResults, count, totalCount, validationWarnings);
+    return Objects.hash(count, maxResults, startAt, totalCount, validationWarnings);
   }
 
 
@@ -185,9 +185,9 @@ public class IssuesJqlMetaDataBean {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssuesJqlMetaDataBean {\n");
     
-    sb.append("    startAt: ").append(toIndentedString(startAt)).append("\n");
-    sb.append("    maxResults: ").append(toIndentedString(maxResults)).append("\n");
     sb.append("    count: ").append(toIndentedString(count)).append("\n");
+    sb.append("    maxResults: ").append(toIndentedString(maxResults)).append("\n");
+    sb.append("    startAt: ").append(toIndentedString(startAt)).append("\n");
     sb.append("    totalCount: ").append(toIndentedString(totalCount)).append("\n");
     sb.append("    validationWarnings: ").append(toIndentedString(validationWarnings)).append("\n");
     sb.append("}");

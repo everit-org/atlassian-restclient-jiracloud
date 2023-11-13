@@ -42,63 +42,30 @@ import java.util.Map;
  * An issue priority.
  */
 @ApiModel(description = "An issue priority.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class Priority {
-  @JsonProperty("self")
-  private String self;
-
-  @JsonProperty("statusColor")
-  private String statusColor;
-
   @JsonProperty("description")
   private String description;
 
   @JsonProperty("iconUrl")
   private String iconUrl;
 
-  @JsonProperty("name")
-  private String name;
-
   @JsonProperty("id")
   private String id;
 
+  @JsonProperty("isDefault")
+  private Boolean isDefault;
+
+  @JsonProperty("name")
+  private String name;
+
+  @JsonProperty("self")
+  private String self;
+
+  @JsonProperty("statusColor")
+  private String statusColor;
+
   private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
-
-  public Priority self(String self) {
-    this.self = self;
-    return this;
-  }
-
-   /**
-   * The URL of the issue priority.
-   * @return self
-  **/
-  @ApiModelProperty(value = "The URL of the issue priority.")
-  public String getSelf() {
-    return self;
-  }
-
-  public void setSelf(String self) {
-    this.self = self;
-  }
-
-  public Priority statusColor(String statusColor) {
-    this.statusColor = statusColor;
-    return this;
-  }
-
-   /**
-   * The color used to indicate the issue priority.
-   * @return statusColor
-  **/
-  @ApiModelProperty(value = "The color used to indicate the issue priority.")
-  public String getStatusColor() {
-    return statusColor;
-  }
-
-  public void setStatusColor(String statusColor) {
-    this.statusColor = statusColor;
-  }
 
   public Priority description(String description) {
     this.description = description;
@@ -136,6 +103,42 @@ public class Priority {
     this.iconUrl = iconUrl;
   }
 
+  public Priority id(String id) {
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * The ID of the issue priority.
+   * @return id
+  **/
+  @ApiModelProperty(value = "The ID of the issue priority.")
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public Priority isDefault(Boolean isDefault) {
+    this.isDefault = isDefault;
+    return this;
+  }
+
+   /**
+   * Whether this priority is the default.
+   * @return isDefault
+  **/
+  @ApiModelProperty(value = "Whether this priority is the default.")
+  public Boolean getIsDefault() {
+    return isDefault;
+  }
+
+  public void setIsDefault(Boolean isDefault) {
+    this.isDefault = isDefault;
+  }
+
   public Priority name(String name) {
     this.name = name;
     return this;
@@ -154,22 +157,40 @@ public class Priority {
     this.name = name;
   }
 
-  public Priority id(String id) {
-    this.id = id;
+  public Priority self(String self) {
+    this.self = self;
     return this;
   }
 
    /**
-   * The ID of the issue priority.
-   * @return id
+   * The URL of the issue priority.
+   * @return self
   **/
-  @ApiModelProperty(value = "The ID of the issue priority.")
-  public String getId() {
-    return id;
+  @ApiModelProperty(value = "The URL of the issue priority.")
+  public String getSelf() {
+    return self;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setSelf(String self) {
+    this.self = self;
+  }
+
+  public Priority statusColor(String statusColor) {
+    this.statusColor = statusColor;
+    return this;
+  }
+
+   /**
+   * The color used to indicate the issue priority.
+   * @return statusColor
+  **/
+  @ApiModelProperty(value = "The color used to indicate the issue priority.")
+  public String getStatusColor() {
+    return statusColor;
+  }
+
+  public void setStatusColor(String statusColor) {
+    this.statusColor = statusColor;
   }
 
 
@@ -192,18 +213,19 @@ public class Priority {
       return false;
     }
     Priority priority = (Priority) o;
-    return Objects.equals(this.self, priority.self) &&
-        Objects.equals(this.statusColor, priority.statusColor) &&
-        Objects.equals(this.description, priority.description) &&
+    return Objects.equals(this.description, priority.description) &&
         Objects.equals(this.iconUrl, priority.iconUrl) &&
-        Objects.equals(this.name, priority.name) &&
         Objects.equals(this.id, priority.id) &&
+        Objects.equals(this.isDefault, priority.isDefault) &&
+        Objects.equals(this.name, priority.name) &&
+        Objects.equals(this.self, priority.self) &&
+        Objects.equals(this.statusColor, priority.statusColor) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, statusColor, description, iconUrl, name, id, super.hashCode());
+    return Objects.hash(description, iconUrl, id, isDefault, name, self, statusColor, super.hashCode());
   }
 
 
@@ -212,12 +234,13 @@ public class Priority {
     StringBuilder sb = new StringBuilder();
     sb.append("class Priority {\n");
     
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    statusColor: ").append(toIndentedString(statusColor)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    iconUrl: ").append(toIndentedString(iconUrl)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    isDefault: ").append(toIndentedString(isDefault)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
+    sb.append("    statusColor: ").append(toIndentedString(statusColor)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();

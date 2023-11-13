@@ -37,10 +37,10 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * Default value for a single select custom field.
+ * The default value for a single select custom field.
  */
-@ApiModel(description = "Default value for a single select custom field.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@ApiModel(description = "The default value for a single select custom field.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class CustomFieldContextDefaultValueSingleOption {
   @JsonProperty("contextId")
   private String contextId;

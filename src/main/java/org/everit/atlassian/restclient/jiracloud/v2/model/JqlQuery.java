@@ -41,31 +41,13 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.JqlQueryOrderByClause;
  * A parsed JQL query.
  */
 @ApiModel(description = "A parsed JQL query.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class JqlQuery {
-  @JsonProperty("where")
-  private Object where = null;
-
   @JsonProperty("orderBy")
   private JqlQueryOrderByClause orderBy;
 
-  public JqlQuery where(Object where) {
-    this.where = where;
-    return this;
-  }
-
-   /**
-   * A JQL query clause.
-   * @return where
-  **/
-  @ApiModelProperty(value = "A JQL query clause.")
-  public Object getWhere() {
-    return where;
-  }
-
-  public void setWhere(Object where) {
-    this.where = where;
-  }
+  @JsonProperty("where")
+  private Object where = null;
 
   public JqlQuery orderBy(JqlQueryOrderByClause orderBy) {
     this.orderBy = orderBy;
@@ -85,6 +67,24 @@ public class JqlQuery {
     this.orderBy = orderBy;
   }
 
+  public JqlQuery where(Object where) {
+    this.where = where;
+    return this;
+  }
+
+   /**
+   * A JQL query clause.
+   * @return where
+  **/
+  @ApiModelProperty(value = "A JQL query clause.")
+  public Object getWhere() {
+    return where;
+  }
+
+  public void setWhere(Object where) {
+    this.where = where;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -95,13 +95,13 @@ public class JqlQuery {
       return false;
     }
     JqlQuery jqlQuery = (JqlQuery) o;
-    return Objects.equals(this.where, jqlQuery.where) &&
-        Objects.equals(this.orderBy, jqlQuery.orderBy);
+    return Objects.equals(this.orderBy, jqlQuery.orderBy) &&
+        Objects.equals(this.where, jqlQuery.where);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(where, orderBy);
+    return Objects.hash(orderBy, where);
   }
 
 
@@ -110,8 +110,8 @@ public class JqlQuery {
     StringBuilder sb = new StringBuilder();
     sb.append("class JqlQuery {\n");
     
-    sb.append("    where: ").append(toIndentedString(where)).append("\n");
     sb.append("    orderBy: ").append(toIndentedString(orderBy)).append("\n");
+    sb.append("    where: ").append(toIndentedString(where)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -42,8 +42,14 @@ import java.util.List;
  * A compound workflow transition rule condition. This object returns &#x60;nodeType&#x60; as &#x60;compound&#x60;.
  */
 @ApiModel(description = "A compound workflow transition rule condition. This object returns `nodeType` as `compound`.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class WorkflowCompoundCondition {
+  @JsonProperty("conditions")
+  private List<Object> conditions = new ArrayList<>();
+
+  @JsonProperty("nodeType")
+  private String nodeType;
+
   /**
    * The compound condition operator.
    */
@@ -81,30 +87,6 @@ public class WorkflowCompoundCondition {
 
   @JsonProperty("operator")
   private OperatorEnum operator;
-
-  @JsonProperty("conditions")
-  private List<Object> conditions = new ArrayList<>();
-
-  @JsonProperty("nodeType")
-  private String nodeType;
-
-  public WorkflowCompoundCondition operator(OperatorEnum operator) {
-    this.operator = operator;
-    return this;
-  }
-
-   /**
-   * The compound condition operator.
-   * @return operator
-  **/
-  @ApiModelProperty(required = true, value = "The compound condition operator.")
-  public OperatorEnum getOperator() {
-    return operator;
-  }
-
-  public void setOperator(OperatorEnum operator) {
-    this.operator = operator;
-  }
 
   public WorkflowCompoundCondition conditions(List<Object> conditions) {
     this.conditions = conditions;
@@ -147,6 +129,24 @@ public class WorkflowCompoundCondition {
     this.nodeType = nodeType;
   }
 
+  public WorkflowCompoundCondition operator(OperatorEnum operator) {
+    this.operator = operator;
+    return this;
+  }
+
+   /**
+   * The compound condition operator.
+   * @return operator
+  **/
+  @ApiModelProperty(required = true, value = "The compound condition operator.")
+  public OperatorEnum getOperator() {
+    return operator;
+  }
+
+  public void setOperator(OperatorEnum operator) {
+    this.operator = operator;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -157,14 +157,14 @@ public class WorkflowCompoundCondition {
       return false;
     }
     WorkflowCompoundCondition workflowCompoundCondition = (WorkflowCompoundCondition) o;
-    return Objects.equals(this.operator, workflowCompoundCondition.operator) &&
-        Objects.equals(this.conditions, workflowCompoundCondition.conditions) &&
-        Objects.equals(this.nodeType, workflowCompoundCondition.nodeType);
+    return Objects.equals(this.conditions, workflowCompoundCondition.conditions) &&
+        Objects.equals(this.nodeType, workflowCompoundCondition.nodeType) &&
+        Objects.equals(this.operator, workflowCompoundCondition.operator);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(operator, conditions, nodeType);
+    return Objects.hash(conditions, nodeType, operator);
   }
 
 
@@ -173,9 +173,9 @@ public class WorkflowCompoundCondition {
     StringBuilder sb = new StringBuilder();
     sb.append("class WorkflowCompoundCondition {\n");
     
-    sb.append("    operator: ").append(toIndentedString(operator)).append("\n");
     sb.append("    conditions: ").append(toIndentedString(conditions)).append("\n");
     sb.append("    nodeType: ").append(toIndentedString(nodeType)).append("\n");
+    sb.append("    operator: ").append(toIndentedString(operator)).append("\n");
     sb.append("}");
     return sb.toString();
   }

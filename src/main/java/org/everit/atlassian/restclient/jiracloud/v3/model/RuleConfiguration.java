@@ -40,34 +40,16 @@ import io.swagger.annotations.ApiModelProperty;
  * A rule configuration.
  */
 @ApiModel(description = "A rule configuration.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class RuleConfiguration {
-  @JsonProperty("value")
-  private String value;
-
   @JsonProperty("disabled")
   private Boolean disabled = false;
 
   @JsonProperty("tag")
   private String tag;
 
-  public RuleConfiguration value(String value) {
-    this.value = value;
-    return this;
-  }
-
-   /**
-   * Configuration of the rule, as it is stored by the Connect app on the rule configuration page.
-   * @return value
-  **/
-  @ApiModelProperty(required = true, value = "Configuration of the rule, as it is stored by the Connect app on the rule configuration page.")
-  public String getValue() {
-    return value;
-  }
-
-  public void setValue(String value) {
-    this.value = value;
-  }
+  @JsonProperty("value")
+  private String value;
 
   public RuleConfiguration disabled(Boolean disabled) {
     this.disabled = disabled;
@@ -75,10 +57,10 @@ public class RuleConfiguration {
   }
 
    /**
-   * EXPERIMENTAL: Whether the rule is disabled.
+   * Whether the rule is disabled.
    * @return disabled
   **/
-  @ApiModelProperty(value = "EXPERIMENTAL: Whether the rule is disabled.")
+  @ApiModelProperty(value = "Whether the rule is disabled.")
   public Boolean getDisabled() {
     return disabled;
   }
@@ -93,16 +75,34 @@ public class RuleConfiguration {
   }
 
    /**
-   * EXPERIMENTAL: A tag used to filter rules in [Get workflow transition rule configurations](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflow-transition-rules/#api-rest-api-3-workflow-rule-config-get).
+   * A tag used to filter rules in [Get workflow transition rule configurations](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflow-transition-rules/#api-rest-api-3-workflow-rule-config-get).
    * @return tag
   **/
-  @ApiModelProperty(value = "EXPERIMENTAL: A tag used to filter rules in [Get workflow transition rule configurations](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflow-transition-rules/#api-rest-api-3-workflow-rule-config-get).")
+  @ApiModelProperty(value = "A tag used to filter rules in [Get workflow transition rule configurations](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflow-transition-rules/#api-rest-api-3-workflow-rule-config-get).")
   public String getTag() {
     return tag;
   }
 
   public void setTag(String tag) {
     this.tag = tag;
+  }
+
+  public RuleConfiguration value(String value) {
+    this.value = value;
+    return this;
+  }
+
+   /**
+   * Configuration of the rule, as it is stored by the Connect or the Forge app on the rule configuration page.
+   * @return value
+  **/
+  @ApiModelProperty(required = true, value = "Configuration of the rule, as it is stored by the Connect or the Forge app on the rule configuration page.")
+  public String getValue() {
+    return value;
+  }
+
+  public void setValue(String value) {
+    this.value = value;
   }
 
 
@@ -115,14 +115,14 @@ public class RuleConfiguration {
       return false;
     }
     RuleConfiguration ruleConfiguration = (RuleConfiguration) o;
-    return Objects.equals(this.value, ruleConfiguration.value) &&
-        Objects.equals(this.disabled, ruleConfiguration.disabled) &&
-        Objects.equals(this.tag, ruleConfiguration.tag);
+    return Objects.equals(this.disabled, ruleConfiguration.disabled) &&
+        Objects.equals(this.tag, ruleConfiguration.tag) &&
+        Objects.equals(this.value, ruleConfiguration.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value, disabled, tag);
+    return Objects.hash(disabled, tag, value);
   }
 
 
@@ -131,9 +131,9 @@ public class RuleConfiguration {
     StringBuilder sb = new StringBuilder();
     sb.append("class RuleConfiguration {\n");
     
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    disabled: ").append(toIndentedString(disabled)).append("\n");
     sb.append("    tag: ").append(toIndentedString(tag)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }

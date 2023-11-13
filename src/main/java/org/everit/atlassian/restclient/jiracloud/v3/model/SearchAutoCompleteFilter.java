@@ -42,13 +42,31 @@ import java.util.List;
  * Details of how to filter and list search auto complete information.
  */
 @ApiModel(description = "Details of how to filter and list search auto complete information.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class SearchAutoCompleteFilter {
+  @JsonProperty("includeCollapsedFields")
+  private Boolean includeCollapsedFields = false;
+
   @JsonProperty("projectIds")
   private List<Long> projectIds = new ArrayList<>();
 
-  @JsonProperty("includeCollapsedFields")
-  private Boolean includeCollapsedFields = false;
+  public SearchAutoCompleteFilter includeCollapsedFields(Boolean includeCollapsedFields) {
+    this.includeCollapsedFields = includeCollapsedFields;
+    return this;
+  }
+
+   /**
+   * Include collapsed fields for fields that have non-unique names.
+   * @return includeCollapsedFields
+  **/
+  @ApiModelProperty(value = "Include collapsed fields for fields that have non-unique names.")
+  public Boolean getIncludeCollapsedFields() {
+    return includeCollapsedFields;
+  }
+
+  public void setIncludeCollapsedFields(Boolean includeCollapsedFields) {
+    this.includeCollapsedFields = includeCollapsedFields;
+  }
 
   public SearchAutoCompleteFilter projectIds(List<Long> projectIds) {
     this.projectIds = projectIds;
@@ -76,24 +94,6 @@ public class SearchAutoCompleteFilter {
     this.projectIds = projectIds;
   }
 
-  public SearchAutoCompleteFilter includeCollapsedFields(Boolean includeCollapsedFields) {
-    this.includeCollapsedFields = includeCollapsedFields;
-    return this;
-  }
-
-   /**
-   * Include collapsed fields for fields that have non-unique names.
-   * @return includeCollapsedFields
-  **/
-  @ApiModelProperty(value = "Include collapsed fields for fields that have non-unique names.")
-  public Boolean getIncludeCollapsedFields() {
-    return includeCollapsedFields;
-  }
-
-  public void setIncludeCollapsedFields(Boolean includeCollapsedFields) {
-    this.includeCollapsedFields = includeCollapsedFields;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -104,13 +104,13 @@ public class SearchAutoCompleteFilter {
       return false;
     }
     SearchAutoCompleteFilter searchAutoCompleteFilter = (SearchAutoCompleteFilter) o;
-    return Objects.equals(this.projectIds, searchAutoCompleteFilter.projectIds) &&
-        Objects.equals(this.includeCollapsedFields, searchAutoCompleteFilter.includeCollapsedFields);
+    return Objects.equals(this.includeCollapsedFields, searchAutoCompleteFilter.includeCollapsedFields) &&
+        Objects.equals(this.projectIds, searchAutoCompleteFilter.projectIds);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(projectIds, includeCollapsedFields);
+    return Objects.hash(includeCollapsedFields, projectIds);
   }
 
 
@@ -119,8 +119,8 @@ public class SearchAutoCompleteFilter {
     StringBuilder sb = new StringBuilder();
     sb.append("class SearchAutoCompleteFilter {\n");
     
-    sb.append("    projectIds: ").append(toIndentedString(projectIds)).append("\n");
     sb.append("    includeCollapsedFields: ").append(toIndentedString(includeCollapsedFields)).append("\n");
+    sb.append("    projectIds: ").append(toIndentedString(projectIds)).append("\n");
     sb.append("}");
     return sb.toString();
   }

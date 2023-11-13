@@ -36,41 +36,118 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.everit.atlassian.restclient.jiracloud.v3.model.JsonTypeBean;
 
 /**
  * The metadata describing an issue field.
  */
 @ApiModel(description = "The metadata describing an issue field.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class FieldMetadata {
+  @JsonProperty("allowedValues")
+  private List<Object> allowedValues = new ArrayList<>();
+
+  @JsonProperty("autoCompleteUrl")
+  private String autoCompleteUrl;
+
+  @JsonProperty("configuration")
+  private Map<String, Object> _configuration = new HashMap<>();
+
+  @JsonProperty("defaultValue")
+  private Object defaultValue = null;
+
+  @JsonProperty("hasDefaultValue")
+  private Boolean hasDefaultValue;
+
+  @JsonProperty("key")
+  private String key;
+
+  @JsonProperty("name")
+  private String name;
+
+  @JsonProperty("operations")
+  private List<String> operations = new ArrayList<>();
+
   @JsonProperty("required")
   private Boolean required;
 
   @JsonProperty("schema")
   private JsonTypeBean schema;
 
-  @JsonProperty("name")
-  private String name;
+   /**
+   * The list of values allowed in the field.
+   * @return allowedValues
+  **/
+  @ApiModelProperty(value = "The list of values allowed in the field.")
+  public List<Object> getAllowedValues() {
+    return allowedValues;
+  }
 
-  @JsonProperty("key")
-  private String key;
+   /**
+   * The URL that can be used to automatically complete the field.
+   * @return autoCompleteUrl
+  **/
+  @ApiModelProperty(value = "The URL that can be used to automatically complete the field.")
+  public String getAutoCompleteUrl() {
+    return autoCompleteUrl;
+  }
 
-  @JsonProperty("autoCompleteUrl")
-  private String autoCompleteUrl;
+   /**
+   * The configuration properties.
+   * @return _configuration
+  **/
+  @ApiModelProperty(value = "The configuration properties.")
+  public Map<String, Object> getConfiguration() {
+    return _configuration;
+  }
 
-  @JsonProperty("hasDefaultValue")
-  private Boolean hasDefaultValue;
+   /**
+   * The default value of the field.
+   * @return defaultValue
+  **/
+  @ApiModelProperty(value = "The default value of the field.")
+  public Object getDefaultValue() {
+    return defaultValue;
+  }
 
-  @JsonProperty("operations")
-  private List<String> operations = new ArrayList<>();
+   /**
+   * Whether the field has a default value.
+   * @return hasDefaultValue
+  **/
+  @ApiModelProperty(value = "Whether the field has a default value.")
+  public Boolean getHasDefaultValue() {
+    return hasDefaultValue;
+  }
 
-  @JsonProperty("allowedValues")
-  private List<Object> allowedValues = new ArrayList<>();
+   /**
+   * The key of the field.
+   * @return key
+  **/
+  @ApiModelProperty(required = true, value = "The key of the field.")
+  public String getKey() {
+    return key;
+  }
 
-  @JsonProperty("defaultValue")
-  private Object defaultValue = null;
+   /**
+   * The name of the field.
+   * @return name
+  **/
+  @ApiModelProperty(required = true, value = "The name of the field.")
+  public String getName() {
+    return name;
+  }
+
+   /**
+   * The list of operations that can be performed on the field.
+   * @return operations
+  **/
+  @ApiModelProperty(required = true, value = "The list of operations that can be performed on the field.")
+  public List<String> getOperations() {
+    return operations;
+  }
 
    /**
    * Whether the field is required.
@@ -90,69 +167,6 @@ public class FieldMetadata {
     return schema;
   }
 
-   /**
-   * The name of the field.
-   * @return name
-  **/
-  @ApiModelProperty(required = true, value = "The name of the field.")
-  public String getName() {
-    return name;
-  }
-
-   /**
-   * The key of the field.
-   * @return key
-  **/
-  @ApiModelProperty(required = true, value = "The key of the field.")
-  public String getKey() {
-    return key;
-  }
-
-   /**
-   * The URL that can be used to automatically complete the field.
-   * @return autoCompleteUrl
-  **/
-  @ApiModelProperty(value = "The URL that can be used to automatically complete the field.")
-  public String getAutoCompleteUrl() {
-    return autoCompleteUrl;
-  }
-
-   /**
-   * Whether the field has a default value.
-   * @return hasDefaultValue
-  **/
-  @ApiModelProperty(value = "Whether the field has a default value.")
-  public Boolean getHasDefaultValue() {
-    return hasDefaultValue;
-  }
-
-   /**
-   * The list of operations that can be performed on the field.
-   * @return operations
-  **/
-  @ApiModelProperty(required = true, value = "The list of operations that can be performed on the field.")
-  public List<String> getOperations() {
-    return operations;
-  }
-
-   /**
-   * The list of values allowed in the field.
-   * @return allowedValues
-  **/
-  @ApiModelProperty(value = "The list of values allowed in the field.")
-  public List<Object> getAllowedValues() {
-    return allowedValues;
-  }
-
-   /**
-   * The default value of the field.
-   * @return defaultValue
-  **/
-  @ApiModelProperty(value = "The default value of the field.")
-  public Object getDefaultValue() {
-    return defaultValue;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -163,20 +177,21 @@ public class FieldMetadata {
       return false;
     }
     FieldMetadata fieldMetadata = (FieldMetadata) o;
-    return Objects.equals(this.required, fieldMetadata.required) &&
-        Objects.equals(this.schema, fieldMetadata.schema) &&
-        Objects.equals(this.name, fieldMetadata.name) &&
-        Objects.equals(this.key, fieldMetadata.key) &&
+    return Objects.equals(this.allowedValues, fieldMetadata.allowedValues) &&
         Objects.equals(this.autoCompleteUrl, fieldMetadata.autoCompleteUrl) &&
+        Objects.equals(this._configuration, fieldMetadata._configuration) &&
+        Objects.equals(this.defaultValue, fieldMetadata.defaultValue) &&
         Objects.equals(this.hasDefaultValue, fieldMetadata.hasDefaultValue) &&
+        Objects.equals(this.key, fieldMetadata.key) &&
+        Objects.equals(this.name, fieldMetadata.name) &&
         Objects.equals(this.operations, fieldMetadata.operations) &&
-        Objects.equals(this.allowedValues, fieldMetadata.allowedValues) &&
-        Objects.equals(this.defaultValue, fieldMetadata.defaultValue);
+        Objects.equals(this.required, fieldMetadata.required) &&
+        Objects.equals(this.schema, fieldMetadata.schema);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(required, schema, name, key, autoCompleteUrl, hasDefaultValue, operations, allowedValues, defaultValue);
+    return Objects.hash(allowedValues, autoCompleteUrl, _configuration, defaultValue, hasDefaultValue, key, name, operations, required, schema);
   }
 
 
@@ -185,15 +200,16 @@ public class FieldMetadata {
     StringBuilder sb = new StringBuilder();
     sb.append("class FieldMetadata {\n");
     
+    sb.append("    allowedValues: ").append(toIndentedString(allowedValues)).append("\n");
+    sb.append("    autoCompleteUrl: ").append(toIndentedString(autoCompleteUrl)).append("\n");
+    sb.append("    _configuration: ").append(toIndentedString(_configuration)).append("\n");
+    sb.append("    defaultValue: ").append(toIndentedString(defaultValue)).append("\n");
+    sb.append("    hasDefaultValue: ").append(toIndentedString(hasDefaultValue)).append("\n");
+    sb.append("    key: ").append(toIndentedString(key)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    operations: ").append(toIndentedString(operations)).append("\n");
     sb.append("    required: ").append(toIndentedString(required)).append("\n");
     sb.append("    schema: ").append(toIndentedString(schema)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    key: ").append(toIndentedString(key)).append("\n");
-    sb.append("    autoCompleteUrl: ").append(toIndentedString(autoCompleteUrl)).append("\n");
-    sb.append("    hasDefaultValue: ").append(toIndentedString(hasDefaultValue)).append("\n");
-    sb.append("    operations: ").append(toIndentedString(operations)).append("\n");
-    sb.append("    allowedValues: ").append(toIndentedString(allowedValues)).append("\n");
-    sb.append("    defaultValue: ").append(toIndentedString(defaultValue)).append("\n");
     sb.append("}");
     return sb.toString();
   }

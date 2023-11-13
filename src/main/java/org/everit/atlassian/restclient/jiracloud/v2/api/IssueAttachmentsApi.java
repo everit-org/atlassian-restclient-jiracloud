@@ -53,7 +53,11 @@ public class IssueAttachmentsApi {
 
   private static final TypeReference<AttachmentMetadata> returnType_getAttachment = new TypeReference<AttachmentMetadata>() {};
 
+  private static final TypeReference<Object> returnType_getAttachmentContent = new TypeReference<Object>() {};
+
   private static final TypeReference<AttachmentSettings> returnType_getAttachmentMeta = new TypeReference<AttachmentSettings>() {};
+
+  private static final TypeReference<Object> returnType_getAttachmentThumbnail = new TypeReference<Object>() {};
 
   private final RestClient restClient;
 
@@ -174,6 +178,38 @@ public class IssueAttachmentsApi {
   }
 
   /**
+   * Get attachment content
+   * Returns the contents of an attachment. A `Range` header can be set to define a range of bytes within the attachment to download. See the [HTTP Range header standard](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Range) for details.  To return a thumbnail of the attachment, use [Get attachment thumbnail](#api-rest-api-2-attachment-thumbnail-id-get).  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** For the issue containing the attachment:   *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
+   * @param id The ID of the attachment. (required)
+   * @param redirect Whether a redirect is provided for the attachment download. Clients that do not automatically follow redirects can set this to `false` to avoid making multiple requests to download the attachment. (optional, default to true)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;Object&gt;
+   */
+  public Single<Object> getAttachmentContent(
+    String id, Optional<Boolean> redirect, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/attachment/content/{id}");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("id", String.valueOf(id));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (redirect.isPresent()) {
+      queryParams.put("redirect", Collections.singleton(String.valueOf(redirect.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getAttachmentContent);
+  }
+
+  /**
    * Get Jira attachment settings
    * Returns the attachment settings, that is, whether attachments are enabled and the maximum attachment size allowed.  Note that there are also [project permissions](https://confluence.atlassian.com/x/yodKLg) that restrict whether users can create and delete attachments.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** None.
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
@@ -197,6 +233,50 @@ public class IssueAttachmentsApi {
     requestBuilder.headers(headers);
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getAttachmentMeta);
+  }
+
+  /**
+   * Get attachment thumbnail
+   * Returns the thumbnail of an attachment.  To return the attachment contents, use [Get attachment content](#api-rest-api-2-attachment-content-id-get).  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** For the issue containing the attachment:   *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
+   * @param id The ID of the attachment. (required)
+   * @param redirect Whether a redirect is provided for the attachment download. Clients that do not automatically follow redirects can set this to `false` to avoid making multiple requests to download the attachment. (optional, default to true)
+   * @param fallbackToDefault Whether a default thumbnail is returned when the requested thumbnail is not found. (optional, default to true)
+   * @param width The maximum width to scale the thumbnail to. (optional)
+   * @param height The maximum height to scale the thumbnail to. (optional)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;Object&gt;
+   */
+  public Single<Object> getAttachmentThumbnail(
+    String id, Optional<Boolean> redirect, Optional<Boolean> fallbackToDefault, Optional<Integer> width, Optional<Integer> height, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/attachment/thumbnail/{id}");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("id", String.valueOf(id));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (redirect.isPresent()) {
+      queryParams.put("redirect", Collections.singleton(String.valueOf(redirect.get())));
+    }
+    if (fallbackToDefault.isPresent()) {
+      queryParams.put("fallbackToDefault", Collections.singleton(String.valueOf(fallbackToDefault.get())));
+    }
+    if (width.isPresent()) {
+      queryParams.put("width", Collections.singleton(String.valueOf(width.get())));
+    }
+    if (height.isPresent()) {
+      queryParams.put("height", Collections.singleton(String.valueOf(height.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getAttachmentThumbnail);
   }
 
   /**

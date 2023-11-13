@@ -183,11 +183,14 @@ public class ScreensApi {
    * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0l)
    * @param maxResults The maximum number of items to return per page. (optional, default to 100)
    * @param id The list of screen IDs. To include multiple IDs, provide an ampersand-separated list. For example, `id=10000&id=10001`. (optional, default to new ArrayList&lt;&gt;())
+   * @param queryString String used to perform a case-insensitive partial match with screen name. (optional, default to &quot;&quot;)
+   * @param scope The scope filter string. To filter by multiple scope, provide an ampersand-separated list. For example, `scope=GLOBAL&scope=PROJECT`. (optional, default to new ArrayList&lt;&gt;())
+   * @param orderBy [Order](#ordering) the results by a field:   *  `id` Sorts by screen ID.  *  `name` Sorts by screen name. (optional)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PageBeanScreen&gt;
    */
   public Single<PageBeanScreen> getScreens(
-    Optional<Long> startAt, Optional<Integer> maxResults, Optional<List<Long>> id, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Optional<Long> startAt, Optional<Integer> maxResults, Optional<List<Long>> id, Optional<String> queryString, Optional<List<String>> scope, Optional<String> orderBy, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.GET)
@@ -206,6 +209,15 @@ public class ScreensApi {
     }
     if (id.isPresent()) {
       queryParams.put("id", RestClientUtil.objectCollectionToStringCollection(id.get()));
+    }
+    if (queryString.isPresent()) {
+      queryParams.put("queryString", Collections.singleton(String.valueOf(queryString.get())));
+    }
+    if (scope.isPresent()) {
+      queryParams.put("scope", RestClientUtil.objectCollectionToStringCollection(scope.get()));
+    }
+    if (orderBy.isPresent()) {
+      queryParams.put("orderBy", Collections.singleton(String.valueOf(orderBy.get())));
     }
     requestBuilder.queryParams(queryParams);
 

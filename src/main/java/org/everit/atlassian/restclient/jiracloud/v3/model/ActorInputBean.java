@@ -41,13 +41,68 @@ import java.util.List;
 /**
  * ActorInputBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class ActorInputBean {
+  @JsonProperty("group")
+  private List<String> group = new ArrayList<>();
+
+  @JsonProperty("groupId")
+  private List<String> groupId = new ArrayList<>();
+
   @JsonProperty("user")
   private List<String> user = new ArrayList<>();
 
-  @JsonProperty("group")
-  private List<String> group = new ArrayList<>();
+  public ActorInputBean group(List<String> group) {
+    this.group = group;
+    return this;
+  }
+
+  public ActorInputBean addGroupItem(String groupItem) {
+    if (this.group == null) {
+      this.group = new ArrayList<>();
+    }
+    this.group.add(groupItem);
+    return this;
+  }
+
+   /**
+   * The name of the group to add as a default actor. This parameter cannot be used with the &#x60;groupId&#x60; parameter. As a group&#39;s name can change,use of &#x60;groupId&#x60; is recommended. This parameter accepts a comma-separated list. For example, &#x60;\&quot;group\&quot;:[\&quot;project-admin\&quot;, \&quot;jira-developers\&quot;]&#x60;.
+   * @return group
+  **/
+  @ApiModelProperty(value = "The name of the group to add as a default actor. This parameter cannot be used with the `groupId` parameter. As a group's name can change,use of `groupId` is recommended. This parameter accepts a comma-separated list. For example, `\"group\":[\"project-admin\", \"jira-developers\"]`.")
+  public List<String> getGroup() {
+    return group;
+  }
+
+  public void setGroup(List<String> group) {
+    this.group = group;
+  }
+
+  public ActorInputBean groupId(List<String> groupId) {
+    this.groupId = groupId;
+    return this;
+  }
+
+  public ActorInputBean addGroupIdItem(String groupIdItem) {
+    if (this.groupId == null) {
+      this.groupId = new ArrayList<>();
+    }
+    this.groupId.add(groupIdItem);
+    return this;
+  }
+
+   /**
+   * The ID of the group to add as a default actor. This parameter cannot be used with the &#x60;group&#x60; parameter This parameter accepts a comma-separated list. For example, &#x60;\&quot;groupId\&quot;:[\&quot;77f6ab39-e755-4570-a6ae-2d7a8df0bcb8\&quot;, \&quot;0c011f85-69ed-49c4-a801-3b18d0f771bc\&quot;]&#x60;.
+   * @return groupId
+  **/
+  @ApiModelProperty(value = "The ID of the group to add as a default actor. This parameter cannot be used with the `group` parameter This parameter accepts a comma-separated list. For example, `\"groupId\":[\"77f6ab39-e755-4570-a6ae-2d7a8df0bcb8\", \"0c011f85-69ed-49c4-a801-3b18d0f771bc\"]`.")
+  public List<String> getGroupId() {
+    return groupId;
+  }
+
+  public void setGroupId(List<String> groupId) {
+    this.groupId = groupId;
+  }
 
   public ActorInputBean user(List<String> user) {
     this.user = user;
@@ -75,32 +130,6 @@ public class ActorInputBean {
     this.user = user;
   }
 
-  public ActorInputBean group(List<String> group) {
-    this.group = group;
-    return this;
-  }
-
-  public ActorInputBean addGroupItem(String groupItem) {
-    if (this.group == null) {
-      this.group = new ArrayList<>();
-    }
-    this.group.add(groupItem);
-    return this;
-  }
-
-   /**
-   * The name of the group to add as a default actor. This parameter accepts a comma-separated list. For example, &#x60;\&quot;group\&quot;:[\&quot;project-admin\&quot;, \&quot;jira-developers\&quot;]&#x60;.
-   * @return group
-  **/
-  @ApiModelProperty(value = "The name of the group to add as a default actor. This parameter accepts a comma-separated list. For example, `\"group\":[\"project-admin\", \"jira-developers\"]`.")
-  public List<String> getGroup() {
-    return group;
-  }
-
-  public void setGroup(List<String> group) {
-    this.group = group;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -111,13 +140,14 @@ public class ActorInputBean {
       return false;
     }
     ActorInputBean actorInputBean = (ActorInputBean) o;
-    return Objects.equals(this.user, actorInputBean.user) &&
-        Objects.equals(this.group, actorInputBean.group);
+    return Objects.equals(this.group, actorInputBean.group) &&
+        Objects.equals(this.groupId, actorInputBean.groupId) &&
+        Objects.equals(this.user, actorInputBean.user);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(user, group);
+    return Objects.hash(group, groupId, user);
   }
 
 
@@ -126,8 +156,9 @@ public class ActorInputBean {
     StringBuilder sb = new StringBuilder();
     sb.append("class ActorInputBean {\n");
     
-    sb.append("    user: ").append(toIndentedString(user)).append("\n");
     sb.append("    group: ").append(toIndentedString(group)).append("\n");
+    sb.append("    groupId: ").append(toIndentedString(groupId)).append("\n");
+    sb.append("    user: ").append(toIndentedString(user)).append("\n");
     sb.append("}");
     return sb.toString();
   }

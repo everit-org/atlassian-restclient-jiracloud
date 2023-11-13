@@ -43,33 +43,33 @@ import java.util.UUID;
  * Details of the workflow and its transition rules.
  */
 @ApiModel(description = "Details of the workflow and its transition rules.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class WorkflowRulesSearch {
-  @JsonProperty("workflowEntityId")
-  private UUID workflowEntityId;
+  @JsonProperty("expand")
+  private String expand;
 
   @JsonProperty("ruleIds")
   private List<UUID> ruleIds = new ArrayList<>();
 
-  @JsonProperty("expand")
-  private String expand;
+  @JsonProperty("workflowEntityId")
+  private UUID workflowEntityId;
 
-  public WorkflowRulesSearch workflowEntityId(UUID workflowEntityId) {
-    this.workflowEntityId = workflowEntityId;
+  public WorkflowRulesSearch expand(String expand) {
+    this.expand = expand;
     return this;
   }
 
    /**
-   * The workflow ID.
-   * @return workflowEntityId
+   * Use expand to include additional information in the response. This parameter accepts &#x60;transition&#x60; which, for each rule, returns information about the transition the rule is assigned to.
+   * @return expand
   **/
-  @ApiModelProperty(example = "a498d711-685d-428d-8c3e-bc03bb450ea7", required = true, value = "The workflow ID.")
-  public UUID getWorkflowEntityId() {
-    return workflowEntityId;
+  @ApiModelProperty(example = "transition", value = "Use expand to include additional information in the response. This parameter accepts `transition` which, for each rule, returns information about the transition the rule is assigned to.")
+  public String getExpand() {
+    return expand;
   }
 
-  public void setWorkflowEntityId(UUID workflowEntityId) {
-    this.workflowEntityId = workflowEntityId;
+  public void setExpand(String expand) {
+    this.expand = expand;
   }
 
   public WorkflowRulesSearch ruleIds(List<UUID> ruleIds) {
@@ -95,22 +95,22 @@ public class WorkflowRulesSearch {
     this.ruleIds = ruleIds;
   }
 
-  public WorkflowRulesSearch expand(String expand) {
-    this.expand = expand;
+  public WorkflowRulesSearch workflowEntityId(UUID workflowEntityId) {
+    this.workflowEntityId = workflowEntityId;
     return this;
   }
 
    /**
-   * Use expand to include additional information in the response. This parameter accepts &#x60;transition&#x60; which, for each rule, returns information about the transition the rule is assigned to.
-   * @return expand
+   * The workflow ID.
+   * @return workflowEntityId
   **/
-  @ApiModelProperty(example = "transition", value = "Use expand to include additional information in the response. This parameter accepts `transition` which, for each rule, returns information about the transition the rule is assigned to.")
-  public String getExpand() {
-    return expand;
+  @ApiModelProperty(example = "a498d711-685d-428d-8c3e-bc03bb450ea7", required = true, value = "The workflow ID.")
+  public UUID getWorkflowEntityId() {
+    return workflowEntityId;
   }
 
-  public void setExpand(String expand) {
-    this.expand = expand;
+  public void setWorkflowEntityId(UUID workflowEntityId) {
+    this.workflowEntityId = workflowEntityId;
   }
 
 
@@ -123,14 +123,14 @@ public class WorkflowRulesSearch {
       return false;
     }
     WorkflowRulesSearch workflowRulesSearch = (WorkflowRulesSearch) o;
-    return Objects.equals(this.workflowEntityId, workflowRulesSearch.workflowEntityId) &&
+    return Objects.equals(this.expand, workflowRulesSearch.expand) &&
         Objects.equals(this.ruleIds, workflowRulesSearch.ruleIds) &&
-        Objects.equals(this.expand, workflowRulesSearch.expand);
+        Objects.equals(this.workflowEntityId, workflowRulesSearch.workflowEntityId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(workflowEntityId, ruleIds, expand);
+    return Objects.hash(expand, ruleIds, workflowEntityId);
   }
 
 
@@ -139,9 +139,9 @@ public class WorkflowRulesSearch {
     StringBuilder sb = new StringBuilder();
     sb.append("class WorkflowRulesSearch {\n");
     
-    sb.append("    workflowEntityId: ").append(toIndentedString(workflowEntityId)).append("\n");
-    sb.append("    ruleIds: ").append(toIndentedString(ruleIds)).append("\n");
     sb.append("    expand: ").append(toIndentedString(expand)).append("\n");
+    sb.append("    ruleIds: ").append(toIndentedString(ruleIds)).append("\n");
+    sb.append("    workflowEntityId: ").append(toIndentedString(workflowEntityId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

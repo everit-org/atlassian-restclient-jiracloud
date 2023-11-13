@@ -42,8 +42,11 @@ import java.util.Map;
  * The group or role to which this item is visible.
  */
 @ApiModel(description = "The group or role to which this item is visible.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class Visibility {
+  @JsonProperty("identifier")
+  private String identifier;
+
   /**
    * Whether visibility of this item is restricted to a group or role.
    */
@@ -87,6 +90,24 @@ public class Visibility {
 
   private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
 
+  public Visibility identifier(String identifier) {
+    this.identifier = identifier;
+    return this;
+  }
+
+   /**
+   * The ID of the group or the name of the role that visibility of this item is restricted to.
+   * @return identifier
+  **/
+  @ApiModelProperty(value = "The ID of the group or the name of the role that visibility of this item is restricted to.")
+  public String getIdentifier() {
+    return identifier;
+  }
+
+  public void setIdentifier(String identifier) {
+    this.identifier = identifier;
+  }
+
   public Visibility type(TypeEnum type) {
     this.type = type;
     return this;
@@ -111,10 +132,10 @@ public class Visibility {
   }
 
    /**
-   * The name of the group or role to which visibility of this item is restricted.
+   * The name of the group or role that visibility of this item is restricted to. Please note that the name of a group is mutable, to reliably identify a group use &#x60;identifier&#x60;.
    * @return value
   **/
-  @ApiModelProperty(value = "The name of the group or role to which visibility of this item is restricted.")
+  @ApiModelProperty(value = "The name of the group or role that visibility of this item is restricted to. Please note that the name of a group is mutable, to reliably identify a group use `identifier`.")
   public String getValue() {
     return value;
   }
@@ -143,14 +164,15 @@ public class Visibility {
       return false;
     }
     Visibility visibility = (Visibility) o;
-    return Objects.equals(this.type, visibility.type) &&
+    return Objects.equals(this.identifier, visibility.identifier) &&
+        Objects.equals(this.type, visibility.type) &&
         Objects.equals(this.value, visibility.value) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, value, super.hashCode());
+    return Objects.hash(identifier, type, value, super.hashCode());
   }
 
 
@@ -159,6 +181,7 @@ public class Visibility {
     StringBuilder sb = new StringBuilder();
     sb.append("class Visibility {\n");
     
+    sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");

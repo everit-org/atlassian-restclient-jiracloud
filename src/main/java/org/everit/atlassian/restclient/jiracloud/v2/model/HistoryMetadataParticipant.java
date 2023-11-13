@@ -42,10 +42,10 @@ import java.util.Map;
  * Details of user or system associated with a issue history metadata item.
  */
 @ApiModel(description = "Details of user or system associated with a issue history metadata item.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class HistoryMetadataParticipant {
-  @JsonProperty("id")
-  private String id;
+  @JsonProperty("avatarUrl")
+  private String avatarUrl;
 
   @JsonProperty("displayName")
   private String displayName;
@@ -53,33 +53,33 @@ public class HistoryMetadataParticipant {
   @JsonProperty("displayNameKey")
   private String displayNameKey;
 
+  @JsonProperty("id")
+  private String id;
+
   @JsonProperty("type")
   private String type;
-
-  @JsonProperty("avatarUrl")
-  private String avatarUrl;
 
   @JsonProperty("url")
   private String url;
 
   private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
 
-  public HistoryMetadataParticipant id(String id) {
-    this.id = id;
+  public HistoryMetadataParticipant avatarUrl(String avatarUrl) {
+    this.avatarUrl = avatarUrl;
     return this;
   }
 
    /**
-   * The ID of the user or system associated with a history record.
-   * @return id
+   * The URL to an avatar for the user or system associated with a history record.
+   * @return avatarUrl
   **/
-  @ApiModelProperty(value = "The ID of the user or system associated with a history record.")
-  public String getId() {
-    return id;
+  @ApiModelProperty(value = "The URL to an avatar for the user or system associated with a history record.")
+  public String getAvatarUrl() {
+    return avatarUrl;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setAvatarUrl(String avatarUrl) {
+    this.avatarUrl = avatarUrl;
   }
 
   public HistoryMetadataParticipant displayName(String displayName) {
@@ -118,6 +118,24 @@ public class HistoryMetadataParticipant {
     this.displayNameKey = displayNameKey;
   }
 
+  public HistoryMetadataParticipant id(String id) {
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * The ID of the user or system associated with a history record.
+   * @return id
+  **/
+  @ApiModelProperty(value = "The ID of the user or system associated with a history record.")
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
   public HistoryMetadataParticipant type(String type) {
     this.type = type;
     return this;
@@ -134,24 +152,6 @@ public class HistoryMetadataParticipant {
 
   public void setType(String type) {
     this.type = type;
-  }
-
-  public HistoryMetadataParticipant avatarUrl(String avatarUrl) {
-    this.avatarUrl = avatarUrl;
-    return this;
-  }
-
-   /**
-   * The URL to an avatar for the user or system associated with a history record.
-   * @return avatarUrl
-  **/
-  @ApiModelProperty(value = "The URL to an avatar for the user or system associated with a history record.")
-  public String getAvatarUrl() {
-    return avatarUrl;
-  }
-
-  public void setAvatarUrl(String avatarUrl) {
-    this.avatarUrl = avatarUrl;
   }
 
   public HistoryMetadataParticipant url(String url) {
@@ -192,18 +192,18 @@ public class HistoryMetadataParticipant {
       return false;
     }
     HistoryMetadataParticipant historyMetadataParticipant = (HistoryMetadataParticipant) o;
-    return Objects.equals(this.id, historyMetadataParticipant.id) &&
+    return Objects.equals(this.avatarUrl, historyMetadataParticipant.avatarUrl) &&
         Objects.equals(this.displayName, historyMetadataParticipant.displayName) &&
         Objects.equals(this.displayNameKey, historyMetadataParticipant.displayNameKey) &&
+        Objects.equals(this.id, historyMetadataParticipant.id) &&
         Objects.equals(this.type, historyMetadataParticipant.type) &&
-        Objects.equals(this.avatarUrl, historyMetadataParticipant.avatarUrl) &&
         Objects.equals(this.url, historyMetadataParticipant.url) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, displayName, displayNameKey, type, avatarUrl, url, super.hashCode());
+    return Objects.hash(avatarUrl, displayName, displayNameKey, id, type, url, super.hashCode());
   }
 
 
@@ -212,11 +212,11 @@ public class HistoryMetadataParticipant {
     StringBuilder sb = new StringBuilder();
     sb.append("class HistoryMetadataParticipant {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    avatarUrl: ").append(toIndentedString(avatarUrl)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    displayNameKey: ").append(toIndentedString(displayNameKey)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    avatarUrl: ").append(toIndentedString(avatarUrl)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");

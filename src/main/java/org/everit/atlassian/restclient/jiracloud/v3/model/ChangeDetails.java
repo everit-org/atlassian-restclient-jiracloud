@@ -40,16 +40,16 @@ import io.swagger.annotations.ApiModelProperty;
  * A change item.
  */
 @ApiModel(description = "A change item.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class ChangeDetails {
   @JsonProperty("field")
   private String field;
 
-  @JsonProperty("fieldtype")
-  private String fieldtype;
-
   @JsonProperty("fieldId")
   private String fieldId;
+
+  @JsonProperty("fieldtype")
+  private String fieldtype;
 
   @JsonProperty("from")
   private String from;
@@ -73,21 +73,21 @@ public class ChangeDetails {
   }
 
    /**
-   * The type of the field changed.
-   * @return fieldtype
-  **/
-  @ApiModelProperty(value = "The type of the field changed.")
-  public String getFieldtype() {
-    return fieldtype;
-  }
-
-   /**
    * The ID of the field changed.
    * @return fieldId
   **/
   @ApiModelProperty(value = "The ID of the field changed.")
   public String getFieldId() {
     return fieldId;
+  }
+
+   /**
+   * The type of the field changed.
+   * @return fieldtype
+  **/
+  @ApiModelProperty(value = "The type of the field changed.")
+  public String getFieldtype() {
+    return fieldtype;
   }
 
    /**
@@ -137,8 +137,8 @@ public class ChangeDetails {
     }
     ChangeDetails changeDetails = (ChangeDetails) o;
     return Objects.equals(this.field, changeDetails.field) &&
-        Objects.equals(this.fieldtype, changeDetails.fieldtype) &&
         Objects.equals(this.fieldId, changeDetails.fieldId) &&
+        Objects.equals(this.fieldtype, changeDetails.fieldtype) &&
         Objects.equals(this.from, changeDetails.from) &&
         Objects.equals(this.fromString, changeDetails.fromString) &&
         Objects.equals(this.to, changeDetails.to) &&
@@ -147,7 +147,7 @@ public class ChangeDetails {
 
   @Override
   public int hashCode() {
-    return Objects.hash(field, fieldtype, fieldId, from, fromString, to, toString);
+    return Objects.hash(field, fieldId, fieldtype, from, fromString, to, toString);
   }
 
 
@@ -157,8 +157,8 @@ public class ChangeDetails {
     sb.append("class ChangeDetails {\n");
     
     sb.append("    field: ").append(toIndentedString(field)).append("\n");
-    sb.append("    fieldtype: ").append(toIndentedString(fieldtype)).append("\n");
     sb.append("    fieldId: ").append(toIndentedString(fieldId)).append("\n");
+    sb.append("    fieldtype: ").append(toIndentedString(fieldtype)).append("\n");
     sb.append("    from: ").append(toIndentedString(from)).append("\n");
     sb.append("    fromString: ").append(toIndentedString(fromString)).append("\n");
     sb.append("    to: ").append(toIndentedString(to)).append("\n");

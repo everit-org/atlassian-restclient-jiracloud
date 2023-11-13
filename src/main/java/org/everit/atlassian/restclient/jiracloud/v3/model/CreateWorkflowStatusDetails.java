@@ -35,15 +35,21 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * The details of a transition status.
  */
 @ApiModel(description = "The details of a transition status.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class CreateWorkflowStatusDetails {
   @JsonProperty("id")
   private String id;
+
+  @JsonProperty("properties")
+  private Map<String, String> properties = new HashMap<>();
 
   public CreateWorkflowStatusDetails id(String id) {
     this.id = id;
@@ -63,6 +69,32 @@ public class CreateWorkflowStatusDetails {
     this.id = id;
   }
 
+  public CreateWorkflowStatusDetails properties(Map<String, String> properties) {
+    this.properties = properties;
+    return this;
+  }
+
+  public CreateWorkflowStatusDetails putPropertiesItem(String key, String propertiesItem) {
+    if (this.properties == null) {
+      this.properties = new HashMap<>();
+    }
+    this.properties.put(key, propertiesItem);
+    return this;
+  }
+
+   /**
+   * The properties of the status.
+   * @return properties
+  **/
+  @ApiModelProperty(value = "The properties of the status.")
+  public Map<String, String> getProperties() {
+    return properties;
+  }
+
+  public void setProperties(Map<String, String> properties) {
+    this.properties = properties;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -73,12 +105,13 @@ public class CreateWorkflowStatusDetails {
       return false;
     }
     CreateWorkflowStatusDetails createWorkflowStatusDetails = (CreateWorkflowStatusDetails) o;
-    return Objects.equals(this.id, createWorkflowStatusDetails.id);
+    return Objects.equals(this.id, createWorkflowStatusDetails.id) &&
+        Objects.equals(this.properties, createWorkflowStatusDetails.properties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(id, properties);
   }
 
 
@@ -88,6 +121,7 @@ public class CreateWorkflowStatusDetails {
     sb.append("class CreateWorkflowStatusDetails {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    properties: ").append(toIndentedString(properties)).append("\n");
     sb.append("}");
     return sb.toString();
   }

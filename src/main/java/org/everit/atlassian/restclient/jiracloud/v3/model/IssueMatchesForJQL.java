@@ -42,36 +42,13 @@ import java.util.List;
  * A list of the issues matched to a JQL query or details of errors encountered during matching.
  */
 @ApiModel(description = "A list of the issues matched to a JQL query or details of errors encountered during matching.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class IssueMatchesForJQL {
-  @JsonProperty("matchedIssues")
-  private List<Long> matchedIssues = new ArrayList<>();
-
   @JsonProperty("errors")
   private List<String> errors = new ArrayList<>();
 
-  public IssueMatchesForJQL matchedIssues(List<Long> matchedIssues) {
-    this.matchedIssues = matchedIssues;
-    return this;
-  }
-
-  public IssueMatchesForJQL addMatchedIssuesItem(Long matchedIssuesItem) {
-    this.matchedIssues.add(matchedIssuesItem);
-    return this;
-  }
-
-   /**
-   * A list of issue IDs.
-   * @return matchedIssues
-  **/
-  @ApiModelProperty(required = true, value = "A list of issue IDs.")
-  public List<Long> getMatchedIssues() {
-    return matchedIssues;
-  }
-
-  public void setMatchedIssues(List<Long> matchedIssues) {
-    this.matchedIssues = matchedIssues;
-  }
+  @JsonProperty("matchedIssues")
+  private List<Long> matchedIssues = new ArrayList<>();
 
   public IssueMatchesForJQL errors(List<String> errors) {
     this.errors = errors;
@@ -96,6 +73,29 @@ public class IssueMatchesForJQL {
     this.errors = errors;
   }
 
+  public IssueMatchesForJQL matchedIssues(List<Long> matchedIssues) {
+    this.matchedIssues = matchedIssues;
+    return this;
+  }
+
+  public IssueMatchesForJQL addMatchedIssuesItem(Long matchedIssuesItem) {
+    this.matchedIssues.add(matchedIssuesItem);
+    return this;
+  }
+
+   /**
+   * A list of issue IDs.
+   * @return matchedIssues
+  **/
+  @ApiModelProperty(required = true, value = "A list of issue IDs.")
+  public List<Long> getMatchedIssues() {
+    return matchedIssues;
+  }
+
+  public void setMatchedIssues(List<Long> matchedIssues) {
+    this.matchedIssues = matchedIssues;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -106,13 +106,13 @@ public class IssueMatchesForJQL {
       return false;
     }
     IssueMatchesForJQL issueMatchesForJQL = (IssueMatchesForJQL) o;
-    return Objects.equals(this.matchedIssues, issueMatchesForJQL.matchedIssues) &&
-        Objects.equals(this.errors, issueMatchesForJQL.errors);
+    return Objects.equals(this.errors, issueMatchesForJQL.errors) &&
+        Objects.equals(this.matchedIssues, issueMatchesForJQL.matchedIssues);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(matchedIssues, errors);
+    return Objects.hash(errors, matchedIssues);
   }
 
 
@@ -121,8 +121,8 @@ public class IssueMatchesForJQL {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueMatchesForJQL {\n");
     
-    sb.append("    matchedIssues: ").append(toIndentedString(matchedIssues)).append("\n");
     sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
+    sb.append("    matchedIssues: ").append(toIndentedString(matchedIssues)).append("\n");
     sb.append("}");
     return sb.toString();
   }

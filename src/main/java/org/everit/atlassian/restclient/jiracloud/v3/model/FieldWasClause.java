@@ -45,10 +45,13 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.JqlQueryField;
  * A clause that asserts a previous value of a field. For example, &#x60;status WAS \&quot;Resolved\&quot; BY currentUser() BEFORE \&quot;2019/02/02\&quot;&#x60;. See [WAS](https://confluence.atlassian.com/x/dgiiLQ#Advancedsearching-operatorsreference-WASWAS) for more information about the WAS operator.
  */
 @ApiModel(description = "A clause that asserts a previous value of a field. For example, `status WAS \"Resolved\" BY currentUser() BEFORE \"2019/02/02\"`. See [WAS](https://confluence.atlassian.com/x/dgiiLQ#Advancedsearching-operatorsreference-WASWAS) for more information about the WAS operator.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class FieldWasClause {
   @JsonProperty("field")
   private JqlQueryField field;
+
+  @JsonProperty("operand")
+  private JqlQueryClauseOperand operand;
 
   /**
    * The operator between the field and operand.
@@ -92,9 +95,6 @@ public class FieldWasClause {
   @JsonProperty("operator")
   private OperatorEnum operator;
 
-  @JsonProperty("operand")
-  private JqlQueryClauseOperand operand;
-
   @JsonProperty("predicates")
   private List<JqlQueryClauseTimePredicate> predicates = new ArrayList<>();
 
@@ -116,24 +116,6 @@ public class FieldWasClause {
     this.field = field;
   }
 
-  public FieldWasClause operator(OperatorEnum operator) {
-    this.operator = operator;
-    return this;
-  }
-
-   /**
-   * The operator between the field and operand.
-   * @return operator
-  **/
-  @ApiModelProperty(required = true, value = "The operator between the field and operand.")
-  public OperatorEnum getOperator() {
-    return operator;
-  }
-
-  public void setOperator(OperatorEnum operator) {
-    this.operator = operator;
-  }
-
   public FieldWasClause operand(JqlQueryClauseOperand operand) {
     this.operand = operand;
     return this;
@@ -150,6 +132,24 @@ public class FieldWasClause {
 
   public void setOperand(JqlQueryClauseOperand operand) {
     this.operand = operand;
+  }
+
+  public FieldWasClause operator(OperatorEnum operator) {
+    this.operator = operator;
+    return this;
+  }
+
+   /**
+   * The operator between the field and operand.
+   * @return operator
+  **/
+  @ApiModelProperty(required = true, value = "The operator between the field and operand.")
+  public OperatorEnum getOperator() {
+    return operator;
+  }
+
+  public void setOperator(OperatorEnum operator) {
+    this.operator = operator;
   }
 
   public FieldWasClause predicates(List<JqlQueryClauseTimePredicate> predicates) {
@@ -186,14 +186,14 @@ public class FieldWasClause {
     }
     FieldWasClause fieldWasClause = (FieldWasClause) o;
     return Objects.equals(this.field, fieldWasClause.field) &&
-        Objects.equals(this.operator, fieldWasClause.operator) &&
         Objects.equals(this.operand, fieldWasClause.operand) &&
+        Objects.equals(this.operator, fieldWasClause.operator) &&
         Objects.equals(this.predicates, fieldWasClause.predicates);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(field, operator, operand, predicates);
+    return Objects.hash(field, operand, operator, predicates);
   }
 
 
@@ -203,8 +203,8 @@ public class FieldWasClause {
     sb.append("class FieldWasClause {\n");
     
     sb.append("    field: ").append(toIndentedString(field)).append("\n");
-    sb.append("    operator: ").append(toIndentedString(operator)).append("\n");
     sb.append("    operand: ").append(toIndentedString(operand)).append("\n");
+    sb.append("    operator: ").append(toIndentedString(operator)).append("\n");
     sb.append("    predicates: ").append(toIndentedString(predicates)).append("\n");
     sb.append("}");
     return sb.toString();

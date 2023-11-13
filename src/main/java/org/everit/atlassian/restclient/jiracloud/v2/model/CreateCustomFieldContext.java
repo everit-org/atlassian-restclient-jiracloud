@@ -42,49 +42,22 @@ import java.util.List;
  * The details of a created custom field context.
  */
 @ApiModel(description = "The details of a created custom field context.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class CreateCustomFieldContext {
-  @JsonProperty("id")
-  private String id;
-
-  @JsonProperty("name")
-  private String name;
-
   @JsonProperty("description")
   private String description;
 
-  @JsonProperty("projectIds")
-  private List<String> projectIds = new ArrayList<>();
+  @JsonProperty("id")
+  private String id;
 
   @JsonProperty("issueTypeIds")
   private List<String> issueTypeIds = new ArrayList<>();
 
-   /**
-   * The ID of the context.
-   * @return id
-  **/
-  @ApiModelProperty(value = "The ID of the context.")
-  public String getId() {
-    return id;
-  }
+  @JsonProperty("name")
+  private String name;
 
-  public CreateCustomFieldContext name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * The name of the context.
-   * @return name
-  **/
-  @ApiModelProperty(required = true, value = "The name of the context.")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
+  @JsonProperty("projectIds")
+  private List<String> projectIds = new ArrayList<>();
 
   public CreateCustomFieldContext description(String description) {
     this.description = description;
@@ -104,30 +77,13 @@ public class CreateCustomFieldContext {
     this.description = description;
   }
 
-  public CreateCustomFieldContext projectIds(List<String> projectIds) {
-    this.projectIds = projectIds;
-    return this;
-  }
-
-  public CreateCustomFieldContext addProjectIdsItem(String projectIdsItem) {
-    if (this.projectIds == null) {
-      this.projectIds = new ArrayList<>();
-    }
-    this.projectIds.add(projectIdsItem);
-    return this;
-  }
-
    /**
-   * The list of project IDs associated with the context. If the list is empty, the context is global.
-   * @return projectIds
+   * The ID of the context.
+   * @return id
   **/
-  @ApiModelProperty(value = "The list of project IDs associated with the context. If the list is empty, the context is global.")
-  public List<String> getProjectIds() {
-    return projectIds;
-  }
-
-  public void setProjectIds(List<String> projectIds) {
-    this.projectIds = projectIds;
+  @ApiModelProperty(value = "The ID of the context.")
+  public String getId() {
+    return id;
   }
 
   public CreateCustomFieldContext issueTypeIds(List<String> issueTypeIds) {
@@ -156,6 +112,50 @@ public class CreateCustomFieldContext {
     this.issueTypeIds = issueTypeIds;
   }
 
+  public CreateCustomFieldContext name(String name) {
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * The name of the context.
+   * @return name
+  **/
+  @ApiModelProperty(required = true, value = "The name of the context.")
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public CreateCustomFieldContext projectIds(List<String> projectIds) {
+    this.projectIds = projectIds;
+    return this;
+  }
+
+  public CreateCustomFieldContext addProjectIdsItem(String projectIdsItem) {
+    if (this.projectIds == null) {
+      this.projectIds = new ArrayList<>();
+    }
+    this.projectIds.add(projectIdsItem);
+    return this;
+  }
+
+   /**
+   * The list of project IDs associated with the context. If the list is empty, the context is global.
+   * @return projectIds
+  **/
+  @ApiModelProperty(value = "The list of project IDs associated with the context. If the list is empty, the context is global.")
+  public List<String> getProjectIds() {
+    return projectIds;
+  }
+
+  public void setProjectIds(List<String> projectIds) {
+    this.projectIds = projectIds;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -166,16 +166,16 @@ public class CreateCustomFieldContext {
       return false;
     }
     CreateCustomFieldContext createCustomFieldContext = (CreateCustomFieldContext) o;
-    return Objects.equals(this.id, createCustomFieldContext.id) &&
+    return Objects.equals(this.description, createCustomFieldContext.description) &&
+        Objects.equals(this.id, createCustomFieldContext.id) &&
+        Objects.equals(this.issueTypeIds, createCustomFieldContext.issueTypeIds) &&
         Objects.equals(this.name, createCustomFieldContext.name) &&
-        Objects.equals(this.description, createCustomFieldContext.description) &&
-        Objects.equals(this.projectIds, createCustomFieldContext.projectIds) &&
-        Objects.equals(this.issueTypeIds, createCustomFieldContext.issueTypeIds);
+        Objects.equals(this.projectIds, createCustomFieldContext.projectIds);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, projectIds, issueTypeIds);
+    return Objects.hash(description, id, issueTypeIds, name, projectIds);
   }
 
 
@@ -184,11 +184,11 @@ public class CreateCustomFieldContext {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateCustomFieldContext {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    projectIds: ").append(toIndentedString(projectIds)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    issueTypeIds: ").append(toIndentedString(issueTypeIds)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    projectIds: ").append(toIndentedString(projectIds)).append("\n");
     sb.append("}");
     return sb.toString();
   }

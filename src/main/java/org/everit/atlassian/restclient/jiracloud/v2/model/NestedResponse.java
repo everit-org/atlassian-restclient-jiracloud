@@ -36,35 +36,21 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.everit.atlassian.restclient.jiracloud.v2.model.ErrorCollection;
+import org.everit.atlassian.restclient.jiracloud.v2.model.WarningCollection;
 
 /**
  * NestedResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class NestedResponse {
-  @JsonProperty("status")
-  private Integer status;
-
   @JsonProperty("errorCollection")
   private ErrorCollection errorCollection;
 
-  public NestedResponse status(Integer status) {
-    this.status = status;
-    return this;
-  }
+  @JsonProperty("status")
+  private Integer status;
 
-   /**
-   * Get status
-   * @return status
-  **/
-  @ApiModelProperty(value = "")
-  public Integer getStatus() {
-    return status;
-  }
-
-  public void setStatus(Integer status) {
-    this.status = status;
-  }
+  @JsonProperty("warningCollection")
+  private WarningCollection warningCollection;
 
   public NestedResponse errorCollection(ErrorCollection errorCollection) {
     this.errorCollection = errorCollection;
@@ -84,6 +70,42 @@ public class NestedResponse {
     this.errorCollection = errorCollection;
   }
 
+  public NestedResponse status(Integer status) {
+    this.status = status;
+    return this;
+  }
+
+   /**
+   * Get status
+   * @return status
+  **/
+  @ApiModelProperty(value = "")
+  public Integer getStatus() {
+    return status;
+  }
+
+  public void setStatus(Integer status) {
+    this.status = status;
+  }
+
+  public NestedResponse warningCollection(WarningCollection warningCollection) {
+    this.warningCollection = warningCollection;
+    return this;
+  }
+
+   /**
+   * Get warningCollection
+   * @return warningCollection
+  **/
+  @ApiModelProperty(value = "")
+  public WarningCollection getWarningCollection() {
+    return warningCollection;
+  }
+
+  public void setWarningCollection(WarningCollection warningCollection) {
+    this.warningCollection = warningCollection;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -94,13 +116,14 @@ public class NestedResponse {
       return false;
     }
     NestedResponse nestedResponse = (NestedResponse) o;
-    return Objects.equals(this.status, nestedResponse.status) &&
-        Objects.equals(this.errorCollection, nestedResponse.errorCollection);
+    return Objects.equals(this.errorCollection, nestedResponse.errorCollection) &&
+        Objects.equals(this.status, nestedResponse.status) &&
+        Objects.equals(this.warningCollection, nestedResponse.warningCollection);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, errorCollection);
+    return Objects.hash(errorCollection, status, warningCollection);
   }
 
 
@@ -109,8 +132,9 @@ public class NestedResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class NestedResponse {\n");
     
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    errorCollection: ").append(toIndentedString(errorCollection)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    warningCollection: ").append(toIndentedString(warningCollection)).append("\n");
     sb.append("}");
     return sb.toString();
   }

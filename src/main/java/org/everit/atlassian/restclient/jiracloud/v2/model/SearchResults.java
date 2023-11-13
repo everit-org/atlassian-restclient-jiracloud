@@ -46,31 +46,31 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.JsonTypeBean;
  * The result of a JQL search.
  */
 @ApiModel(description = "The result of a JQL search.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class SearchResults {
   @JsonProperty("expand")
   private String expand;
 
-  @JsonProperty("startAt")
-  private Integer startAt;
-
-  @JsonProperty("maxResults")
-  private Integer maxResults;
-
-  @JsonProperty("total")
-  private Integer total;
-
   @JsonProperty("issues")
   private List<IssueBean> issues = new ArrayList<>();
 
-  @JsonProperty("warningMessages")
-  private List<String> warningMessages = new ArrayList<>();
+  @JsonProperty("maxResults")
+  private Integer maxResults;
 
   @JsonProperty("names")
   private Map<String, String> names = new HashMap<>();
 
   @JsonProperty("schema")
   private Map<String, JsonTypeBean> schema = new HashMap<>();
+
+  @JsonProperty("startAt")
+  private Integer startAt;
+
+  @JsonProperty("total")
+  private Integer total;
+
+  @JsonProperty("warningMessages")
+  private List<String> warningMessages = new ArrayList<>();
 
    /**
    * Expand options that include additional search result details in the response.
@@ -79,33 +79,6 @@ public class SearchResults {
   @ApiModelProperty(value = "Expand options that include additional search result details in the response.")
   public String getExpand() {
     return expand;
-  }
-
-   /**
-   * The index of the first item returned on the page.
-   * @return startAt
-  **/
-  @ApiModelProperty(value = "The index of the first item returned on the page.")
-  public Integer getStartAt() {
-    return startAt;
-  }
-
-   /**
-   * The maximum number of results that could be on the page.
-   * @return maxResults
-  **/
-  @ApiModelProperty(value = "The maximum number of results that could be on the page.")
-  public Integer getMaxResults() {
-    return maxResults;
-  }
-
-   /**
-   * The number of results on the page.
-   * @return total
-  **/
-  @ApiModelProperty(value = "The number of results on the page.")
-  public Integer getTotal() {
-    return total;
   }
 
    /**
@@ -118,12 +91,12 @@ public class SearchResults {
   }
 
    /**
-   * Any warnings related to the JQL query.
-   * @return warningMessages
+   * The maximum number of results that could be on the page.
+   * @return maxResults
   **/
-  @ApiModelProperty(value = "Any warnings related to the JQL query.")
-  public List<String> getWarningMessages() {
-    return warningMessages;
+  @ApiModelProperty(value = "The maximum number of results that could be on the page.")
+  public Integer getMaxResults() {
+    return maxResults;
   }
 
    /**
@@ -144,6 +117,33 @@ public class SearchResults {
     return schema;
   }
 
+   /**
+   * The index of the first item returned on the page.
+   * @return startAt
+  **/
+  @ApiModelProperty(value = "The index of the first item returned on the page.")
+  public Integer getStartAt() {
+    return startAt;
+  }
+
+   /**
+   * The number of results on the page.
+   * @return total
+  **/
+  @ApiModelProperty(value = "The number of results on the page.")
+  public Integer getTotal() {
+    return total;
+  }
+
+   /**
+   * Any warnings related to the JQL query.
+   * @return warningMessages
+  **/
+  @ApiModelProperty(value = "Any warnings related to the JQL query.")
+  public List<String> getWarningMessages() {
+    return warningMessages;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -155,18 +155,18 @@ public class SearchResults {
     }
     SearchResults searchResults = (SearchResults) o;
     return Objects.equals(this.expand, searchResults.expand) &&
-        Objects.equals(this.startAt, searchResults.startAt) &&
-        Objects.equals(this.maxResults, searchResults.maxResults) &&
-        Objects.equals(this.total, searchResults.total) &&
         Objects.equals(this.issues, searchResults.issues) &&
-        Objects.equals(this.warningMessages, searchResults.warningMessages) &&
+        Objects.equals(this.maxResults, searchResults.maxResults) &&
         Objects.equals(this.names, searchResults.names) &&
-        Objects.equals(this.schema, searchResults.schema);
+        Objects.equals(this.schema, searchResults.schema) &&
+        Objects.equals(this.startAt, searchResults.startAt) &&
+        Objects.equals(this.total, searchResults.total) &&
+        Objects.equals(this.warningMessages, searchResults.warningMessages);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(expand, startAt, maxResults, total, issues, warningMessages, names, schema);
+    return Objects.hash(expand, issues, maxResults, names, schema, startAt, total, warningMessages);
   }
 
 
@@ -176,13 +176,13 @@ public class SearchResults {
     sb.append("class SearchResults {\n");
     
     sb.append("    expand: ").append(toIndentedString(expand)).append("\n");
-    sb.append("    startAt: ").append(toIndentedString(startAt)).append("\n");
-    sb.append("    maxResults: ").append(toIndentedString(maxResults)).append("\n");
-    sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("    issues: ").append(toIndentedString(issues)).append("\n");
-    sb.append("    warningMessages: ").append(toIndentedString(warningMessages)).append("\n");
+    sb.append("    maxResults: ").append(toIndentedString(maxResults)).append("\n");
     sb.append("    names: ").append(toIndentedString(names)).append("\n");
     sb.append("    schema: ").append(toIndentedString(schema)).append("\n");
+    sb.append("    startAt: ").append(toIndentedString(startAt)).append("\n");
+    sb.append("    total: ").append(toIndentedString(total)).append("\n");
+    sb.append("    warningMessages: ").append(toIndentedString(warningMessages)).append("\n");
     sb.append("}");
     return sb.toString();
   }

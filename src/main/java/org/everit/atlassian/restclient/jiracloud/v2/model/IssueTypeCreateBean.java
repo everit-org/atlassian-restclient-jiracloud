@@ -39,16 +39,19 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * IssueTypeCreateBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class IssueTypeCreateBean {
-  @JsonProperty("name")
-  private String name;
-
   @JsonProperty("description")
   private String description;
 
+  @JsonProperty("hierarchyLevel")
+  private Integer hierarchyLevel;
+
+  @JsonProperty("name")
+  private String name;
+
   /**
-   * Deprecated. Use &#x60;hierarchyLevel&#x60; instead.  Whether the issue type is &#x60;subtype&#x60; or &#x60;standard&#x60;. Defaults to &#x60;standard&#x60;.
+   * Deprecated. Use &#x60;hierarchyLevel&#x60; instead. See the [deprecation notice](https://community.developer.atlassian.com/t/deprecation-of-the-epic-link-parent-link-and-other-related-fields-in-rest-apis-and-webhooks/54048) for details.  Whether the issue type is &#x60;subtype&#x60; or &#x60;standard&#x60;. Defaults to &#x60;standard&#x60;.
    */
   public enum TypeEnum {
     SUBTASK("subtask"),
@@ -85,27 +88,6 @@ public class IssueTypeCreateBean {
   @JsonProperty("type")
   private TypeEnum type;
 
-  @JsonProperty("hierarchyLevel")
-  private Integer hierarchyLevel;
-
-  public IssueTypeCreateBean name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * The unique name for the issue type. The maximum length is 60 characters.
-   * @return name
-  **/
-  @ApiModelProperty(required = true, value = "The unique name for the issue type. The maximum length is 60 characters.")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
   public IssueTypeCreateBean description(String description) {
     this.description = description;
     return this;
@@ -122,24 +104,6 @@ public class IssueTypeCreateBean {
 
   public void setDescription(String description) {
     this.description = description;
-  }
-
-  public IssueTypeCreateBean type(TypeEnum type) {
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * Deprecated. Use &#x60;hierarchyLevel&#x60; instead.  Whether the issue type is &#x60;subtype&#x60; or &#x60;standard&#x60;. Defaults to &#x60;standard&#x60;.
-   * @return type
-  **/
-  @ApiModelProperty(value = "Deprecated. Use `hierarchyLevel` instead.  Whether the issue type is `subtype` or `standard`. Defaults to `standard`.")
-  public TypeEnum getType() {
-    return type;
-  }
-
-  public void setType(TypeEnum type) {
-    this.type = type;
   }
 
   public IssueTypeCreateBean hierarchyLevel(Integer hierarchyLevel) {
@@ -160,6 +124,42 @@ public class IssueTypeCreateBean {
     this.hierarchyLevel = hierarchyLevel;
   }
 
+  public IssueTypeCreateBean name(String name) {
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * The unique name for the issue type. The maximum length is 60 characters.
+   * @return name
+  **/
+  @ApiModelProperty(required = true, value = "The unique name for the issue type. The maximum length is 60 characters.")
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public IssueTypeCreateBean type(TypeEnum type) {
+    this.type = type;
+    return this;
+  }
+
+   /**
+   * Deprecated. Use &#x60;hierarchyLevel&#x60; instead. See the [deprecation notice](https://community.developer.atlassian.com/t/deprecation-of-the-epic-link-parent-link-and-other-related-fields-in-rest-apis-and-webhooks/54048) for details.  Whether the issue type is &#x60;subtype&#x60; or &#x60;standard&#x60;. Defaults to &#x60;standard&#x60;.
+   * @return type
+  **/
+  @ApiModelProperty(value = "Deprecated. Use `hierarchyLevel` instead. See the [deprecation notice](https://community.developer.atlassian.com/t/deprecation-of-the-epic-link-parent-link-and-other-related-fields-in-rest-apis-and-webhooks/54048) for details.  Whether the issue type is `subtype` or `standard`. Defaults to `standard`.")
+  public TypeEnum getType() {
+    return type;
+  }
+
+  public void setType(TypeEnum type) {
+    this.type = type;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -170,15 +170,15 @@ public class IssueTypeCreateBean {
       return false;
     }
     IssueTypeCreateBean issueTypeCreateBean = (IssueTypeCreateBean) o;
-    return Objects.equals(this.name, issueTypeCreateBean.name) &&
-        Objects.equals(this.description, issueTypeCreateBean.description) &&
-        Objects.equals(this.type, issueTypeCreateBean.type) &&
-        Objects.equals(this.hierarchyLevel, issueTypeCreateBean.hierarchyLevel);
+    return Objects.equals(this.description, issueTypeCreateBean.description) &&
+        Objects.equals(this.hierarchyLevel, issueTypeCreateBean.hierarchyLevel) &&
+        Objects.equals(this.name, issueTypeCreateBean.name) &&
+        Objects.equals(this.type, issueTypeCreateBean.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, type, hierarchyLevel);
+    return Objects.hash(description, hierarchyLevel, name, type);
   }
 
 
@@ -187,10 +187,10 @@ public class IssueTypeCreateBean {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueTypeCreateBean {\n");
     
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    hierarchyLevel: ").append(toIndentedString(hierarchyLevel)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }

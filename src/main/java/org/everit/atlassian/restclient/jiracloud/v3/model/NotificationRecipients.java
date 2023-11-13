@@ -46,45 +46,30 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.UserDetails;
  * Details of the users and groups to receive the notification.
  */
 @ApiModel(description = "Details of the users and groups to receive the notification.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class NotificationRecipients {
-  @JsonProperty("reporter")
-  private Boolean reporter;
-
   @JsonProperty("assignee")
   private Boolean assignee;
 
-  @JsonProperty("watchers")
-  private Boolean watchers;
-
-  @JsonProperty("voters")
-  private Boolean voters;
-
-  @JsonProperty("users")
-  private List<UserDetails> users = new ArrayList<>();
+  @JsonProperty("groupIds")
+  private List<String> groupIds = new ArrayList<>();
 
   @JsonProperty("groups")
   private List<GroupName> groups = new ArrayList<>();
 
+  @JsonProperty("reporter")
+  private Boolean reporter;
+
+  @JsonProperty("users")
+  private List<UserDetails> users = new ArrayList<>();
+
+  @JsonProperty("voters")
+  private Boolean voters;
+
+  @JsonProperty("watchers")
+  private Boolean watchers;
+
   private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
-
-  public NotificationRecipients reporter(Boolean reporter) {
-    this.reporter = reporter;
-    return this;
-  }
-
-   /**
-   * Whether the notification should be sent to the issue&#39;s reporter.
-   * @return reporter
-  **/
-  @ApiModelProperty(value = "Whether the notification should be sent to the issue's reporter.")
-  public Boolean getReporter() {
-    return reporter;
-  }
-
-  public void setReporter(Boolean reporter) {
-    this.reporter = reporter;
-  }
 
   public NotificationRecipients assignee(Boolean assignee) {
     this.assignee = assignee;
@@ -104,66 +89,30 @@ public class NotificationRecipients {
     this.assignee = assignee;
   }
 
-  public NotificationRecipients watchers(Boolean watchers) {
-    this.watchers = watchers;
+  public NotificationRecipients groupIds(List<String> groupIds) {
+    this.groupIds = groupIds;
     return this;
   }
 
-   /**
-   * Whether the notification should be sent to the issue&#39;s watchers.
-   * @return watchers
-  **/
-  @ApiModelProperty(value = "Whether the notification should be sent to the issue's watchers.")
-  public Boolean getWatchers() {
-    return watchers;
-  }
-
-  public void setWatchers(Boolean watchers) {
-    this.watchers = watchers;
-  }
-
-  public NotificationRecipients voters(Boolean voters) {
-    this.voters = voters;
-    return this;
-  }
-
-   /**
-   * Whether the notification should be sent to the issue&#39;s voters.
-   * @return voters
-  **/
-  @ApiModelProperty(value = "Whether the notification should be sent to the issue's voters.")
-  public Boolean getVoters() {
-    return voters;
-  }
-
-  public void setVoters(Boolean voters) {
-    this.voters = voters;
-  }
-
-  public NotificationRecipients users(List<UserDetails> users) {
-    this.users = users;
-    return this;
-  }
-
-  public NotificationRecipients addUsersItem(UserDetails usersItem) {
-    if (this.users == null) {
-      this.users = new ArrayList<>();
+  public NotificationRecipients addGroupIdsItem(String groupIdsItem) {
+    if (this.groupIds == null) {
+      this.groupIds = new ArrayList<>();
     }
-    this.users.add(usersItem);
+    this.groupIds.add(groupIdsItem);
     return this;
   }
 
    /**
-   * List of users to receive the notification.
-   * @return users
+   * List of groupIds to receive the notification.
+   * @return groupIds
   **/
-  @ApiModelProperty(value = "List of users to receive the notification.")
-  public List<UserDetails> getUsers() {
-    return users;
+  @ApiModelProperty(value = "List of groupIds to receive the notification.")
+  public List<String> getGroupIds() {
+    return groupIds;
   }
 
-  public void setUsers(List<UserDetails> users) {
-    this.users = users;
+  public void setGroupIds(List<String> groupIds) {
+    this.groupIds = groupIds;
   }
 
   public NotificationRecipients groups(List<GroupName> groups) {
@@ -192,6 +141,86 @@ public class NotificationRecipients {
     this.groups = groups;
   }
 
+  public NotificationRecipients reporter(Boolean reporter) {
+    this.reporter = reporter;
+    return this;
+  }
+
+   /**
+   * Whether the notification should be sent to the issue&#39;s reporter.
+   * @return reporter
+  **/
+  @ApiModelProperty(value = "Whether the notification should be sent to the issue's reporter.")
+  public Boolean getReporter() {
+    return reporter;
+  }
+
+  public void setReporter(Boolean reporter) {
+    this.reporter = reporter;
+  }
+
+  public NotificationRecipients users(List<UserDetails> users) {
+    this.users = users;
+    return this;
+  }
+
+  public NotificationRecipients addUsersItem(UserDetails usersItem) {
+    if (this.users == null) {
+      this.users = new ArrayList<>();
+    }
+    this.users.add(usersItem);
+    return this;
+  }
+
+   /**
+   * List of users to receive the notification.
+   * @return users
+  **/
+  @ApiModelProperty(value = "List of users to receive the notification.")
+  public List<UserDetails> getUsers() {
+    return users;
+  }
+
+  public void setUsers(List<UserDetails> users) {
+    this.users = users;
+  }
+
+  public NotificationRecipients voters(Boolean voters) {
+    this.voters = voters;
+    return this;
+  }
+
+   /**
+   * Whether the notification should be sent to the issue&#39;s voters.
+   * @return voters
+  **/
+  @ApiModelProperty(value = "Whether the notification should be sent to the issue's voters.")
+  public Boolean getVoters() {
+    return voters;
+  }
+
+  public void setVoters(Boolean voters) {
+    this.voters = voters;
+  }
+
+  public NotificationRecipients watchers(Boolean watchers) {
+    this.watchers = watchers;
+    return this;
+  }
+
+   /**
+   * Whether the notification should be sent to the issue&#39;s watchers.
+   * @return watchers
+  **/
+  @ApiModelProperty(value = "Whether the notification should be sent to the issue's watchers.")
+  public Boolean getWatchers() {
+    return watchers;
+  }
+
+  public void setWatchers(Boolean watchers) {
+    this.watchers = watchers;
+  }
+
 
   @com.fasterxml.jackson.annotation.JsonAnyGetter
   public Map<String, Object> any() {
@@ -212,18 +241,19 @@ public class NotificationRecipients {
       return false;
     }
     NotificationRecipients notificationRecipients = (NotificationRecipients) o;
-    return Objects.equals(this.reporter, notificationRecipients.reporter) &&
-        Objects.equals(this.assignee, notificationRecipients.assignee) &&
-        Objects.equals(this.watchers, notificationRecipients.watchers) &&
-        Objects.equals(this.voters, notificationRecipients.voters) &&
-        Objects.equals(this.users, notificationRecipients.users) &&
+    return Objects.equals(this.assignee, notificationRecipients.assignee) &&
+        Objects.equals(this.groupIds, notificationRecipients.groupIds) &&
         Objects.equals(this.groups, notificationRecipients.groups) &&
+        Objects.equals(this.reporter, notificationRecipients.reporter) &&
+        Objects.equals(this.users, notificationRecipients.users) &&
+        Objects.equals(this.voters, notificationRecipients.voters) &&
+        Objects.equals(this.watchers, notificationRecipients.watchers) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(reporter, assignee, watchers, voters, users, groups, super.hashCode());
+    return Objects.hash(assignee, groupIds, groups, reporter, users, voters, watchers, super.hashCode());
   }
 
 
@@ -232,12 +262,13 @@ public class NotificationRecipients {
     StringBuilder sb = new StringBuilder();
     sb.append("class NotificationRecipients {\n");
     
-    sb.append("    reporter: ").append(toIndentedString(reporter)).append("\n");
     sb.append("    assignee: ").append(toIndentedString(assignee)).append("\n");
-    sb.append("    watchers: ").append(toIndentedString(watchers)).append("\n");
-    sb.append("    voters: ").append(toIndentedString(voters)).append("\n");
-    sb.append("    users: ").append(toIndentedString(users)).append("\n");
+    sb.append("    groupIds: ").append(toIndentedString(groupIds)).append("\n");
     sb.append("    groups: ").append(toIndentedString(groups)).append("\n");
+    sb.append("    reporter: ").append(toIndentedString(reporter)).append("\n");
+    sb.append("    users: ").append(toIndentedString(users)).append("\n");
+    sb.append("    voters: ").append(toIndentedString(voters)).append("\n");
+    sb.append("    watchers: ").append(toIndentedString(watchers)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();

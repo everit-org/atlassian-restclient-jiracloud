@@ -41,24 +41,24 @@ import java.net.URI;
  * Count of a version&#39;s unresolved issues.
  */
 @ApiModel(description = "Count of a version's unresolved issues.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class VersionUnresolvedIssuesCount {
-  @JsonProperty("self")
-  private URI self;
+  @JsonProperty("issuesCount")
+  private Long issuesCount;
 
   @JsonProperty("issuesUnresolvedCount")
   private Long issuesUnresolvedCount;
 
-  @JsonProperty("issuesCount")
-  private Long issuesCount;
+  @JsonProperty("self")
+  private URI self;
 
    /**
-   * The URL of these count details.
-   * @return self
+   * Count of issues.
+   * @return issuesCount
   **/
-  @ApiModelProperty(value = "The URL of these count details.")
-  public URI getSelf() {
-    return self;
+  @ApiModelProperty(value = "Count of issues.")
+  public Long getIssuesCount() {
+    return issuesCount;
   }
 
    /**
@@ -71,12 +71,12 @@ public class VersionUnresolvedIssuesCount {
   }
 
    /**
-   * Count of issues.
-   * @return issuesCount
+   * The URL of these count details.
+   * @return self
   **/
-  @ApiModelProperty(value = "Count of issues.")
-  public Long getIssuesCount() {
-    return issuesCount;
+  @ApiModelProperty(value = "The URL of these count details.")
+  public URI getSelf() {
+    return self;
   }
 
 
@@ -89,14 +89,14 @@ public class VersionUnresolvedIssuesCount {
       return false;
     }
     VersionUnresolvedIssuesCount versionUnresolvedIssuesCount = (VersionUnresolvedIssuesCount) o;
-    return Objects.equals(this.self, versionUnresolvedIssuesCount.self) &&
+    return Objects.equals(this.issuesCount, versionUnresolvedIssuesCount.issuesCount) &&
         Objects.equals(this.issuesUnresolvedCount, versionUnresolvedIssuesCount.issuesUnresolvedCount) &&
-        Objects.equals(this.issuesCount, versionUnresolvedIssuesCount.issuesCount);
+        Objects.equals(this.self, versionUnresolvedIssuesCount.self);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, issuesUnresolvedCount, issuesCount);
+    return Objects.hash(issuesCount, issuesUnresolvedCount, self);
   }
 
 
@@ -105,9 +105,9 @@ public class VersionUnresolvedIssuesCount {
     StringBuilder sb = new StringBuilder();
     sb.append("class VersionUnresolvedIssuesCount {\n");
     
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    issuesUnresolvedCount: ").append(toIndentedString(issuesUnresolvedCount)).append("\n");
     sb.append("    issuesCount: ").append(toIndentedString(issuesCount)).append("\n");
+    sb.append("    issuesUnresolvedCount: ").append(toIndentedString(issuesUnresolvedCount)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("}");
     return sb.toString();
   }

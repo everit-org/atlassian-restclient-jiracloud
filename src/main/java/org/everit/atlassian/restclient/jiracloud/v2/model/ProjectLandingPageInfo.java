@@ -35,14 +35,23 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * ProjectLandingPageInfo
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class ProjectLandingPageInfo {
-  @JsonProperty("url")
-  private String url;
+  @JsonProperty("attributes")
+  private Map<String, String> attributes = new HashMap<>();
+
+  @JsonProperty("boardId")
+  private Long boardId;
+
+  @JsonProperty("boardName")
+  private String boardName;
 
   @JsonProperty("projectKey")
   private String projectKey;
@@ -50,28 +59,84 @@ public class ProjectLandingPageInfo {
   @JsonProperty("projectType")
   private String projectType;
 
-  @JsonProperty("boardId")
-  private Long boardId;
+  @JsonProperty("queueCategory")
+  private String queueCategory;
+
+  @JsonProperty("queueId")
+  private Long queueId;
+
+  @JsonProperty("queueName")
+  private String queueName;
+
+  @JsonProperty("simpleBoard")
+  private Boolean simpleBoard;
 
   @JsonProperty("simplified")
   private Boolean simplified;
 
-  public ProjectLandingPageInfo url(String url) {
-    this.url = url;
+  @JsonProperty("url")
+  private String url;
+
+  public ProjectLandingPageInfo attributes(Map<String, String> attributes) {
+    this.attributes = attributes;
+    return this;
+  }
+
+  public ProjectLandingPageInfo putAttributesItem(String key, String attributesItem) {
+    if (this.attributes == null) {
+      this.attributes = new HashMap<>();
+    }
+    this.attributes.put(key, attributesItem);
     return this;
   }
 
    /**
-   * Get url
-   * @return url
+   * Get attributes
+   * @return attributes
   **/
   @ApiModelProperty(value = "")
-  public String getUrl() {
-    return url;
+  public Map<String, String> getAttributes() {
+    return attributes;
   }
 
-  public void setUrl(String url) {
-    this.url = url;
+  public void setAttributes(Map<String, String> attributes) {
+    this.attributes = attributes;
+  }
+
+  public ProjectLandingPageInfo boardId(Long boardId) {
+    this.boardId = boardId;
+    return this;
+  }
+
+   /**
+   * Get boardId
+   * @return boardId
+  **/
+  @ApiModelProperty(value = "")
+  public Long getBoardId() {
+    return boardId;
+  }
+
+  public void setBoardId(Long boardId) {
+    this.boardId = boardId;
+  }
+
+  public ProjectLandingPageInfo boardName(String boardName) {
+    this.boardName = boardName;
+    return this;
+  }
+
+   /**
+   * Get boardName
+   * @return boardName
+  **/
+  @ApiModelProperty(value = "")
+  public String getBoardName() {
+    return boardName;
+  }
+
+  public void setBoardName(String boardName) {
+    this.boardName = boardName;
   }
 
   public ProjectLandingPageInfo projectKey(String projectKey) {
@@ -110,22 +175,76 @@ public class ProjectLandingPageInfo {
     this.projectType = projectType;
   }
 
-  public ProjectLandingPageInfo boardId(Long boardId) {
-    this.boardId = boardId;
+  public ProjectLandingPageInfo queueCategory(String queueCategory) {
+    this.queueCategory = queueCategory;
     return this;
   }
 
    /**
-   * Get boardId
-   * @return boardId
+   * Get queueCategory
+   * @return queueCategory
   **/
   @ApiModelProperty(value = "")
-  public Long getBoardId() {
-    return boardId;
+  public String getQueueCategory() {
+    return queueCategory;
   }
 
-  public void setBoardId(Long boardId) {
-    this.boardId = boardId;
+  public void setQueueCategory(String queueCategory) {
+    this.queueCategory = queueCategory;
+  }
+
+  public ProjectLandingPageInfo queueId(Long queueId) {
+    this.queueId = queueId;
+    return this;
+  }
+
+   /**
+   * Get queueId
+   * @return queueId
+  **/
+  @ApiModelProperty(value = "")
+  public Long getQueueId() {
+    return queueId;
+  }
+
+  public void setQueueId(Long queueId) {
+    this.queueId = queueId;
+  }
+
+  public ProjectLandingPageInfo queueName(String queueName) {
+    this.queueName = queueName;
+    return this;
+  }
+
+   /**
+   * Get queueName
+   * @return queueName
+  **/
+  @ApiModelProperty(value = "")
+  public String getQueueName() {
+    return queueName;
+  }
+
+  public void setQueueName(String queueName) {
+    this.queueName = queueName;
+  }
+
+  public ProjectLandingPageInfo simpleBoard(Boolean simpleBoard) {
+    this.simpleBoard = simpleBoard;
+    return this;
+  }
+
+   /**
+   * Get simpleBoard
+   * @return simpleBoard
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getSimpleBoard() {
+    return simpleBoard;
+  }
+
+  public void setSimpleBoard(Boolean simpleBoard) {
+    this.simpleBoard = simpleBoard;
   }
 
   public ProjectLandingPageInfo simplified(Boolean simplified) {
@@ -146,6 +265,24 @@ public class ProjectLandingPageInfo {
     this.simplified = simplified;
   }
 
+  public ProjectLandingPageInfo url(String url) {
+    this.url = url;
+    return this;
+  }
+
+   /**
+   * Get url
+   * @return url
+  **/
+  @ApiModelProperty(value = "")
+  public String getUrl() {
+    return url;
+  }
+
+  public void setUrl(String url) {
+    this.url = url;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -156,16 +293,22 @@ public class ProjectLandingPageInfo {
       return false;
     }
     ProjectLandingPageInfo projectLandingPageInfo = (ProjectLandingPageInfo) o;
-    return Objects.equals(this.url, projectLandingPageInfo.url) &&
+    return Objects.equals(this.attributes, projectLandingPageInfo.attributes) &&
+        Objects.equals(this.boardId, projectLandingPageInfo.boardId) &&
+        Objects.equals(this.boardName, projectLandingPageInfo.boardName) &&
         Objects.equals(this.projectKey, projectLandingPageInfo.projectKey) &&
         Objects.equals(this.projectType, projectLandingPageInfo.projectType) &&
-        Objects.equals(this.boardId, projectLandingPageInfo.boardId) &&
-        Objects.equals(this.simplified, projectLandingPageInfo.simplified);
+        Objects.equals(this.queueCategory, projectLandingPageInfo.queueCategory) &&
+        Objects.equals(this.queueId, projectLandingPageInfo.queueId) &&
+        Objects.equals(this.queueName, projectLandingPageInfo.queueName) &&
+        Objects.equals(this.simpleBoard, projectLandingPageInfo.simpleBoard) &&
+        Objects.equals(this.simplified, projectLandingPageInfo.simplified) &&
+        Objects.equals(this.url, projectLandingPageInfo.url);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(url, projectKey, projectType, boardId, simplified);
+    return Objects.hash(attributes, boardId, boardName, projectKey, projectType, queueCategory, queueId, queueName, simpleBoard, simplified, url);
   }
 
 
@@ -174,11 +317,17 @@ public class ProjectLandingPageInfo {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProjectLandingPageInfo {\n");
     
-    sb.append("    url: ").append(toIndentedString(url)).append("\n");
+    sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
+    sb.append("    boardId: ").append(toIndentedString(boardId)).append("\n");
+    sb.append("    boardName: ").append(toIndentedString(boardName)).append("\n");
     sb.append("    projectKey: ").append(toIndentedString(projectKey)).append("\n");
     sb.append("    projectType: ").append(toIndentedString(projectType)).append("\n");
-    sb.append("    boardId: ").append(toIndentedString(boardId)).append("\n");
+    sb.append("    queueCategory: ").append(toIndentedString(queueCategory)).append("\n");
+    sb.append("    queueId: ").append(toIndentedString(queueId)).append("\n");
+    sb.append("    queueName: ").append(toIndentedString(queueName)).append("\n");
+    sb.append("    simpleBoard: ").append(toIndentedString(simpleBoard)).append("\n");
     sb.append("    simplified: ").append(toIndentedString(simplified)).append("\n");
+    sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -41,8 +41,11 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.JqlQueryClauseOperand;
  * A time predicate for a temporal JQL clause.
  */
 @ApiModel(description = "A time predicate for a temporal JQL clause.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class JqlQueryClauseTimePredicate {
+  @JsonProperty("operand")
+  private JqlQueryClauseOperand operand;
+
   /**
    * The operator between the field and the operand.
    */
@@ -91,8 +94,23 @@ public class JqlQueryClauseTimePredicate {
   @JsonProperty("operator")
   private OperatorEnum operator;
 
-  @JsonProperty("operand")
-  private JqlQueryClauseOperand operand;
+  public JqlQueryClauseTimePredicate operand(JqlQueryClauseOperand operand) {
+    this.operand = operand;
+    return this;
+  }
+
+   /**
+   * Get operand
+   * @return operand
+  **/
+  @ApiModelProperty(required = true, value = "")
+  public JqlQueryClauseOperand getOperand() {
+    return operand;
+  }
+
+  public void setOperand(JqlQueryClauseOperand operand) {
+    this.operand = operand;
+  }
 
   public JqlQueryClauseTimePredicate operator(OperatorEnum operator) {
     this.operator = operator;
@@ -112,24 +130,6 @@ public class JqlQueryClauseTimePredicate {
     this.operator = operator;
   }
 
-  public JqlQueryClauseTimePredicate operand(JqlQueryClauseOperand operand) {
-    this.operand = operand;
-    return this;
-  }
-
-   /**
-   * Get operand
-   * @return operand
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public JqlQueryClauseOperand getOperand() {
-    return operand;
-  }
-
-  public void setOperand(JqlQueryClauseOperand operand) {
-    this.operand = operand;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -140,13 +140,13 @@ public class JqlQueryClauseTimePredicate {
       return false;
     }
     JqlQueryClauseTimePredicate jqlQueryClauseTimePredicate = (JqlQueryClauseTimePredicate) o;
-    return Objects.equals(this.operator, jqlQueryClauseTimePredicate.operator) &&
-        Objects.equals(this.operand, jqlQueryClauseTimePredicate.operand);
+    return Objects.equals(this.operand, jqlQueryClauseTimePredicate.operand) &&
+        Objects.equals(this.operator, jqlQueryClauseTimePredicate.operator);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(operator, operand);
+    return Objects.hash(operand, operator);
   }
 
 
@@ -155,8 +155,8 @@ public class JqlQueryClauseTimePredicate {
     StringBuilder sb = new StringBuilder();
     sb.append("class JqlQueryClauseTimePredicate {\n");
     
-    sb.append("    operator: ").append(toIndentedString(operator)).append("\n");
     sb.append("    operand: ").append(toIndentedString(operand)).append("\n");
+    sb.append("    operator: ").append(toIndentedString(operator)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -44,8 +44,14 @@ import java.util.Map;
  * A workflow transition condition.
  */
 @ApiModel(description = "A workflow transition condition.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class CreateWorkflowCondition {
+  @JsonProperty("conditions")
+  private List<CreateWorkflowCondition> conditions = new ArrayList<>();
+
+  @JsonProperty("configuration")
+  private Map<String, Object> _configuration = new HashMap<>();
+
   /**
    * The compound condition operator.
    */
@@ -84,32 +90,8 @@ public class CreateWorkflowCondition {
   @JsonProperty("operator")
   private OperatorEnum operator;
 
-  @JsonProperty("conditions")
-  private List<CreateWorkflowCondition> conditions = new ArrayList<>();
-
   @JsonProperty("type")
   private String type;
-
-  @JsonProperty("configuration")
-  private Map<String, Object> _configuration = new HashMap<>();
-
-  public CreateWorkflowCondition operator(OperatorEnum operator) {
-    this.operator = operator;
-    return this;
-  }
-
-   /**
-   * The compound condition operator.
-   * @return operator
-  **/
-  @ApiModelProperty(value = "The compound condition operator.")
-  public OperatorEnum getOperator() {
-    return operator;
-  }
-
-  public void setOperator(OperatorEnum operator) {
-    this.operator = operator;
-  }
 
   public CreateWorkflowCondition conditions(List<CreateWorkflowCondition> conditions) {
     this.conditions = conditions;
@@ -135,24 +117,6 @@ public class CreateWorkflowCondition {
 
   public void setConditions(List<CreateWorkflowCondition> conditions) {
     this.conditions = conditions;
-  }
-
-  public CreateWorkflowCondition type(String type) {
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * The type of the transition rule.
-   * @return type
-  **/
-  @ApiModelProperty(value = "The type of the transition rule.")
-  public String getType() {
-    return type;
-  }
-
-  public void setType(String type) {
-    this.type = type;
   }
 
   public CreateWorkflowCondition _configuration(Map<String, Object> _configuration) {
@@ -181,6 +145,42 @@ public class CreateWorkflowCondition {
     this._configuration = _configuration;
   }
 
+  public CreateWorkflowCondition operator(OperatorEnum operator) {
+    this.operator = operator;
+    return this;
+  }
+
+   /**
+   * The compound condition operator.
+   * @return operator
+  **/
+  @ApiModelProperty(value = "The compound condition operator.")
+  public OperatorEnum getOperator() {
+    return operator;
+  }
+
+  public void setOperator(OperatorEnum operator) {
+    this.operator = operator;
+  }
+
+  public CreateWorkflowCondition type(String type) {
+    this.type = type;
+    return this;
+  }
+
+   /**
+   * The type of the transition rule.
+   * @return type
+  **/
+  @ApiModelProperty(value = "The type of the transition rule.")
+  public String getType() {
+    return type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -191,15 +191,15 @@ public class CreateWorkflowCondition {
       return false;
     }
     CreateWorkflowCondition createWorkflowCondition = (CreateWorkflowCondition) o;
-    return Objects.equals(this.operator, createWorkflowCondition.operator) &&
-        Objects.equals(this.conditions, createWorkflowCondition.conditions) &&
-        Objects.equals(this.type, createWorkflowCondition.type) &&
-        Objects.equals(this._configuration, createWorkflowCondition._configuration);
+    return Objects.equals(this.conditions, createWorkflowCondition.conditions) &&
+        Objects.equals(this._configuration, createWorkflowCondition._configuration) &&
+        Objects.equals(this.operator, createWorkflowCondition.operator) &&
+        Objects.equals(this.type, createWorkflowCondition.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(operator, conditions, type, _configuration);
+    return Objects.hash(conditions, _configuration, operator, type);
   }
 
 
@@ -208,10 +208,10 @@ public class CreateWorkflowCondition {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateWorkflowCondition {\n");
     
-    sb.append("    operator: ").append(toIndentedString(operator)).append("\n");
     sb.append("    conditions: ").append(toIndentedString(conditions)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    _configuration: ").append(toIndentedString(_configuration)).append("\n");
+    sb.append("    operator: ").append(toIndentedString(operator)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }

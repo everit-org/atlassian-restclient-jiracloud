@@ -43,22 +43,13 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.Avatar;
  * List of project avatars.
  */
 @ApiModel(description = "List of project avatars.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class ProjectAvatars {
-  @JsonProperty("system")
-  private List<Avatar> system = new ArrayList<>();
-
   @JsonProperty("custom")
   private List<Avatar> custom = new ArrayList<>();
 
-   /**
-   * List of avatars included with Jira. These avatars cannot be deleted.
-   * @return system
-  **/
-  @ApiModelProperty(value = "List of avatars included with Jira. These avatars cannot be deleted.")
-  public List<Avatar> getSystem() {
-    return system;
-  }
+  @JsonProperty("system")
+  private List<Avatar> system = new ArrayList<>();
 
    /**
    * List of avatars added to Jira. These avatars may be deleted.
@@ -67,6 +58,15 @@ public class ProjectAvatars {
   @ApiModelProperty(value = "List of avatars added to Jira. These avatars may be deleted.")
   public List<Avatar> getCustom() {
     return custom;
+  }
+
+   /**
+   * List of avatars included with Jira. These avatars cannot be deleted.
+   * @return system
+  **/
+  @ApiModelProperty(value = "List of avatars included with Jira. These avatars cannot be deleted.")
+  public List<Avatar> getSystem() {
+    return system;
   }
 
 
@@ -79,13 +79,13 @@ public class ProjectAvatars {
       return false;
     }
     ProjectAvatars projectAvatars = (ProjectAvatars) o;
-    return Objects.equals(this.system, projectAvatars.system) &&
-        Objects.equals(this.custom, projectAvatars.custom);
+    return Objects.equals(this.custom, projectAvatars.custom) &&
+        Objects.equals(this.system, projectAvatars.system);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(system, custom);
+    return Objects.hash(custom, system);
   }
 
 
@@ -94,8 +94,8 @@ public class ProjectAvatars {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProjectAvatars {\n");
     
-    sb.append("    system: ").append(toIndentedString(system)).append("\n");
     sb.append("    custom: ").append(toIndentedString(custom)).append("\n");
+    sb.append("    system: ").append(toIndentedString(system)).append("\n");
     sb.append("}");
     return sb.toString();
   }

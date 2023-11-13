@@ -42,42 +42,69 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.Scope;
  * Details about a project role.
  */
 @ApiModel(description = "Details about a project role.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class ProjectRoleDetails {
-  @JsonProperty("self")
-  private URI self;
-
-  @JsonProperty("name")
-  private String name;
-
-  @JsonProperty("id")
-  private Long id;
-
-  @JsonProperty("description")
-  private String description;
-
   @JsonProperty("admin")
   private Boolean admin;
-
-  @JsonProperty("scope")
-  private Scope scope;
-
-  @JsonProperty("roleConfigurable")
-  private Boolean roleConfigurable;
-
-  @JsonProperty("translatedName")
-  private String translatedName;
 
   @JsonProperty("default")
   private Boolean _default;
 
+  @JsonProperty("description")
+  private String description;
+
+  @JsonProperty("id")
+  private Long id;
+
+  @JsonProperty("name")
+  private String name;
+
+  @JsonProperty("roleConfigurable")
+  private Boolean roleConfigurable;
+
+  @JsonProperty("scope")
+  private Scope scope;
+
+  @JsonProperty("self")
+  private URI self;
+
+  @JsonProperty("translatedName")
+  private String translatedName;
+
    /**
-   * The URL the project role details.
-   * @return self
+   * Whether this role is the admin role for the project.
+   * @return admin
   **/
-  @ApiModelProperty(value = "The URL the project role details.")
-  public URI getSelf() {
-    return self;
+  @ApiModelProperty(value = "Whether this role is the admin role for the project.")
+  public Boolean getAdmin() {
+    return admin;
+  }
+
+   /**
+   * Whether this role is the default role for the project.
+   * @return _default
+  **/
+  @ApiModelProperty(value = "Whether this role is the default role for the project.")
+  public Boolean getDefault() {
+    return _default;
+  }
+
+   /**
+   * The description of the project role.
+   * @return description
+  **/
+  @ApiModelProperty(value = "The description of the project role.")
+  public String getDescription() {
+    return description;
+  }
+
+   /**
+   * The ID of the project role.
+   * @return id
+  **/
+  @ApiModelProperty(value = "The ID of the project role.")
+  public Long getId() {
+    return id;
   }
 
   public ProjectRoleDetails name(String name) {
@@ -99,30 +126,12 @@ public class ProjectRoleDetails {
   }
 
    /**
-   * The ID of the project role.
-   * @return id
+   * Whether the roles are configurable for this project.
+   * @return roleConfigurable
   **/
-  @ApiModelProperty(value = "The ID of the project role.")
-  public Long getId() {
-    return id;
-  }
-
-   /**
-   * The description of the project role.
-   * @return description
-  **/
-  @ApiModelProperty(value = "The description of the project role.")
-  public String getDescription() {
-    return description;
-  }
-
-   /**
-   * Whether this role is the admin role for the project.
-   * @return admin
-  **/
-  @ApiModelProperty(value = "Whether this role is the admin role for the project.")
-  public Boolean getAdmin() {
-    return admin;
+  @ApiModelProperty(value = "Whether the roles are configurable for this project.")
+  public Boolean getRoleConfigurable() {
+    return roleConfigurable;
   }
 
    /**
@@ -135,12 +144,12 @@ public class ProjectRoleDetails {
   }
 
    /**
-   * Whether the roles are configurable for this project.
-   * @return roleConfigurable
+   * The URL the project role details.
+   * @return self
   **/
-  @ApiModelProperty(value = "Whether the roles are configurable for this project.")
-  public Boolean getRoleConfigurable() {
-    return roleConfigurable;
+  @ApiModelProperty(value = "The URL the project role details.")
+  public URI getSelf() {
+    return self;
   }
 
   public ProjectRoleDetails translatedName(String translatedName) {
@@ -161,15 +170,6 @@ public class ProjectRoleDetails {
     this.translatedName = translatedName;
   }
 
-   /**
-   * Whether this role is the default role for the project.
-   * @return _default
-  **/
-  @ApiModelProperty(value = "Whether this role is the default role for the project.")
-  public Boolean getDefault() {
-    return _default;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -180,20 +180,20 @@ public class ProjectRoleDetails {
       return false;
     }
     ProjectRoleDetails projectRoleDetails = (ProjectRoleDetails) o;
-    return Objects.equals(this.self, projectRoleDetails.self) &&
-        Objects.equals(this.name, projectRoleDetails.name) &&
-        Objects.equals(this.id, projectRoleDetails.id) &&
+    return Objects.equals(this.admin, projectRoleDetails.admin) &&
+        Objects.equals(this._default, projectRoleDetails._default) &&
         Objects.equals(this.description, projectRoleDetails.description) &&
-        Objects.equals(this.admin, projectRoleDetails.admin) &&
-        Objects.equals(this.scope, projectRoleDetails.scope) &&
+        Objects.equals(this.id, projectRoleDetails.id) &&
+        Objects.equals(this.name, projectRoleDetails.name) &&
         Objects.equals(this.roleConfigurable, projectRoleDetails.roleConfigurable) &&
-        Objects.equals(this.translatedName, projectRoleDetails.translatedName) &&
-        Objects.equals(this._default, projectRoleDetails._default);
+        Objects.equals(this.scope, projectRoleDetails.scope) &&
+        Objects.equals(this.self, projectRoleDetails.self) &&
+        Objects.equals(this.translatedName, projectRoleDetails.translatedName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, name, id, description, admin, scope, roleConfigurable, translatedName, _default);
+    return Objects.hash(admin, _default, description, id, name, roleConfigurable, scope, self, translatedName);
   }
 
 
@@ -202,15 +202,15 @@ public class ProjectRoleDetails {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProjectRoleDetails {\n");
     
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    admin: ").append(toIndentedString(admin)).append("\n");
-    sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
-    sb.append("    roleConfigurable: ").append(toIndentedString(roleConfigurable)).append("\n");
-    sb.append("    translatedName: ").append(toIndentedString(translatedName)).append("\n");
     sb.append("    _default: ").append(toIndentedString(_default)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    roleConfigurable: ").append(toIndentedString(roleConfigurable)).append("\n");
+    sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
+    sb.append("    translatedName: ").append(toIndentedString(translatedName)).append("\n");
     sb.append("}");
     return sb.toString();
   }

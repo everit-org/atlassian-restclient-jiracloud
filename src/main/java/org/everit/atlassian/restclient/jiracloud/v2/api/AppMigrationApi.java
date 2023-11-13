@@ -59,13 +59,12 @@ public class AppMigrationApi {
    * Bulk update custom field value
    * Updates the value of a custom field added by Connect apps on one or more issues. The values of up to 200 custom fields can be updated.  **[Permissions](#permissions) required:** Only Connect apps can make this request.
    * @param atlassianTransferId The ID of the transfer. (required)
-   * @param atlassianAccountId The Atlassian account ID of the impersonated user. This user must be a member of the site admin group. (required)
    * @param connectCustomFieldValues  (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Object&gt;
    */
   public Single<Object> appIssueFieldValueUpdateResourceUpdateIssueFieldsPut(
-    String atlassianTransferId, String atlassianAccountId, ConnectCustomFieldValues connectCustomFieldValues, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String atlassianTransferId, ConnectCustomFieldValues connectCustomFieldValues, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.PUT)
@@ -80,7 +79,6 @@ public class AppMigrationApi {
 
     Map<String, String> headers = new HashMap<>();
     headers.put("Atlassian-Transfer-Id", atlassianTransferId);
-    headers.put("Atlassian-Account-Id", atlassianAccountId);
     requestBuilder.headers(headers);
 
     requestBuilder.requestBody(Optional.of(connectCustomFieldValues));
@@ -90,16 +88,15 @@ public class AppMigrationApi {
 
   /**
    * Bulk update entity properties
-   * Updates the values of multiple entity properties for an object. This operation is for use by Connect apps during app migration.
+   * Updates the values of multiple entity properties for an object, up to 50 updates per request. This operation is for use by Connect apps during app migration.
    * @param atlassianTransferId The app migration transfer ID. (required)
-   * @param atlassianAccountId The Atlassian account ID of the impersonated user. This user must be a member of the site admin group. (required)
    * @param entityType The type indicating the object that contains the entity properties. (required)
    * @param entityPropertyDetails  (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Completable
    */
   public Completable migrationResourceUpdateEntityPropertiesValuePut(
-    String atlassianTransferId, String atlassianAccountId, String entityType, List<EntityPropertyDetails> entityPropertyDetails, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String atlassianTransferId, String entityType, List<EntityPropertyDetails> entityPropertyDetails, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.PUT)
@@ -115,7 +112,6 @@ public class AppMigrationApi {
 
     Map<String, String> headers = new HashMap<>();
     headers.put("Atlassian-Transfer-Id", atlassianTransferId);
-    headers.put("Atlassian-Account-Id", atlassianAccountId);
     requestBuilder.headers(headers);
 
     requestBuilder.requestBody(Optional.of(entityPropertyDetails));
@@ -132,7 +128,7 @@ public class AppMigrationApi {
    * @return Single&lt;WorkflowRulesSearchDetails&gt;
    */
   public Single<WorkflowRulesSearchDetails> migrationResourceWorkflowRuleSearchPost(
-    String atlassianTransferId, WorkflowRulesSearch workflowRulesSearch, Optional<RestRequestEnhancer> restRequestEnhancer) {
+      String atlassianTransferId, WorkflowRulesSearch workflowRulesSearch, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.POST)

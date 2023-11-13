@@ -40,33 +40,33 @@ import io.swagger.annotations.ApiModelProperty;
  * An icon.
  */
 @ApiModel(description = "An icon.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class IconBean {
-  @JsonProperty("url16x16")
-  private String url16x16;
+  @JsonProperty("link")
+  private String link;
 
   @JsonProperty("title")
   private String title;
 
-  @JsonProperty("link")
-  private String link;
+  @JsonProperty("url16x16")
+  private String url16x16;
 
-  public IconBean url16x16(String url16x16) {
-    this.url16x16 = url16x16;
+  public IconBean link(String link) {
+    this.link = link;
     return this;
   }
 
    /**
-   * The URL of a 16x16 pixel icon.
-   * @return url16x16
+   * The URL of the tooltip, used only for a status icon.
+   * @return link
   **/
-  @ApiModelProperty(value = "The URL of a 16x16 pixel icon.")
-  public String getUrl16x16() {
-    return url16x16;
+  @ApiModelProperty(value = "The URL of the tooltip, used only for a status icon.")
+  public String getLink() {
+    return link;
   }
 
-  public void setUrl16x16(String url16x16) {
-    this.url16x16 = url16x16;
+  public void setLink(String link) {
+    this.link = link;
   }
 
   public IconBean title(String title) {
@@ -87,22 +87,22 @@ public class IconBean {
     this.title = title;
   }
 
-  public IconBean link(String link) {
-    this.link = link;
+  public IconBean url16x16(String url16x16) {
+    this.url16x16 = url16x16;
     return this;
   }
 
    /**
-   * The URL of the tooltip, used only for a status icon.
-   * @return link
+   * The URL of a 16x16 pixel icon.
+   * @return url16x16
   **/
-  @ApiModelProperty(value = "The URL of the tooltip, used only for a status icon.")
-  public String getLink() {
-    return link;
+  @ApiModelProperty(value = "The URL of a 16x16 pixel icon.")
+  public String getUrl16x16() {
+    return url16x16;
   }
 
-  public void setLink(String link) {
-    this.link = link;
+  public void setUrl16x16(String url16x16) {
+    this.url16x16 = url16x16;
   }
 
 
@@ -115,14 +115,14 @@ public class IconBean {
       return false;
     }
     IconBean iconBean = (IconBean) o;
-    return Objects.equals(this.url16x16, iconBean.url16x16) &&
+    return Objects.equals(this.link, iconBean.link) &&
         Objects.equals(this.title, iconBean.title) &&
-        Objects.equals(this.link, iconBean.link);
+        Objects.equals(this.url16x16, iconBean.url16x16);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(url16x16, title, link);
+    return Objects.hash(link, title, url16x16);
   }
 
 
@@ -131,9 +131,9 @@ public class IconBean {
     StringBuilder sb = new StringBuilder();
     sb.append("class IconBean {\n");
     
-    sb.append("    url16x16: ").append(toIndentedString(url16x16)).append("\n");
-    sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    link: ").append(toIndentedString(link)).append("\n");
+    sb.append("    title: ").append(toIndentedString(title)).append("\n");
+    sb.append("    url16x16: ").append(toIndentedString(url16x16)).append("\n");
     sb.append("}");
     return sb.toString();
   }

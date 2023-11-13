@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of the association between an issue type scheme and project.
  */
 @ApiModel(description = "Details of the association between an issue type scheme and project.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class IssueTypeSchemeProjectAssociation {
   @JsonProperty("issueTypeSchemeId")
   private String issueTypeSchemeId;

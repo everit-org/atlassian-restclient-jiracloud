@@ -47,37 +47,37 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.UserList;
  * Details about a filter.
  */
 @ApiModel(description = "Details about a filter.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class Filter {
-  @JsonProperty("self")
-  private URI self;
-
-  @JsonProperty("id")
-  private String id;
-
-  @JsonProperty("name")
-  private String name;
-
   @JsonProperty("description")
   private String description;
 
-  @JsonProperty("owner")
-  private User owner;
-
-  @JsonProperty("jql")
-  private String jql;
-
-  @JsonProperty("viewUrl")
-  private URI viewUrl;
-
-  @JsonProperty("searchUrl")
-  private URI searchUrl;
+  @JsonProperty("editPermissions")
+  private List<SharePermission> editPermissions = new ArrayList<>();
 
   @JsonProperty("favourite")
   private Boolean favourite;
 
   @JsonProperty("favouritedCount")
   private Long favouritedCount;
+
+  @JsonProperty("id")
+  private String id;
+
+  @JsonProperty("jql")
+  private String jql;
+
+  @JsonProperty("name")
+  private String name;
+
+  @JsonProperty("owner")
+  private User owner;
+
+  @JsonProperty("searchUrl")
+  private URI searchUrl;
+
+  @JsonProperty("self")
+  private URI self;
 
   @JsonProperty("sharePermissions")
   private List<SharePermission> sharePermissions = new ArrayList<>();
@@ -88,41 +88,8 @@ public class Filter {
   @JsonProperty("subscriptions")
   private FilterSubscriptionsList subscriptions;
 
-   /**
-   * The URL of the filter.
-   * @return self
-  **/
-  @ApiModelProperty(value = "The URL of the filter.")
-  public URI getSelf() {
-    return self;
-  }
-
-   /**
-   * The unique identifier for the filter.
-   * @return id
-  **/
-  @ApiModelProperty(value = "The unique identifier for the filter.")
-  public String getId() {
-    return id;
-  }
-
-  public Filter name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * The name of the filter. Must be unique.
-   * @return name
-  **/
-  @ApiModelProperty(required = true, value = "The name of the filter. Must be unique.")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
+  @JsonProperty("viewUrl")
+  private URI viewUrl;
 
   public Filter description(String description) {
     this.description = description;
@@ -142,49 +109,30 @@ public class Filter {
     this.description = description;
   }
 
-   /**
-   * The user who owns the filter. This is defaulted to the creator of the filter, however Jira administrators can change the owner of a shared filter in the admin settings.
-   * @return owner
-  **/
-  @ApiModelProperty(value = "The user who owns the filter. This is defaulted to the creator of the filter, however Jira administrators can change the owner of a shared filter in the admin settings.")
-  public User getOwner() {
-    return owner;
+  public Filter editPermissions(List<SharePermission> editPermissions) {
+    this.editPermissions = editPermissions;
+    return this;
   }
 
-  public Filter jql(String jql) {
-    this.jql = jql;
+  public Filter addEditPermissionsItem(SharePermission editPermissionsItem) {
+    if (this.editPermissions == null) {
+      this.editPermissions = new ArrayList<>();
+    }
+    this.editPermissions.add(editPermissionsItem);
     return this;
   }
 
    /**
-   * The JQL query for the filter. For example, *project &#x3D; SSP AND issuetype &#x3D; Bug*.
-   * @return jql
+   * The groups and projects that can edit the filter.
+   * @return editPermissions
   **/
-  @ApiModelProperty(value = "The JQL query for the filter. For example, *project = SSP AND issuetype = Bug*.")
-  public String getJql() {
-    return jql;
+  @ApiModelProperty(value = "The groups and projects that can edit the filter.")
+  public List<SharePermission> getEditPermissions() {
+    return editPermissions;
   }
 
-  public void setJql(String jql) {
-    this.jql = jql;
-  }
-
-   /**
-   * A URL to view the filter results in Jira, using the ID of the filter. For example, *https://your-domain.atlassian.net/issues/?filter&#x3D;10100*.
-   * @return viewUrl
-  **/
-  @ApiModelProperty(value = "A URL to view the filter results in Jira, using the ID of the filter. For example, *https://your-domain.atlassian.net/issues/?filter=10100*.")
-  public URI getViewUrl() {
-    return viewUrl;
-  }
-
-   /**
-   * A URL to view the filter results in Jira, using the [Search for issues using JQL](#api-rest-api-2-filter-search-get) operation with the filter&#39;s JQL string to return the filter results. For example, *https://your-domain.atlassian.net/rest/api/2/search?jql&#x3D;project+%3D+SSP+AND+issuetype+%3D+Bug*.
-   * @return searchUrl
-  **/
-  @ApiModelProperty(value = "A URL to view the filter results in Jira, using the [Search for issues using JQL](#api-rest-api-2-filter-search-get) operation with the filter's JQL string to return the filter results. For example, *https://your-domain.atlassian.net/rest/api/2/search?jql=project+%3D+SSP+AND+issuetype+%3D+Bug*.")
-  public URI getSearchUrl() {
-    return searchUrl;
+  public void setEditPermissions(List<SharePermission> editPermissions) {
+    this.editPermissions = editPermissions;
   }
 
   public Filter favourite(Boolean favourite) {
@@ -212,6 +160,78 @@ public class Filter {
   @ApiModelProperty(value = "The count of how many users have selected this filter as a favorite, including the filter owner.")
   public Long getFavouritedCount() {
     return favouritedCount;
+  }
+
+   /**
+   * The unique identifier for the filter.
+   * @return id
+  **/
+  @ApiModelProperty(value = "The unique identifier for the filter.")
+  public String getId() {
+    return id;
+  }
+
+  public Filter jql(String jql) {
+    this.jql = jql;
+    return this;
+  }
+
+   /**
+   * The JQL query for the filter. For example, *project &#x3D; SSP AND issuetype &#x3D; Bug*.
+   * @return jql
+  **/
+  @ApiModelProperty(value = "The JQL query for the filter. For example, *project = SSP AND issuetype = Bug*.")
+  public String getJql() {
+    return jql;
+  }
+
+  public void setJql(String jql) {
+    this.jql = jql;
+  }
+
+  public Filter name(String name) {
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * The name of the filter. Must be unique.
+   * @return name
+  **/
+  @ApiModelProperty(required = true, value = "The name of the filter. Must be unique.")
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+   /**
+   * The user who owns the filter. This is defaulted to the creator of the filter, however Jira administrators can change the owner of a shared filter in the admin settings.
+   * @return owner
+  **/
+  @ApiModelProperty(value = "The user who owns the filter. This is defaulted to the creator of the filter, however Jira administrators can change the owner of a shared filter in the admin settings.")
+  public User getOwner() {
+    return owner;
+  }
+
+   /**
+   * A URL to view the filter results in Jira, using the [Search for issues using JQL](#api-rest-api-2-filter-search-get) operation with the filter&#39;s JQL string to return the filter results. For example, *https://your-domain.atlassian.net/rest/api/2/search?jql&#x3D;project+%3D+SSP+AND+issuetype+%3D+Bug*.
+   * @return searchUrl
+  **/
+  @ApiModelProperty(value = "A URL to view the filter results in Jira, using the [Search for issues using JQL](#api-rest-api-2-filter-search-get) operation with the filter's JQL string to return the filter results. For example, *https://your-domain.atlassian.net/rest/api/2/search?jql=project+%3D+SSP+AND+issuetype+%3D+Bug*.")
+  public URI getSearchUrl() {
+    return searchUrl;
+  }
+
+   /**
+   * The URL of the filter.
+   * @return self
+  **/
+  @ApiModelProperty(value = "The URL of the filter.")
+  public URI getSelf() {
+    return self;
   }
 
   public Filter sharePermissions(List<SharePermission> sharePermissions) {
@@ -258,6 +278,15 @@ public class Filter {
     return subscriptions;
   }
 
+   /**
+   * A URL to view the filter results in Jira, using the ID of the filter. For example, *https://your-domain.atlassian.net/issues/?filter&#x3D;10100*.
+   * @return viewUrl
+  **/
+  @ApiModelProperty(value = "A URL to view the filter results in Jira, using the ID of the filter. For example, *https://your-domain.atlassian.net/issues/?filter=10100*.")
+  public URI getViewUrl() {
+    return viewUrl;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -268,24 +297,25 @@ public class Filter {
       return false;
     }
     Filter filter = (Filter) o;
-    return Objects.equals(this.self, filter.self) &&
-        Objects.equals(this.id, filter.id) &&
-        Objects.equals(this.name, filter.name) &&
-        Objects.equals(this.description, filter.description) &&
-        Objects.equals(this.owner, filter.owner) &&
-        Objects.equals(this.jql, filter.jql) &&
-        Objects.equals(this.viewUrl, filter.viewUrl) &&
-        Objects.equals(this.searchUrl, filter.searchUrl) &&
+    return Objects.equals(this.description, filter.description) &&
+        Objects.equals(this.editPermissions, filter.editPermissions) &&
         Objects.equals(this.favourite, filter.favourite) &&
         Objects.equals(this.favouritedCount, filter.favouritedCount) &&
+        Objects.equals(this.id, filter.id) &&
+        Objects.equals(this.jql, filter.jql) &&
+        Objects.equals(this.name, filter.name) &&
+        Objects.equals(this.owner, filter.owner) &&
+        Objects.equals(this.searchUrl, filter.searchUrl) &&
+        Objects.equals(this.self, filter.self) &&
         Objects.equals(this.sharePermissions, filter.sharePermissions) &&
         Objects.equals(this.sharedUsers, filter.sharedUsers) &&
-        Objects.equals(this.subscriptions, filter.subscriptions);
+        Objects.equals(this.subscriptions, filter.subscriptions) &&
+        Objects.equals(this.viewUrl, filter.viewUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, id, name, description, owner, jql, viewUrl, searchUrl, favourite, favouritedCount, sharePermissions, sharedUsers, subscriptions);
+    return Objects.hash(description, editPermissions, favourite, favouritedCount, id, jql, name, owner, searchUrl, self, sharePermissions, sharedUsers, subscriptions, viewUrl);
   }
 
 
@@ -294,19 +324,20 @@ public class Filter {
     StringBuilder sb = new StringBuilder();
     sb.append("class Filter {\n");
     
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    owner: ").append(toIndentedString(owner)).append("\n");
-    sb.append("    jql: ").append(toIndentedString(jql)).append("\n");
-    sb.append("    viewUrl: ").append(toIndentedString(viewUrl)).append("\n");
-    sb.append("    searchUrl: ").append(toIndentedString(searchUrl)).append("\n");
+    sb.append("    editPermissions: ").append(toIndentedString(editPermissions)).append("\n");
     sb.append("    favourite: ").append(toIndentedString(favourite)).append("\n");
     sb.append("    favouritedCount: ").append(toIndentedString(favouritedCount)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    jql: ").append(toIndentedString(jql)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    owner: ").append(toIndentedString(owner)).append("\n");
+    sb.append("    searchUrl: ").append(toIndentedString(searchUrl)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    sharePermissions: ").append(toIndentedString(sharePermissions)).append("\n");
     sb.append("    sharedUsers: ").append(toIndentedString(sharedUsers)).append("\n");
     sb.append("    subscriptions: ").append(toIndentedString(subscriptions)).append("\n");
+    sb.append("    viewUrl: ").append(toIndentedString(viewUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }

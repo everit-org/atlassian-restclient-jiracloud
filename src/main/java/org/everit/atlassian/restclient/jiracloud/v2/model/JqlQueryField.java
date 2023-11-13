@@ -43,13 +43,34 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.JqlQueryFieldEntityPro
  * A field used in a JQL query. See [Advanced searching - fields reference](https://confluence.atlassian.com/x/dAiiLQ) for more information about fields in JQL queries.
  */
 @ApiModel(description = "A field used in a JQL query. See [Advanced searching - fields reference](https://confluence.atlassian.com/x/dAiiLQ) for more information about fields in JQL queries.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class JqlQueryField {
+  @JsonProperty("encodedName")
+  private String encodedName;
+
   @JsonProperty("name")
   private String name;
 
   @JsonProperty("property")
   private List<JqlQueryFieldEntityProperty> property = new ArrayList<>();
+
+  public JqlQueryField encodedName(String encodedName) {
+    this.encodedName = encodedName;
+    return this;
+  }
+
+   /**
+   * The encoded name of the field, which can be used directly in a JQL query.
+   * @return encodedName
+  **/
+  @ApiModelProperty(value = "The encoded name of the field, which can be used directly in a JQL query.")
+  public String getEncodedName() {
+    return encodedName;
+  }
+
+  public void setEncodedName(String encodedName) {
+    this.encodedName = encodedName;
+  }
 
   public JqlQueryField name(String name) {
     this.name = name;
@@ -105,13 +126,14 @@ public class JqlQueryField {
       return false;
     }
     JqlQueryField jqlQueryField = (JqlQueryField) o;
-    return Objects.equals(this.name, jqlQueryField.name) &&
+    return Objects.equals(this.encodedName, jqlQueryField.encodedName) &&
+        Objects.equals(this.name, jqlQueryField.name) &&
         Objects.equals(this.property, jqlQueryField.property);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, property);
+    return Objects.hash(encodedName, name, property);
   }
 
 
@@ -120,6 +142,7 @@ public class JqlQueryField {
     StringBuilder sb = new StringBuilder();
     sb.append("class JqlQueryField {\n");
     
+    sb.append("    encodedName: ").append(toIndentedString(encodedName)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    property: ").append(toIndentedString(property)).append("\n");
     sb.append("}");

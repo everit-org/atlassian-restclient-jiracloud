@@ -46,37 +46,16 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.Scope;
  * Details of the issue creation metadata for an issue type.
  */
 @ApiModel(description = "Details of the issue creation metadata for an issue type.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class IssueTypeIssueCreateMetadata {
-  @JsonProperty("self")
-  private String self;
-
-  @JsonProperty("id")
-  private String id;
+  @JsonProperty("avatarId")
+  private Long avatarId;
 
   @JsonProperty("description")
   private String description;
 
-  @JsonProperty("iconUrl")
-  private String iconUrl;
-
-  @JsonProperty("name")
-  private String name;
-
-  @JsonProperty("subtask")
-  private Boolean subtask;
-
-  @JsonProperty("avatarId")
-  private Long avatarId;
-
   @JsonProperty("entityId")
   private UUID entityId;
-
-  @JsonProperty("hierarchyLevel")
-  private Integer hierarchyLevel;
-
-  @JsonProperty("scope")
-  private Scope scope;
 
   @JsonProperty("expand")
   private String expand;
@@ -84,22 +63,34 @@ public class IssueTypeIssueCreateMetadata {
   @JsonProperty("fields")
   private Map<String, FieldMetadata> fields = new HashMap<>();
 
-   /**
-   * The URL of these issue type details.
-   * @return self
-  **/
-  @ApiModelProperty(value = "The URL of these issue type details.")
-  public String getSelf() {
-    return self;
-  }
+  @JsonProperty("hierarchyLevel")
+  private Integer hierarchyLevel;
+
+  @JsonProperty("iconUrl")
+  private String iconUrl;
+
+  @JsonProperty("id")
+  private String id;
+
+  @JsonProperty("name")
+  private String name;
+
+  @JsonProperty("scope")
+  private Scope scope;
+
+  @JsonProperty("self")
+  private String self;
+
+  @JsonProperty("subtask")
+  private Boolean subtask;
 
    /**
-   * The ID of the issue type.
-   * @return id
+   * The ID of the issue type&#39;s avatar.
+   * @return avatarId
   **/
-  @ApiModelProperty(value = "The ID of the issue type.")
-  public String getId() {
-    return id;
+  @ApiModelProperty(value = "The ID of the issue type's avatar.")
+  public Long getAvatarId() {
+    return avatarId;
   }
 
    /**
@@ -112,66 +103,12 @@ public class IssueTypeIssueCreateMetadata {
   }
 
    /**
-   * The URL of the issue type&#39;s avatar.
-   * @return iconUrl
-  **/
-  @ApiModelProperty(value = "The URL of the issue type's avatar.")
-  public String getIconUrl() {
-    return iconUrl;
-  }
-
-   /**
-   * The name of the issue type.
-   * @return name
-  **/
-  @ApiModelProperty(value = "The name of the issue type.")
-  public String getName() {
-    return name;
-  }
-
-   /**
-   * Whether this issue type is used to create subtasks.
-   * @return subtask
-  **/
-  @ApiModelProperty(value = "Whether this issue type is used to create subtasks.")
-  public Boolean getSubtask() {
-    return subtask;
-  }
-
-   /**
-   * The ID of the issue type&#39;s avatar.
-   * @return avatarId
-  **/
-  @ApiModelProperty(value = "The ID of the issue type's avatar.")
-  public Long getAvatarId() {
-    return avatarId;
-  }
-
-   /**
    * Unique ID for next-gen projects.
    * @return entityId
   **/
   @ApiModelProperty(value = "Unique ID for next-gen projects.")
   public UUID getEntityId() {
     return entityId;
-  }
-
-   /**
-   * Hierarchy level of the issue type.
-   * @return hierarchyLevel
-  **/
-  @ApiModelProperty(value = "Hierarchy level of the issue type.")
-  public Integer getHierarchyLevel() {
-    return hierarchyLevel;
-  }
-
-   /**
-   * Details of the next-gen projects the issue type is available in.
-   * @return scope
-  **/
-  @ApiModelProperty(value = "Details of the next-gen projects the issue type is available in.")
-  public Scope getScope() {
-    return scope;
   }
 
    /**
@@ -192,6 +129,69 @@ public class IssueTypeIssueCreateMetadata {
     return fields;
   }
 
+   /**
+   * Hierarchy level of the issue type.
+   * @return hierarchyLevel
+  **/
+  @ApiModelProperty(value = "Hierarchy level of the issue type.")
+  public Integer getHierarchyLevel() {
+    return hierarchyLevel;
+  }
+
+   /**
+   * The URL of the issue type&#39;s avatar.
+   * @return iconUrl
+  **/
+  @ApiModelProperty(value = "The URL of the issue type's avatar.")
+  public String getIconUrl() {
+    return iconUrl;
+  }
+
+   /**
+   * The ID of the issue type.
+   * @return id
+  **/
+  @ApiModelProperty(value = "The ID of the issue type.")
+  public String getId() {
+    return id;
+  }
+
+   /**
+   * The name of the issue type.
+   * @return name
+  **/
+  @ApiModelProperty(value = "The name of the issue type.")
+  public String getName() {
+    return name;
+  }
+
+   /**
+   * Details of the next-gen projects the issue type is available in.
+   * @return scope
+  **/
+  @ApiModelProperty(value = "Details of the next-gen projects the issue type is available in.")
+  public Scope getScope() {
+    return scope;
+  }
+
+   /**
+   * The URL of these issue type details.
+   * @return self
+  **/
+  @ApiModelProperty(value = "The URL of these issue type details.")
+  public String getSelf() {
+    return self;
+  }
+
+   /**
+   * Whether this issue type is used to create subtasks.
+   * @return subtask
+  **/
+  @ApiModelProperty(value = "Whether this issue type is used to create subtasks.")
+  public Boolean getSubtask() {
+    return subtask;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -202,23 +202,23 @@ public class IssueTypeIssueCreateMetadata {
       return false;
     }
     IssueTypeIssueCreateMetadata issueTypeIssueCreateMetadata = (IssueTypeIssueCreateMetadata) o;
-    return Objects.equals(this.self, issueTypeIssueCreateMetadata.self) &&
-        Objects.equals(this.id, issueTypeIssueCreateMetadata.id) &&
+    return Objects.equals(this.avatarId, issueTypeIssueCreateMetadata.avatarId) &&
         Objects.equals(this.description, issueTypeIssueCreateMetadata.description) &&
-        Objects.equals(this.iconUrl, issueTypeIssueCreateMetadata.iconUrl) &&
-        Objects.equals(this.name, issueTypeIssueCreateMetadata.name) &&
-        Objects.equals(this.subtask, issueTypeIssueCreateMetadata.subtask) &&
-        Objects.equals(this.avatarId, issueTypeIssueCreateMetadata.avatarId) &&
         Objects.equals(this.entityId, issueTypeIssueCreateMetadata.entityId) &&
-        Objects.equals(this.hierarchyLevel, issueTypeIssueCreateMetadata.hierarchyLevel) &&
-        Objects.equals(this.scope, issueTypeIssueCreateMetadata.scope) &&
         Objects.equals(this.expand, issueTypeIssueCreateMetadata.expand) &&
-        Objects.equals(this.fields, issueTypeIssueCreateMetadata.fields);
+        Objects.equals(this.fields, issueTypeIssueCreateMetadata.fields) &&
+        Objects.equals(this.hierarchyLevel, issueTypeIssueCreateMetadata.hierarchyLevel) &&
+        Objects.equals(this.iconUrl, issueTypeIssueCreateMetadata.iconUrl) &&
+        Objects.equals(this.id, issueTypeIssueCreateMetadata.id) &&
+        Objects.equals(this.name, issueTypeIssueCreateMetadata.name) &&
+        Objects.equals(this.scope, issueTypeIssueCreateMetadata.scope) &&
+        Objects.equals(this.self, issueTypeIssueCreateMetadata.self) &&
+        Objects.equals(this.subtask, issueTypeIssueCreateMetadata.subtask);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, id, description, iconUrl, name, subtask, avatarId, entityId, hierarchyLevel, scope, expand, fields);
+    return Objects.hash(avatarId, description, entityId, expand, fields, hierarchyLevel, iconUrl, id, name, scope, self, subtask);
   }
 
 
@@ -227,18 +227,18 @@ public class IssueTypeIssueCreateMetadata {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueTypeIssueCreateMetadata {\n");
     
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    iconUrl: ").append(toIndentedString(iconUrl)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    subtask: ").append(toIndentedString(subtask)).append("\n");
     sb.append("    avatarId: ").append(toIndentedString(avatarId)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    entityId: ").append(toIndentedString(entityId)).append("\n");
-    sb.append("    hierarchyLevel: ").append(toIndentedString(hierarchyLevel)).append("\n");
-    sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
     sb.append("    expand: ").append(toIndentedString(expand)).append("\n");
     sb.append("    fields: ").append(toIndentedString(fields)).append("\n");
+    sb.append("    hierarchyLevel: ").append(toIndentedString(hierarchyLevel)).append("\n");
+    sb.append("    iconUrl: ").append(toIndentedString(iconUrl)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
+    sb.append("    subtask: ").append(toIndentedString(subtask)).append("\n");
     sb.append("}");
     return sb.toString();
   }

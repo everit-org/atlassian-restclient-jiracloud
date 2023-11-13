@@ -40,19 +40,19 @@ import io.swagger.annotations.ApiModelProperty;
  * An issue suggested for use in the issue picker auto-completion.
  */
 @ApiModel(description = "An issue suggested for use in the issue picker auto-completion.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class SuggestedIssue {
   @JsonProperty("id")
   private Long id;
+
+  @JsonProperty("img")
+  private String img;
 
   @JsonProperty("key")
   private String key;
 
   @JsonProperty("keyHtml")
   private String keyHtml;
-
-  @JsonProperty("img")
-  private String img;
 
   @JsonProperty("summary")
   private String summary;
@@ -67,6 +67,15 @@ public class SuggestedIssue {
   @ApiModelProperty(value = "The ID of the issue.")
   public Long getId() {
     return id;
+  }
+
+   /**
+   * The URL of the issue type&#39;s avatar.
+   * @return img
+  **/
+  @ApiModelProperty(value = "The URL of the issue type's avatar.")
+  public String getImg() {
+    return img;
   }
 
    /**
@@ -85,15 +94,6 @@ public class SuggestedIssue {
   @ApiModelProperty(value = "The key of the issue in HTML format.")
   public String getKeyHtml() {
     return keyHtml;
-  }
-
-   /**
-   * The URL of the issue type&#39;s avatar.
-   * @return img
-  **/
-  @ApiModelProperty(value = "The URL of the issue type's avatar.")
-  public String getImg() {
-    return img;
   }
 
    /**
@@ -125,16 +125,16 @@ public class SuggestedIssue {
     }
     SuggestedIssue suggestedIssue = (SuggestedIssue) o;
     return Objects.equals(this.id, suggestedIssue.id) &&
+        Objects.equals(this.img, suggestedIssue.img) &&
         Objects.equals(this.key, suggestedIssue.key) &&
         Objects.equals(this.keyHtml, suggestedIssue.keyHtml) &&
-        Objects.equals(this.img, suggestedIssue.img) &&
         Objects.equals(this.summary, suggestedIssue.summary) &&
         Objects.equals(this.summaryText, suggestedIssue.summaryText);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, key, keyHtml, img, summary, summaryText);
+    return Objects.hash(id, img, key, keyHtml, summary, summaryText);
   }
 
 
@@ -144,9 +144,9 @@ public class SuggestedIssue {
     sb.append("class SuggestedIssue {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    img: ").append(toIndentedString(img)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    keyHtml: ").append(toIndentedString(keyHtml)).append("\n");
-    sb.append("    img: ").append(toIndentedString(img)).append("\n");
     sb.append("    summary: ").append(toIndentedString(summary)).append("\n");
     sb.append("    summaryText: ").append(toIndentedString(summaryText)).append("\n");
     sb.append("}");

@@ -74,7 +74,7 @@ public class IssueWorklogsApi {
    * @param newEstimate The value to set as the issue's remaining time estimate, as days (\\#d), hours (\\#h), or minutes (\\#m or \\#). For example, *2d*. Required when `adjustEstimate` is `new`. (optional)
    * @param reduceBy The amount to reduce the issue's remaining estimate by, as days (\\#d), hours (\\#h), or minutes (\\#m). For example, *2d*. Required when `adjustEstimate` is `manual`. (optional)
    * @param expand Use [expand](#expansion) to include additional information about work logs in the response. This parameter accepts `properties`, which returns worklog properties. (optional, default to &quot;&quot;)
-   * @param overrideEditableFlag Whether the worklog entry should be added to the issue even if the issue is not editable, because jira.issue.editable set to false or missing. For example, the issue is closed. Only connect app users with admin scope permission can use this flag. (optional, default to false)
+   * @param overrideEditableFlag Whether the worklog entry should be added to the issue even if the issue is not editable, because jira.issue.editable set to false or missing. For example, the issue is closed. Connect and Forge app users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) can use this flag. (optional, default to false)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Worklog&gt;
    */
@@ -128,7 +128,7 @@ public class IssueWorklogsApi {
    * @param adjustEstimate Defines how to update the issue's time estimate, the options are:   *  `new` Sets the estimate to a specific value, defined in `newEstimate`.  *  `leave` Leaves the estimate unchanged.  *  `manual` Increases the estimate by amount specified in `increaseBy`.  *  `auto` Reduces the estimate by the value of `timeSpent` in the worklog. (optional, default to auto)
    * @param newEstimate The value to set as the issue's remaining time estimate, as days (\\#d), hours (\\#h), or minutes (\\#m or \\#). For example, *2d*. Required when `adjustEstimate` is `new`. (optional)
    * @param increaseBy The amount to increase the issue's remaining estimate by, as days (\\#d), hours (\\#h), or minutes (\\#m or \\#). For example, *2d*. Required when `adjustEstimate` is `manual`. (optional)
-   * @param overrideEditableFlag Whether the work log entry should be added to the issue even if the issue is not editable, because jira.issue.editable set to false or missing. For example, the issue is closed. Only connect app users with admin permissions can use this flag. (optional, default to false)
+   * @param overrideEditableFlag Whether the work log entry should be added to the issue even if the issue is not editable, because jira.issue.editable set to false or missing. For example, the issue is closed. Connect and Forge app users with admin permission can use this flag. (optional, default to false)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Completable
    */
@@ -238,14 +238,15 @@ public class IssueWorklogsApi {
    * Returns worklogs for an issue, starting from the oldest worklog or from the worklog started on or after a date and time.  Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** Workloads are only returned where the user has:   *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.  *  If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    * @param issueIdOrKey The ID or key of the issue. (required)
    * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0l)
-   * @param maxResults The maximum number of items to return per page. (optional, default to 1048576)
+   * @param maxResults The maximum number of items to return per page. (optional, default to 5000)
    * @param startedAfter The worklog start date and time, as a UNIX timestamp in milliseconds, after which worklogs are returned. (optional)
+   * @param startedBefore The worklog start date and time, as a UNIX timestamp in milliseconds, before which worklogs are returned. (optional)
    * @param expand Use [expand](#expansion) to include additional information about worklogs in the response. This parameter accepts`properties`, which returns worklog properties. (optional, default to &quot;&quot;)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PageOfWorklogs&gt;
    */
   public Single<PageOfWorklogs> getIssueWorklog(
-    String issueIdOrKey, Optional<Long> startAt, Optional<Integer> maxResults, Optional<Long> startedAfter, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String issueIdOrKey, Optional<Long> startAt, Optional<Integer> maxResults, Optional<Long> startedAfter, Optional<Long> startedBefore, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.GET)
@@ -265,6 +266,9 @@ public class IssueWorklogsApi {
     }
     if (startedAfter.isPresent()) {
       queryParams.put("startedAfter", Collections.singleton(String.valueOf(startedAfter.get())));
+    }
+    if (startedBefore.isPresent()) {
+      queryParams.put("startedBefore", Collections.singleton(String.valueOf(startedBefore.get())));
     }
     if (expand.isPresent()) {
       queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
@@ -354,7 +358,7 @@ public class IssueWorklogsApi {
    * @param adjustEstimate Defines how to update the issue's time estimate, the options are:   *  `new` Sets the estimate to a specific value, defined in `newEstimate`.  *  `leave` Leaves the estimate unchanged.  *  `auto` Updates the estimate by the difference between the original and updated value of `timeSpent` or `timeSpentSeconds`. (optional, default to auto)
    * @param newEstimate The value to set as the issue's remaining time estimate, as days (\\#d), hours (\\#h), or minutes (\\#m or \\#). For example, *2d*. Required when `adjustEstimate` is `new`. (optional)
    * @param expand Use [expand](#expansion) to include additional information about worklogs in the response. This parameter accepts `properties`, which returns worklog properties. (optional, default to &quot;&quot;)
-   * @param overrideEditableFlag Whether the worklog should be added to the issue even if the issue is not editable. For example, because the issue is closed. Only connect app users with admin permissions can use this flag. (optional, default to false)
+   * @param overrideEditableFlag Whether the worklog should be added to the issue even if the issue is not editable. For example, because the issue is closed. Connect and Forge app users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) can use this flag. (optional, default to false)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Worklog&gt;
    */

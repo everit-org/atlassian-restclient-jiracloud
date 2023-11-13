@@ -43,22 +43,13 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.PermissionGrant;
  * List of permission grants.
  */
 @ApiModel(description = "List of permission grants.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class PermissionGrants {
-  @JsonProperty("permissions")
-  private List<PermissionGrant> permissions = new ArrayList<>();
-
   @JsonProperty("expand")
   private String expand;
 
-   /**
-   * Permission grants list.
-   * @return permissions
-  **/
-  @ApiModelProperty(value = "Permission grants list.")
-  public List<PermissionGrant> getPermissions() {
-    return permissions;
-  }
+  @JsonProperty("permissions")
+  private List<PermissionGrant> permissions = new ArrayList<>();
 
    /**
    * Expand options that include additional permission grant details in the response.
@@ -67,6 +58,15 @@ public class PermissionGrants {
   @ApiModelProperty(value = "Expand options that include additional permission grant details in the response.")
   public String getExpand() {
     return expand;
+  }
+
+   /**
+   * Permission grants list.
+   * @return permissions
+  **/
+  @ApiModelProperty(value = "Permission grants list.")
+  public List<PermissionGrant> getPermissions() {
+    return permissions;
   }
 
 
@@ -79,13 +79,13 @@ public class PermissionGrants {
       return false;
     }
     PermissionGrants permissionGrants = (PermissionGrants) o;
-    return Objects.equals(this.permissions, permissionGrants.permissions) &&
-        Objects.equals(this.expand, permissionGrants.expand);
+    return Objects.equals(this.expand, permissionGrants.expand) &&
+        Objects.equals(this.permissions, permissionGrants.permissions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(permissions, expand);
+    return Objects.hash(expand, permissions);
   }
 
 
@@ -94,8 +94,8 @@ public class PermissionGrants {
     StringBuilder sb = new StringBuilder();
     sb.append("class PermissionGrants {\n");
     
-    sb.append("    permissions: ").append(toIndentedString(permissions)).append("\n");
     sb.append("    expand: ").append(toIndentedString(expand)).append("\n");
+    sb.append("    permissions: ").append(toIndentedString(permissions)).append("\n");
     sb.append("}");
     return sb.toString();
   }

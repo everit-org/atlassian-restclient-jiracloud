@@ -42,8 +42,11 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.Fields;
  * The ID or key of a linked issue.
  */
 @ApiModel(description = "The ID or key of a linked issue.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class LinkedIssue {
+  @JsonProperty("fields")
+  private Fields fields;
+
   @JsonProperty("id")
   private String id;
 
@@ -53,8 +56,14 @@ public class LinkedIssue {
   @JsonProperty("self")
   private URI self;
 
-  @JsonProperty("fields")
-  private Fields fields;
+   /**
+   * The fields associated with the issue.
+   * @return fields
+  **/
+  @ApiModelProperty(value = "The fields associated with the issue.")
+  public Fields getFields() {
+    return fields;
+  }
 
   public LinkedIssue id(String id) {
     this.id = id;
@@ -101,15 +110,6 @@ public class LinkedIssue {
     return self;
   }
 
-   /**
-   * The fields associated with the issue.
-   * @return fields
-  **/
-  @ApiModelProperty(value = "The fields associated with the issue.")
-  public Fields getFields() {
-    return fields;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -120,15 +120,15 @@ public class LinkedIssue {
       return false;
     }
     LinkedIssue linkedIssue = (LinkedIssue) o;
-    return Objects.equals(this.id, linkedIssue.id) &&
+    return Objects.equals(this.fields, linkedIssue.fields) &&
+        Objects.equals(this.id, linkedIssue.id) &&
         Objects.equals(this.key, linkedIssue.key) &&
-        Objects.equals(this.self, linkedIssue.self) &&
-        Objects.equals(this.fields, linkedIssue.fields);
+        Objects.equals(this.self, linkedIssue.self);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, key, self, fields);
+    return Objects.hash(fields, id, key, self);
   }
 
 
@@ -137,10 +137,10 @@ public class LinkedIssue {
     StringBuilder sb = new StringBuilder();
     sb.append("class LinkedIssue {\n");
     
+    sb.append("    fields: ").append(toIndentedString(fields)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    fields: ").append(toIndentedString(fields)).append("\n");
     sb.append("}");
     return sb.toString();
   }

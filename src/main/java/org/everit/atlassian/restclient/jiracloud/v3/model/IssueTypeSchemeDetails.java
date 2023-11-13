@@ -42,36 +42,36 @@ import java.util.List;
  * Details of an issue type scheme and its associated issue types.
  */
 @ApiModel(description = "Details of an issue type scheme and its associated issue types.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class IssueTypeSchemeDetails {
-  @JsonProperty("name")
-  private String name;
+  @JsonProperty("defaultIssueTypeId")
+  private String defaultIssueTypeId;
 
   @JsonProperty("description")
   private String description;
 
-  @JsonProperty("defaultIssueTypeId")
-  private String defaultIssueTypeId;
-
   @JsonProperty("issueTypeIds")
   private List<String> issueTypeIds = new ArrayList<>();
 
-  public IssueTypeSchemeDetails name(String name) {
-    this.name = name;
+  @JsonProperty("name")
+  private String name;
+
+  public IssueTypeSchemeDetails defaultIssueTypeId(String defaultIssueTypeId) {
+    this.defaultIssueTypeId = defaultIssueTypeId;
     return this;
   }
 
    /**
-   * The name of the issue type scheme. The name must be unique. The maximum length is 255 characters.
-   * @return name
+   * The ID of the default issue type of the issue type scheme. This ID must be included in &#x60;issueTypeIds&#x60;.
+   * @return defaultIssueTypeId
   **/
-  @ApiModelProperty(required = true, value = "The name of the issue type scheme. The name must be unique. The maximum length is 255 characters.")
-  public String getName() {
-    return name;
+  @ApiModelProperty(value = "The ID of the default issue type of the issue type scheme. This ID must be included in `issueTypeIds`.")
+  public String getDefaultIssueTypeId() {
+    return defaultIssueTypeId;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setDefaultIssueTypeId(String defaultIssueTypeId) {
+    this.defaultIssueTypeId = defaultIssueTypeId;
   }
 
   public IssueTypeSchemeDetails description(String description) {
@@ -90,24 +90,6 @@ public class IssueTypeSchemeDetails {
 
   public void setDescription(String description) {
     this.description = description;
-  }
-
-  public IssueTypeSchemeDetails defaultIssueTypeId(String defaultIssueTypeId) {
-    this.defaultIssueTypeId = defaultIssueTypeId;
-    return this;
-  }
-
-   /**
-   * The ID of the default issue type of the issue type scheme. This ID must be included in &#x60;issueTypeIds&#x60;.
-   * @return defaultIssueTypeId
-  **/
-  @ApiModelProperty(value = "The ID of the default issue type of the issue type scheme. This ID must be included in `issueTypeIds`.")
-  public String getDefaultIssueTypeId() {
-    return defaultIssueTypeId;
-  }
-
-  public void setDefaultIssueTypeId(String defaultIssueTypeId) {
-    this.defaultIssueTypeId = defaultIssueTypeId;
   }
 
   public IssueTypeSchemeDetails issueTypeIds(List<String> issueTypeIds) {
@@ -133,6 +115,24 @@ public class IssueTypeSchemeDetails {
     this.issueTypeIds = issueTypeIds;
   }
 
+  public IssueTypeSchemeDetails name(String name) {
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * The name of the issue type scheme. The name must be unique. The maximum length is 255 characters.
+   * @return name
+  **/
+  @ApiModelProperty(required = true, value = "The name of the issue type scheme. The name must be unique. The maximum length is 255 characters.")
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -143,15 +143,15 @@ public class IssueTypeSchemeDetails {
       return false;
     }
     IssueTypeSchemeDetails issueTypeSchemeDetails = (IssueTypeSchemeDetails) o;
-    return Objects.equals(this.name, issueTypeSchemeDetails.name) &&
+    return Objects.equals(this.defaultIssueTypeId, issueTypeSchemeDetails.defaultIssueTypeId) &&
         Objects.equals(this.description, issueTypeSchemeDetails.description) &&
-        Objects.equals(this.defaultIssueTypeId, issueTypeSchemeDetails.defaultIssueTypeId) &&
-        Objects.equals(this.issueTypeIds, issueTypeSchemeDetails.issueTypeIds);
+        Objects.equals(this.issueTypeIds, issueTypeSchemeDetails.issueTypeIds) &&
+        Objects.equals(this.name, issueTypeSchemeDetails.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, defaultIssueTypeId, issueTypeIds);
+    return Objects.hash(defaultIssueTypeId, description, issueTypeIds, name);
   }
 
 
@@ -160,10 +160,10 @@ public class IssueTypeSchemeDetails {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueTypeSchemeDetails {\n");
     
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    defaultIssueTypeId: ").append(toIndentedString(defaultIssueTypeId)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    issueTypeIds: ").append(toIndentedString(issueTypeIds)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }

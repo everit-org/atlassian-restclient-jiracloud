@@ -40,37 +40,19 @@ import io.swagger.annotations.ApiModelProperty;
  * The IDs of the screens for the screen types of the screen scheme.
  */
 @ApiModel(description = "The IDs of the screens for the screen types of the screen scheme.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class ScreenTypes {
-  @JsonProperty("edit")
-  private Long edit;
-
   @JsonProperty("create")
   private Long create;
-
-  @JsonProperty("view")
-  private Long view;
 
   @JsonProperty("default")
   private Long _default;
 
-  public ScreenTypes edit(Long edit) {
-    this.edit = edit;
-    return this;
-  }
+  @JsonProperty("edit")
+  private Long edit;
 
-   /**
-   * The ID of the edit screen.
-   * @return edit
-  **/
-  @ApiModelProperty(value = "The ID of the edit screen.")
-  public Long getEdit() {
-    return edit;
-  }
-
-  public void setEdit(Long edit) {
-    this.edit = edit;
-  }
+  @JsonProperty("view")
+  private Long view;
 
   public ScreenTypes create(Long create) {
     this.create = create;
@@ -88,24 +70,6 @@ public class ScreenTypes {
 
   public void setCreate(Long create) {
     this.create = create;
-  }
-
-  public ScreenTypes view(Long view) {
-    this.view = view;
-    return this;
-  }
-
-   /**
-   * The ID of the view screen.
-   * @return view
-  **/
-  @ApiModelProperty(value = "The ID of the view screen.")
-  public Long getView() {
-    return view;
-  }
-
-  public void setView(Long view) {
-    this.view = view;
   }
 
   public ScreenTypes _default(Long _default) {
@@ -126,6 +90,42 @@ public class ScreenTypes {
     this._default = _default;
   }
 
+  public ScreenTypes edit(Long edit) {
+    this.edit = edit;
+    return this;
+  }
+
+   /**
+   * The ID of the edit screen.
+   * @return edit
+  **/
+  @ApiModelProperty(value = "The ID of the edit screen.")
+  public Long getEdit() {
+    return edit;
+  }
+
+  public void setEdit(Long edit) {
+    this.edit = edit;
+  }
+
+  public ScreenTypes view(Long view) {
+    this.view = view;
+    return this;
+  }
+
+   /**
+   * The ID of the view screen.
+   * @return view
+  **/
+  @ApiModelProperty(value = "The ID of the view screen.")
+  public Long getView() {
+    return view;
+  }
+
+  public void setView(Long view) {
+    this.view = view;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -136,15 +136,15 @@ public class ScreenTypes {
       return false;
     }
     ScreenTypes screenTypes = (ScreenTypes) o;
-    return Objects.equals(this.edit, screenTypes.edit) &&
-        Objects.equals(this.create, screenTypes.create) &&
-        Objects.equals(this.view, screenTypes.view) &&
-        Objects.equals(this._default, screenTypes._default);
+    return Objects.equals(this.create, screenTypes.create) &&
+        Objects.equals(this._default, screenTypes._default) &&
+        Objects.equals(this.edit, screenTypes.edit) &&
+        Objects.equals(this.view, screenTypes.view);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(edit, create, view, _default);
+    return Objects.hash(create, _default, edit, view);
   }
 
 
@@ -153,10 +153,10 @@ public class ScreenTypes {
     StringBuilder sb = new StringBuilder();
     sb.append("class ScreenTypes {\n");
     
-    sb.append("    edit: ").append(toIndentedString(edit)).append("\n");
     sb.append("    create: ").append(toIndentedString(create)).append("\n");
-    sb.append("    view: ").append(toIndentedString(view)).append("\n");
     sb.append("    _default: ").append(toIndentedString(_default)).append("\n");
+    sb.append("    edit: ").append(toIndentedString(edit)).append("\n");
+    sb.append("    view: ").append(toIndentedString(view)).append("\n");
     sb.append("}");
     return sb.toString();
   }

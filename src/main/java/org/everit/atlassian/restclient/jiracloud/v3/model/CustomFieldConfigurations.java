@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.ContextualConfiguratio
  * Details of configurations for a custom field.
  */
 @ApiModel(description = "Details of configurations for a custom field.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class CustomFieldConfigurations {
   @JsonProperty("configurations")
   private List<ContextualConfiguration> configurations = new ArrayList<>();

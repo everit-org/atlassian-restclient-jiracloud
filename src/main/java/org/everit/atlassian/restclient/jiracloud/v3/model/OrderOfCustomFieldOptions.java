@@ -42,13 +42,13 @@ import java.util.List;
  * An ordered list of custom field option IDs and information on where to move them.
  */
 @ApiModel(description = "An ordered list of custom field option IDs and information on where to move them.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class OrderOfCustomFieldOptions {
-  @JsonProperty("customFieldOptionIds")
-  private List<String> customFieldOptionIds = new ArrayList<>();
-
   @JsonProperty("after")
   private String after;
+
+  @JsonProperty("customFieldOptionIds")
+  private List<String> customFieldOptionIds = new ArrayList<>();
 
   /**
    * The position the custom field options should be moved to. Required if &#x60;after&#x60; isn&#39;t provided.
@@ -88,6 +88,24 @@ public class OrderOfCustomFieldOptions {
   @JsonProperty("position")
   private PositionEnum position;
 
+  public OrderOfCustomFieldOptions after(String after) {
+    this.after = after;
+    return this;
+  }
+
+   /**
+   * The ID of the custom field option or cascading option to place the moved options after. Required if &#x60;position&#x60; isn&#39;t provided.
+   * @return after
+  **/
+  @ApiModelProperty(value = "The ID of the custom field option or cascading option to place the moved options after. Required if `position` isn't provided.")
+  public String getAfter() {
+    return after;
+  }
+
+  public void setAfter(String after) {
+    this.after = after;
+  }
+
   public OrderOfCustomFieldOptions customFieldOptionIds(List<String> customFieldOptionIds) {
     this.customFieldOptionIds = customFieldOptionIds;
     return this;
@@ -109,24 +127,6 @@ public class OrderOfCustomFieldOptions {
 
   public void setCustomFieldOptionIds(List<String> customFieldOptionIds) {
     this.customFieldOptionIds = customFieldOptionIds;
-  }
-
-  public OrderOfCustomFieldOptions after(String after) {
-    this.after = after;
-    return this;
-  }
-
-   /**
-   * The ID of the custom field option or cascading option to place the moved options after. Required if &#x60;position&#x60; isn&#39;t provided.
-   * @return after
-  **/
-  @ApiModelProperty(value = "The ID of the custom field option or cascading option to place the moved options after. Required if `position` isn't provided.")
-  public String getAfter() {
-    return after;
-  }
-
-  public void setAfter(String after) {
-    this.after = after;
   }
 
   public OrderOfCustomFieldOptions position(PositionEnum position) {
@@ -157,14 +157,14 @@ public class OrderOfCustomFieldOptions {
       return false;
     }
     OrderOfCustomFieldOptions orderOfCustomFieldOptions = (OrderOfCustomFieldOptions) o;
-    return Objects.equals(this.customFieldOptionIds, orderOfCustomFieldOptions.customFieldOptionIds) &&
-        Objects.equals(this.after, orderOfCustomFieldOptions.after) &&
+    return Objects.equals(this.after, orderOfCustomFieldOptions.after) &&
+        Objects.equals(this.customFieldOptionIds, orderOfCustomFieldOptions.customFieldOptionIds) &&
         Objects.equals(this.position, orderOfCustomFieldOptions.position);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(customFieldOptionIds, after, position);
+    return Objects.hash(after, customFieldOptionIds, position);
   }
 
 
@@ -173,8 +173,8 @@ public class OrderOfCustomFieldOptions {
     StringBuilder sb = new StringBuilder();
     sb.append("class OrderOfCustomFieldOptions {\n");
     
-    sb.append("    customFieldOptionIds: ").append(toIndentedString(customFieldOptionIds)).append("\n");
     sb.append("    after: ").append(toIndentedString(after)).append("\n");
+    sb.append("    customFieldOptionIds: ").append(toIndentedString(customFieldOptionIds)).append("\n");
     sb.append("    position: ").append(toIndentedString(position)).append("\n");
     sb.append("}");
     return sb.toString();

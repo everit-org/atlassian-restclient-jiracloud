@@ -43,16 +43,34 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.ProjectScopeBean;
 /**
  * IssueFieldOptionScopeBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class IssueFieldOptionScopeBean {
+  @JsonProperty("global")
+  private GlobalScopeBean global;
+
   @JsonProperty("projects")
   private List<Long> projects = new ArrayList<>();
 
   @JsonProperty("projects2")
   private List<ProjectScopeBean> projects2 = new ArrayList<>();
 
-  @JsonProperty("global")
-  private GlobalScopeBean global;
+  public IssueFieldOptionScopeBean global(GlobalScopeBean global) {
+    this.global = global;
+    return this;
+  }
+
+   /**
+   * Defines the behavior of the option within the global context. If this property is set, even if set to an empty object, then the option is available in all projects.
+   * @return global
+  **/
+  @ApiModelProperty(value = "Defines the behavior of the option within the global context. If this property is set, even if set to an empty object, then the option is available in all projects.")
+  public GlobalScopeBean getGlobal() {
+    return global;
+  }
+
+  public void setGlobal(GlobalScopeBean global) {
+    this.global = global;
+  }
 
   public IssueFieldOptionScopeBean projects(List<Long> projects) {
     this.projects = projects;
@@ -106,24 +124,6 @@ public class IssueFieldOptionScopeBean {
     this.projects2 = projects2;
   }
 
-  public IssueFieldOptionScopeBean global(GlobalScopeBean global) {
-    this.global = global;
-    return this;
-  }
-
-   /**
-   * Defines the behavior of the option within the global context. If this property is set, even if set to an empty object, then the option is available in all projects.
-   * @return global
-  **/
-  @ApiModelProperty(value = "Defines the behavior of the option within the global context. If this property is set, even if set to an empty object, then the option is available in all projects.")
-  public GlobalScopeBean getGlobal() {
-    return global;
-  }
-
-  public void setGlobal(GlobalScopeBean global) {
-    this.global = global;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -134,14 +134,14 @@ public class IssueFieldOptionScopeBean {
       return false;
     }
     IssueFieldOptionScopeBean issueFieldOptionScopeBean = (IssueFieldOptionScopeBean) o;
-    return Objects.equals(this.projects, issueFieldOptionScopeBean.projects) &&
-        Objects.equals(this.projects2, issueFieldOptionScopeBean.projects2) &&
-        Objects.equals(this.global, issueFieldOptionScopeBean.global);
+    return Objects.equals(this.global, issueFieldOptionScopeBean.global) &&
+        Objects.equals(this.projects, issueFieldOptionScopeBean.projects) &&
+        Objects.equals(this.projects2, issueFieldOptionScopeBean.projects2);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(projects, projects2, global);
+    return Objects.hash(global, projects, projects2);
   }
 
 
@@ -150,9 +150,9 @@ public class IssueFieldOptionScopeBean {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueFieldOptionScopeBean {\n");
     
+    sb.append("    global: ").append(toIndentedString(global)).append("\n");
     sb.append("    projects: ").append(toIndentedString(projects)).append("\n");
     sb.append("    projects2: ").append(toIndentedString(projects2)).append("\n");
-    sb.append("    global: ").append(toIndentedString(global)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -43,51 +43,33 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.SecurityLevel;
  * Details about a security scheme.
  */
 @ApiModel(description = "Details about a security scheme.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class SecurityScheme {
-  @JsonProperty("self")
-  private String self;
-
-  @JsonProperty("id")
-  private Long id;
-
-  @JsonProperty("name")
-  private String name;
+  @JsonProperty("defaultSecurityLevelId")
+  private Long defaultSecurityLevelId;
 
   @JsonProperty("description")
   private String description;
 
-  @JsonProperty("defaultSecurityLevelId")
-  private Long defaultSecurityLevelId;
+  @JsonProperty("id")
+  private Long id;
 
   @JsonProperty("levels")
   private List<SecurityLevel> levels = new ArrayList<>();
 
-   /**
-   * The URL of the issue security scheme.
-   * @return self
-  **/
-  @ApiModelProperty(value = "The URL of the issue security scheme.")
-  public String getSelf() {
-    return self;
-  }
+  @JsonProperty("name")
+  private String name;
+
+  @JsonProperty("self")
+  private String self;
 
    /**
-   * The ID of the issue security scheme.
-   * @return id
+   * The ID of the default security level.
+   * @return defaultSecurityLevelId
   **/
-  @ApiModelProperty(value = "The ID of the issue security scheme.")
-  public Long getId() {
-    return id;
-  }
-
-   /**
-   * The name of the issue security scheme.
-   * @return name
-  **/
-  @ApiModelProperty(value = "The name of the issue security scheme.")
-  public String getName() {
-    return name;
+  @ApiModelProperty(value = "The ID of the default security level.")
+  public Long getDefaultSecurityLevelId() {
+    return defaultSecurityLevelId;
   }
 
    /**
@@ -100,12 +82,12 @@ public class SecurityScheme {
   }
 
    /**
-   * The ID of the default security level.
-   * @return defaultSecurityLevelId
+   * The ID of the issue security scheme.
+   * @return id
   **/
-  @ApiModelProperty(value = "The ID of the default security level.")
-  public Long getDefaultSecurityLevelId() {
-    return defaultSecurityLevelId;
+  @ApiModelProperty(value = "The ID of the issue security scheme.")
+  public Long getId() {
+    return id;
   }
 
   public SecurityScheme levels(List<SecurityLevel> levels) {
@@ -134,6 +116,24 @@ public class SecurityScheme {
     this.levels = levels;
   }
 
+   /**
+   * The name of the issue security scheme.
+   * @return name
+  **/
+  @ApiModelProperty(value = "The name of the issue security scheme.")
+  public String getName() {
+    return name;
+  }
+
+   /**
+   * The URL of the issue security scheme.
+   * @return self
+  **/
+  @ApiModelProperty(value = "The URL of the issue security scheme.")
+  public String getSelf() {
+    return self;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -144,17 +144,17 @@ public class SecurityScheme {
       return false;
     }
     SecurityScheme securityScheme = (SecurityScheme) o;
-    return Objects.equals(this.self, securityScheme.self) &&
-        Objects.equals(this.id, securityScheme.id) &&
-        Objects.equals(this.name, securityScheme.name) &&
+    return Objects.equals(this.defaultSecurityLevelId, securityScheme.defaultSecurityLevelId) &&
         Objects.equals(this.description, securityScheme.description) &&
-        Objects.equals(this.defaultSecurityLevelId, securityScheme.defaultSecurityLevelId) &&
-        Objects.equals(this.levels, securityScheme.levels);
+        Objects.equals(this.id, securityScheme.id) &&
+        Objects.equals(this.levels, securityScheme.levels) &&
+        Objects.equals(this.name, securityScheme.name) &&
+        Objects.equals(this.self, securityScheme.self);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, id, name, description, defaultSecurityLevelId, levels);
+    return Objects.hash(defaultSecurityLevelId, description, id, levels, name, self);
   }
 
 
@@ -163,12 +163,12 @@ public class SecurityScheme {
     StringBuilder sb = new StringBuilder();
     sb.append("class SecurityScheme {\n");
     
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    defaultSecurityLevelId: ").append(toIndentedString(defaultSecurityLevelId)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    levels: ").append(toIndentedString(levels)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("}");
     return sb.toString();
   }

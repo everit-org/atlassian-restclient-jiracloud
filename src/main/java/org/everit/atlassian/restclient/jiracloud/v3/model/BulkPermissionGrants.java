@@ -43,36 +43,13 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.BulkProjectPermissionG
  * Details of global and project permissions granted to the user.
  */
 @ApiModel(description = "Details of global and project permissions granted to the user.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class BulkPermissionGrants {
-  @JsonProperty("projectPermissions")
-  private List<BulkProjectPermissionGrants> projectPermissions = new ArrayList<>();
-
   @JsonProperty("globalPermissions")
   private List<String> globalPermissions = new ArrayList<>();
 
-  public BulkPermissionGrants projectPermissions(List<BulkProjectPermissionGrants> projectPermissions) {
-    this.projectPermissions = projectPermissions;
-    return this;
-  }
-
-  public BulkPermissionGrants addProjectPermissionsItem(BulkProjectPermissionGrants projectPermissionsItem) {
-    this.projectPermissions.add(projectPermissionsItem);
-    return this;
-  }
-
-   /**
-   * List of project permissions and the projects and issues those permissions provide access to.
-   * @return projectPermissions
-  **/
-  @ApiModelProperty(required = true, value = "List of project permissions and the projects and issues those permissions provide access to.")
-  public List<BulkProjectPermissionGrants> getProjectPermissions() {
-    return projectPermissions;
-  }
-
-  public void setProjectPermissions(List<BulkProjectPermissionGrants> projectPermissions) {
-    this.projectPermissions = projectPermissions;
-  }
+  @JsonProperty("projectPermissions")
+  private List<BulkProjectPermissionGrants> projectPermissions = new ArrayList<>();
 
   public BulkPermissionGrants globalPermissions(List<String> globalPermissions) {
     this.globalPermissions = globalPermissions;
@@ -97,6 +74,29 @@ public class BulkPermissionGrants {
     this.globalPermissions = globalPermissions;
   }
 
+  public BulkPermissionGrants projectPermissions(List<BulkProjectPermissionGrants> projectPermissions) {
+    this.projectPermissions = projectPermissions;
+    return this;
+  }
+
+  public BulkPermissionGrants addProjectPermissionsItem(BulkProjectPermissionGrants projectPermissionsItem) {
+    this.projectPermissions.add(projectPermissionsItem);
+    return this;
+  }
+
+   /**
+   * List of project permissions and the projects and issues those permissions provide access to.
+   * @return projectPermissions
+  **/
+  @ApiModelProperty(required = true, value = "List of project permissions and the projects and issues those permissions provide access to.")
+  public List<BulkProjectPermissionGrants> getProjectPermissions() {
+    return projectPermissions;
+  }
+
+  public void setProjectPermissions(List<BulkProjectPermissionGrants> projectPermissions) {
+    this.projectPermissions = projectPermissions;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -107,13 +107,13 @@ public class BulkPermissionGrants {
       return false;
     }
     BulkPermissionGrants bulkPermissionGrants = (BulkPermissionGrants) o;
-    return Objects.equals(this.projectPermissions, bulkPermissionGrants.projectPermissions) &&
-        Objects.equals(this.globalPermissions, bulkPermissionGrants.globalPermissions);
+    return Objects.equals(this.globalPermissions, bulkPermissionGrants.globalPermissions) &&
+        Objects.equals(this.projectPermissions, bulkPermissionGrants.projectPermissions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(projectPermissions, globalPermissions);
+    return Objects.hash(globalPermissions, projectPermissions);
   }
 
 
@@ -122,8 +122,8 @@ public class BulkPermissionGrants {
     StringBuilder sb = new StringBuilder();
     sb.append("class BulkPermissionGrants {\n");
     
-    sb.append("    projectPermissions: ").append(toIndentedString(projectPermissions)).append("\n");
     sb.append("    globalPermissions: ").append(toIndentedString(globalPermissions)).append("\n");
+    sb.append("    projectPermissions: ").append(toIndentedString(projectPermissions)).append("\n");
     sb.append("}");
     return sb.toString();
   }

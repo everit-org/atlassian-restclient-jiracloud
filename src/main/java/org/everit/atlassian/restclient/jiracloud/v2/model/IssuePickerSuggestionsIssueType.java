@@ -43,40 +43,22 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.SuggestedIssue;
  * A type of issue suggested for use in auto-completion.
  */
 @ApiModel(description = "A type of issue suggested for use in auto-completion.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class IssuePickerSuggestionsIssueType {
-  @JsonProperty("label")
-  private String label;
-
-  @JsonProperty("sub")
-  private String sub;
-
   @JsonProperty("id")
   private String id;
-
-  @JsonProperty("msg")
-  private String msg;
 
   @JsonProperty("issues")
   private List<SuggestedIssue> issues = new ArrayList<>();
 
-   /**
-   * The label of the type of issues suggested for use in auto-completion.
-   * @return label
-  **/
-  @ApiModelProperty(value = "The label of the type of issues suggested for use in auto-completion.")
-  public String getLabel() {
-    return label;
-  }
+  @JsonProperty("label")
+  private String label;
 
-   /**
-   * If issue suggestions are found, returns a message indicating the number of issues suggestions found and returned.
-   * @return sub
-  **/
-  @ApiModelProperty(value = "If issue suggestions are found, returns a message indicating the number of issues suggestions found and returned.")
-  public String getSub() {
-    return sub;
-  }
+  @JsonProperty("msg")
+  private String msg;
+
+  @JsonProperty("sub")
+  private String sub;
 
    /**
    * The ID of the type of issues suggested for use in auto-completion.
@@ -85,6 +67,24 @@ public class IssuePickerSuggestionsIssueType {
   @ApiModelProperty(value = "The ID of the type of issues suggested for use in auto-completion.")
   public String getId() {
     return id;
+  }
+
+   /**
+   * A list of issues suggested for use in auto-completion.
+   * @return issues
+  **/
+  @ApiModelProperty(value = "A list of issues suggested for use in auto-completion.")
+  public List<SuggestedIssue> getIssues() {
+    return issues;
+  }
+
+   /**
+   * The label of the type of issues suggested for use in auto-completion.
+   * @return label
+  **/
+  @ApiModelProperty(value = "The label of the type of issues suggested for use in auto-completion.")
+  public String getLabel() {
+    return label;
   }
 
    /**
@@ -97,12 +97,12 @@ public class IssuePickerSuggestionsIssueType {
   }
 
    /**
-   * A list of issues suggested for use in auto-completion.
-   * @return issues
+   * If issue suggestions are found, returns a message indicating the number of issues suggestions found and returned.
+   * @return sub
   **/
-  @ApiModelProperty(value = "A list of issues suggested for use in auto-completion.")
-  public List<SuggestedIssue> getIssues() {
-    return issues;
+  @ApiModelProperty(value = "If issue suggestions are found, returns a message indicating the number of issues suggestions found and returned.")
+  public String getSub() {
+    return sub;
   }
 
 
@@ -115,16 +115,16 @@ public class IssuePickerSuggestionsIssueType {
       return false;
     }
     IssuePickerSuggestionsIssueType issuePickerSuggestionsIssueType = (IssuePickerSuggestionsIssueType) o;
-    return Objects.equals(this.label, issuePickerSuggestionsIssueType.label) &&
-        Objects.equals(this.sub, issuePickerSuggestionsIssueType.sub) &&
-        Objects.equals(this.id, issuePickerSuggestionsIssueType.id) &&
+    return Objects.equals(this.id, issuePickerSuggestionsIssueType.id) &&
+        Objects.equals(this.issues, issuePickerSuggestionsIssueType.issues) &&
+        Objects.equals(this.label, issuePickerSuggestionsIssueType.label) &&
         Objects.equals(this.msg, issuePickerSuggestionsIssueType.msg) &&
-        Objects.equals(this.issues, issuePickerSuggestionsIssueType.issues);
+        Objects.equals(this.sub, issuePickerSuggestionsIssueType.sub);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(label, sub, id, msg, issues);
+    return Objects.hash(id, issues, label, msg, sub);
   }
 
 
@@ -133,11 +133,11 @@ public class IssuePickerSuggestionsIssueType {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssuePickerSuggestionsIssueType {\n");
     
-    sb.append("    label: ").append(toIndentedString(label)).append("\n");
-    sb.append("    sub: ").append(toIndentedString(sub)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    msg: ").append(toIndentedString(msg)).append("\n");
     sb.append("    issues: ").append(toIndentedString(issues)).append("\n");
+    sb.append("    label: ").append(toIndentedString(label)).append("\n");
+    sb.append("    msg: ").append(toIndentedString(msg)).append("\n");
+    sb.append("    sub: ").append(toIndentedString(sub)).append("\n");
     sb.append("}");
     return sb.toString();
   }

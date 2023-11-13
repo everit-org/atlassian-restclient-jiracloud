@@ -44,39 +44,21 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.RemoteObject;
  * Details of a remote issue link.
  */
 @ApiModel(description = "Details of a remote issue link.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class RemoteIssueLinkRequest {
-  @JsonProperty("globalId")
-  private String globalId;
-
   @JsonProperty("application")
   private Application application;
 
-  @JsonProperty("relationship")
-  private String relationship;
+  @JsonProperty("globalId")
+  private String globalId;
 
   @JsonProperty("object")
   private RemoteObject _object;
 
+  @JsonProperty("relationship")
+  private String relationship;
+
   private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
-
-  public RemoteIssueLinkRequest globalId(String globalId) {
-    this.globalId = globalId;
-    return this;
-  }
-
-   /**
-   * An identifier for the remote item in the remote system. For example, the global ID for a remote item in Confluence would consist of the app ID and page ID, like this: &#x60;appId&#x3D;456&amp;pageId&#x3D;123&#x60;.  Setting this field enables the remote issue link details to be updated or deleted using remote system and item details as the record identifier, rather than using the record&#39;s Jira ID.  The maximum length is 255 characters.
-   * @return globalId
-  **/
-  @ApiModelProperty(value = "An identifier for the remote item in the remote system. For example, the global ID for a remote item in Confluence would consist of the app ID and page ID, like this: `appId=456&pageId=123`.  Setting this field enables the remote issue link details to be updated or deleted using remote system and item details as the record identifier, rather than using the record's Jira ID.  The maximum length is 255 characters.")
-  public String getGlobalId() {
-    return globalId;
-  }
-
-  public void setGlobalId(String globalId) {
-    this.globalId = globalId;
-  }
 
   public RemoteIssueLinkRequest application(Application application) {
     this.application = application;
@@ -96,22 +78,22 @@ public class RemoteIssueLinkRequest {
     this.application = application;
   }
 
-  public RemoteIssueLinkRequest relationship(String relationship) {
-    this.relationship = relationship;
+  public RemoteIssueLinkRequest globalId(String globalId) {
+    this.globalId = globalId;
     return this;
   }
 
    /**
-   * Description of the relationship between the issue and the linked item. If not set, the relationship description \&quot;links to\&quot; is used in Jira.
-   * @return relationship
+   * An identifier for the remote item in the remote system. For example, the global ID for a remote item in Confluence would consist of the app ID and page ID, like this: &#x60;appId&#x3D;456&amp;pageId&#x3D;123&#x60;.  Setting this field enables the remote issue link details to be updated or deleted using remote system and item details as the record identifier, rather than using the record&#39;s Jira ID.  The maximum length is 255 characters.
+   * @return globalId
   **/
-  @ApiModelProperty(value = "Description of the relationship between the issue and the linked item. If not set, the relationship description \"links to\" is used in Jira.")
-  public String getRelationship() {
-    return relationship;
+  @ApiModelProperty(value = "An identifier for the remote item in the remote system. For example, the global ID for a remote item in Confluence would consist of the app ID and page ID, like this: `appId=456&pageId=123`.  Setting this field enables the remote issue link details to be updated or deleted using remote system and item details as the record identifier, rather than using the record's Jira ID.  The maximum length is 255 characters.")
+  public String getGlobalId() {
+    return globalId;
   }
 
-  public void setRelationship(String relationship) {
-    this.relationship = relationship;
+  public void setGlobalId(String globalId) {
+    this.globalId = globalId;
   }
 
   public RemoteIssueLinkRequest _object(RemoteObject _object) {
@@ -130,6 +112,24 @@ public class RemoteIssueLinkRequest {
 
   public void setObject(RemoteObject _object) {
     this._object = _object;
+  }
+
+  public RemoteIssueLinkRequest relationship(String relationship) {
+    this.relationship = relationship;
+    return this;
+  }
+
+   /**
+   * Description of the relationship between the issue and the linked item. If not set, the relationship description \&quot;links to\&quot; is used in Jira.
+   * @return relationship
+  **/
+  @ApiModelProperty(value = "Description of the relationship between the issue and the linked item. If not set, the relationship description \"links to\" is used in Jira.")
+  public String getRelationship() {
+    return relationship;
+  }
+
+  public void setRelationship(String relationship) {
+    this.relationship = relationship;
   }
 
 
@@ -152,16 +152,16 @@ public class RemoteIssueLinkRequest {
       return false;
     }
     RemoteIssueLinkRequest remoteIssueLinkRequest = (RemoteIssueLinkRequest) o;
-    return Objects.equals(this.globalId, remoteIssueLinkRequest.globalId) &&
-        Objects.equals(this.application, remoteIssueLinkRequest.application) &&
-        Objects.equals(this.relationship, remoteIssueLinkRequest.relationship) &&
+    return Objects.equals(this.application, remoteIssueLinkRequest.application) &&
+        Objects.equals(this.globalId, remoteIssueLinkRequest.globalId) &&
         Objects.equals(this._object, remoteIssueLinkRequest._object) &&
+        Objects.equals(this.relationship, remoteIssueLinkRequest.relationship) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(globalId, application, relationship, _object, super.hashCode());
+    return Objects.hash(application, globalId, _object, relationship, super.hashCode());
   }
 
 
@@ -170,10 +170,10 @@ public class RemoteIssueLinkRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class RemoteIssueLinkRequest {\n");
     
-    sb.append("    globalId: ").append(toIndentedString(globalId)).append("\n");
     sb.append("    application: ").append(toIndentedString(application)).append("\n");
-    sb.append("    relationship: ").append(toIndentedString(relationship)).append("\n");
+    sb.append("    globalId: ").append(toIndentedString(globalId)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
+    sb.append("    relationship: ").append(toIndentedString(relationship)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();

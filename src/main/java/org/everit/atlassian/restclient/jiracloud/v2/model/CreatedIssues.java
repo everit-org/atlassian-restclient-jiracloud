@@ -44,22 +44,13 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.CreatedIssue;
  * Details about the issues created and the errors for requests that failed.
  */
 @ApiModel(description = "Details about the issues created and the errors for requests that failed.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class CreatedIssues {
-  @JsonProperty("issues")
-  private List<CreatedIssue> issues = new ArrayList<>();
-
   @JsonProperty("errors")
   private List<BulkOperationErrorResult> errors = new ArrayList<>();
 
-   /**
-   * Details of the issues created.
-   * @return issues
-  **/
-  @ApiModelProperty(value = "Details of the issues created.")
-  public List<CreatedIssue> getIssues() {
-    return issues;
-  }
+  @JsonProperty("issues")
+  private List<CreatedIssue> issues = new ArrayList<>();
 
    /**
    * Error details for failed issue creation requests.
@@ -68,6 +59,15 @@ public class CreatedIssues {
   @ApiModelProperty(value = "Error details for failed issue creation requests.")
   public List<BulkOperationErrorResult> getErrors() {
     return errors;
+  }
+
+   /**
+   * Details of the issues created.
+   * @return issues
+  **/
+  @ApiModelProperty(value = "Details of the issues created.")
+  public List<CreatedIssue> getIssues() {
+    return issues;
   }
 
 
@@ -80,13 +80,13 @@ public class CreatedIssues {
       return false;
     }
     CreatedIssues createdIssues = (CreatedIssues) o;
-    return Objects.equals(this.issues, createdIssues.issues) &&
-        Objects.equals(this.errors, createdIssues.errors);
+    return Objects.equals(this.errors, createdIssues.errors) &&
+        Objects.equals(this.issues, createdIssues.issues);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(issues, errors);
+    return Objects.hash(errors, issues);
   }
 
 
@@ -95,8 +95,8 @@ public class CreatedIssues {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreatedIssues {\n");
     
-    sb.append("    issues: ").append(toIndentedString(issues)).append("\n");
     sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
+    sb.append("    issues: ").append(toIndentedString(issues)).append("\n");
     sb.append("}");
     return sb.toString();
   }

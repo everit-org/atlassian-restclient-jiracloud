@@ -33,6 +33,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.ErrorCollection;
 import org.everit.atlassian.restclient.jiracloud.v3.model.FieldDetails;
 import org.everit.atlassian.restclient.jiracloud.v3.model.PageBeanContext;
 import org.everit.atlassian.restclient.jiracloud.v3.model.PageBeanField;
+import org.everit.atlassian.restclient.jiracloud.v3.model.TaskProgressBeanObject;
 import org.everit.atlassian.restclient.jiracloud.v3.model.UpdateCustomFieldDetails;
 
 import java.util.ArrayList;
@@ -53,6 +54,12 @@ public class IssueFieldsApi {
   private static final TypeReference<List<FieldDetails>> returnType_getFields = new TypeReference<List<FieldDetails>>() {};
 
   private static final TypeReference<PageBeanField> returnType_getFieldsPaginated = new TypeReference<PageBeanField>() {};
+
+  private static final TypeReference<PageBeanField> returnType_getTrashedFieldsPaginated = new TypeReference<PageBeanField>() {};
+
+  private static final TypeReference<Object> returnType_restoreCustomField = new TypeReference<Object>() {};
+
+  private static final TypeReference<Object> returnType_trashCustomField = new TypeReference<Object>() {};
 
   private static final TypeReference<Object> returnType_updateCustomField = new TypeReference<Object>() {};
 
@@ -89,6 +96,34 @@ public class IssueFieldsApi {
     requestBuilder.requestBody(Optional.of(customFieldDefinitionJsonBean));
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_createCustomField);
+  }
+
+  /**
+   * Delete custom field
+   * Deletes a custom field. The custom field is deleted whether it is in the trash or not. See [Edit or delete a custom field](https://confluence.atlassian.com/x/Z44fOw) for more information on trashing and deleting custom fields.  This operation is [asynchronous](#async). Follow the `location` link in the response to determine the status of the task and use [Get task](#api-rest-api-3-task-taskId-get) to obtain subsequent updates.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * @param id The ID of a custom field. (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Completable
+   */
+  public Completable deleteCustomField(
+    String id, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.DELETE)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/field/{id}");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("id", String.valueOf(id));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -157,14 +192,14 @@ public class IssueFieldsApi {
 
   /**
    * Get fields paginated
-   * Returns a [paginated](#pagination) list of fields for Classic Jira projects. The list can include:   *  all fields.  *  specific fields, by defining `id`.  *  fields that contain a string in the field name or description, by defining `query`.  *  specific fields that contain a string in the field name or description, by defining `id` and `query`.  Only custom fields can be queried, `type` must be set to `custom`.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * Returns a [paginated](#pagination) list of fields for Classic Jira projects. The list can include:   *  all fields  *  specific fields, by defining `id`  *  fields that contain a string in the field name or description, by defining `query`  *  specific fields that contain a string in the field name or description, by defining `id` and `query`  Only custom fields can be queried, `type` must be set to `custom`.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0l)
    * @param maxResults The maximum number of items to return per page. (optional, default to 50)
    * @param type The type of fields to search. (optional, default to new ArrayList&lt;&gt;())
    * @param id The IDs of the custom fields to return or, where `query` is specified, filter. (optional, default to new ArrayList&lt;&gt;())
    * @param query String used to perform a case-insensitive partial match with field names or descriptions. (optional)
-   * @param orderBy [Order](#ordering) the results by a field:   *  `contextsCount` Sorts by the number of contexts related to a field.  *  `lastUsed` Sorts by the date when the value of the field last changed.  *  `name` Sorts by the field name.  *  `screensCount` Sorts by the number of screens related to a field. (optional)
-   * @param expand Use [expand](#expansion) to include additional information in the response. This parameter accepts a comma-separated list. Expand options include:   *  `key` Returns the key for each field.  *  `lastUsed` Returns the date when the value of the field last changed.  *  `screensCount` Returns the number of screens related to a field.  *  `contextsCount` Returns the number of contexts related to a field.  *  `isLocked` Returns information about whether the field is [locked](https://confluence.atlassian.com/x/ZSN7Og).  *  `searcherKey` Returns the searcher key for each custom field. (optional)
+   * @param orderBy [Order](#ordering) the results by a field:   *  `contextsCount` sorts by the number of contexts related to a field  *  `lastUsed` sorts by the date when the value of the field last changed  *  `name` sorts by the field name  *  `screensCount` sorts by the number of screens related to a field (optional)
+   * @param expand Use [expand](#expansion) to include additional information in the response. This parameter accepts a comma-separated list. Expand options include:   *  `key` returns the key for each field  *  `lastUsed` returns the date when the value of the field last changed  *  `screensCount` returns the number of screens related to a field  *  `contextsCount` returns the number of contexts related to a field  *  `isLocked` returns information about whether the field is [locked](https://confluence.atlassian.com/x/ZSN7Og)  *  `searcherKey` returns the searcher key for each custom field (optional)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PageBeanField&gt;
    */
@@ -207,6 +242,112 @@ public class IssueFieldsApi {
     requestBuilder.headers(headers);
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getFieldsPaginated);
+  }
+
+  /**
+   * Get fields in trash paginated
+   * Returns a [paginated](#pagination) list of fields in the trash. The list may be restricted to fields whose field name or description partially match a string.  Only custom fields can be queried, `type` must be set to `custom`.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0l)
+   * @param maxResults The maximum number of items to return per page. (optional, default to 50)
+   * @param id  (optional, default to new ArrayList&lt;&gt;())
+   * @param query String used to perform a case-insensitive partial match with field names or descriptions. (optional)
+   * @param expand  (optional)
+   * @param orderBy [Order](#ordering) the results by a field:   *  `name` sorts by the field name  *  `trashDate` sorts by the date the field was moved to the trash  *  `plannedDeletionDate` sorts by the planned deletion date (optional)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;PageBeanField&gt;
+   */
+  public Single<PageBeanField> getTrashedFieldsPaginated(
+    Optional<Long> startAt, Optional<Integer> maxResults, Optional<List<String>> id, Optional<String> query, Optional<String> expand, Optional<String> orderBy, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/field/search/trashed");
+
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (startAt.isPresent()) {
+      queryParams.put("startAt", Collections.singleton(String.valueOf(startAt.get())));
+    }
+    if (maxResults.isPresent()) {
+      queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults.get())));
+    }
+    if (id.isPresent()) {
+      queryParams.put("id", RestClientUtil.objectCollectionToStringCollection(id.get()));
+    }
+    if (query.isPresent()) {
+      queryParams.put("query", Collections.singleton(String.valueOf(query.get())));
+    }
+    if (expand.isPresent()) {
+      queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
+    }
+    if (orderBy.isPresent()) {
+      queryParams.put("orderBy", Collections.singleton(String.valueOf(orderBy.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getTrashedFieldsPaginated);
+  }
+
+  /**
+   * Restore custom field from trash
+   * Restores a custom field from trash. See [Edit or delete a custom field](https://confluence.atlassian.com/x/Z44fOw) for more information on trashing and deleting custom fields.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * @param id The ID of a custom field. (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;Object&gt;
+   */
+  public Single<Object> restoreCustomField(
+    String id, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.POST)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/field/{id}/restore");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("id", String.valueOf(id));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_restoreCustomField);
+  }
+
+  /**
+   * Move custom field to trash
+   * Moves a custom field to trash. See [Edit or delete a custom field](https://confluence.atlassian.com/x/Z44fOw) for more information on trashing and deleting custom fields.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * @param id The ID of a custom field. (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;Object&gt;
+   */
+  public Single<Object> trashCustomField(
+    String id, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.POST)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/field/{id}/trash");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("id", String.valueOf(id));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_trashCustomField);
   }
 
   /**

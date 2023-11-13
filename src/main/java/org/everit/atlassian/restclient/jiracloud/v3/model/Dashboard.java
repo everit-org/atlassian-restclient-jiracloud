@@ -45,16 +45,25 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.UserBean;
  * Details of a dashboard.
  */
 @ApiModel(description = "Details of a dashboard.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class Dashboard {
+  @JsonProperty("automaticRefreshMs")
+  private Integer automaticRefreshMs;
+
   @JsonProperty("description")
   private String description;
+
+  @JsonProperty("editPermissions")
+  private List<SharePermission> editPermissions = new ArrayList<>();
 
   @JsonProperty("id")
   private String id;
 
   @JsonProperty("isFavourite")
   private Boolean isFavourite;
+
+  @JsonProperty("isWritable")
+  private Boolean isWritable;
 
   @JsonProperty("name")
   private String name;
@@ -74,14 +83,20 @@ public class Dashboard {
   @JsonProperty("sharePermissions")
   private List<SharePermission> sharePermissions = new ArrayList<>();
 
-  @JsonProperty("editPermissions")
-  private List<SharePermission> editPermissions = new ArrayList<>();
+  @JsonProperty("systemDashboard")
+  private Boolean systemDashboard;
 
   @JsonProperty("view")
   private String view;
 
-  @JsonProperty("isWritable")
-  private Boolean isWritable;
+   /**
+   * The automatic refresh interval for the dashboard in milliseconds.
+   * @return automaticRefreshMs
+  **/
+  @ApiModelProperty(value = "The automatic refresh interval for the dashboard in milliseconds.")
+  public Integer getAutomaticRefreshMs() {
+    return automaticRefreshMs;
+  }
 
   public Dashboard description(String description) {
     this.description = description;
@@ -102,6 +117,15 @@ public class Dashboard {
   }
 
    /**
+   * The details of any edit share permissions for the dashboard.
+   * @return editPermissions
+  **/
+  @ApiModelProperty(value = "The details of any edit share permissions for the dashboard.")
+  public List<SharePermission> getEditPermissions() {
+    return editPermissions;
+  }
+
+   /**
    * The ID of the dashboard.
    * @return id
   **/
@@ -117,6 +141,15 @@ public class Dashboard {
   @ApiModelProperty(value = "Whether the dashboard is selected as a favorite by the user.")
   public Boolean getIsFavourite() {
     return isFavourite;
+  }
+
+   /**
+   * Whether the current user has permission to edit the dashboard.
+   * @return isWritable
+  **/
+  @ApiModelProperty(value = "Whether the current user has permission to edit the dashboard.")
+  public Boolean getIsWritable() {
+    return isWritable;
   }
 
    /**
@@ -174,12 +207,12 @@ public class Dashboard {
   }
 
    /**
-   * The details of any edit share permissions for the dashboard.
-   * @return editPermissions
+   * Whether the current dashboard is system dashboard.
+   * @return systemDashboard
   **/
-  @ApiModelProperty(value = "The details of any edit share permissions for the dashboard.")
-  public List<SharePermission> getEditPermissions() {
-    return editPermissions;
+  @ApiModelProperty(value = "Whether the current dashboard is system dashboard.")
+  public Boolean getSystemDashboard() {
+    return systemDashboard;
   }
 
    /**
@@ -189,15 +222,6 @@ public class Dashboard {
   @ApiModelProperty(value = "The URL of the dashboard.")
   public String getView() {
     return view;
-  }
-
-   /**
-   * Whether the current user has permission to edit the dashboard.
-   * @return isWritable
-  **/
-  @ApiModelProperty(value = "Whether the current user has permission to edit the dashboard.")
-  public Boolean getIsWritable() {
-    return isWritable;
   }
 
 
@@ -210,23 +234,25 @@ public class Dashboard {
       return false;
     }
     Dashboard dashboard = (Dashboard) o;
-    return Objects.equals(this.description, dashboard.description) &&
+    return Objects.equals(this.automaticRefreshMs, dashboard.automaticRefreshMs) &&
+        Objects.equals(this.description, dashboard.description) &&
+        Objects.equals(this.editPermissions, dashboard.editPermissions) &&
         Objects.equals(this.id, dashboard.id) &&
         Objects.equals(this.isFavourite, dashboard.isFavourite) &&
+        Objects.equals(this.isWritable, dashboard.isWritable) &&
         Objects.equals(this.name, dashboard.name) &&
         Objects.equals(this.owner, dashboard.owner) &&
         Objects.equals(this.popularity, dashboard.popularity) &&
         Objects.equals(this.rank, dashboard.rank) &&
         Objects.equals(this.self, dashboard.self) &&
         Objects.equals(this.sharePermissions, dashboard.sharePermissions) &&
-        Objects.equals(this.editPermissions, dashboard.editPermissions) &&
-        Objects.equals(this.view, dashboard.view) &&
-        Objects.equals(this.isWritable, dashboard.isWritable);
+        Objects.equals(this.systemDashboard, dashboard.systemDashboard) &&
+        Objects.equals(this.view, dashboard.view);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, id, isFavourite, name, owner, popularity, rank, self, sharePermissions, editPermissions, view, isWritable);
+    return Objects.hash(automaticRefreshMs, description, editPermissions, id, isFavourite, isWritable, name, owner, popularity, rank, self, sharePermissions, systemDashboard, view);
   }
 
 
@@ -235,18 +261,20 @@ public class Dashboard {
     StringBuilder sb = new StringBuilder();
     sb.append("class Dashboard {\n");
     
+    sb.append("    automaticRefreshMs: ").append(toIndentedString(automaticRefreshMs)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    editPermissions: ").append(toIndentedString(editPermissions)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    isFavourite: ").append(toIndentedString(isFavourite)).append("\n");
+    sb.append("    isWritable: ").append(toIndentedString(isWritable)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    owner: ").append(toIndentedString(owner)).append("\n");
     sb.append("    popularity: ").append(toIndentedString(popularity)).append("\n");
     sb.append("    rank: ").append(toIndentedString(rank)).append("\n");
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    sharePermissions: ").append(toIndentedString(sharePermissions)).append("\n");
-    sb.append("    editPermissions: ").append(toIndentedString(editPermissions)).append("\n");
+    sb.append("    systemDashboard: ").append(toIndentedString(systemDashboard)).append("\n");
     sb.append("    view: ").append(toIndentedString(view)).append("\n");
-    sb.append("    isWritable: ").append(toIndentedString(isWritable)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -42,33 +42,15 @@ import java.util.Map;
  * The application the linked item is in.
  */
 @ApiModel(description = "The application the linked item is in.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class Application {
-  @JsonProperty("type")
-  private String type;
-
   @JsonProperty("name")
   private String name;
 
+  @JsonProperty("type")
+  private String type;
+
   private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
-
-  public Application type(String type) {
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * The name-spaced type of the application, used by registered rendering apps.
-   * @return type
-  **/
-  @ApiModelProperty(value = "The name-spaced type of the application, used by registered rendering apps.")
-  public String getType() {
-    return type;
-  }
-
-  public void setType(String type) {
-    this.type = type;
-  }
 
   public Application name(String name) {
     this.name = name;
@@ -86,6 +68,24 @@ public class Application {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public Application type(String type) {
+    this.type = type;
+    return this;
+  }
+
+   /**
+   * The name-spaced type of the application, used by registered rendering apps.
+   * @return type
+  **/
+  @ApiModelProperty(value = "The name-spaced type of the application, used by registered rendering apps.")
+  public String getType() {
+    return type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
   }
 
 
@@ -108,14 +108,14 @@ public class Application {
       return false;
     }
     Application application = (Application) o;
-    return Objects.equals(this.type, application.type) &&
-        Objects.equals(this.name, application.name) &&
+    return Objects.equals(this.name, application.name) &&
+        Objects.equals(this.type, application.type) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, name, super.hashCode());
+    return Objects.hash(name, type, super.hashCode());
   }
 
 
@@ -124,8 +124,8 @@ public class Application {
     StringBuilder sb = new StringBuilder();
     sb.append("class Application {\n");
     
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();

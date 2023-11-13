@@ -42,52 +42,16 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.CustomFieldReplacement
 /**
  * DeleteAndReplaceVersionBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class DeleteAndReplaceVersionBean {
-  @JsonProperty("moveFixIssuesTo")
-  private Long moveFixIssuesTo;
+  @JsonProperty("customFieldReplacementList")
+  private List<CustomFieldReplacement> customFieldReplacementList = new ArrayList<>();
 
   @JsonProperty("moveAffectedIssuesTo")
   private Long moveAffectedIssuesTo;
 
-  @JsonProperty("customFieldReplacementList")
-  private List<CustomFieldReplacement> customFieldReplacementList = new ArrayList<>();
-
-  public DeleteAndReplaceVersionBean moveFixIssuesTo(Long moveFixIssuesTo) {
-    this.moveFixIssuesTo = moveFixIssuesTo;
-    return this;
-  }
-
-   /**
-   * The ID of the version to update &#x60;fixVersion&#x60; to when the field contains the deleted version.
-   * @return moveFixIssuesTo
-  **/
-  @ApiModelProperty(value = "The ID of the version to update `fixVersion` to when the field contains the deleted version.")
-  public Long getMoveFixIssuesTo() {
-    return moveFixIssuesTo;
-  }
-
-  public void setMoveFixIssuesTo(Long moveFixIssuesTo) {
-    this.moveFixIssuesTo = moveFixIssuesTo;
-  }
-
-  public DeleteAndReplaceVersionBean moveAffectedIssuesTo(Long moveAffectedIssuesTo) {
-    this.moveAffectedIssuesTo = moveAffectedIssuesTo;
-    return this;
-  }
-
-   /**
-   * The ID of the version to update &#x60;affectedVersion&#x60; to when the field contains the deleted version.
-   * @return moveAffectedIssuesTo
-  **/
-  @ApiModelProperty(value = "The ID of the version to update `affectedVersion` to when the field contains the deleted version.")
-  public Long getMoveAffectedIssuesTo() {
-    return moveAffectedIssuesTo;
-  }
-
-  public void setMoveAffectedIssuesTo(Long moveAffectedIssuesTo) {
-    this.moveAffectedIssuesTo = moveAffectedIssuesTo;
-  }
+  @JsonProperty("moveFixIssuesTo")
+  private Long moveFixIssuesTo;
 
   public DeleteAndReplaceVersionBean customFieldReplacementList(List<CustomFieldReplacement> customFieldReplacementList) {
     this.customFieldReplacementList = customFieldReplacementList;
@@ -115,6 +79,42 @@ public class DeleteAndReplaceVersionBean {
     this.customFieldReplacementList = customFieldReplacementList;
   }
 
+  public DeleteAndReplaceVersionBean moveAffectedIssuesTo(Long moveAffectedIssuesTo) {
+    this.moveAffectedIssuesTo = moveAffectedIssuesTo;
+    return this;
+  }
+
+   /**
+   * The ID of the version to update &#x60;affectedVersion&#x60; to when the field contains the deleted version.
+   * @return moveAffectedIssuesTo
+  **/
+  @ApiModelProperty(value = "The ID of the version to update `affectedVersion` to when the field contains the deleted version.")
+  public Long getMoveAffectedIssuesTo() {
+    return moveAffectedIssuesTo;
+  }
+
+  public void setMoveAffectedIssuesTo(Long moveAffectedIssuesTo) {
+    this.moveAffectedIssuesTo = moveAffectedIssuesTo;
+  }
+
+  public DeleteAndReplaceVersionBean moveFixIssuesTo(Long moveFixIssuesTo) {
+    this.moveFixIssuesTo = moveFixIssuesTo;
+    return this;
+  }
+
+   /**
+   * The ID of the version to update &#x60;fixVersion&#x60; to when the field contains the deleted version.
+   * @return moveFixIssuesTo
+  **/
+  @ApiModelProperty(value = "The ID of the version to update `fixVersion` to when the field contains the deleted version.")
+  public Long getMoveFixIssuesTo() {
+    return moveFixIssuesTo;
+  }
+
+  public void setMoveFixIssuesTo(Long moveFixIssuesTo) {
+    this.moveFixIssuesTo = moveFixIssuesTo;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -125,14 +125,14 @@ public class DeleteAndReplaceVersionBean {
       return false;
     }
     DeleteAndReplaceVersionBean deleteAndReplaceVersionBean = (DeleteAndReplaceVersionBean) o;
-    return Objects.equals(this.moveFixIssuesTo, deleteAndReplaceVersionBean.moveFixIssuesTo) &&
+    return Objects.equals(this.customFieldReplacementList, deleteAndReplaceVersionBean.customFieldReplacementList) &&
         Objects.equals(this.moveAffectedIssuesTo, deleteAndReplaceVersionBean.moveAffectedIssuesTo) &&
-        Objects.equals(this.customFieldReplacementList, deleteAndReplaceVersionBean.customFieldReplacementList);
+        Objects.equals(this.moveFixIssuesTo, deleteAndReplaceVersionBean.moveFixIssuesTo);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(moveFixIssuesTo, moveAffectedIssuesTo, customFieldReplacementList);
+    return Objects.hash(customFieldReplacementList, moveAffectedIssuesTo, moveFixIssuesTo);
   }
 
 
@@ -141,9 +141,9 @@ public class DeleteAndReplaceVersionBean {
     StringBuilder sb = new StringBuilder();
     sb.append("class DeleteAndReplaceVersionBean {\n");
     
-    sb.append("    moveFixIssuesTo: ").append(toIndentedString(moveFixIssuesTo)).append("\n");
-    sb.append("    moveAffectedIssuesTo: ").append(toIndentedString(moveAffectedIssuesTo)).append("\n");
     sb.append("    customFieldReplacementList: ").append(toIndentedString(customFieldReplacementList)).append("\n");
+    sb.append("    moveAffectedIssuesTo: ").append(toIndentedString(moveAffectedIssuesTo)).append("\n");
+    sb.append("    moveFixIssuesTo: ").append(toIndentedString(moveFixIssuesTo)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -37,19 +37,19 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
-import org.everit.atlassian.restclient.jiracloud.v2.model.HierarchyLevel;
+import org.everit.atlassian.restclient.jiracloud.v2.model.SimplifiedHierarchyLevel;
 
 /**
  * The project issue type hierarchy.
  */
 @ApiModel(description = "The project issue type hierarchy.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class Hierarchy {
   @JsonProperty("baseLevelId")
   private Long baseLevelId;
 
   @JsonProperty("levels")
-  private List<HierarchyLevel> levels = new ArrayList<>();
+  private List<SimplifiedHierarchyLevel> levels = new ArrayList<>();
 
   public Hierarchy baseLevelId(Long baseLevelId) {
     this.baseLevelId = baseLevelId;
@@ -74,7 +74,7 @@ public class Hierarchy {
    * @return levels
   **/
   @ApiModelProperty(value = "Details about the hierarchy level.")
-  public List<HierarchyLevel> getLevels() {
+  public List<SimplifiedHierarchyLevel> getLevels() {
     return levels;
   }
 

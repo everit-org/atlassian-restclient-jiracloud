@@ -44,13 +44,42 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.RestrictedPermission;
  * Details of the group membership or permissions needed to receive the notification.
  */
 @ApiModel(description = "Details of the group membership or permissions needed to receive the notification.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class NotificationRecipientsRestrictions {
+  @JsonProperty("groupIds")
+  private List<String> groupIds = new ArrayList<>();
+
   @JsonProperty("groups")
   private List<GroupName> groups = new ArrayList<>();
 
   @JsonProperty("permissions")
   private List<RestrictedPermission> permissions = new ArrayList<>();
+
+  public NotificationRecipientsRestrictions groupIds(List<String> groupIds) {
+    this.groupIds = groupIds;
+    return this;
+  }
+
+  public NotificationRecipientsRestrictions addGroupIdsItem(String groupIdsItem) {
+    if (this.groupIds == null) {
+      this.groupIds = new ArrayList<>();
+    }
+    this.groupIds.add(groupIdsItem);
+    return this;
+  }
+
+   /**
+   * List of groupId memberships required to receive the notification.
+   * @return groupIds
+  **/
+  @ApiModelProperty(value = "List of groupId memberships required to receive the notification.")
+  public List<String> getGroupIds() {
+    return groupIds;
+  }
+
+  public void setGroupIds(List<String> groupIds) {
+    this.groupIds = groupIds;
+  }
 
   public NotificationRecipientsRestrictions groups(List<GroupName> groups) {
     this.groups = groups;
@@ -114,13 +143,14 @@ public class NotificationRecipientsRestrictions {
       return false;
     }
     NotificationRecipientsRestrictions notificationRecipientsRestrictions = (NotificationRecipientsRestrictions) o;
-    return Objects.equals(this.groups, notificationRecipientsRestrictions.groups) &&
+    return Objects.equals(this.groupIds, notificationRecipientsRestrictions.groupIds) &&
+        Objects.equals(this.groups, notificationRecipientsRestrictions.groups) &&
         Objects.equals(this.permissions, notificationRecipientsRestrictions.permissions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(groups, permissions);
+    return Objects.hash(groupIds, groups, permissions);
   }
 
 
@@ -129,6 +159,7 @@ public class NotificationRecipientsRestrictions {
     StringBuilder sb = new StringBuilder();
     sb.append("class NotificationRecipientsRestrictions {\n");
     
+    sb.append("    groupIds: ").append(toIndentedString(groupIds)).append("\n");
     sb.append("    groups: ").append(toIndentedString(groups)).append("\n");
     sb.append("    permissions: ").append(toIndentedString(permissions)).append("\n");
     sb.append("}");

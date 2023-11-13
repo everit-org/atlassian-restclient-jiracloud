@@ -42,18 +42,27 @@ import java.util.Map;
  * Details about the server Jira is running on.
  */
 @ApiModel(description = "Details about the server Jira is running on.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class WorkflowTransitionProperty {
+  @JsonProperty("id")
+  private String id;
+
   @JsonProperty("key")
   private String key;
 
   @JsonProperty("value")
   private String value;
 
-  @JsonProperty("id")
-  private String id;
-
   private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
+
+   /**
+   * The ID of the transition property.
+   * @return id
+  **/
+  @ApiModelProperty(value = "The ID of the transition property.")
+  public String getId() {
+    return id;
+  }
 
    /**
    * The key of the transition property. Also known as the name of the transition property.
@@ -82,15 +91,6 @@ public class WorkflowTransitionProperty {
     this.value = value;
   }
 
-   /**
-   * The ID of the transition property.
-   * @return id
-  **/
-  @ApiModelProperty(value = "The ID of the transition property.")
-  public String getId() {
-    return id;
-  }
-
 
   @com.fasterxml.jackson.annotation.JsonAnyGetter
   public Map<String, Object> any() {
@@ -111,15 +111,15 @@ public class WorkflowTransitionProperty {
       return false;
     }
     WorkflowTransitionProperty workflowTransitionProperty = (WorkflowTransitionProperty) o;
-    return Objects.equals(this.key, workflowTransitionProperty.key) &&
+    return Objects.equals(this.id, workflowTransitionProperty.id) &&
+        Objects.equals(this.key, workflowTransitionProperty.key) &&
         Objects.equals(this.value, workflowTransitionProperty.value) &&
-        Objects.equals(this.id, workflowTransitionProperty.id) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(key, value, id, super.hashCode());
+    return Objects.hash(id, key, value, super.hashCode());
   }
 
 
@@ -128,9 +128,9 @@ public class WorkflowTransitionProperty {
     StringBuilder sb = new StringBuilder();
     sb.append("class WorkflowTransitionProperty {\n");
     
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();

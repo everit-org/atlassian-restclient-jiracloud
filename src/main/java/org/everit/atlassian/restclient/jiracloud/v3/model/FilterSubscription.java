@@ -42,16 +42,25 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.User;
  * Details of a user or group subscribing to a filter.
  */
 @ApiModel(description = "Details of a user or group subscribing to a filter.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class FilterSubscription {
+  @JsonProperty("group")
+  private GroupName group;
+
   @JsonProperty("id")
   private Long id;
 
   @JsonProperty("user")
   private User user;
 
-  @JsonProperty("group")
-  private GroupName group;
+   /**
+   * The group subscribing to filter.
+   * @return group
+  **/
+  @ApiModelProperty(value = "The group subscribing to filter.")
+  public GroupName getGroup() {
+    return group;
+  }
 
    /**
    * The ID of the filter subscription.
@@ -71,15 +80,6 @@ public class FilterSubscription {
     return user;
   }
 
-   /**
-   * The group subscribing to filter.
-   * @return group
-  **/
-  @ApiModelProperty(value = "The group subscribing to filter.")
-  public GroupName getGroup() {
-    return group;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -90,14 +90,14 @@ public class FilterSubscription {
       return false;
     }
     FilterSubscription filterSubscription = (FilterSubscription) o;
-    return Objects.equals(this.id, filterSubscription.id) &&
-        Objects.equals(this.user, filterSubscription.user) &&
-        Objects.equals(this.group, filterSubscription.group);
+    return Objects.equals(this.group, filterSubscription.group) &&
+        Objects.equals(this.id, filterSubscription.id) &&
+        Objects.equals(this.user, filterSubscription.user);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, user, group);
+    return Objects.hash(group, id, user);
   }
 
 
@@ -106,9 +106,9 @@ public class FilterSubscription {
     StringBuilder sb = new StringBuilder();
     sb.append("class FilterSubscription {\n");
     
+    sb.append("    group: ").append(toIndentedString(group)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    user: ").append(toIndentedString(user)).append("\n");
-    sb.append("    group: ").append(toIndentedString(group)).append("\n");
     sb.append("}");
     return sb.toString();
   }

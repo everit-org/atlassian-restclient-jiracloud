@@ -149,6 +149,48 @@ public class ScreenTabsApi {
   }
 
   /**
+   * Get bulk screen tabs
+   * Returns the list of tabs for a bulk of screens.  **[Permissions](#permissions) required:**   *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * @param screenId The list of screen IDs. To include multiple screen IDs, provide an ampersand-separated list. For example, `screenId=10000&screenId=10001`. (optional, default to new ArrayList&lt;&gt;())
+   * @param tabId The list of tab IDs. To include multiple tab IDs, provide an ampersand-separated list. For example, `tabId=10000&tabId=10001`. (optional, default to new ArrayList&lt;&gt;())
+   * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0l)
+   * @param maxResult The maximum number of items to return per page. The maximum number is 100, (optional, default to 100)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Completable
+   */
+  public Completable getBulkScreenTabs(
+    Optional<List<Long>> screenId, Optional<List<Long>> tabId, Optional<Long> startAt, Optional<Integer> maxResult, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/screens/tabs");
+
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (screenId.isPresent()) {
+      queryParams.put("screenId", RestClientUtil.objectCollectionToStringCollection(screenId.get()));
+    }
+    if (tabId.isPresent()) {
+      queryParams.put("tabId", RestClientUtil.objectCollectionToStringCollection(tabId.get()));
+    }
+    if (startAt.isPresent()) {
+      queryParams.put("startAt", Collections.singleton(String.valueOf(startAt.get())));
+    }
+    if (maxResult.isPresent()) {
+      queryParams.put("maxResult", Collections.singleton(String.valueOf(maxResult.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
+  }
+
+  /**
    * Move screen tab
    * Moves a screen tab.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param screenId The ID of the screen. (required)

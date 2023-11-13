@@ -41,10 +41,10 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.Scope;
  * Details about a workflow.
  */
 @ApiModel(description = "Details about a workflow.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class DeprecatedWorkflow {
-  @JsonProperty("name")
-  private String name;
+  @JsonProperty("default")
+  private Boolean _default;
 
   @JsonProperty("description")
   private String description;
@@ -58,22 +58,31 @@ public class DeprecatedWorkflow {
   @JsonProperty("lastModifiedUserAccountId")
   private String lastModifiedUserAccountId;
 
-  @JsonProperty("steps")
-  private Integer steps;
+  @JsonProperty("name")
+  private String name;
 
   @JsonProperty("scope")
   private Scope scope;
 
-  @JsonProperty("default")
-  private Boolean _default;
+  @JsonProperty("steps")
+  private Integer steps;
+
+  public DeprecatedWorkflow _default(Boolean _default) {
+    this._default = _default;
+    return this;
+  }
 
    /**
-   * The name of the workflow.
-   * @return name
+   * Get _default
+   * @return _default
   **/
-  @ApiModelProperty(value = "The name of the workflow.")
-  public String getName() {
-    return name;
+  @ApiModelProperty(value = "")
+  public Boolean getDefault() {
+    return _default;
+  }
+
+  public void setDefault(Boolean _default) {
+    this._default = _default;
   }
 
    /**
@@ -113,12 +122,12 @@ public class DeprecatedWorkflow {
   }
 
    /**
-   * The number of steps included in the workflow.
-   * @return steps
+   * The name of the workflow.
+   * @return name
   **/
-  @ApiModelProperty(value = "The number of steps included in the workflow.")
-  public Integer getSteps() {
-    return steps;
+  @ApiModelProperty(value = "The name of the workflow.")
+  public String getName() {
+    return name;
   }
 
    /**
@@ -130,22 +139,13 @@ public class DeprecatedWorkflow {
     return scope;
   }
 
-  public DeprecatedWorkflow _default(Boolean _default) {
-    this._default = _default;
-    return this;
-  }
-
    /**
-   * Get _default
-   * @return _default
+   * The number of steps included in the workflow.
+   * @return steps
   **/
-  @ApiModelProperty(value = "")
-  public Boolean getDefault() {
-    return _default;
-  }
-
-  public void setDefault(Boolean _default) {
-    this._default = _default;
+  @ApiModelProperty(value = "The number of steps included in the workflow.")
+  public Integer getSteps() {
+    return steps;
   }
 
 
@@ -158,19 +158,19 @@ public class DeprecatedWorkflow {
       return false;
     }
     DeprecatedWorkflow deprecatedWorkflow = (DeprecatedWorkflow) o;
-    return Objects.equals(this.name, deprecatedWorkflow.name) &&
+    return Objects.equals(this._default, deprecatedWorkflow._default) &&
         Objects.equals(this.description, deprecatedWorkflow.description) &&
         Objects.equals(this.lastModifiedDate, deprecatedWorkflow.lastModifiedDate) &&
         Objects.equals(this.lastModifiedUser, deprecatedWorkflow.lastModifiedUser) &&
         Objects.equals(this.lastModifiedUserAccountId, deprecatedWorkflow.lastModifiedUserAccountId) &&
-        Objects.equals(this.steps, deprecatedWorkflow.steps) &&
+        Objects.equals(this.name, deprecatedWorkflow.name) &&
         Objects.equals(this.scope, deprecatedWorkflow.scope) &&
-        Objects.equals(this._default, deprecatedWorkflow._default);
+        Objects.equals(this.steps, deprecatedWorkflow.steps);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, lastModifiedDate, lastModifiedUser, lastModifiedUserAccountId, steps, scope, _default);
+    return Objects.hash(_default, description, lastModifiedDate, lastModifiedUser, lastModifiedUserAccountId, name, scope, steps);
   }
 
 
@@ -179,14 +179,14 @@ public class DeprecatedWorkflow {
     StringBuilder sb = new StringBuilder();
     sb.append("class DeprecatedWorkflow {\n");
     
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    _default: ").append(toIndentedString(_default)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    lastModifiedDate: ").append(toIndentedString(lastModifiedDate)).append("\n");
     sb.append("    lastModifiedUser: ").append(toIndentedString(lastModifiedUser)).append("\n");
     sb.append("    lastModifiedUserAccountId: ").append(toIndentedString(lastModifiedUserAccountId)).append("\n");
-    sb.append("    steps: ").append(toIndentedString(steps)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
-    sb.append("    _default: ").append(toIndentedString(_default)).append("\n");
+    sb.append("    steps: ").append(toIndentedString(steps)).append("\n");
     sb.append("}");
     return sb.toString();
   }

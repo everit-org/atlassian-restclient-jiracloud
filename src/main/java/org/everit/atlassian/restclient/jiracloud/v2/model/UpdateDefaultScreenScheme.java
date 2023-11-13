@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * The ID of a screen scheme.
  */
 @ApiModel(description = "The ID of a screen scheme.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class UpdateDefaultScreenScheme {
   @JsonProperty("screenSchemeId")
   private String screenSchemeId;

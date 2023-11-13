@@ -42,22 +42,31 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.ScreenableTab;
  * A screen with tab details.
  */
 @ApiModel(description = "A screen with tab details.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class ScreenWithTab {
+  @JsonProperty("description")
+  private String description;
+
   @JsonProperty("id")
   private Long id;
 
   @JsonProperty("name")
   private String name;
 
-  @JsonProperty("description")
-  private String description;
-
   @JsonProperty("scope")
   private Scope scope;
 
   @JsonProperty("tab")
   private ScreenableTab tab;
+
+   /**
+   * The description of the screen.
+   * @return description
+  **/
+  @ApiModelProperty(value = "The description of the screen.")
+  public String getDescription() {
+    return description;
+  }
 
    /**
    * The ID of the screen.
@@ -75,15 +84,6 @@ public class ScreenWithTab {
   @ApiModelProperty(value = "The name of the screen.")
   public String getName() {
     return name;
-  }
-
-   /**
-   * The description of the screen.
-   * @return description
-  **/
-  @ApiModelProperty(value = "The description of the screen.")
-  public String getDescription() {
-    return description;
   }
 
   public ScreenWithTab scope(Scope scope) {
@@ -132,16 +132,16 @@ public class ScreenWithTab {
       return false;
     }
     ScreenWithTab screenWithTab = (ScreenWithTab) o;
-    return Objects.equals(this.id, screenWithTab.id) &&
+    return Objects.equals(this.description, screenWithTab.description) &&
+        Objects.equals(this.id, screenWithTab.id) &&
         Objects.equals(this.name, screenWithTab.name) &&
-        Objects.equals(this.description, screenWithTab.description) &&
         Objects.equals(this.scope, screenWithTab.scope) &&
         Objects.equals(this.tab, screenWithTab.tab);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, scope, tab);
+    return Objects.hash(description, id, name, scope, tab);
   }
 
 
@@ -150,9 +150,9 @@ public class ScreenWithTab {
     StringBuilder sb = new StringBuilder();
     sb.append("class ScreenWithTab {\n");
     
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
     sb.append("    tab: ").append(toIndentedString(tab)).append("\n");
     sb.append("}");

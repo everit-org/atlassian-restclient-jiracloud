@@ -49,37 +49,16 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.Visibility;
  * Details of a worklog.
  */
 @ApiModel(description = "Details of a worklog.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class Worklog {
-  @JsonProperty("self")
-  private URI self;
-
   @JsonProperty("author")
   private UserDetails author;
-
-  @JsonProperty("updateAuthor")
-  private UserDetails updateAuthor;
 
   @JsonProperty("comment")
   private Object comment = null;
 
   @JsonProperty("created")
   private OffsetDateTime created;
-
-  @JsonProperty("updated")
-  private OffsetDateTime updated;
-
-  @JsonProperty("visibility")
-  private Visibility visibility;
-
-  @JsonProperty("started")
-  private OffsetDateTime started;
-
-  @JsonProperty("timeSpent")
-  private String timeSpent;
-
-  @JsonProperty("timeSpentSeconds")
-  private Long timeSpentSeconds;
 
   @JsonProperty("id")
   private String id;
@@ -90,16 +69,28 @@ public class Worklog {
   @JsonProperty("properties")
   private List<EntityProperty> properties = new ArrayList<>();
 
-  private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
+  @JsonProperty("self")
+  private URI self;
 
-   /**
-   * The URL of the worklog item.
-   * @return self
-  **/
-  @ApiModelProperty(value = "The URL of the worklog item.")
-  public URI getSelf() {
-    return self;
-  }
+  @JsonProperty("started")
+  private OffsetDateTime started;
+
+  @JsonProperty("timeSpent")
+  private String timeSpent;
+
+  @JsonProperty("timeSpentSeconds")
+  private Long timeSpentSeconds;
+
+  @JsonProperty("updateAuthor")
+  private UserDetails updateAuthor;
+
+  @JsonProperty("updated")
+  private OffsetDateTime updated;
+
+  @JsonProperty("visibility")
+  private Visibility visibility;
+
+  private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
 
    /**
    * Details of the user who created the worklog.
@@ -108,15 +99,6 @@ public class Worklog {
   @ApiModelProperty(value = "Details of the user who created the worklog.")
   public UserDetails getAuthor() {
     return author;
-  }
-
-   /**
-   * Details of the user who last updated the worklog.
-   * @return updateAuthor
-  **/
-  @ApiModelProperty(value = "Details of the user who last updated the worklog.")
-  public UserDetails getUpdateAuthor() {
-    return updateAuthor;
   }
 
   public Worklog comment(Object comment) {
@@ -147,30 +129,56 @@ public class Worklog {
   }
 
    /**
-   * The datetime on which the worklog was last updated.
-   * @return updated
+   * The ID of the worklog record.
+   * @return id
   **/
-  @ApiModelProperty(value = "The datetime on which the worklog was last updated.")
-  public OffsetDateTime getUpdated() {
-    return updated;
+  @ApiModelProperty(value = "The ID of the worklog record.")
+  public String getId() {
+    return id;
   }
 
-  public Worklog visibility(Visibility visibility) {
-    this.visibility = visibility;
+   /**
+   * The ID of the issue this worklog is for.
+   * @return issueId
+  **/
+  @ApiModelProperty(value = "The ID of the issue this worklog is for.")
+  public String getIssueId() {
+    return issueId;
+  }
+
+  public Worklog properties(List<EntityProperty> properties) {
+    this.properties = properties;
+    return this;
+  }
+
+  public Worklog addPropertiesItem(EntityProperty propertiesItem) {
+    if (this.properties == null) {
+      this.properties = new ArrayList<>();
+    }
+    this.properties.add(propertiesItem);
     return this;
   }
 
    /**
-   * Details about any restrictions in the visibility of the worklog. Optional when creating or updating a worklog.
-   * @return visibility
+   * Details of properties for the worklog. Optional when creating or updating a worklog.
+   * @return properties
   **/
-  @ApiModelProperty(value = "Details about any restrictions in the visibility of the worklog. Optional when creating or updating a worklog.")
-  public Visibility getVisibility() {
-    return visibility;
+  @ApiModelProperty(value = "Details of properties for the worklog. Optional when creating or updating a worklog.")
+  public List<EntityProperty> getProperties() {
+    return properties;
   }
 
-  public void setVisibility(Visibility visibility) {
-    this.visibility = visibility;
+  public void setProperties(List<EntityProperty> properties) {
+    this.properties = properties;
+  }
+
+   /**
+   * The URL of the worklog item.
+   * @return self
+  **/
+  @ApiModelProperty(value = "The URL of the worklog item.")
+  public URI getSelf() {
+    return self;
   }
 
   public Worklog started(OffsetDateTime started) {
@@ -228,47 +236,39 @@ public class Worklog {
   }
 
    /**
-   * The ID of the worklog record.
-   * @return id
+   * Details of the user who last updated the worklog.
+   * @return updateAuthor
   **/
-  @ApiModelProperty(value = "The ID of the worklog record.")
-  public String getId() {
-    return id;
+  @ApiModelProperty(value = "Details of the user who last updated the worklog.")
+  public UserDetails getUpdateAuthor() {
+    return updateAuthor;
   }
 
    /**
-   * The ID of the issue this worklog is for.
-   * @return issueId
+   * The datetime on which the worklog was last updated.
+   * @return updated
   **/
-  @ApiModelProperty(value = "The ID of the issue this worklog is for.")
-  public String getIssueId() {
-    return issueId;
+  @ApiModelProperty(value = "The datetime on which the worklog was last updated.")
+  public OffsetDateTime getUpdated() {
+    return updated;
   }
 
-  public Worklog properties(List<EntityProperty> properties) {
-    this.properties = properties;
-    return this;
-  }
-
-  public Worklog addPropertiesItem(EntityProperty propertiesItem) {
-    if (this.properties == null) {
-      this.properties = new ArrayList<>();
-    }
-    this.properties.add(propertiesItem);
+  public Worklog visibility(Visibility visibility) {
+    this.visibility = visibility;
     return this;
   }
 
    /**
-   * Details of properties for the worklog. Optional when creating or updating a worklog.
-   * @return properties
+   * Details about any restrictions in the visibility of the worklog. Optional when creating or updating a worklog.
+   * @return visibility
   **/
-  @ApiModelProperty(value = "Details of properties for the worklog. Optional when creating or updating a worklog.")
-  public List<EntityProperty> getProperties() {
-    return properties;
+  @ApiModelProperty(value = "Details about any restrictions in the visibility of the worklog. Optional when creating or updating a worklog.")
+  public Visibility getVisibility() {
+    return visibility;
   }
 
-  public void setProperties(List<EntityProperty> properties) {
-    this.properties = properties;
+  public void setVisibility(Visibility visibility) {
+    this.visibility = visibility;
   }
 
 
@@ -291,25 +291,25 @@ public class Worklog {
       return false;
     }
     Worklog worklog = (Worklog) o;
-    return Objects.equals(this.self, worklog.self) &&
-        Objects.equals(this.author, worklog.author) &&
-        Objects.equals(this.updateAuthor, worklog.updateAuthor) &&
+    return Objects.equals(this.author, worklog.author) &&
         Objects.equals(this.comment, worklog.comment) &&
         Objects.equals(this.created, worklog.created) &&
-        Objects.equals(this.updated, worklog.updated) &&
-        Objects.equals(this.visibility, worklog.visibility) &&
-        Objects.equals(this.started, worklog.started) &&
-        Objects.equals(this.timeSpent, worklog.timeSpent) &&
-        Objects.equals(this.timeSpentSeconds, worklog.timeSpentSeconds) &&
         Objects.equals(this.id, worklog.id) &&
         Objects.equals(this.issueId, worklog.issueId) &&
         Objects.equals(this.properties, worklog.properties) &&
+        Objects.equals(this.self, worklog.self) &&
+        Objects.equals(this.started, worklog.started) &&
+        Objects.equals(this.timeSpent, worklog.timeSpent) &&
+        Objects.equals(this.timeSpentSeconds, worklog.timeSpentSeconds) &&
+        Objects.equals(this.updateAuthor, worklog.updateAuthor) &&
+        Objects.equals(this.updated, worklog.updated) &&
+        Objects.equals(this.visibility, worklog.visibility) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, author, updateAuthor, comment, created, updated, visibility, started, timeSpent, timeSpentSeconds, id, issueId, properties, super.hashCode());
+    return Objects.hash(author, comment, created, id, issueId, properties, self, started, timeSpent, timeSpentSeconds, updateAuthor, updated, visibility, super.hashCode());
   }
 
 
@@ -318,19 +318,19 @@ public class Worklog {
     StringBuilder sb = new StringBuilder();
     sb.append("class Worklog {\n");
     
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    author: ").append(toIndentedString(author)).append("\n");
-    sb.append("    updateAuthor: ").append(toIndentedString(updateAuthor)).append("\n");
     sb.append("    comment: ").append(toIndentedString(comment)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
-    sb.append("    updated: ").append(toIndentedString(updated)).append("\n");
-    sb.append("    visibility: ").append(toIndentedString(visibility)).append("\n");
-    sb.append("    started: ").append(toIndentedString(started)).append("\n");
-    sb.append("    timeSpent: ").append(toIndentedString(timeSpent)).append("\n");
-    sb.append("    timeSpentSeconds: ").append(toIndentedString(timeSpentSeconds)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    issueId: ").append(toIndentedString(issueId)).append("\n");
     sb.append("    properties: ").append(toIndentedString(properties)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
+    sb.append("    started: ").append(toIndentedString(started)).append("\n");
+    sb.append("    timeSpent: ").append(toIndentedString(timeSpent)).append("\n");
+    sb.append("    timeSpentSeconds: ").append(toIndentedString(timeSpentSeconds)).append("\n");
+    sb.append("    updateAuthor: ").append(toIndentedString(updateAuthor)).append("\n");
+    sb.append("    updated: ").append(toIndentedString(updated)).append("\n");
+    sb.append("    visibility: ").append(toIndentedString(visibility)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();

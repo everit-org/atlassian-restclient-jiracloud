@@ -41,7 +41,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.JexpJqlIssues;
  * The JQL specifying the issues available in the evaluated Jira expression under the &#x60;issues&#x60; context variable.
  */
 @ApiModel(description = "The JQL specifying the issues available in the evaluated Jira expression under the `issues` context variable.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class JexpIssues {
   @JsonProperty("jql")
   private JexpJqlIssues jql;

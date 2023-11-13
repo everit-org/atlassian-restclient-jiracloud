@@ -41,10 +41,10 @@ import java.net.URI;
  * A project category.
  */
 @ApiModel(description = "A project category.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class ProjectCategory {
-  @JsonProperty("self")
-  private URI self;
+  @JsonProperty("description")
+  private String description;
 
   @JsonProperty("id")
   private String id;
@@ -52,16 +52,25 @@ public class ProjectCategory {
   @JsonProperty("name")
   private String name;
 
-  @JsonProperty("description")
-  private String description;
+  @JsonProperty("self")
+  private URI self;
+
+  public ProjectCategory description(String description) {
+    this.description = description;
+    return this;
+  }
 
    /**
-   * The URL of the project category.
-   * @return self
+   * The description of the project category.
+   * @return description
   **/
-  @ApiModelProperty(value = "The URL of the project category.")
-  public URI getSelf() {
-    return self;
+  @ApiModelProperty(value = "The description of the project category.")
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
   }
 
    /**
@@ -91,22 +100,13 @@ public class ProjectCategory {
     this.name = name;
   }
 
-  public ProjectCategory description(String description) {
-    this.description = description;
-    return this;
-  }
-
    /**
-   * The description of the project category.
-   * @return description
+   * The URL of the project category.
+   * @return self
   **/
-  @ApiModelProperty(value = "The description of the project category.")
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
+  @ApiModelProperty(value = "The URL of the project category.")
+  public URI getSelf() {
+    return self;
   }
 
 
@@ -119,15 +119,15 @@ public class ProjectCategory {
       return false;
     }
     ProjectCategory projectCategory = (ProjectCategory) o;
-    return Objects.equals(this.self, projectCategory.self) &&
+    return Objects.equals(this.description, projectCategory.description) &&
         Objects.equals(this.id, projectCategory.id) &&
         Objects.equals(this.name, projectCategory.name) &&
-        Objects.equals(this.description, projectCategory.description);
+        Objects.equals(this.self, projectCategory.self);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, id, name, description);
+    return Objects.hash(description, id, name, self);
   }
 
 
@@ -136,10 +136,10 @@ public class ProjectCategory {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProjectCategory {\n");
     
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("}");
     return sb.toString();
   }

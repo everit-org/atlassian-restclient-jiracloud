@@ -44,37 +44,19 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.CreateWorkflowTransiti
  * The details of a workflow.
  */
 @ApiModel(description = "The details of a workflow.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class CreateWorkflowDetails {
-  @JsonProperty("name")
-  private String name;
-
   @JsonProperty("description")
   private String description;
 
-  @JsonProperty("transitions")
-  private List<CreateWorkflowTransitionDetails> transitions = new ArrayList<>();
+  @JsonProperty("name")
+  private String name;
 
   @JsonProperty("statuses")
   private List<CreateWorkflowStatusDetails> statuses = new ArrayList<>();
 
-  public CreateWorkflowDetails name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * The name of the workflow. The name must be unique. The maximum length is 255 characters. Characters can be separated by a whitespace but the name cannot start or end with a whitespace.
-   * @return name
-  **/
-  @ApiModelProperty(required = true, value = "The name of the workflow. The name must be unique. The maximum length is 255 characters. Characters can be separated by a whitespace but the name cannot start or end with a whitespace.")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
+  @JsonProperty("transitions")
+  private List<CreateWorkflowTransitionDetails> transitions = new ArrayList<>();
 
   public CreateWorkflowDetails description(String description) {
     this.description = description;
@@ -94,27 +76,22 @@ public class CreateWorkflowDetails {
     this.description = description;
   }
 
-  public CreateWorkflowDetails transitions(List<CreateWorkflowTransitionDetails> transitions) {
-    this.transitions = transitions;
-    return this;
-  }
-
-  public CreateWorkflowDetails addTransitionsItem(CreateWorkflowTransitionDetails transitionsItem) {
-    this.transitions.add(transitionsItem);
+  public CreateWorkflowDetails name(String name) {
+    this.name = name;
     return this;
   }
 
    /**
-   * The transitions of the workflow. For the request to be valid, these transitions must:   *  include one *initial* transition.  *  not use the same name for a *global* and *directed* transition.  *  have a unique name for each *global* transition.  *  have a unique &#39;to&#39; status for each *global* transition.  *  have unique names for each transition from a status.  *  not have a &#39;from&#39; status on *initial* and *global* transitions.  *  have a &#39;from&#39; status on *directed* transitions.  All the transition statuses must be included in &#x60;statuses&#x60;.
-   * @return transitions
+   * The name of the workflow. The name must be unique. The maximum length is 255 characters. Characters can be separated by a whitespace but the name cannot start or end with a whitespace.
+   * @return name
   **/
-  @ApiModelProperty(required = true, value = "The transitions of the workflow. For the request to be valid, these transitions must:   *  include one *initial* transition.  *  not use the same name for a *global* and *directed* transition.  *  have a unique name for each *global* transition.  *  have a unique 'to' status for each *global* transition.  *  have unique names for each transition from a status.  *  not have a 'from' status on *initial* and *global* transitions.  *  have a 'from' status on *directed* transitions.  All the transition statuses must be included in `statuses`.")
-  public List<CreateWorkflowTransitionDetails> getTransitions() {
-    return transitions;
+  @ApiModelProperty(required = true, value = "The name of the workflow. The name must be unique. The maximum length is 255 characters. Characters can be separated by a whitespace but the name cannot start or end with a whitespace.")
+  public String getName() {
+    return name;
   }
 
-  public void setTransitions(List<CreateWorkflowTransitionDetails> transitions) {
-    this.transitions = transitions;
+  public void setName(String name) {
+    this.name = name;
   }
 
   public CreateWorkflowDetails statuses(List<CreateWorkflowStatusDetails> statuses) {
@@ -140,6 +117,29 @@ public class CreateWorkflowDetails {
     this.statuses = statuses;
   }
 
+  public CreateWorkflowDetails transitions(List<CreateWorkflowTransitionDetails> transitions) {
+    this.transitions = transitions;
+    return this;
+  }
+
+  public CreateWorkflowDetails addTransitionsItem(CreateWorkflowTransitionDetails transitionsItem) {
+    this.transitions.add(transitionsItem);
+    return this;
+  }
+
+   /**
+   * The transitions of the workflow. For the request to be valid, these transitions must:   *  include one *initial* transition.  *  not use the same name for a *global* and *directed* transition.  *  have a unique name for each *global* transition.  *  have a unique &#39;to&#39; status for each *global* transition.  *  have unique names for each transition from a status.  *  not have a &#39;from&#39; status on *initial* and *global* transitions.  *  have a &#39;from&#39; status on *directed* transitions.  All the transition statuses must be included in &#x60;statuses&#x60;.
+   * @return transitions
+  **/
+  @ApiModelProperty(required = true, value = "The transitions of the workflow. For the request to be valid, these transitions must:   *  include one *initial* transition.  *  not use the same name for a *global* and *directed* transition.  *  have a unique name for each *global* transition.  *  have a unique 'to' status for each *global* transition.  *  have unique names for each transition from a status.  *  not have a 'from' status on *initial* and *global* transitions.  *  have a 'from' status on *directed* transitions.  All the transition statuses must be included in `statuses`.")
+  public List<CreateWorkflowTransitionDetails> getTransitions() {
+    return transitions;
+  }
+
+  public void setTransitions(List<CreateWorkflowTransitionDetails> transitions) {
+    this.transitions = transitions;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -150,15 +150,15 @@ public class CreateWorkflowDetails {
       return false;
     }
     CreateWorkflowDetails createWorkflowDetails = (CreateWorkflowDetails) o;
-    return Objects.equals(this.name, createWorkflowDetails.name) &&
-        Objects.equals(this.description, createWorkflowDetails.description) &&
-        Objects.equals(this.transitions, createWorkflowDetails.transitions) &&
-        Objects.equals(this.statuses, createWorkflowDetails.statuses);
+    return Objects.equals(this.description, createWorkflowDetails.description) &&
+        Objects.equals(this.name, createWorkflowDetails.name) &&
+        Objects.equals(this.statuses, createWorkflowDetails.statuses) &&
+        Objects.equals(this.transitions, createWorkflowDetails.transitions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, transitions, statuses);
+    return Objects.hash(description, name, statuses, transitions);
   }
 
 
@@ -167,10 +167,10 @@ public class CreateWorkflowDetails {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateWorkflowDetails {\n");
     
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    transitions: ").append(toIndentedString(transitions)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    statuses: ").append(toIndentedString(statuses)).append("\n");
+    sb.append("    transitions: ").append(toIndentedString(transitions)).append("\n");
     sb.append("}");
     return sb.toString();
   }

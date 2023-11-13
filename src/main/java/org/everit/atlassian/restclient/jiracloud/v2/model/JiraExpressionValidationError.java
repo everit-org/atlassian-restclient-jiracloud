@@ -40,16 +40,16 @@ import io.swagger.annotations.ApiModelProperty;
  * Details about syntax and type errors. The error details apply to the entire expression, unless the object includes:   *  &#x60;line&#x60; and &#x60;column&#x60;  *  &#x60;expression&#x60;
  */
 @ApiModel(description = "Details about syntax and type errors. The error details apply to the entire expression, unless the object includes:   *  `line` and `column`  *  `expression`")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class JiraExpressionValidationError {
-  @JsonProperty("line")
-  private Integer line;
-
   @JsonProperty("column")
   private Integer column;
 
   @JsonProperty("expression")
   private String expression;
+
+  @JsonProperty("line")
+  private Integer line;
 
   @JsonProperty("message")
   private String message;
@@ -94,24 +94,6 @@ public class JiraExpressionValidationError {
   @JsonProperty("type")
   private TypeEnum type;
 
-  public JiraExpressionValidationError line(Integer line) {
-    this.line = line;
-    return this;
-  }
-
-   /**
-   * The text line in which the error occurred.
-   * @return line
-  **/
-  @ApiModelProperty(value = "The text line in which the error occurred.")
-  public Integer getLine() {
-    return line;
-  }
-
-  public void setLine(Integer line) {
-    this.line = line;
-  }
-
   public JiraExpressionValidationError column(Integer column) {
     this.column = column;
     return this;
@@ -146,6 +128,24 @@ public class JiraExpressionValidationError {
 
   public void setExpression(String expression) {
     this.expression = expression;
+  }
+
+  public JiraExpressionValidationError line(Integer line) {
+    this.line = line;
+    return this;
+  }
+
+   /**
+   * The text line in which the error occurred.
+   * @return line
+  **/
+  @ApiModelProperty(value = "The text line in which the error occurred.")
+  public Integer getLine() {
+    return line;
+  }
+
+  public void setLine(Integer line) {
+    this.line = line;
   }
 
   public JiraExpressionValidationError message(String message) {
@@ -194,16 +194,16 @@ public class JiraExpressionValidationError {
       return false;
     }
     JiraExpressionValidationError jiraExpressionValidationError = (JiraExpressionValidationError) o;
-    return Objects.equals(this.line, jiraExpressionValidationError.line) &&
-        Objects.equals(this.column, jiraExpressionValidationError.column) &&
+    return Objects.equals(this.column, jiraExpressionValidationError.column) &&
         Objects.equals(this.expression, jiraExpressionValidationError.expression) &&
+        Objects.equals(this.line, jiraExpressionValidationError.line) &&
         Objects.equals(this.message, jiraExpressionValidationError.message) &&
         Objects.equals(this.type, jiraExpressionValidationError.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(line, column, expression, message, type);
+    return Objects.hash(column, expression, line, message, type);
   }
 
 
@@ -212,9 +212,9 @@ public class JiraExpressionValidationError {
     StringBuilder sb = new StringBuilder();
     sb.append("class JiraExpressionValidationError {\n");
     
-    sb.append("    line: ").append(toIndentedString(line)).append("\n");
     sb.append("    column: ").append(toIndentedString(column)).append("\n");
     sb.append("    expression: ").append(toIndentedString(expression)).append("\n");
+    sb.append("    line: ").append(toIndentedString(line)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");

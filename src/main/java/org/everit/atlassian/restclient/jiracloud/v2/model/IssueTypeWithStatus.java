@@ -43,31 +43,22 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.StatusDetails;
  * Status details for an issue type.
  */
 @ApiModel(description = "Status details for an issue type.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class IssueTypeWithStatus {
-  @JsonProperty("self")
-  private String self;
-
   @JsonProperty("id")
   private String id;
 
   @JsonProperty("name")
   private String name;
 
-  @JsonProperty("subtask")
-  private Boolean subtask;
+  @JsonProperty("self")
+  private String self;
 
   @JsonProperty("statuses")
   private List<StatusDetails> statuses = new ArrayList<>();
 
-   /**
-   * The URL of the issue type&#39;s status details.
-   * @return self
-  **/
-  @ApiModelProperty(required = true, value = "The URL of the issue type's status details.")
-  public String getSelf() {
-    return self;
-  }
+  @JsonProperty("subtask")
+  private Boolean subtask;
 
    /**
    * The ID of the issue type.
@@ -88,12 +79,12 @@ public class IssueTypeWithStatus {
   }
 
    /**
-   * Whether this issue type represents subtasks.
-   * @return subtask
+   * The URL of the issue type&#39;s status details.
+   * @return self
   **/
-  @ApiModelProperty(required = true, value = "Whether this issue type represents subtasks.")
-  public Boolean getSubtask() {
-    return subtask;
+  @ApiModelProperty(required = true, value = "The URL of the issue type's status details.")
+  public String getSelf() {
+    return self;
   }
 
    /**
@@ -103,6 +94,15 @@ public class IssueTypeWithStatus {
   @ApiModelProperty(required = true, value = "List of status details for the issue type.")
   public List<StatusDetails> getStatuses() {
     return statuses;
+  }
+
+   /**
+   * Whether this issue type represents subtasks.
+   * @return subtask
+  **/
+  @ApiModelProperty(required = true, value = "Whether this issue type represents subtasks.")
+  public Boolean getSubtask() {
+    return subtask;
   }
 
 
@@ -115,16 +115,16 @@ public class IssueTypeWithStatus {
       return false;
     }
     IssueTypeWithStatus issueTypeWithStatus = (IssueTypeWithStatus) o;
-    return Objects.equals(this.self, issueTypeWithStatus.self) &&
-        Objects.equals(this.id, issueTypeWithStatus.id) &&
+    return Objects.equals(this.id, issueTypeWithStatus.id) &&
         Objects.equals(this.name, issueTypeWithStatus.name) &&
-        Objects.equals(this.subtask, issueTypeWithStatus.subtask) &&
-        Objects.equals(this.statuses, issueTypeWithStatus.statuses);
+        Objects.equals(this.self, issueTypeWithStatus.self) &&
+        Objects.equals(this.statuses, issueTypeWithStatus.statuses) &&
+        Objects.equals(this.subtask, issueTypeWithStatus.subtask);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, id, name, subtask, statuses);
+    return Objects.hash(id, name, self, statuses, subtask);
   }
 
 
@@ -133,11 +133,11 @@ public class IssueTypeWithStatus {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueTypeWithStatus {\n");
     
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    subtask: ").append(toIndentedString(subtask)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    statuses: ").append(toIndentedString(statuses)).append("\n");
+    sb.append("    subtask: ").append(toIndentedString(subtask)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -40,16 +40,34 @@ import io.swagger.annotations.ApiModelProperty;
  * The field configuration for an issue type.
  */
 @ApiModel(description = "The field configuration for an issue type.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class FieldConfigurationIssueTypeItem {
+  @JsonProperty("fieldConfigurationId")
+  private String fieldConfigurationId;
+
   @JsonProperty("fieldConfigurationSchemeId")
   private String fieldConfigurationSchemeId;
 
   @JsonProperty("issueTypeId")
   private String issueTypeId;
 
-  @JsonProperty("fieldConfigurationId")
-  private String fieldConfigurationId;
+  public FieldConfigurationIssueTypeItem fieldConfigurationId(String fieldConfigurationId) {
+    this.fieldConfigurationId = fieldConfigurationId;
+    return this;
+  }
+
+   /**
+   * The ID of the field configuration.
+   * @return fieldConfigurationId
+  **/
+  @ApiModelProperty(required = true, value = "The ID of the field configuration.")
+  public String getFieldConfigurationId() {
+    return fieldConfigurationId;
+  }
+
+  public void setFieldConfigurationId(String fieldConfigurationId) {
+    this.fieldConfigurationId = fieldConfigurationId;
+  }
 
   public FieldConfigurationIssueTypeItem fieldConfigurationSchemeId(String fieldConfigurationSchemeId) {
     this.fieldConfigurationSchemeId = fieldConfigurationSchemeId;
@@ -87,24 +105,6 @@ public class FieldConfigurationIssueTypeItem {
     this.issueTypeId = issueTypeId;
   }
 
-  public FieldConfigurationIssueTypeItem fieldConfigurationId(String fieldConfigurationId) {
-    this.fieldConfigurationId = fieldConfigurationId;
-    return this;
-  }
-
-   /**
-   * The ID of the field configuration.
-   * @return fieldConfigurationId
-  **/
-  @ApiModelProperty(required = true, value = "The ID of the field configuration.")
-  public String getFieldConfigurationId() {
-    return fieldConfigurationId;
-  }
-
-  public void setFieldConfigurationId(String fieldConfigurationId) {
-    this.fieldConfigurationId = fieldConfigurationId;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -115,14 +115,14 @@ public class FieldConfigurationIssueTypeItem {
       return false;
     }
     FieldConfigurationIssueTypeItem fieldConfigurationIssueTypeItem = (FieldConfigurationIssueTypeItem) o;
-    return Objects.equals(this.fieldConfigurationSchemeId, fieldConfigurationIssueTypeItem.fieldConfigurationSchemeId) &&
-        Objects.equals(this.issueTypeId, fieldConfigurationIssueTypeItem.issueTypeId) &&
-        Objects.equals(this.fieldConfigurationId, fieldConfigurationIssueTypeItem.fieldConfigurationId);
+    return Objects.equals(this.fieldConfigurationId, fieldConfigurationIssueTypeItem.fieldConfigurationId) &&
+        Objects.equals(this.fieldConfigurationSchemeId, fieldConfigurationIssueTypeItem.fieldConfigurationSchemeId) &&
+        Objects.equals(this.issueTypeId, fieldConfigurationIssueTypeItem.issueTypeId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fieldConfigurationSchemeId, issueTypeId, fieldConfigurationId);
+    return Objects.hash(fieldConfigurationId, fieldConfigurationSchemeId, issueTypeId);
   }
 
 
@@ -131,9 +131,9 @@ public class FieldConfigurationIssueTypeItem {
     StringBuilder sb = new StringBuilder();
     sb.append("class FieldConfigurationIssueTypeItem {\n");
     
+    sb.append("    fieldConfigurationId: ").append(toIndentedString(fieldConfigurationId)).append("\n");
     sb.append("    fieldConfigurationSchemeId: ").append(toIndentedString(fieldConfigurationSchemeId)).append("\n");
     sb.append("    issueTypeId: ").append(toIndentedString(issueTypeId)).append("\n");
-    sb.append("    fieldConfigurationId: ").append(toIndentedString(fieldConfigurationId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

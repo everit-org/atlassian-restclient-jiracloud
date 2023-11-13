@@ -42,36 +42,13 @@ import java.util.List;
  * List of issues and JQL queries.
  */
 @ApiModel(description = "List of issues and JQL queries.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class IssuesAndJQLQueries {
-  @JsonProperty("jqls")
-  private List<String> jqls = new ArrayList<>();
-
   @JsonProperty("issueIds")
   private List<Long> issueIds = new ArrayList<>();
 
-  public IssuesAndJQLQueries jqls(List<String> jqls) {
-    this.jqls = jqls;
-    return this;
-  }
-
-  public IssuesAndJQLQueries addJqlsItem(String jqlsItem) {
-    this.jqls.add(jqlsItem);
-    return this;
-  }
-
-   /**
-   * A list of JQL queries.
-   * @return jqls
-  **/
-  @ApiModelProperty(required = true, value = "A list of JQL queries.")
-  public List<String> getJqls() {
-    return jqls;
-  }
-
-  public void setJqls(List<String> jqls) {
-    this.jqls = jqls;
-  }
+  @JsonProperty("jqls")
+  private List<String> jqls = new ArrayList<>();
 
   public IssuesAndJQLQueries issueIds(List<Long> issueIds) {
     this.issueIds = issueIds;
@@ -96,6 +73,29 @@ public class IssuesAndJQLQueries {
     this.issueIds = issueIds;
   }
 
+  public IssuesAndJQLQueries jqls(List<String> jqls) {
+    this.jqls = jqls;
+    return this;
+  }
+
+  public IssuesAndJQLQueries addJqlsItem(String jqlsItem) {
+    this.jqls.add(jqlsItem);
+    return this;
+  }
+
+   /**
+   * A list of JQL queries.
+   * @return jqls
+  **/
+  @ApiModelProperty(required = true, value = "A list of JQL queries.")
+  public List<String> getJqls() {
+    return jqls;
+  }
+
+  public void setJqls(List<String> jqls) {
+    this.jqls = jqls;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -106,13 +106,13 @@ public class IssuesAndJQLQueries {
       return false;
     }
     IssuesAndJQLQueries issuesAndJQLQueries = (IssuesAndJQLQueries) o;
-    return Objects.equals(this.jqls, issuesAndJQLQueries.jqls) &&
-        Objects.equals(this.issueIds, issuesAndJQLQueries.issueIds);
+    return Objects.equals(this.issueIds, issuesAndJQLQueries.issueIds) &&
+        Objects.equals(this.jqls, issuesAndJQLQueries.jqls);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(jqls, issueIds);
+    return Objects.hash(issueIds, jqls);
   }
 
 
@@ -121,8 +121,8 @@ public class IssuesAndJQLQueries {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssuesAndJQLQueries {\n");
     
-    sb.append("    jqls: ").append(toIndentedString(jqls)).append("\n");
     sb.append("    issueIds: ").append(toIndentedString(issueIds)).append("\n");
+    sb.append("    jqls: ").append(toIndentedString(jqls)).append("\n");
     sb.append("}");
     return sb.toString();
   }

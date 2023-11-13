@@ -45,34 +45,16 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.WorkflowId;
  * Details of any errors encountered while updating workflow transition rules for a workflow.
  */
 @ApiModel(description = "Details of any errors encountered while updating workflow transition rules for a workflow.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class WorkflowTransitionRulesUpdateErrorDetails {
-  @JsonProperty("workflowId")
-  private WorkflowId workflowId;
-
   @JsonProperty("ruleUpdateErrors")
   private Map<String, List<String>> ruleUpdateErrors = new HashMap<>();
 
   @JsonProperty("updateErrors")
   private List<String> updateErrors = new ArrayList<>();
 
-  public WorkflowTransitionRulesUpdateErrorDetails workflowId(WorkflowId workflowId) {
-    this.workflowId = workflowId;
-    return this;
-  }
-
-   /**
-   * Get workflowId
-   * @return workflowId
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public WorkflowId getWorkflowId() {
-    return workflowId;
-  }
-
-  public void setWorkflowId(WorkflowId workflowId) {
-    this.workflowId = workflowId;
-  }
+  @JsonProperty("workflowId")
+  private WorkflowId workflowId;
 
   public WorkflowTransitionRulesUpdateErrorDetails ruleUpdateErrors(Map<String, List<String>> ruleUpdateErrors) {
     this.ruleUpdateErrors = ruleUpdateErrors;
@@ -120,6 +102,24 @@ public class WorkflowTransitionRulesUpdateErrorDetails {
     this.updateErrors = updateErrors;
   }
 
+  public WorkflowTransitionRulesUpdateErrorDetails workflowId(WorkflowId workflowId) {
+    this.workflowId = workflowId;
+    return this;
+  }
+
+   /**
+   * Get workflowId
+   * @return workflowId
+  **/
+  @ApiModelProperty(required = true, value = "")
+  public WorkflowId getWorkflowId() {
+    return workflowId;
+  }
+
+  public void setWorkflowId(WorkflowId workflowId) {
+    this.workflowId = workflowId;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -130,14 +130,14 @@ public class WorkflowTransitionRulesUpdateErrorDetails {
       return false;
     }
     WorkflowTransitionRulesUpdateErrorDetails workflowTransitionRulesUpdateErrorDetails = (WorkflowTransitionRulesUpdateErrorDetails) o;
-    return Objects.equals(this.workflowId, workflowTransitionRulesUpdateErrorDetails.workflowId) &&
-        Objects.equals(this.ruleUpdateErrors, workflowTransitionRulesUpdateErrorDetails.ruleUpdateErrors) &&
-        Objects.equals(this.updateErrors, workflowTransitionRulesUpdateErrorDetails.updateErrors);
+    return Objects.equals(this.ruleUpdateErrors, workflowTransitionRulesUpdateErrorDetails.ruleUpdateErrors) &&
+        Objects.equals(this.updateErrors, workflowTransitionRulesUpdateErrorDetails.updateErrors) &&
+        Objects.equals(this.workflowId, workflowTransitionRulesUpdateErrorDetails.workflowId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(workflowId, ruleUpdateErrors, updateErrors);
+    return Objects.hash(ruleUpdateErrors, updateErrors, workflowId);
   }
 
 
@@ -146,9 +146,9 @@ public class WorkflowTransitionRulesUpdateErrorDetails {
     StringBuilder sb = new StringBuilder();
     sb.append("class WorkflowTransitionRulesUpdateErrorDetails {\n");
     
-    sb.append("    workflowId: ").append(toIndentedString(workflowId)).append("\n");
     sb.append("    ruleUpdateErrors: ").append(toIndentedString(ruleUpdateErrors)).append("\n");
     sb.append("    updateErrors: ").append(toIndentedString(updateErrors)).append("\n");
+    sb.append("    workflowId: ").append(toIndentedString(workflowId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

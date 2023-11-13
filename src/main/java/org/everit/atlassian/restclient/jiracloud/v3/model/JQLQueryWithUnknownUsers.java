@@ -40,31 +40,13 @@ import io.swagger.annotations.ApiModelProperty;
  * JQL queries that contained users that could not be found
  */
 @ApiModel(description = "JQL queries that contained users that could not be found")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class JQLQueryWithUnknownUsers {
-  @JsonProperty("originalQuery")
-  private String originalQuery;
-
   @JsonProperty("convertedQuery")
   private String convertedQuery;
 
-  public JQLQueryWithUnknownUsers originalQuery(String originalQuery) {
-    this.originalQuery = originalQuery;
-    return this;
-  }
-
-   /**
-   * The original query, for reference
-   * @return originalQuery
-  **/
-  @ApiModelProperty(value = "The original query, for reference")
-  public String getOriginalQuery() {
-    return originalQuery;
-  }
-
-  public void setOriginalQuery(String originalQuery) {
-    this.originalQuery = originalQuery;
-  }
+  @JsonProperty("originalQuery")
+  private String originalQuery;
 
   public JQLQueryWithUnknownUsers convertedQuery(String convertedQuery) {
     this.convertedQuery = convertedQuery;
@@ -84,6 +66,24 @@ public class JQLQueryWithUnknownUsers {
     this.convertedQuery = convertedQuery;
   }
 
+  public JQLQueryWithUnknownUsers originalQuery(String originalQuery) {
+    this.originalQuery = originalQuery;
+    return this;
+  }
+
+   /**
+   * The original query, for reference
+   * @return originalQuery
+  **/
+  @ApiModelProperty(value = "The original query, for reference")
+  public String getOriginalQuery() {
+    return originalQuery;
+  }
+
+  public void setOriginalQuery(String originalQuery) {
+    this.originalQuery = originalQuery;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -94,13 +94,13 @@ public class JQLQueryWithUnknownUsers {
       return false;
     }
     JQLQueryWithUnknownUsers jqLQueryWithUnknownUsers = (JQLQueryWithUnknownUsers) o;
-    return Objects.equals(this.originalQuery, jqLQueryWithUnknownUsers.originalQuery) &&
-        Objects.equals(this.convertedQuery, jqLQueryWithUnknownUsers.convertedQuery);
+    return Objects.equals(this.convertedQuery, jqLQueryWithUnknownUsers.convertedQuery) &&
+        Objects.equals(this.originalQuery, jqLQueryWithUnknownUsers.originalQuery);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(originalQuery, convertedQuery);
+    return Objects.hash(convertedQuery, originalQuery);
   }
 
 
@@ -109,8 +109,8 @@ public class JQLQueryWithUnknownUsers {
     StringBuilder sb = new StringBuilder();
     sb.append("class JQLQueryWithUnknownUsers {\n");
     
-    sb.append("    originalQuery: ").append(toIndentedString(originalQuery)).append("\n");
     sb.append("    convertedQuery: ").append(toIndentedString(convertedQuery)).append("\n");
+    sb.append("    originalQuery: ").append(toIndentedString(originalQuery)).append("\n");
     sb.append("}");
     return sb.toString();
   }

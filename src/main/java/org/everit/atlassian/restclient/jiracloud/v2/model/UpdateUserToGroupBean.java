@@ -41,33 +41,15 @@ import java.util.Map;
 /**
  * UpdateUserToGroupBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class UpdateUserToGroupBean {
-  @JsonProperty("name")
-  private String name;
-
   @JsonProperty("accountId")
   private String accountId;
 
+  @JsonProperty("name")
+  private String name;
+
   private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
-
-  public UpdateUserToGroupBean name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * This property is no longer available. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details.
-   * @return name
-  **/
-  @ApiModelProperty(value = "This property is no longer available. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details.")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
 
   public UpdateUserToGroupBean accountId(String accountId) {
     this.accountId = accountId;
@@ -85,6 +67,24 @@ public class UpdateUserToGroupBean {
 
   public void setAccountId(String accountId) {
     this.accountId = accountId;
+  }
+
+  public UpdateUserToGroupBean name(String name) {
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * This property is no longer available. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details.
+   * @return name
+  **/
+  @ApiModelProperty(value = "This property is no longer available. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details.")
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 
 
@@ -107,14 +107,14 @@ public class UpdateUserToGroupBean {
       return false;
     }
     UpdateUserToGroupBean updateUserToGroupBean = (UpdateUserToGroupBean) o;
-    return Objects.equals(this.name, updateUserToGroupBean.name) &&
-        Objects.equals(this.accountId, updateUserToGroupBean.accountId) &&
+    return Objects.equals(this.accountId, updateUserToGroupBean.accountId) &&
+        Objects.equals(this.name, updateUserToGroupBean.name) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, accountId, super.hashCode());
+    return Objects.hash(accountId, name, super.hashCode());
   }
 
 
@@ -123,8 +123,8 @@ public class UpdateUserToGroupBean {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateUserToGroupBean {\n");
     
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();

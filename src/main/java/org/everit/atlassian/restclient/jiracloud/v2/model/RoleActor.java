@@ -43,13 +43,25 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.ProjectRoleUser;
  * Details about a user assigned to a project role.
  */
 @ApiModel(description = "Details about a user assigned to a project role.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class RoleActor {
-  @JsonProperty("id")
-  private Long id;
+  @JsonProperty("actorGroup")
+  private ProjectRoleGroup actorGroup;
+
+  @JsonProperty("actorUser")
+  private ProjectRoleUser actorUser;
+
+  @JsonProperty("avatarUrl")
+  private URI avatarUrl;
 
   @JsonProperty("displayName")
   private String displayName;
+
+  @JsonProperty("id")
+  private Long id;
+
+  @JsonProperty("name")
+  private String name;
 
   /**
    * The type of role actor.
@@ -89,61 +101,13 @@ public class RoleActor {
   @JsonProperty("type")
   private TypeEnum type;
 
-  @JsonProperty("name")
-  private String name;
-
-  @JsonProperty("avatarUrl")
-  private URI avatarUrl;
-
-  @JsonProperty("actorUser")
-  private ProjectRoleUser actorUser;
-
-  @JsonProperty("actorGroup")
-  private ProjectRoleGroup actorGroup;
-
    /**
-   * The ID of the role actor.
-   * @return id
+   * Get actorGroup
+   * @return actorGroup
   **/
-  @ApiModelProperty(value = "The ID of the role actor.")
-  public Long getId() {
-    return id;
-  }
-
-   /**
-   * The display name of the role actor. For users, depending on the user’s privacy setting, this may return an alternative value for the user&#39;s name.
-   * @return displayName
-  **/
-  @ApiModelProperty(value = "The display name of the role actor. For users, depending on the user’s privacy setting, this may return an alternative value for the user's name.")
-  public String getDisplayName() {
-    return displayName;
-  }
-
-   /**
-   * The type of role actor.
-   * @return type
-  **/
-  @ApiModelProperty(value = "The type of role actor.")
-  public TypeEnum getType() {
-    return type;
-  }
-
-   /**
-   * This property is no longer available and will be removed from the documentation soon. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details.
-   * @return name
-  **/
-  @ApiModelProperty(value = "This property is no longer available and will be removed from the documentation soon. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details.")
-  public String getName() {
-    return name;
-  }
-
-   /**
-   * The avatar of the role actor.
-   * @return avatarUrl
-  **/
-  @ApiModelProperty(value = "The avatar of the role actor.")
-  public URI getAvatarUrl() {
-    return avatarUrl;
+  @ApiModelProperty(value = "")
+  public ProjectRoleGroup getActorGroup() {
+    return actorGroup;
   }
 
    /**
@@ -156,12 +120,48 @@ public class RoleActor {
   }
 
    /**
-   * Get actorGroup
-   * @return actorGroup
+   * The avatar of the role actor.
+   * @return avatarUrl
   **/
-  @ApiModelProperty(value = "")
-  public ProjectRoleGroup getActorGroup() {
-    return actorGroup;
+  @ApiModelProperty(value = "The avatar of the role actor.")
+  public URI getAvatarUrl() {
+    return avatarUrl;
+  }
+
+   /**
+   * The display name of the role actor. For users, depending on the user’s privacy setting, this may return an alternative value for the user&#39;s name.
+   * @return displayName
+  **/
+  @ApiModelProperty(value = "The display name of the role actor. For users, depending on the user’s privacy setting, this may return an alternative value for the user's name.")
+  public String getDisplayName() {
+    return displayName;
+  }
+
+   /**
+   * The ID of the role actor.
+   * @return id
+  **/
+  @ApiModelProperty(value = "The ID of the role actor.")
+  public Long getId() {
+    return id;
+  }
+
+   /**
+   * This property is no longer available and will be removed from the documentation soon. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details.
+   * @return name
+  **/
+  @ApiModelProperty(value = "This property is no longer available and will be removed from the documentation soon. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details.")
+  public String getName() {
+    return name;
+  }
+
+   /**
+   * The type of role actor.
+   * @return type
+  **/
+  @ApiModelProperty(value = "The type of role actor.")
+  public TypeEnum getType() {
+    return type;
   }
 
 
@@ -174,18 +174,18 @@ public class RoleActor {
       return false;
     }
     RoleActor roleActor = (RoleActor) o;
-    return Objects.equals(this.id, roleActor.id) &&
-        Objects.equals(this.displayName, roleActor.displayName) &&
-        Objects.equals(this.type, roleActor.type) &&
-        Objects.equals(this.name, roleActor.name) &&
-        Objects.equals(this.avatarUrl, roleActor.avatarUrl) &&
+    return Objects.equals(this.actorGroup, roleActor.actorGroup) &&
         Objects.equals(this.actorUser, roleActor.actorUser) &&
-        Objects.equals(this.actorGroup, roleActor.actorGroup);
+        Objects.equals(this.avatarUrl, roleActor.avatarUrl) &&
+        Objects.equals(this.displayName, roleActor.displayName) &&
+        Objects.equals(this.id, roleActor.id) &&
+        Objects.equals(this.name, roleActor.name) &&
+        Objects.equals(this.type, roleActor.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, displayName, type, name, avatarUrl, actorUser, actorGroup);
+    return Objects.hash(actorGroup, actorUser, avatarUrl, displayName, id, name, type);
   }
 
 
@@ -194,13 +194,13 @@ public class RoleActor {
     StringBuilder sb = new StringBuilder();
     sb.append("class RoleActor {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    avatarUrl: ").append(toIndentedString(avatarUrl)).append("\n");
-    sb.append("    actorUser: ").append(toIndentedString(actorUser)).append("\n");
     sb.append("    actorGroup: ").append(toIndentedString(actorGroup)).append("\n");
+    sb.append("    actorUser: ").append(toIndentedString(actorUser)).append("\n");
+    sb.append("    avatarUrl: ").append(toIndentedString(avatarUrl)).append("\n");
+    sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }

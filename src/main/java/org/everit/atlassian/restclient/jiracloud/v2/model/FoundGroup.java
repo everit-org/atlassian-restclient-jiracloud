@@ -43,10 +43,10 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.GroupLabel;
  * A group found in a search.
  */
 @ApiModel(description = "A group found in a search.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class FoundGroup {
-  @JsonProperty("name")
-  private String name;
+  @JsonProperty("groupId")
+  private String groupId;
 
   @JsonProperty("html")
   private String html;
@@ -54,25 +54,25 @@ public class FoundGroup {
   @JsonProperty("labels")
   private List<GroupLabel> labels = new ArrayList<>();
 
-  @JsonProperty("groupId")
-  private String groupId;
+  @JsonProperty("name")
+  private String name;
 
-  public FoundGroup name(String name) {
-    this.name = name;
+  public FoundGroup groupId(String groupId) {
+    this.groupId = groupId;
     return this;
   }
 
    /**
-   * The name of the group.
-   * @return name
+   * The ID of the group, which uniquely identifies the group across all Atlassian products. For example, *952d12c3-5b5b-4d04-bb32-44d383afc4b2*.
+   * @return groupId
   **/
-  @ApiModelProperty(value = "The name of the group.")
-  public String getName() {
-    return name;
+  @ApiModelProperty(value = "The ID of the group, which uniquely identifies the group across all Atlassian products. For example, *952d12c3-5b5b-4d04-bb32-44d383afc4b2*.")
+  public String getGroupId() {
+    return groupId;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setGroupId(String groupId) {
+    this.groupId = groupId;
   }
 
   public FoundGroup html(String html) {
@@ -119,22 +119,22 @@ public class FoundGroup {
     this.labels = labels;
   }
 
-  public FoundGroup groupId(String groupId) {
-    this.groupId = groupId;
+  public FoundGroup name(String name) {
+    this.name = name;
     return this;
   }
 
    /**
-   * The ID of the group, if available, which uniquely identifies the group across all Atlassian products. For example, *952d12c3-5b5b-4d04-bb32-44d383afc4b2*.
-   * @return groupId
+   * The name of the group. The name of a group is mutable, to reliably identify a group use &#x60;&#x60;groupId&#x60;.&#x60;
+   * @return name
   **/
-  @ApiModelProperty(value = "The ID of the group, if available, which uniquely identifies the group across all Atlassian products. For example, *952d12c3-5b5b-4d04-bb32-44d383afc4b2*.")
-  public String getGroupId() {
-    return groupId;
+  @ApiModelProperty(value = "The name of the group. The name of a group is mutable, to reliably identify a group use ``groupId`.`")
+  public String getName() {
+    return name;
   }
 
-  public void setGroupId(String groupId) {
-    this.groupId = groupId;
+  public void setName(String name) {
+    this.name = name;
   }
 
 
@@ -147,15 +147,15 @@ public class FoundGroup {
       return false;
     }
     FoundGroup foundGroup = (FoundGroup) o;
-    return Objects.equals(this.name, foundGroup.name) &&
+    return Objects.equals(this.groupId, foundGroup.groupId) &&
         Objects.equals(this.html, foundGroup.html) &&
         Objects.equals(this.labels, foundGroup.labels) &&
-        Objects.equals(this.groupId, foundGroup.groupId);
+        Objects.equals(this.name, foundGroup.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, html, labels, groupId);
+    return Objects.hash(groupId, html, labels, name);
   }
 
 
@@ -164,10 +164,10 @@ public class FoundGroup {
     StringBuilder sb = new StringBuilder();
     sb.append("class FoundGroup {\n");
     
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    groupId: ").append(toIndentedString(groupId)).append("\n");
     sb.append("    html: ").append(toIndentedString(html)).append("\n");
     sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
-    sb.append("    groupId: ").append(toIndentedString(groupId)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }

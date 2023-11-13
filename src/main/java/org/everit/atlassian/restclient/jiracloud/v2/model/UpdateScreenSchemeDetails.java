@@ -41,34 +41,16 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.UpdateScreenTypes;
  * Details of a screen scheme.
  */
 @ApiModel(description = "Details of a screen scheme.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class UpdateScreenSchemeDetails {
-  @JsonProperty("name")
-  private String name;
-
   @JsonProperty("description")
   private String description;
 
+  @JsonProperty("name")
+  private String name;
+
   @JsonProperty("screens")
   private UpdateScreenTypes screens;
-
-  public UpdateScreenSchemeDetails name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * The name of the screen scheme. The name must be unique. The maximum length is 255 characters.
-   * @return name
-  **/
-  @ApiModelProperty(value = "The name of the screen scheme. The name must be unique. The maximum length is 255 characters.")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
 
   public UpdateScreenSchemeDetails description(String description) {
     this.description = description;
@@ -86,6 +68,24 @@ public class UpdateScreenSchemeDetails {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public UpdateScreenSchemeDetails name(String name) {
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * The name of the screen scheme. The name must be unique. The maximum length is 255 characters.
+   * @return name
+  **/
+  @ApiModelProperty(value = "The name of the screen scheme. The name must be unique. The maximum length is 255 characters.")
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 
   public UpdateScreenSchemeDetails screens(UpdateScreenTypes screens) {
@@ -116,14 +116,14 @@ public class UpdateScreenSchemeDetails {
       return false;
     }
     UpdateScreenSchemeDetails updateScreenSchemeDetails = (UpdateScreenSchemeDetails) o;
-    return Objects.equals(this.name, updateScreenSchemeDetails.name) &&
-        Objects.equals(this.description, updateScreenSchemeDetails.description) &&
+    return Objects.equals(this.description, updateScreenSchemeDetails.description) &&
+        Objects.equals(this.name, updateScreenSchemeDetails.name) &&
         Objects.equals(this.screens, updateScreenSchemeDetails.screens);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, screens);
+    return Objects.hash(description, name, screens);
   }
 
 
@@ -132,8 +132,8 @@ public class UpdateScreenSchemeDetails {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateScreenSchemeDetails {\n");
     
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    screens: ").append(toIndentedString(screens)).append("\n");
     sb.append("}");
     return sb.toString();

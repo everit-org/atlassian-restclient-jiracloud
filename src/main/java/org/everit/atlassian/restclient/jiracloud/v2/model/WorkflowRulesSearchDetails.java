@@ -44,34 +44,16 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.WorkflowTransitionRule
  * Details of workflow transition rules.
  */
 @ApiModel(description = "Details of workflow transition rules.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class WorkflowRulesSearchDetails {
-  @JsonProperty("workflowEntityId")
-  private UUID workflowEntityId;
-
   @JsonProperty("invalidRules")
   private List<UUID> invalidRules = new ArrayList<>();
 
   @JsonProperty("validRules")
   private List<WorkflowTransitionRules> validRules = new ArrayList<>();
 
-  public WorkflowRulesSearchDetails workflowEntityId(UUID workflowEntityId) {
-    this.workflowEntityId = workflowEntityId;
-    return this;
-  }
-
-   /**
-   * The workflow ID.
-   * @return workflowEntityId
-  **/
-  @ApiModelProperty(example = "a498d711-685d-428d-8c3e-bc03bb450ea7", value = "The workflow ID.")
-  public UUID getWorkflowEntityId() {
-    return workflowEntityId;
-  }
-
-  public void setWorkflowEntityId(UUID workflowEntityId) {
-    this.workflowEntityId = workflowEntityId;
-  }
+  @JsonProperty("workflowEntityId")
+  private UUID workflowEntityId;
 
   public WorkflowRulesSearchDetails invalidRules(List<UUID> invalidRules) {
     this.invalidRules = invalidRules;
@@ -125,6 +107,24 @@ public class WorkflowRulesSearchDetails {
     this.validRules = validRules;
   }
 
+  public WorkflowRulesSearchDetails workflowEntityId(UUID workflowEntityId) {
+    this.workflowEntityId = workflowEntityId;
+    return this;
+  }
+
+   /**
+   * The workflow ID.
+   * @return workflowEntityId
+  **/
+  @ApiModelProperty(example = "a498d711-685d-428d-8c3e-bc03bb450ea7", value = "The workflow ID.")
+  public UUID getWorkflowEntityId() {
+    return workflowEntityId;
+  }
+
+  public void setWorkflowEntityId(UUID workflowEntityId) {
+    this.workflowEntityId = workflowEntityId;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -135,14 +135,14 @@ public class WorkflowRulesSearchDetails {
       return false;
     }
     WorkflowRulesSearchDetails workflowRulesSearchDetails = (WorkflowRulesSearchDetails) o;
-    return Objects.equals(this.workflowEntityId, workflowRulesSearchDetails.workflowEntityId) &&
-        Objects.equals(this.invalidRules, workflowRulesSearchDetails.invalidRules) &&
-        Objects.equals(this.validRules, workflowRulesSearchDetails.validRules);
+    return Objects.equals(this.invalidRules, workflowRulesSearchDetails.invalidRules) &&
+        Objects.equals(this.validRules, workflowRulesSearchDetails.validRules) &&
+        Objects.equals(this.workflowEntityId, workflowRulesSearchDetails.workflowEntityId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(workflowEntityId, invalidRules, validRules);
+    return Objects.hash(invalidRules, validRules, workflowEntityId);
   }
 
 
@@ -151,9 +151,9 @@ public class WorkflowRulesSearchDetails {
     StringBuilder sb = new StringBuilder();
     sb.append("class WorkflowRulesSearchDetails {\n");
     
-    sb.append("    workflowEntityId: ").append(toIndentedString(workflowEntityId)).append("\n");
     sb.append("    invalidRules: ").append(toIndentedString(invalidRules)).append("\n");
     sb.append("    validRules: ").append(toIndentedString(validRules)).append("\n");
+    sb.append("    workflowEntityId: ").append(toIndentedString(workflowEntityId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

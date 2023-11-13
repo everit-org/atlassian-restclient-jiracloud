@@ -40,58 +40,22 @@ import io.swagger.annotations.ApiModelProperty;
  * The details of a custom field context.
  */
 @ApiModel(description = "The details of a custom field context.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class CustomFieldContext {
-  @JsonProperty("id")
-  private String id;
-
-  @JsonProperty("name")
-  private String name;
-
   @JsonProperty("description")
   private String description;
 
-  @JsonProperty("isGlobalContext")
-  private Boolean isGlobalContext;
+  @JsonProperty("id")
+  private String id;
 
   @JsonProperty("isAnyIssueType")
   private Boolean isAnyIssueType;
 
-  public CustomFieldContext id(String id) {
-    this.id = id;
-    return this;
-  }
+  @JsonProperty("isGlobalContext")
+  private Boolean isGlobalContext;
 
-   /**
-   * The ID of the context.
-   * @return id
-  **/
-  @ApiModelProperty(required = true, value = "The ID of the context.")
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-  public CustomFieldContext name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * The name of the context.
-   * @return name
-  **/
-  @ApiModelProperty(required = true, value = "The name of the context.")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
+  @JsonProperty("name")
+  private String name;
 
   public CustomFieldContext description(String description) {
     this.description = description;
@@ -111,22 +75,22 @@ public class CustomFieldContext {
     this.description = description;
   }
 
-  public CustomFieldContext isGlobalContext(Boolean isGlobalContext) {
-    this.isGlobalContext = isGlobalContext;
+  public CustomFieldContext id(String id) {
+    this.id = id;
     return this;
   }
 
    /**
-   * Whether the context is global.
-   * @return isGlobalContext
+   * The ID of the context.
+   * @return id
   **/
-  @ApiModelProperty(required = true, value = "Whether the context is global.")
-  public Boolean getIsGlobalContext() {
-    return isGlobalContext;
+  @ApiModelProperty(required = true, value = "The ID of the context.")
+  public String getId() {
+    return id;
   }
 
-  public void setIsGlobalContext(Boolean isGlobalContext) {
-    this.isGlobalContext = isGlobalContext;
+  public void setId(String id) {
+    this.id = id;
   }
 
   public CustomFieldContext isAnyIssueType(Boolean isAnyIssueType) {
@@ -147,6 +111,42 @@ public class CustomFieldContext {
     this.isAnyIssueType = isAnyIssueType;
   }
 
+  public CustomFieldContext isGlobalContext(Boolean isGlobalContext) {
+    this.isGlobalContext = isGlobalContext;
+    return this;
+  }
+
+   /**
+   * Whether the context is global.
+   * @return isGlobalContext
+  **/
+  @ApiModelProperty(required = true, value = "Whether the context is global.")
+  public Boolean getIsGlobalContext() {
+    return isGlobalContext;
+  }
+
+  public void setIsGlobalContext(Boolean isGlobalContext) {
+    this.isGlobalContext = isGlobalContext;
+  }
+
+  public CustomFieldContext name(String name) {
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * The name of the context.
+   * @return name
+  **/
+  @ApiModelProperty(required = true, value = "The name of the context.")
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -157,16 +157,16 @@ public class CustomFieldContext {
       return false;
     }
     CustomFieldContext customFieldContext = (CustomFieldContext) o;
-    return Objects.equals(this.id, customFieldContext.id) &&
-        Objects.equals(this.name, customFieldContext.name) &&
-        Objects.equals(this.description, customFieldContext.description) &&
+    return Objects.equals(this.description, customFieldContext.description) &&
+        Objects.equals(this.id, customFieldContext.id) &&
+        Objects.equals(this.isAnyIssueType, customFieldContext.isAnyIssueType) &&
         Objects.equals(this.isGlobalContext, customFieldContext.isGlobalContext) &&
-        Objects.equals(this.isAnyIssueType, customFieldContext.isAnyIssueType);
+        Objects.equals(this.name, customFieldContext.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, isGlobalContext, isAnyIssueType);
+    return Objects.hash(description, id, isAnyIssueType, isGlobalContext, name);
   }
 
 
@@ -175,11 +175,11 @@ public class CustomFieldContext {
     StringBuilder sb = new StringBuilder();
     sb.append("class CustomFieldContext {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    isGlobalContext: ").append(toIndentedString(isGlobalContext)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    isAnyIssueType: ").append(toIndentedString(isAnyIssueType)).append("\n");
+    sb.append("    isGlobalContext: ").append(toIndentedString(isGlobalContext)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }

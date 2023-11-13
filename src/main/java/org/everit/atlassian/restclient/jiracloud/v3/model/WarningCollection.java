@@ -39,35 +39,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The list of issue type IDs.
+ * WarningCollection
  */
-@ApiModel(description = "The list of issue type IDs.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
-public class IssueTypeIDs {
-  @JsonProperty("issueTypeIds")
-  private List<String> issueTypeIds = new ArrayList<>();
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
+public class WarningCollection {
+  @JsonProperty("warnings")
+  private List<String> warnings = new ArrayList<>();
 
-  public IssueTypeIDs issueTypeIDs(List<String> issueTypeIds) {
-    this.issueTypeIds = issueTypeIds;
+  public WarningCollection warnings(List<String> warnings) {
+    this.warnings = warnings;
     return this;
   }
 
-  public IssueTypeIDs addIssueTypeIdsItem(String issueTypeIdsItem) {
-    this.issueTypeIds.add(issueTypeIdsItem);
+  public WarningCollection addWarningsItem(String warningsItem) {
+    if (this.warnings == null) {
+      this.warnings = new ArrayList<>();
+    }
+    this.warnings.add(warningsItem);
     return this;
   }
 
    /**
-   * The list of issue type IDs.
-   * @return issueTypeIds
+   * Get warnings
+   * @return warnings
   **/
-  @ApiModelProperty(required = true, value = "The list of issue type IDs.")
-  public List<String> getIssueTypeIds() {
-    return issueTypeIds;
+  @ApiModelProperty(value = "")
+  public List<String> getWarnings() {
+    return warnings;
   }
 
-  public void setIssueTypeIds(List<String> issueTypeIds) {
-    this.issueTypeIds = issueTypeIds;
+  public void setWarnings(List<String> warnings) {
+    this.warnings = warnings;
   }
 
 
@@ -79,22 +81,22 @@ public class IssueTypeIDs {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    IssueTypeIDs issueTypeIDs = (IssueTypeIDs) o;
-    return Objects.equals(this.issueTypeIds, issueTypeIDs.issueTypeIds);
+    WarningCollection warningCollection = (WarningCollection) o;
+    return Objects.equals(this.warnings, warningCollection.warnings);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(issueTypeIds);
+    return Objects.hash(warnings);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class IssueTypeIds {\n");
+    sb.append("class WarningCollection {\n");
     
-    sb.append("    issueTypeIds: ").append(toIndentedString(issueTypeIds)).append("\n");
+    sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
     sb.append("}");
     return sb.toString();
   }

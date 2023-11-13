@@ -40,26 +40,8 @@ import io.swagger.annotations.ApiModelProperty;
  * Details about the project.
  */
 @ApiModel(description = "Details about the project.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class CreateProjectDetails {
-  @JsonProperty("key")
-  private String key;
-
-  @JsonProperty("name")
-  private String name;
-
-  @JsonProperty("description")
-  private String description;
-
-  @JsonProperty("lead")
-  private String lead;
-
-  @JsonProperty("leadAccountId")
-  private String leadAccountId;
-
-  @JsonProperty("url")
-  private String url;
-
   /**
    * The default assignee when creating issues for this project.
    */
@@ -101,57 +83,41 @@ public class CreateProjectDetails {
   @JsonProperty("avatarId")
   private Long avatarId;
 
+  @JsonProperty("categoryId")
+  private Long categoryId;
+
+  @JsonProperty("description")
+  private String description;
+
+  @JsonProperty("fieldConfigurationScheme")
+  private Long fieldConfigurationScheme;
+
   @JsonProperty("issueSecurityScheme")
   private Long issueSecurityScheme;
 
-  @JsonProperty("permissionScheme")
-  private Long permissionScheme;
+  @JsonProperty("issueTypeScheme")
+  private Long issueTypeScheme;
+
+  @JsonProperty("issueTypeScreenScheme")
+  private Long issueTypeScreenScheme;
+
+  @JsonProperty("key")
+  private String key;
+
+  @JsonProperty("lead")
+  private String lead;
+
+  @JsonProperty("leadAccountId")
+  private String leadAccountId;
+
+  @JsonProperty("name")
+  private String name;
 
   @JsonProperty("notificationScheme")
   private Long notificationScheme;
 
-  @JsonProperty("categoryId")
-  private Long categoryId;
-
-  /**
-   * The [project type](https://confluence.atlassian.com/x/GwiiLQ#Jiraapplicationsoverview-Productfeaturesandprojecttypes), which defines the application-specific feature set. If you don&#39;t specify the project template you have to specify the project type.
-   */
-  public enum ProjectTypeKeyEnum {
-    SOFTWARE("software"),
-    
-    SERVICE_DESK("service_desk"),
-    
-    BUSINESS("business");
-
-    private String value;
-
-    ProjectTypeKeyEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static ProjectTypeKeyEnum fromValue(String value) {
-      for (ProjectTypeKeyEnum b : ProjectTypeKeyEnum.values()) {
-        if (b.value.equalsIgnoreCase(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  @JsonProperty("projectTypeKey")
-  private ProjectTypeKeyEnum projectTypeKey;
+  @JsonProperty("permissionScheme")
+  private Long permissionScheme;
 
   /**
    * A predefined configuration for a project. The type of the &#x60;projectTemplateKey&#x60; must match with the type of the &#x60;projectTypeKey&#x60;.
@@ -167,7 +133,15 @@ public class CreateProjectDetails {
     
     PYXIS_GREENHOPPER_JIRA_GH_SIMPLIFIED_SCRUM_CLASSIC("com.pyxis.greenhopper.jira:gh-simplified-scrum-classic"),
     
-    ATLASSIAN_SERVICEDESK_SIMPLIFIED_IT_SERVICE_DESK("com.atlassian.servicedesk:simplified-it-service-desk"),
+    PYXIS_GREENHOPPER_JIRA_GH_CROSS_TEAM_TEMPLATE("com.pyxis.greenhopper.jira:gh-cross-team-template"),
+    
+    ATLASSIAN_SERVICEDESK_SIMPLIFIED_IT_SERVICE_MANAGEMENT("com.atlassian.servicedesk:simplified-it-service-management"),
+    
+    ATLASSIAN_SERVICEDESK_SIMPLIFIED_GENERAL_SERVICE_DESK("com.atlassian.servicedesk:simplified-general-service-desk"),
+    
+    ATLASSIAN_SERVICEDESK_SIMPLIFIED_GENERAL_SERVICE_DESK_IT("com.atlassian.servicedesk:simplified-general-service-desk-it"),
+    
+    ATLASSIAN_SERVICEDESK_SIMPLIFIED_GENERAL_SERVICE_DESK_BUSINESS("com.atlassian.servicedesk:simplified-general-service-desk-business"),
     
     ATLASSIAN_SERVICEDESK_SIMPLIFIED_INTERNAL_SERVICE_DESK("com.atlassian.servicedesk:simplified-internal-service-desk"),
     
@@ -176,6 +150,48 @@ public class CreateProjectDetails {
     ATLASSIAN_SERVICEDESK_SIMPLIFIED_HR_SERVICE_DESK("com.atlassian.servicedesk:simplified-hr-service-desk"),
     
     ATLASSIAN_SERVICEDESK_SIMPLIFIED_FACILITIES_SERVICE_DESK("com.atlassian.servicedesk:simplified-facilities-service-desk"),
+    
+    ATLASSIAN_SERVICEDESK_SIMPLIFIED_LEGAL_SERVICE_DESK("com.atlassian.servicedesk:simplified-legal-service-desk"),
+    
+    ATLASSIAN_SERVICEDESK_SIMPLIFIED_MARKETING_SERVICE_DESK("com.atlassian.servicedesk:simplified-marketing-service-desk"),
+    
+    ATLASSIAN_SERVICEDESK_SIMPLIFIED_FINANCE_SERVICE_DESK("com.atlassian.servicedesk:simplified-finance-service-desk"),
+    
+    ATLASSIAN_SERVICEDESK_SIMPLIFIED_ANALYTICS_SERVICE_DESK("com.atlassian.servicedesk:simplified-analytics-service-desk"),
+    
+    ATLASSIAN_SERVICEDESK_SIMPLIFIED_DESIGN_SERVICE_DESK("com.atlassian.servicedesk:simplified-design-service-desk"),
+    
+    ATLASSIAN_SERVICEDESK_SIMPLIFIED_SALES_SERVICE_DESK("com.atlassian.servicedesk:simplified-sales-service-desk"),
+    
+    ATLASSIAN_SERVICEDESK_SIMPLIFIED_HALP_SERVICE_DESK("com.atlassian.servicedesk:simplified-halp-service-desk"),
+    
+    ATLASSIAN_SERVICEDESK_SIMPLIFIED_BLANK_PROJECT_IT("com.atlassian.servicedesk:simplified-blank-project-it"),
+    
+    ATLASSIAN_SERVICEDESK_SIMPLIFIED_BLANK_PROJECT_BUSINESS("com.atlassian.servicedesk:simplified-blank-project-business"),
+    
+    ATLASSIAN_SERVICEDESK_NEXT_GEN_IT_SERVICE_DESK("com.atlassian.servicedesk:next-gen-it-service-desk"),
+    
+    ATLASSIAN_SERVICEDESK_NEXT_GEN_HR_SERVICE_DESK("com.atlassian.servicedesk:next-gen-hr-service-desk"),
+    
+    ATLASSIAN_SERVICEDESK_NEXT_GEN_LEGAL_SERVICE_DESK("com.atlassian.servicedesk:next-gen-legal-service-desk"),
+    
+    ATLASSIAN_SERVICEDESK_NEXT_GEN_MARKETING_SERVICE_DESK("com.atlassian.servicedesk:next-gen-marketing-service-desk"),
+    
+    ATLASSIAN_SERVICEDESK_NEXT_GEN_FACILITIES_SERVICE_DESK("com.atlassian.servicedesk:next-gen-facilities-service-desk"),
+    
+    ATLASSIAN_SERVICEDESK_NEXT_GEN_GENERAL_SERVICE_DESK("com.atlassian.servicedesk:next-gen-general-service-desk"),
+    
+    ATLASSIAN_SERVICEDESK_NEXT_GEN_GENERAL_IT_SERVICE_DESK("com.atlassian.servicedesk:next-gen-general-it-service-desk"),
+    
+    ATLASSIAN_SERVICEDESK_NEXT_GEN_GENERAL_BUSINESS_SERVICE_DESK("com.atlassian.servicedesk:next-gen-general-business-service-desk"),
+    
+    ATLASSIAN_SERVICEDESK_NEXT_GEN_ANALYTICS_SERVICE_DESK("com.atlassian.servicedesk:next-gen-analytics-service-desk"),
+    
+    ATLASSIAN_SERVICEDESK_NEXT_GEN_FINANCE_SERVICE_DESK("com.atlassian.servicedesk:next-gen-finance-service-desk"),
+    
+    ATLASSIAN_SERVICEDESK_NEXT_GEN_DESIGN_SERVICE_DESK("com.atlassian.servicedesk:next-gen-design-service-desk"),
+    
+    ATLASSIAN_SERVICEDESK_NEXT_GEN_SALES_SERVICE_DESK("com.atlassian.servicedesk:next-gen-sales-service-desk"),
     
     ATLASSIAN_JIRA_CORE_PROJECT_TEMPLATES_JIRA_CORE_SIMPLIFIED_CONTENT_MANAGEMENT("com.atlassian.jira-core-project-templates:jira-core-simplified-content-management"),
     
@@ -223,52 +239,104 @@ public class CreateProjectDetails {
   @JsonProperty("projectTemplateKey")
   private ProjectTemplateKeyEnum projectTemplateKey;
 
+  /**
+   * The [project type](https://confluence.atlassian.com/x/GwiiLQ#Jiraapplicationsoverview-Productfeaturesandprojecttypes), which defines the application-specific feature set. If you don&#39;t specify the project template you have to specify the project type.
+   */
+  public enum ProjectTypeKeyEnum {
+    SOFTWARE("software"),
+    
+    SERVICE_DESK("service_desk"),
+    
+    BUSINESS("business");
+
+    private String value;
+
+    ProjectTypeKeyEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ProjectTypeKeyEnum fromValue(String value) {
+      for (ProjectTypeKeyEnum b : ProjectTypeKeyEnum.values()) {
+        if (b.value.equalsIgnoreCase(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  @JsonProperty("projectTypeKey")
+  private ProjectTypeKeyEnum projectTypeKey;
+
+  @JsonProperty("url")
+  private String url;
+
   @JsonProperty("workflowScheme")
   private Long workflowScheme;
 
-  @JsonProperty("issueTypeScreenScheme")
-  private Long issueTypeScreenScheme;
-
-  @JsonProperty("issueTypeScheme")
-  private Long issueTypeScheme;
-
-  @JsonProperty("fieldConfigurationScheme")
-  private Long fieldConfigurationScheme;
-
-  public CreateProjectDetails key(String key) {
-    this.key = key;
+  public CreateProjectDetails assigneeType(AssigneeTypeEnum assigneeType) {
+    this.assigneeType = assigneeType;
     return this;
   }
 
    /**
-   * Project keys must be unique and start with an uppercase letter followed by one or more uppercase alphanumeric characters. The maximum length is 10 characters.
-   * @return key
+   * The default assignee when creating issues for this project.
+   * @return assigneeType
   **/
-  @ApiModelProperty(required = true, value = "Project keys must be unique and start with an uppercase letter followed by one or more uppercase alphanumeric characters. The maximum length is 10 characters.")
-  public String getKey() {
-    return key;
+  @ApiModelProperty(value = "The default assignee when creating issues for this project.")
+  public AssigneeTypeEnum getAssigneeType() {
+    return assigneeType;
   }
 
-  public void setKey(String key) {
-    this.key = key;
+  public void setAssigneeType(AssigneeTypeEnum assigneeType) {
+    this.assigneeType = assigneeType;
   }
 
-  public CreateProjectDetails name(String name) {
-    this.name = name;
+  public CreateProjectDetails avatarId(Long avatarId) {
+    this.avatarId = avatarId;
     return this;
   }
 
    /**
-   * The name of the project.
-   * @return name
+   * An integer value for the project&#39;s avatar.
+   * @return avatarId
   **/
-  @ApiModelProperty(required = true, value = "The name of the project.")
-  public String getName() {
-    return name;
+  @ApiModelProperty(value = "An integer value for the project's avatar.")
+  public Long getAvatarId() {
+    return avatarId;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setAvatarId(Long avatarId) {
+    this.avatarId = avatarId;
+  }
+
+  public CreateProjectDetails categoryId(Long categoryId) {
+    this.categoryId = categoryId;
+    return this;
+  }
+
+   /**
+   * The ID of the project&#39;s category. A complete list of category IDs is found using the [Get all project categories](#api-rest-api-3-projectCategory-get) operation.
+   * @return categoryId
+  **/
+  @ApiModelProperty(value = "The ID of the project's category. A complete list of category IDs is found using the [Get all project categories](#api-rest-api-3-projectCategory-get) operation.")
+  public Long getCategoryId() {
+    return categoryId;
+  }
+
+  public void setCategoryId(Long categoryId) {
+    this.categoryId = categoryId;
   }
 
   public CreateProjectDetails description(String description) {
@@ -287,6 +355,96 @@ public class CreateProjectDetails {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public CreateProjectDetails fieldConfigurationScheme(Long fieldConfigurationScheme) {
+    this.fieldConfigurationScheme = fieldConfigurationScheme;
+    return this;
+  }
+
+   /**
+   * The ID of the field configuration scheme for the project. Use the [Get all field configuration schemes](#api-rest-api-3-fieldconfigurationscheme-get) operation to get a list of field configuration scheme IDs. If you specify the field configuration scheme you cannot specify the project template key.
+   * @return fieldConfigurationScheme
+  **/
+  @ApiModelProperty(value = "The ID of the field configuration scheme for the project. Use the [Get all field configuration schemes](#api-rest-api-3-fieldconfigurationscheme-get) operation to get a list of field configuration scheme IDs. If you specify the field configuration scheme you cannot specify the project template key.")
+  public Long getFieldConfigurationScheme() {
+    return fieldConfigurationScheme;
+  }
+
+  public void setFieldConfigurationScheme(Long fieldConfigurationScheme) {
+    this.fieldConfigurationScheme = fieldConfigurationScheme;
+  }
+
+  public CreateProjectDetails issueSecurityScheme(Long issueSecurityScheme) {
+    this.issueSecurityScheme = issueSecurityScheme;
+    return this;
+  }
+
+   /**
+   * The ID of the issue security scheme for the project, which enables you to control who can and cannot view issues. Use the [Get issue security schemes](#api-rest-api-3-issuesecurityschemes-get) resource to get all issue security scheme IDs.
+   * @return issueSecurityScheme
+  **/
+  @ApiModelProperty(value = "The ID of the issue security scheme for the project, which enables you to control who can and cannot view issues. Use the [Get issue security schemes](#api-rest-api-3-issuesecurityschemes-get) resource to get all issue security scheme IDs.")
+  public Long getIssueSecurityScheme() {
+    return issueSecurityScheme;
+  }
+
+  public void setIssueSecurityScheme(Long issueSecurityScheme) {
+    this.issueSecurityScheme = issueSecurityScheme;
+  }
+
+  public CreateProjectDetails issueTypeScheme(Long issueTypeScheme) {
+    this.issueTypeScheme = issueTypeScheme;
+    return this;
+  }
+
+   /**
+   * The ID of the issue type scheme for the project. Use the [Get all issue type schemes](#api-rest-api-3-issuetypescheme-get) operation to get a list of issue type scheme IDs. If you specify the issue type scheme you cannot specify the project template key.
+   * @return issueTypeScheme
+  **/
+  @ApiModelProperty(value = "The ID of the issue type scheme for the project. Use the [Get all issue type schemes](#api-rest-api-3-issuetypescheme-get) operation to get a list of issue type scheme IDs. If you specify the issue type scheme you cannot specify the project template key.")
+  public Long getIssueTypeScheme() {
+    return issueTypeScheme;
+  }
+
+  public void setIssueTypeScheme(Long issueTypeScheme) {
+    this.issueTypeScheme = issueTypeScheme;
+  }
+
+  public CreateProjectDetails issueTypeScreenScheme(Long issueTypeScreenScheme) {
+    this.issueTypeScreenScheme = issueTypeScreenScheme;
+    return this;
+  }
+
+   /**
+   * The ID of the issue type screen scheme for the project. Use the [Get all issue type screen schemes](#api-rest-api-3-issuetypescreenscheme-get) operation to get a list of issue type screen scheme IDs. If you specify the issue type screen scheme you cannot specify the project template key.
+   * @return issueTypeScreenScheme
+  **/
+  @ApiModelProperty(value = "The ID of the issue type screen scheme for the project. Use the [Get all issue type screen schemes](#api-rest-api-3-issuetypescreenscheme-get) operation to get a list of issue type screen scheme IDs. If you specify the issue type screen scheme you cannot specify the project template key.")
+  public Long getIssueTypeScreenScheme() {
+    return issueTypeScreenScheme;
+  }
+
+  public void setIssueTypeScreenScheme(Long issueTypeScreenScheme) {
+    this.issueTypeScreenScheme = issueTypeScreenScheme;
+  }
+
+  public CreateProjectDetails key(String key) {
+    this.key = key;
+    return this;
+  }
+
+   /**
+   * Project keys must be unique and start with an uppercase letter followed by one or more uppercase alphanumeric characters. The maximum length is 10 characters.
+   * @return key
+  **/
+  @ApiModelProperty(required = true, value = "Project keys must be unique and start with an uppercase letter followed by one or more uppercase alphanumeric characters. The maximum length is 10 characters.")
+  public String getKey() {
+    return key;
+  }
+
+  public void setKey(String key) {
+    this.key = key;
   }
 
   public CreateProjectDetails lead(String lead) {
@@ -325,94 +483,22 @@ public class CreateProjectDetails {
     this.leadAccountId = leadAccountId;
   }
 
-  public CreateProjectDetails url(String url) {
-    this.url = url;
+  public CreateProjectDetails name(String name) {
+    this.name = name;
     return this;
   }
 
    /**
-   * A link to information about this project, such as project documentation
-   * @return url
+   * The name of the project.
+   * @return name
   **/
-  @ApiModelProperty(value = "A link to information about this project, such as project documentation")
-  public String getUrl() {
-    return url;
+  @ApiModelProperty(required = true, value = "The name of the project.")
+  public String getName() {
+    return name;
   }
 
-  public void setUrl(String url) {
-    this.url = url;
-  }
-
-  public CreateProjectDetails assigneeType(AssigneeTypeEnum assigneeType) {
-    this.assigneeType = assigneeType;
-    return this;
-  }
-
-   /**
-   * The default assignee when creating issues for this project.
-   * @return assigneeType
-  **/
-  @ApiModelProperty(value = "The default assignee when creating issues for this project.")
-  public AssigneeTypeEnum getAssigneeType() {
-    return assigneeType;
-  }
-
-  public void setAssigneeType(AssigneeTypeEnum assigneeType) {
-    this.assigneeType = assigneeType;
-  }
-
-  public CreateProjectDetails avatarId(Long avatarId) {
-    this.avatarId = avatarId;
-    return this;
-  }
-
-   /**
-   * An integer value for the project&#39;s avatar.
-   * @return avatarId
-  **/
-  @ApiModelProperty(value = "An integer value for the project's avatar.")
-  public Long getAvatarId() {
-    return avatarId;
-  }
-
-  public void setAvatarId(Long avatarId) {
-    this.avatarId = avatarId;
-  }
-
-  public CreateProjectDetails issueSecurityScheme(Long issueSecurityScheme) {
-    this.issueSecurityScheme = issueSecurityScheme;
-    return this;
-  }
-
-   /**
-   * The ID of the issue security scheme for the project, which enables you to control who can and cannot view issues. Use the [Get issue security schemes](#api-rest-api-3-issuesecurityschemes-get) resource to get all issue security scheme IDs.
-   * @return issueSecurityScheme
-  **/
-  @ApiModelProperty(value = "The ID of the issue security scheme for the project, which enables you to control who can and cannot view issues. Use the [Get issue security schemes](#api-rest-api-3-issuesecurityschemes-get) resource to get all issue security scheme IDs.")
-  public Long getIssueSecurityScheme() {
-    return issueSecurityScheme;
-  }
-
-  public void setIssueSecurityScheme(Long issueSecurityScheme) {
-    this.issueSecurityScheme = issueSecurityScheme;
-  }
-
-  public CreateProjectDetails permissionScheme(Long permissionScheme) {
-    this.permissionScheme = permissionScheme;
-    return this;
-  }
-
-   /**
-   * The ID of the permission scheme for the project. Use the [Get all permission schemes](#api-rest-api-3-permissionscheme-get) resource to see a list of all permission scheme IDs.
-   * @return permissionScheme
-  **/
-  @ApiModelProperty(value = "The ID of the permission scheme for the project. Use the [Get all permission schemes](#api-rest-api-3-permissionscheme-get) resource to see a list of all permission scheme IDs.")
-  public Long getPermissionScheme() {
-    return permissionScheme;
-  }
-
-  public void setPermissionScheme(Long permissionScheme) {
-    this.permissionScheme = permissionScheme;
+  public void setName(String name) {
+    this.name = name;
   }
 
   public CreateProjectDetails notificationScheme(Long notificationScheme) {
@@ -433,40 +519,22 @@ public class CreateProjectDetails {
     this.notificationScheme = notificationScheme;
   }
 
-  public CreateProjectDetails categoryId(Long categoryId) {
-    this.categoryId = categoryId;
+  public CreateProjectDetails permissionScheme(Long permissionScheme) {
+    this.permissionScheme = permissionScheme;
     return this;
   }
 
    /**
-   * The ID of the project&#39;s category. A complete list of category IDs is found using the [Get all project categories](#api-rest-api-3-projectCategory-get) operation.
-   * @return categoryId
+   * The ID of the permission scheme for the project. Use the [Get all permission schemes](#api-rest-api-3-permissionscheme-get) resource to see a list of all permission scheme IDs.
+   * @return permissionScheme
   **/
-  @ApiModelProperty(value = "The ID of the project's category. A complete list of category IDs is found using the [Get all project categories](#api-rest-api-3-projectCategory-get) operation.")
-  public Long getCategoryId() {
-    return categoryId;
+  @ApiModelProperty(value = "The ID of the permission scheme for the project. Use the [Get all permission schemes](#api-rest-api-3-permissionscheme-get) resource to see a list of all permission scheme IDs.")
+  public Long getPermissionScheme() {
+    return permissionScheme;
   }
 
-  public void setCategoryId(Long categoryId) {
-    this.categoryId = categoryId;
-  }
-
-  public CreateProjectDetails projectTypeKey(ProjectTypeKeyEnum projectTypeKey) {
-    this.projectTypeKey = projectTypeKey;
-    return this;
-  }
-
-   /**
-   * The [project type](https://confluence.atlassian.com/x/GwiiLQ#Jiraapplicationsoverview-Productfeaturesandprojecttypes), which defines the application-specific feature set. If you don&#39;t specify the project template you have to specify the project type.
-   * @return projectTypeKey
-  **/
-  @ApiModelProperty(value = "The [project type](https://confluence.atlassian.com/x/GwiiLQ#Jiraapplicationsoverview-Productfeaturesandprojecttypes), which defines the application-specific feature set. If you don't specify the project template you have to specify the project type.")
-  public ProjectTypeKeyEnum getProjectTypeKey() {
-    return projectTypeKey;
-  }
-
-  public void setProjectTypeKey(ProjectTypeKeyEnum projectTypeKey) {
-    this.projectTypeKey = projectTypeKey;
+  public void setPermissionScheme(Long permissionScheme) {
+    this.permissionScheme = permissionScheme;
   }
 
   public CreateProjectDetails projectTemplateKey(ProjectTemplateKeyEnum projectTemplateKey) {
@@ -487,6 +555,42 @@ public class CreateProjectDetails {
     this.projectTemplateKey = projectTemplateKey;
   }
 
+  public CreateProjectDetails projectTypeKey(ProjectTypeKeyEnum projectTypeKey) {
+    this.projectTypeKey = projectTypeKey;
+    return this;
+  }
+
+   /**
+   * The [project type](https://confluence.atlassian.com/x/GwiiLQ#Jiraapplicationsoverview-Productfeaturesandprojecttypes), which defines the application-specific feature set. If you don&#39;t specify the project template you have to specify the project type.
+   * @return projectTypeKey
+  **/
+  @ApiModelProperty(value = "The [project type](https://confluence.atlassian.com/x/GwiiLQ#Jiraapplicationsoverview-Productfeaturesandprojecttypes), which defines the application-specific feature set. If you don't specify the project template you have to specify the project type.")
+  public ProjectTypeKeyEnum getProjectTypeKey() {
+    return projectTypeKey;
+  }
+
+  public void setProjectTypeKey(ProjectTypeKeyEnum projectTypeKey) {
+    this.projectTypeKey = projectTypeKey;
+  }
+
+  public CreateProjectDetails url(String url) {
+    this.url = url;
+    return this;
+  }
+
+   /**
+   * A link to information about this project, such as project documentation
+   * @return url
+  **/
+  @ApiModelProperty(value = "A link to information about this project, such as project documentation")
+  public String getUrl() {
+    return url;
+  }
+
+  public void setUrl(String url) {
+    this.url = url;
+  }
+
   public CreateProjectDetails workflowScheme(Long workflowScheme) {
     this.workflowScheme = workflowScheme;
     return this;
@@ -505,60 +609,6 @@ public class CreateProjectDetails {
     this.workflowScheme = workflowScheme;
   }
 
-  public CreateProjectDetails issueTypeScreenScheme(Long issueTypeScreenScheme) {
-    this.issueTypeScreenScheme = issueTypeScreenScheme;
-    return this;
-  }
-
-   /**
-   * The ID of the issue type screen scheme for the project. Use the [Get all issue type screen schemes](#api-rest-api-3-issuetypescreenscheme-get) operation to get a list of issue type screen scheme IDs. If you specify the issue type screen scheme you cannot specify the project template key.
-   * @return issueTypeScreenScheme
-  **/
-  @ApiModelProperty(value = "The ID of the issue type screen scheme for the project. Use the [Get all issue type screen schemes](#api-rest-api-3-issuetypescreenscheme-get) operation to get a list of issue type screen scheme IDs. If you specify the issue type screen scheme you cannot specify the project template key.")
-  public Long getIssueTypeScreenScheme() {
-    return issueTypeScreenScheme;
-  }
-
-  public void setIssueTypeScreenScheme(Long issueTypeScreenScheme) {
-    this.issueTypeScreenScheme = issueTypeScreenScheme;
-  }
-
-  public CreateProjectDetails issueTypeScheme(Long issueTypeScheme) {
-    this.issueTypeScheme = issueTypeScheme;
-    return this;
-  }
-
-   /**
-   * The ID of the issue type scheme for the project. Use the [Get all issue type schemes](#api-rest-api-3-issuetypescheme-get) operation to get a list of issue type scheme IDs. If you specify the issue type scheme you cannot specify the project template key.
-   * @return issueTypeScheme
-  **/
-  @ApiModelProperty(value = "The ID of the issue type scheme for the project. Use the [Get all issue type schemes](#api-rest-api-3-issuetypescheme-get) operation to get a list of issue type scheme IDs. If you specify the issue type scheme you cannot specify the project template key.")
-  public Long getIssueTypeScheme() {
-    return issueTypeScheme;
-  }
-
-  public void setIssueTypeScheme(Long issueTypeScheme) {
-    this.issueTypeScheme = issueTypeScheme;
-  }
-
-  public CreateProjectDetails fieldConfigurationScheme(Long fieldConfigurationScheme) {
-    this.fieldConfigurationScheme = fieldConfigurationScheme;
-    return this;
-  }
-
-   /**
-   * The ID of the field configuration scheme for the project. Use the [Get all field configuration schemes](#api-rest-api-3-fieldconfigurationscheme-get) operation to get a list of field configuration scheme IDs. If you specify the field configuration scheme you cannot specify the project template key.
-   * @return fieldConfigurationScheme
-  **/
-  @ApiModelProperty(value = "The ID of the field configuration scheme for the project. Use the [Get all field configuration schemes](#api-rest-api-3-fieldconfigurationscheme-get) operation to get a list of field configuration scheme IDs. If you specify the field configuration scheme you cannot specify the project template key.")
-  public Long getFieldConfigurationScheme() {
-    return fieldConfigurationScheme;
-  }
-
-  public void setFieldConfigurationScheme(Long fieldConfigurationScheme) {
-    this.fieldConfigurationScheme = fieldConfigurationScheme;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -569,29 +619,29 @@ public class CreateProjectDetails {
       return false;
     }
     CreateProjectDetails createProjectDetails = (CreateProjectDetails) o;
-    return Objects.equals(this.key, createProjectDetails.key) &&
-        Objects.equals(this.name, createProjectDetails.name) &&
+    return Objects.equals(this.assigneeType, createProjectDetails.assigneeType) &&
+        Objects.equals(this.avatarId, createProjectDetails.avatarId) &&
+        Objects.equals(this.categoryId, createProjectDetails.categoryId) &&
         Objects.equals(this.description, createProjectDetails.description) &&
+        Objects.equals(this.fieldConfigurationScheme, createProjectDetails.fieldConfigurationScheme) &&
+        Objects.equals(this.issueSecurityScheme, createProjectDetails.issueSecurityScheme) &&
+        Objects.equals(this.issueTypeScheme, createProjectDetails.issueTypeScheme) &&
+        Objects.equals(this.issueTypeScreenScheme, createProjectDetails.issueTypeScreenScheme) &&
+        Objects.equals(this.key, createProjectDetails.key) &&
         Objects.equals(this.lead, createProjectDetails.lead) &&
         Objects.equals(this.leadAccountId, createProjectDetails.leadAccountId) &&
-        Objects.equals(this.url, createProjectDetails.url) &&
-        Objects.equals(this.assigneeType, createProjectDetails.assigneeType) &&
-        Objects.equals(this.avatarId, createProjectDetails.avatarId) &&
-        Objects.equals(this.issueSecurityScheme, createProjectDetails.issueSecurityScheme) &&
-        Objects.equals(this.permissionScheme, createProjectDetails.permissionScheme) &&
+        Objects.equals(this.name, createProjectDetails.name) &&
         Objects.equals(this.notificationScheme, createProjectDetails.notificationScheme) &&
-        Objects.equals(this.categoryId, createProjectDetails.categoryId) &&
-        Objects.equals(this.projectTypeKey, createProjectDetails.projectTypeKey) &&
+        Objects.equals(this.permissionScheme, createProjectDetails.permissionScheme) &&
         Objects.equals(this.projectTemplateKey, createProjectDetails.projectTemplateKey) &&
-        Objects.equals(this.workflowScheme, createProjectDetails.workflowScheme) &&
-        Objects.equals(this.issueTypeScreenScheme, createProjectDetails.issueTypeScreenScheme) &&
-        Objects.equals(this.issueTypeScheme, createProjectDetails.issueTypeScheme) &&
-        Objects.equals(this.fieldConfigurationScheme, createProjectDetails.fieldConfigurationScheme);
+        Objects.equals(this.projectTypeKey, createProjectDetails.projectTypeKey) &&
+        Objects.equals(this.url, createProjectDetails.url) &&
+        Objects.equals(this.workflowScheme, createProjectDetails.workflowScheme);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(key, name, description, lead, leadAccountId, url, assigneeType, avatarId, issueSecurityScheme, permissionScheme, notificationScheme, categoryId, projectTypeKey, projectTemplateKey, workflowScheme, issueTypeScreenScheme, issueTypeScheme, fieldConfigurationScheme);
+    return Objects.hash(assigneeType, avatarId, categoryId, description, fieldConfigurationScheme, issueSecurityScheme, issueTypeScheme, issueTypeScreenScheme, key, lead, leadAccountId, name, notificationScheme, permissionScheme, projectTemplateKey, projectTypeKey, url, workflowScheme);
   }
 
 
@@ -600,24 +650,24 @@ public class CreateProjectDetails {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateProjectDetails {\n");
     
-    sb.append("    key: ").append(toIndentedString(key)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    lead: ").append(toIndentedString(lead)).append("\n");
-    sb.append("    leadAccountId: ").append(toIndentedString(leadAccountId)).append("\n");
-    sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    assigneeType: ").append(toIndentedString(assigneeType)).append("\n");
     sb.append("    avatarId: ").append(toIndentedString(avatarId)).append("\n");
-    sb.append("    issueSecurityScheme: ").append(toIndentedString(issueSecurityScheme)).append("\n");
-    sb.append("    permissionScheme: ").append(toIndentedString(permissionScheme)).append("\n");
-    sb.append("    notificationScheme: ").append(toIndentedString(notificationScheme)).append("\n");
     sb.append("    categoryId: ").append(toIndentedString(categoryId)).append("\n");
-    sb.append("    projectTypeKey: ").append(toIndentedString(projectTypeKey)).append("\n");
-    sb.append("    projectTemplateKey: ").append(toIndentedString(projectTemplateKey)).append("\n");
-    sb.append("    workflowScheme: ").append(toIndentedString(workflowScheme)).append("\n");
-    sb.append("    issueTypeScreenScheme: ").append(toIndentedString(issueTypeScreenScheme)).append("\n");
-    sb.append("    issueTypeScheme: ").append(toIndentedString(issueTypeScheme)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    fieldConfigurationScheme: ").append(toIndentedString(fieldConfigurationScheme)).append("\n");
+    sb.append("    issueSecurityScheme: ").append(toIndentedString(issueSecurityScheme)).append("\n");
+    sb.append("    issueTypeScheme: ").append(toIndentedString(issueTypeScheme)).append("\n");
+    sb.append("    issueTypeScreenScheme: ").append(toIndentedString(issueTypeScreenScheme)).append("\n");
+    sb.append("    key: ").append(toIndentedString(key)).append("\n");
+    sb.append("    lead: ").append(toIndentedString(lead)).append("\n");
+    sb.append("    leadAccountId: ").append(toIndentedString(leadAccountId)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    notificationScheme: ").append(toIndentedString(notificationScheme)).append("\n");
+    sb.append("    permissionScheme: ").append(toIndentedString(permissionScheme)).append("\n");
+    sb.append("    projectTemplateKey: ").append(toIndentedString(projectTemplateKey)).append("\n");
+    sb.append("    projectTypeKey: ").append(toIndentedString(projectTypeKey)).append("\n");
+    sb.append("    url: ").append(toIndentedString(url)).append("\n");
+    sb.append("    workflowScheme: ").append(toIndentedString(workflowScheme)).append("\n");
     sb.append("}");
     return sb.toString();
   }

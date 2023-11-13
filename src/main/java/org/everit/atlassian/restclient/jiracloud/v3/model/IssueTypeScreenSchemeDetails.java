@@ -43,34 +43,16 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.IssueTypeScreenSchemeM
  * The details of an issue type screen scheme.
  */
 @ApiModel(description = "The details of an issue type screen scheme.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class IssueTypeScreenSchemeDetails {
-  @JsonProperty("name")
-  private String name;
-
   @JsonProperty("description")
   private String description;
 
   @JsonProperty("issueTypeMappings")
   private List<IssueTypeScreenSchemeMapping> issueTypeMappings = new ArrayList<>();
 
-  public IssueTypeScreenSchemeDetails name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * The name of the issue type screen scheme. The name must be unique. The maximum length is 255 characters.
-   * @return name
-  **/
-  @ApiModelProperty(required = true, value = "The name of the issue type screen scheme. The name must be unique. The maximum length is 255 characters.")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
+  @JsonProperty("name")
+  private String name;
 
   public IssueTypeScreenSchemeDetails description(String description) {
     this.description = description;
@@ -113,6 +95,24 @@ public class IssueTypeScreenSchemeDetails {
     this.issueTypeMappings = issueTypeMappings;
   }
 
+  public IssueTypeScreenSchemeDetails name(String name) {
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * The name of the issue type screen scheme. The name must be unique. The maximum length is 255 characters.
+   * @return name
+  **/
+  @ApiModelProperty(required = true, value = "The name of the issue type screen scheme. The name must be unique. The maximum length is 255 characters.")
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -123,14 +123,14 @@ public class IssueTypeScreenSchemeDetails {
       return false;
     }
     IssueTypeScreenSchemeDetails issueTypeScreenSchemeDetails = (IssueTypeScreenSchemeDetails) o;
-    return Objects.equals(this.name, issueTypeScreenSchemeDetails.name) &&
-        Objects.equals(this.description, issueTypeScreenSchemeDetails.description) &&
-        Objects.equals(this.issueTypeMappings, issueTypeScreenSchemeDetails.issueTypeMappings);
+    return Objects.equals(this.description, issueTypeScreenSchemeDetails.description) &&
+        Objects.equals(this.issueTypeMappings, issueTypeScreenSchemeDetails.issueTypeMappings) &&
+        Objects.equals(this.name, issueTypeScreenSchemeDetails.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, issueTypeMappings);
+    return Objects.hash(description, issueTypeMappings, name);
   }
 
 
@@ -139,9 +139,9 @@ public class IssueTypeScreenSchemeDetails {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueTypeScreenSchemeDetails {\n");
     
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    issueTypeMappings: ").append(toIndentedString(issueTypeMappings)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }

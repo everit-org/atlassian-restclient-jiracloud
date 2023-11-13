@@ -41,8 +41,14 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.PagedListUserDetailsAp
 /**
  * Group
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class Group {
+  @JsonProperty("expand")
+  private String expand;
+
+  @JsonProperty("groupId")
+  private String groupId;
+
   @JsonProperty("name")
   private String name;
 
@@ -52,8 +58,32 @@ public class Group {
   @JsonProperty("users")
   private PagedListUserDetailsApplicationUser users;
 
-  @JsonProperty("expand")
-  private String expand;
+   /**
+   * Expand options that include additional group details in the response.
+   * @return expand
+  **/
+  @ApiModelProperty(value = "Expand options that include additional group details in the response.")
+  public String getExpand() {
+    return expand;
+  }
+
+  public Group groupId(String groupId) {
+    this.groupId = groupId;
+    return this;
+  }
+
+   /**
+   * The ID of the group, which uniquely identifies the group across all Atlassian products. For example, *952d12c3-5b5b-4d04-bb32-44d383afc4b2*.
+   * @return groupId
+  **/
+  @ApiModelProperty(value = "The ID of the group, which uniquely identifies the group across all Atlassian products. For example, *952d12c3-5b5b-4d04-bb32-44d383afc4b2*.")
+  public String getGroupId() {
+    return groupId;
+  }
+
+  public void setGroupId(String groupId) {
+    this.groupId = groupId;
+  }
 
   public Group name(String name) {
     this.name = name;
@@ -91,15 +121,6 @@ public class Group {
     return users;
   }
 
-   /**
-   * Expand options that include additional group details in the response.
-   * @return expand
-  **/
-  @ApiModelProperty(value = "Expand options that include additional group details in the response.")
-  public String getExpand() {
-    return expand;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -110,15 +131,16 @@ public class Group {
       return false;
     }
     Group group = (Group) o;
-    return Objects.equals(this.name, group.name) &&
+    return Objects.equals(this.expand, group.expand) &&
+        Objects.equals(this.groupId, group.groupId) &&
+        Objects.equals(this.name, group.name) &&
         Objects.equals(this.self, group.self) &&
-        Objects.equals(this.users, group.users) &&
-        Objects.equals(this.expand, group.expand);
+        Objects.equals(this.users, group.users);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, self, users, expand);
+    return Objects.hash(expand, groupId, name, self, users);
   }
 
 
@@ -127,10 +149,11 @@ public class Group {
     StringBuilder sb = new StringBuilder();
     sb.append("class Group {\n");
     
+    sb.append("    expand: ").append(toIndentedString(expand)).append("\n");
+    sb.append("    groupId: ").append(toIndentedString(groupId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    users: ").append(toIndentedString(users)).append("\n");
-    sb.append("    expand: ").append(toIndentedString(expand)).append("\n");
     sb.append("}");
     return sb.toString();
   }

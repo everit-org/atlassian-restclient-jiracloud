@@ -28,7 +28,8 @@ import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
 import org.everit.http.restclient.TypeReference;
 
-import org.everit.atlassian.restclient.jiracloud.v3.model.CustomFieldValueUpdateRequest;
+import org.everit.atlassian.restclient.jiracloud.v3.model.CustomFieldValueUpdateDetails;
+import org.everit.atlassian.restclient.jiracloud.v3.model.MultipleCustomFieldValuesUpdateDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -43,6 +44,8 @@ public class IssueCustomFieldValuesAppsApi {
 
   private static final TypeReference<Object> returnType_updateCustomFieldValue = new TypeReference<Object>() {};
 
+  private static final TypeReference<Object> returnType_updateMultipleCustomFieldValues = new TypeReference<Object>() {};
+
   private final RestClient restClient;
 
   public IssueCustomFieldValuesAppsApi(RestClient restClient) {
@@ -53,13 +56,13 @@ public class IssueCustomFieldValuesAppsApi {
    * Update custom field value
    * Updates the value of a custom field on one or more issues. Custom fields can only be updated by the Forge app that created them.  **[Permissions](#permissions) required:** Only the app that created the custom field can update its values with this operation.
    * @param fieldIdOrKey The ID or key of the custom field. For example, `customfield_10010`. (required)
-   * @param customFieldValueUpdateRequest  (required)
-   * @param generateChangelog Whether to generate a changelog for this update. Default: true. (optional, default to true)
+   * @param customFieldValueUpdateDetails  (required)
+   * @param generateChangelog Whether to generate a changelog for this update. (optional, default to true)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Object&gt;
    */
   public Single<Object> updateCustomFieldValue(
-    String fieldIdOrKey, CustomFieldValueUpdateRequest customFieldValueUpdateRequest, Optional<Boolean> generateChangelog, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String fieldIdOrKey, CustomFieldValueUpdateDetails customFieldValueUpdateDetails, Optional<Boolean> generateChangelog, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.PUT)
@@ -79,9 +82,42 @@ public class IssueCustomFieldValuesAppsApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    requestBuilder.requestBody(Optional.of(customFieldValueUpdateRequest));
+    requestBuilder.requestBody(Optional.of(customFieldValueUpdateDetails));
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updateCustomFieldValue);
+  }
+
+  /**
+   * Update custom fields
+   * Updates the value of one or more custom fields on one or more issues. Combinations of custom field and issue should be unique within the request. Custom fields can only be updated by the Forge app that created them.  **[Permissions](#permissions) required:** Only the app that created the custom field can update its values with this operation.
+   * @param multipleCustomFieldValuesUpdateDetails  (required)
+   * @param generateChangelog Whether to generate a changelog for this update. (optional, default to true)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;Object&gt;
+   */
+  public Single<Object> updateMultipleCustomFieldValues(
+    MultipleCustomFieldValuesUpdateDetails multipleCustomFieldValuesUpdateDetails, Optional<Boolean> generateChangelog, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.POST)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/app/field/value");
+
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (generateChangelog.isPresent()) {
+      queryParams.put("generateChangelog", Collections.singleton(String.valueOf(generateChangelog.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(multipleCustomFieldValuesUpdateDetails));
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updateMultipleCustomFieldValues);
   }
 
 }

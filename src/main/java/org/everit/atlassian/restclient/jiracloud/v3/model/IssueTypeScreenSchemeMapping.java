@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * The IDs of the screen schemes for the issue type IDs.
  */
 @ApiModel(description = "The IDs of the screen schemes for the issue type IDs.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class IssueTypeScreenSchemeMapping {
   @JsonProperty("issueTypeId")
   private String issueTypeId;

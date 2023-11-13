@@ -28,15 +28,21 @@ import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
 import org.everit.http.restclient.TypeReference;
 
+import org.everit.atlassian.restclient.jiracloud.v2.model.ArchiveIssueAsyncRequest;
 import org.everit.atlassian.restclient.jiracloud.v2.model.CreatedIssue;
 import org.everit.atlassian.restclient.jiracloud.v2.model.CreatedIssues;
 import org.everit.atlassian.restclient.jiracloud.v2.model.ErrorCollection;
+import org.everit.atlassian.restclient.jiracloud.v2.model.ExportArchivedIssuesTaskProgressResponse;
+import org.everit.atlassian.restclient.jiracloud.v2.model.IssueArchivalSyncRequest;
+import org.everit.atlassian.restclient.jiracloud.v2.model.IssueArchivalSyncResponse;
 import org.everit.atlassian.restclient.jiracloud.v2.model.IssueBean;
 import org.everit.atlassian.restclient.jiracloud.v2.model.IssueChangelogIds;
 import org.everit.atlassian.restclient.jiracloud.v2.model.IssueCreateMetadata;
+import org.everit.atlassian.restclient.jiracloud.v2.model.IssueEvent;
 import org.everit.atlassian.restclient.jiracloud.v2.model.IssueUpdateMetadata;
 import org.everit.atlassian.restclient.jiracloud.v2.model.PageBeanChangelog;
 import org.everit.atlassian.restclient.jiracloud.v2.model.PageOfChangelogs;
+import org.everit.atlassian.restclient.jiracloud.v2.model.PageOfCreateMetaIssueTypes;
 import org.everit.atlassian.restclient.jiracloud.v2.model.Transitions;
 import org.everit.atlassian.restclient.jiracloud.v2.model.User;
 
@@ -51,6 +57,10 @@ public class IssuesApi {
 
   private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.net";
 
+  private static final TypeReference<IssueArchivalSyncResponse> returnType_archiveIssues = new TypeReference<IssueArchivalSyncResponse>() {};
+
+  private static final TypeReference<String> returnType_archiveIssuesAsync = new TypeReference<String>() {};
+
   private static final TypeReference<Object> returnType_assignIssue = new TypeReference<Object>() {};
 
   private static final TypeReference<CreatedIssue> returnType_createIssue = new TypeReference<CreatedIssue>() {};
@@ -61,13 +71,19 @@ public class IssuesApi {
 
   private static final TypeReference<Object> returnType_editIssue = new TypeReference<Object>() {};
 
+  private static final TypeReference<ExportArchivedIssuesTaskProgressResponse> returnType_exportArchivedIssues = new TypeReference<ExportArchivedIssuesTaskProgressResponse>() {};
+
   private static final TypeReference<PageBeanChangelog> returnType_getChangeLogs = new TypeReference<PageBeanChangelog>() {};
 
   private static final TypeReference<PageOfChangelogs> returnType_getChangeLogsByIds = new TypeReference<PageOfChangelogs>() {};
 
   private static final TypeReference<IssueCreateMetadata> returnType_getCreateIssueMeta = new TypeReference<IssueCreateMetadata>() {};
 
+  private static final TypeReference<PageOfCreateMetaIssueTypes> returnType_getCreateIssueMetaIssueTypes = new TypeReference<PageOfCreateMetaIssueTypes>() {};
+
   private static final TypeReference<IssueUpdateMetadata> returnType_getEditIssueMeta = new TypeReference<IssueUpdateMetadata>() {};
+
+  private static final TypeReference<List<IssueEvent>> returnType_getEvents = new TypeReference<List<IssueEvent>>() {};
 
   private static final TypeReference<IssueBean> returnType_getIssue = new TypeReference<IssueBean>() {};
 
@@ -75,10 +91,70 @@ public class IssuesApi {
 
   private static final TypeReference<Object> returnType_notify = new TypeReference<Object>() {};
 
+  private static final TypeReference<IssueArchivalSyncResponse> returnType_unarchiveIssues = new TypeReference<IssueArchivalSyncResponse>() {};
+
   private final RestClient restClient;
 
   public IssuesApi(RestClient restClient) {
     this.restClient = restClient;
+  }
+
+  /**
+   * Archive issue(s) by issue ID/key
+   * Enables admins to archive up to 1000 issues in a single request using issue ID/key, returning details of the issue(s) archived in the process and the errors encountered, if any.  **Note that:**   *  you can't archive subtasks directly, only through their parent issues  *  you can only archive issues from software, service management, and business projects  **[Permissions](#permissions) required:** Jira admin or site admin: [global permission](https://confluence.atlassian.com/x/x4dKLg)  **License required:** Premium or Enterprise  **Signed-in users only:** This API can't be accessed anonymously.     
+   * @param issueArchivalSyncRequest Contains a list of issue keys or IDs to be archived. (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;IssueArchivalSyncResponse&gt;
+   */
+  public Single<IssueArchivalSyncResponse> archiveIssues(
+    IssueArchivalSyncRequest issueArchivalSyncRequest, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.PUT)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/issue/archive");
+
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(issueArchivalSyncRequest));
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_archiveIssues);
+  }
+
+  /**
+   * Archive issue(s) by JQL
+   * Enables admins to archive up to 100,000 issues in a single request using JQL, returning the URL to check the status of the submitted request.  You can use the [get task](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-tasks/#api-rest-api-3-task-taskid-get) and [cancel task](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-tasks/#api-rest-api-3-task-taskid-cancel-post) APIs to manage the request.  **Note that:**   *  you can't archive subtasks directly, only through their parent issues  *  you can only archive issues from software, service management, and business projects  **[Permissions](#permissions) required:** Jira admin or site admin: [global permission](https://confluence.atlassian.com/x/x4dKLg)  **License required:** Premium or Enterprise  **Signed-in users only:** This API can't be accessed anonymously.  **Rate limiting:** Only a single request per user can be active at any given time.     
+   * @param archiveIssueAsyncRequest A JQL query specifying the issues to archive. Note that subtasks can only be archived through their parent issues. (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;String&gt;
+   */
+  public Single<String> archiveIssuesAsync(
+    ArchiveIssueAsyncRequest archiveIssueAsyncRequest, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.POST)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/issue/archive");
+
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(archiveIssueAsyncRequest));
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_archiveIssuesAsync);
   }
 
   /**
@@ -147,7 +223,7 @@ public class IssuesApi {
 
   /**
    * Bulk create issue
-   * Creates issues and, where the option to create subtasks is enabled in Jira, subtasks. Transitions may be applied, to move the issues or subtasks to a workflow step other than the default start step, and issue properties set.  The content of each issue or subtask is defined using `update` and `fields`. The fields that can be set in the issue or subtask are determined using the [ Get create issue metadata](#api-rest-api-2-issue-createmeta-get). These are the same fields that appear on the issues' create screens.  Creating a subtask differs from creating an issue as follows:   *  `issueType` must be set to a subtask issue type (use [ Get create issue metadata](#api-rest-api-2-issue-createmeta-get) to find subtask issue types).  *  `parent` the must contain the ID or key of the parent issue.  **[Permissions](#permissions) required:** *Browse projects* and *Create issues* [project permissions](https://confluence.atlassian.com/x/yodKLg) for the project in which each issue or subtask is created.
+   * Creates upto **50** issues and, where the option to create subtasks is enabled in Jira, subtasks. Transitions may be applied, to move the issues or subtasks to a workflow step other than the default start step, and issue properties set.  The content of each issue or subtask is defined using `update` and `fields`. The fields that can be set in the issue or subtask are determined using the [ Get create issue metadata](#api-rest-api-2-issue-createmeta-get). These are the same fields that appear on the issues' create screens.  Creating a subtask differs from creating an issue as follows:   *  `issueType` must be set to a subtask issue type (use [ Get create issue metadata](#api-rest-api-2-issue-createmeta-get) to find subtask issue types).  *  `parent` the must contain the ID or key of the parent issue.  **[Permissions](#permissions) required:** *Browse projects* and *Create issues* [project permissions](https://confluence.atlassian.com/x/yodKLg) for the project in which each issue or subtask is created.
    * @param requestBody  (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;CreatedIssues&gt;
@@ -239,17 +315,19 @@ public class IssuesApi {
 
   /**
    * Edit issue
-   * Edits an issue. A transition may be applied and issue properties updated as part of the edit.  The edits to the issue's fields are defined using `update` and `fields`. The fields that can be edited are determined using [ Get edit issue metadata](#api-rest-api-2-issue-issueIdOrKey-editmeta-get).  The parent field may be set by key or ID. For standard issue types, the parent may be removed by setting `update.parent.set.none` to *true*.  Connect app users with admin permissions (from user permissions and app scopes) can override the screen security configuration using `overrideScreenSecurity` and `overrideEditableFlag`.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:**   *  *Browse projects* and *Edit issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
+   * Edits an issue. A transition may be applied and issue properties updated as part of the edit.  The edits to the issue's fields are defined using `update` and `fields`. The fields that can be edited are determined using [ Get edit issue metadata](#api-rest-api-2-issue-issueIdOrKey-editmeta-get).  The parent field may be set by key or ID. For standard issue types, the parent may be removed by setting `update.parent.set.none` to *true*.  Connect apps having an app user with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), and Forge apps acting on behalf of users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), can override the screen security configuration using `overrideScreenSecurity` and `overrideEditableFlag`.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:**   *  *Browse projects* and *Edit issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
    * @param issueIdOrKey The ID or key of the issue. (required)
    * @param requestBody  (required)
    * @param notifyUsers Whether a notification email about the issue update is sent to all watchers. To disable the notification, administer Jira or administer project permissions are required. If the user doesn't have the necessary permission the request is ignored. (optional, default to true)
-   * @param overrideScreenSecurity Whether screen security should be overridden to enable hidden fields to be edited. Available to Connect app users with admin permissions. (optional, default to false)
-   * @param overrideEditableFlag Whether screen security should be overridden to enable uneditable fields to be edited. Available to Connect app users with admin permissions. (optional, default to false)
+   * @param overrideScreenSecurity Whether screen security is overridden to enable hidden fields to be edited. Available to Connect app users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) and Forge apps acting on behalf of users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). (optional, default to false)
+   * @param overrideEditableFlag Whether screen security is overridden to enable uneditable fields to be edited. Available to Connect app users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) and Forge apps acting on behalf of users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). (optional, default to false)
+   * @param returnIssue Whether the response should contain the issue with fields edited in this request. The returned issue will have the same format as in the [Get issue API](#api-rest-api-3-issue-issueidorkey-get). (optional, default to false)
+   * @param expand The Get issue API expand parameter to use in the response if the `returnIssue` parameter is `true`. (optional, default to &quot;&quot;)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Object&gt;
    */
   public Single<Object> editIssue(
-    String issueIdOrKey, Map<String, Object> requestBody, Optional<Boolean> notifyUsers, Optional<Boolean> overrideScreenSecurity, Optional<Boolean> overrideEditableFlag, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String issueIdOrKey, Map<String, Object> requestBody, Optional<Boolean> notifyUsers, Optional<Boolean> overrideScreenSecurity, Optional<Boolean> overrideEditableFlag, Optional<Boolean> returnIssue, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.PUT)
@@ -270,6 +348,12 @@ public class IssuesApi {
     if (overrideEditableFlag.isPresent()) {
       queryParams.put("overrideEditableFlag", Collections.singleton(String.valueOf(overrideEditableFlag.get())));
     }
+    if (returnIssue.isPresent()) {
+      queryParams.put("returnIssue", Collections.singleton(String.valueOf(returnIssue.get())));
+    }
+    if (expand.isPresent()) {
+      queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
+    }
     requestBuilder.queryParams(queryParams);
 
     Map<String, String> headers = new HashMap<>();
@@ -278,6 +362,35 @@ public class IssuesApi {
     requestBuilder.requestBody(Optional.of(requestBody));
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_editIssue);
+  }
+
+  /**
+   * Export archived issue(s)
+   * Enables admins to retrieve details of all archived issues. Upon a successful request, the admin who submitted it will receive an email with a link to download a CSV file with the issue details.  Note that this API only exports the values of system fields and archival-specific fields (`ArchivedBy` and `ArchivedDate`). Custom fields aren't supported.  **[Permissions](#permissions) required:** Jira admin or site admin: [global permission](https://confluence.atlassian.com/x/x4dKLg)  **License required:** Premium or Enterprise  **Signed-in users only:** This API can't be accessed anonymously.  **Rate limiting:** Only a single request can be active at any given time.     
+   * @param requestBody You can filter the issues in your request by the `projects`, `archivedBy`, `archivedDate`, `issueTypes`, and `reporters` fields. All filters are optional. If you don't provide any filters, you'll get a list of up to one million archived issues. (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;ExportArchivedIssuesTaskProgressResponse&gt;
+   */
+  public Single<ExportArchivedIssuesTaskProgressResponse> exportArchivedIssues(
+    Map<String, Object> requestBody, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.PUT)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/issues/archive/export");
+
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(requestBody));
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_exportArchivedIssues);
   }
 
   /**
@@ -394,11 +507,47 @@ public class IssuesApi {
   }
 
   /**
+   * Get create metadata issue types for a project
+   * Returns a page of issue type metadata for a specified project. Use the information to populate the requests in [ Create issue](#api-rest-api-2-issue-post) and [Create issues](#api-rest-api-2-issue-bulk-post).  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** *Create issues* [project permission](https://confluence.atlassian.com/x/yodKLg) in the requested projects.
+   * @param projectIdOrKey The ID or key of the project. (required)
+   * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0)
+   * @param maxResults The maximum number of items to return per page. (optional, default to 50)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;PageOfCreateMetaIssueTypes&gt;
+   */
+  public Single<PageOfCreateMetaIssueTypes> getCreateIssueMetaIssueTypes(
+    String projectIdOrKey, Optional<Integer> startAt, Optional<Integer> maxResults, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/issue/createmeta/{projectIdOrKey}/issueTypes");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("projectIdOrKey", String.valueOf(projectIdOrKey));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (startAt.isPresent()) {
+      queryParams.put("startAt", Collections.singleton(String.valueOf(startAt.get())));
+    }
+    if (maxResults.isPresent()) {
+      queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getCreateIssueMetaIssueTypes);
+  }
+
+  /**
    * Get edit issue metadata
-   * Returns the edit screen fields for an issue that are visible to and editable by the user. Use the information to populate the requests in [Edit issue](#api-rest-api-2-issue-issueIdOrKey-put).  Connect app users with admin permissions (from user permissions and app scopes) can return additional details using:   *  `overrideScreenSecurity` Returns hidden fields.  *  `overrideEditableFlag` Returns uneditable fields. For example, where an issue has a workflow status of closed none of its fields are editable.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:**   *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.  Note: For any fields to be editable the user must have the *Edit issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for the issue.
+   * Returns the edit screen fields for an issue that are visible to and editable by the user. Use the information to populate the requests in [Edit issue](#api-rest-api-2-issue-issueIdOrKey-put).  This endpoint will check for these conditions:  1.  Field is available on a field screen - through screen, screen scheme, issue type screen scheme, and issue type scheme configuration. `overrideScreenSecurity=true` skips this condition. 2.  Field is visible in the [field configuration](https://support.atlassian.com/jira-cloud-administration/docs/change-a-field-configuration/). `overrideScreenSecurity=true` skips this condition. 3.  Field is shown on the issue: each field has different conditions here. For example: Attachment field only shows if attachments are enabled. Assignee only shows if user has permissions to assign the issue. 4.  If a field is custom then it must have valid custom field context, applicable for its project and issue type. All system fields are assumed to have context in all projects and all issue types. 5.  Issue has a project, issue type, and status defined. 6.  Issue is assigned to a valid workflow, and the current status has assigned a workflow step. `overrideEditableFlag=true` skips this condition. 7.  The current workflow step is editable. This is true by default, but [can be disabled by setting](https://support.atlassian.com/jira-cloud-administration/docs/use-workflow-properties/) the `jira.issue.editable` property to `false`. `overrideEditableFlag=true` skips this condition. 8.  User has [Edit issues permission](https://support.atlassian.com/jira-cloud-administration/docs/permissions-for-company-managed-projects/). 9.  Workflow permissions allow editing a field. This is true by default but [can be modified](https://support.atlassian.com/jira-cloud-administration/docs/use-workflow-properties/) using `jira.permission.*` workflow properties.  Fields hidden using [Issue layout settings page](https://support.atlassian.com/jira-software-cloud/docs/configure-field-layout-in-the-issue-view/) remain editable.  Connect apps having an app user with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), and Forge apps acting on behalf of users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), can return additional details using:   *  `overrideScreenSecurity` When this flag is `true`, then this endpoint skips checking if fields are available through screens, and field configuration (conditions 1. and 2. from the list above).  *  `overrideEditableFlag` When this flag is `true`, then this endpoint skips checking if workflow is present and if the current step is editable (conditions 6. and 7. from the list above).  This operation can be accessed anonymously.  **[Permissions](#permissions) required:**   *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.  Note: For any fields to be editable the user must have the *Edit issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for the issue.
    * @param issueIdOrKey The ID or key of the issue. (required)
-   * @param overrideScreenSecurity Whether hidden fields should be returned. Available to connect app users with admin permissions. (optional, default to false)
-   * @param overrideEditableFlag Whether non-editable fields should be returned. Available to connect app users with admin permissions. (optional, default to false)
+   * @param overrideScreenSecurity Whether hidden fields are returned. Available to Connect app users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) and Forge apps acting on behalf of users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). (optional, default to false)
+   * @param overrideEditableFlag Whether non-editable fields are returned. Available to Connect app users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) and Forge apps acting on behalf of users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). (optional, default to false)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;IssueUpdateMetadata&gt;
    */
@@ -427,6 +576,32 @@ public class IssuesApi {
     requestBuilder.headers(headers);
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getEditIssueMeta);
+  }
+
+  /**
+   * Get events
+   * Returns all issue events.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;List&lt;IssueEvent&gt;&gt;
+   */
+  public Single<List<IssueEvent>> getEvents(Optional<RestRequestEnhancer> restRequestEnhancer)
+     {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/events");
+
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getEvents);
   }
 
   /**
@@ -554,6 +729,35 @@ public class IssuesApi {
     requestBuilder.requestBody(Optional.of(requestBody));
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_notify);
+  }
+
+  /**
+   * Unarchive issue(s) by issue keys/ID
+   * Enables admins to unarchive up to 1000 issues in a single request using issue ID/key, returning details of the issue(s) unarchived in the process and the errors encountered, if any.  **Note that:**   *  you can't unarchive subtasks directly, only through their parent issues  *  you can only unarchive issues from software, service management, and business projects  **[Permissions](#permissions) required:** Jira admin or site admin: [global permission](https://confluence.atlassian.com/x/x4dKLg)  **License required:** Premium or Enterprise  **Signed-in users only:** This API can't be accessed anonymously.     
+   * @param issueArchivalSyncRequest Contains a list of issue keys or IDs to be unarchived. (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;IssueArchivalSyncResponse&gt;
+   */
+  public Single<IssueArchivalSyncResponse> unarchiveIssues(
+    IssueArchivalSyncRequest issueArchivalSyncRequest, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.PUT)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/issue/unarchive");
+
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(issueArchivalSyncRequest));
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_unarchiveIssues);
   }
 
 }

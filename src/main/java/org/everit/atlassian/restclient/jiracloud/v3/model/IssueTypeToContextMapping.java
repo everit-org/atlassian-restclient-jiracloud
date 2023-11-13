@@ -40,16 +40,16 @@ import io.swagger.annotations.ApiModelProperty;
  * Mapping of an issue type to a context.
  */
 @ApiModel(description = "Mapping of an issue type to a context.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class IssueTypeToContextMapping {
   @JsonProperty("contextId")
   private String contextId;
 
-  @JsonProperty("issueTypeId")
-  private String issueTypeId;
-
   @JsonProperty("isAnyIssueType")
   private Boolean isAnyIssueType;
+
+  @JsonProperty("issueTypeId")
+  private String issueTypeId;
 
   public IssueTypeToContextMapping contextId(String contextId) {
     this.contextId = contextId;
@@ -67,24 +67,6 @@ public class IssueTypeToContextMapping {
 
   public void setContextId(String contextId) {
     this.contextId = contextId;
-  }
-
-  public IssueTypeToContextMapping issueTypeId(String issueTypeId) {
-    this.issueTypeId = issueTypeId;
-    return this;
-  }
-
-   /**
-   * The ID of the issue type.
-   * @return issueTypeId
-  **/
-  @ApiModelProperty(value = "The ID of the issue type.")
-  public String getIssueTypeId() {
-    return issueTypeId;
-  }
-
-  public void setIssueTypeId(String issueTypeId) {
-    this.issueTypeId = issueTypeId;
   }
 
   public IssueTypeToContextMapping isAnyIssueType(Boolean isAnyIssueType) {
@@ -105,6 +87,24 @@ public class IssueTypeToContextMapping {
     this.isAnyIssueType = isAnyIssueType;
   }
 
+  public IssueTypeToContextMapping issueTypeId(String issueTypeId) {
+    this.issueTypeId = issueTypeId;
+    return this;
+  }
+
+   /**
+   * The ID of the issue type.
+   * @return issueTypeId
+  **/
+  @ApiModelProperty(value = "The ID of the issue type.")
+  public String getIssueTypeId() {
+    return issueTypeId;
+  }
+
+  public void setIssueTypeId(String issueTypeId) {
+    this.issueTypeId = issueTypeId;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -116,13 +116,13 @@ public class IssueTypeToContextMapping {
     }
     IssueTypeToContextMapping issueTypeToContextMapping = (IssueTypeToContextMapping) o;
     return Objects.equals(this.contextId, issueTypeToContextMapping.contextId) &&
-        Objects.equals(this.issueTypeId, issueTypeToContextMapping.issueTypeId) &&
-        Objects.equals(this.isAnyIssueType, issueTypeToContextMapping.isAnyIssueType);
+        Objects.equals(this.isAnyIssueType, issueTypeToContextMapping.isAnyIssueType) &&
+        Objects.equals(this.issueTypeId, issueTypeToContextMapping.issueTypeId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(contextId, issueTypeId, isAnyIssueType);
+    return Objects.hash(contextId, isAnyIssueType, issueTypeId);
   }
 
 
@@ -132,8 +132,8 @@ public class IssueTypeToContextMapping {
     sb.append("class IssueTypeToContextMapping {\n");
     
     sb.append("    contextId: ").append(toIndentedString(contextId)).append("\n");
-    sb.append("    issueTypeId: ").append(toIndentedString(issueTypeId)).append("\n");
     sb.append("    isAnyIssueType: ").append(toIndentedString(isAnyIssueType)).append("\n");
+    sb.append("    issueTypeId: ").append(toIndentedString(issueTypeId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

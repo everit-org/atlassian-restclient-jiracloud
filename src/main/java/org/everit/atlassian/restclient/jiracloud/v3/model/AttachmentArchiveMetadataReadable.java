@@ -43,22 +43,31 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.AttachmentArchiveItemR
  * Metadata for an archive (for example a zip) and its contents.
  */
 @ApiModel(description = "Metadata for an archive (for example a zip) and its contents.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class AttachmentArchiveMetadataReadable {
+  @JsonProperty("entries")
+  private List<AttachmentArchiveItemReadable> entries = new ArrayList<>();
+
   @JsonProperty("id")
   private Long id;
+
+  @JsonProperty("mediaType")
+  private String mediaType;
 
   @JsonProperty("name")
   private String name;
 
-  @JsonProperty("entries")
-  private List<AttachmentArchiveItemReadable> entries = new ArrayList<>();
-
   @JsonProperty("totalEntryCount")
   private Long totalEntryCount;
 
-  @JsonProperty("mediaType")
-  private String mediaType;
+   /**
+   * The list of the items included in the archive.
+   * @return entries
+  **/
+  @ApiModelProperty(value = "The list of the items included in the archive.")
+  public List<AttachmentArchiveItemReadable> getEntries() {
+    return entries;
+  }
 
    /**
    * The ID of the attachment.
@@ -67,6 +76,15 @@ public class AttachmentArchiveMetadataReadable {
   @ApiModelProperty(value = "The ID of the attachment.")
   public Long getId() {
     return id;
+  }
+
+   /**
+   * The MIME type of the attachment.
+   * @return mediaType
+  **/
+  @ApiModelProperty(value = "The MIME type of the attachment.")
+  public String getMediaType() {
+    return mediaType;
   }
 
    /**
@@ -79,30 +97,12 @@ public class AttachmentArchiveMetadataReadable {
   }
 
    /**
-   * The list of the items included in the archive.
-   * @return entries
-  **/
-  @ApiModelProperty(value = "The list of the items included in the archive.")
-  public List<AttachmentArchiveItemReadable> getEntries() {
-    return entries;
-  }
-
-   /**
    * The number of items included in the archive.
    * @return totalEntryCount
   **/
   @ApiModelProperty(value = "The number of items included in the archive.")
   public Long getTotalEntryCount() {
     return totalEntryCount;
-  }
-
-   /**
-   * The MIME type of the attachment.
-   * @return mediaType
-  **/
-  @ApiModelProperty(value = "The MIME type of the attachment.")
-  public String getMediaType() {
-    return mediaType;
   }
 
 
@@ -115,16 +115,16 @@ public class AttachmentArchiveMetadataReadable {
       return false;
     }
     AttachmentArchiveMetadataReadable attachmentArchiveMetadataReadable = (AttachmentArchiveMetadataReadable) o;
-    return Objects.equals(this.id, attachmentArchiveMetadataReadable.id) &&
+    return Objects.equals(this.entries, attachmentArchiveMetadataReadable.entries) &&
+        Objects.equals(this.id, attachmentArchiveMetadataReadable.id) &&
+        Objects.equals(this.mediaType, attachmentArchiveMetadataReadable.mediaType) &&
         Objects.equals(this.name, attachmentArchiveMetadataReadable.name) &&
-        Objects.equals(this.entries, attachmentArchiveMetadataReadable.entries) &&
-        Objects.equals(this.totalEntryCount, attachmentArchiveMetadataReadable.totalEntryCount) &&
-        Objects.equals(this.mediaType, attachmentArchiveMetadataReadable.mediaType);
+        Objects.equals(this.totalEntryCount, attachmentArchiveMetadataReadable.totalEntryCount);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, entries, totalEntryCount, mediaType);
+    return Objects.hash(entries, id, mediaType, name, totalEntryCount);
   }
 
 
@@ -133,11 +133,11 @@ public class AttachmentArchiveMetadataReadable {
     StringBuilder sb = new StringBuilder();
     sb.append("class AttachmentArchiveMetadataReadable {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    entries: ").append(toIndentedString(entries)).append("\n");
-    sb.append("    totalEntryCount: ").append(toIndentedString(totalEntryCount)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    mediaType: ").append(toIndentedString(mediaType)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    totalEntryCount: ").append(toIndentedString(totalEntryCount)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -42,8 +42,17 @@ import java.util.Map;
  * Details of a permission and its availability to a user.
  */
 @ApiModel(description = "Details of a permission and its availability to a user.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class UserPermission {
+  @JsonProperty("deprecatedKey")
+  private Boolean deprecatedKey;
+
+  @JsonProperty("description")
+  private String description;
+
+  @JsonProperty("havePermission")
+  private Boolean havePermission;
+
   @JsonProperty("id")
   private String id;
 
@@ -91,16 +100,61 @@ public class UserPermission {
   @JsonProperty("type")
   private TypeEnum type;
 
-  @JsonProperty("description")
-  private String description;
-
-  @JsonProperty("havePermission")
-  private Boolean havePermission;
-
-  @JsonProperty("deprecatedKey")
-  private Boolean deprecatedKey;
-
   private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
+
+  public UserPermission deprecatedKey(Boolean deprecatedKey) {
+    this.deprecatedKey = deprecatedKey;
+    return this;
+  }
+
+   /**
+   * Indicate whether the permission key is deprecated. Note that deprecated keys cannot be used in the &#x60;permissions parameter of Get my permissions. Deprecated keys are not returned by Get all permissions.&#x60;
+   * @return deprecatedKey
+  **/
+  @ApiModelProperty(value = "Indicate whether the permission key is deprecated. Note that deprecated keys cannot be used in the `permissions parameter of Get my permissions. Deprecated keys are not returned by Get all permissions.`")
+  public Boolean getDeprecatedKey() {
+    return deprecatedKey;
+  }
+
+  public void setDeprecatedKey(Boolean deprecatedKey) {
+    this.deprecatedKey = deprecatedKey;
+  }
+
+  public UserPermission description(String description) {
+    this.description = description;
+    return this;
+  }
+
+   /**
+   * The description of the permission.
+   * @return description
+  **/
+  @ApiModelProperty(value = "The description of the permission.")
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public UserPermission havePermission(Boolean havePermission) {
+    this.havePermission = havePermission;
+    return this;
+  }
+
+   /**
+   * Whether the permission is available to the user in the queried context.
+   * @return havePermission
+  **/
+  @ApiModelProperty(value = "Whether the permission is available to the user in the queried context.")
+  public Boolean getHavePermission() {
+    return havePermission;
+  }
+
+  public void setHavePermission(Boolean havePermission) {
+    this.havePermission = havePermission;
+  }
 
   public UserPermission id(String id) {
     this.id = id;
@@ -174,60 +228,6 @@ public class UserPermission {
     this.type = type;
   }
 
-  public UserPermission description(String description) {
-    this.description = description;
-    return this;
-  }
-
-   /**
-   * The description of the permission.
-   * @return description
-  **/
-  @ApiModelProperty(value = "The description of the permission.")
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-  public UserPermission havePermission(Boolean havePermission) {
-    this.havePermission = havePermission;
-    return this;
-  }
-
-   /**
-   * Whether the permission is available to the user in the queried context.
-   * @return havePermission
-  **/
-  @ApiModelProperty(value = "Whether the permission is available to the user in the queried context.")
-  public Boolean getHavePermission() {
-    return havePermission;
-  }
-
-  public void setHavePermission(Boolean havePermission) {
-    this.havePermission = havePermission;
-  }
-
-  public UserPermission deprecatedKey(Boolean deprecatedKey) {
-    this.deprecatedKey = deprecatedKey;
-    return this;
-  }
-
-   /**
-   * Indicate whether the permission key is deprecated. Note that deprecated keys cannot be used in the &#x60;permissions parameter of Get my permissions. Deprecated keys are not returned by Get all permissions.&#x60;
-   * @return deprecatedKey
-  **/
-  @ApiModelProperty(value = "Indicate whether the permission key is deprecated. Note that deprecated keys cannot be used in the `permissions parameter of Get my permissions. Deprecated keys are not returned by Get all permissions.`")
-  public Boolean getDeprecatedKey() {
-    return deprecatedKey;
-  }
-
-  public void setDeprecatedKey(Boolean deprecatedKey) {
-    this.deprecatedKey = deprecatedKey;
-  }
-
 
   @com.fasterxml.jackson.annotation.JsonAnyGetter
   public Map<String, Object> any() {
@@ -248,19 +248,19 @@ public class UserPermission {
       return false;
     }
     UserPermission userPermission = (UserPermission) o;
-    return Objects.equals(this.id, userPermission.id) &&
+    return Objects.equals(this.deprecatedKey, userPermission.deprecatedKey) &&
+        Objects.equals(this.description, userPermission.description) &&
+        Objects.equals(this.havePermission, userPermission.havePermission) &&
+        Objects.equals(this.id, userPermission.id) &&
         Objects.equals(this.key, userPermission.key) &&
         Objects.equals(this.name, userPermission.name) &&
         Objects.equals(this.type, userPermission.type) &&
-        Objects.equals(this.description, userPermission.description) &&
-        Objects.equals(this.havePermission, userPermission.havePermission) &&
-        Objects.equals(this.deprecatedKey, userPermission.deprecatedKey) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, key, name, type, description, havePermission, deprecatedKey, super.hashCode());
+    return Objects.hash(deprecatedKey, description, havePermission, id, key, name, type, super.hashCode());
   }
 
 
@@ -269,13 +269,13 @@ public class UserPermission {
     StringBuilder sb = new StringBuilder();
     sb.append("class UserPermission {\n");
     
+    sb.append("    deprecatedKey: ").append(toIndentedString(deprecatedKey)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    havePermission: ").append(toIndentedString(havePermission)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    havePermission: ").append(toIndentedString(havePermission)).append("\n");
-    sb.append("    deprecatedKey: ").append(toIndentedString(deprecatedKey)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();

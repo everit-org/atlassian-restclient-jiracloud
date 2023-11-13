@@ -164,7 +164,7 @@ public class IssueCommentsApi {
    * Returns all comments for an issue.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** Comments are included in the response where the user has:   *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.  *  If the comment has visibility restrictions, belongs to the group or has the role visibility is role visibility is restricted to.
    * @param issueIdOrKey The ID or key of the issue. (required)
    * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0l)
-   * @param maxResults The maximum number of items to return per page. (optional, default to 50)
+   * @param maxResults The maximum number of items to return per page. (optional, default to 5000)
    * @param orderBy [Order](#ordering) the results by a field. Accepts *created* to sort comments by their created date. (optional)
    * @param expand Use [expand](#expansion) to include additional information about comments in the response. This parameter accepts `renderedBody`, which returns the comment body rendered in HTML. (optional)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
@@ -242,12 +242,14 @@ public class IssueCommentsApi {
    * @param issueIdOrKey The ID or key of the issue. (required)
    * @param id The ID of the comment. (required)
    * @param requestBody  (required)
+   * @param notifyUsers Whether users are notified when a comment is updated. (optional, default to true)
+   * @param overrideEditableFlag Whether screen security is overridden to enable uneditable fields to be edited. Available to Connect app users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) and Forge apps acting on behalf of users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). (optional, default to false)
    * @param expand Use [expand](#expansion) to include additional information about comments in the response. This parameter accepts `renderedBody`, which returns the comment body rendered in HTML. (optional)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Comment&gt;
    */
   public Single<Comment> updateComment(
-    String issueIdOrKey, String id, Map<String, Object> requestBody, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String issueIdOrKey, String id, Map<String, Object> requestBody, Optional<Boolean> notifyUsers, Optional<Boolean> overrideEditableFlag, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.PUT)
@@ -260,6 +262,12 @@ public class IssueCommentsApi {
     requestBuilder.pathParams(pathParams);
 
     Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (notifyUsers.isPresent()) {
+      queryParams.put("notifyUsers", Collections.singleton(String.valueOf(notifyUsers.get())));
+    }
+    if (overrideEditableFlag.isPresent()) {
+      queryParams.put("overrideEditableFlag", Collections.singleton(String.valueOf(overrideEditableFlag.get())));
+    }
     if (expand.isPresent()) {
       queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
     }

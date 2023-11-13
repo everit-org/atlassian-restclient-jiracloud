@@ -35,17 +35,21 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * UnrestrictedUserEmail
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class UnrestrictedUserEmail {
   @JsonProperty("accountId")
   private String accountId;
 
   @JsonProperty("email")
   private String email;
+
+  private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
 
   public UnrestrictedUserEmail accountId(String accountId) {
     this.accountId = accountId;
@@ -84,6 +88,16 @@ public class UnrestrictedUserEmail {
   }
 
 
+  @com.fasterxml.jackson.annotation.JsonAnyGetter
+  public Map<String, Object> any() {
+   return this.additionalProperties_;
+  }
+
+  @com.fasterxml.jackson.annotation.JsonAnySetter
+  public void set(String name, Object value) {
+   this.additionalProperties_.put(name, value);
+  }
+
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -94,12 +108,13 @@ public class UnrestrictedUserEmail {
     }
     UnrestrictedUserEmail unrestrictedUserEmail = (UnrestrictedUserEmail) o;
     return Objects.equals(this.accountId, unrestrictedUserEmail.accountId) &&
-        Objects.equals(this.email, unrestrictedUserEmail.email);
+        Objects.equals(this.email, unrestrictedUserEmail.email) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, email);
+    return Objects.hash(accountId, email, super.hashCode());
   }
 
 
@@ -110,6 +125,7 @@ public class UnrestrictedUserEmail {
     
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();
   }

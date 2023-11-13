@@ -41,22 +41,13 @@ import java.time.OffsetDateTime;
  * Additional details about a project.
  */
 @ApiModel(description = "Additional details about a project.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class ProjectInsight {
-  @JsonProperty("totalIssueCount")
-  private Long totalIssueCount;
-
   @JsonProperty("lastIssueUpdateTime")
   private OffsetDateTime lastIssueUpdateTime;
 
-   /**
-   * Total issue count.
-   * @return totalIssueCount
-  **/
-  @ApiModelProperty(value = "Total issue count.")
-  public Long getTotalIssueCount() {
-    return totalIssueCount;
-  }
+  @JsonProperty("totalIssueCount")
+  private Long totalIssueCount;
 
    /**
    * The last issue update time.
@@ -65,6 +56,15 @@ public class ProjectInsight {
   @ApiModelProperty(value = "The last issue update time.")
   public OffsetDateTime getLastIssueUpdateTime() {
     return lastIssueUpdateTime;
+  }
+
+   /**
+   * Total issue count.
+   * @return totalIssueCount
+  **/
+  @ApiModelProperty(value = "Total issue count.")
+  public Long getTotalIssueCount() {
+    return totalIssueCount;
   }
 
 
@@ -77,13 +77,13 @@ public class ProjectInsight {
       return false;
     }
     ProjectInsight projectInsight = (ProjectInsight) o;
-    return Objects.equals(this.totalIssueCount, projectInsight.totalIssueCount) &&
-        Objects.equals(this.lastIssueUpdateTime, projectInsight.lastIssueUpdateTime);
+    return Objects.equals(this.lastIssueUpdateTime, projectInsight.lastIssueUpdateTime) &&
+        Objects.equals(this.totalIssueCount, projectInsight.totalIssueCount);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(totalIssueCount, lastIssueUpdateTime);
+    return Objects.hash(lastIssueUpdateTime, totalIssueCount);
   }
 
 
@@ -92,8 +92,8 @@ public class ProjectInsight {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProjectInsight {\n");
     
-    sb.append("    totalIssueCount: ").append(toIndentedString(totalIssueCount)).append("\n");
     sb.append("    lastIssueUpdateTime: ").append(toIndentedString(lastIssueUpdateTime)).append("\n");
+    sb.append("    totalIssueCount: ").append(toIndentedString(totalIssueCount)).append("\n");
     sb.append("}");
     return sb.toString();
   }

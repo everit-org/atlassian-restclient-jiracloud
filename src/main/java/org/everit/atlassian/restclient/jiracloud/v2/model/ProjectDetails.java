@@ -42,10 +42,10 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.UpdatedProjectCategory
  * Details about a project.
  */
 @ApiModel(description = "Details about a project.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class ProjectDetails {
-  @JsonProperty("self")
-  private String self;
+  @JsonProperty("avatarUrls")
+  private AvatarUrlsBean avatarUrls;
 
   @JsonProperty("id")
   private String id;
@@ -55,6 +55,9 @@ public class ProjectDetails {
 
   @JsonProperty("name")
   private String name;
+
+  @JsonProperty("projectCategory")
+  private UpdatedProjectCategory projectCategory;
 
   /**
    * The [project type](https://confluence.atlassian.com/x/GwiiLQ#Jiraapplicationsoverview-Productfeaturesandprojecttypes) of the project.
@@ -96,22 +99,19 @@ public class ProjectDetails {
   @JsonProperty("projectTypeKey")
   private ProjectTypeKeyEnum projectTypeKey;
 
+  @JsonProperty("self")
+  private String self;
+
   @JsonProperty("simplified")
   private Boolean simplified;
 
-  @JsonProperty("avatarUrls")
-  private AvatarUrlsBean avatarUrls;
-
-  @JsonProperty("projectCategory")
-  private UpdatedProjectCategory projectCategory;
-
    /**
-   * The URL of the project details.
-   * @return self
+   * The URLs of the project&#39;s avatars.
+   * @return avatarUrls
   **/
-  @ApiModelProperty(value = "The URL of the project details.")
-  public String getSelf() {
-    return self;
+  @ApiModelProperty(value = "The URLs of the project's avatars.")
+  public AvatarUrlsBean getAvatarUrls() {
+    return avatarUrls;
   }
 
   public ProjectDetails id(String id) {
@@ -151,6 +151,15 @@ public class ProjectDetails {
   }
 
    /**
+   * The category the project belongs to.
+   * @return projectCategory
+  **/
+  @ApiModelProperty(value = "The category the project belongs to.")
+  public UpdatedProjectCategory getProjectCategory() {
+    return projectCategory;
+  }
+
+   /**
    * The [project type](https://confluence.atlassian.com/x/GwiiLQ#Jiraapplicationsoverview-Productfeaturesandprojecttypes) of the project.
    * @return projectTypeKey
   **/
@@ -160,30 +169,21 @@ public class ProjectDetails {
   }
 
    /**
+   * The URL of the project details.
+   * @return self
+  **/
+  @ApiModelProperty(value = "The URL of the project details.")
+  public String getSelf() {
+    return self;
+  }
+
+   /**
    * Whether or not the project is simplified.
    * @return simplified
   **/
   @ApiModelProperty(value = "Whether or not the project is simplified.")
   public Boolean getSimplified() {
     return simplified;
-  }
-
-   /**
-   * The URLs of the project&#39;s avatars.
-   * @return avatarUrls
-  **/
-  @ApiModelProperty(value = "The URLs of the project's avatars.")
-  public AvatarUrlsBean getAvatarUrls() {
-    return avatarUrls;
-  }
-
-   /**
-   * The category the project belongs to.
-   * @return projectCategory
-  **/
-  @ApiModelProperty(value = "The category the project belongs to.")
-  public UpdatedProjectCategory getProjectCategory() {
-    return projectCategory;
   }
 
 
@@ -196,19 +196,19 @@ public class ProjectDetails {
       return false;
     }
     ProjectDetails projectDetails = (ProjectDetails) o;
-    return Objects.equals(this.self, projectDetails.self) &&
+    return Objects.equals(this.avatarUrls, projectDetails.avatarUrls) &&
         Objects.equals(this.id, projectDetails.id) &&
         Objects.equals(this.key, projectDetails.key) &&
         Objects.equals(this.name, projectDetails.name) &&
+        Objects.equals(this.projectCategory, projectDetails.projectCategory) &&
         Objects.equals(this.projectTypeKey, projectDetails.projectTypeKey) &&
-        Objects.equals(this.simplified, projectDetails.simplified) &&
-        Objects.equals(this.avatarUrls, projectDetails.avatarUrls) &&
-        Objects.equals(this.projectCategory, projectDetails.projectCategory);
+        Objects.equals(this.self, projectDetails.self) &&
+        Objects.equals(this.simplified, projectDetails.simplified);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, id, key, name, projectTypeKey, simplified, avatarUrls, projectCategory);
+    return Objects.hash(avatarUrls, id, key, name, projectCategory, projectTypeKey, self, simplified);
   }
 
 
@@ -217,14 +217,14 @@ public class ProjectDetails {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProjectDetails {\n");
     
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
+    sb.append("    avatarUrls: ").append(toIndentedString(avatarUrls)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    projectTypeKey: ").append(toIndentedString(projectTypeKey)).append("\n");
-    sb.append("    simplified: ").append(toIndentedString(simplified)).append("\n");
-    sb.append("    avatarUrls: ").append(toIndentedString(avatarUrls)).append("\n");
     sb.append("    projectCategory: ").append(toIndentedString(projectCategory)).append("\n");
+    sb.append("    projectTypeKey: ").append(toIndentedString(projectTypeKey)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
+    sb.append("    simplified: ").append(toIndentedString(simplified)).append("\n");
     sb.append("}");
     return sb.toString();
   }

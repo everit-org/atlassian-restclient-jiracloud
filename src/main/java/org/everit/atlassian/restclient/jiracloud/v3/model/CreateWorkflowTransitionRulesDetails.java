@@ -44,16 +44,16 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.CreateWorkflowTransiti
  * The details of a workflow transition rules.
  */
 @ApiModel(description = "The details of a workflow transition rules.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class CreateWorkflowTransitionRulesDetails {
   @JsonProperty("conditions")
   private CreateWorkflowCondition conditions;
 
-  @JsonProperty("validators")
-  private List<CreateWorkflowTransitionRule> validators = new ArrayList<>();
-
   @JsonProperty("postFunctions")
   private List<CreateWorkflowTransitionRule> postFunctions = new ArrayList<>();
+
+  @JsonProperty("validators")
+  private List<CreateWorkflowTransitionRule> validators = new ArrayList<>();
 
   public CreateWorkflowTransitionRulesDetails conditions(CreateWorkflowCondition conditions) {
     this.conditions = conditions;
@@ -73,32 +73,6 @@ public class CreateWorkflowTransitionRulesDetails {
     this.conditions = conditions;
   }
 
-  public CreateWorkflowTransitionRulesDetails validators(List<CreateWorkflowTransitionRule> validators) {
-    this.validators = validators;
-    return this;
-  }
-
-  public CreateWorkflowTransitionRulesDetails addValidatorsItem(CreateWorkflowTransitionRule validatorsItem) {
-    if (this.validators == null) {
-      this.validators = new ArrayList<>();
-    }
-    this.validators.add(validatorsItem);
-    return this;
-  }
-
-   /**
-   * The workflow validators.
-   * @return validators
-  **/
-  @ApiModelProperty(value = "The workflow validators.")
-  public List<CreateWorkflowTransitionRule> getValidators() {
-    return validators;
-  }
-
-  public void setValidators(List<CreateWorkflowTransitionRule> validators) {
-    this.validators = validators;
-  }
-
   public CreateWorkflowTransitionRulesDetails postFunctions(List<CreateWorkflowTransitionRule> postFunctions) {
     this.postFunctions = postFunctions;
     return this;
@@ -113,16 +87,42 @@ public class CreateWorkflowTransitionRulesDetails {
   }
 
    /**
-   * The workflow post functions.
+   * The workflow post functions.  **Note:** The default post functions are always added to the *initial* transition, as in:      \&quot;postFunctions\&quot;: [         {             \&quot;type\&quot;: \&quot;IssueCreateFunction\&quot;         },         {             \&quot;type\&quot;: \&quot;IssueReindexFunction\&quot;         },         {             \&quot;type\&quot;: \&quot;FireIssueEventFunction\&quot;,             \&quot;configuration\&quot;: {                 \&quot;event\&quot;: {                     \&quot;id\&quot;: \&quot;1\&quot;,                     \&quot;name\&quot;: \&quot;issue_created\&quot;                 }             }         }     ]  **Note:** The default post functions are always added to the *global* and *directed* transitions, as in:      \&quot;postFunctions\&quot;: [         {             \&quot;type\&quot;: \&quot;UpdateIssueStatusFunction\&quot;         },         {             \&quot;type\&quot;: \&quot;CreateCommentFunction\&quot;         },         {             \&quot;type\&quot;: \&quot;GenerateChangeHistoryFunction\&quot;         },         {             \&quot;type\&quot;: \&quot;IssueReindexFunction\&quot;         },         {             \&quot;type\&quot;: \&quot;FireIssueEventFunction\&quot;,             \&quot;configuration\&quot;: {                 \&quot;event\&quot;: {                     \&quot;id\&quot;: \&quot;13\&quot;,                     \&quot;name\&quot;: \&quot;issue_generic\&quot;                 }             }         }     ]
    * @return postFunctions
   **/
-  @ApiModelProperty(value = "The workflow post functions.")
+  @ApiModelProperty(value = "The workflow post functions.  **Note:** The default post functions are always added to the *initial* transition, as in:      \"postFunctions\": [         {             \"type\": \"IssueCreateFunction\"         },         {             \"type\": \"IssueReindexFunction\"         },         {             \"type\": \"FireIssueEventFunction\",             \"configuration\": {                 \"event\": {                     \"id\": \"1\",                     \"name\": \"issue_created\"                 }             }         }     ]  **Note:** The default post functions are always added to the *global* and *directed* transitions, as in:      \"postFunctions\": [         {             \"type\": \"UpdateIssueStatusFunction\"         },         {             \"type\": \"CreateCommentFunction\"         },         {             \"type\": \"GenerateChangeHistoryFunction\"         },         {             \"type\": \"IssueReindexFunction\"         },         {             \"type\": \"FireIssueEventFunction\",             \"configuration\": {                 \"event\": {                     \"id\": \"13\",                     \"name\": \"issue_generic\"                 }             }         }     ]")
   public List<CreateWorkflowTransitionRule> getPostFunctions() {
     return postFunctions;
   }
 
   public void setPostFunctions(List<CreateWorkflowTransitionRule> postFunctions) {
     this.postFunctions = postFunctions;
+  }
+
+  public CreateWorkflowTransitionRulesDetails validators(List<CreateWorkflowTransitionRule> validators) {
+    this.validators = validators;
+    return this;
+  }
+
+  public CreateWorkflowTransitionRulesDetails addValidatorsItem(CreateWorkflowTransitionRule validatorsItem) {
+    if (this.validators == null) {
+      this.validators = new ArrayList<>();
+    }
+    this.validators.add(validatorsItem);
+    return this;
+  }
+
+   /**
+   * The workflow validators.  **Note:** The default permission validator is always added to the *initial* transition, as in:      \&quot;validators\&quot;: [         {             \&quot;type\&quot;: \&quot;PermissionValidator\&quot;,             \&quot;configuration\&quot;: {                 \&quot;permissionKey\&quot;: \&quot;CREATE_ISSUES\&quot;             }         }     ]
+   * @return validators
+  **/
+  @ApiModelProperty(value = "The workflow validators.  **Note:** The default permission validator is always added to the *initial* transition, as in:      \"validators\": [         {             \"type\": \"PermissionValidator\",             \"configuration\": {                 \"permissionKey\": \"CREATE_ISSUES\"             }         }     ]")
+  public List<CreateWorkflowTransitionRule> getValidators() {
+    return validators;
+  }
+
+  public void setValidators(List<CreateWorkflowTransitionRule> validators) {
+    this.validators = validators;
   }
 
 
@@ -136,13 +136,13 @@ public class CreateWorkflowTransitionRulesDetails {
     }
     CreateWorkflowTransitionRulesDetails createWorkflowTransitionRulesDetails = (CreateWorkflowTransitionRulesDetails) o;
     return Objects.equals(this.conditions, createWorkflowTransitionRulesDetails.conditions) &&
-        Objects.equals(this.validators, createWorkflowTransitionRulesDetails.validators) &&
-        Objects.equals(this.postFunctions, createWorkflowTransitionRulesDetails.postFunctions);
+        Objects.equals(this.postFunctions, createWorkflowTransitionRulesDetails.postFunctions) &&
+        Objects.equals(this.validators, createWorkflowTransitionRulesDetails.validators);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(conditions, validators, postFunctions);
+    return Objects.hash(conditions, postFunctions, validators);
   }
 
 
@@ -152,8 +152,8 @@ public class CreateWorkflowTransitionRulesDetails {
     sb.append("class CreateWorkflowTransitionRulesDetails {\n");
     
     sb.append("    conditions: ").append(toIndentedString(conditions)).append("\n");
-    sb.append("    validators: ").append(toIndentedString(validators)).append("\n");
     sb.append("    postFunctions: ").append(toIndentedString(postFunctions)).append("\n");
+    sb.append("    validators: ").append(toIndentedString(validators)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -40,16 +40,16 @@ import io.swagger.annotations.ApiModelProperty;
  * Details about the mapping from a status to a new status for an issue type.
  */
 @ApiModel(description = "Details about the mapping from a status to a new status for an issue type.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class StatusMapping {
   @JsonProperty("issueTypeId")
   private String issueTypeId;
 
-  @JsonProperty("statusId")
-  private String statusId;
-
   @JsonProperty("newStatusId")
   private String newStatusId;
+
+  @JsonProperty("statusId")
+  private String statusId;
 
   public StatusMapping issueTypeId(String issueTypeId) {
     this.issueTypeId = issueTypeId;
@@ -67,24 +67,6 @@ public class StatusMapping {
 
   public void setIssueTypeId(String issueTypeId) {
     this.issueTypeId = issueTypeId;
-  }
-
-  public StatusMapping statusId(String statusId) {
-    this.statusId = statusId;
-    return this;
-  }
-
-   /**
-   * The ID of the status.
-   * @return statusId
-  **/
-  @ApiModelProperty(required = true, value = "The ID of the status.")
-  public String getStatusId() {
-    return statusId;
-  }
-
-  public void setStatusId(String statusId) {
-    this.statusId = statusId;
   }
 
   public StatusMapping newStatusId(String newStatusId) {
@@ -105,6 +87,24 @@ public class StatusMapping {
     this.newStatusId = newStatusId;
   }
 
+  public StatusMapping statusId(String statusId) {
+    this.statusId = statusId;
+    return this;
+  }
+
+   /**
+   * The ID of the status.
+   * @return statusId
+  **/
+  @ApiModelProperty(required = true, value = "The ID of the status.")
+  public String getStatusId() {
+    return statusId;
+  }
+
+  public void setStatusId(String statusId) {
+    this.statusId = statusId;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -116,13 +116,13 @@ public class StatusMapping {
     }
     StatusMapping statusMapping = (StatusMapping) o;
     return Objects.equals(this.issueTypeId, statusMapping.issueTypeId) &&
-        Objects.equals(this.statusId, statusMapping.statusId) &&
-        Objects.equals(this.newStatusId, statusMapping.newStatusId);
+        Objects.equals(this.newStatusId, statusMapping.newStatusId) &&
+        Objects.equals(this.statusId, statusMapping.statusId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(issueTypeId, statusId, newStatusId);
+    return Objects.hash(issueTypeId, newStatusId, statusId);
   }
 
 
@@ -132,8 +132,8 @@ public class StatusMapping {
     sb.append("class StatusMapping {\n");
     
     sb.append("    issueTypeId: ").append(toIndentedString(issueTypeId)).append("\n");
-    sb.append("    statusId: ").append(toIndentedString(statusId)).append("\n");
     sb.append("    newStatusId: ").append(toIndentedString(newStatusId)).append("\n");
+    sb.append("    statusId: ").append(toIndentedString(statusId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

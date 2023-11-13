@@ -40,37 +40,19 @@ import io.swagger.annotations.ApiModelProperty;
  * Details about a failed webhook.
  */
 @ApiModel(description = "Details about a failed webhook.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class FailedWebhook {
-  @JsonProperty("id")
-  private String id;
-
   @JsonProperty("body")
   private String body;
-
-  @JsonProperty("url")
-  private String url;
 
   @JsonProperty("failureTime")
   private Long failureTime;
 
-  public FailedWebhook id(String id) {
-    this.id = id;
-    return this;
-  }
+  @JsonProperty("id")
+  private String id;
 
-   /**
-   * The webhook ID, as sent in the &#x60;X-Atlassian-Webhook-Identifier&#x60; header with the webhook.
-   * @return id
-  **/
-  @ApiModelProperty(required = true, value = "The webhook ID, as sent in the `X-Atlassian-Webhook-Identifier` header with the webhook.")
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
+  @JsonProperty("url")
+  private String url;
 
   public FailedWebhook body(String body) {
     this.body = body;
@@ -88,24 +70,6 @@ public class FailedWebhook {
 
   public void setBody(String body) {
     this.body = body;
-  }
-
-  public FailedWebhook url(String url) {
-    this.url = url;
-    return this;
-  }
-
-   /**
-   * The original webhook destination.
-   * @return url
-  **/
-  @ApiModelProperty(required = true, value = "The original webhook destination.")
-  public String getUrl() {
-    return url;
-  }
-
-  public void setUrl(String url) {
-    this.url = url;
   }
 
   public FailedWebhook failureTime(Long failureTime) {
@@ -126,6 +90,42 @@ public class FailedWebhook {
     this.failureTime = failureTime;
   }
 
+  public FailedWebhook id(String id) {
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * The webhook ID, as sent in the &#x60;X-Atlassian-Webhook-Identifier&#x60; header with the webhook.
+   * @return id
+  **/
+  @ApiModelProperty(required = true, value = "The webhook ID, as sent in the `X-Atlassian-Webhook-Identifier` header with the webhook.")
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public FailedWebhook url(String url) {
+    this.url = url;
+    return this;
+  }
+
+   /**
+   * The original webhook destination.
+   * @return url
+  **/
+  @ApiModelProperty(required = true, value = "The original webhook destination.")
+  public String getUrl() {
+    return url;
+  }
+
+  public void setUrl(String url) {
+    this.url = url;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -136,15 +136,15 @@ public class FailedWebhook {
       return false;
     }
     FailedWebhook failedWebhook = (FailedWebhook) o;
-    return Objects.equals(this.id, failedWebhook.id) &&
-        Objects.equals(this.body, failedWebhook.body) &&
-        Objects.equals(this.url, failedWebhook.url) &&
-        Objects.equals(this.failureTime, failedWebhook.failureTime);
+    return Objects.equals(this.body, failedWebhook.body) &&
+        Objects.equals(this.failureTime, failedWebhook.failureTime) &&
+        Objects.equals(this.id, failedWebhook.id) &&
+        Objects.equals(this.url, failedWebhook.url);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, body, url, failureTime);
+    return Objects.hash(body, failureTime, id, url);
   }
 
 
@@ -153,10 +153,10 @@ public class FailedWebhook {
     StringBuilder sb = new StringBuilder();
     sb.append("class FailedWebhook {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
-    sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    failureTime: ").append(toIndentedString(failureTime)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.SecurityScheme;
  * List of security schemes.
  */
 @ApiModel(description = "List of security schemes.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class SecuritySchemes {
   @JsonProperty("issueSecuritySchemes")
   private List<SecurityScheme> issueSecuritySchemes = new ArrayList<>();
