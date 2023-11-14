@@ -39,42 +39,52 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.everit.atlassian.restclient.jiracloud.v3.model.HealthCheckResult;
+import org.everit.atlassian.restclient.jiracloud.v3.model.ServerInformationServerTimeZone;
 
 /**
  * Details about the Jira instance.
  */
 @ApiModel(description = "Details about the Jira instance.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class ServerInformation {
   @JsonProperty("baseUrl")
   private String baseUrl;
+
+  @JsonProperty("buildDate")
+  private OffsetDateTime buildDate;
+
+  @JsonProperty("buildNumber")
+  private Integer buildNumber;
+
+  @JsonProperty("deploymentType")
+  private String deploymentType;
+
+  @JsonProperty("displayUrl")
+  private String displayUrl;
+
+  @JsonProperty("displayUrlServicedeskHelpCenter")
+  private String displayUrlServicedeskHelpCenter;
+
+  @JsonProperty("healthChecks")
+  private List<HealthCheckResult> healthChecks = new ArrayList<>();
+
+  @JsonProperty("scmInfo")
+  private String scmInfo;
+
+  @JsonProperty("serverTime")
+  private OffsetDateTime serverTime;
+
+  @JsonProperty("serverTimeZone")
+  private ServerInformationServerTimeZone serverTimeZone;
+
+  @JsonProperty("serverTitle")
+  private String serverTitle;
 
   @JsonProperty("version")
   private String version;
 
   @JsonProperty("versionNumbers")
   private List<Integer> versionNumbers = new ArrayList<>();
-
-  @JsonProperty("deploymentType")
-  private String deploymentType;
-
-  @JsonProperty("buildNumber")
-  private Integer buildNumber;
-
-  @JsonProperty("buildDate")
-  private OffsetDateTime buildDate;
-
-  @JsonProperty("serverTime")
-  private OffsetDateTime serverTime;
-
-  @JsonProperty("scmInfo")
-  private String scmInfo;
-
-  @JsonProperty("serverTitle")
-  private String serverTitle;
-
-  @JsonProperty("healthChecks")
-  private List<HealthCheckResult> healthChecks = new ArrayList<>();
 
   public ServerInformation baseUrl(String baseUrl) {
     this.baseUrl = baseUrl;
@@ -92,6 +102,194 @@ public class ServerInformation {
 
   public void setBaseUrl(String baseUrl) {
     this.baseUrl = baseUrl;
+  }
+
+  public ServerInformation buildDate(OffsetDateTime buildDate) {
+    this.buildDate = buildDate;
+    return this;
+  }
+
+   /**
+   * The timestamp when the Jira version was built.
+   * @return buildDate
+  **/
+  @ApiModelProperty(value = "The timestamp when the Jira version was built.")
+  public OffsetDateTime getBuildDate() {
+    return buildDate;
+  }
+
+  public void setBuildDate(OffsetDateTime buildDate) {
+    this.buildDate = buildDate;
+  }
+
+  public ServerInformation buildNumber(Integer buildNumber) {
+    this.buildNumber = buildNumber;
+    return this;
+  }
+
+   /**
+   * The build number of the Jira version.
+   * @return buildNumber
+  **/
+  @ApiModelProperty(value = "The build number of the Jira version.")
+  public Integer getBuildNumber() {
+    return buildNumber;
+  }
+
+  public void setBuildNumber(Integer buildNumber) {
+    this.buildNumber = buildNumber;
+  }
+
+  public ServerInformation deploymentType(String deploymentType) {
+    this.deploymentType = deploymentType;
+    return this;
+  }
+
+   /**
+   * The type of server deployment. This is always returned as *Cloud*.
+   * @return deploymentType
+  **/
+  @ApiModelProperty(value = "The type of server deployment. This is always returned as *Cloud*.")
+  public String getDeploymentType() {
+    return deploymentType;
+  }
+
+  public void setDeploymentType(String deploymentType) {
+    this.deploymentType = deploymentType;
+  }
+
+  public ServerInformation displayUrl(String displayUrl) {
+    this.displayUrl = displayUrl;
+    return this;
+  }
+
+   /**
+   * The display URL of the Jira instance.
+   * @return displayUrl
+  **/
+  @ApiModelProperty(value = "The display URL of the Jira instance.")
+  public String getDisplayUrl() {
+    return displayUrl;
+  }
+
+  public void setDisplayUrl(String displayUrl) {
+    this.displayUrl = displayUrl;
+  }
+
+  public ServerInformation displayUrlServicedeskHelpCenter(String displayUrlServicedeskHelpCenter) {
+    this.displayUrlServicedeskHelpCenter = displayUrlServicedeskHelpCenter;
+    return this;
+  }
+
+   /**
+   * The display URL of the Servicedesk Help Center.
+   * @return displayUrlServicedeskHelpCenter
+  **/
+  @ApiModelProperty(value = "The display URL of the Servicedesk Help Center.")
+  public String getDisplayUrlServicedeskHelpCenter() {
+    return displayUrlServicedeskHelpCenter;
+  }
+
+  public void setDisplayUrlServicedeskHelpCenter(String displayUrlServicedeskHelpCenter) {
+    this.displayUrlServicedeskHelpCenter = displayUrlServicedeskHelpCenter;
+  }
+
+  public ServerInformation healthChecks(List<HealthCheckResult> healthChecks) {
+    this.healthChecks = healthChecks;
+    return this;
+  }
+
+  public ServerInformation addHealthChecksItem(HealthCheckResult healthChecksItem) {
+    if (this.healthChecks == null) {
+      this.healthChecks = new ArrayList<>();
+    }
+    this.healthChecks.add(healthChecksItem);
+    return this;
+  }
+
+   /**
+   * Jira instance health check results. Deprecated and no longer returned.
+   * @return healthChecks
+  **/
+  @ApiModelProperty(value = "Jira instance health check results. Deprecated and no longer returned.")
+  public List<HealthCheckResult> getHealthChecks() {
+    return healthChecks;
+  }
+
+  public void setHealthChecks(List<HealthCheckResult> healthChecks) {
+    this.healthChecks = healthChecks;
+  }
+
+  public ServerInformation scmInfo(String scmInfo) {
+    this.scmInfo = scmInfo;
+    return this;
+  }
+
+   /**
+   * The unique identifier of the Jira version.
+   * @return scmInfo
+  **/
+  @ApiModelProperty(value = "The unique identifier of the Jira version.")
+  public String getScmInfo() {
+    return scmInfo;
+  }
+
+  public void setScmInfo(String scmInfo) {
+    this.scmInfo = scmInfo;
+  }
+
+  public ServerInformation serverTime(OffsetDateTime serverTime) {
+    this.serverTime = serverTime;
+    return this;
+  }
+
+   /**
+   * The time in Jira when this request was responded to.
+   * @return serverTime
+  **/
+  @ApiModelProperty(value = "The time in Jira when this request was responded to.")
+  public OffsetDateTime getServerTime() {
+    return serverTime;
+  }
+
+  public void setServerTime(OffsetDateTime serverTime) {
+    this.serverTime = serverTime;
+  }
+
+  public ServerInformation serverTimeZone(ServerInformationServerTimeZone serverTimeZone) {
+    this.serverTimeZone = serverTimeZone;
+    return this;
+  }
+
+   /**
+   * Get serverTimeZone
+   * @return serverTimeZone
+  **/
+  @ApiModelProperty(value = "")
+  public ServerInformationServerTimeZone getServerTimeZone() {
+    return serverTimeZone;
+  }
+
+  public void setServerTimeZone(ServerInformationServerTimeZone serverTimeZone) {
+    this.serverTimeZone = serverTimeZone;
+  }
+
+  public ServerInformation serverTitle(String serverTitle) {
+    this.serverTitle = serverTitle;
+    return this;
+  }
+
+   /**
+   * The name of the Jira instance.
+   * @return serverTitle
+  **/
+  @ApiModelProperty(value = "The name of the Jira instance.")
+  public String getServerTitle() {
+    return serverTitle;
+  }
+
+  public void setServerTitle(String serverTitle) {
+    this.serverTitle = serverTitle;
   }
 
   public ServerInformation version(String version) {
@@ -138,140 +336,6 @@ public class ServerInformation {
     this.versionNumbers = versionNumbers;
   }
 
-  public ServerInformation deploymentType(String deploymentType) {
-    this.deploymentType = deploymentType;
-    return this;
-  }
-
-   /**
-   * The type of server deployment. This is always returned as *Cloud*.
-   * @return deploymentType
-  **/
-  @ApiModelProperty(value = "The type of server deployment. This is always returned as *Cloud*.")
-  public String getDeploymentType() {
-    return deploymentType;
-  }
-
-  public void setDeploymentType(String deploymentType) {
-    this.deploymentType = deploymentType;
-  }
-
-  public ServerInformation buildNumber(Integer buildNumber) {
-    this.buildNumber = buildNumber;
-    return this;
-  }
-
-   /**
-   * The build number of the Jira version.
-   * @return buildNumber
-  **/
-  @ApiModelProperty(value = "The build number of the Jira version.")
-  public Integer getBuildNumber() {
-    return buildNumber;
-  }
-
-  public void setBuildNumber(Integer buildNumber) {
-    this.buildNumber = buildNumber;
-  }
-
-  public ServerInformation buildDate(OffsetDateTime buildDate) {
-    this.buildDate = buildDate;
-    return this;
-  }
-
-   /**
-   * The timestamp when the Jira version was built.
-   * @return buildDate
-  **/
-  @ApiModelProperty(value = "The timestamp when the Jira version was built.")
-  public OffsetDateTime getBuildDate() {
-    return buildDate;
-  }
-
-  public void setBuildDate(OffsetDateTime buildDate) {
-    this.buildDate = buildDate;
-  }
-
-  public ServerInformation serverTime(OffsetDateTime serverTime) {
-    this.serverTime = serverTime;
-    return this;
-  }
-
-   /**
-   * The time in Jira when this request was responded to.
-   * @return serverTime
-  **/
-  @ApiModelProperty(value = "The time in Jira when this request was responded to.")
-  public OffsetDateTime getServerTime() {
-    return serverTime;
-  }
-
-  public void setServerTime(OffsetDateTime serverTime) {
-    this.serverTime = serverTime;
-  }
-
-  public ServerInformation scmInfo(String scmInfo) {
-    this.scmInfo = scmInfo;
-    return this;
-  }
-
-   /**
-   * The unique identifier of the Jira version.
-   * @return scmInfo
-  **/
-  @ApiModelProperty(value = "The unique identifier of the Jira version.")
-  public String getScmInfo() {
-    return scmInfo;
-  }
-
-  public void setScmInfo(String scmInfo) {
-    this.scmInfo = scmInfo;
-  }
-
-  public ServerInformation serverTitle(String serverTitle) {
-    this.serverTitle = serverTitle;
-    return this;
-  }
-
-   /**
-   * The name of the Jira instance.
-   * @return serverTitle
-  **/
-  @ApiModelProperty(value = "The name of the Jira instance.")
-  public String getServerTitle() {
-    return serverTitle;
-  }
-
-  public void setServerTitle(String serverTitle) {
-    this.serverTitle = serverTitle;
-  }
-
-  public ServerInformation healthChecks(List<HealthCheckResult> healthChecks) {
-    this.healthChecks = healthChecks;
-    return this;
-  }
-
-  public ServerInformation addHealthChecksItem(HealthCheckResult healthChecksItem) {
-    if (this.healthChecks == null) {
-      this.healthChecks = new ArrayList<>();
-    }
-    this.healthChecks.add(healthChecksItem);
-    return this;
-  }
-
-   /**
-   * Jira instance health check results. Deprecated and no longer returned.
-   * @return healthChecks
-  **/
-  @ApiModelProperty(value = "Jira instance health check results. Deprecated and no longer returned.")
-  public List<HealthCheckResult> getHealthChecks() {
-    return healthChecks;
-  }
-
-  public void setHealthChecks(List<HealthCheckResult> healthChecks) {
-    this.healthChecks = healthChecks;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -283,20 +347,23 @@ public class ServerInformation {
     }
     ServerInformation serverInformation = (ServerInformation) o;
     return Objects.equals(this.baseUrl, serverInformation.baseUrl) &&
-        Objects.equals(this.version, serverInformation.version) &&
-        Objects.equals(this.versionNumbers, serverInformation.versionNumbers) &&
-        Objects.equals(this.deploymentType, serverInformation.deploymentType) &&
-        Objects.equals(this.buildNumber, serverInformation.buildNumber) &&
         Objects.equals(this.buildDate, serverInformation.buildDate) &&
-        Objects.equals(this.serverTime, serverInformation.serverTime) &&
+        Objects.equals(this.buildNumber, serverInformation.buildNumber) &&
+        Objects.equals(this.deploymentType, serverInformation.deploymentType) &&
+        Objects.equals(this.displayUrl, serverInformation.displayUrl) &&
+        Objects.equals(this.displayUrlServicedeskHelpCenter, serverInformation.displayUrlServicedeskHelpCenter) &&
+        Objects.equals(this.healthChecks, serverInformation.healthChecks) &&
         Objects.equals(this.scmInfo, serverInformation.scmInfo) &&
+        Objects.equals(this.serverTime, serverInformation.serverTime) &&
+        Objects.equals(this.serverTimeZone, serverInformation.serverTimeZone) &&
         Objects.equals(this.serverTitle, serverInformation.serverTitle) &&
-        Objects.equals(this.healthChecks, serverInformation.healthChecks);
+        Objects.equals(this.version, serverInformation.version) &&
+        Objects.equals(this.versionNumbers, serverInformation.versionNumbers);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(baseUrl, version, versionNumbers, deploymentType, buildNumber, buildDate, serverTime, scmInfo, serverTitle, healthChecks);
+    return Objects.hash(baseUrl, buildDate, buildNumber, deploymentType, displayUrl, displayUrlServicedeskHelpCenter, healthChecks, scmInfo, serverTime, serverTimeZone, serverTitle, version, versionNumbers);
   }
 
 
@@ -306,15 +373,18 @@ public class ServerInformation {
     sb.append("class ServerInformation {\n");
     
     sb.append("    baseUrl: ").append(toIndentedString(baseUrl)).append("\n");
+    sb.append("    buildDate: ").append(toIndentedString(buildDate)).append("\n");
+    sb.append("    buildNumber: ").append(toIndentedString(buildNumber)).append("\n");
+    sb.append("    deploymentType: ").append(toIndentedString(deploymentType)).append("\n");
+    sb.append("    displayUrl: ").append(toIndentedString(displayUrl)).append("\n");
+    sb.append("    displayUrlServicedeskHelpCenter: ").append(toIndentedString(displayUrlServicedeskHelpCenter)).append("\n");
+    sb.append("    healthChecks: ").append(toIndentedString(healthChecks)).append("\n");
+    sb.append("    scmInfo: ").append(toIndentedString(scmInfo)).append("\n");
+    sb.append("    serverTime: ").append(toIndentedString(serverTime)).append("\n");
+    sb.append("    serverTimeZone: ").append(toIndentedString(serverTimeZone)).append("\n");
+    sb.append("    serverTitle: ").append(toIndentedString(serverTitle)).append("\n");
     sb.append("    version: ").append(toIndentedString(version)).append("\n");
     sb.append("    versionNumbers: ").append(toIndentedString(versionNumbers)).append("\n");
-    sb.append("    deploymentType: ").append(toIndentedString(deploymentType)).append("\n");
-    sb.append("    buildNumber: ").append(toIndentedString(buildNumber)).append("\n");
-    sb.append("    buildDate: ").append(toIndentedString(buildDate)).append("\n");
-    sb.append("    serverTime: ").append(toIndentedString(serverTime)).append("\n");
-    sb.append("    scmInfo: ").append(toIndentedString(scmInfo)).append("\n");
-    sb.append("    serverTitle: ").append(toIndentedString(serverTitle)).append("\n");
-    sb.append("    healthChecks: ").append(toIndentedString(healthChecks)).append("\n");
     sb.append("}");
     return sb.toString();
   }

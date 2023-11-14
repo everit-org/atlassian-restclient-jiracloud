@@ -42,55 +42,19 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.Comment;
 /**
  * PaginatedResponseComment
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class PaginatedResponseComment {
-  @JsonProperty("total")
-  private Long total;
-
-  @JsonProperty("startAt")
-  private Long startAt;
-
   @JsonProperty("maxResults")
   private Integer maxResults;
 
   @JsonProperty("results")
   private List<Comment> results = new ArrayList<>();
 
-  public PaginatedResponseComment total(Long total) {
-    this.total = total;
-    return this;
-  }
+  @JsonProperty("startAt")
+  private Long startAt;
 
-   /**
-   * Get total
-   * @return total
-  **/
-  @ApiModelProperty(value = "")
-  public Long getTotal() {
-    return total;
-  }
-
-  public void setTotal(Long total) {
-    this.total = total;
-  }
-
-  public PaginatedResponseComment startAt(Long startAt) {
-    this.startAt = startAt;
-    return this;
-  }
-
-   /**
-   * Get startAt
-   * @return startAt
-  **/
-  @ApiModelProperty(value = "")
-  public Long getStartAt() {
-    return startAt;
-  }
-
-  public void setStartAt(Long startAt) {
-    this.startAt = startAt;
-  }
+  @JsonProperty("total")
+  private Long total;
 
   public PaginatedResponseComment maxResults(Integer maxResults) {
     this.maxResults = maxResults;
@@ -136,6 +100,42 @@ public class PaginatedResponseComment {
     this.results = results;
   }
 
+  public PaginatedResponseComment startAt(Long startAt) {
+    this.startAt = startAt;
+    return this;
+  }
+
+   /**
+   * Get startAt
+   * @return startAt
+  **/
+  @ApiModelProperty(value = "")
+  public Long getStartAt() {
+    return startAt;
+  }
+
+  public void setStartAt(Long startAt) {
+    this.startAt = startAt;
+  }
+
+  public PaginatedResponseComment total(Long total) {
+    this.total = total;
+    return this;
+  }
+
+   /**
+   * Get total
+   * @return total
+  **/
+  @ApiModelProperty(value = "")
+  public Long getTotal() {
+    return total;
+  }
+
+  public void setTotal(Long total) {
+    this.total = total;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -146,15 +146,15 @@ public class PaginatedResponseComment {
       return false;
     }
     PaginatedResponseComment paginatedResponseComment = (PaginatedResponseComment) o;
-    return Objects.equals(this.total, paginatedResponseComment.total) &&
+    return Objects.equals(this.maxResults, paginatedResponseComment.maxResults) &&
+        Objects.equals(this.results, paginatedResponseComment.results) &&
         Objects.equals(this.startAt, paginatedResponseComment.startAt) &&
-        Objects.equals(this.maxResults, paginatedResponseComment.maxResults) &&
-        Objects.equals(this.results, paginatedResponseComment.results);
+        Objects.equals(this.total, paginatedResponseComment.total);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(total, startAt, maxResults, results);
+    return Objects.hash(maxResults, results, startAt, total);
   }
 
 
@@ -163,10 +163,10 @@ public class PaginatedResponseComment {
     StringBuilder sb = new StringBuilder();
     sb.append("class PaginatedResponseComment {\n");
     
-    sb.append("    total: ").append(toIndentedString(total)).append("\n");
-    sb.append("    startAt: ").append(toIndentedString(startAt)).append("\n");
     sb.append("    maxResults: ").append(toIndentedString(maxResults)).append("\n");
     sb.append("    results: ").append(toIndentedString(results)).append("\n");
+    sb.append("    startAt: ").append(toIndentedString(startAt)).append("\n");
+    sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("}");
     return sb.toString();
   }

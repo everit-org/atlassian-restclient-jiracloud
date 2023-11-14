@@ -41,19 +41,28 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.Scope;
  * A screen.
  */
 @ApiModel(description = "A screen.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class Screen {
+  @JsonProperty("description")
+  private String description;
+
   @JsonProperty("id")
   private Long id;
 
   @JsonProperty("name")
   private String name;
 
-  @JsonProperty("description")
-  private String description;
-
   @JsonProperty("scope")
   private Scope scope;
+
+   /**
+   * The description of the screen.
+   * @return description
+  **/
+  @ApiModelProperty(value = "The description of the screen.")
+  public String getDescription() {
+    return description;
+  }
 
    /**
    * The ID of the screen.
@@ -71,15 +80,6 @@ public class Screen {
   @ApiModelProperty(value = "The name of the screen.")
   public String getName() {
     return name;
-  }
-
-   /**
-   * The description of the screen.
-   * @return description
-  **/
-  @ApiModelProperty(value = "The description of the screen.")
-  public String getDescription() {
-    return description;
   }
 
   public Screen scope(Scope scope) {
@@ -110,15 +110,15 @@ public class Screen {
       return false;
     }
     Screen screen = (Screen) o;
-    return Objects.equals(this.id, screen.id) &&
+    return Objects.equals(this.description, screen.description) &&
+        Objects.equals(this.id, screen.id) &&
         Objects.equals(this.name, screen.name) &&
-        Objects.equals(this.description, screen.description) &&
         Objects.equals(this.scope, screen.scope);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, scope);
+    return Objects.hash(description, id, name, scope);
   }
 
 
@@ -127,9 +127,9 @@ public class Screen {
     StringBuilder sb = new StringBuilder();
     sb.append("class Screen {\n");
     
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
     sb.append("}");
     return sb.toString();

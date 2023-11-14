@@ -40,31 +40,13 @@ import io.swagger.annotations.ApiModelProperty;
  * The project and issue type mapping.
  */
 @ApiModel(description = "The project and issue type mapping.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class ProjectIssueTypeMapping {
-  @JsonProperty("projectId")
-  private String projectId;
-
   @JsonProperty("issueTypeId")
   private String issueTypeId;
 
-  public ProjectIssueTypeMapping projectId(String projectId) {
-    this.projectId = projectId;
-    return this;
-  }
-
-   /**
-   * The ID of the project.
-   * @return projectId
-  **/
-  @ApiModelProperty(required = true, value = "The ID of the project.")
-  public String getProjectId() {
-    return projectId;
-  }
-
-  public void setProjectId(String projectId) {
-    this.projectId = projectId;
-  }
+  @JsonProperty("projectId")
+  private String projectId;
 
   public ProjectIssueTypeMapping issueTypeId(String issueTypeId) {
     this.issueTypeId = issueTypeId;
@@ -84,6 +66,24 @@ public class ProjectIssueTypeMapping {
     this.issueTypeId = issueTypeId;
   }
 
+  public ProjectIssueTypeMapping projectId(String projectId) {
+    this.projectId = projectId;
+    return this;
+  }
+
+   /**
+   * The ID of the project.
+   * @return projectId
+  **/
+  @ApiModelProperty(required = true, value = "The ID of the project.")
+  public String getProjectId() {
+    return projectId;
+  }
+
+  public void setProjectId(String projectId) {
+    this.projectId = projectId;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -94,13 +94,13 @@ public class ProjectIssueTypeMapping {
       return false;
     }
     ProjectIssueTypeMapping projectIssueTypeMapping = (ProjectIssueTypeMapping) o;
-    return Objects.equals(this.projectId, projectIssueTypeMapping.projectId) &&
-        Objects.equals(this.issueTypeId, projectIssueTypeMapping.issueTypeId);
+    return Objects.equals(this.issueTypeId, projectIssueTypeMapping.issueTypeId) &&
+        Objects.equals(this.projectId, projectIssueTypeMapping.projectId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(projectId, issueTypeId);
+    return Objects.hash(issueTypeId, projectId);
   }
 
 
@@ -109,8 +109,8 @@ public class ProjectIssueTypeMapping {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProjectIssueTypeMapping {\n");
     
-    sb.append("    projectId: ").append(toIndentedString(projectId)).append("\n");
     sb.append("    issueTypeId: ").append(toIndentedString(issueTypeId)).append("\n");
+    sb.append("    projectId: ").append(toIndentedString(projectId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

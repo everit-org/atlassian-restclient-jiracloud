@@ -40,33 +40,33 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of the name, description, and default issue type for an issue type scheme.
  */
 @ApiModel(description = "Details of the name, description, and default issue type for an issue type scheme.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class IssueTypeSchemeUpdateDetails {
-  @JsonProperty("name")
-  private String name;
+  @JsonProperty("defaultIssueTypeId")
+  private String defaultIssueTypeId;
 
   @JsonProperty("description")
   private String description;
 
-  @JsonProperty("defaultIssueTypeId")
-  private String defaultIssueTypeId;
+  @JsonProperty("name")
+  private String name;
 
-  public IssueTypeSchemeUpdateDetails name(String name) {
-    this.name = name;
+  public IssueTypeSchemeUpdateDetails defaultIssueTypeId(String defaultIssueTypeId) {
+    this.defaultIssueTypeId = defaultIssueTypeId;
     return this;
   }
 
    /**
-   * The name of the issue type scheme. The name must be unique. The maximum length is 255 characters.
-   * @return name
+   * The ID of the default issue type of the issue type scheme.
+   * @return defaultIssueTypeId
   **/
-  @ApiModelProperty(value = "The name of the issue type scheme. The name must be unique. The maximum length is 255 characters.")
-  public String getName() {
-    return name;
+  @ApiModelProperty(value = "The ID of the default issue type of the issue type scheme.")
+  public String getDefaultIssueTypeId() {
+    return defaultIssueTypeId;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setDefaultIssueTypeId(String defaultIssueTypeId) {
+    this.defaultIssueTypeId = defaultIssueTypeId;
   }
 
   public IssueTypeSchemeUpdateDetails description(String description) {
@@ -87,22 +87,22 @@ public class IssueTypeSchemeUpdateDetails {
     this.description = description;
   }
 
-  public IssueTypeSchemeUpdateDetails defaultIssueTypeId(String defaultIssueTypeId) {
-    this.defaultIssueTypeId = defaultIssueTypeId;
+  public IssueTypeSchemeUpdateDetails name(String name) {
+    this.name = name;
     return this;
   }
 
    /**
-   * The ID of the default issue type of the issue type scheme.
-   * @return defaultIssueTypeId
+   * The name of the issue type scheme. The name must be unique. The maximum length is 255 characters.
+   * @return name
   **/
-  @ApiModelProperty(value = "The ID of the default issue type of the issue type scheme.")
-  public String getDefaultIssueTypeId() {
-    return defaultIssueTypeId;
+  @ApiModelProperty(value = "The name of the issue type scheme. The name must be unique. The maximum length is 255 characters.")
+  public String getName() {
+    return name;
   }
 
-  public void setDefaultIssueTypeId(String defaultIssueTypeId) {
-    this.defaultIssueTypeId = defaultIssueTypeId;
+  public void setName(String name) {
+    this.name = name;
   }
 
 
@@ -115,14 +115,14 @@ public class IssueTypeSchemeUpdateDetails {
       return false;
     }
     IssueTypeSchemeUpdateDetails issueTypeSchemeUpdateDetails = (IssueTypeSchemeUpdateDetails) o;
-    return Objects.equals(this.name, issueTypeSchemeUpdateDetails.name) &&
+    return Objects.equals(this.defaultIssueTypeId, issueTypeSchemeUpdateDetails.defaultIssueTypeId) &&
         Objects.equals(this.description, issueTypeSchemeUpdateDetails.description) &&
-        Objects.equals(this.defaultIssueTypeId, issueTypeSchemeUpdateDetails.defaultIssueTypeId);
+        Objects.equals(this.name, issueTypeSchemeUpdateDetails.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, defaultIssueTypeId);
+    return Objects.hash(defaultIssueTypeId, description, name);
   }
 
 
@@ -131,9 +131,9 @@ public class IssueTypeSchemeUpdateDetails {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueTypeSchemeUpdateDetails {\n");
     
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    defaultIssueTypeId: ").append(toIndentedString(defaultIssueTypeId)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }

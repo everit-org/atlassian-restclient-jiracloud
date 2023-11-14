@@ -42,13 +42,13 @@ import java.util.List;
  * An ordered list of issue type IDs and information about where to move them.
  */
 @ApiModel(description = "An ordered list of issue type IDs and information about where to move them.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class OrderOfIssueTypes {
-  @JsonProperty("issueTypeIds")
-  private List<String> issueTypeIds = new ArrayList<>();
-
   @JsonProperty("after")
   private String after;
+
+  @JsonProperty("issueTypeIds")
+  private List<String> issueTypeIds = new ArrayList<>();
 
   /**
    * The position the issue types should be moved to. Required if &#x60;after&#x60; isn&#39;t provided.
@@ -88,6 +88,24 @@ public class OrderOfIssueTypes {
   @JsonProperty("position")
   private PositionEnum position;
 
+  public OrderOfIssueTypes after(String after) {
+    this.after = after;
+    return this;
+  }
+
+   /**
+   * The ID of the issue type to place the moved issue types after. Required if &#x60;position&#x60; isn&#39;t provided.
+   * @return after
+  **/
+  @ApiModelProperty(value = "The ID of the issue type to place the moved issue types after. Required if `position` isn't provided.")
+  public String getAfter() {
+    return after;
+  }
+
+  public void setAfter(String after) {
+    this.after = after;
+  }
+
   public OrderOfIssueTypes issueTypeIds(List<String> issueTypeIds) {
     this.issueTypeIds = issueTypeIds;
     return this;
@@ -109,24 +127,6 @@ public class OrderOfIssueTypes {
 
   public void setIssueTypeIds(List<String> issueTypeIds) {
     this.issueTypeIds = issueTypeIds;
-  }
-
-  public OrderOfIssueTypes after(String after) {
-    this.after = after;
-    return this;
-  }
-
-   /**
-   * The ID of the issue type to place the moved issue types after. Required if &#x60;position&#x60; isn&#39;t provided.
-   * @return after
-  **/
-  @ApiModelProperty(value = "The ID of the issue type to place the moved issue types after. Required if `position` isn't provided.")
-  public String getAfter() {
-    return after;
-  }
-
-  public void setAfter(String after) {
-    this.after = after;
   }
 
   public OrderOfIssueTypes position(PositionEnum position) {
@@ -157,14 +157,14 @@ public class OrderOfIssueTypes {
       return false;
     }
     OrderOfIssueTypes orderOfIssueTypes = (OrderOfIssueTypes) o;
-    return Objects.equals(this.issueTypeIds, orderOfIssueTypes.issueTypeIds) &&
-        Objects.equals(this.after, orderOfIssueTypes.after) &&
+    return Objects.equals(this.after, orderOfIssueTypes.after) &&
+        Objects.equals(this.issueTypeIds, orderOfIssueTypes.issueTypeIds) &&
         Objects.equals(this.position, orderOfIssueTypes.position);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(issueTypeIds, after, position);
+    return Objects.hash(after, issueTypeIds, position);
   }
 
 
@@ -173,8 +173,8 @@ public class OrderOfIssueTypes {
     StringBuilder sb = new StringBuilder();
     sb.append("class OrderOfIssueTypes {\n");
     
-    sb.append("    issueTypeIds: ").append(toIndentedString(issueTypeIds)).append("\n");
     sb.append("    after: ").append(toIndentedString(after)).append("\n");
+    sb.append("    issueTypeIds: ").append(toIndentedString(issueTypeIds)).append("\n");
     sb.append("    position: ").append(toIndentedString(position)).append("\n");
     sb.append("}");
     return sb.toString();

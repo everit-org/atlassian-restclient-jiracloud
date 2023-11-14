@@ -43,10 +43,31 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.JqlQueryUnitaryOperand
  * An operand that is a list of values.
  */
 @ApiModel(description = "An operand that is a list of values.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class ListOperand {
+  @JsonProperty("encodedOperand")
+  private String encodedOperand;
+
   @JsonProperty("values")
   private List<JqlQueryUnitaryOperand> values = new ArrayList<>();
+
+  public ListOperand encodedOperand(String encodedOperand) {
+    this.encodedOperand = encodedOperand;
+    return this;
+  }
+
+   /**
+   * Encoded operand, which can be used directly in a JQL query.
+   * @return encodedOperand
+  **/
+  @ApiModelProperty(value = "Encoded operand, which can be used directly in a JQL query.")
+  public String getEncodedOperand() {
+    return encodedOperand;
+  }
+
+  public void setEncodedOperand(String encodedOperand) {
+    this.encodedOperand = encodedOperand;
+  }
 
   public ListOperand values(List<JqlQueryUnitaryOperand> values) {
     this.values = values;
@@ -81,12 +102,13 @@ public class ListOperand {
       return false;
     }
     ListOperand listOperand = (ListOperand) o;
-    return Objects.equals(this.values, listOperand.values);
+    return Objects.equals(this.encodedOperand, listOperand.encodedOperand) &&
+        Objects.equals(this.values, listOperand.values);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(values);
+    return Objects.hash(encodedOperand, values);
   }
 
 
@@ -95,6 +117,7 @@ public class ListOperand {
     StringBuilder sb = new StringBuilder();
     sb.append("class ListOperand {\n");
     
+    sb.append("    encodedOperand: ").append(toIndentedString(encodedOperand)).append("\n");
     sb.append("    values: ").append(toIndentedString(values)).append("\n");
     sb.append("}");
     return sb.toString();

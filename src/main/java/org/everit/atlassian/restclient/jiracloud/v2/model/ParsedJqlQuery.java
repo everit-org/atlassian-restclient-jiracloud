@@ -43,16 +43,42 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.JqlQuery;
  * Details of a parsed JQL query.
  */
 @ApiModel(description = "Details of a parsed JQL query.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class ParsedJqlQuery {
+  @JsonProperty("errors")
+  private List<String> errors = new ArrayList<>();
+
   @JsonProperty("query")
   private String query;
 
   @JsonProperty("structure")
   private JqlQuery structure;
 
-  @JsonProperty("errors")
-  private List<String> errors = new ArrayList<>();
+  public ParsedJqlQuery errors(List<String> errors) {
+    this.errors = errors;
+    return this;
+  }
+
+  public ParsedJqlQuery addErrorsItem(String errorsItem) {
+    if (this.errors == null) {
+      this.errors = new ArrayList<>();
+    }
+    this.errors.add(errorsItem);
+    return this;
+  }
+
+   /**
+   * The list of syntax or validation errors.
+   * @return errors
+  **/
+  @ApiModelProperty(value = "The list of syntax or validation errors.")
+  public List<String> getErrors() {
+    return errors;
+  }
+
+  public void setErrors(List<String> errors) {
+    this.errors = errors;
+  }
 
   public ParsedJqlQuery query(String query) {
     this.query = query;
@@ -90,32 +116,6 @@ public class ParsedJqlQuery {
     this.structure = structure;
   }
 
-  public ParsedJqlQuery errors(List<String> errors) {
-    this.errors = errors;
-    return this;
-  }
-
-  public ParsedJqlQuery addErrorsItem(String errorsItem) {
-    if (this.errors == null) {
-      this.errors = new ArrayList<>();
-    }
-    this.errors.add(errorsItem);
-    return this;
-  }
-
-   /**
-   * The list of syntax or validation errors.
-   * @return errors
-  **/
-  @ApiModelProperty(value = "The list of syntax or validation errors.")
-  public List<String> getErrors() {
-    return errors;
-  }
-
-  public void setErrors(List<String> errors) {
-    this.errors = errors;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -126,14 +126,14 @@ public class ParsedJqlQuery {
       return false;
     }
     ParsedJqlQuery parsedJqlQuery = (ParsedJqlQuery) o;
-    return Objects.equals(this.query, parsedJqlQuery.query) &&
-        Objects.equals(this.structure, parsedJqlQuery.structure) &&
-        Objects.equals(this.errors, parsedJqlQuery.errors);
+    return Objects.equals(this.errors, parsedJqlQuery.errors) &&
+        Objects.equals(this.query, parsedJqlQuery.query) &&
+        Objects.equals(this.structure, parsedJqlQuery.structure);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(query, structure, errors);
+    return Objects.hash(errors, query, structure);
   }
 
 
@@ -142,9 +142,9 @@ public class ParsedJqlQuery {
     StringBuilder sb = new StringBuilder();
     sb.append("class ParsedJqlQuery {\n");
     
+    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
     sb.append("    query: ").append(toIndentedString(query)).append("\n");
     sb.append("    structure: ").append(toIndentedString(structure)).append("\n");
-    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
     sb.append("}");
     return sb.toString();
   }

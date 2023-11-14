@@ -43,22 +43,13 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.Avatar;
  * Details about system and custom avatars.
  */
 @ApiModel(description = "Details about system and custom avatars.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class Avatars {
-  @JsonProperty("system")
-  private List<Avatar> system = new ArrayList<>();
-
   @JsonProperty("custom")
   private List<Avatar> custom = new ArrayList<>();
 
-   /**
-   * System avatars list.
-   * @return system
-  **/
-  @ApiModelProperty(value = "System avatars list.")
-  public List<Avatar> getSystem() {
-    return system;
-  }
+  @JsonProperty("system")
+  private List<Avatar> system = new ArrayList<>();
 
    /**
    * Custom avatars list.
@@ -67,6 +58,15 @@ public class Avatars {
   @ApiModelProperty(value = "Custom avatars list.")
   public List<Avatar> getCustom() {
     return custom;
+  }
+
+   /**
+   * System avatars list.
+   * @return system
+  **/
+  @ApiModelProperty(value = "System avatars list.")
+  public List<Avatar> getSystem() {
+    return system;
   }
 
 
@@ -79,13 +79,13 @@ public class Avatars {
       return false;
     }
     Avatars avatars = (Avatars) o;
-    return Objects.equals(this.system, avatars.system) &&
-        Objects.equals(this.custom, avatars.custom);
+    return Objects.equals(this.custom, avatars.custom) &&
+        Objects.equals(this.system, avatars.system);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(system, custom);
+    return Objects.hash(custom, system);
   }
 
 
@@ -94,8 +94,8 @@ public class Avatars {
     StringBuilder sb = new StringBuilder();
     sb.append("class Avatars {\n");
     
-    sb.append("    system: ").append(toIndentedString(system)).append("\n");
     sb.append("    custom: ").append(toIndentedString(custom)).append("\n");
+    sb.append("    system: ").append(toIndentedString(system)).append("\n");
     sb.append("}");
     return sb.toString();
   }

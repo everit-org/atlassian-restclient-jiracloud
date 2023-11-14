@@ -43,35 +43,35 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.IssueFieldOptionConfig
 /**
  * IssueFieldOptionCreateBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class IssueFieldOptionCreateBean {
-  @JsonProperty("value")
-  private String value;
+  @JsonProperty("config")
+  private IssueFieldOptionConfiguration config;
 
   @JsonProperty("properties")
   private Map<String, Object> properties = new HashMap<>();
 
-  @JsonProperty("config")
-  private IssueFieldOptionConfiguration config;
+  @JsonProperty("value")
+  private String value;
 
   private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
 
-  public IssueFieldOptionCreateBean value(String value) {
-    this.value = value;
+  public IssueFieldOptionCreateBean config(IssueFieldOptionConfiguration config) {
+    this.config = config;
     return this;
   }
 
    /**
-   * The option&#39;s name, which is displayed in Jira.
-   * @return value
+   * Get config
+   * @return config
   **/
-  @ApiModelProperty(required = true, value = "The option's name, which is displayed in Jira.")
-  public String getValue() {
-    return value;
+  @ApiModelProperty(value = "")
+  public IssueFieldOptionConfiguration getConfig() {
+    return config;
   }
 
-  public void setValue(String value) {
-    this.value = value;
+  public void setConfig(IssueFieldOptionConfiguration config) {
+    this.config = config;
   }
 
   public IssueFieldOptionCreateBean properties(Map<String, Object> properties) {
@@ -100,22 +100,22 @@ public class IssueFieldOptionCreateBean {
     this.properties = properties;
   }
 
-  public IssueFieldOptionCreateBean config(IssueFieldOptionConfiguration config) {
-    this.config = config;
+  public IssueFieldOptionCreateBean value(String value) {
+    this.value = value;
     return this;
   }
 
    /**
-   * Get config
-   * @return config
+   * The option&#39;s name, which is displayed in Jira.
+   * @return value
   **/
-  @ApiModelProperty(value = "")
-  public IssueFieldOptionConfiguration getConfig() {
-    return config;
+  @ApiModelProperty(required = true, value = "The option's name, which is displayed in Jira.")
+  public String getValue() {
+    return value;
   }
 
-  public void setConfig(IssueFieldOptionConfiguration config) {
-    this.config = config;
+  public void setValue(String value) {
+    this.value = value;
   }
 
 
@@ -138,15 +138,15 @@ public class IssueFieldOptionCreateBean {
       return false;
     }
     IssueFieldOptionCreateBean issueFieldOptionCreateBean = (IssueFieldOptionCreateBean) o;
-    return Objects.equals(this.value, issueFieldOptionCreateBean.value) &&
+    return Objects.equals(this.config, issueFieldOptionCreateBean.config) &&
         Objects.equals(this.properties, issueFieldOptionCreateBean.properties) &&
-        Objects.equals(this.config, issueFieldOptionCreateBean.config) &&
+        Objects.equals(this.value, issueFieldOptionCreateBean.value) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value, properties, config, super.hashCode());
+    return Objects.hash(config, properties, value, super.hashCode());
   }
 
 
@@ -155,9 +155,9 @@ public class IssueFieldOptionCreateBean {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueFieldOptionCreateBean {\n");
     
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
-    sb.append("    properties: ").append(toIndentedString(properties)).append("\n");
     sb.append("    config: ").append(toIndentedString(config)).append("\n");
+    sb.append("    properties: ").append(toIndentedString(properties)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();

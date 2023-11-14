@@ -45,13 +45,13 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.Worklog;
  * Paginated list of worklog details
  */
 @ApiModel(description = "Paginated list of worklog details")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class PageOfWorklogs {
-  @JsonProperty("startAt")
-  private Integer startAt;
-
   @JsonProperty("maxResults")
   private Integer maxResults;
+
+  @JsonProperty("startAt")
+  private Integer startAt;
 
   @JsonProperty("total")
   private Integer total;
@@ -62,21 +62,21 @@ public class PageOfWorklogs {
   private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
 
    /**
-   * The index of the first item returned on the page.
-   * @return startAt
-  **/
-  @ApiModelProperty(value = "The index of the first item returned on the page.")
-  public Integer getStartAt() {
-    return startAt;
-  }
-
-   /**
    * The maximum number of results that could be on the page.
    * @return maxResults
   **/
   @ApiModelProperty(value = "The maximum number of results that could be on the page.")
   public Integer getMaxResults() {
     return maxResults;
+  }
+
+   /**
+   * The index of the first item returned on the page.
+   * @return startAt
+  **/
+  @ApiModelProperty(value = "The index of the first item returned on the page.")
+  public Integer getStartAt() {
+    return startAt;
   }
 
    /**
@@ -117,8 +117,8 @@ public class PageOfWorklogs {
       return false;
     }
     PageOfWorklogs pageOfWorklogs = (PageOfWorklogs) o;
-    return Objects.equals(this.startAt, pageOfWorklogs.startAt) &&
-        Objects.equals(this.maxResults, pageOfWorklogs.maxResults) &&
+    return Objects.equals(this.maxResults, pageOfWorklogs.maxResults) &&
+        Objects.equals(this.startAt, pageOfWorklogs.startAt) &&
         Objects.equals(this.total, pageOfWorklogs.total) &&
         Objects.equals(this.worklogs, pageOfWorklogs.worklogs) &&
         super.equals(o);
@@ -126,7 +126,7 @@ public class PageOfWorklogs {
 
   @Override
   public int hashCode() {
-    return Objects.hash(startAt, maxResults, total, worklogs, super.hashCode());
+    return Objects.hash(maxResults, startAt, total, worklogs, super.hashCode());
   }
 
 
@@ -135,8 +135,8 @@ public class PageOfWorklogs {
     StringBuilder sb = new StringBuilder();
     sb.append("class PageOfWorklogs {\n");
     
-    sb.append("    startAt: ").append(toIndentedString(startAt)).append("\n");
     sb.append("    maxResults: ").append(toIndentedString(maxResults)).append("\n");
+    sb.append("    startAt: ").append(toIndentedString(startAt)).append("\n");
     sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("    worklogs: ").append(toIndentedString(worklogs)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");

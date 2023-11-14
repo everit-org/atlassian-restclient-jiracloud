@@ -28,8 +28,15 @@ import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
 import org.everit.http.restclient.TypeReference;
 
+import org.everit.atlassian.restclient.jiracloud.v2.model.AvailableDashboardGadgetsResponse;
+import org.everit.atlassian.restclient.jiracloud.v2.model.BulkEditShareableEntityRequest;
+import org.everit.atlassian.restclient.jiracloud.v2.model.BulkEditShareableEntityResponse;
 import org.everit.atlassian.restclient.jiracloud.v2.model.Dashboard;
 import org.everit.atlassian.restclient.jiracloud.v2.model.DashboardDetails;
+import org.everit.atlassian.restclient.jiracloud.v2.model.DashboardGadget;
+import org.everit.atlassian.restclient.jiracloud.v2.model.DashboardGadgetResponse;
+import org.everit.atlassian.restclient.jiracloud.v2.model.DashboardGadgetSettings;
+import org.everit.atlassian.restclient.jiracloud.v2.model.DashboardGadgetUpdateRequest;
 import org.everit.atlassian.restclient.jiracloud.v2.model.EntityProperty;
 import org.everit.atlassian.restclient.jiracloud.v2.model.ErrorCollection;
 import org.everit.atlassian.restclient.jiracloud.v2.model.PageBeanDashboard;
@@ -47,11 +54,19 @@ public class DashboardsApi {
 
   private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.net";
 
+  private static final TypeReference<DashboardGadget> returnType_addGadget = new TypeReference<DashboardGadget>() {};
+
+  private static final TypeReference<BulkEditShareableEntityResponse> returnType_bulkEditDashboards = new TypeReference<BulkEditShareableEntityResponse>() {};
+
   private static final TypeReference<Dashboard> returnType_copyDashboard = new TypeReference<Dashboard>() {};
 
   private static final TypeReference<Dashboard> returnType_createDashboard = new TypeReference<Dashboard>() {};
 
+  private static final TypeReference<AvailableDashboardGadgetsResponse> returnType_getAllAvailableDashboardGadgets = new TypeReference<AvailableDashboardGadgetsResponse>() {};
+
   private static final TypeReference<PageOfDashboards> returnType_getAllDashboards = new TypeReference<PageOfDashboards>() {};
+
+  private static final TypeReference<DashboardGadgetResponse> returnType_getAllGadgets = new TypeReference<DashboardGadgetResponse>() {};
 
   private static final TypeReference<Dashboard> returnType_getDashboard = new TypeReference<Dashboard>() {};
 
@@ -61,14 +76,78 @@ public class DashboardsApi {
 
   private static final TypeReference<PageBeanDashboard> returnType_getDashboardsPaginated = new TypeReference<PageBeanDashboard>() {};
 
+  private static final TypeReference<Object> returnType_removeGadget = new TypeReference<Object>() {};
+
   private static final TypeReference<Object> returnType_setDashboardItemProperty = new TypeReference<Object>() {};
 
   private static final TypeReference<Dashboard> returnType_updateDashboard = new TypeReference<Dashboard>() {};
+
+  private static final TypeReference<Object> returnType_updateGadget = new TypeReference<Object>() {};
 
   private final RestClient restClient;
 
   public DashboardsApi(RestClient restClient) {
     this.restClient = restClient;
+  }
+
+  /**
+   * Add gadget to dashboard
+   * Adds a gadget to a dashboard.  **[Permissions](#permissions) required:** None.
+   * @param dashboardId The ID of the dashboard. (required)
+   * @param dashboardGadgetSettings  (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;DashboardGadget&gt;
+   */
+  public Single<DashboardGadget> addGadget(
+    Long dashboardId, DashboardGadgetSettings dashboardGadgetSettings, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.POST)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/dashboard/{dashboardId}/gadget");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("dashboardId", String.valueOf(dashboardId));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(dashboardGadgetSettings));
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_addGadget);
+  }
+
+  /**
+   * Bulk edit dashboards
+   * Bulk edit dashboards. Maximum number of dashboards to be edited at the same time is 100.  **[Permissions](#permissions) required:** None  The dashboards to be updated must be owned by the user, or the user must be an administrator.
+   * @param bulkEditShareableEntityRequest The details of dashboards being updated in bulk. (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;BulkEditShareableEntityResponse&gt;
+   */
+  public Single<BulkEditShareableEntityResponse> bulkEditDashboards(
+    BulkEditShareableEntityRequest bulkEditShareableEntityRequest, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.PUT)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/dashboard/bulk/edit");
+
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(bulkEditShareableEntityRequest));
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_bulkEditDashboards);
   }
 
   /**
@@ -192,6 +271,32 @@ public class DashboardsApi {
   }
 
   /**
+   * Get available gadgets
+   * Gets a list of all available gadgets that can be added to all dashboards.  **[Permissions](#permissions) required:** None.
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;AvailableDashboardGadgetsResponse&gt;
+   */
+  public Single<AvailableDashboardGadgetsResponse> getAllAvailableDashboardGadgets(Optional<RestRequestEnhancer> restRequestEnhancer)
+     {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/dashboard/gadgets");
+
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getAllAvailableDashboardGadgets);
+  }
+
+  /**
    * Get all dashboards
    * Returns a list of dashboards owned by or shared with the user. The list may be filtered to include only favorite or owned dashboards.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** None.
    * @param filter The filter applied to the list of dashboards. Valid values are:   *  `favourite` Returns dashboards the user has marked as favorite.  *  `my` Returns dashboards owned by the user. (optional)
@@ -230,6 +335,46 @@ public class DashboardsApi {
   }
 
   /**
+   * Get gadgets
+   * Returns a list of dashboard gadgets on a dashboard.  This operation returns:   *  Gadgets from a list of IDs, when `id` is set.  *  Gadgets with a module key, when `moduleKey` is set.  *  Gadgets from a list of URIs, when `uri` is set.  *  All gadgets, when no other parameters are set.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** None.
+   * @param dashboardId The ID of the dashboard. (required)
+   * @param moduleKey The list of gadgets module keys. To include multiple module keys, separate module keys with ampersand: `moduleKey=key:one&moduleKey=key:two`. (optional, default to new ArrayList&lt;&gt;())
+   * @param uri The list of gadgets URIs. To include multiple URIs, separate URIs with ampersand: `uri=/rest/example/uri/1&uri=/rest/example/uri/2`. (optional, default to new ArrayList&lt;&gt;())
+   * @param gadgetId The list of gadgets IDs. To include multiple IDs, separate IDs with ampersand: `gadgetId=10000&gadgetId=10001`. (optional, default to new ArrayList&lt;&gt;())
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;DashboardGadgetResponse&gt;
+   */
+  public Single<DashboardGadgetResponse> getAllGadgets(
+    Long dashboardId, Optional<List<String>> moduleKey, Optional<List<String>> uri, Optional<List<Long>> gadgetId, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/dashboard/{dashboardId}/gadget");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("dashboardId", String.valueOf(dashboardId));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (moduleKey.isPresent()) {
+      queryParams.put("moduleKey", RestClientUtil.objectCollectionToStringCollection(moduleKey.get()));
+    }
+    if (uri.isPresent()) {
+      queryParams.put("uri", RestClientUtil.objectCollectionToStringCollection(uri.get()));
+    }
+    if (gadgetId.isPresent()) {
+      queryParams.put("gadgetId", RestClientUtil.objectCollectionToStringCollection(gadgetId.get()));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getAllGadgets);
+  }
+
+  /**
    * Get dashboard
    * Returns a dashboard.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** None.  However, to get a dashboard, the dashboard must be shared with the user or the user must own it. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. The System dashboard is considered to be shared with all other users.
    * @param id The ID of the dashboard. (required)
@@ -259,7 +404,7 @@ public class DashboardsApi {
 
   /**
    * Get dashboard item property
-   * Returns the key and value of a dashboard item property.  A dashboard item enables an app to add user-specific information to a user dashboard. Dashboard items are exposed to users as gadgets that users can add to their dashboards. For more information on how users do this, see [Adding and customizing gadgets](https://confluence.atlassian.com/x/7AeiLQ).  When an app creates a dashboard item it registers a callback to receive the dashboard item ID. The callback fires whenever the item is rendered or, where the item is configurable, the user edits the item. The app then uses this resource to store the item's content or configuration details. For more information on working with dashboard items, see [ Building a dashboard item for a JIRA Connect add-on](https://developer.atlassian.com/server/jira/platform/guide-building-a-dashboard-item-for-a-jira-connect-add-on-33746254/) and the [Dashboard Item](https://developer.atlassian.com/cloud/jira/platform/modules/dashboard-item/) documentation.  There is no resource to set or get dashboard items.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** The user must be the owner of the dashboard or be shared the dashboard. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. The System dashboard is considered to be shared with all other users.
+   * Returns the key and value of a dashboard item property.  A dashboard item enables an app to add user-specific information to a user dashboard. Dashboard items are exposed to users as gadgets that users can add to their dashboards. For more information on how users do this, see [Adding and customizing gadgets](https://confluence.atlassian.com/x/7AeiLQ).  When an app creates a dashboard item it registers a callback to receive the dashboard item ID. The callback fires whenever the item is rendered or, where the item is configurable, the user edits the item. The app then uses this resource to store the item's content or configuration details. For more information on working with dashboard items, see [ Building a dashboard item for a JIRA Connect add-on](https://developer.atlassian.com/server/jira/platform/guide-building-a-dashboard-item-for-a-jira-connect-add-on-33746254/) and the [Dashboard Item](https://developer.atlassian.com/cloud/jira/platform/modules/dashboard-item/) documentation.  There is no resource to set or get dashboard items.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** The user must be the owner of the dashboard or have the dashboard shared with them. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. The System dashboard is considered to be shared with all other users, and is accessible to anonymous users when Jira’s anonymous access is permitted.
    * @param dashboardId The ID of the dashboard. (required)
    * @param itemId The ID of the dashboard item. (required)
    * @param propertyKey The key of the dashboard item property. (required)
@@ -291,7 +436,7 @@ public class DashboardsApi {
 
   /**
    * Get dashboard item property keys
-   * Returns the keys of all properties for a dashboard item.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** The user must be the owner of the dashboard or be shared the dashboard. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. The System dashboard is considered to be shared with all other users.
+   * Returns the keys of all properties for a dashboard item.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** The user must be the owner of the dashboard or have the dashboard shared with them. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. The System dashboard is considered to be shared with all other users, and is accessible to anonymous users when Jira’s anonymous access is permitted.
    * @param dashboardId The ID of the dashboard. (required)
    * @param itemId The ID of the dashboard item. (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
@@ -325,17 +470,19 @@ public class DashboardsApi {
    * @param dashboardName String used to perform a case-insensitive partial match with `name`. (optional)
    * @param accountId User account ID used to return dashboards with the matching `owner.accountId`. This parameter cannot be used with the `owner` parameter. (optional)
    * @param owner This parameter is deprecated because of privacy changes. Use `accountId` instead. See the [migration guide](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details. User name used to return dashboards with the matching `owner.name`. This parameter cannot be used with the `accountId` parameter. (optional)
-   * @param groupname Group name used to returns dashboards that are shared with a group that matches `sharePermissions.group.name`. (optional)
+   * @param groupname As a group's name can change, use of `groupId` is recommended. Group name used to return dashboards that are shared with a group that matches `sharePermissions.group.name`. This parameter cannot be used with the `groupId` parameter. (optional)
+   * @param groupId Group ID used to return dashboards that are shared with a group that matches `sharePermissions.group.groupId`. This parameter cannot be used with the `groupname` parameter. (optional)
    * @param projectId Project ID used to returns dashboards that are shared with a project that matches `sharePermissions.project.id`. (optional)
    * @param orderBy [Order](#ordering) the results by a field:   *  `description` Sorts by dashboard description. Note that this sort works independently of whether the expand to display the description field is in use.  *  `favourite_count` Sorts by dashboard popularity.  *  `id` Sorts by dashboard ID.  *  `is_favourite` Sorts by whether the dashboard is marked as a favorite.  *  `name` Sorts by dashboard name.  *  `owner` Sorts by dashboard owner name. (optional, default to name)
    * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0l)
    * @param maxResults The maximum number of items to return per page. (optional, default to 50)
+   * @param status The status to filter by. It may be active, archived or deleted. (optional, default to active)
    * @param expand Use [expand](#expansion) to include additional information about dashboard in the response. This parameter accepts a comma-separated list. Expand options include:   *  `description` Returns the description of the dashboard.  *  `owner` Returns the owner of the dashboard.  *  `viewUrl` Returns the URL that is used to view the dashboard.  *  `favourite` Returns `isFavourite`, an indicator of whether the user has set the dashboard as a favorite.  *  `favouritedCount` Returns `popularity`, a count of how many users have set this dashboard as a favorite.  *  `sharePermissions` Returns details of the share permissions defined for the dashboard.  *  `editPermissions` Returns details of the edit permissions defined for the dashboard.  *  `isWritable` Returns whether the current user has permission to edit the dashboard. (optional)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PageBeanDashboard&gt;
    */
   public Single<PageBeanDashboard> getDashboardsPaginated(
-    Optional<String> dashboardName, Optional<String> accountId, Optional<String> owner, Optional<String> groupname, Optional<Long> projectId, Optional<String> orderBy, Optional<Long> startAt, Optional<Integer> maxResults, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Optional<String> dashboardName, Optional<String> accountId, Optional<String> owner, Optional<String> groupname, Optional<String> groupId, Optional<Long> projectId, Optional<String> orderBy, Optional<Long> startAt, Optional<Integer> maxResults, Optional<String> status, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.GET)
@@ -358,6 +505,9 @@ public class DashboardsApi {
     if (groupname.isPresent()) {
       queryParams.put("groupname", Collections.singleton(String.valueOf(groupname.get())));
     }
+    if (groupId.isPresent()) {
+      queryParams.put("groupId", Collections.singleton(String.valueOf(groupId.get())));
+    }
     if (projectId.isPresent()) {
       queryParams.put("projectId", Collections.singleton(String.valueOf(projectId.get())));
     }
@@ -369,6 +519,9 @@ public class DashboardsApi {
     }
     if (maxResults.isPresent()) {
       queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults.get())));
+    }
+    if (status.isPresent()) {
+      queryParams.put("status", Collections.singleton(String.valueOf(status.get())));
     }
     if (expand.isPresent()) {
       queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
@@ -382,11 +535,41 @@ public class DashboardsApi {
   }
 
   /**
+   * Remove gadget from dashboard
+   * Removes a dashboard gadget from a dashboard.  When a gadget is removed from a dashboard, other gadgets in the same column are moved up to fill the emptied position.  **[Permissions](#permissions) required:** None.
+   * @param dashboardId The ID of the dashboard. (required)
+   * @param gadgetId The ID of the gadget. (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;Object&gt;
+   */
+  public Single<Object> removeGadget(
+    Long dashboardId, Long gadgetId, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.DELETE)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/dashboard/{dashboardId}/gadget/{gadgetId}");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("dashboardId", String.valueOf(dashboardId));
+    pathParams.put("gadgetId", String.valueOf(gadgetId));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_removeGadget);
+  }
+
+  /**
    * Set dashboard item property
    * Sets the value of a dashboard item property. Use this resource in apps to store custom data against a dashboard item.  A dashboard item enables an app to add user-specific information to a user dashboard. Dashboard items are exposed to users as gadgets that users can add to their dashboards. For more information on how users do this, see [Adding and customizing gadgets](https://confluence.atlassian.com/x/7AeiLQ).  When an app creates a dashboard item it registers a callback to receive the dashboard item ID. The callback fires whenever the item is rendered or, where the item is configurable, the user edits the item. The app then uses this resource to store the item's content or configuration details. For more information on working with dashboard items, see [ Building a dashboard item for a JIRA Connect add-on](https://developer.atlassian.com/server/jira/platform/guide-building-a-dashboard-item-for-a-jira-connect-add-on-33746254/) and the [Dashboard Item](https://developer.atlassian.com/cloud/jira/platform/modules/dashboard-item/) documentation.  There is no resource to set or get dashboard items.  The value of the request body must be a [valid](http://tools.ietf.org/html/rfc4627), non-empty JSON blob. The maximum length is 32768 characters.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** The user must be the owner of the dashboard. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard.
    * @param dashboardId The ID of the dashboard. (required)
    * @param itemId The ID of the dashboard item. (required)
-   * @param propertyKey The key of the dashboard item property. The maximum length is 255 characters. (required)
+   * @param propertyKey The key of the dashboard item property. The maximum length is 255 characters. For dashboard items with a spec URI and no complete module key, if the provided propertyKey is equal to \"config\", the request body's JSON must be an object with all keys and values as strings. (required)
    * @param body  (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Object&gt;
@@ -445,6 +628,39 @@ public class DashboardsApi {
     requestBuilder.requestBody(Optional.of(dashboardDetails));
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updateDashboard);
+  }
+
+  /**
+   * Update gadget on dashboard
+   * Changes the title, position, and color of the gadget on a dashboard.  **[Permissions](#permissions) required:** None.
+   * @param dashboardId The ID of the dashboard. (required)
+   * @param gadgetId The ID of the gadget. (required)
+   * @param dashboardGadgetUpdateRequest  (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;Object&gt;
+   */
+  public Single<Object> updateGadget(
+    Long dashboardId, Long gadgetId, DashboardGadgetUpdateRequest dashboardGadgetUpdateRequest, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.PUT)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/dashboard/{dashboardId}/gadget/{gadgetId}");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("dashboardId", String.valueOf(dashboardId));
+    pathParams.put("gadgetId", String.valueOf(gadgetId));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(dashboardGadgetUpdateRequest));
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updateGadget);
   }
 
 }

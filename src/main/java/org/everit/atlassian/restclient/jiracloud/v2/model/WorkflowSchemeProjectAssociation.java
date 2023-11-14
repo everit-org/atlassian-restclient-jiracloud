@@ -40,31 +40,13 @@ import io.swagger.annotations.ApiModelProperty;
  * An associated workflow scheme and project.
  */
 @ApiModel(description = "An associated workflow scheme and project.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class WorkflowSchemeProjectAssociation {
-  @JsonProperty("workflowSchemeId")
-  private String workflowSchemeId;
-
   @JsonProperty("projectId")
   private String projectId;
 
-  public WorkflowSchemeProjectAssociation workflowSchemeId(String workflowSchemeId) {
-    this.workflowSchemeId = workflowSchemeId;
-    return this;
-  }
-
-   /**
-   * The ID of the workflow scheme. If the workflow scheme ID is &#x60;null&#x60;, the operation assigns the default workflow scheme.
-   * @return workflowSchemeId
-  **/
-  @ApiModelProperty(value = "The ID of the workflow scheme. If the workflow scheme ID is `null`, the operation assigns the default workflow scheme.")
-  public String getWorkflowSchemeId() {
-    return workflowSchemeId;
-  }
-
-  public void setWorkflowSchemeId(String workflowSchemeId) {
-    this.workflowSchemeId = workflowSchemeId;
-  }
+  @JsonProperty("workflowSchemeId")
+  private String workflowSchemeId;
 
   public WorkflowSchemeProjectAssociation projectId(String projectId) {
     this.projectId = projectId;
@@ -84,6 +66,24 @@ public class WorkflowSchemeProjectAssociation {
     this.projectId = projectId;
   }
 
+  public WorkflowSchemeProjectAssociation workflowSchemeId(String workflowSchemeId) {
+    this.workflowSchemeId = workflowSchemeId;
+    return this;
+  }
+
+   /**
+   * The ID of the workflow scheme. If the workflow scheme ID is &#x60;null&#x60;, the operation assigns the default workflow scheme.
+   * @return workflowSchemeId
+  **/
+  @ApiModelProperty(value = "The ID of the workflow scheme. If the workflow scheme ID is `null`, the operation assigns the default workflow scheme.")
+  public String getWorkflowSchemeId() {
+    return workflowSchemeId;
+  }
+
+  public void setWorkflowSchemeId(String workflowSchemeId) {
+    this.workflowSchemeId = workflowSchemeId;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -94,13 +94,13 @@ public class WorkflowSchemeProjectAssociation {
       return false;
     }
     WorkflowSchemeProjectAssociation workflowSchemeProjectAssociation = (WorkflowSchemeProjectAssociation) o;
-    return Objects.equals(this.workflowSchemeId, workflowSchemeProjectAssociation.workflowSchemeId) &&
-        Objects.equals(this.projectId, workflowSchemeProjectAssociation.projectId);
+    return Objects.equals(this.projectId, workflowSchemeProjectAssociation.projectId) &&
+        Objects.equals(this.workflowSchemeId, workflowSchemeProjectAssociation.workflowSchemeId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(workflowSchemeId, projectId);
+    return Objects.hash(projectId, workflowSchemeId);
   }
 
 
@@ -109,8 +109,8 @@ public class WorkflowSchemeProjectAssociation {
     StringBuilder sb = new StringBuilder();
     sb.append("class WorkflowSchemeProjectAssociation {\n");
     
-    sb.append("    workflowSchemeId: ").append(toIndentedString(workflowSchemeId)).append("\n");
     sb.append("    projectId: ").append(toIndentedString(projectId)).append("\n");
+    sb.append("    workflowSchemeId: ").append(toIndentedString(workflowSchemeId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

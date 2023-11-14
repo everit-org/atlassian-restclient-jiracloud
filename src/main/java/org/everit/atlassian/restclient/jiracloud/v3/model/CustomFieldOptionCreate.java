@@ -40,33 +40,33 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of a custom field option to create.
  */
 @ApiModel(description = "Details of a custom field option to create.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class CustomFieldOptionCreate {
-  @JsonProperty("value")
-  private String value;
+  @JsonProperty("disabled")
+  private Boolean disabled;
 
   @JsonProperty("optionId")
   private String optionId;
 
-  @JsonProperty("disabled")
-  private Boolean disabled;
+  @JsonProperty("value")
+  private String value;
 
-  public CustomFieldOptionCreate value(String value) {
-    this.value = value;
+  public CustomFieldOptionCreate disabled(Boolean disabled) {
+    this.disabled = disabled;
     return this;
   }
 
    /**
-   * The value of the custom field option.
-   * @return value
+   * Whether the option is disabled.
+   * @return disabled
   **/
-  @ApiModelProperty(required = true, value = "The value of the custom field option.")
-  public String getValue() {
-    return value;
+  @ApiModelProperty(value = "Whether the option is disabled.")
+  public Boolean getDisabled() {
+    return disabled;
   }
 
-  public void setValue(String value) {
-    this.value = value;
+  public void setDisabled(Boolean disabled) {
+    this.disabled = disabled;
   }
 
   public CustomFieldOptionCreate optionId(String optionId) {
@@ -87,22 +87,22 @@ public class CustomFieldOptionCreate {
     this.optionId = optionId;
   }
 
-  public CustomFieldOptionCreate disabled(Boolean disabled) {
-    this.disabled = disabled;
+  public CustomFieldOptionCreate value(String value) {
+    this.value = value;
     return this;
   }
 
    /**
-   * Whether the option is disabled.
-   * @return disabled
+   * The value of the custom field option.
+   * @return value
   **/
-  @ApiModelProperty(value = "Whether the option is disabled.")
-  public Boolean getDisabled() {
-    return disabled;
+  @ApiModelProperty(required = true, value = "The value of the custom field option.")
+  public String getValue() {
+    return value;
   }
 
-  public void setDisabled(Boolean disabled) {
-    this.disabled = disabled;
+  public void setValue(String value) {
+    this.value = value;
   }
 
 
@@ -115,14 +115,14 @@ public class CustomFieldOptionCreate {
       return false;
     }
     CustomFieldOptionCreate customFieldOptionCreate = (CustomFieldOptionCreate) o;
-    return Objects.equals(this.value, customFieldOptionCreate.value) &&
+    return Objects.equals(this.disabled, customFieldOptionCreate.disabled) &&
         Objects.equals(this.optionId, customFieldOptionCreate.optionId) &&
-        Objects.equals(this.disabled, customFieldOptionCreate.disabled);
+        Objects.equals(this.value, customFieldOptionCreate.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value, optionId, disabled);
+    return Objects.hash(disabled, optionId, value);
   }
 
 
@@ -131,9 +131,9 @@ public class CustomFieldOptionCreate {
     StringBuilder sb = new StringBuilder();
     sb.append("class CustomFieldOptionCreate {\n");
     
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
-    sb.append("    optionId: ").append(toIndentedString(optionId)).append("\n");
     sb.append("    disabled: ").append(toIndentedString(disabled)).append("\n");
+    sb.append("    optionId: ").append(toIndentedString(optionId)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }

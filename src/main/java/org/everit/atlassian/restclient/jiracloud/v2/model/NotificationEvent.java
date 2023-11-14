@@ -40,19 +40,37 @@ import io.swagger.annotations.ApiModelProperty;
  * Details about a notification event.
  */
 @ApiModel(description = "Details about a notification event.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class NotificationEvent {
+  @JsonProperty("description")
+  private String description;
+
   @JsonProperty("id")
   private Long id;
 
   @JsonProperty("name")
   private String name;
 
-  @JsonProperty("description")
-  private String description;
-
   @JsonProperty("templateEvent")
   private NotificationEvent templateEvent;
+
+  public NotificationEvent description(String description) {
+    this.description = description;
+    return this;
+  }
+
+   /**
+   * The description of the event.
+   * @return description
+  **/
+  @ApiModelProperty(value = "The description of the event.")
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
   public NotificationEvent id(Long id) {
     this.id = id;
@@ -90,24 +108,6 @@ public class NotificationEvent {
     this.name = name;
   }
 
-  public NotificationEvent description(String description) {
-    this.description = description;
-    return this;
-  }
-
-   /**
-   * The description of the event.
-   * @return description
-  **/
-  @ApiModelProperty(value = "The description of the event.")
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
   public NotificationEvent templateEvent(NotificationEvent templateEvent) {
     this.templateEvent = templateEvent;
     return this;
@@ -136,15 +136,15 @@ public class NotificationEvent {
       return false;
     }
     NotificationEvent notificationEvent = (NotificationEvent) o;
-    return Objects.equals(this.id, notificationEvent.id) &&
+    return Objects.equals(this.description, notificationEvent.description) &&
+        Objects.equals(this.id, notificationEvent.id) &&
         Objects.equals(this.name, notificationEvent.name) &&
-        Objects.equals(this.description, notificationEvent.description) &&
         Objects.equals(this.templateEvent, notificationEvent.templateEvent);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, templateEvent);
+    return Objects.hash(description, id, name, templateEvent);
   }
 
 
@@ -153,9 +153,9 @@ public class NotificationEvent {
     StringBuilder sb = new StringBuilder();
     sb.append("class NotificationEvent {\n");
     
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    templateEvent: ").append(toIndentedString(templateEvent)).append("\n");
     sb.append("}");
     return sb.toString();

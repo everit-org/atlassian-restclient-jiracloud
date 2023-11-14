@@ -42,16 +42,16 @@ import java.util.List;
  * Details of project permissions and associated issues and projects to look up.
  */
 @ApiModel(description = "Details of project permissions and associated issues and projects to look up.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class BulkProjectPermissions {
   @JsonProperty("issues")
   private List<Long> issues = new ArrayList<>();
 
-  @JsonProperty("projects")
-  private List<Long> projects = new ArrayList<>();
-
   @JsonProperty("permissions")
   private List<String> permissions = new ArrayList<>();
+
+  @JsonProperty("projects")
+  private List<Long> projects = new ArrayList<>();
 
   public BulkProjectPermissions issues(List<Long> issues) {
     this.issues = issues;
@@ -77,6 +77,29 @@ public class BulkProjectPermissions {
 
   public void setIssues(List<Long> issues) {
     this.issues = issues;
+  }
+
+  public BulkProjectPermissions permissions(List<String> permissions) {
+    this.permissions = permissions;
+    return this;
+  }
+
+  public BulkProjectPermissions addPermissionsItem(String permissionsItem) {
+    this.permissions.add(permissionsItem);
+    return this;
+  }
+
+   /**
+   * List of project permissions.
+   * @return permissions
+  **/
+  @ApiModelProperty(required = true, value = "List of project permissions.")
+  public List<String> getPermissions() {
+    return permissions;
+  }
+
+  public void setPermissions(List<String> permissions) {
+    this.permissions = permissions;
   }
 
   public BulkProjectPermissions projects(List<Long> projects) {
@@ -105,29 +128,6 @@ public class BulkProjectPermissions {
     this.projects = projects;
   }
 
-  public BulkProjectPermissions permissions(List<String> permissions) {
-    this.permissions = permissions;
-    return this;
-  }
-
-  public BulkProjectPermissions addPermissionsItem(String permissionsItem) {
-    this.permissions.add(permissionsItem);
-    return this;
-  }
-
-   /**
-   * List of project permissions.
-   * @return permissions
-  **/
-  @ApiModelProperty(required = true, value = "List of project permissions.")
-  public List<String> getPermissions() {
-    return permissions;
-  }
-
-  public void setPermissions(List<String> permissions) {
-    this.permissions = permissions;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -139,13 +139,13 @@ public class BulkProjectPermissions {
     }
     BulkProjectPermissions bulkProjectPermissions = (BulkProjectPermissions) o;
     return Objects.equals(this.issues, bulkProjectPermissions.issues) &&
-        Objects.equals(this.projects, bulkProjectPermissions.projects) &&
-        Objects.equals(this.permissions, bulkProjectPermissions.permissions);
+        Objects.equals(this.permissions, bulkProjectPermissions.permissions) &&
+        Objects.equals(this.projects, bulkProjectPermissions.projects);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(issues, projects, permissions);
+    return Objects.hash(issues, permissions, projects);
   }
 
 
@@ -155,8 +155,8 @@ public class BulkProjectPermissions {
     sb.append("class BulkProjectPermissions {\n");
     
     sb.append("    issues: ").append(toIndentedString(issues)).append("\n");
-    sb.append("    projects: ").append(toIndentedString(projects)).append("\n");
     sb.append("    permissions: ").append(toIndentedString(permissions)).append("\n");
+    sb.append("    projects: ").append(toIndentedString(projects)).append("\n");
     sb.append("}");
     return sb.toString();
   }

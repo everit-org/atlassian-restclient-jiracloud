@@ -65,7 +65,7 @@ public class ProjectRoleActorsApi {
    * Adds actors to a project role for the project.  To replace all actors for the project, use [Set actors for project role](#api-rest-api-2-project-projectIdOrKey-role-id-put).  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param projectIdOrKey The project ID or project key (case sensitive). (required)
    * @param id The ID of the project role. Use [Get all project roles](#api-rest-api-2-role-get) to get a list of project role IDs. (required)
-   * @param actorsMap The groups or users to associate with the project role for this project. Provide the user account ID or group name. (required)
+   * @param actorsMap The groups or users to associate with the project role for this project. Provide the user account ID, group name, or group ID. As a group's name can change, use of group ID is recommended. (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;ProjectRole&gt;
    */
@@ -130,12 +130,13 @@ public class ProjectRoleActorsApi {
    * @param projectIdOrKey The project ID or project key (case sensitive). (required)
    * @param id The ID of the project role. Use [Get all project roles](#api-rest-api-2-role-get) to get a list of project role IDs. (required)
    * @param user The user account ID of the user to remove from the project role. (optional)
-   * @param group The name of the group to remove from the project role. (optional)
+   * @param group The name of the group to remove from the project role. This parameter cannot be used with the `groupId` parameter. As a group's name can change, use of `groupId` is recommended. (optional)
+   * @param groupId The ID of the group to remove from the project role. This parameter cannot be used with the `group` parameter. (optional)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Completable
    */
   public Completable deleteActor(
-    String projectIdOrKey, Long id, Optional<String> user, Optional<String> group, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String projectIdOrKey, Long id, Optional<String> user, Optional<String> group, Optional<String> groupId, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.DELETE)
@@ -154,6 +155,9 @@ public class ProjectRoleActorsApi {
     if (group.isPresent()) {
       queryParams.put("group", Collections.singleton(String.valueOf(group.get())));
     }
+    if (groupId.isPresent()) {
+      queryParams.put("groupId", Collections.singleton(String.valueOf(groupId.get())));
+    }
     requestBuilder.queryParams(queryParams);
 
     Map<String, String> headers = new HashMap<>();
@@ -167,12 +171,13 @@ public class ProjectRoleActorsApi {
    * Deletes the [default actors](#api-rest-api-2-resolution-get) from a project role. You may delete a group or user, but you cannot delete a group and a user in the same request.  Changing a project role's default actors does not affect project role members for projects already created.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param id The ID of the project role. Use [Get all project roles](#api-rest-api-2-role-get) to get a list of project role IDs. (required)
    * @param user The user account ID of the user to remove as a default actor. (optional)
-   * @param group The group name of the group to be removed as a default actor. (optional)
+   * @param groupId The group ID of the group to be removed as a default actor. This parameter cannot be used with the `group` parameter. (optional)
+   * @param group The group name of the group to be removed as a default actor.This parameter cannot be used with the `groupId` parameter. As a group's name can change, use of `groupId` is recommended. (optional)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;ProjectRole&gt;
    */
   public Single<ProjectRole> deleteProjectRoleActorsFromRole(
-    Long id, Optional<String> user, Optional<String> group, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Long id, Optional<String> user, Optional<String> groupId, Optional<String> group, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.DELETE)
@@ -186,6 +191,9 @@ public class ProjectRoleActorsApi {
     Map<String, Collection<String>> queryParams = new HashMap<>();
     if (user.isPresent()) {
       queryParams.put("user", Collections.singleton(String.valueOf(user.get())));
+    }
+    if (groupId.isPresent()) {
+      queryParams.put("groupId", Collections.singleton(String.valueOf(groupId.get())));
     }
     if (group.isPresent()) {
       queryParams.put("group", Collections.singleton(String.valueOf(group.get())));
@@ -231,7 +239,7 @@ public class ProjectRoleActorsApi {
    * Sets the actors for a project role for a project, replacing all existing actors.  To add actors to the project without overwriting the existing list, use [Add actors to project role](#api-rest-api-2-project-projectIdOrKey-role-id-post).  **[Permissions](#permissions) required:** *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param projectIdOrKey The project ID or project key (case sensitive). (required)
    * @param id The ID of the project role. Use [Get all project roles](#api-rest-api-2-role-get) to get a list of project role IDs. (required)
-   * @param projectRoleActorsUpdateBean The groups or users to associate with the project role for this project. Provide the user account ID or group name. (required)
+   * @param projectRoleActorsUpdateBean The groups or users to associate with the project role for this project. Provide the user account ID, group name, or group ID. As a group's name can change, use of group ID is recommended. (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;ProjectRole&gt;
    */

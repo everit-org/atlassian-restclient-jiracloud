@@ -40,27 +40,27 @@ import io.swagger.annotations.ApiModelProperty;
  * A project category.
  */
 @ApiModel(description = "A project category.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class UpdatedProjectCategory {
-  @JsonProperty("self")
-  private String self;
+  @JsonProperty("description")
+  private String description;
 
   @JsonProperty("id")
   private String id;
 
-  @JsonProperty("description")
-  private String description;
-
   @JsonProperty("name")
   private String name;
 
+  @JsonProperty("self")
+  private String self;
+
    /**
-   * The URL of the project category.
-   * @return self
+   * The name of the project category.
+   * @return description
   **/
-  @ApiModelProperty(value = "The URL of the project category.")
-  public String getSelf() {
-    return self;
+  @ApiModelProperty(value = "The name of the project category.")
+  public String getDescription() {
+    return description;
   }
 
    /**
@@ -73,21 +73,21 @@ public class UpdatedProjectCategory {
   }
 
    /**
-   * The name of the project category.
-   * @return description
-  **/
-  @ApiModelProperty(value = "The name of the project category.")
-  public String getDescription() {
-    return description;
-  }
-
-   /**
    * The description of the project category.
    * @return name
   **/
   @ApiModelProperty(value = "The description of the project category.")
   public String getName() {
     return name;
+  }
+
+   /**
+   * The URL of the project category.
+   * @return self
+  **/
+  @ApiModelProperty(value = "The URL of the project category.")
+  public String getSelf() {
+    return self;
   }
 
 
@@ -100,15 +100,15 @@ public class UpdatedProjectCategory {
       return false;
     }
     UpdatedProjectCategory updatedProjectCategory = (UpdatedProjectCategory) o;
-    return Objects.equals(this.self, updatedProjectCategory.self) &&
+    return Objects.equals(this.description, updatedProjectCategory.description) &&
         Objects.equals(this.id, updatedProjectCategory.id) &&
-        Objects.equals(this.description, updatedProjectCategory.description) &&
-        Objects.equals(this.name, updatedProjectCategory.name);
+        Objects.equals(this.name, updatedProjectCategory.name) &&
+        Objects.equals(this.self, updatedProjectCategory.self);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, id, description, name);
+    return Objects.hash(description, id, name, self);
   }
 
 
@@ -117,10 +117,10 @@ public class UpdatedProjectCategory {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdatedProjectCategory {\n");
     
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("}");
     return sb.toString();
   }

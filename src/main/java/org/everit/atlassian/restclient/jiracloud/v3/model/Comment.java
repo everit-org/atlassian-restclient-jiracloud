@@ -48,34 +48,22 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.Visibility;
  * A comment.
  */
 @ApiModel(description = "A comment.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class Comment {
-  @JsonProperty("self")
-  private String self;
-
-  @JsonProperty("id")
-  private String id;
-
   @JsonProperty("author")
   private UserDetails author;
 
   @JsonProperty("body")
   private Object body = null;
 
-  @JsonProperty("renderedBody")
-  private String renderedBody;
-
-  @JsonProperty("updateAuthor")
-  private UserDetails updateAuthor;
-
   @JsonProperty("created")
   private OffsetDateTime created;
 
-  @JsonProperty("updated")
-  private OffsetDateTime updated;
+  @JsonProperty("id")
+  private String id;
 
-  @JsonProperty("visibility")
-  private Visibility visibility;
+  @JsonProperty("jsdAuthorCanSeeRequest")
+  private Boolean jsdAuthorCanSeeRequest;
 
   @JsonProperty("jsdPublic")
   private Boolean jsdPublic;
@@ -83,25 +71,22 @@ public class Comment {
   @JsonProperty("properties")
   private List<EntityProperty> properties = new ArrayList<>();
 
+  @JsonProperty("renderedBody")
+  private String renderedBody;
+
+  @JsonProperty("self")
+  private String self;
+
+  @JsonProperty("updateAuthor")
+  private UserDetails updateAuthor;
+
+  @JsonProperty("updated")
+  private OffsetDateTime updated;
+
+  @JsonProperty("visibility")
+  private Visibility visibility;
+
   private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
-
-   /**
-   * The URL of the comment.
-   * @return self
-  **/
-  @ApiModelProperty(value = "The URL of the comment.")
-  public String getSelf() {
-    return self;
-  }
-
-   /**
-   * The ID of the comment.
-   * @return id
-  **/
-  @ApiModelProperty(value = "The ID of the comment.")
-  public String getId() {
-    return id;
-  }
 
    /**
    * The ID of the user who created the comment.
@@ -131,24 +116,6 @@ public class Comment {
   }
 
    /**
-   * The rendered version of the comment.
-   * @return renderedBody
-  **/
-  @ApiModelProperty(value = "The rendered version of the comment.")
-  public String getRenderedBody() {
-    return renderedBody;
-  }
-
-   /**
-   * The ID of the user who updated the comment last.
-   * @return updateAuthor
-  **/
-  @ApiModelProperty(value = "The ID of the user who updated the comment last.")
-  public UserDetails getUpdateAuthor() {
-    return updateAuthor;
-  }
-
-   /**
    * The date and time at which the comment was created.
    * @return created
   **/
@@ -158,30 +125,21 @@ public class Comment {
   }
 
    /**
-   * The date and time at which the comment was updated last.
-   * @return updated
+   * The ID of the comment.
+   * @return id
   **/
-  @ApiModelProperty(value = "The date and time at which the comment was updated last.")
-  public OffsetDateTime getUpdated() {
-    return updated;
-  }
-
-  public Comment visibility(Visibility visibility) {
-    this.visibility = visibility;
-    return this;
+  @ApiModelProperty(value = "The ID of the comment.")
+  public String getId() {
+    return id;
   }
 
    /**
-   * The group or role to which this comment is visible. Optional on create and update.
-   * @return visibility
+   * Whether the comment was added from an email sent by a person who is not part of the issue. See [Allow external emails to be added as comments on issues](https://support.atlassian.com/jira-service-management-cloud/docs/allow-external-emails-to-be-added-as-comments-on-issues/)for information on setting up this feature.
+   * @return jsdAuthorCanSeeRequest
   **/
-  @ApiModelProperty(value = "The group or role to which this comment is visible. Optional on create and update.")
-  public Visibility getVisibility() {
-    return visibility;
-  }
-
-  public void setVisibility(Visibility visibility) {
-    this.visibility = visibility;
+  @ApiModelProperty(value = "Whether the comment was added from an email sent by a person who is not part of the issue. See [Allow external emails to be added as comments on issues](https://support.atlassian.com/jira-service-management-cloud/docs/allow-external-emails-to-be-added-as-comments-on-issues/)for information on setting up this feature.")
+  public Boolean getJsdAuthorCanSeeRequest() {
+    return jsdAuthorCanSeeRequest;
   }
 
    /**
@@ -219,6 +177,60 @@ public class Comment {
     this.properties = properties;
   }
 
+   /**
+   * The rendered version of the comment.
+   * @return renderedBody
+  **/
+  @ApiModelProperty(value = "The rendered version of the comment.")
+  public String getRenderedBody() {
+    return renderedBody;
+  }
+
+   /**
+   * The URL of the comment.
+   * @return self
+  **/
+  @ApiModelProperty(value = "The URL of the comment.")
+  public String getSelf() {
+    return self;
+  }
+
+   /**
+   * The ID of the user who updated the comment last.
+   * @return updateAuthor
+  **/
+  @ApiModelProperty(value = "The ID of the user who updated the comment last.")
+  public UserDetails getUpdateAuthor() {
+    return updateAuthor;
+  }
+
+   /**
+   * The date and time at which the comment was updated last.
+   * @return updated
+  **/
+  @ApiModelProperty(value = "The date and time at which the comment was updated last.")
+  public OffsetDateTime getUpdated() {
+    return updated;
+  }
+
+  public Comment visibility(Visibility visibility) {
+    this.visibility = visibility;
+    return this;
+  }
+
+   /**
+   * The group or role to which this comment is visible. Optional on create and update.
+   * @return visibility
+  **/
+  @ApiModelProperty(value = "The group or role to which this comment is visible. Optional on create and update.")
+  public Visibility getVisibility() {
+    return visibility;
+  }
+
+  public void setVisibility(Visibility visibility) {
+    this.visibility = visibility;
+  }
+
 
   @com.fasterxml.jackson.annotation.JsonAnyGetter
   public Map<String, Object> any() {
@@ -239,23 +251,24 @@ public class Comment {
       return false;
     }
     Comment comment = (Comment) o;
-    return Objects.equals(this.self, comment.self) &&
-        Objects.equals(this.id, comment.id) &&
-        Objects.equals(this.author, comment.author) &&
+    return Objects.equals(this.author, comment.author) &&
         Objects.equals(this.body, comment.body) &&
-        Objects.equals(this.renderedBody, comment.renderedBody) &&
-        Objects.equals(this.updateAuthor, comment.updateAuthor) &&
         Objects.equals(this.created, comment.created) &&
-        Objects.equals(this.updated, comment.updated) &&
-        Objects.equals(this.visibility, comment.visibility) &&
+        Objects.equals(this.id, comment.id) &&
+        Objects.equals(this.jsdAuthorCanSeeRequest, comment.jsdAuthorCanSeeRequest) &&
         Objects.equals(this.jsdPublic, comment.jsdPublic) &&
         Objects.equals(this.properties, comment.properties) &&
+        Objects.equals(this.renderedBody, comment.renderedBody) &&
+        Objects.equals(this.self, comment.self) &&
+        Objects.equals(this.updateAuthor, comment.updateAuthor) &&
+        Objects.equals(this.updated, comment.updated) &&
+        Objects.equals(this.visibility, comment.visibility) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, id, author, body, renderedBody, updateAuthor, created, updated, visibility, jsdPublic, properties, super.hashCode());
+    return Objects.hash(author, body, created, id, jsdAuthorCanSeeRequest, jsdPublic, properties, renderedBody, self, updateAuthor, updated, visibility, super.hashCode());
   }
 
 
@@ -264,17 +277,18 @@ public class Comment {
     StringBuilder sb = new StringBuilder();
     sb.append("class Comment {\n");
     
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    author: ").append(toIndentedString(author)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
-    sb.append("    renderedBody: ").append(toIndentedString(renderedBody)).append("\n");
-    sb.append("    updateAuthor: ").append(toIndentedString(updateAuthor)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
-    sb.append("    updated: ").append(toIndentedString(updated)).append("\n");
-    sb.append("    visibility: ").append(toIndentedString(visibility)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    jsdAuthorCanSeeRequest: ").append(toIndentedString(jsdAuthorCanSeeRequest)).append("\n");
     sb.append("    jsdPublic: ").append(toIndentedString(jsdPublic)).append("\n");
     sb.append("    properties: ").append(toIndentedString(properties)).append("\n");
+    sb.append("    renderedBody: ").append(toIndentedString(renderedBody)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
+    sb.append("    updateAuthor: ").append(toIndentedString(updateAuthor)).append("\n");
+    sb.append("    updated: ").append(toIndentedString(updated)).append("\n");
+    sb.append("    visibility: ").append(toIndentedString(visibility)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();

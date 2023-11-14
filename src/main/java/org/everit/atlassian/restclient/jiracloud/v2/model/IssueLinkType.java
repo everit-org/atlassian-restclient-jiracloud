@@ -41,16 +41,16 @@ import java.net.URI;
  * This object is used as follows:   *  In the [ issueLink](#api-rest-api-2-issueLink-post) resource it defines and reports on the type of link between the issues. Find a list of issue link types with [Get issue link types](#api-rest-api-2-issueLinkType-get).  *  In the [ issueLinkType](#api-rest-api-2-issueLinkType-post) resource it defines and reports on issue link types.
  */
 @ApiModel(description = "This object is used as follows:   *  In the [ issueLink](#api-rest-api-2-issueLink-post) resource it defines and reports on the type of link between the issues. Find a list of issue link types with [Get issue link types](#api-rest-api-2-issueLinkType-get).  *  In the [ issueLinkType](#api-rest-api-2-issueLinkType-post) resource it defines and reports on issue link types.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class IssueLinkType {
   @JsonProperty("id")
   private String id;
 
-  @JsonProperty("name")
-  private String name;
-
   @JsonProperty("inward")
   private String inward;
+
+  @JsonProperty("name")
+  private String name;
 
   @JsonProperty("outward")
   private String outward;
@@ -76,24 +76,6 @@ public class IssueLinkType {
     this.id = id;
   }
 
-  public IssueLinkType name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * The name of the issue link type and is used as follows:   *  In the [ issueLink](#api-rest-api-2-issueLink-post) resource it is the type of issue link. Required on create when &#x60;id&#x60; isn&#39;t provided. Otherwise, read only.  *  In the [ issueLinkType](#api-rest-api-2-issueLinkType-post) resource it is required on create and optional on update. Otherwise, read only.
-   * @return name
-  **/
-  @ApiModelProperty(value = "The name of the issue link type and is used as follows:   *  In the [ issueLink](#api-rest-api-2-issueLink-post) resource it is the type of issue link. Required on create when `id` isn't provided. Otherwise, read only.  *  In the [ issueLinkType](#api-rest-api-2-issueLinkType-post) resource it is required on create and optional on update. Otherwise, read only.")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
   public IssueLinkType inward(String inward) {
     this.inward = inward;
     return this;
@@ -110,6 +92,24 @@ public class IssueLinkType {
 
   public void setInward(String inward) {
     this.inward = inward;
+  }
+
+  public IssueLinkType name(String name) {
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * The name of the issue link type and is used as follows:   *  In the [ issueLink](#api-rest-api-2-issueLink-post) resource it is the type of issue link. Required on create when &#x60;id&#x60; isn&#39;t provided. Otherwise, read only.  *  In the [ issueLinkType](#api-rest-api-2-issueLinkType-post) resource it is required on create and optional on update. Otherwise, read only.
+   * @return name
+  **/
+  @ApiModelProperty(value = "The name of the issue link type and is used as follows:   *  In the [ issueLink](#api-rest-api-2-issueLink-post) resource it is the type of issue link. Required on create when `id` isn't provided. Otherwise, read only.  *  In the [ issueLinkType](#api-rest-api-2-issueLinkType-post) resource it is required on create and optional on update. Otherwise, read only.")
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 
   public IssueLinkType outward(String outward) {
@@ -150,15 +150,15 @@ public class IssueLinkType {
     }
     IssueLinkType issueLinkType = (IssueLinkType) o;
     return Objects.equals(this.id, issueLinkType.id) &&
-        Objects.equals(this.name, issueLinkType.name) &&
         Objects.equals(this.inward, issueLinkType.inward) &&
+        Objects.equals(this.name, issueLinkType.name) &&
         Objects.equals(this.outward, issueLinkType.outward) &&
         Objects.equals(this.self, issueLinkType.self);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, inward, outward, self);
+    return Objects.hash(id, inward, name, outward, self);
   }
 
 
@@ -168,8 +168,8 @@ public class IssueLinkType {
     sb.append("class IssueLinkType {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    inward: ").append(toIndentedString(inward)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    outward: ").append(toIndentedString(outward)).append("\n");
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("}");

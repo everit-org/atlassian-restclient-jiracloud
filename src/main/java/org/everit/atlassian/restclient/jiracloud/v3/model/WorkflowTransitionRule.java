@@ -40,31 +40,13 @@ import io.swagger.annotations.ApiModelProperty;
  * A workflow transition rule.
  */
 @ApiModel(description = "A workflow transition rule.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class WorkflowTransitionRule {
-  @JsonProperty("type")
-  private String type;
-
   @JsonProperty("configuration")
   private Object _configuration = null;
 
-  public WorkflowTransitionRule type(String type) {
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * The type of the transition rule.
-   * @return type
-  **/
-  @ApiModelProperty(required = true, value = "The type of the transition rule.")
-  public String getType() {
-    return type;
-  }
-
-  public void setType(String type) {
-    this.type = type;
-  }
+  @JsonProperty("type")
+  private String type;
 
   public WorkflowTransitionRule _configuration(Object _configuration) {
     this._configuration = _configuration;
@@ -84,6 +66,24 @@ public class WorkflowTransitionRule {
     this._configuration = _configuration;
   }
 
+  public WorkflowTransitionRule type(String type) {
+    this.type = type;
+    return this;
+  }
+
+   /**
+   * The type of the transition rule.
+   * @return type
+  **/
+  @ApiModelProperty(required = true, value = "The type of the transition rule.")
+  public String getType() {
+    return type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -94,13 +94,13 @@ public class WorkflowTransitionRule {
       return false;
     }
     WorkflowTransitionRule workflowTransitionRule = (WorkflowTransitionRule) o;
-    return Objects.equals(this.type, workflowTransitionRule.type) &&
-        Objects.equals(this._configuration, workflowTransitionRule._configuration);
+    return Objects.equals(this._configuration, workflowTransitionRule._configuration) &&
+        Objects.equals(this.type, workflowTransitionRule.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, _configuration);
+    return Objects.hash(_configuration, type);
   }
 
 
@@ -109,8 +109,8 @@ public class WorkflowTransitionRule {
     StringBuilder sb = new StringBuilder();
     sb.append("class WorkflowTransitionRule {\n");
     
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    _configuration: ").append(toIndentedString(_configuration)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }

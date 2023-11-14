@@ -42,35 +42,35 @@ import java.util.Map;
  * An icon. If no icon is defined:   *  for a status icon, no status icon displays in Jira.  *  for the remote object icon, the default link icon displays in Jira.
  */
 @ApiModel(description = "An icon. If no icon is defined:   *  for a status icon, no status icon displays in Jira.  *  for the remote object icon, the default link icon displays in Jira.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class Icon {
-  @JsonProperty("url16x16")
-  private String url16x16;
+  @JsonProperty("link")
+  private String link;
 
   @JsonProperty("title")
   private String title;
 
-  @JsonProperty("link")
-  private String link;
+  @JsonProperty("url16x16")
+  private String url16x16;
 
   private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
 
-  public Icon url16x16(String url16x16) {
-    this.url16x16 = url16x16;
+  public Icon link(String link) {
+    this.link = link;
     return this;
   }
 
    /**
-   * The URL of an icon that displays at 16x16 pixel in Jira.
-   * @return url16x16
+   * The URL of the tooltip, used only for a status icon. If not set, the status icon in Jira is not clickable.
+   * @return link
   **/
-  @ApiModelProperty(value = "The URL of an icon that displays at 16x16 pixel in Jira.")
-  public String getUrl16x16() {
-    return url16x16;
+  @ApiModelProperty(value = "The URL of the tooltip, used only for a status icon. If not set, the status icon in Jira is not clickable.")
+  public String getLink() {
+    return link;
   }
 
-  public void setUrl16x16(String url16x16) {
-    this.url16x16 = url16x16;
+  public void setLink(String link) {
+    this.link = link;
   }
 
   public Icon title(String title) {
@@ -91,22 +91,22 @@ public class Icon {
     this.title = title;
   }
 
-  public Icon link(String link) {
-    this.link = link;
+  public Icon url16x16(String url16x16) {
+    this.url16x16 = url16x16;
     return this;
   }
 
    /**
-   * The URL of the tooltip, used only for a status icon. If not set, the status icon in Jira is not clickable.
-   * @return link
+   * The URL of an icon that displays at 16x16 pixel in Jira.
+   * @return url16x16
   **/
-  @ApiModelProperty(value = "The URL of the tooltip, used only for a status icon. If not set, the status icon in Jira is not clickable.")
-  public String getLink() {
-    return link;
+  @ApiModelProperty(value = "The URL of an icon that displays at 16x16 pixel in Jira.")
+  public String getUrl16x16() {
+    return url16x16;
   }
 
-  public void setLink(String link) {
-    this.link = link;
+  public void setUrl16x16(String url16x16) {
+    this.url16x16 = url16x16;
   }
 
 
@@ -129,15 +129,15 @@ public class Icon {
       return false;
     }
     Icon icon = (Icon) o;
-    return Objects.equals(this.url16x16, icon.url16x16) &&
+    return Objects.equals(this.link, icon.link) &&
         Objects.equals(this.title, icon.title) &&
-        Objects.equals(this.link, icon.link) &&
+        Objects.equals(this.url16x16, icon.url16x16) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(url16x16, title, link, super.hashCode());
+    return Objects.hash(link, title, url16x16, super.hashCode());
   }
 
 
@@ -146,9 +146,9 @@ public class Icon {
     StringBuilder sb = new StringBuilder();
     sb.append("class Icon {\n");
     
-    sb.append("    url16x16: ").append(toIndentedString(url16x16)).append("\n");
-    sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    link: ").append(toIndentedString(link)).append("\n");
+    sb.append("    title: ").append(toIndentedString(title)).append("\n");
+    sb.append("    url16x16: ").append(toIndentedString(url16x16)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();

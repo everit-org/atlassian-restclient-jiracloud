@@ -40,25 +40,16 @@ import io.swagger.annotations.ApiModelProperty;
  * List of custom fields using the version.
  */
 @ApiModel(description = "List of custom fields using the version.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class VersionUsageInCustomField {
-  @JsonProperty("fieldName")
-  private String fieldName;
-
   @JsonProperty("customFieldId")
   private Long customFieldId;
 
+  @JsonProperty("fieldName")
+  private String fieldName;
+
   @JsonProperty("issueCountWithVersionInCustomField")
   private Long issueCountWithVersionInCustomField;
-
-   /**
-   * The name of the custom field.
-   * @return fieldName
-  **/
-  @ApiModelProperty(value = "The name of the custom field.")
-  public String getFieldName() {
-    return fieldName;
-  }
 
    /**
    * The ID of the custom field.
@@ -67,6 +58,15 @@ public class VersionUsageInCustomField {
   @ApiModelProperty(value = "The ID of the custom field.")
   public Long getCustomFieldId() {
     return customFieldId;
+  }
+
+   /**
+   * The name of the custom field.
+   * @return fieldName
+  **/
+  @ApiModelProperty(value = "The name of the custom field.")
+  public String getFieldName() {
+    return fieldName;
   }
 
    /**
@@ -88,14 +88,14 @@ public class VersionUsageInCustomField {
       return false;
     }
     VersionUsageInCustomField versionUsageInCustomField = (VersionUsageInCustomField) o;
-    return Objects.equals(this.fieldName, versionUsageInCustomField.fieldName) &&
-        Objects.equals(this.customFieldId, versionUsageInCustomField.customFieldId) &&
+    return Objects.equals(this.customFieldId, versionUsageInCustomField.customFieldId) &&
+        Objects.equals(this.fieldName, versionUsageInCustomField.fieldName) &&
         Objects.equals(this.issueCountWithVersionInCustomField, versionUsageInCustomField.issueCountWithVersionInCustomField);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fieldName, customFieldId, issueCountWithVersionInCustomField);
+    return Objects.hash(customFieldId, fieldName, issueCountWithVersionInCustomField);
   }
 
 
@@ -104,8 +104,8 @@ public class VersionUsageInCustomField {
     StringBuilder sb = new StringBuilder();
     sb.append("class VersionUsageInCustomField {\n");
     
-    sb.append("    fieldName: ").append(toIndentedString(fieldName)).append("\n");
     sb.append("    customFieldId: ").append(toIndentedString(customFieldId)).append("\n");
+    sb.append("    fieldName: ").append(toIndentedString(fieldName)).append("\n");
     sb.append("    issueCountWithVersionInCustomField: ").append(toIndentedString(issueCountWithVersionInCustomField)).append("\n");
     sb.append("}");
     return sb.toString();

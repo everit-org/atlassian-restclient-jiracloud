@@ -41,11 +41,8 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.JqlQueryField;
  * An element of the order-by JQL clause.
  */
 @ApiModel(description = "An element of the order-by JQL clause.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class JqlQueryOrderByClauseElement {
-  @JsonProperty("field")
-  private JqlQueryField field;
-
   /**
    * The direction in which to order the results.
    */
@@ -84,23 +81,8 @@ public class JqlQueryOrderByClauseElement {
   @JsonProperty("direction")
   private DirectionEnum direction;
 
-  public JqlQueryOrderByClauseElement field(JqlQueryField field) {
-    this.field = field;
-    return this;
-  }
-
-   /**
-   * Get field
-   * @return field
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public JqlQueryField getField() {
-    return field;
-  }
-
-  public void setField(JqlQueryField field) {
-    this.field = field;
-  }
+  @JsonProperty("field")
+  private JqlQueryField field;
 
   public JqlQueryOrderByClauseElement direction(DirectionEnum direction) {
     this.direction = direction;
@@ -120,6 +102,24 @@ public class JqlQueryOrderByClauseElement {
     this.direction = direction;
   }
 
+  public JqlQueryOrderByClauseElement field(JqlQueryField field) {
+    this.field = field;
+    return this;
+  }
+
+   /**
+   * Get field
+   * @return field
+  **/
+  @ApiModelProperty(required = true, value = "")
+  public JqlQueryField getField() {
+    return field;
+  }
+
+  public void setField(JqlQueryField field) {
+    this.field = field;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -130,13 +130,13 @@ public class JqlQueryOrderByClauseElement {
       return false;
     }
     JqlQueryOrderByClauseElement jqlQueryOrderByClauseElement = (JqlQueryOrderByClauseElement) o;
-    return Objects.equals(this.field, jqlQueryOrderByClauseElement.field) &&
-        Objects.equals(this.direction, jqlQueryOrderByClauseElement.direction);
+    return Objects.equals(this.direction, jqlQueryOrderByClauseElement.direction) &&
+        Objects.equals(this.field, jqlQueryOrderByClauseElement.field);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(field, direction);
+    return Objects.hash(direction, field);
   }
 
 
@@ -145,8 +145,8 @@ public class JqlQueryOrderByClauseElement {
     StringBuilder sb = new StringBuilder();
     sb.append("class JqlQueryOrderByClauseElement {\n");
     
-    sb.append("    field: ").append(toIndentedString(field)).append("\n");
     sb.append("    direction: ").append(toIndentedString(direction)).append("\n");
+    sb.append("    field: ").append(toIndentedString(field)).append("\n");
     sb.append("}");
     return sb.toString();
   }

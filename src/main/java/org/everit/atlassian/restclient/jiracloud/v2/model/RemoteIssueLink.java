@@ -43,60 +43,42 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.RemoteObject;
  * Details of an issue remote link.
  */
 @ApiModel(description = "Details of an issue remote link.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class RemoteIssueLink {
-  @JsonProperty("id")
-  private Long id;
-
-  @JsonProperty("self")
-  private URI self;
+  @JsonProperty("application")
+  private Application application;
 
   @JsonProperty("globalId")
   private String globalId;
 
-  @JsonProperty("application")
-  private Application application;
-
-  @JsonProperty("relationship")
-  private String relationship;
+  @JsonProperty("id")
+  private Long id;
 
   @JsonProperty("object")
   private RemoteObject _object;
 
-  public RemoteIssueLink id(Long id) {
-    this.id = id;
+  @JsonProperty("relationship")
+  private String relationship;
+
+  @JsonProperty("self")
+  private URI self;
+
+  public RemoteIssueLink application(Application application) {
+    this.application = application;
     return this;
   }
 
    /**
-   * The ID of the link.
-   * @return id
+   * Details of the remote application the linked item is in.
+   * @return application
   **/
-  @ApiModelProperty(value = "The ID of the link.")
-  public Long getId() {
-    return id;
+  @ApiModelProperty(value = "Details of the remote application the linked item is in.")
+  public Application getApplication() {
+    return application;
   }
 
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public RemoteIssueLink self(URI self) {
-    this.self = self;
-    return this;
-  }
-
-   /**
-   * The URL of the link.
-   * @return self
-  **/
-  @ApiModelProperty(value = "The URL of the link.")
-  public URI getSelf() {
-    return self;
-  }
-
-  public void setSelf(URI self) {
-    this.self = self;
+  public void setApplication(Application application) {
+    this.application = application;
   }
 
   public RemoteIssueLink globalId(String globalId) {
@@ -117,40 +99,22 @@ public class RemoteIssueLink {
     this.globalId = globalId;
   }
 
-  public RemoteIssueLink application(Application application) {
-    this.application = application;
+  public RemoteIssueLink id(Long id) {
+    this.id = id;
     return this;
   }
 
    /**
-   * Details of the remote application the linked item is in.
-   * @return application
+   * The ID of the link.
+   * @return id
   **/
-  @ApiModelProperty(value = "Details of the remote application the linked item is in.")
-  public Application getApplication() {
-    return application;
+  @ApiModelProperty(value = "The ID of the link.")
+  public Long getId() {
+    return id;
   }
 
-  public void setApplication(Application application) {
-    this.application = application;
-  }
-
-  public RemoteIssueLink relationship(String relationship) {
-    this.relationship = relationship;
-    return this;
-  }
-
-   /**
-   * Description of the relationship between the issue and the linked item.
-   * @return relationship
-  **/
-  @ApiModelProperty(value = "Description of the relationship between the issue and the linked item.")
-  public String getRelationship() {
-    return relationship;
-  }
-
-  public void setRelationship(String relationship) {
-    this.relationship = relationship;
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public RemoteIssueLink _object(RemoteObject _object) {
@@ -171,6 +135,42 @@ public class RemoteIssueLink {
     this._object = _object;
   }
 
+  public RemoteIssueLink relationship(String relationship) {
+    this.relationship = relationship;
+    return this;
+  }
+
+   /**
+   * Description of the relationship between the issue and the linked item.
+   * @return relationship
+  **/
+  @ApiModelProperty(value = "Description of the relationship between the issue and the linked item.")
+  public String getRelationship() {
+    return relationship;
+  }
+
+  public void setRelationship(String relationship) {
+    this.relationship = relationship;
+  }
+
+  public RemoteIssueLink self(URI self) {
+    this.self = self;
+    return this;
+  }
+
+   /**
+   * The URL of the link.
+   * @return self
+  **/
+  @ApiModelProperty(value = "The URL of the link.")
+  public URI getSelf() {
+    return self;
+  }
+
+  public void setSelf(URI self) {
+    this.self = self;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -181,17 +181,17 @@ public class RemoteIssueLink {
       return false;
     }
     RemoteIssueLink remoteIssueLink = (RemoteIssueLink) o;
-    return Objects.equals(this.id, remoteIssueLink.id) &&
-        Objects.equals(this.self, remoteIssueLink.self) &&
+    return Objects.equals(this.application, remoteIssueLink.application) &&
         Objects.equals(this.globalId, remoteIssueLink.globalId) &&
-        Objects.equals(this.application, remoteIssueLink.application) &&
+        Objects.equals(this.id, remoteIssueLink.id) &&
+        Objects.equals(this._object, remoteIssueLink._object) &&
         Objects.equals(this.relationship, remoteIssueLink.relationship) &&
-        Objects.equals(this._object, remoteIssueLink._object);
+        Objects.equals(this.self, remoteIssueLink.self);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, self, globalId, application, relationship, _object);
+    return Objects.hash(application, globalId, id, _object, relationship, self);
   }
 
 
@@ -200,12 +200,12 @@ public class RemoteIssueLink {
     StringBuilder sb = new StringBuilder();
     sb.append("class RemoteIssueLink {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    globalId: ").append(toIndentedString(globalId)).append("\n");
     sb.append("    application: ").append(toIndentedString(application)).append("\n");
-    sb.append("    relationship: ").append(toIndentedString(relationship)).append("\n");
+    sb.append("    globalId: ").append(toIndentedString(globalId)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
+    sb.append("    relationship: ").append(toIndentedString(relationship)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("}");
     return sb.toString();
   }

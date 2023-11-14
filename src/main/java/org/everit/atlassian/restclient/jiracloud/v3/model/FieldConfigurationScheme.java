@@ -40,16 +40,34 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of a field configuration scheme.
  */
 @ApiModel(description = "Details of a field configuration scheme.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class FieldConfigurationScheme {
+  @JsonProperty("description")
+  private String description;
+
   @JsonProperty("id")
   private String id;
 
   @JsonProperty("name")
   private String name;
 
-  @JsonProperty("description")
-  private String description;
+  public FieldConfigurationScheme description(String description) {
+    this.description = description;
+    return this;
+  }
+
+   /**
+   * The description of the field configuration scheme.
+   * @return description
+  **/
+  @ApiModelProperty(value = "The description of the field configuration scheme.")
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
   public FieldConfigurationScheme id(String id) {
     this.id = id;
@@ -87,24 +105,6 @@ public class FieldConfigurationScheme {
     this.name = name;
   }
 
-  public FieldConfigurationScheme description(String description) {
-    this.description = description;
-    return this;
-  }
-
-   /**
-   * The description of the field configuration scheme.
-   * @return description
-  **/
-  @ApiModelProperty(value = "The description of the field configuration scheme.")
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -115,14 +115,14 @@ public class FieldConfigurationScheme {
       return false;
     }
     FieldConfigurationScheme fieldConfigurationScheme = (FieldConfigurationScheme) o;
-    return Objects.equals(this.id, fieldConfigurationScheme.id) &&
-        Objects.equals(this.name, fieldConfigurationScheme.name) &&
-        Objects.equals(this.description, fieldConfigurationScheme.description);
+    return Objects.equals(this.description, fieldConfigurationScheme.description) &&
+        Objects.equals(this.id, fieldConfigurationScheme.id) &&
+        Objects.equals(this.name, fieldConfigurationScheme.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description);
+    return Objects.hash(description, id, name);
   }
 
 
@@ -131,9 +131,9 @@ public class FieldConfigurationScheme {
     StringBuilder sb = new StringBuilder();
     sb.append("class FieldConfigurationScheme {\n");
     
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("}");
     return sb.toString();
   }

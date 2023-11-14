@@ -36,25 +36,47 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 import org.everit.atlassian.restclient.jiracloud.v2.model.PermissionHolder;
 
 /**
  * Details about a permission granted to a user or group.
  */
 @ApiModel(description = "Details about a permission granted to a user or group.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class PermissionGrant {
+  @JsonProperty("holder")
+  private PermissionHolder holder;
+
   @JsonProperty("id")
   private Long id;
+
+  @JsonProperty("permission")
+  private String permission;
 
   @JsonProperty("self")
   private URI self;
 
-  @JsonProperty("holder")
-  private PermissionHolder holder;
+  private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
 
-  @JsonProperty("permission")
-  private String permission;
+  public PermissionGrant holder(PermissionHolder holder) {
+    this.holder = holder;
+    return this;
+  }
+
+   /**
+   * The user or group being granted the permission. It consists of a &#x60;type&#x60;, a type-dependent &#x60;parameter&#x60; and a type-dependent &#x60;value&#x60;. See [Holder object](../api-group-permission-schemes/#holder-object) in *Get all permission schemes* for more information.
+   * @return holder
+  **/
+  @ApiModelProperty(value = "The user or group being granted the permission. It consists of a `type`, a type-dependent `parameter` and a type-dependent `value`. See [Holder object](../api-group-permission-schemes/#holder-object) in *Get all permission schemes* for more information.")
+  public PermissionHolder getHolder() {
+    return holder;
+  }
+
+  public void setHolder(PermissionHolder holder) {
+    this.holder = holder;
+  }
 
    /**
    * The ID of the permission granted details.
@@ -63,33 +85,6 @@ public class PermissionGrant {
   @ApiModelProperty(value = "The ID of the permission granted details.")
   public Long getId() {
     return id;
-  }
-
-   /**
-   * The URL of the permission granted details.
-   * @return self
-  **/
-  @ApiModelProperty(value = "The URL of the permission granted details.")
-  public URI getSelf() {
-    return self;
-  }
-
-  public PermissionGrant holder(PermissionHolder holder) {
-    this.holder = holder;
-    return this;
-  }
-
-   /**
-   * The user or group being granted the permission. It consists of a &#x60;type&#x60; and a type-dependent &#x60;parameter&#x60;. See [Holder object](../api-group-permission-schemes/#holder-object) in *Get all permission schemes* for more information.
-   * @return holder
-  **/
-  @ApiModelProperty(value = "The user or group being granted the permission. It consists of a `type` and a type-dependent `parameter`. See [Holder object](../api-group-permission-schemes/#holder-object) in *Get all permission schemes* for more information.")
-  public PermissionHolder getHolder() {
-    return holder;
-  }
-
-  public void setHolder(PermissionHolder holder) {
-    this.holder = holder;
   }
 
   public PermissionGrant permission(String permission) {
@@ -110,6 +105,25 @@ public class PermissionGrant {
     this.permission = permission;
   }
 
+   /**
+   * The URL of the permission granted details.
+   * @return self
+  **/
+  @ApiModelProperty(value = "The URL of the permission granted details.")
+  public URI getSelf() {
+    return self;
+  }
+
+
+  @com.fasterxml.jackson.annotation.JsonAnyGetter
+  public Map<String, Object> any() {
+   return this.additionalProperties_;
+  }
+
+  @com.fasterxml.jackson.annotation.JsonAnySetter
+  public void set(String name, Object value) {
+   this.additionalProperties_.put(name, value);
+  }
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -120,15 +134,16 @@ public class PermissionGrant {
       return false;
     }
     PermissionGrant permissionGrant = (PermissionGrant) o;
-    return Objects.equals(this.id, permissionGrant.id) &&
+    return Objects.equals(this.holder, permissionGrant.holder) &&
+        Objects.equals(this.id, permissionGrant.id) &&
+        Objects.equals(this.permission, permissionGrant.permission) &&
         Objects.equals(this.self, permissionGrant.self) &&
-        Objects.equals(this.holder, permissionGrant.holder) &&
-        Objects.equals(this.permission, permissionGrant.permission);
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, self, holder, permission);
+    return Objects.hash(holder, id, permission, self, super.hashCode());
   }
 
 
@@ -137,10 +152,11 @@ public class PermissionGrant {
     StringBuilder sb = new StringBuilder();
     sb.append("class PermissionGrant {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    holder: ").append(toIndentedString(holder)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    permission: ").append(toIndentedString(permission)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();
   }

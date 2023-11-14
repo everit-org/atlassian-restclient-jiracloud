@@ -40,16 +40,34 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of an issue type screen scheme.
  */
 @ApiModel(description = "Details of an issue type screen scheme.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class IssueTypeScreenScheme {
+  @JsonProperty("description")
+  private String description;
+
   @JsonProperty("id")
   private String id;
 
   @JsonProperty("name")
   private String name;
 
-  @JsonProperty("description")
-  private String description;
+  public IssueTypeScreenScheme description(String description) {
+    this.description = description;
+    return this;
+  }
+
+   /**
+   * The description of the issue type screen scheme.
+   * @return description
+  **/
+  @ApiModelProperty(value = "The description of the issue type screen scheme.")
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
   public IssueTypeScreenScheme id(String id) {
     this.id = id;
@@ -87,24 +105,6 @@ public class IssueTypeScreenScheme {
     this.name = name;
   }
 
-  public IssueTypeScreenScheme description(String description) {
-    this.description = description;
-    return this;
-  }
-
-   /**
-   * The description of the issue type screen scheme.
-   * @return description
-  **/
-  @ApiModelProperty(value = "The description of the issue type screen scheme.")
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -115,14 +115,14 @@ public class IssueTypeScreenScheme {
       return false;
     }
     IssueTypeScreenScheme issueTypeScreenScheme = (IssueTypeScreenScheme) o;
-    return Objects.equals(this.id, issueTypeScreenScheme.id) &&
-        Objects.equals(this.name, issueTypeScreenScheme.name) &&
-        Objects.equals(this.description, issueTypeScreenScheme.description);
+    return Objects.equals(this.description, issueTypeScreenScheme.description) &&
+        Objects.equals(this.id, issueTypeScreenScheme.id) &&
+        Objects.equals(this.name, issueTypeScreenScheme.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description);
+    return Objects.hash(description, id, name);
   }
 
 
@@ -131,9 +131,9 @@ public class IssueTypeScreenScheme {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueTypeScreenScheme {\n");
     
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("}");
     return sb.toString();
   }

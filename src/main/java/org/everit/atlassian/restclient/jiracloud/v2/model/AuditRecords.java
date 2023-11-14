@@ -43,28 +43,19 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.AuditRecordBean;
  * Container for a list of audit records.
  */
 @ApiModel(description = "Container for a list of audit records.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class AuditRecords {
-  @JsonProperty("offset")
-  private Integer offset;
-
   @JsonProperty("limit")
   private Integer limit;
 
-  @JsonProperty("total")
-  private Long total;
+  @JsonProperty("offset")
+  private Integer offset;
 
   @JsonProperty("records")
   private List<AuditRecordBean> records = new ArrayList<>();
 
-   /**
-   * The number of audit items skipped before the first item in this list.
-   * @return offset
-  **/
-  @ApiModelProperty(value = "The number of audit items skipped before the first item in this list.")
-  public Integer getOffset() {
-    return offset;
-  }
+  @JsonProperty("total")
+  private Long total;
 
    /**
    * The requested or default limit on the number of audit items to be returned.
@@ -76,12 +67,12 @@ public class AuditRecords {
   }
 
    /**
-   * The total number of audit items returned.
-   * @return total
+   * The number of audit items skipped before the first item in this list.
+   * @return offset
   **/
-  @ApiModelProperty(value = "The total number of audit items returned.")
-  public Long getTotal() {
-    return total;
+  @ApiModelProperty(value = "The number of audit items skipped before the first item in this list.")
+  public Integer getOffset() {
+    return offset;
   }
 
    /**
@@ -91,6 +82,15 @@ public class AuditRecords {
   @ApiModelProperty(value = "The list of audit items.")
   public List<AuditRecordBean> getRecords() {
     return records;
+  }
+
+   /**
+   * The total number of audit items returned.
+   * @return total
+  **/
+  @ApiModelProperty(value = "The total number of audit items returned.")
+  public Long getTotal() {
+    return total;
   }
 
 
@@ -103,15 +103,15 @@ public class AuditRecords {
       return false;
     }
     AuditRecords auditRecords = (AuditRecords) o;
-    return Objects.equals(this.offset, auditRecords.offset) &&
-        Objects.equals(this.limit, auditRecords.limit) &&
-        Objects.equals(this.total, auditRecords.total) &&
-        Objects.equals(this.records, auditRecords.records);
+    return Objects.equals(this.limit, auditRecords.limit) &&
+        Objects.equals(this.offset, auditRecords.offset) &&
+        Objects.equals(this.records, auditRecords.records) &&
+        Objects.equals(this.total, auditRecords.total);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(offset, limit, total, records);
+    return Objects.hash(limit, offset, records, total);
   }
 
 
@@ -120,10 +120,10 @@ public class AuditRecords {
     StringBuilder sb = new StringBuilder();
     sb.append("class AuditRecords {\n");
     
-    sb.append("    offset: ").append(toIndentedString(offset)).append("\n");
     sb.append("    limit: ").append(toIndentedString(limit)).append("\n");
-    sb.append("    total: ").append(toIndentedString(total)).append("\n");
+    sb.append("    offset: ").append(toIndentedString(offset)).append("\n");
     sb.append("    records: ").append(toIndentedString(records)).append("\n");
+    sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("}");
     return sb.toString();
   }

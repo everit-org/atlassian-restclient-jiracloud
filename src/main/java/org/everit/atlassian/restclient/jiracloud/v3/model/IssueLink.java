@@ -43,22 +43,22 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.LinkedIssue;
  * Details of a link between issues.
  */
 @ApiModel(description = "Details of a link between issues.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class IssueLink {
   @JsonProperty("id")
   private String id;
-
-  @JsonProperty("self")
-  private URI self;
-
-  @JsonProperty("type")
-  private IssueLinkType type;
 
   @JsonProperty("inwardIssue")
   private LinkedIssue inwardIssue;
 
   @JsonProperty("outwardIssue")
   private LinkedIssue outwardIssue;
+
+  @JsonProperty("self")
+  private URI self;
+
+  @JsonProperty("type")
+  private IssueLinkType type;
 
    /**
    * The ID of the issue link.
@@ -67,6 +67,42 @@ public class IssueLink {
   @ApiModelProperty(value = "The ID of the issue link.")
   public String getId() {
     return id;
+  }
+
+  public IssueLink inwardIssue(LinkedIssue inwardIssue) {
+    this.inwardIssue = inwardIssue;
+    return this;
+  }
+
+   /**
+   * Provides details about the linked issue. If presenting this link in a user interface, use the &#x60;inward&#x60; field of the issue link type to label the link.
+   * @return inwardIssue
+  **/
+  @ApiModelProperty(required = true, value = "Provides details about the linked issue. If presenting this link in a user interface, use the `inward` field of the issue link type to label the link.")
+  public LinkedIssue getInwardIssue() {
+    return inwardIssue;
+  }
+
+  public void setInwardIssue(LinkedIssue inwardIssue) {
+    this.inwardIssue = inwardIssue;
+  }
+
+  public IssueLink outwardIssue(LinkedIssue outwardIssue) {
+    this.outwardIssue = outwardIssue;
+    return this;
+  }
+
+   /**
+   * Provides details about the linked issue. If presenting this link in a user interface, use the &#x60;outward&#x60; field of the issue link type to label the link.
+   * @return outwardIssue
+  **/
+  @ApiModelProperty(required = true, value = "Provides details about the linked issue. If presenting this link in a user interface, use the `outward` field of the issue link type to label the link.")
+  public LinkedIssue getOutwardIssue() {
+    return outwardIssue;
+  }
+
+  public void setOutwardIssue(LinkedIssue outwardIssue) {
+    this.outwardIssue = outwardIssue;
   }
 
    /**
@@ -96,42 +132,6 @@ public class IssueLink {
     this.type = type;
   }
 
-  public IssueLink inwardIssue(LinkedIssue inwardIssue) {
-    this.inwardIssue = inwardIssue;
-    return this;
-  }
-
-   /**
-   * The issue the link joins to.
-   * @return inwardIssue
-  **/
-  @ApiModelProperty(required = true, value = "The issue the link joins to.")
-  public LinkedIssue getInwardIssue() {
-    return inwardIssue;
-  }
-
-  public void setInwardIssue(LinkedIssue inwardIssue) {
-    this.inwardIssue = inwardIssue;
-  }
-
-  public IssueLink outwardIssue(LinkedIssue outwardIssue) {
-    this.outwardIssue = outwardIssue;
-    return this;
-  }
-
-   /**
-   * The issue the link originates from.
-   * @return outwardIssue
-  **/
-  @ApiModelProperty(required = true, value = "The issue the link originates from.")
-  public LinkedIssue getOutwardIssue() {
-    return outwardIssue;
-  }
-
-  public void setOutwardIssue(LinkedIssue outwardIssue) {
-    this.outwardIssue = outwardIssue;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -143,15 +143,15 @@ public class IssueLink {
     }
     IssueLink issueLink = (IssueLink) o;
     return Objects.equals(this.id, issueLink.id) &&
-        Objects.equals(this.self, issueLink.self) &&
-        Objects.equals(this.type, issueLink.type) &&
         Objects.equals(this.inwardIssue, issueLink.inwardIssue) &&
-        Objects.equals(this.outwardIssue, issueLink.outwardIssue);
+        Objects.equals(this.outwardIssue, issueLink.outwardIssue) &&
+        Objects.equals(this.self, issueLink.self) &&
+        Objects.equals(this.type, issueLink.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, self, type, inwardIssue, outwardIssue);
+    return Objects.hash(id, inwardIssue, outwardIssue, self, type);
   }
 
 
@@ -161,10 +161,10 @@ public class IssueLink {
     sb.append("class IssueLink {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    inwardIssue: ").append(toIndentedString(inwardIssue)).append("\n");
     sb.append("    outwardIssue: ").append(toIndentedString(outwardIssue)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }

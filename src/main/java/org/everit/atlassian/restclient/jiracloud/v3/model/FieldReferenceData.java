@@ -42,13 +42,95 @@ import java.util.List;
  * Details of a field that can be used in advanced searches.
  */
 @ApiModel(description = "Details of a field that can be used in advanced searches.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class FieldReferenceData {
-  @JsonProperty("value")
-  private String value;
+  /**
+   * Whether the field provide auto-complete suggestions.
+   */
+  public enum AutoEnum {
+    TRUE("true"),
+    
+    FALSE("false");
+
+    private String value;
+
+    AutoEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static AutoEnum fromValue(String value) {
+      for (AutoEnum b : AutoEnum.values()) {
+        if (b.value.equalsIgnoreCase(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  @JsonProperty("auto")
+  private AutoEnum auto;
+
+  @JsonProperty("cfid")
+  private String cfid;
+
+  /**
+   * Whether this field has been deprecated.
+   */
+  public enum DeprecatedEnum {
+    TRUE("true"),
+    
+    FALSE("false");
+
+    private String value;
+
+    DeprecatedEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static DeprecatedEnum fromValue(String value) {
+      for (DeprecatedEnum b : DeprecatedEnum.values()) {
+        if (b.value.equalsIgnoreCase(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  @JsonProperty("deprecated")
+  private DeprecatedEnum deprecated;
+
+  @JsonProperty("deprecatedSearcherKey")
+  private String deprecatedSearcherKey;
 
   @JsonProperty("displayName")
   private String displayName;
+
+  @JsonProperty("operators")
+  private List<String> operators = new ArrayList<>();
 
   /**
    * Whether the field can be used in a query&#39;s &#x60;ORDER BY&#x60; clause.
@@ -126,69 +208,82 @@ public class FieldReferenceData {
   @JsonProperty("searchable")
   private SearchableEnum searchable;
 
-  /**
-   * Whether the field provide auto-complete suggestions.
-   */
-  public enum AutoEnum {
-    TRUE("true"),
-    
-    FALSE("false");
-
-    private String value;
-
-    AutoEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static AutoEnum fromValue(String value) {
-      for (AutoEnum b : AutoEnum.values()) {
-        if (b.value.equalsIgnoreCase(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  @JsonProperty("auto")
-  private AutoEnum auto;
-
-  @JsonProperty("cfid")
-  private String cfid;
-
-  @JsonProperty("operators")
-  private List<String> operators = new ArrayList<>();
-
   @JsonProperty("types")
   private List<String> types = new ArrayList<>();
 
-  public FieldReferenceData value(String value) {
-    this.value = value;
+  @JsonProperty("value")
+  private String value;
+
+  public FieldReferenceData auto(AutoEnum auto) {
+    this.auto = auto;
     return this;
   }
 
    /**
-   * The field identifier.
-   * @return value
+   * Whether the field provide auto-complete suggestions.
+   * @return auto
   **/
-  @ApiModelProperty(value = "The field identifier.")
-  public String getValue() {
-    return value;
+  @ApiModelProperty(value = "Whether the field provide auto-complete suggestions.")
+  public AutoEnum getAuto() {
+    return auto;
   }
 
-  public void setValue(String value) {
-    this.value = value;
+  public void setAuto(AutoEnum auto) {
+    this.auto = auto;
+  }
+
+  public FieldReferenceData cfid(String cfid) {
+    this.cfid = cfid;
+    return this;
+  }
+
+   /**
+   * If the item is a custom field, the ID of the custom field.
+   * @return cfid
+  **/
+  @ApiModelProperty(value = "If the item is a custom field, the ID of the custom field.")
+  public String getCfid() {
+    return cfid;
+  }
+
+  public void setCfid(String cfid) {
+    this.cfid = cfid;
+  }
+
+  public FieldReferenceData deprecated(DeprecatedEnum deprecated) {
+    this.deprecated = deprecated;
+    return this;
+  }
+
+   /**
+   * Whether this field has been deprecated.
+   * @return deprecated
+  **/
+  @ApiModelProperty(value = "Whether this field has been deprecated.")
+  public DeprecatedEnum getDeprecated() {
+    return deprecated;
+  }
+
+  public void setDeprecated(DeprecatedEnum deprecated) {
+    this.deprecated = deprecated;
+  }
+
+  public FieldReferenceData deprecatedSearcherKey(String deprecatedSearcherKey) {
+    this.deprecatedSearcherKey = deprecatedSearcherKey;
+    return this;
+  }
+
+   /**
+   * The searcher key of the field, only passed when the field is deprecated.
+   * @return deprecatedSearcherKey
+  **/
+  @ApiModelProperty(value = "The searcher key of the field, only passed when the field is deprecated.")
+  public String getDeprecatedSearcherKey() {
+    return deprecatedSearcherKey;
+  }
+
+  public void setDeprecatedSearcherKey(String deprecatedSearcherKey) {
+    this.deprecatedSearcherKey = deprecatedSearcherKey;
   }
 
   public FieldReferenceData displayName(String displayName) {
@@ -207,6 +302,32 @@ public class FieldReferenceData {
 
   public void setDisplayName(String displayName) {
     this.displayName = displayName;
+  }
+
+  public FieldReferenceData operators(List<String> operators) {
+    this.operators = operators;
+    return this;
+  }
+
+  public FieldReferenceData addOperatorsItem(String operatorsItem) {
+    if (this.operators == null) {
+      this.operators = new ArrayList<>();
+    }
+    this.operators.add(operatorsItem);
+    return this;
+  }
+
+   /**
+   * The valid search operators for the field.
+   * @return operators
+  **/
+  @ApiModelProperty(value = "The valid search operators for the field.")
+  public List<String> getOperators() {
+    return operators;
+  }
+
+  public void setOperators(List<String> operators) {
+    this.operators = operators;
   }
 
   public FieldReferenceData orderable(OrderableEnum orderable) {
@@ -245,68 +366,6 @@ public class FieldReferenceData {
     this.searchable = searchable;
   }
 
-  public FieldReferenceData auto(AutoEnum auto) {
-    this.auto = auto;
-    return this;
-  }
-
-   /**
-   * Whether the field provide auto-complete suggestions.
-   * @return auto
-  **/
-  @ApiModelProperty(value = "Whether the field provide auto-complete suggestions.")
-  public AutoEnum getAuto() {
-    return auto;
-  }
-
-  public void setAuto(AutoEnum auto) {
-    this.auto = auto;
-  }
-
-  public FieldReferenceData cfid(String cfid) {
-    this.cfid = cfid;
-    return this;
-  }
-
-   /**
-   * If the item is a custom field, the ID of the custom field.
-   * @return cfid
-  **/
-  @ApiModelProperty(value = "If the item is a custom field, the ID of the custom field.")
-  public String getCfid() {
-    return cfid;
-  }
-
-  public void setCfid(String cfid) {
-    this.cfid = cfid;
-  }
-
-  public FieldReferenceData operators(List<String> operators) {
-    this.operators = operators;
-    return this;
-  }
-
-  public FieldReferenceData addOperatorsItem(String operatorsItem) {
-    if (this.operators == null) {
-      this.operators = new ArrayList<>();
-    }
-    this.operators.add(operatorsItem);
-    return this;
-  }
-
-   /**
-   * The valid search operators for the field.
-   * @return operators
-  **/
-  @ApiModelProperty(value = "The valid search operators for the field.")
-  public List<String> getOperators() {
-    return operators;
-  }
-
-  public void setOperators(List<String> operators) {
-    this.operators = operators;
-  }
-
   public FieldReferenceData types(List<String> types) {
     this.types = types;
     return this;
@@ -333,6 +392,24 @@ public class FieldReferenceData {
     this.types = types;
   }
 
+  public FieldReferenceData value(String value) {
+    this.value = value;
+    return this;
+  }
+
+   /**
+   * The field identifier.
+   * @return value
+  **/
+  @ApiModelProperty(value = "The field identifier.")
+  public String getValue() {
+    return value;
+  }
+
+  public void setValue(String value) {
+    this.value = value;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -343,19 +420,21 @@ public class FieldReferenceData {
       return false;
     }
     FieldReferenceData fieldReferenceData = (FieldReferenceData) o;
-    return Objects.equals(this.value, fieldReferenceData.value) &&
+    return Objects.equals(this.auto, fieldReferenceData.auto) &&
+        Objects.equals(this.cfid, fieldReferenceData.cfid) &&
+        Objects.equals(this.deprecated, fieldReferenceData.deprecated) &&
+        Objects.equals(this.deprecatedSearcherKey, fieldReferenceData.deprecatedSearcherKey) &&
         Objects.equals(this.displayName, fieldReferenceData.displayName) &&
+        Objects.equals(this.operators, fieldReferenceData.operators) &&
         Objects.equals(this.orderable, fieldReferenceData.orderable) &&
         Objects.equals(this.searchable, fieldReferenceData.searchable) &&
-        Objects.equals(this.auto, fieldReferenceData.auto) &&
-        Objects.equals(this.cfid, fieldReferenceData.cfid) &&
-        Objects.equals(this.operators, fieldReferenceData.operators) &&
-        Objects.equals(this.types, fieldReferenceData.types);
+        Objects.equals(this.types, fieldReferenceData.types) &&
+        Objects.equals(this.value, fieldReferenceData.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value, displayName, orderable, searchable, auto, cfid, operators, types);
+    return Objects.hash(auto, cfid, deprecated, deprecatedSearcherKey, displayName, operators, orderable, searchable, types, value);
   }
 
 
@@ -364,14 +443,16 @@ public class FieldReferenceData {
     StringBuilder sb = new StringBuilder();
     sb.append("class FieldReferenceData {\n");
     
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
-    sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
-    sb.append("    orderable: ").append(toIndentedString(orderable)).append("\n");
-    sb.append("    searchable: ").append(toIndentedString(searchable)).append("\n");
     sb.append("    auto: ").append(toIndentedString(auto)).append("\n");
     sb.append("    cfid: ").append(toIndentedString(cfid)).append("\n");
+    sb.append("    deprecated: ").append(toIndentedString(deprecated)).append("\n");
+    sb.append("    deprecatedSearcherKey: ").append(toIndentedString(deprecatedSearcherKey)).append("\n");
+    sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    operators: ").append(toIndentedString(operators)).append("\n");
+    sb.append("    orderable: ").append(toIndentedString(orderable)).append("\n");
+    sb.append("    searchable: ").append(toIndentedString(searchable)).append("\n");
     sb.append("    types: ").append(toIndentedString(types)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }

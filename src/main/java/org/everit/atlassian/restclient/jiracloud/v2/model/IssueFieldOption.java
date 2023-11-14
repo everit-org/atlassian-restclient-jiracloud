@@ -44,19 +44,37 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.IssueFieldOptionConfig
  * Details of the options for a select list issue field.
  */
 @ApiModel(description = "Details of the options for a select list issue field.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class IssueFieldOption {
+  @JsonProperty("config")
+  private IssueFieldOptionConfiguration config;
+
   @JsonProperty("id")
   private Long id;
-
-  @JsonProperty("value")
-  private String value;
 
   @JsonProperty("properties")
   private Map<String, Object> properties = new HashMap<>();
 
-  @JsonProperty("config")
-  private IssueFieldOptionConfiguration config;
+  @JsonProperty("value")
+  private String value;
+
+  public IssueFieldOption config(IssueFieldOptionConfiguration config) {
+    this.config = config;
+    return this;
+  }
+
+   /**
+   * Get config
+   * @return config
+  **/
+  @ApiModelProperty(value = "")
+  public IssueFieldOptionConfiguration getConfig() {
+    return config;
+  }
+
+  public void setConfig(IssueFieldOptionConfiguration config) {
+    this.config = config;
+  }
 
   public IssueFieldOption id(Long id) {
     this.id = id;
@@ -74,24 +92,6 @@ public class IssueFieldOption {
 
   public void setId(Long id) {
     this.id = id;
-  }
-
-  public IssueFieldOption value(String value) {
-    this.value = value;
-    return this;
-  }
-
-   /**
-   * The option&#39;s name, which is displayed in Jira.
-   * @return value
-  **/
-  @ApiModelProperty(required = true, value = "The option's name, which is displayed in Jira.")
-  public String getValue() {
-    return value;
-  }
-
-  public void setValue(String value) {
-    this.value = value;
   }
 
   public IssueFieldOption properties(Map<String, Object> properties) {
@@ -120,22 +120,22 @@ public class IssueFieldOption {
     this.properties = properties;
   }
 
-  public IssueFieldOption config(IssueFieldOptionConfiguration config) {
-    this.config = config;
+  public IssueFieldOption value(String value) {
+    this.value = value;
     return this;
   }
 
    /**
-   * Get config
-   * @return config
+   * The option&#39;s name, which is displayed in Jira.
+   * @return value
   **/
-  @ApiModelProperty(value = "")
-  public IssueFieldOptionConfiguration getConfig() {
-    return config;
+  @ApiModelProperty(required = true, value = "The option's name, which is displayed in Jira.")
+  public String getValue() {
+    return value;
   }
 
-  public void setConfig(IssueFieldOptionConfiguration config) {
-    this.config = config;
+  public void setValue(String value) {
+    this.value = value;
   }
 
 
@@ -148,15 +148,15 @@ public class IssueFieldOption {
       return false;
     }
     IssueFieldOption issueFieldOption = (IssueFieldOption) o;
-    return Objects.equals(this.id, issueFieldOption.id) &&
-        Objects.equals(this.value, issueFieldOption.value) &&
+    return Objects.equals(this.config, issueFieldOption.config) &&
+        Objects.equals(this.id, issueFieldOption.id) &&
         Objects.equals(this.properties, issueFieldOption.properties) &&
-        Objects.equals(this.config, issueFieldOption.config);
+        Objects.equals(this.value, issueFieldOption.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, value, properties, config);
+    return Objects.hash(config, id, properties, value);
   }
 
 
@@ -165,10 +165,10 @@ public class IssueFieldOption {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueFieldOption {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
-    sb.append("    properties: ").append(toIndentedString(properties)).append("\n");
     sb.append("    config: ").append(toIndentedString(config)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    properties: ").append(toIndentedString(properties)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }

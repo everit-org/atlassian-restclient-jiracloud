@@ -40,16 +40,25 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of an issue type.
  */
 @ApiModel(description = "Details of an issue type.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class IssueTypeInfo {
+  @JsonProperty("avatarId")
+  private Long avatarId;
+
   @JsonProperty("id")
   private Long id;
 
   @JsonProperty("name")
   private String name;
 
-  @JsonProperty("avatarId")
-  private Long avatarId;
+   /**
+   * The avatar of the issue type.
+   * @return avatarId
+  **/
+  @ApiModelProperty(value = "The avatar of the issue type.")
+  public Long getAvatarId() {
+    return avatarId;
+  }
 
    /**
    * The ID of the issue type.
@@ -69,15 +78,6 @@ public class IssueTypeInfo {
     return name;
   }
 
-   /**
-   * The avatar of the issue type.
-   * @return avatarId
-  **/
-  @ApiModelProperty(value = "The avatar of the issue type.")
-  public Long getAvatarId() {
-    return avatarId;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -88,14 +88,14 @@ public class IssueTypeInfo {
       return false;
     }
     IssueTypeInfo issueTypeInfo = (IssueTypeInfo) o;
-    return Objects.equals(this.id, issueTypeInfo.id) &&
-        Objects.equals(this.name, issueTypeInfo.name) &&
-        Objects.equals(this.avatarId, issueTypeInfo.avatarId);
+    return Objects.equals(this.avatarId, issueTypeInfo.avatarId) &&
+        Objects.equals(this.id, issueTypeInfo.id) &&
+        Objects.equals(this.name, issueTypeInfo.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, avatarId);
+    return Objects.hash(avatarId, id, name);
   }
 
 
@@ -104,9 +104,9 @@ public class IssueTypeInfo {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueTypeInfo {\n");
     
+    sb.append("    avatarId: ").append(toIndentedString(avatarId)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    avatarId: ").append(toIndentedString(avatarId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

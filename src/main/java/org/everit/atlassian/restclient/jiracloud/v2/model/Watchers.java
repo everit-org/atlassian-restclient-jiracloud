@@ -43,13 +43,13 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.UserDetails;
  * The details of watchers on an issue.
  */
 @ApiModel(description = "The details of watchers on an issue.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class Watchers {
-  @JsonProperty("self")
-  private String self;
-
   @JsonProperty("isWatching")
   private Boolean isWatching;
+
+  @JsonProperty("self")
+  private String self;
 
   @JsonProperty("watchCount")
   private Integer watchCount;
@@ -58,21 +58,21 @@ public class Watchers {
   private List<UserDetails> watchers = new ArrayList<>();
 
    /**
-   * The URL of these issue watcher details.
-   * @return self
-  **/
-  @ApiModelProperty(value = "The URL of these issue watcher details.")
-  public String getSelf() {
-    return self;
-  }
-
-   /**
    * Whether the calling user is watching this issue.
    * @return isWatching
   **/
   @ApiModelProperty(value = "Whether the calling user is watching this issue.")
   public Boolean getIsWatching() {
     return isWatching;
+  }
+
+   /**
+   * The URL of these issue watcher details.
+   * @return self
+  **/
+  @ApiModelProperty(value = "The URL of these issue watcher details.")
+  public String getSelf() {
+    return self;
   }
 
    /**
@@ -103,15 +103,15 @@ public class Watchers {
       return false;
     }
     Watchers watchers = (Watchers) o;
-    return Objects.equals(this.self, watchers.self) &&
-        Objects.equals(this.isWatching, watchers.isWatching) &&
+    return Objects.equals(this.isWatching, watchers.isWatching) &&
+        Objects.equals(this.self, watchers.self) &&
         Objects.equals(this.watchCount, watchers.watchCount) &&
         Objects.equals(this.watchers, watchers.watchers);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, isWatching, watchCount, watchers);
+    return Objects.hash(isWatching, self, watchCount, watchers);
   }
 
 
@@ -120,8 +120,8 @@ public class Watchers {
     StringBuilder sb = new StringBuilder();
     sb.append("class Watchers {\n");
     
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    isWatching: ").append(toIndentedString(isWatching)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    watchCount: ").append(toIndentedString(watchCount)).append("\n");
     sb.append("    watchers: ").append(toIndentedString(watchers)).append("\n");
     sb.append("}");

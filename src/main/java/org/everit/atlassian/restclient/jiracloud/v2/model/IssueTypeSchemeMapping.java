@@ -40,31 +40,13 @@ import io.swagger.annotations.ApiModelProperty;
  * Issue type scheme item.
  */
 @ApiModel(description = "Issue type scheme item.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class IssueTypeSchemeMapping {
-  @JsonProperty("issueTypeSchemeId")
-  private String issueTypeSchemeId;
-
   @JsonProperty("issueTypeId")
   private String issueTypeId;
 
-  public IssueTypeSchemeMapping issueTypeSchemeId(String issueTypeSchemeId) {
-    this.issueTypeSchemeId = issueTypeSchemeId;
-    return this;
-  }
-
-   /**
-   * The ID of the issue type scheme.
-   * @return issueTypeSchemeId
-  **/
-  @ApiModelProperty(required = true, value = "The ID of the issue type scheme.")
-  public String getIssueTypeSchemeId() {
-    return issueTypeSchemeId;
-  }
-
-  public void setIssueTypeSchemeId(String issueTypeSchemeId) {
-    this.issueTypeSchemeId = issueTypeSchemeId;
-  }
+  @JsonProperty("issueTypeSchemeId")
+  private String issueTypeSchemeId;
 
   public IssueTypeSchemeMapping issueTypeId(String issueTypeId) {
     this.issueTypeId = issueTypeId;
@@ -84,6 +66,24 @@ public class IssueTypeSchemeMapping {
     this.issueTypeId = issueTypeId;
   }
 
+  public IssueTypeSchemeMapping issueTypeSchemeId(String issueTypeSchemeId) {
+    this.issueTypeSchemeId = issueTypeSchemeId;
+    return this;
+  }
+
+   /**
+   * The ID of the issue type scheme.
+   * @return issueTypeSchemeId
+  **/
+  @ApiModelProperty(required = true, value = "The ID of the issue type scheme.")
+  public String getIssueTypeSchemeId() {
+    return issueTypeSchemeId;
+  }
+
+  public void setIssueTypeSchemeId(String issueTypeSchemeId) {
+    this.issueTypeSchemeId = issueTypeSchemeId;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -94,13 +94,13 @@ public class IssueTypeSchemeMapping {
       return false;
     }
     IssueTypeSchemeMapping issueTypeSchemeMapping = (IssueTypeSchemeMapping) o;
-    return Objects.equals(this.issueTypeSchemeId, issueTypeSchemeMapping.issueTypeSchemeId) &&
-        Objects.equals(this.issueTypeId, issueTypeSchemeMapping.issueTypeId);
+    return Objects.equals(this.issueTypeId, issueTypeSchemeMapping.issueTypeId) &&
+        Objects.equals(this.issueTypeSchemeId, issueTypeSchemeMapping.issueTypeSchemeId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(issueTypeSchemeId, issueTypeId);
+    return Objects.hash(issueTypeId, issueTypeSchemeId);
   }
 
 
@@ -109,8 +109,8 @@ public class IssueTypeSchemeMapping {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueTypeSchemeMapping {\n");
     
-    sb.append("    issueTypeSchemeId: ").append(toIndentedString(issueTypeSchemeId)).append("\n");
     sb.append("    issueTypeId: ").append(toIndentedString(issueTypeId)).append("\n");
+    sb.append("    issueTypeSchemeId: ").append(toIndentedString(issueTypeSchemeId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

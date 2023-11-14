@@ -40,31 +40,13 @@ import io.swagger.annotations.ApiModelProperty;
  * List of user account IDs.
  */
 @ApiModel(description = "List of user account IDs.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class UserKey {
-  @JsonProperty("key")
-  private String key;
-
   @JsonProperty("accountId")
   private String accountId;
 
-  public UserKey key(String key) {
-    this.key = key;
-    return this;
-  }
-
-   /**
-   * This property is no longer available and will be removed from the documentation soon. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details.
-   * @return key
-  **/
-  @ApiModelProperty(value = "This property is no longer available and will be removed from the documentation soon. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details.")
-  public String getKey() {
-    return key;
-  }
-
-  public void setKey(String key) {
-    this.key = key;
-  }
+  @JsonProperty("key")
+  private String key;
 
   public UserKey accountId(String accountId) {
     this.accountId = accountId;
@@ -84,6 +66,24 @@ public class UserKey {
     this.accountId = accountId;
   }
 
+  public UserKey key(String key) {
+    this.key = key;
+    return this;
+  }
+
+   /**
+   * This property is no longer available and will be removed from the documentation soon. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details.
+   * @return key
+  **/
+  @ApiModelProperty(value = "This property is no longer available and will be removed from the documentation soon. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details.")
+  public String getKey() {
+    return key;
+  }
+
+  public void setKey(String key) {
+    this.key = key;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -94,13 +94,13 @@ public class UserKey {
       return false;
     }
     UserKey userKey = (UserKey) o;
-    return Objects.equals(this.key, userKey.key) &&
-        Objects.equals(this.accountId, userKey.accountId);
+    return Objects.equals(this.accountId, userKey.accountId) &&
+        Objects.equals(this.key, userKey.key);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(key, accountId);
+    return Objects.hash(accountId, key);
   }
 
 
@@ -109,8 +109,8 @@ public class UserKey {
     StringBuilder sb = new StringBuilder();
     sb.append("class UserKey {\n");
     
-    sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
+    sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("}");
     return sb.toString();
   }

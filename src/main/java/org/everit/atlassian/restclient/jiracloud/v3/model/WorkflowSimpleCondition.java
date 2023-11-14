@@ -40,34 +40,16 @@ import io.swagger.annotations.ApiModelProperty;
  * A workflow transition rule condition. This object returns &#x60;nodeType&#x60; as &#x60;simple&#x60;.
  */
 @ApiModel(description = "A workflow transition rule condition. This object returns `nodeType` as `simple`.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class WorkflowSimpleCondition {
-  @JsonProperty("type")
-  private String type;
-
   @JsonProperty("configuration")
   private Object _configuration = null;
 
   @JsonProperty("nodeType")
   private String nodeType;
 
-  public WorkflowSimpleCondition type(String type) {
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * The type of the transition rule.
-   * @return type
-  **/
-  @ApiModelProperty(required = true, value = "The type of the transition rule.")
-  public String getType() {
-    return type;
-  }
-
-  public void setType(String type) {
-    this.type = type;
-  }
+  @JsonProperty("type")
+  private String type;
 
   public WorkflowSimpleCondition _configuration(Object _configuration) {
     this._configuration = _configuration;
@@ -105,6 +87,24 @@ public class WorkflowSimpleCondition {
     this.nodeType = nodeType;
   }
 
+  public WorkflowSimpleCondition type(String type) {
+    this.type = type;
+    return this;
+  }
+
+   /**
+   * The type of the transition rule.
+   * @return type
+  **/
+  @ApiModelProperty(required = true, value = "The type of the transition rule.")
+  public String getType() {
+    return type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -115,14 +115,14 @@ public class WorkflowSimpleCondition {
       return false;
     }
     WorkflowSimpleCondition workflowSimpleCondition = (WorkflowSimpleCondition) o;
-    return Objects.equals(this.type, workflowSimpleCondition.type) &&
-        Objects.equals(this._configuration, workflowSimpleCondition._configuration) &&
-        Objects.equals(this.nodeType, workflowSimpleCondition.nodeType);
+    return Objects.equals(this._configuration, workflowSimpleCondition._configuration) &&
+        Objects.equals(this.nodeType, workflowSimpleCondition.nodeType) &&
+        Objects.equals(this.type, workflowSimpleCondition.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, _configuration, nodeType);
+    return Objects.hash(_configuration, nodeType, type);
   }
 
 
@@ -131,9 +131,9 @@ public class WorkflowSimpleCondition {
     StringBuilder sb = new StringBuilder();
     sb.append("class WorkflowSimpleCondition {\n");
     
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    _configuration: ").append(toIndentedString(_configuration)).append("\n");
     sb.append("    nodeType: ").append(toIndentedString(nodeType)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }

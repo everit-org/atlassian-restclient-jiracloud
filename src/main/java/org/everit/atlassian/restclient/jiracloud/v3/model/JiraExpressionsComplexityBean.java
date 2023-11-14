@@ -40,36 +40,36 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.JiraExpressionsComplex
 /**
  * JiraExpressionsComplexityBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class JiraExpressionsComplexityBean {
-  @JsonProperty("steps")
-  private JiraExpressionsComplexityValueBean steps;
+  @JsonProperty("beans")
+  private JiraExpressionsComplexityValueBean beans;
 
   @JsonProperty("expensiveOperations")
   private JiraExpressionsComplexityValueBean expensiveOperations;
 
-  @JsonProperty("beans")
-  private JiraExpressionsComplexityValueBean beans;
-
   @JsonProperty("primitiveValues")
   private JiraExpressionsComplexityValueBean primitiveValues;
 
-  public JiraExpressionsComplexityBean steps(JiraExpressionsComplexityValueBean steps) {
-    this.steps = steps;
+  @JsonProperty("steps")
+  private JiraExpressionsComplexityValueBean steps;
+
+  public JiraExpressionsComplexityBean beans(JiraExpressionsComplexityValueBean beans) {
+    this.beans = beans;
     return this;
   }
 
    /**
-   * The number of steps it took to evaluate the expression, where a step is a high-level operation performed by the expression. A step is an operation such as arithmetic, accessing a property, accessing a context variable, or calling a function.
-   * @return steps
+   * The number of Jira REST API beans returned in the response.
+   * @return beans
   **/
-  @ApiModelProperty(required = true, value = "The number of steps it took to evaluate the expression, where a step is a high-level operation performed by the expression. A step is an operation such as arithmetic, accessing a property, accessing a context variable, or calling a function.")
-  public JiraExpressionsComplexityValueBean getSteps() {
-    return steps;
+  @ApiModelProperty(required = true, value = "The number of Jira REST API beans returned in the response.")
+  public JiraExpressionsComplexityValueBean getBeans() {
+    return beans;
   }
 
-  public void setSteps(JiraExpressionsComplexityValueBean steps) {
-    this.steps = steps;
+  public void setBeans(JiraExpressionsComplexityValueBean beans) {
+    this.beans = beans;
   }
 
   public JiraExpressionsComplexityBean expensiveOperations(JiraExpressionsComplexityValueBean expensiveOperations) {
@@ -90,24 +90,6 @@ public class JiraExpressionsComplexityBean {
     this.expensiveOperations = expensiveOperations;
   }
 
-  public JiraExpressionsComplexityBean beans(JiraExpressionsComplexityValueBean beans) {
-    this.beans = beans;
-    return this;
-  }
-
-   /**
-   * The number of Jira REST API beans returned in the response.
-   * @return beans
-  **/
-  @ApiModelProperty(required = true, value = "The number of Jira REST API beans returned in the response.")
-  public JiraExpressionsComplexityValueBean getBeans() {
-    return beans;
-  }
-
-  public void setBeans(JiraExpressionsComplexityValueBean beans) {
-    this.beans = beans;
-  }
-
   public JiraExpressionsComplexityBean primitiveValues(JiraExpressionsComplexityValueBean primitiveValues) {
     this.primitiveValues = primitiveValues;
     return this;
@@ -126,6 +108,24 @@ public class JiraExpressionsComplexityBean {
     this.primitiveValues = primitiveValues;
   }
 
+  public JiraExpressionsComplexityBean steps(JiraExpressionsComplexityValueBean steps) {
+    this.steps = steps;
+    return this;
+  }
+
+   /**
+   * The number of steps it took to evaluate the expression, where a step is a high-level operation performed by the expression. A step is an operation such as arithmetic, accessing a property, accessing a context variable, or calling a function.
+   * @return steps
+  **/
+  @ApiModelProperty(required = true, value = "The number of steps it took to evaluate the expression, where a step is a high-level operation performed by the expression. A step is an operation such as arithmetic, accessing a property, accessing a context variable, or calling a function.")
+  public JiraExpressionsComplexityValueBean getSteps() {
+    return steps;
+  }
+
+  public void setSteps(JiraExpressionsComplexityValueBean steps) {
+    this.steps = steps;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -136,15 +136,15 @@ public class JiraExpressionsComplexityBean {
       return false;
     }
     JiraExpressionsComplexityBean jiraExpressionsComplexityBean = (JiraExpressionsComplexityBean) o;
-    return Objects.equals(this.steps, jiraExpressionsComplexityBean.steps) &&
+    return Objects.equals(this.beans, jiraExpressionsComplexityBean.beans) &&
         Objects.equals(this.expensiveOperations, jiraExpressionsComplexityBean.expensiveOperations) &&
-        Objects.equals(this.beans, jiraExpressionsComplexityBean.beans) &&
-        Objects.equals(this.primitiveValues, jiraExpressionsComplexityBean.primitiveValues);
+        Objects.equals(this.primitiveValues, jiraExpressionsComplexityBean.primitiveValues) &&
+        Objects.equals(this.steps, jiraExpressionsComplexityBean.steps);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(steps, expensiveOperations, beans, primitiveValues);
+    return Objects.hash(beans, expensiveOperations, primitiveValues, steps);
   }
 
 
@@ -153,10 +153,10 @@ public class JiraExpressionsComplexityBean {
     StringBuilder sb = new StringBuilder();
     sb.append("class JiraExpressionsComplexityBean {\n");
     
-    sb.append("    steps: ").append(toIndentedString(steps)).append("\n");
-    sb.append("    expensiveOperations: ").append(toIndentedString(expensiveOperations)).append("\n");
     sb.append("    beans: ").append(toIndentedString(beans)).append("\n");
+    sb.append("    expensiveOperations: ").append(toIndentedString(expensiveOperations)).append("\n");
     sb.append("    primitiveValues: ").append(toIndentedString(primitiveValues)).append("\n");
+    sb.append("    steps: ").append(toIndentedString(steps)).append("\n");
     sb.append("}");
     return sb.toString();
   }

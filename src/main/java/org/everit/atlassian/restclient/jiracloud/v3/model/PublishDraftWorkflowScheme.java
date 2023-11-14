@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.StatusMapping;
  * Details about the status mappings for publishing a draft workflow scheme.
  */
 @ApiModel(description = "Details about the status mappings for publishing a draft workflow scheme.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class PublishDraftWorkflowScheme {
   @JsonProperty("statusMappings")
   private List<StatusMapping> statusMappings = new ArrayList<>();

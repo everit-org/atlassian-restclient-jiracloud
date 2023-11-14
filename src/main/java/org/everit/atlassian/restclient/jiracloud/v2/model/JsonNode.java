@@ -42,31 +42,10 @@ import java.util.List;
 /**
  * JsonNode
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class JsonNode {
-  @JsonProperty("elements")
-  private Object elements = null;
-
-  @JsonProperty("pojo")
-  private Boolean pojo;
-
-  @JsonProperty("number")
-  private Boolean number;
-
-  @JsonProperty("integralNumber")
-  private Boolean integralNumber;
-
-  @JsonProperty("floatingPointNumber")
-  private Boolean floatingPointNumber;
-
-  @JsonProperty("int")
-  private Boolean _int;
-
-  @JsonProperty("long")
-  private Boolean _long;
-
-  @JsonProperty("double")
-  private Boolean _double;
+  @JsonProperty("array")
+  private Boolean array;
 
   @JsonProperty("bigDecimal")
   private Boolean bigDecimal;
@@ -74,29 +53,68 @@ public class JsonNode {
   @JsonProperty("bigInteger")
   private Boolean bigInteger;
 
-  @JsonProperty("textual")
-  private Boolean textual;
-
-  @JsonProperty("boolean")
-  private Boolean _boolean;
+  @JsonProperty("bigIntegerValue")
+  private Integer bigIntegerValue;
 
   @JsonProperty("binary")
   private Boolean binary;
 
+  @JsonProperty("binaryValue")
+  private List<byte[]> binaryValue = new ArrayList<>();
+
+  @JsonProperty("boolean")
+  private Boolean _boolean;
+
+  @JsonProperty("booleanValue")
+  private Boolean booleanValue;
+
   @JsonProperty("containerNode")
   private Boolean containerNode;
+
+  @JsonProperty("decimalValue")
+  private BigDecimal decimalValue;
+
+  @JsonProperty("double")
+  private Boolean _double;
+
+  @JsonProperty("doubleValue")
+  private Double doubleValue;
+
+  @JsonProperty("elements")
+  private Object elements = null;
+
+  @JsonProperty("fieldNames")
+  private Object fieldNames = null;
+
+  @JsonProperty("fields")
+  private Object fields = null;
+
+  @JsonProperty("floatingPointNumber")
+  private Boolean floatingPointNumber;
+
+  @JsonProperty("int")
+  private Boolean _int;
+
+  @JsonProperty("intValue")
+  private Integer intValue;
+
+  @JsonProperty("integralNumber")
+  private Boolean integralNumber;
+
+  @JsonProperty("long")
+  private Boolean _long;
+
+  @JsonProperty("longValue")
+  private Long longValue;
 
   @JsonProperty("missingNode")
   private Boolean missingNode;
 
-  @JsonProperty("object")
-  private Boolean _object;
+  @JsonProperty("null")
+  private Boolean _null;
 
-  @JsonProperty("valueNode")
-  private Boolean valueNode;
-
-  @JsonProperty("numberValue")
-  private BigDecimal numberValue;
+  @JsonProperty("number")
+  private Boolean number;
 
   /**
    * Gets or Sets numberType
@@ -144,26 +162,26 @@ public class JsonNode {
   @JsonProperty("numberType")
   private NumberTypeEnum numberType;
 
-  @JsonProperty("intValue")
-  private Integer intValue;
+  @JsonProperty("numberValue")
+  private BigDecimal numberValue;
 
-  @JsonProperty("longValue")
-  private Long longValue;
+  @JsonProperty("object")
+  private Boolean _object;
 
-  @JsonProperty("bigIntegerValue")
-  private Integer bigIntegerValue;
+  @JsonProperty("pojo")
+  private Boolean pojo;
 
-  @JsonProperty("doubleValue")
-  private Double doubleValue;
+  @JsonProperty("textValue")
+  private String textValue;
 
-  @JsonProperty("decimalValue")
-  private BigDecimal decimalValue;
+  @JsonProperty("textual")
+  private Boolean textual;
 
-  @JsonProperty("booleanValue")
-  private Boolean booleanValue;
+  @JsonProperty("valueAsBoolean")
+  private Boolean valueAsBoolean;
 
-  @JsonProperty("binaryValue")
-  private List<byte[]> binaryValue = new ArrayList<>();
+  @JsonProperty("valueAsDouble")
+  private Double valueAsDouble;
 
   @JsonProperty("valueAsInt")
   private Integer valueAsInt;
@@ -171,172 +189,28 @@ public class JsonNode {
   @JsonProperty("valueAsLong")
   private Long valueAsLong;
 
-  @JsonProperty("valueAsDouble")
-  private Double valueAsDouble;
-
-  @JsonProperty("valueAsBoolean")
-  private Boolean valueAsBoolean;
-
-  @JsonProperty("fieldNames")
-  private Object fieldNames = null;
-
-  @JsonProperty("textValue")
-  private String textValue;
-
   @JsonProperty("valueAsText")
   private String valueAsText;
 
-  @JsonProperty("array")
-  private Boolean array;
+  @JsonProperty("valueNode")
+  private Boolean valueNode;
 
-  @JsonProperty("fields")
-  private Object fields = null;
-
-  @JsonProperty("null")
-  private Boolean _null;
-
-  public JsonNode elements(Object elements) {
-    this.elements = elements;
+  public JsonNode array(Boolean array) {
+    this.array = array;
     return this;
   }
 
    /**
-   * Get elements
-   * @return elements
+   * Get array
+   * @return array
   **/
   @ApiModelProperty(value = "")
-  public Object getElements() {
-    return elements;
+  public Boolean getArray() {
+    return array;
   }
 
-  public void setElements(Object elements) {
-    this.elements = elements;
-  }
-
-  public JsonNode pojo(Boolean pojo) {
-    this.pojo = pojo;
-    return this;
-  }
-
-   /**
-   * Get pojo
-   * @return pojo
-  **/
-  @ApiModelProperty(value = "")
-  public Boolean getPojo() {
-    return pojo;
-  }
-
-  public void setPojo(Boolean pojo) {
-    this.pojo = pojo;
-  }
-
-  public JsonNode number(Boolean number) {
-    this.number = number;
-    return this;
-  }
-
-   /**
-   * Get number
-   * @return number
-  **/
-  @ApiModelProperty(value = "")
-  public Boolean getNumber() {
-    return number;
-  }
-
-  public void setNumber(Boolean number) {
-    this.number = number;
-  }
-
-  public JsonNode integralNumber(Boolean integralNumber) {
-    this.integralNumber = integralNumber;
-    return this;
-  }
-
-   /**
-   * Get integralNumber
-   * @return integralNumber
-  **/
-  @ApiModelProperty(value = "")
-  public Boolean getIntegralNumber() {
-    return integralNumber;
-  }
-
-  public void setIntegralNumber(Boolean integralNumber) {
-    this.integralNumber = integralNumber;
-  }
-
-  public JsonNode floatingPointNumber(Boolean floatingPointNumber) {
-    this.floatingPointNumber = floatingPointNumber;
-    return this;
-  }
-
-   /**
-   * Get floatingPointNumber
-   * @return floatingPointNumber
-  **/
-  @ApiModelProperty(value = "")
-  public Boolean getFloatingPointNumber() {
-    return floatingPointNumber;
-  }
-
-  public void setFloatingPointNumber(Boolean floatingPointNumber) {
-    this.floatingPointNumber = floatingPointNumber;
-  }
-
-  public JsonNode _int(Boolean _int) {
-    this._int = _int;
-    return this;
-  }
-
-   /**
-   * Get _int
-   * @return _int
-  **/
-  @ApiModelProperty(value = "")
-  public Boolean getInt() {
-    return _int;
-  }
-
-  public void setInt(Boolean _int) {
-    this._int = _int;
-  }
-
-  public JsonNode _long(Boolean _long) {
-    this._long = _long;
-    return this;
-  }
-
-   /**
-   * Get _long
-   * @return _long
-  **/
-  @ApiModelProperty(value = "")
-  public Boolean getLong() {
-    return _long;
-  }
-
-  public void setLong(Boolean _long) {
-    this._long = _long;
-  }
-
-  public JsonNode _double(Boolean _double) {
-    this._double = _double;
-    return this;
-  }
-
-   /**
-   * Get _double
-   * @return _double
-  **/
-  @ApiModelProperty(value = "")
-  public Boolean getDouble() {
-    return _double;
-  }
-
-  public void setDouble(Boolean _double) {
-    this._double = _double;
+  public void setArray(Boolean array) {
+    this.array = array;
   }
 
   public JsonNode bigDecimal(Boolean bigDecimal) {
@@ -375,204 +249,6 @@ public class JsonNode {
     this.bigInteger = bigInteger;
   }
 
-  public JsonNode textual(Boolean textual) {
-    this.textual = textual;
-    return this;
-  }
-
-   /**
-   * Get textual
-   * @return textual
-  **/
-  @ApiModelProperty(value = "")
-  public Boolean getTextual() {
-    return textual;
-  }
-
-  public void setTextual(Boolean textual) {
-    this.textual = textual;
-  }
-
-  public JsonNode _boolean(Boolean _boolean) {
-    this._boolean = _boolean;
-    return this;
-  }
-
-   /**
-   * Get _boolean
-   * @return _boolean
-  **/
-  @ApiModelProperty(value = "")
-  public Boolean getBoolean() {
-    return _boolean;
-  }
-
-  public void setBoolean(Boolean _boolean) {
-    this._boolean = _boolean;
-  }
-
-  public JsonNode binary(Boolean binary) {
-    this.binary = binary;
-    return this;
-  }
-
-   /**
-   * Get binary
-   * @return binary
-  **/
-  @ApiModelProperty(value = "")
-  public Boolean getBinary() {
-    return binary;
-  }
-
-  public void setBinary(Boolean binary) {
-    this.binary = binary;
-  }
-
-  public JsonNode containerNode(Boolean containerNode) {
-    this.containerNode = containerNode;
-    return this;
-  }
-
-   /**
-   * Get containerNode
-   * @return containerNode
-  **/
-  @ApiModelProperty(value = "")
-  public Boolean getContainerNode() {
-    return containerNode;
-  }
-
-  public void setContainerNode(Boolean containerNode) {
-    this.containerNode = containerNode;
-  }
-
-  public JsonNode missingNode(Boolean missingNode) {
-    this.missingNode = missingNode;
-    return this;
-  }
-
-   /**
-   * Get missingNode
-   * @return missingNode
-  **/
-  @ApiModelProperty(value = "")
-  public Boolean getMissingNode() {
-    return missingNode;
-  }
-
-  public void setMissingNode(Boolean missingNode) {
-    this.missingNode = missingNode;
-  }
-
-  public JsonNode _object(Boolean _object) {
-    this._object = _object;
-    return this;
-  }
-
-   /**
-   * Get _object
-   * @return _object
-  **/
-  @ApiModelProperty(value = "")
-  public Boolean getObject() {
-    return _object;
-  }
-
-  public void setObject(Boolean _object) {
-    this._object = _object;
-  }
-
-  public JsonNode valueNode(Boolean valueNode) {
-    this.valueNode = valueNode;
-    return this;
-  }
-
-   /**
-   * Get valueNode
-   * @return valueNode
-  **/
-  @ApiModelProperty(value = "")
-  public Boolean getValueNode() {
-    return valueNode;
-  }
-
-  public void setValueNode(Boolean valueNode) {
-    this.valueNode = valueNode;
-  }
-
-  public JsonNode numberValue(BigDecimal numberValue) {
-    this.numberValue = numberValue;
-    return this;
-  }
-
-   /**
-   * Get numberValue
-   * @return numberValue
-  **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getNumberValue() {
-    return numberValue;
-  }
-
-  public void setNumberValue(BigDecimal numberValue) {
-    this.numberValue = numberValue;
-  }
-
-  public JsonNode numberType(NumberTypeEnum numberType) {
-    this.numberType = numberType;
-    return this;
-  }
-
-   /**
-   * Get numberType
-   * @return numberType
-  **/
-  @ApiModelProperty(value = "")
-  public NumberTypeEnum getNumberType() {
-    return numberType;
-  }
-
-  public void setNumberType(NumberTypeEnum numberType) {
-    this.numberType = numberType;
-  }
-
-  public JsonNode intValue(Integer intValue) {
-    this.intValue = intValue;
-    return this;
-  }
-
-   /**
-   * Get intValue
-   * @return intValue
-  **/
-  @ApiModelProperty(value = "")
-  public Integer getIntValue() {
-    return intValue;
-  }
-
-  public void setIntValue(Integer intValue) {
-    this.intValue = intValue;
-  }
-
-  public JsonNode longValue(Long longValue) {
-    this.longValue = longValue;
-    return this;
-  }
-
-   /**
-   * Get longValue
-   * @return longValue
-  **/
-  @ApiModelProperty(value = "")
-  public Long getLongValue() {
-    return longValue;
-  }
-
-  public void setLongValue(Long longValue) {
-    this.longValue = longValue;
-  }
-
   public JsonNode bigIntegerValue(Integer bigIntegerValue) {
     this.bigIntegerValue = bigIntegerValue;
     return this;
@@ -591,58 +267,22 @@ public class JsonNode {
     this.bigIntegerValue = bigIntegerValue;
   }
 
-  public JsonNode doubleValue(Double doubleValue) {
-    this.doubleValue = doubleValue;
+  public JsonNode binary(Boolean binary) {
+    this.binary = binary;
     return this;
   }
 
    /**
-   * Get doubleValue
-   * @return doubleValue
+   * Get binary
+   * @return binary
   **/
   @ApiModelProperty(value = "")
-  public Double getDoubleValue() {
-    return doubleValue;
+  public Boolean getBinary() {
+    return binary;
   }
 
-  public void setDoubleValue(Double doubleValue) {
-    this.doubleValue = doubleValue;
-  }
-
-  public JsonNode decimalValue(BigDecimal decimalValue) {
-    this.decimalValue = decimalValue;
-    return this;
-  }
-
-   /**
-   * Get decimalValue
-   * @return decimalValue
-  **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getDecimalValue() {
-    return decimalValue;
-  }
-
-  public void setDecimalValue(BigDecimal decimalValue) {
-    this.decimalValue = decimalValue;
-  }
-
-  public JsonNode booleanValue(Boolean booleanValue) {
-    this.booleanValue = booleanValue;
-    return this;
-  }
-
-   /**
-   * Get booleanValue
-   * @return booleanValue
-  **/
-  @ApiModelProperty(value = "")
-  public Boolean getBooleanValue() {
-    return booleanValue;
-  }
-
-  public void setBooleanValue(Boolean booleanValue) {
-    this.booleanValue = booleanValue;
+  public void setBinary(Boolean binary) {
+    this.binary = binary;
   }
 
   public JsonNode binaryValue(List<byte[]> binaryValue) {
@@ -669,6 +309,474 @@ public class JsonNode {
 
   public void setBinaryValue(List<byte[]> binaryValue) {
     this.binaryValue = binaryValue;
+  }
+
+  public JsonNode _boolean(Boolean _boolean) {
+    this._boolean = _boolean;
+    return this;
+  }
+
+   /**
+   * Get _boolean
+   * @return _boolean
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getBoolean() {
+    return _boolean;
+  }
+
+  public void setBoolean(Boolean _boolean) {
+    this._boolean = _boolean;
+  }
+
+  public JsonNode booleanValue(Boolean booleanValue) {
+    this.booleanValue = booleanValue;
+    return this;
+  }
+
+   /**
+   * Get booleanValue
+   * @return booleanValue
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getBooleanValue() {
+    return booleanValue;
+  }
+
+  public void setBooleanValue(Boolean booleanValue) {
+    this.booleanValue = booleanValue;
+  }
+
+  public JsonNode containerNode(Boolean containerNode) {
+    this.containerNode = containerNode;
+    return this;
+  }
+
+   /**
+   * Get containerNode
+   * @return containerNode
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getContainerNode() {
+    return containerNode;
+  }
+
+  public void setContainerNode(Boolean containerNode) {
+    this.containerNode = containerNode;
+  }
+
+  public JsonNode decimalValue(BigDecimal decimalValue) {
+    this.decimalValue = decimalValue;
+    return this;
+  }
+
+   /**
+   * Get decimalValue
+   * @return decimalValue
+  **/
+  @ApiModelProperty(value = "")
+  public BigDecimal getDecimalValue() {
+    return decimalValue;
+  }
+
+  public void setDecimalValue(BigDecimal decimalValue) {
+    this.decimalValue = decimalValue;
+  }
+
+  public JsonNode _double(Boolean _double) {
+    this._double = _double;
+    return this;
+  }
+
+   /**
+   * Get _double
+   * @return _double
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getDouble() {
+    return _double;
+  }
+
+  public void setDouble(Boolean _double) {
+    this._double = _double;
+  }
+
+  public JsonNode doubleValue(Double doubleValue) {
+    this.doubleValue = doubleValue;
+    return this;
+  }
+
+   /**
+   * Get doubleValue
+   * @return doubleValue
+  **/
+  @ApiModelProperty(value = "")
+  public Double getDoubleValue() {
+    return doubleValue;
+  }
+
+  public void setDoubleValue(Double doubleValue) {
+    this.doubleValue = doubleValue;
+  }
+
+  public JsonNode elements(Object elements) {
+    this.elements = elements;
+    return this;
+  }
+
+   /**
+   * Get elements
+   * @return elements
+  **/
+  @ApiModelProperty(value = "")
+  public Object getElements() {
+    return elements;
+  }
+
+  public void setElements(Object elements) {
+    this.elements = elements;
+  }
+
+  public JsonNode fieldNames(Object fieldNames) {
+    this.fieldNames = fieldNames;
+    return this;
+  }
+
+   /**
+   * Get fieldNames
+   * @return fieldNames
+  **/
+  @ApiModelProperty(value = "")
+  public Object getFieldNames() {
+    return fieldNames;
+  }
+
+  public void setFieldNames(Object fieldNames) {
+    this.fieldNames = fieldNames;
+  }
+
+  public JsonNode fields(Object fields) {
+    this.fields = fields;
+    return this;
+  }
+
+   /**
+   * Get fields
+   * @return fields
+  **/
+  @ApiModelProperty(value = "")
+  public Object getFields() {
+    return fields;
+  }
+
+  public void setFields(Object fields) {
+    this.fields = fields;
+  }
+
+  public JsonNode floatingPointNumber(Boolean floatingPointNumber) {
+    this.floatingPointNumber = floatingPointNumber;
+    return this;
+  }
+
+   /**
+   * Get floatingPointNumber
+   * @return floatingPointNumber
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getFloatingPointNumber() {
+    return floatingPointNumber;
+  }
+
+  public void setFloatingPointNumber(Boolean floatingPointNumber) {
+    this.floatingPointNumber = floatingPointNumber;
+  }
+
+  public JsonNode _int(Boolean _int) {
+    this._int = _int;
+    return this;
+  }
+
+   /**
+   * Get _int
+   * @return _int
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getInt() {
+    return _int;
+  }
+
+  public void setInt(Boolean _int) {
+    this._int = _int;
+  }
+
+  public JsonNode intValue(Integer intValue) {
+    this.intValue = intValue;
+    return this;
+  }
+
+   /**
+   * Get intValue
+   * @return intValue
+  **/
+  @ApiModelProperty(value = "")
+  public Integer getIntValue() {
+    return intValue;
+  }
+
+  public void setIntValue(Integer intValue) {
+    this.intValue = intValue;
+  }
+
+  public JsonNode integralNumber(Boolean integralNumber) {
+    this.integralNumber = integralNumber;
+    return this;
+  }
+
+   /**
+   * Get integralNumber
+   * @return integralNumber
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getIntegralNumber() {
+    return integralNumber;
+  }
+
+  public void setIntegralNumber(Boolean integralNumber) {
+    this.integralNumber = integralNumber;
+  }
+
+  public JsonNode _long(Boolean _long) {
+    this._long = _long;
+    return this;
+  }
+
+   /**
+   * Get _long
+   * @return _long
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getLong() {
+    return _long;
+  }
+
+  public void setLong(Boolean _long) {
+    this._long = _long;
+  }
+
+  public JsonNode longValue(Long longValue) {
+    this.longValue = longValue;
+    return this;
+  }
+
+   /**
+   * Get longValue
+   * @return longValue
+  **/
+  @ApiModelProperty(value = "")
+  public Long getLongValue() {
+    return longValue;
+  }
+
+  public void setLongValue(Long longValue) {
+    this.longValue = longValue;
+  }
+
+  public JsonNode missingNode(Boolean missingNode) {
+    this.missingNode = missingNode;
+    return this;
+  }
+
+   /**
+   * Get missingNode
+   * @return missingNode
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getMissingNode() {
+    return missingNode;
+  }
+
+  public void setMissingNode(Boolean missingNode) {
+    this.missingNode = missingNode;
+  }
+
+  public JsonNode _null(Boolean _null) {
+    this._null = _null;
+    return this;
+  }
+
+   /**
+   * Get _null
+   * @return _null
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getNull() {
+    return _null;
+  }
+
+  public void setNull(Boolean _null) {
+    this._null = _null;
+  }
+
+  public JsonNode number(Boolean number) {
+    this.number = number;
+    return this;
+  }
+
+   /**
+   * Get number
+   * @return number
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getNumber() {
+    return number;
+  }
+
+  public void setNumber(Boolean number) {
+    this.number = number;
+  }
+
+  public JsonNode numberType(NumberTypeEnum numberType) {
+    this.numberType = numberType;
+    return this;
+  }
+
+   /**
+   * Get numberType
+   * @return numberType
+  **/
+  @ApiModelProperty(value = "")
+  public NumberTypeEnum getNumberType() {
+    return numberType;
+  }
+
+  public void setNumberType(NumberTypeEnum numberType) {
+    this.numberType = numberType;
+  }
+
+  public JsonNode numberValue(BigDecimal numberValue) {
+    this.numberValue = numberValue;
+    return this;
+  }
+
+   /**
+   * Get numberValue
+   * @return numberValue
+  **/
+  @ApiModelProperty(value = "")
+  public BigDecimal getNumberValue() {
+    return numberValue;
+  }
+
+  public void setNumberValue(BigDecimal numberValue) {
+    this.numberValue = numberValue;
+  }
+
+  public JsonNode _object(Boolean _object) {
+    this._object = _object;
+    return this;
+  }
+
+   /**
+   * Get _object
+   * @return _object
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getObject() {
+    return _object;
+  }
+
+  public void setObject(Boolean _object) {
+    this._object = _object;
+  }
+
+  public JsonNode pojo(Boolean pojo) {
+    this.pojo = pojo;
+    return this;
+  }
+
+   /**
+   * Get pojo
+   * @return pojo
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getPojo() {
+    return pojo;
+  }
+
+  public void setPojo(Boolean pojo) {
+    this.pojo = pojo;
+  }
+
+  public JsonNode textValue(String textValue) {
+    this.textValue = textValue;
+    return this;
+  }
+
+   /**
+   * Get textValue
+   * @return textValue
+  **/
+  @ApiModelProperty(value = "")
+  public String getTextValue() {
+    return textValue;
+  }
+
+  public void setTextValue(String textValue) {
+    this.textValue = textValue;
+  }
+
+  public JsonNode textual(Boolean textual) {
+    this.textual = textual;
+    return this;
+  }
+
+   /**
+   * Get textual
+   * @return textual
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getTextual() {
+    return textual;
+  }
+
+  public void setTextual(Boolean textual) {
+    this.textual = textual;
+  }
+
+  public JsonNode valueAsBoolean(Boolean valueAsBoolean) {
+    this.valueAsBoolean = valueAsBoolean;
+    return this;
+  }
+
+   /**
+   * Get valueAsBoolean
+   * @return valueAsBoolean
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getValueAsBoolean() {
+    return valueAsBoolean;
+  }
+
+  public void setValueAsBoolean(Boolean valueAsBoolean) {
+    this.valueAsBoolean = valueAsBoolean;
+  }
+
+  public JsonNode valueAsDouble(Double valueAsDouble) {
+    this.valueAsDouble = valueAsDouble;
+    return this;
+  }
+
+   /**
+   * Get valueAsDouble
+   * @return valueAsDouble
+  **/
+  @ApiModelProperty(value = "")
+  public Double getValueAsDouble() {
+    return valueAsDouble;
+  }
+
+  public void setValueAsDouble(Double valueAsDouble) {
+    this.valueAsDouble = valueAsDouble;
   }
 
   public JsonNode valueAsInt(Integer valueAsInt) {
@@ -707,78 +815,6 @@ public class JsonNode {
     this.valueAsLong = valueAsLong;
   }
 
-  public JsonNode valueAsDouble(Double valueAsDouble) {
-    this.valueAsDouble = valueAsDouble;
-    return this;
-  }
-
-   /**
-   * Get valueAsDouble
-   * @return valueAsDouble
-  **/
-  @ApiModelProperty(value = "")
-  public Double getValueAsDouble() {
-    return valueAsDouble;
-  }
-
-  public void setValueAsDouble(Double valueAsDouble) {
-    this.valueAsDouble = valueAsDouble;
-  }
-
-  public JsonNode valueAsBoolean(Boolean valueAsBoolean) {
-    this.valueAsBoolean = valueAsBoolean;
-    return this;
-  }
-
-   /**
-   * Get valueAsBoolean
-   * @return valueAsBoolean
-  **/
-  @ApiModelProperty(value = "")
-  public Boolean getValueAsBoolean() {
-    return valueAsBoolean;
-  }
-
-  public void setValueAsBoolean(Boolean valueAsBoolean) {
-    this.valueAsBoolean = valueAsBoolean;
-  }
-
-  public JsonNode fieldNames(Object fieldNames) {
-    this.fieldNames = fieldNames;
-    return this;
-  }
-
-   /**
-   * Get fieldNames
-   * @return fieldNames
-  **/
-  @ApiModelProperty(value = "")
-  public Object getFieldNames() {
-    return fieldNames;
-  }
-
-  public void setFieldNames(Object fieldNames) {
-    this.fieldNames = fieldNames;
-  }
-
-  public JsonNode textValue(String textValue) {
-    this.textValue = textValue;
-    return this;
-  }
-
-   /**
-   * Get textValue
-   * @return textValue
-  **/
-  @ApiModelProperty(value = "")
-  public String getTextValue() {
-    return textValue;
-  }
-
-  public void setTextValue(String textValue) {
-    this.textValue = textValue;
-  }
-
   public JsonNode valueAsText(String valueAsText) {
     this.valueAsText = valueAsText;
     return this;
@@ -797,58 +833,22 @@ public class JsonNode {
     this.valueAsText = valueAsText;
   }
 
-  public JsonNode array(Boolean array) {
-    this.array = array;
+  public JsonNode valueNode(Boolean valueNode) {
+    this.valueNode = valueNode;
     return this;
   }
 
    /**
-   * Get array
-   * @return array
+   * Get valueNode
+   * @return valueNode
   **/
   @ApiModelProperty(value = "")
-  public Boolean getArray() {
-    return array;
+  public Boolean getValueNode() {
+    return valueNode;
   }
 
-  public void setArray(Boolean array) {
-    this.array = array;
-  }
-
-  public JsonNode fields(Object fields) {
-    this.fields = fields;
-    return this;
-  }
-
-   /**
-   * Get fields
-   * @return fields
-  **/
-  @ApiModelProperty(value = "")
-  public Object getFields() {
-    return fields;
-  }
-
-  public void setFields(Object fields) {
-    this.fields = fields;
-  }
-
-  public JsonNode _null(Boolean _null) {
-    this._null = _null;
-    return this;
-  }
-
-   /**
-   * Get _null
-   * @return _null
-  **/
-  @ApiModelProperty(value = "")
-  public Boolean getNull() {
-    return _null;
-  }
-
-  public void setNull(Boolean _null) {
-    this._null = _null;
+  public void setValueNode(Boolean valueNode) {
+    this.valueNode = valueNode;
   }
 
 
@@ -861,47 +861,47 @@ public class JsonNode {
       return false;
     }
     JsonNode jsonNode = (JsonNode) o;
-    return Objects.equals(this.elements, jsonNode.elements) &&
-        Objects.equals(this.pojo, jsonNode.pojo) &&
-        Objects.equals(this.number, jsonNode.number) &&
-        Objects.equals(this.integralNumber, jsonNode.integralNumber) &&
-        Objects.equals(this.floatingPointNumber, jsonNode.floatingPointNumber) &&
-        Objects.equals(this._int, jsonNode._int) &&
-        Objects.equals(this._long, jsonNode._long) &&
-        Objects.equals(this._double, jsonNode._double) &&
+    return Objects.equals(this.array, jsonNode.array) &&
         Objects.equals(this.bigDecimal, jsonNode.bigDecimal) &&
         Objects.equals(this.bigInteger, jsonNode.bigInteger) &&
-        Objects.equals(this.textual, jsonNode.textual) &&
-        Objects.equals(this._boolean, jsonNode._boolean) &&
-        Objects.equals(this.binary, jsonNode.binary) &&
-        Objects.equals(this.containerNode, jsonNode.containerNode) &&
-        Objects.equals(this.missingNode, jsonNode.missingNode) &&
-        Objects.equals(this._object, jsonNode._object) &&
-        Objects.equals(this.valueNode, jsonNode.valueNode) &&
-        Objects.equals(this.numberValue, jsonNode.numberValue) &&
-        Objects.equals(this.numberType, jsonNode.numberType) &&
-        Objects.equals(this.intValue, jsonNode.intValue) &&
-        Objects.equals(this.longValue, jsonNode.longValue) &&
         Objects.equals(this.bigIntegerValue, jsonNode.bigIntegerValue) &&
-        Objects.equals(this.doubleValue, jsonNode.doubleValue) &&
-        Objects.equals(this.decimalValue, jsonNode.decimalValue) &&
-        Objects.equals(this.booleanValue, jsonNode.booleanValue) &&
+        Objects.equals(this.binary, jsonNode.binary) &&
         Objects.equals(this.binaryValue, jsonNode.binaryValue) &&
+        Objects.equals(this._boolean, jsonNode._boolean) &&
+        Objects.equals(this.booleanValue, jsonNode.booleanValue) &&
+        Objects.equals(this.containerNode, jsonNode.containerNode) &&
+        Objects.equals(this.decimalValue, jsonNode.decimalValue) &&
+        Objects.equals(this._double, jsonNode._double) &&
+        Objects.equals(this.doubleValue, jsonNode.doubleValue) &&
+        Objects.equals(this.elements, jsonNode.elements) &&
+        Objects.equals(this.fieldNames, jsonNode.fieldNames) &&
+        Objects.equals(this.fields, jsonNode.fields) &&
+        Objects.equals(this.floatingPointNumber, jsonNode.floatingPointNumber) &&
+        Objects.equals(this._int, jsonNode._int) &&
+        Objects.equals(this.intValue, jsonNode.intValue) &&
+        Objects.equals(this.integralNumber, jsonNode.integralNumber) &&
+        Objects.equals(this._long, jsonNode._long) &&
+        Objects.equals(this.longValue, jsonNode.longValue) &&
+        Objects.equals(this.missingNode, jsonNode.missingNode) &&
+        Objects.equals(this._null, jsonNode._null) &&
+        Objects.equals(this.number, jsonNode.number) &&
+        Objects.equals(this.numberType, jsonNode.numberType) &&
+        Objects.equals(this.numberValue, jsonNode.numberValue) &&
+        Objects.equals(this._object, jsonNode._object) &&
+        Objects.equals(this.pojo, jsonNode.pojo) &&
+        Objects.equals(this.textValue, jsonNode.textValue) &&
+        Objects.equals(this.textual, jsonNode.textual) &&
+        Objects.equals(this.valueAsBoolean, jsonNode.valueAsBoolean) &&
+        Objects.equals(this.valueAsDouble, jsonNode.valueAsDouble) &&
         Objects.equals(this.valueAsInt, jsonNode.valueAsInt) &&
         Objects.equals(this.valueAsLong, jsonNode.valueAsLong) &&
-        Objects.equals(this.valueAsDouble, jsonNode.valueAsDouble) &&
-        Objects.equals(this.valueAsBoolean, jsonNode.valueAsBoolean) &&
-        Objects.equals(this.fieldNames, jsonNode.fieldNames) &&
-        Objects.equals(this.textValue, jsonNode.textValue) &&
         Objects.equals(this.valueAsText, jsonNode.valueAsText) &&
-        Objects.equals(this.array, jsonNode.array) &&
-        Objects.equals(this.fields, jsonNode.fields) &&
-        Objects.equals(this._null, jsonNode._null);
+        Objects.equals(this.valueNode, jsonNode.valueNode);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(elements, pojo, number, integralNumber, floatingPointNumber, _int, _long, _double, bigDecimal, bigInteger, textual, _boolean, binary, containerNode, missingNode, _object, valueNode, numberValue, numberType, intValue, longValue, bigIntegerValue, doubleValue, decimalValue, booleanValue, binaryValue, valueAsInt, valueAsLong, valueAsDouble, valueAsBoolean, fieldNames, textValue, valueAsText, array, fields, _null);
+    return Objects.hash(array, bigDecimal, bigInteger, bigIntegerValue, binary, binaryValue, _boolean, booleanValue, containerNode, decimalValue, _double, doubleValue, elements, fieldNames, fields, floatingPointNumber, _int, intValue, integralNumber, _long, longValue, missingNode, _null, number, numberType, numberValue, _object, pojo, textValue, textual, valueAsBoolean, valueAsDouble, valueAsInt, valueAsLong, valueAsText, valueNode);
   }
 
 
@@ -910,42 +910,42 @@ public class JsonNode {
     StringBuilder sb = new StringBuilder();
     sb.append("class JsonNode {\n");
     
-    sb.append("    elements: ").append(toIndentedString(elements)).append("\n");
-    sb.append("    pojo: ").append(toIndentedString(pojo)).append("\n");
-    sb.append("    number: ").append(toIndentedString(number)).append("\n");
-    sb.append("    integralNumber: ").append(toIndentedString(integralNumber)).append("\n");
-    sb.append("    floatingPointNumber: ").append(toIndentedString(floatingPointNumber)).append("\n");
-    sb.append("    _int: ").append(toIndentedString(_int)).append("\n");
-    sb.append("    _long: ").append(toIndentedString(_long)).append("\n");
-    sb.append("    _double: ").append(toIndentedString(_double)).append("\n");
+    sb.append("    array: ").append(toIndentedString(array)).append("\n");
     sb.append("    bigDecimal: ").append(toIndentedString(bigDecimal)).append("\n");
     sb.append("    bigInteger: ").append(toIndentedString(bigInteger)).append("\n");
-    sb.append("    textual: ").append(toIndentedString(textual)).append("\n");
-    sb.append("    _boolean: ").append(toIndentedString(_boolean)).append("\n");
-    sb.append("    binary: ").append(toIndentedString(binary)).append("\n");
-    sb.append("    containerNode: ").append(toIndentedString(containerNode)).append("\n");
-    sb.append("    missingNode: ").append(toIndentedString(missingNode)).append("\n");
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
-    sb.append("    valueNode: ").append(toIndentedString(valueNode)).append("\n");
-    sb.append("    numberValue: ").append(toIndentedString(numberValue)).append("\n");
-    sb.append("    numberType: ").append(toIndentedString(numberType)).append("\n");
-    sb.append("    intValue: ").append(toIndentedString(intValue)).append("\n");
-    sb.append("    longValue: ").append(toIndentedString(longValue)).append("\n");
     sb.append("    bigIntegerValue: ").append(toIndentedString(bigIntegerValue)).append("\n");
-    sb.append("    doubleValue: ").append(toIndentedString(doubleValue)).append("\n");
-    sb.append("    decimalValue: ").append(toIndentedString(decimalValue)).append("\n");
-    sb.append("    booleanValue: ").append(toIndentedString(booleanValue)).append("\n");
+    sb.append("    binary: ").append(toIndentedString(binary)).append("\n");
     sb.append("    binaryValue: ").append(toIndentedString(binaryValue)).append("\n");
+    sb.append("    _boolean: ").append(toIndentedString(_boolean)).append("\n");
+    sb.append("    booleanValue: ").append(toIndentedString(booleanValue)).append("\n");
+    sb.append("    containerNode: ").append(toIndentedString(containerNode)).append("\n");
+    sb.append("    decimalValue: ").append(toIndentedString(decimalValue)).append("\n");
+    sb.append("    _double: ").append(toIndentedString(_double)).append("\n");
+    sb.append("    doubleValue: ").append(toIndentedString(doubleValue)).append("\n");
+    sb.append("    elements: ").append(toIndentedString(elements)).append("\n");
+    sb.append("    fieldNames: ").append(toIndentedString(fieldNames)).append("\n");
+    sb.append("    fields: ").append(toIndentedString(fields)).append("\n");
+    sb.append("    floatingPointNumber: ").append(toIndentedString(floatingPointNumber)).append("\n");
+    sb.append("    _int: ").append(toIndentedString(_int)).append("\n");
+    sb.append("    intValue: ").append(toIndentedString(intValue)).append("\n");
+    sb.append("    integralNumber: ").append(toIndentedString(integralNumber)).append("\n");
+    sb.append("    _long: ").append(toIndentedString(_long)).append("\n");
+    sb.append("    longValue: ").append(toIndentedString(longValue)).append("\n");
+    sb.append("    missingNode: ").append(toIndentedString(missingNode)).append("\n");
+    sb.append("    _null: ").append(toIndentedString(_null)).append("\n");
+    sb.append("    number: ").append(toIndentedString(number)).append("\n");
+    sb.append("    numberType: ").append(toIndentedString(numberType)).append("\n");
+    sb.append("    numberValue: ").append(toIndentedString(numberValue)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
+    sb.append("    pojo: ").append(toIndentedString(pojo)).append("\n");
+    sb.append("    textValue: ").append(toIndentedString(textValue)).append("\n");
+    sb.append("    textual: ").append(toIndentedString(textual)).append("\n");
+    sb.append("    valueAsBoolean: ").append(toIndentedString(valueAsBoolean)).append("\n");
+    sb.append("    valueAsDouble: ").append(toIndentedString(valueAsDouble)).append("\n");
     sb.append("    valueAsInt: ").append(toIndentedString(valueAsInt)).append("\n");
     sb.append("    valueAsLong: ").append(toIndentedString(valueAsLong)).append("\n");
-    sb.append("    valueAsDouble: ").append(toIndentedString(valueAsDouble)).append("\n");
-    sb.append("    valueAsBoolean: ").append(toIndentedString(valueAsBoolean)).append("\n");
-    sb.append("    fieldNames: ").append(toIndentedString(fieldNames)).append("\n");
-    sb.append("    textValue: ").append(toIndentedString(textValue)).append("\n");
     sb.append("    valueAsText: ").append(toIndentedString(valueAsText)).append("\n");
-    sb.append("    array: ").append(toIndentedString(array)).append("\n");
-    sb.append("    fields: ").append(toIndentedString(fields)).append("\n");
-    sb.append("    _null: ").append(toIndentedString(_null)).append("\n");
+    sb.append("    valueNode: ").append(toIndentedString(valueNode)).append("\n");
     sb.append("}");
     return sb.toString();
   }

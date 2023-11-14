@@ -44,48 +44,30 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.VersionUsageInCustomFi
  * Various counts of issues within a version.
  */
 @ApiModel(description = "Various counts of issues within a version.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class VersionIssueCounts {
-  @JsonProperty("self")
-  private URI self;
-
-  @JsonProperty("issuesFixedCount")
-  private Long issuesFixedCount;
-
-  @JsonProperty("issuesAffectedCount")
-  private Long issuesAffectedCount;
+  @JsonProperty("customFieldUsage")
+  private List<VersionUsageInCustomField> customFieldUsage = new ArrayList<>();
 
   @JsonProperty("issueCountWithCustomFieldsShowingVersion")
   private Long issueCountWithCustomFieldsShowingVersion;
 
-  @JsonProperty("customFieldUsage")
-  private List<VersionUsageInCustomField> customFieldUsage = new ArrayList<>();
+  @JsonProperty("issuesAffectedCount")
+  private Long issuesAffectedCount;
+
+  @JsonProperty("issuesFixedCount")
+  private Long issuesFixedCount;
+
+  @JsonProperty("self")
+  private URI self;
 
    /**
-   * The URL of these count details.
-   * @return self
+   * List of custom fields using the version.
+   * @return customFieldUsage
   **/
-  @ApiModelProperty(value = "The URL of these count details.")
-  public URI getSelf() {
-    return self;
-  }
-
-   /**
-   * Count of issues where the &#x60;fixVersion&#x60; is set to the version.
-   * @return issuesFixedCount
-  **/
-  @ApiModelProperty(value = "Count of issues where the `fixVersion` is set to the version.")
-  public Long getIssuesFixedCount() {
-    return issuesFixedCount;
-  }
-
-   /**
-   * Count of issues where the &#x60;affectedVersion&#x60; is set to the version.
-   * @return issuesAffectedCount
-  **/
-  @ApiModelProperty(value = "Count of issues where the `affectedVersion` is set to the version.")
-  public Long getIssuesAffectedCount() {
-    return issuesAffectedCount;
+  @ApiModelProperty(value = "List of custom fields using the version.")
+  public List<VersionUsageInCustomField> getCustomFieldUsage() {
+    return customFieldUsage;
   }
 
    /**
@@ -98,12 +80,30 @@ public class VersionIssueCounts {
   }
 
    /**
-   * List of custom fields using the version.
-   * @return customFieldUsage
+   * Count of issues where the &#x60;affectedVersion&#x60; is set to the version.
+   * @return issuesAffectedCount
   **/
-  @ApiModelProperty(value = "List of custom fields using the version.")
-  public List<VersionUsageInCustomField> getCustomFieldUsage() {
-    return customFieldUsage;
+  @ApiModelProperty(value = "Count of issues where the `affectedVersion` is set to the version.")
+  public Long getIssuesAffectedCount() {
+    return issuesAffectedCount;
+  }
+
+   /**
+   * Count of issues where the &#x60;fixVersion&#x60; is set to the version.
+   * @return issuesFixedCount
+  **/
+  @ApiModelProperty(value = "Count of issues where the `fixVersion` is set to the version.")
+  public Long getIssuesFixedCount() {
+    return issuesFixedCount;
+  }
+
+   /**
+   * The URL of these count details.
+   * @return self
+  **/
+  @ApiModelProperty(value = "The URL of these count details.")
+  public URI getSelf() {
+    return self;
   }
 
 
@@ -116,16 +116,16 @@ public class VersionIssueCounts {
       return false;
     }
     VersionIssueCounts versionIssueCounts = (VersionIssueCounts) o;
-    return Objects.equals(this.self, versionIssueCounts.self) &&
-        Objects.equals(this.issuesFixedCount, versionIssueCounts.issuesFixedCount) &&
-        Objects.equals(this.issuesAffectedCount, versionIssueCounts.issuesAffectedCount) &&
+    return Objects.equals(this.customFieldUsage, versionIssueCounts.customFieldUsage) &&
         Objects.equals(this.issueCountWithCustomFieldsShowingVersion, versionIssueCounts.issueCountWithCustomFieldsShowingVersion) &&
-        Objects.equals(this.customFieldUsage, versionIssueCounts.customFieldUsage);
+        Objects.equals(this.issuesAffectedCount, versionIssueCounts.issuesAffectedCount) &&
+        Objects.equals(this.issuesFixedCount, versionIssueCounts.issuesFixedCount) &&
+        Objects.equals(this.self, versionIssueCounts.self);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, issuesFixedCount, issuesAffectedCount, issueCountWithCustomFieldsShowingVersion, customFieldUsage);
+    return Objects.hash(customFieldUsage, issueCountWithCustomFieldsShowingVersion, issuesAffectedCount, issuesFixedCount, self);
   }
 
 
@@ -134,11 +134,11 @@ public class VersionIssueCounts {
     StringBuilder sb = new StringBuilder();
     sb.append("class VersionIssueCounts {\n");
     
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    issuesFixedCount: ").append(toIndentedString(issuesFixedCount)).append("\n");
-    sb.append("    issuesAffectedCount: ").append(toIndentedString(issuesAffectedCount)).append("\n");
-    sb.append("    issueCountWithCustomFieldsShowingVersion: ").append(toIndentedString(issueCountWithCustomFieldsShowingVersion)).append("\n");
     sb.append("    customFieldUsage: ").append(toIndentedString(customFieldUsage)).append("\n");
+    sb.append("    issueCountWithCustomFieldsShowingVersion: ").append(toIndentedString(issueCountWithCustomFieldsShowingVersion)).append("\n");
+    sb.append("    issuesAffectedCount: ").append(toIndentedString(issuesAffectedCount)).append("\n");
+    sb.append("    issuesFixedCount: ").append(toIndentedString(issuesFixedCount)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("}");
     return sb.toString();
   }

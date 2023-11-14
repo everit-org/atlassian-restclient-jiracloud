@@ -40,16 +40,34 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of a custom field option for a context.
  */
 @ApiModel(description = "Details of a custom field option for a context.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class CustomFieldOptionUpdate {
+  @JsonProperty("disabled")
+  private Boolean disabled;
+
   @JsonProperty("id")
   private String id;
 
   @JsonProperty("value")
   private String value;
 
-  @JsonProperty("disabled")
-  private Boolean disabled;
+  public CustomFieldOptionUpdate disabled(Boolean disabled) {
+    this.disabled = disabled;
+    return this;
+  }
+
+   /**
+   * Whether the option is disabled.
+   * @return disabled
+  **/
+  @ApiModelProperty(value = "Whether the option is disabled.")
+  public Boolean getDisabled() {
+    return disabled;
+  }
+
+  public void setDisabled(Boolean disabled) {
+    this.disabled = disabled;
+  }
 
   public CustomFieldOptionUpdate id(String id) {
     this.id = id;
@@ -87,24 +105,6 @@ public class CustomFieldOptionUpdate {
     this.value = value;
   }
 
-  public CustomFieldOptionUpdate disabled(Boolean disabled) {
-    this.disabled = disabled;
-    return this;
-  }
-
-   /**
-   * Whether the option is disabled.
-   * @return disabled
-  **/
-  @ApiModelProperty(value = "Whether the option is disabled.")
-  public Boolean getDisabled() {
-    return disabled;
-  }
-
-  public void setDisabled(Boolean disabled) {
-    this.disabled = disabled;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -115,14 +115,14 @@ public class CustomFieldOptionUpdate {
       return false;
     }
     CustomFieldOptionUpdate customFieldOptionUpdate = (CustomFieldOptionUpdate) o;
-    return Objects.equals(this.id, customFieldOptionUpdate.id) &&
-        Objects.equals(this.value, customFieldOptionUpdate.value) &&
-        Objects.equals(this.disabled, customFieldOptionUpdate.disabled);
+    return Objects.equals(this.disabled, customFieldOptionUpdate.disabled) &&
+        Objects.equals(this.id, customFieldOptionUpdate.id) &&
+        Objects.equals(this.value, customFieldOptionUpdate.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, value, disabled);
+    return Objects.hash(disabled, id, value);
   }
 
 
@@ -131,9 +131,9 @@ public class CustomFieldOptionUpdate {
     StringBuilder sb = new StringBuilder();
     sb.append("class CustomFieldOptionUpdate {\n");
     
+    sb.append("    disabled: ").append(toIndentedString(disabled)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
-    sb.append("    disabled: ").append(toIndentedString(disabled)).append("\n");
     sb.append("}");
     return sb.toString();
   }

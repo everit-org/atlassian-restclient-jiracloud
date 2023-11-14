@@ -45,16 +45,22 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.ValueOperand;
  * An operand that can be part of a list operand.
  */
 @ApiModel(description = "An operand that can be part of a list operand.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class JqlQueryUnitaryOperand {
+  @JsonProperty("encodedValue")
+  private String encodedValue;
+
   @JsonProperty("value")
   private String value;
 
-  @JsonProperty("function")
-  private String function;
-
   @JsonProperty("arguments")
   private List<String> arguments = new ArrayList<>();
+
+  @JsonProperty("encodedOperand")
+  private String encodedOperand;
+
+  @JsonProperty("function")
+  private String function;
 
   /**
    * The keyword that is the operand value.
@@ -92,6 +98,24 @@ public class JqlQueryUnitaryOperand {
   @JsonProperty("keyword")
   private KeywordEnum keyword;
 
+  public JqlQueryUnitaryOperand encodedValue(String encodedValue) {
+    this.encodedValue = encodedValue;
+    return this;
+  }
+
+   /**
+   * Encoded value, which can be used directly in a JQL query.
+   * @return encodedValue
+  **/
+  @ApiModelProperty(value = "Encoded value, which can be used directly in a JQL query.")
+  public String getEncodedValue() {
+    return encodedValue;
+  }
+
+  public void setEncodedValue(String encodedValue) {
+    this.encodedValue = encodedValue;
+  }
+
   public JqlQueryUnitaryOperand value(String value) {
     this.value = value;
     return this;
@@ -108,24 +132,6 @@ public class JqlQueryUnitaryOperand {
 
   public void setValue(String value) {
     this.value = value;
-  }
-
-  public JqlQueryUnitaryOperand function(String function) {
-    this.function = function;
-    return this;
-  }
-
-   /**
-   * The name of the function.
-   * @return function
-  **/
-  @ApiModelProperty(required = true, value = "The name of the function.")
-  public String getFunction() {
-    return function;
-  }
-
-  public void setFunction(String function) {
-    this.function = function;
   }
 
   public JqlQueryUnitaryOperand arguments(List<String> arguments) {
@@ -149,6 +155,42 @@ public class JqlQueryUnitaryOperand {
 
   public void setArguments(List<String> arguments) {
     this.arguments = arguments;
+  }
+
+  public JqlQueryUnitaryOperand encodedOperand(String encodedOperand) {
+    this.encodedOperand = encodedOperand;
+    return this;
+  }
+
+   /**
+   * Encoded operand, which can be used directly in a JQL query.
+   * @return encodedOperand
+  **/
+  @ApiModelProperty(value = "Encoded operand, which can be used directly in a JQL query.")
+  public String getEncodedOperand() {
+    return encodedOperand;
+  }
+
+  public void setEncodedOperand(String encodedOperand) {
+    this.encodedOperand = encodedOperand;
+  }
+
+  public JqlQueryUnitaryOperand function(String function) {
+    this.function = function;
+    return this;
+  }
+
+   /**
+   * The name of the function.
+   * @return function
+  **/
+  @ApiModelProperty(required = true, value = "The name of the function.")
+  public String getFunction() {
+    return function;
+  }
+
+  public void setFunction(String function) {
+    this.function = function;
   }
 
   public JqlQueryUnitaryOperand keyword(KeywordEnum keyword) {
@@ -179,15 +221,17 @@ public class JqlQueryUnitaryOperand {
       return false;
     }
     JqlQueryUnitaryOperand jqlQueryUnitaryOperand = (JqlQueryUnitaryOperand) o;
-    return Objects.equals(this.value, jqlQueryUnitaryOperand.value) &&
-        Objects.equals(this.function, jqlQueryUnitaryOperand.function) &&
+    return Objects.equals(this.encodedValue, jqlQueryUnitaryOperand.encodedValue) &&
+        Objects.equals(this.value, jqlQueryUnitaryOperand.value) &&
         Objects.equals(this.arguments, jqlQueryUnitaryOperand.arguments) &&
+        Objects.equals(this.encodedOperand, jqlQueryUnitaryOperand.encodedOperand) &&
+        Objects.equals(this.function, jqlQueryUnitaryOperand.function) &&
         Objects.equals(this.keyword, jqlQueryUnitaryOperand.keyword);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value, function, arguments, keyword);
+    return Objects.hash(encodedValue, value, arguments, encodedOperand, function, keyword);
   }
 
 
@@ -196,9 +240,11 @@ public class JqlQueryUnitaryOperand {
     StringBuilder sb = new StringBuilder();
     sb.append("class JqlQueryUnitaryOperand {\n");
     
+    sb.append("    encodedValue: ").append(toIndentedString(encodedValue)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
-    sb.append("    function: ").append(toIndentedString(function)).append("\n");
     sb.append("    arguments: ").append(toIndentedString(arguments)).append("\n");
+    sb.append("    encodedOperand: ").append(toIndentedString(encodedOperand)).append("\n");
+    sb.append("    function: ").append(toIndentedString(function)).append("\n");
     sb.append("    keyword: ").append(toIndentedString(keyword)).append("\n");
     sb.append("}");
     return sb.toString();

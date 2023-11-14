@@ -43,11 +43,8 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.IssueFieldOptionScopeB
  * Details of the projects the option is available in.
  */
 @ApiModel(description = "Details of the projects the option is available in.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class IssueFieldOptionConfiguration {
-  @JsonProperty("scope")
-  private IssueFieldOptionScopeBean scope;
-
   /**
    * Gets or Sets attributes
    */
@@ -86,23 +83,8 @@ public class IssueFieldOptionConfiguration {
   @JsonProperty("attributes")
   private List<AttributesEnum> attributes = new ArrayList<>();
 
-  public IssueFieldOptionConfiguration scope(IssueFieldOptionScopeBean scope) {
-    this.scope = scope;
-    return this;
-  }
-
-   /**
-   * Defines the projects that the option is available in. If the scope is not defined, then the option is available in all projects.
-   * @return scope
-  **/
-  @ApiModelProperty(value = "Defines the projects that the option is available in. If the scope is not defined, then the option is available in all projects.")
-  public IssueFieldOptionScopeBean getScope() {
-    return scope;
-  }
-
-  public void setScope(IssueFieldOptionScopeBean scope) {
-    this.scope = scope;
-  }
+  @JsonProperty("scope")
+  private IssueFieldOptionScopeBean scope;
 
   public IssueFieldOptionConfiguration attributes(List<AttributesEnum> attributes) {
     this.attributes = attributes;
@@ -130,6 +112,24 @@ public class IssueFieldOptionConfiguration {
     this.attributes = attributes;
   }
 
+  public IssueFieldOptionConfiguration scope(IssueFieldOptionScopeBean scope) {
+    this.scope = scope;
+    return this;
+  }
+
+   /**
+   * Defines the projects that the option is available in. If the scope is not defined, then the option is available in all projects.
+   * @return scope
+  **/
+  @ApiModelProperty(value = "Defines the projects that the option is available in. If the scope is not defined, then the option is available in all projects.")
+  public IssueFieldOptionScopeBean getScope() {
+    return scope;
+  }
+
+  public void setScope(IssueFieldOptionScopeBean scope) {
+    this.scope = scope;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -140,13 +140,13 @@ public class IssueFieldOptionConfiguration {
       return false;
     }
     IssueFieldOptionConfiguration issueFieldOptionConfiguration = (IssueFieldOptionConfiguration) o;
-    return Objects.equals(this.scope, issueFieldOptionConfiguration.scope) &&
-        Objects.equals(this.attributes, issueFieldOptionConfiguration.attributes);
+    return Objects.equals(this.attributes, issueFieldOptionConfiguration.attributes) &&
+        Objects.equals(this.scope, issueFieldOptionConfiguration.scope);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(scope, attributes);
+    return Objects.hash(attributes, scope);
   }
 
 
@@ -155,8 +155,8 @@ public class IssueFieldOptionConfiguration {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueFieldOptionConfiguration {\n");
     
-    sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
+    sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
     sb.append("}");
     return sb.toString();
   }

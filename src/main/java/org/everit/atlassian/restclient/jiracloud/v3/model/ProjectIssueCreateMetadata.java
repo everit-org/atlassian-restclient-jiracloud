@@ -44,16 +44,19 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.IssueTypeIssueCreateMe
  * Details of the issue creation metadata for a project.
  */
 @ApiModel(description = "Details of the issue creation metadata for a project.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class ProjectIssueCreateMetadata {
+  @JsonProperty("avatarUrls")
+  private AvatarUrlsBean avatarUrls;
+
   @JsonProperty("expand")
   private String expand;
 
-  @JsonProperty("self")
-  private String self;
-
   @JsonProperty("id")
   private String id;
+
+  @JsonProperty("issuetypes")
+  private List<IssueTypeIssueCreateMetadata> issuetypes = new ArrayList<>();
 
   @JsonProperty("key")
   private String key;
@@ -61,11 +64,17 @@ public class ProjectIssueCreateMetadata {
   @JsonProperty("name")
   private String name;
 
-  @JsonProperty("avatarUrls")
-  private AvatarUrlsBean avatarUrls;
+  @JsonProperty("self")
+  private String self;
 
-  @JsonProperty("issuetypes")
-  private List<IssueTypeIssueCreateMetadata> issuetypes = new ArrayList<>();
+   /**
+   * List of the project&#39;s avatars, returning the avatar size and associated URL.
+   * @return avatarUrls
+  **/
+  @ApiModelProperty(value = "List of the project's avatars, returning the avatar size and associated URL.")
+  public AvatarUrlsBean getAvatarUrls() {
+    return avatarUrls;
+  }
 
    /**
    * Expand options that include additional project issue create metadata details in the response.
@@ -77,21 +86,21 @@ public class ProjectIssueCreateMetadata {
   }
 
    /**
-   * The URL of the project.
-   * @return self
-  **/
-  @ApiModelProperty(value = "The URL of the project.")
-  public String getSelf() {
-    return self;
-  }
-
-   /**
    * The ID of the project.
    * @return id
   **/
   @ApiModelProperty(value = "The ID of the project.")
   public String getId() {
     return id;
+  }
+
+   /**
+   * List of the issue types supported by the project.
+   * @return issuetypes
+  **/
+  @ApiModelProperty(value = "List of the issue types supported by the project.")
+  public List<IssueTypeIssueCreateMetadata> getIssuetypes() {
+    return issuetypes;
   }
 
    /**
@@ -113,21 +122,12 @@ public class ProjectIssueCreateMetadata {
   }
 
    /**
-   * List of the project&#39;s avatars, returning the avatar size and associated URL.
-   * @return avatarUrls
+   * The URL of the project.
+   * @return self
   **/
-  @ApiModelProperty(value = "List of the project's avatars, returning the avatar size and associated URL.")
-  public AvatarUrlsBean getAvatarUrls() {
-    return avatarUrls;
-  }
-
-   /**
-   * List of the issue types supported by the project.
-   * @return issuetypes
-  **/
-  @ApiModelProperty(value = "List of the issue types supported by the project.")
-  public List<IssueTypeIssueCreateMetadata> getIssuetypes() {
-    return issuetypes;
+  @ApiModelProperty(value = "The URL of the project.")
+  public String getSelf() {
+    return self;
   }
 
 
@@ -140,18 +140,18 @@ public class ProjectIssueCreateMetadata {
       return false;
     }
     ProjectIssueCreateMetadata projectIssueCreateMetadata = (ProjectIssueCreateMetadata) o;
-    return Objects.equals(this.expand, projectIssueCreateMetadata.expand) &&
-        Objects.equals(this.self, projectIssueCreateMetadata.self) &&
+    return Objects.equals(this.avatarUrls, projectIssueCreateMetadata.avatarUrls) &&
+        Objects.equals(this.expand, projectIssueCreateMetadata.expand) &&
         Objects.equals(this.id, projectIssueCreateMetadata.id) &&
+        Objects.equals(this.issuetypes, projectIssueCreateMetadata.issuetypes) &&
         Objects.equals(this.key, projectIssueCreateMetadata.key) &&
         Objects.equals(this.name, projectIssueCreateMetadata.name) &&
-        Objects.equals(this.avatarUrls, projectIssueCreateMetadata.avatarUrls) &&
-        Objects.equals(this.issuetypes, projectIssueCreateMetadata.issuetypes);
+        Objects.equals(this.self, projectIssueCreateMetadata.self);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(expand, self, id, key, name, avatarUrls, issuetypes);
+    return Objects.hash(avatarUrls, expand, id, issuetypes, key, name, self);
   }
 
 
@@ -160,13 +160,13 @@ public class ProjectIssueCreateMetadata {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProjectIssueCreateMetadata {\n");
     
+    sb.append("    avatarUrls: ").append(toIndentedString(avatarUrls)).append("\n");
     sb.append("    expand: ").append(toIndentedString(expand)).append("\n");
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    issuetypes: ").append(toIndentedString(issuetypes)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    avatarUrls: ").append(toIndentedString(avatarUrls)).append("\n");
-    sb.append("    issuetypes: ").append(toIndentedString(issuetypes)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("}");
     return sb.toString();
   }

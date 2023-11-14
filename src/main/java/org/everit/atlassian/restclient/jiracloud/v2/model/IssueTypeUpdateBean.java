@@ -39,33 +39,33 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * IssueTypeUpdateBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class IssueTypeUpdateBean {
-  @JsonProperty("name")
-  private String name;
+  @JsonProperty("avatarId")
+  private Long avatarId;
 
   @JsonProperty("description")
   private String description;
 
-  @JsonProperty("avatarId")
-  private Long avatarId;
+  @JsonProperty("name")
+  private String name;
 
-  public IssueTypeUpdateBean name(String name) {
-    this.name = name;
+  public IssueTypeUpdateBean avatarId(Long avatarId) {
+    this.avatarId = avatarId;
     return this;
   }
 
    /**
-   * The unique name for the issue type. The maximum length is 60 characters.
-   * @return name
+   * The ID of an issue type avatar.
+   * @return avatarId
   **/
-  @ApiModelProperty(value = "The unique name for the issue type. The maximum length is 60 characters.")
-  public String getName() {
-    return name;
+  @ApiModelProperty(value = "The ID of an issue type avatar.")
+  public Long getAvatarId() {
+    return avatarId;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setAvatarId(Long avatarId) {
+    this.avatarId = avatarId;
   }
 
   public IssueTypeUpdateBean description(String description) {
@@ -86,22 +86,22 @@ public class IssueTypeUpdateBean {
     this.description = description;
   }
 
-  public IssueTypeUpdateBean avatarId(Long avatarId) {
-    this.avatarId = avatarId;
+  public IssueTypeUpdateBean name(String name) {
+    this.name = name;
     return this;
   }
 
    /**
-   * The ID of an issue type avatar.
-   * @return avatarId
+   * The unique name for the issue type. The maximum length is 60 characters.
+   * @return name
   **/
-  @ApiModelProperty(value = "The ID of an issue type avatar.")
-  public Long getAvatarId() {
-    return avatarId;
+  @ApiModelProperty(value = "The unique name for the issue type. The maximum length is 60 characters.")
+  public String getName() {
+    return name;
   }
 
-  public void setAvatarId(Long avatarId) {
-    this.avatarId = avatarId;
+  public void setName(String name) {
+    this.name = name;
   }
 
 
@@ -114,14 +114,14 @@ public class IssueTypeUpdateBean {
       return false;
     }
     IssueTypeUpdateBean issueTypeUpdateBean = (IssueTypeUpdateBean) o;
-    return Objects.equals(this.name, issueTypeUpdateBean.name) &&
+    return Objects.equals(this.avatarId, issueTypeUpdateBean.avatarId) &&
         Objects.equals(this.description, issueTypeUpdateBean.description) &&
-        Objects.equals(this.avatarId, issueTypeUpdateBean.avatarId);
+        Objects.equals(this.name, issueTypeUpdateBean.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, avatarId);
+    return Objects.hash(avatarId, description, name);
   }
 
 
@@ -130,9 +130,9 @@ public class IssueTypeUpdateBean {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueTypeUpdateBean {\n");
     
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    avatarId: ").append(toIndentedString(avatarId)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }

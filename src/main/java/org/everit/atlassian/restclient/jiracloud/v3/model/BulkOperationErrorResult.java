@@ -40,34 +40,16 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.ErrorCollection;
 /**
  * BulkOperationErrorResult
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class BulkOperationErrorResult {
-  @JsonProperty("status")
-  private Integer status;
-
   @JsonProperty("elementErrors")
   private ErrorCollection elementErrors;
 
   @JsonProperty("failedElementNumber")
   private Integer failedElementNumber;
 
-  public BulkOperationErrorResult status(Integer status) {
-    this.status = status;
-    return this;
-  }
-
-   /**
-   * Get status
-   * @return status
-  **/
-  @ApiModelProperty(value = "")
-  public Integer getStatus() {
-    return status;
-  }
-
-  public void setStatus(Integer status) {
-    this.status = status;
-  }
+  @JsonProperty("status")
+  private Integer status;
 
   public BulkOperationErrorResult elementErrors(ErrorCollection elementErrors) {
     this.elementErrors = elementErrors;
@@ -105,6 +87,24 @@ public class BulkOperationErrorResult {
     this.failedElementNumber = failedElementNumber;
   }
 
+  public BulkOperationErrorResult status(Integer status) {
+    this.status = status;
+    return this;
+  }
+
+   /**
+   * Get status
+   * @return status
+  **/
+  @ApiModelProperty(value = "")
+  public Integer getStatus() {
+    return status;
+  }
+
+  public void setStatus(Integer status) {
+    this.status = status;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -115,14 +115,14 @@ public class BulkOperationErrorResult {
       return false;
     }
     BulkOperationErrorResult bulkOperationErrorResult = (BulkOperationErrorResult) o;
-    return Objects.equals(this.status, bulkOperationErrorResult.status) &&
-        Objects.equals(this.elementErrors, bulkOperationErrorResult.elementErrors) &&
-        Objects.equals(this.failedElementNumber, bulkOperationErrorResult.failedElementNumber);
+    return Objects.equals(this.elementErrors, bulkOperationErrorResult.elementErrors) &&
+        Objects.equals(this.failedElementNumber, bulkOperationErrorResult.failedElementNumber) &&
+        Objects.equals(this.status, bulkOperationErrorResult.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, elementErrors, failedElementNumber);
+    return Objects.hash(elementErrors, failedElementNumber, status);
   }
 
 
@@ -131,9 +131,9 @@ public class BulkOperationErrorResult {
     StringBuilder sb = new StringBuilder();
     sb.append("class BulkOperationErrorResult {\n");
     
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    elementErrors: ").append(toIndentedString(elementErrors)).append("\n");
     sb.append("    failedElementNumber: ").append(toIndentedString(failedElementNumber)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();
   }

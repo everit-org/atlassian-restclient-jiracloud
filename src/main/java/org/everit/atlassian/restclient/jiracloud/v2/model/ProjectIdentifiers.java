@@ -41,25 +41,16 @@ import java.net.URI;
  * Identifiers for a project.
  */
 @ApiModel(description = "Identifiers for a project.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class ProjectIdentifiers {
-  @JsonProperty("self")
-  private URI self;
-
   @JsonProperty("id")
   private Long id;
 
   @JsonProperty("key")
   private String key;
 
-   /**
-   * The URL of the created project.
-   * @return self
-  **/
-  @ApiModelProperty(required = true, value = "The URL of the created project.")
-  public URI getSelf() {
-    return self;
-  }
+  @JsonProperty("self")
+  private URI self;
 
    /**
    * The ID of the created project.
@@ -79,6 +70,15 @@ public class ProjectIdentifiers {
     return key;
   }
 
+   /**
+   * The URL of the created project.
+   * @return self
+  **/
+  @ApiModelProperty(required = true, value = "The URL of the created project.")
+  public URI getSelf() {
+    return self;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -89,14 +89,14 @@ public class ProjectIdentifiers {
       return false;
     }
     ProjectIdentifiers projectIdentifiers = (ProjectIdentifiers) o;
-    return Objects.equals(this.self, projectIdentifiers.self) &&
-        Objects.equals(this.id, projectIdentifiers.id) &&
-        Objects.equals(this.key, projectIdentifiers.key);
+    return Objects.equals(this.id, projectIdentifiers.id) &&
+        Objects.equals(this.key, projectIdentifiers.key) &&
+        Objects.equals(this.self, projectIdentifiers.self);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, id, key);
+    return Objects.hash(id, key, self);
   }
 
 
@@ -105,9 +105,9 @@ public class ProjectIdentifiers {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProjectIdentifiers {\n");
     
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("}");
     return sb.toString();
   }

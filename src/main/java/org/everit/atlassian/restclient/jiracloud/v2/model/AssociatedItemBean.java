@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of an item associated with the changed record.
  */
 @ApiModel(description = "Details of an item associated with the changed record.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class AssociatedItemBean {
   @JsonProperty("id")
   private String id;
@@ -48,14 +48,14 @@ public class AssociatedItemBean {
   @JsonProperty("name")
   private String name;
 
-  @JsonProperty("typeName")
-  private String typeName;
-
   @JsonProperty("parentId")
   private String parentId;
 
   @JsonProperty("parentName")
   private String parentName;
+
+  @JsonProperty("typeName")
+  private String typeName;
 
    /**
    * The ID of the associated record.
@@ -76,15 +76,6 @@ public class AssociatedItemBean {
   }
 
    /**
-   * The type of the associated record.
-   * @return typeName
-  **/
-  @ApiModelProperty(value = "The type of the associated record.")
-  public String getTypeName() {
-    return typeName;
-  }
-
-   /**
    * The ID of the associated parent record.
    * @return parentId
   **/
@@ -102,6 +93,15 @@ public class AssociatedItemBean {
     return parentName;
   }
 
+   /**
+   * The type of the associated record.
+   * @return typeName
+  **/
+  @ApiModelProperty(value = "The type of the associated record.")
+  public String getTypeName() {
+    return typeName;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -114,14 +114,14 @@ public class AssociatedItemBean {
     AssociatedItemBean associatedItemBean = (AssociatedItemBean) o;
     return Objects.equals(this.id, associatedItemBean.id) &&
         Objects.equals(this.name, associatedItemBean.name) &&
-        Objects.equals(this.typeName, associatedItemBean.typeName) &&
         Objects.equals(this.parentId, associatedItemBean.parentId) &&
-        Objects.equals(this.parentName, associatedItemBean.parentName);
+        Objects.equals(this.parentName, associatedItemBean.parentName) &&
+        Objects.equals(this.typeName, associatedItemBean.typeName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, typeName, parentId, parentName);
+    return Objects.hash(id, name, parentId, parentName, typeName);
   }
 
 
@@ -132,9 +132,9 @@ public class AssociatedItemBean {
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    typeName: ").append(toIndentedString(typeName)).append("\n");
     sb.append("    parentId: ").append(toIndentedString(parentId)).append("\n");
     sb.append("    parentName: ").append(toIndentedString(parentName)).append("\n");
+    sb.append("    typeName: ").append(toIndentedString(typeName)).append("\n");
     sb.append("}");
     return sb.toString();
   }

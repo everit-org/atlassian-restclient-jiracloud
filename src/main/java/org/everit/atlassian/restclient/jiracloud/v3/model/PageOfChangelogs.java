@@ -43,27 +43,27 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.Changelog;
  * A page of changelogs.
  */
 @ApiModel(description = "A page of changelogs.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class PageOfChangelogs {
-  @JsonProperty("startAt")
-  private Integer startAt;
+  @JsonProperty("histories")
+  private List<Changelog> histories = new ArrayList<>();
 
   @JsonProperty("maxResults")
   private Integer maxResults;
 
+  @JsonProperty("startAt")
+  private Integer startAt;
+
   @JsonProperty("total")
   private Integer total;
 
-  @JsonProperty("histories")
-  private List<Changelog> histories = new ArrayList<>();
-
    /**
-   * The index of the first item returned on the page.
-   * @return startAt
+   * The list of changelogs.
+   * @return histories
   **/
-  @ApiModelProperty(value = "The index of the first item returned on the page.")
-  public Integer getStartAt() {
-    return startAt;
+  @ApiModelProperty(value = "The list of changelogs.")
+  public List<Changelog> getHistories() {
+    return histories;
   }
 
    /**
@@ -76,21 +76,21 @@ public class PageOfChangelogs {
   }
 
    /**
+   * The index of the first item returned on the page.
+   * @return startAt
+  **/
+  @ApiModelProperty(value = "The index of the first item returned on the page.")
+  public Integer getStartAt() {
+    return startAt;
+  }
+
+   /**
    * The number of results on the page.
    * @return total
   **/
   @ApiModelProperty(value = "The number of results on the page.")
   public Integer getTotal() {
     return total;
-  }
-
-   /**
-   * The list of changelogs.
-   * @return histories
-  **/
-  @ApiModelProperty(value = "The list of changelogs.")
-  public List<Changelog> getHistories() {
-    return histories;
   }
 
 
@@ -103,15 +103,15 @@ public class PageOfChangelogs {
       return false;
     }
     PageOfChangelogs pageOfChangelogs = (PageOfChangelogs) o;
-    return Objects.equals(this.startAt, pageOfChangelogs.startAt) &&
+    return Objects.equals(this.histories, pageOfChangelogs.histories) &&
         Objects.equals(this.maxResults, pageOfChangelogs.maxResults) &&
-        Objects.equals(this.total, pageOfChangelogs.total) &&
-        Objects.equals(this.histories, pageOfChangelogs.histories);
+        Objects.equals(this.startAt, pageOfChangelogs.startAt) &&
+        Objects.equals(this.total, pageOfChangelogs.total);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(startAt, maxResults, total, histories);
+    return Objects.hash(histories, maxResults, startAt, total);
   }
 
 
@@ -120,10 +120,10 @@ public class PageOfChangelogs {
     StringBuilder sb = new StringBuilder();
     sb.append("class PageOfChangelogs {\n");
     
-    sb.append("    startAt: ").append(toIndentedString(startAt)).append("\n");
-    sb.append("    maxResults: ").append(toIndentedString(maxResults)).append("\n");
-    sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("    histories: ").append(toIndentedString(histories)).append("\n");
+    sb.append("    maxResults: ").append(toIndentedString(maxResults)).append("\n");
+    sb.append("    startAt: ").append(toIndentedString(startAt)).append("\n");
+    sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("}");
     return sb.toString();
   }

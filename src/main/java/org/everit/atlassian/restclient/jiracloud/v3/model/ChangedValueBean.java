@@ -40,25 +40,16 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of names changed in the record event.
  */
 @ApiModel(description = "Details of names changed in the record event.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class ChangedValueBean {
-  @JsonProperty("fieldName")
-  private String fieldName;
-
   @JsonProperty("changedFrom")
   private String changedFrom;
 
   @JsonProperty("changedTo")
   private String changedTo;
 
-   /**
-   * The name of the field changed.
-   * @return fieldName
-  **/
-  @ApiModelProperty(value = "The name of the field changed.")
-  public String getFieldName() {
-    return fieldName;
-  }
+  @JsonProperty("fieldName")
+  private String fieldName;
 
    /**
    * The value of the field before the change.
@@ -78,6 +69,15 @@ public class ChangedValueBean {
     return changedTo;
   }
 
+   /**
+   * The name of the field changed.
+   * @return fieldName
+  **/
+  @ApiModelProperty(value = "The name of the field changed.")
+  public String getFieldName() {
+    return fieldName;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -88,14 +88,14 @@ public class ChangedValueBean {
       return false;
     }
     ChangedValueBean changedValueBean = (ChangedValueBean) o;
-    return Objects.equals(this.fieldName, changedValueBean.fieldName) &&
-        Objects.equals(this.changedFrom, changedValueBean.changedFrom) &&
-        Objects.equals(this.changedTo, changedValueBean.changedTo);
+    return Objects.equals(this.changedFrom, changedValueBean.changedFrom) &&
+        Objects.equals(this.changedTo, changedValueBean.changedTo) &&
+        Objects.equals(this.fieldName, changedValueBean.fieldName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fieldName, changedFrom, changedTo);
+    return Objects.hash(changedFrom, changedTo, fieldName);
   }
 
 
@@ -104,9 +104,9 @@ public class ChangedValueBean {
     StringBuilder sb = new StringBuilder();
     sb.append("class ChangedValueBean {\n");
     
-    sb.append("    fieldName: ").append(toIndentedString(fieldName)).append("\n");
     sb.append("    changedFrom: ").append(toIndentedString(changedFrom)).append("\n");
     sb.append("    changedTo: ").append(toIndentedString(changedTo)).append("\n");
+    sb.append("    fieldName: ").append(toIndentedString(fieldName)).append("\n");
     sb.append("}");
     return sb.toString();
   }

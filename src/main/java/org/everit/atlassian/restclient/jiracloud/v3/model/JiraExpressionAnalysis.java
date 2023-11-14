@@ -44,39 +44,39 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.JiraExpressionValidati
  * Details about the analysed Jira expression.
  */
 @ApiModel(description = "Details about the analysed Jira expression.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class JiraExpressionAnalysis {
-  @JsonProperty("expression")
-  private String expression;
+  @JsonProperty("complexity")
+  private JiraExpressionComplexity complexity;
 
   @JsonProperty("errors")
   private List<JiraExpressionValidationError> errors = new ArrayList<>();
 
-  @JsonProperty("valid")
-  private Boolean valid;
+  @JsonProperty("expression")
+  private String expression;
 
   @JsonProperty("type")
   private String type;
 
-  @JsonProperty("complexity")
-  private JiraExpressionComplexity complexity;
+  @JsonProperty("valid")
+  private Boolean valid;
 
-  public JiraExpressionAnalysis expression(String expression) {
-    this.expression = expression;
+  public JiraExpressionAnalysis complexity(JiraExpressionComplexity complexity) {
+    this.complexity = complexity;
     return this;
   }
 
    /**
-   * The analysed expression.
-   * @return expression
+   * Get complexity
+   * @return complexity
   **/
-  @ApiModelProperty(required = true, value = "The analysed expression.")
-  public String getExpression() {
-    return expression;
+  @ApiModelProperty(value = "")
+  public JiraExpressionComplexity getComplexity() {
+    return complexity;
   }
 
-  public void setExpression(String expression) {
-    this.expression = expression;
+  public void setComplexity(JiraExpressionComplexity complexity) {
+    this.complexity = complexity;
   }
 
   public JiraExpressionAnalysis errors(List<JiraExpressionValidationError> errors) {
@@ -105,22 +105,22 @@ public class JiraExpressionAnalysis {
     this.errors = errors;
   }
 
-  public JiraExpressionAnalysis valid(Boolean valid) {
-    this.valid = valid;
+  public JiraExpressionAnalysis expression(String expression) {
+    this.expression = expression;
     return this;
   }
 
    /**
-   * Whether the expression is valid and the interpreter will evaluate it. Note that the expression may fail at runtime (for example, if it executes too many expensive operations).
-   * @return valid
+   * The analysed expression.
+   * @return expression
   **/
-  @ApiModelProperty(required = true, value = "Whether the expression is valid and the interpreter will evaluate it. Note that the expression may fail at runtime (for example, if it executes too many expensive operations).")
-  public Boolean getValid() {
-    return valid;
+  @ApiModelProperty(required = true, value = "The analysed expression.")
+  public String getExpression() {
+    return expression;
   }
 
-  public void setValid(Boolean valid) {
-    this.valid = valid;
+  public void setExpression(String expression) {
+    this.expression = expression;
   }
 
   public JiraExpressionAnalysis type(String type) {
@@ -141,22 +141,22 @@ public class JiraExpressionAnalysis {
     this.type = type;
   }
 
-  public JiraExpressionAnalysis complexity(JiraExpressionComplexity complexity) {
-    this.complexity = complexity;
+  public JiraExpressionAnalysis valid(Boolean valid) {
+    this.valid = valid;
     return this;
   }
 
    /**
-   * Get complexity
-   * @return complexity
+   * Whether the expression is valid and the interpreter will evaluate it. Note that the expression may fail at runtime (for example, if it executes too many expensive operations).
+   * @return valid
   **/
-  @ApiModelProperty(value = "")
-  public JiraExpressionComplexity getComplexity() {
-    return complexity;
+  @ApiModelProperty(required = true, value = "Whether the expression is valid and the interpreter will evaluate it. Note that the expression may fail at runtime (for example, if it executes too many expensive operations).")
+  public Boolean getValid() {
+    return valid;
   }
 
-  public void setComplexity(JiraExpressionComplexity complexity) {
-    this.complexity = complexity;
+  public void setValid(Boolean valid) {
+    this.valid = valid;
   }
 
 
@@ -169,16 +169,16 @@ public class JiraExpressionAnalysis {
       return false;
     }
     JiraExpressionAnalysis jiraExpressionAnalysis = (JiraExpressionAnalysis) o;
-    return Objects.equals(this.expression, jiraExpressionAnalysis.expression) &&
+    return Objects.equals(this.complexity, jiraExpressionAnalysis.complexity) &&
         Objects.equals(this.errors, jiraExpressionAnalysis.errors) &&
-        Objects.equals(this.valid, jiraExpressionAnalysis.valid) &&
+        Objects.equals(this.expression, jiraExpressionAnalysis.expression) &&
         Objects.equals(this.type, jiraExpressionAnalysis.type) &&
-        Objects.equals(this.complexity, jiraExpressionAnalysis.complexity);
+        Objects.equals(this.valid, jiraExpressionAnalysis.valid);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(expression, errors, valid, type, complexity);
+    return Objects.hash(complexity, errors, expression, type, valid);
   }
 
 
@@ -187,11 +187,11 @@ public class JiraExpressionAnalysis {
     StringBuilder sb = new StringBuilder();
     sb.append("class JiraExpressionAnalysis {\n");
     
-    sb.append("    expression: ").append(toIndentedString(expression)).append("\n");
-    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
-    sb.append("    valid: ").append(toIndentedString(valid)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    complexity: ").append(toIndentedString(complexity)).append("\n");
+    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
+    sb.append("    expression: ").append(toIndentedString(expression)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    valid: ").append(toIndentedString(valid)).append("\n");
     sb.append("}");
     return sb.toString();
   }

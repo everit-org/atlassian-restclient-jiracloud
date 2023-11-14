@@ -41,22 +41,13 @@ import java.net.URI;
  * Count of issues assigned to a component.
  */
 @ApiModel(description = "Count of issues assigned to a component.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class ComponentIssuesCount {
-  @JsonProperty("self")
-  private URI self;
-
   @JsonProperty("issueCount")
   private Long issueCount;
 
-   /**
-   * The URL for this count of issues for a component.
-   * @return self
-  **/
-  @ApiModelProperty(value = "The URL for this count of issues for a component.")
-  public URI getSelf() {
-    return self;
-  }
+  @JsonProperty("self")
+  private URI self;
 
    /**
    * The count of issues assigned to a component.
@@ -65,6 +56,15 @@ public class ComponentIssuesCount {
   @ApiModelProperty(value = "The count of issues assigned to a component.")
   public Long getIssueCount() {
     return issueCount;
+  }
+
+   /**
+   * The URL for this count of issues for a component.
+   * @return self
+  **/
+  @ApiModelProperty(value = "The URL for this count of issues for a component.")
+  public URI getSelf() {
+    return self;
   }
 
 
@@ -77,13 +77,13 @@ public class ComponentIssuesCount {
       return false;
     }
     ComponentIssuesCount componentIssuesCount = (ComponentIssuesCount) o;
-    return Objects.equals(this.self, componentIssuesCount.self) &&
-        Objects.equals(this.issueCount, componentIssuesCount.issueCount);
+    return Objects.equals(this.issueCount, componentIssuesCount.issueCount) &&
+        Objects.equals(this.self, componentIssuesCount.self);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, issueCount);
+    return Objects.hash(issueCount, self);
   }
 
 
@@ -92,8 +92,8 @@ public class ComponentIssuesCount {
     StringBuilder sb = new StringBuilder();
     sb.append("class ComponentIssuesCount {\n");
     
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    issueCount: ").append(toIndentedString(issueCount)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("}");
     return sb.toString();
   }

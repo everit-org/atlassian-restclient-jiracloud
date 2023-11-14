@@ -36,23 +36,35 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.everit.atlassian.restclient.jiracloud.v3.model.CreateWorkflowTransitionRulesDetails;
+import org.everit.atlassian.restclient.jiracloud.v3.model.CreateWorkflowTransitionScreenDetails;
 
 /**
  * The details of a workflow transition.
  */
 @ApiModel(description = "The details of a workflow transition.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class CreateWorkflowTransitionDetails {
-  @JsonProperty("name")
-  private String name;
-
   @JsonProperty("description")
   private String description;
 
   @JsonProperty("from")
   private List<String> from = new ArrayList<>();
+
+  @JsonProperty("name")
+  private String name;
+
+  @JsonProperty("properties")
+  private Map<String, String> properties = new HashMap<>();
+
+  @JsonProperty("rules")
+  private CreateWorkflowTransitionRulesDetails rules;
+
+  @JsonProperty("screen")
+  private CreateWorkflowTransitionScreenDetails screen;
 
   @JsonProperty("to")
   private String to;
@@ -96,27 +108,6 @@ public class CreateWorkflowTransitionDetails {
 
   @JsonProperty("type")
   private TypeEnum type;
-
-  @JsonProperty("rules")
-  private CreateWorkflowTransitionRulesDetails rules;
-
-  public CreateWorkflowTransitionDetails name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * The name of the transition. The maximum length is 60 characters.
-   * @return name
-  **/
-  @ApiModelProperty(required = true, value = "The name of the transition. The maximum length is 60 characters.")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
 
   public CreateWorkflowTransitionDetails description(String description) {
     this.description = description;
@@ -162,6 +153,86 @@ public class CreateWorkflowTransitionDetails {
     this.from = from;
   }
 
+  public CreateWorkflowTransitionDetails name(String name) {
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * The name of the transition. The maximum length is 60 characters.
+   * @return name
+  **/
+  @ApiModelProperty(required = true, value = "The name of the transition. The maximum length is 60 characters.")
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public CreateWorkflowTransitionDetails properties(Map<String, String> properties) {
+    this.properties = properties;
+    return this;
+  }
+
+  public CreateWorkflowTransitionDetails putPropertiesItem(String key, String propertiesItem) {
+    if (this.properties == null) {
+      this.properties = new HashMap<>();
+    }
+    this.properties.put(key, propertiesItem);
+    return this;
+  }
+
+   /**
+   * The properties of the transition.
+   * @return properties
+  **/
+  @ApiModelProperty(value = "The properties of the transition.")
+  public Map<String, String> getProperties() {
+    return properties;
+  }
+
+  public void setProperties(Map<String, String> properties) {
+    this.properties = properties;
+  }
+
+  public CreateWorkflowTransitionDetails rules(CreateWorkflowTransitionRulesDetails rules) {
+    this.rules = rules;
+    return this;
+  }
+
+   /**
+   * The rules of the transition.
+   * @return rules
+  **/
+  @ApiModelProperty(value = "The rules of the transition.")
+  public CreateWorkflowTransitionRulesDetails getRules() {
+    return rules;
+  }
+
+  public void setRules(CreateWorkflowTransitionRulesDetails rules) {
+    this.rules = rules;
+  }
+
+  public CreateWorkflowTransitionDetails screen(CreateWorkflowTransitionScreenDetails screen) {
+    this.screen = screen;
+    return this;
+  }
+
+   /**
+   * The screen of the transition.
+   * @return screen
+  **/
+  @ApiModelProperty(value = "The screen of the transition.")
+  public CreateWorkflowTransitionScreenDetails getScreen() {
+    return screen;
+  }
+
+  public void setScreen(CreateWorkflowTransitionScreenDetails screen) {
+    this.screen = screen;
+  }
+
   public CreateWorkflowTransitionDetails to(String to) {
     this.to = to;
     return this;
@@ -198,24 +269,6 @@ public class CreateWorkflowTransitionDetails {
     this.type = type;
   }
 
-  public CreateWorkflowTransitionDetails rules(CreateWorkflowTransitionRulesDetails rules) {
-    this.rules = rules;
-    return this;
-  }
-
-   /**
-   * The rules of the transition.
-   * @return rules
-  **/
-  @ApiModelProperty(value = "The rules of the transition.")
-  public CreateWorkflowTransitionRulesDetails getRules() {
-    return rules;
-  }
-
-  public void setRules(CreateWorkflowTransitionRulesDetails rules) {
-    this.rules = rules;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -226,17 +279,19 @@ public class CreateWorkflowTransitionDetails {
       return false;
     }
     CreateWorkflowTransitionDetails createWorkflowTransitionDetails = (CreateWorkflowTransitionDetails) o;
-    return Objects.equals(this.name, createWorkflowTransitionDetails.name) &&
-        Objects.equals(this.description, createWorkflowTransitionDetails.description) &&
+    return Objects.equals(this.description, createWorkflowTransitionDetails.description) &&
         Objects.equals(this.from, createWorkflowTransitionDetails.from) &&
+        Objects.equals(this.name, createWorkflowTransitionDetails.name) &&
+        Objects.equals(this.properties, createWorkflowTransitionDetails.properties) &&
+        Objects.equals(this.rules, createWorkflowTransitionDetails.rules) &&
+        Objects.equals(this.screen, createWorkflowTransitionDetails.screen) &&
         Objects.equals(this.to, createWorkflowTransitionDetails.to) &&
-        Objects.equals(this.type, createWorkflowTransitionDetails.type) &&
-        Objects.equals(this.rules, createWorkflowTransitionDetails.rules);
+        Objects.equals(this.type, createWorkflowTransitionDetails.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, from, to, type, rules);
+    return Objects.hash(description, from, name, properties, rules, screen, to, type);
   }
 
 
@@ -245,12 +300,14 @@ public class CreateWorkflowTransitionDetails {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateWorkflowTransitionDetails {\n");
     
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    from: ").append(toIndentedString(from)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    properties: ").append(toIndentedString(properties)).append("\n");
+    sb.append("    rules: ").append(toIndentedString(rules)).append("\n");
+    sb.append("    screen: ").append(toIndentedString(screen)).append("\n");
     sb.append("    to: ").append(toIndentedString(to)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    rules: ").append(toIndentedString(rules)).append("\n");
     sb.append("}");
     return sb.toString();
   }

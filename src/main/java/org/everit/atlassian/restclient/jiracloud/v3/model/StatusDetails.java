@@ -43,36 +43,27 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.StatusCategory;
  * A status.
  */
 @ApiModel(description = "A status.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class StatusDetails {
-  @JsonProperty("self")
-  private String self;
-
   @JsonProperty("description")
   private String description;
 
   @JsonProperty("iconUrl")
   private String iconUrl;
 
+  @JsonProperty("id")
+  private String id;
+
   @JsonProperty("name")
   private String name;
 
-  @JsonProperty("id")
-  private String id;
+  @JsonProperty("self")
+  private String self;
 
   @JsonProperty("statusCategory")
   private StatusCategory statusCategory;
 
   private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
-
-   /**
-   * The URL of the status.
-   * @return self
-  **/
-  @ApiModelProperty(value = "The URL of the status.")
-  public String getSelf() {
-    return self;
-  }
 
    /**
    * The description of the status.
@@ -93,6 +84,15 @@ public class StatusDetails {
   }
 
    /**
+   * The ID of the status.
+   * @return id
+  **/
+  @ApiModelProperty(value = "The ID of the status.")
+  public String getId() {
+    return id;
+  }
+
+   /**
    * The name of the status.
    * @return name
   **/
@@ -102,12 +102,12 @@ public class StatusDetails {
   }
 
    /**
-   * The ID of the status.
-   * @return id
+   * The URL of the status.
+   * @return self
   **/
-  @ApiModelProperty(value = "The ID of the status.")
-  public String getId() {
-    return id;
+  @ApiModelProperty(value = "The URL of the status.")
+  public String getSelf() {
+    return self;
   }
 
    /**
@@ -139,18 +139,18 @@ public class StatusDetails {
       return false;
     }
     StatusDetails statusDetails = (StatusDetails) o;
-    return Objects.equals(this.self, statusDetails.self) &&
-        Objects.equals(this.description, statusDetails.description) &&
+    return Objects.equals(this.description, statusDetails.description) &&
         Objects.equals(this.iconUrl, statusDetails.iconUrl) &&
-        Objects.equals(this.name, statusDetails.name) &&
         Objects.equals(this.id, statusDetails.id) &&
+        Objects.equals(this.name, statusDetails.name) &&
+        Objects.equals(this.self, statusDetails.self) &&
         Objects.equals(this.statusCategory, statusDetails.statusCategory) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, description, iconUrl, name, id, statusCategory, super.hashCode());
+    return Objects.hash(description, iconUrl, id, name, self, statusCategory, super.hashCode());
   }
 
 
@@ -159,11 +159,11 @@ public class StatusDetails {
     StringBuilder sb = new StringBuilder();
     sb.append("class StatusDetails {\n");
     
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    iconUrl: ").append(toIndentedString(iconUrl)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    statusCategory: ").append(toIndentedString(statusCategory)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");

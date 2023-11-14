@@ -44,10 +44,16 @@ import java.util.Map;
  * The user details.
  */
 @ApiModel(description = "The user details.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class NewUserDetails {
-  @JsonProperty("self")
-  private String self;
+  @JsonProperty("applicationKeys")
+  private List<String> applicationKeys = new ArrayList<>();
+
+  @JsonProperty("displayName")
+  private String displayName;
+
+  @JsonProperty("emailAddress")
+  private String emailAddress;
 
   @JsonProperty("key")
   private String key;
@@ -58,24 +64,74 @@ public class NewUserDetails {
   @JsonProperty("password")
   private String password;
 
-  @JsonProperty("emailAddress")
-  private String emailAddress;
+  @JsonProperty("products")
+  private List<String> products = new ArrayList<>();
 
-  @JsonProperty("displayName")
-  private String displayName;
-
-  @JsonProperty("applicationKeys")
-  private List<String> applicationKeys = new ArrayList<>();
+  @JsonProperty("self")
+  private String self;
 
   private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
 
+  public NewUserDetails applicationKeys(List<String> applicationKeys) {
+    this.applicationKeys = applicationKeys;
+    return this;
+  }
+
+  public NewUserDetails addApplicationKeysItem(String applicationKeysItem) {
+    if (this.applicationKeys == null) {
+      this.applicationKeys = new ArrayList<>();
+    }
+    this.applicationKeys.add(applicationKeysItem);
+    return this;
+  }
+
    /**
-   * The URL of the user.
-   * @return self
+   * Deprecated, do not use.
+   * @return applicationKeys
   **/
-  @ApiModelProperty(value = "The URL of the user.")
-  public String getSelf() {
-    return self;
+  @ApiModelProperty(value = "Deprecated, do not use.")
+  public List<String> getApplicationKeys() {
+    return applicationKeys;
+  }
+
+  public void setApplicationKeys(List<String> applicationKeys) {
+    this.applicationKeys = applicationKeys;
+  }
+
+  public NewUserDetails displayName(String displayName) {
+    this.displayName = displayName;
+    return this;
+  }
+
+   /**
+   * This property is no longer available. If the user has an Atlassian account, their display name is not changed. If the user does not have an Atlassian account, they are sent an email asking them set up an account.
+   * @return displayName
+  **/
+  @ApiModelProperty(value = "This property is no longer available. If the user has an Atlassian account, their display name is not changed. If the user does not have an Atlassian account, they are sent an email asking them set up an account.")
+  public String getDisplayName() {
+    return displayName;
+  }
+
+  public void setDisplayName(String displayName) {
+    this.displayName = displayName;
+  }
+
+  public NewUserDetails emailAddress(String emailAddress) {
+    this.emailAddress = emailAddress;
+    return this;
+  }
+
+   /**
+   * The email address for the user.
+   * @return emailAddress
+  **/
+  @ApiModelProperty(required = true, value = "The email address for the user.")
+  public String getEmailAddress() {
+    return emailAddress;
+  }
+
+  public void setEmailAddress(String emailAddress) {
+    this.emailAddress = emailAddress;
   }
 
   public NewUserDetails key(String key) {
@@ -132,66 +188,39 @@ public class NewUserDetails {
     this.password = password;
   }
 
-  public NewUserDetails emailAddress(String emailAddress) {
-    this.emailAddress = emailAddress;
+  public NewUserDetails products(List<String> products) {
+    this.products = products;
     return this;
   }
 
-   /**
-   * The email address for the user.
-   * @return emailAddress
-  **/
-  @ApiModelProperty(required = true, value = "The email address for the user.")
-  public String getEmailAddress() {
-    return emailAddress;
-  }
-
-  public void setEmailAddress(String emailAddress) {
-    this.emailAddress = emailAddress;
-  }
-
-  public NewUserDetails displayName(String displayName) {
-    this.displayName = displayName;
-    return this;
-  }
-
-   /**
-   * A suggested display name for the user. If the user has an Atlassian account, their display name is not changed. If the user does not have an Atlassian account, this display name is used as a suggestion for creating an account. The user is sent an email asking them to set their display name and privacy preferences.
-   * @return displayName
-  **/
-  @ApiModelProperty(required = true, value = "A suggested display name for the user. If the user has an Atlassian account, their display name is not changed. If the user does not have an Atlassian account, this display name is used as a suggestion for creating an account. The user is sent an email asking them to set their display name and privacy preferences.")
-  public String getDisplayName() {
-    return displayName;
-  }
-
-  public void setDisplayName(String displayName) {
-    this.displayName = displayName;
-  }
-
-  public NewUserDetails applicationKeys(List<String> applicationKeys) {
-    this.applicationKeys = applicationKeys;
-    return this;
-  }
-
-  public NewUserDetails addApplicationKeysItem(String applicationKeysItem) {
-    if (this.applicationKeys == null) {
-      this.applicationKeys = new ArrayList<>();
+  public NewUserDetails addProductsItem(String productsItem) {
+    if (this.products == null) {
+      this.products = new ArrayList<>();
     }
-    this.applicationKeys.add(applicationKeysItem);
+    this.products.add(productsItem);
     return this;
   }
 
    /**
-   * Deprecated, do not use.
-   * @return applicationKeys
+   * Products the new user has access to. Valid products are: jira-core, jira-servicedesk, jira-product-discovery, jira-software. If left empty, the user will get default product access. To create a user without product access, set this field to be an empty array.
+   * @return products
   **/
-  @ApiModelProperty(value = "Deprecated, do not use.")
-  public List<String> getApplicationKeys() {
-    return applicationKeys;
+  @ApiModelProperty(value = "Products the new user has access to. Valid products are: jira-core, jira-servicedesk, jira-product-discovery, jira-software. If left empty, the user will get default product access. To create a user without product access, set this field to be an empty array.")
+  public List<String> getProducts() {
+    return products;
   }
 
-  public void setApplicationKeys(List<String> applicationKeys) {
-    this.applicationKeys = applicationKeys;
+  public void setProducts(List<String> products) {
+    this.products = products;
+  }
+
+   /**
+   * The URL of the user.
+   * @return self
+  **/
+  @ApiModelProperty(value = "The URL of the user.")
+  public String getSelf() {
+    return self;
   }
 
 
@@ -214,19 +243,20 @@ public class NewUserDetails {
       return false;
     }
     NewUserDetails newUserDetails = (NewUserDetails) o;
-    return Objects.equals(this.self, newUserDetails.self) &&
+    return Objects.equals(this.applicationKeys, newUserDetails.applicationKeys) &&
+        Objects.equals(this.displayName, newUserDetails.displayName) &&
+        Objects.equals(this.emailAddress, newUserDetails.emailAddress) &&
         Objects.equals(this.key, newUserDetails.key) &&
         Objects.equals(this.name, newUserDetails.name) &&
         Objects.equals(this.password, newUserDetails.password) &&
-        Objects.equals(this.emailAddress, newUserDetails.emailAddress) &&
-        Objects.equals(this.displayName, newUserDetails.displayName) &&
-        Objects.equals(this.applicationKeys, newUserDetails.applicationKeys) &&
+        Objects.equals(this.products, newUserDetails.products) &&
+        Objects.equals(this.self, newUserDetails.self) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, key, name, password, emailAddress, displayName, applicationKeys, super.hashCode());
+    return Objects.hash(applicationKeys, displayName, emailAddress, key, name, password, products, self, super.hashCode());
   }
 
 
@@ -235,13 +265,14 @@ public class NewUserDetails {
     StringBuilder sb = new StringBuilder();
     sb.append("class NewUserDetails {\n");
     
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
+    sb.append("    applicationKeys: ").append(toIndentedString(applicationKeys)).append("\n");
+    sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
+    sb.append("    emailAddress: ").append(toIndentedString(emailAddress)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    password: ").append(toIndentedString(password)).append("\n");
-    sb.append("    emailAddress: ").append(toIndentedString(emailAddress)).append("\n");
-    sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
-    sb.append("    applicationKeys: ").append(toIndentedString(applicationKeys)).append("\n");
+    sb.append("    products: ").append(toIndentedString(products)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();

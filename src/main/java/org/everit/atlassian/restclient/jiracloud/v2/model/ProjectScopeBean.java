@@ -41,11 +41,8 @@ import java.util.List;
 /**
  * ProjectScopeBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class ProjectScopeBean {
-  @JsonProperty("id")
-  private Long id;
-
   /**
    * Gets or Sets attributes
    */
@@ -84,23 +81,8 @@ public class ProjectScopeBean {
   @JsonProperty("attributes")
   private List<AttributesEnum> attributes = new ArrayList<>();
 
-  public ProjectScopeBean id(Long id) {
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * The ID of the project that the option&#39;s behavior applies to.
-   * @return id
-  **/
-  @ApiModelProperty(value = "The ID of the project that the option's behavior applies to.")
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
+  @JsonProperty("id")
+  private Long id;
 
   public ProjectScopeBean attributes(List<AttributesEnum> attributes) {
     this.attributes = attributes;
@@ -128,6 +110,24 @@ public class ProjectScopeBean {
     this.attributes = attributes;
   }
 
+  public ProjectScopeBean id(Long id) {
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * The ID of the project that the option&#39;s behavior applies to.
+   * @return id
+  **/
+  @ApiModelProperty(value = "The ID of the project that the option's behavior applies to.")
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -138,13 +138,13 @@ public class ProjectScopeBean {
       return false;
     }
     ProjectScopeBean projectScopeBean = (ProjectScopeBean) o;
-    return Objects.equals(this.id, projectScopeBean.id) &&
-        Objects.equals(this.attributes, projectScopeBean.attributes);
+    return Objects.equals(this.attributes, projectScopeBean.attributes) &&
+        Objects.equals(this.id, projectScopeBean.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, attributes);
+    return Objects.hash(attributes, id);
   }
 
 
@@ -153,8 +153,8 @@ public class ProjectScopeBean {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProjectScopeBean {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }

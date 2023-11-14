@@ -37,26 +37,104 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
-import org.everit.atlassian.restclient.jiracloud.v3.model.ConnectWorkflowTransitionRule;
+import org.everit.atlassian.restclient.jiracloud.v3.model.AppWorkflowTransitionRule;
 import org.everit.atlassian.restclient.jiracloud.v3.model.WorkflowId;
 
 /**
  * A workflow with transition rules.
  */
 @ApiModel(description = "A workflow with transition rules.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class WorkflowTransitionRules {
+  @JsonProperty("conditions")
+  private List<AppWorkflowTransitionRule> conditions = new ArrayList<>();
+
+  @JsonProperty("postFunctions")
+  private List<AppWorkflowTransitionRule> postFunctions = new ArrayList<>();
+
+  @JsonProperty("validators")
+  private List<AppWorkflowTransitionRule> validators = new ArrayList<>();
+
   @JsonProperty("workflowId")
   private WorkflowId workflowId;
 
-  @JsonProperty("postFunctions")
-  private List<ConnectWorkflowTransitionRule> postFunctions = new ArrayList<>();
+  public WorkflowTransitionRules conditions(List<AppWorkflowTransitionRule> conditions) {
+    this.conditions = conditions;
+    return this;
+  }
 
-  @JsonProperty("conditions")
-  private List<ConnectWorkflowTransitionRule> conditions = new ArrayList<>();
+  public WorkflowTransitionRules addConditionsItem(AppWorkflowTransitionRule conditionsItem) {
+    if (this.conditions == null) {
+      this.conditions = new ArrayList<>();
+    }
+    this.conditions.add(conditionsItem);
+    return this;
+  }
 
-  @JsonProperty("validators")
-  private List<ConnectWorkflowTransitionRule> validators = new ArrayList<>();
+   /**
+   * The list of conditions within the workflow.
+   * @return conditions
+  **/
+  @ApiModelProperty(value = "The list of conditions within the workflow.")
+  public List<AppWorkflowTransitionRule> getConditions() {
+    return conditions;
+  }
+
+  public void setConditions(List<AppWorkflowTransitionRule> conditions) {
+    this.conditions = conditions;
+  }
+
+  public WorkflowTransitionRules postFunctions(List<AppWorkflowTransitionRule> postFunctions) {
+    this.postFunctions = postFunctions;
+    return this;
+  }
+
+  public WorkflowTransitionRules addPostFunctionsItem(AppWorkflowTransitionRule postFunctionsItem) {
+    if (this.postFunctions == null) {
+      this.postFunctions = new ArrayList<>();
+    }
+    this.postFunctions.add(postFunctionsItem);
+    return this;
+  }
+
+   /**
+   * The list of post functions within the workflow.
+   * @return postFunctions
+  **/
+  @ApiModelProperty(value = "The list of post functions within the workflow.")
+  public List<AppWorkflowTransitionRule> getPostFunctions() {
+    return postFunctions;
+  }
+
+  public void setPostFunctions(List<AppWorkflowTransitionRule> postFunctions) {
+    this.postFunctions = postFunctions;
+  }
+
+  public WorkflowTransitionRules validators(List<AppWorkflowTransitionRule> validators) {
+    this.validators = validators;
+    return this;
+  }
+
+  public WorkflowTransitionRules addValidatorsItem(AppWorkflowTransitionRule validatorsItem) {
+    if (this.validators == null) {
+      this.validators = new ArrayList<>();
+    }
+    this.validators.add(validatorsItem);
+    return this;
+  }
+
+   /**
+   * The list of validators within the workflow.
+   * @return validators
+  **/
+  @ApiModelProperty(value = "The list of validators within the workflow.")
+  public List<AppWorkflowTransitionRule> getValidators() {
+    return validators;
+  }
+
+  public void setValidators(List<AppWorkflowTransitionRule> validators) {
+    this.validators = validators;
+  }
 
   public WorkflowTransitionRules workflowId(WorkflowId workflowId) {
     this.workflowId = workflowId;
@@ -76,75 +154,6 @@ public class WorkflowTransitionRules {
     this.workflowId = workflowId;
   }
 
-  public WorkflowTransitionRules postFunctions(List<ConnectWorkflowTransitionRule> postFunctions) {
-    this.postFunctions = postFunctions;
-    return this;
-  }
-
-  public WorkflowTransitionRules addPostFunctionsItem(ConnectWorkflowTransitionRule postFunctionsItem) {
-    this.postFunctions.add(postFunctionsItem);
-    return this;
-  }
-
-   /**
-   * The list of post functions within the workflow.
-   * @return postFunctions
-  **/
-  @ApiModelProperty(required = true, value = "The list of post functions within the workflow.")
-  public List<ConnectWorkflowTransitionRule> getPostFunctions() {
-    return postFunctions;
-  }
-
-  public void setPostFunctions(List<ConnectWorkflowTransitionRule> postFunctions) {
-    this.postFunctions = postFunctions;
-  }
-
-  public WorkflowTransitionRules conditions(List<ConnectWorkflowTransitionRule> conditions) {
-    this.conditions = conditions;
-    return this;
-  }
-
-  public WorkflowTransitionRules addConditionsItem(ConnectWorkflowTransitionRule conditionsItem) {
-    this.conditions.add(conditionsItem);
-    return this;
-  }
-
-   /**
-   * The list of conditions within the workflow.
-   * @return conditions
-  **/
-  @ApiModelProperty(required = true, value = "The list of conditions within the workflow.")
-  public List<ConnectWorkflowTransitionRule> getConditions() {
-    return conditions;
-  }
-
-  public void setConditions(List<ConnectWorkflowTransitionRule> conditions) {
-    this.conditions = conditions;
-  }
-
-  public WorkflowTransitionRules validators(List<ConnectWorkflowTransitionRule> validators) {
-    this.validators = validators;
-    return this;
-  }
-
-  public WorkflowTransitionRules addValidatorsItem(ConnectWorkflowTransitionRule validatorsItem) {
-    this.validators.add(validatorsItem);
-    return this;
-  }
-
-   /**
-   * The list of validators within the workflow.
-   * @return validators
-  **/
-  @ApiModelProperty(required = true, value = "The list of validators within the workflow.")
-  public List<ConnectWorkflowTransitionRule> getValidators() {
-    return validators;
-  }
-
-  public void setValidators(List<ConnectWorkflowTransitionRule> validators) {
-    this.validators = validators;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -155,15 +164,15 @@ public class WorkflowTransitionRules {
       return false;
     }
     WorkflowTransitionRules workflowTransitionRules = (WorkflowTransitionRules) o;
-    return Objects.equals(this.workflowId, workflowTransitionRules.workflowId) &&
+    return Objects.equals(this.conditions, workflowTransitionRules.conditions) &&
         Objects.equals(this.postFunctions, workflowTransitionRules.postFunctions) &&
-        Objects.equals(this.conditions, workflowTransitionRules.conditions) &&
-        Objects.equals(this.validators, workflowTransitionRules.validators);
+        Objects.equals(this.validators, workflowTransitionRules.validators) &&
+        Objects.equals(this.workflowId, workflowTransitionRules.workflowId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(workflowId, postFunctions, conditions, validators);
+    return Objects.hash(conditions, postFunctions, validators, workflowId);
   }
 
 
@@ -172,10 +181,10 @@ public class WorkflowTransitionRules {
     StringBuilder sb = new StringBuilder();
     sb.append("class WorkflowTransitionRules {\n");
     
-    sb.append("    workflowId: ").append(toIndentedString(workflowId)).append("\n");
-    sb.append("    postFunctions: ").append(toIndentedString(postFunctions)).append("\n");
     sb.append("    conditions: ").append(toIndentedString(conditions)).append("\n");
+    sb.append("    postFunctions: ").append(toIndentedString(postFunctions)).append("\n");
     sb.append("    validators: ").append(toIndentedString(validators)).append("\n");
+    sb.append("    workflowId: ").append(toIndentedString(workflowId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

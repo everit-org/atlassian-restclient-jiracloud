@@ -65,13 +65,14 @@ public class GroupsApi {
   /**
    * Add user to group
    * Adds a user to a group.  **[Permissions](#permissions) required:** Site administration (that is, member of the *site-admin* [group](https://confluence.atlassian.com/x/24xjL)).
-   * @param groupname The name of the group (case sensitive). (required)
    * @param requestBody The user to add to the group. (required)
+   * @param groupname As a group's name can change, use of `groupId` is recommended to identify a group.   The name of the group. This parameter cannot be used with the `groupId` parameter. (optional)
+   * @param groupId The ID of the group. This parameter cannot be used with the `groupName` parameter. (optional)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Group&gt;
    */
   public Single<Group> addUserToGroup(
-    String groupname, Map<String, Object> requestBody, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Map<String, Object> requestBody, Optional<String> groupname, Optional<String> groupId, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.POST)
@@ -82,7 +83,12 @@ public class GroupsApi {
     requestBuilder.pathParams(pathParams);
 
     Map<String, Collection<String>> queryParams = new HashMap<>();
-    queryParams.put("groupname", Collections.singleton(String.valueOf(groupname)));
+    if (groupname.isPresent()) {
+      queryParams.put("groupname", Collections.singleton(String.valueOf(groupname.get())));
+    }
+    if (groupId.isPresent()) {
+      queryParams.put("groupId", Collections.singleton(String.valueOf(groupId.get())));
+    }
     requestBuilder.queryParams(queryParams);
 
     Map<String, String> headers = new HashMap<>();
@@ -100,11 +106,13 @@ public class GroupsApi {
    * @param maxResults The maximum number of items to return per page. (optional, default to 50)
    * @param groupId The ID of a group. To specify multiple IDs, pass multiple `groupId` parameters. For example, `groupId=5b10a2844c20165700ede21g&groupId=5b10ac8d82e05b22cc7d4ef5`. (optional, default to new ArrayList&lt;&gt;())
    * @param groupName The name of a group. To specify multiple names, pass multiple `groupName` parameters. For example, `groupName=administrators&groupName=jira-software-users`. (optional, default to new ArrayList&lt;&gt;())
+   * @param accessType The access level of a group. Valid values: 'site-admin', 'admin', 'user'. (optional)
+   * @param applicationKey The application key of the product user groups to search for. Valid values: 'jira-servicedesk', 'jira-software', 'jira-product-discovery', 'jira-core'. (optional)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PageBeanGroupDetails&gt;
    */
   public Single<PageBeanGroupDetails> bulkGetGroups(
-    Optional<Long> startAt, Optional<Integer> maxResults, Optional<List<String>> groupId, Optional<List<String>> groupName, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Optional<Long> startAt, Optional<Integer> maxResults, Optional<List<String>> groupId, Optional<List<String>> groupName, Optional<String> accessType, Optional<String> applicationKey, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.GET)
@@ -126,6 +134,12 @@ public class GroupsApi {
     }
     if (groupName.isPresent()) {
       queryParams.put("groupName", RestClientUtil.objectCollectionToStringCollection(groupName.get()));
+    }
+    if (accessType.isPresent()) {
+      queryParams.put("accessType", Collections.singleton(String.valueOf(accessType.get())));
+    }
+    if (applicationKey.isPresent()) {
+      queryParams.put("applicationKey", Collections.singleton(String.valueOf(applicationKey.get())));
     }
     requestBuilder.queryParams(queryParams);
 
@@ -166,17 +180,19 @@ public class GroupsApi {
 
   /**
    * Find groups
-   * Returns a list of groups whose names contain a query string. A list of group names can be provided to exclude groups from the results.  The primary use case for this resource is to populate a group picker suggestions list. To this end, the returned object includes the `html` field where the matched query term is highlighted in the group name with the HTML strong tag. Also, the groups list is wrapped in a response object that contains a header for use in the picker, specifically *Showing X of Y matching groups*.  The list returns with the groups sorted. If no groups match the list criteria, an empty list is returned.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg). Anonymous calls and calls by users without the required permission return an empty list.
+   * Returns a list of groups whose names contain a query string. A list of group names can be provided to exclude groups from the results.  The primary use case for this resource is to populate a group picker suggestions list. To this end, the returned object includes the `html` field where the matched query term is highlighted in the group name with the HTML strong tag. Also, the groups list is wrapped in a response object that contains a header for use in the picker, specifically *Showing X of Y matching groups*.  The list returns with the groups sorted. If no groups match the list criteria, an empty list is returned.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg). Anonymous calls and calls by users without the required permission return an empty list.  *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg). Without this permission, calls where query is not an exact match to an existing group will return an empty list.
    * @param accountId This parameter is deprecated, setting it does not affect the results. To find groups containing a particular user, use [Get user groups](#api-rest-api-3-user-groups-get). (optional)
    * @param query The string to find in group names. (optional)
-   * @param exclude A group to exclude from the result. To exclude multiple groups, provide an ampersand-separated list. For example, `exclude=group1&exclude=group2`. (optional, default to new ArrayList&lt;&gt;())
+   * @param exclude As a group's name can change, use of `excludeGroupIds` is recommended to identify a group.   A group to exclude from the result. To exclude multiple groups, provide an ampersand-separated list. For example, `exclude=group1&exclude=group2`. This parameter cannot be used with the `excludeGroupIds` parameter. (optional, default to new ArrayList&lt;&gt;())
+   * @param excludeId A group ID to exclude from the result. To exclude multiple groups, provide an ampersand-separated list. For example, `excludeId=group1-id&excludeId=group2-id`. This parameter cannot be used with the `excludeGroups` parameter. (optional, default to new ArrayList&lt;&gt;())
    * @param maxResults The maximum number of groups to return. The maximum number of groups that can be returned is limited by the system property `jira.ajax.autocomplete.limit`. (optional)
+   * @param caseInsensitive Whether the search for groups should be case insensitive. (optional, default to false)
    * @param userName This parameter is no longer available. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details. (optional)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;FoundGroups&gt;
    */
   public Single<FoundGroups> findGroups(
-    Optional<String> accountId, Optional<String> query, Optional<List<String>> exclude, Optional<Integer> maxResults, Optional<String> userName, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Optional<String> accountId, Optional<String> query, Optional<List<String>> exclude, Optional<List<String>> excludeId, Optional<Integer> maxResults, Optional<Boolean> caseInsensitive, Optional<String> userName, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.GET)
@@ -196,8 +212,14 @@ public class GroupsApi {
     if (exclude.isPresent()) {
       queryParams.put("exclude", RestClientUtil.objectCollectionToStringCollection(exclude.get()));
     }
+    if (excludeId.isPresent()) {
+      queryParams.put("excludeId", RestClientUtil.objectCollectionToStringCollection(excludeId.get()));
+    }
     if (maxResults.isPresent()) {
       queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults.get())));
+    }
+    if (caseInsensitive.isPresent()) {
+      queryParams.put("caseInsensitive", Collections.singleton(String.valueOf(caseInsensitive.get())));
     }
     if (userName.isPresent()) {
       queryParams.put("userName", Collections.singleton(String.valueOf(userName.get())));
@@ -213,7 +235,8 @@ public class GroupsApi {
   /**
    * Get group
    * This operation is deprecated, use [`group/member`](#api-rest-api-3-group-member-get).  Returns all users in a group.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   * @param groupname The name of the group. (required)
+   * @param groupname As a group's name can change, use of `groupId` is recommended to identify a group.   The name of the group. This parameter cannot be used with the `groupId` parameter. (optional)
+   * @param groupId The ID of the group. This parameter cannot be used with the `groupName` parameter. (optional)
    * @param expand List of fields to expand. (optional)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Group&gt;
@@ -221,7 +244,7 @@ public class GroupsApi {
    */
   @Deprecated
   public Single<Group> getGroup(
-    String groupname, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Optional<String> groupname, Optional<String> groupId, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.GET)
@@ -232,7 +255,12 @@ public class GroupsApi {
     requestBuilder.pathParams(pathParams);
 
     Map<String, Collection<String>> queryParams = new HashMap<>();
-    queryParams.put("groupname", Collections.singleton(String.valueOf(groupname)));
+    if (groupname.isPresent()) {
+      queryParams.put("groupname", Collections.singleton(String.valueOf(groupname.get())));
+    }
+    if (groupId.isPresent()) {
+      queryParams.put("groupId", Collections.singleton(String.valueOf(groupId.get())));
+    }
     if (expand.isPresent()) {
       queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
     }
@@ -247,7 +275,8 @@ public class GroupsApi {
   /**
    * Get users from group
    * Returns a [paginated](#pagination) list of all users in a group.  Note that users are ordered by username, however the username is not returned in the results due to privacy reasons.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   * @param groupname The name of the group. (required)
+   * @param groupname As a group's name can change, use of `groupId` is recommended to identify a group.   The name of the group. This parameter cannot be used with the `groupId` parameter. (optional)
+   * @param groupId The ID of the group. This parameter cannot be used with the `groupName` parameter. (optional)
    * @param includeInactiveUsers Include inactive users. (optional, default to false)
    * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0l)
    * @param maxResults The maximum number of items to return per page. (optional, default to 50)
@@ -255,7 +284,7 @@ public class GroupsApi {
    * @return Single&lt;PageBeanUserDetails&gt;
    */
   public Single<PageBeanUserDetails> getUsersFromGroup(
-    String groupname, Optional<Boolean> includeInactiveUsers, Optional<Long> startAt, Optional<Integer> maxResults, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Optional<String> groupname, Optional<String> groupId, Optional<Boolean> includeInactiveUsers, Optional<Long> startAt, Optional<Integer> maxResults, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.GET)
@@ -266,7 +295,12 @@ public class GroupsApi {
     requestBuilder.pathParams(pathParams);
 
     Map<String, Collection<String>> queryParams = new HashMap<>();
-    queryParams.put("groupname", Collections.singleton(String.valueOf(groupname)));
+    if (groupname.isPresent()) {
+      queryParams.put("groupname", Collections.singleton(String.valueOf(groupname.get())));
+    }
+    if (groupId.isPresent()) {
+      queryParams.put("groupId", Collections.singleton(String.valueOf(groupId.get())));
+    }
     if (includeInactiveUsers.isPresent()) {
       queryParams.put("includeInactiveUsers", Collections.singleton(String.valueOf(includeInactiveUsers.get())));
     }
@@ -287,13 +321,15 @@ public class GroupsApi {
   /**
    * Remove group
    * Deletes a group.  **[Permissions](#permissions) required:** Site administration (that is, member of the *site-admin* strategic [group](https://confluence.atlassian.com/x/24xjL)).
-   * @param groupname The name of the group. (required)
-   * @param swapGroup The group to transfer restrictions to. Only comments and worklogs are transferred. If restrictions are not transferred, comments and worklogs are inaccessible after the deletion. (optional)
+   * @param groupname  (optional)
+   * @param groupId The ID of the group. This parameter cannot be used with the `groupname` parameter. (optional)
+   * @param swapGroup As a group's name can change, use of `swapGroupId` is recommended to identify a group.   The group to transfer restrictions to. Only comments and worklogs are transferred. If restrictions are not transferred, comments and worklogs are inaccessible after the deletion. This parameter cannot be used with the `swapGroupId` parameter. (optional)
+   * @param swapGroupId The ID of the group to transfer restrictions to. Only comments and worklogs are transferred. If restrictions are not transferred, comments and worklogs are inaccessible after the deletion. This parameter cannot be used with the `swapGroup` parameter. (optional)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Completable
    */
   public Completable removeGroup(
-    String groupname, Optional<String> swapGroup, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Optional<String> groupname, Optional<String> groupId, Optional<String> swapGroup, Optional<String> swapGroupId, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.DELETE)
@@ -304,9 +340,17 @@ public class GroupsApi {
     requestBuilder.pathParams(pathParams);
 
     Map<String, Collection<String>> queryParams = new HashMap<>();
-    queryParams.put("groupname", Collections.singleton(String.valueOf(groupname)));
+    if (groupname.isPresent()) {
+      queryParams.put("groupname", Collections.singleton(String.valueOf(groupname.get())));
+    }
+    if (groupId.isPresent()) {
+      queryParams.put("groupId", Collections.singleton(String.valueOf(groupId.get())));
+    }
     if (swapGroup.isPresent()) {
       queryParams.put("swapGroup", Collections.singleton(String.valueOf(swapGroup.get())));
+    }
+    if (swapGroupId.isPresent()) {
+      queryParams.put("swapGroupId", Collections.singleton(String.valueOf(swapGroupId.get())));
     }
     requestBuilder.queryParams(queryParams);
 
@@ -319,14 +363,15 @@ public class GroupsApi {
   /**
    * Remove user from group
    * Removes a user from a group.  **[Permissions](#permissions) required:** Site administration (that is, member of the *site-admin* [group](https://confluence.atlassian.com/x/24xjL)).
-   * @param groupname The name of the group. (required)
    * @param accountId The account ID of the user, which uniquely identifies the user across all Atlassian products. For example, *5b10ac8d82e05b22cc7d4ef5*. (required)
+   * @param groupname As a group's name can change, use of `groupId` is recommended to identify a group.   The name of the group. This parameter cannot be used with the `groupId` parameter. (optional)
+   * @param groupId The ID of the group. This parameter cannot be used with the `groupName` parameter. (optional)
    * @param username This parameter is no longer available. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details. (optional)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Completable
    */
   public Completable removeUserFromGroup(
-    String groupname, String accountId, Optional<String> username, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String accountId, Optional<String> groupname, Optional<String> groupId, Optional<String> username, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.DELETE)
@@ -337,7 +382,12 @@ public class GroupsApi {
     requestBuilder.pathParams(pathParams);
 
     Map<String, Collection<String>> queryParams = new HashMap<>();
-    queryParams.put("groupname", Collections.singleton(String.valueOf(groupname)));
+    if (groupname.isPresent()) {
+      queryParams.put("groupname", Collections.singleton(String.valueOf(groupname.get())));
+    }
+    if (groupId.isPresent()) {
+      queryParams.put("groupId", Collections.singleton(String.valueOf(groupId.get())));
+    }
     if (username.isPresent()) {
       queryParams.put("username", Collections.singleton(String.valueOf(username.get())));
     }

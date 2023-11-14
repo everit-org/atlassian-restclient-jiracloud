@@ -40,22 +40,22 @@ import io.swagger.annotations.ApiModelProperty;
  * Time tracking details.
  */
 @ApiModel(description = "Time tracking details.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class TimeTrackingDetails {
   @JsonProperty("originalEstimate")
   private String originalEstimate;
 
-  @JsonProperty("remainingEstimate")
-  private String remainingEstimate;
-
-  @JsonProperty("timeSpent")
-  private String timeSpent;
-
   @JsonProperty("originalEstimateSeconds")
   private Long originalEstimateSeconds;
 
+  @JsonProperty("remainingEstimate")
+  private String remainingEstimate;
+
   @JsonProperty("remainingEstimateSeconds")
   private Long remainingEstimateSeconds;
+
+  @JsonProperty("timeSpent")
+  private String timeSpent;
 
   @JsonProperty("timeSpentSeconds")
   private Long timeSpentSeconds;
@@ -70,24 +70,6 @@ public class TimeTrackingDetails {
   }
 
    /**
-   * The remaining estimate of time needed for this issue in readable format.
-   * @return remainingEstimate
-  **/
-  @ApiModelProperty(value = "The remaining estimate of time needed for this issue in readable format.")
-  public String getRemainingEstimate() {
-    return remainingEstimate;
-  }
-
-   /**
-   * Time worked on this issue in readable format.
-   * @return timeSpent
-  **/
-  @ApiModelProperty(value = "Time worked on this issue in readable format.")
-  public String getTimeSpent() {
-    return timeSpent;
-  }
-
-   /**
    * The original estimate of time needed for this issue in seconds.
    * @return originalEstimateSeconds
   **/
@@ -97,12 +79,30 @@ public class TimeTrackingDetails {
   }
 
    /**
+   * The remaining estimate of time needed for this issue in readable format.
+   * @return remainingEstimate
+  **/
+  @ApiModelProperty(value = "The remaining estimate of time needed for this issue in readable format.")
+  public String getRemainingEstimate() {
+    return remainingEstimate;
+  }
+
+   /**
    * The remaining estimate of time needed for this issue in seconds.
    * @return remainingEstimateSeconds
   **/
   @ApiModelProperty(value = "The remaining estimate of time needed for this issue in seconds.")
   public Long getRemainingEstimateSeconds() {
     return remainingEstimateSeconds;
+  }
+
+   /**
+   * Time worked on this issue in readable format.
+   * @return timeSpent
+  **/
+  @ApiModelProperty(value = "Time worked on this issue in readable format.")
+  public String getTimeSpent() {
+    return timeSpent;
   }
 
    /**
@@ -125,16 +125,16 @@ public class TimeTrackingDetails {
     }
     TimeTrackingDetails timeTrackingDetails = (TimeTrackingDetails) o;
     return Objects.equals(this.originalEstimate, timeTrackingDetails.originalEstimate) &&
-        Objects.equals(this.remainingEstimate, timeTrackingDetails.remainingEstimate) &&
-        Objects.equals(this.timeSpent, timeTrackingDetails.timeSpent) &&
         Objects.equals(this.originalEstimateSeconds, timeTrackingDetails.originalEstimateSeconds) &&
+        Objects.equals(this.remainingEstimate, timeTrackingDetails.remainingEstimate) &&
         Objects.equals(this.remainingEstimateSeconds, timeTrackingDetails.remainingEstimateSeconds) &&
+        Objects.equals(this.timeSpent, timeTrackingDetails.timeSpent) &&
         Objects.equals(this.timeSpentSeconds, timeTrackingDetails.timeSpentSeconds);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(originalEstimate, remainingEstimate, timeSpent, originalEstimateSeconds, remainingEstimateSeconds, timeSpentSeconds);
+    return Objects.hash(originalEstimate, originalEstimateSeconds, remainingEstimate, remainingEstimateSeconds, timeSpent, timeSpentSeconds);
   }
 
 
@@ -144,10 +144,10 @@ public class TimeTrackingDetails {
     sb.append("class TimeTrackingDetails {\n");
     
     sb.append("    originalEstimate: ").append(toIndentedString(originalEstimate)).append("\n");
-    sb.append("    remainingEstimate: ").append(toIndentedString(remainingEstimate)).append("\n");
-    sb.append("    timeSpent: ").append(toIndentedString(timeSpent)).append("\n");
     sb.append("    originalEstimateSeconds: ").append(toIndentedString(originalEstimateSeconds)).append("\n");
+    sb.append("    remainingEstimate: ").append(toIndentedString(remainingEstimate)).append("\n");
     sb.append("    remainingEstimateSeconds: ").append(toIndentedString(remainingEstimateSeconds)).append("\n");
+    sb.append("    timeSpent: ").append(toIndentedString(timeSpent)).append("\n");
     sb.append("    timeSpentSeconds: ").append(toIndentedString(timeSpentSeconds)).append("\n");
     sb.append("}");
     return sb.toString();

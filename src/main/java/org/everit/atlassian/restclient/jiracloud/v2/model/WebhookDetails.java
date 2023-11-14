@@ -42,17 +42,8 @@ import java.util.List;
  * A list of webhooks.
  */
 @ApiModel(description = "A list of webhooks.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class WebhookDetails {
-  @JsonProperty("jqlFilter")
-  private String jqlFilter;
-
-  @JsonProperty("fieldIdsFilter")
-  private List<String> fieldIdsFilter = new ArrayList<>();
-
-  @JsonProperty("issuePropertyKeysFilter")
-  private List<String> issuePropertyKeysFilter = new ArrayList<>();
-
   /**
    * Gets or Sets events
    */
@@ -103,22 +94,36 @@ public class WebhookDetails {
   @JsonProperty("events")
   private List<EventsEnum> events = new ArrayList<>();
 
-  public WebhookDetails jqlFilter(String jqlFilter) {
-    this.jqlFilter = jqlFilter;
+  @JsonProperty("fieldIdsFilter")
+  private List<String> fieldIdsFilter = new ArrayList<>();
+
+  @JsonProperty("issuePropertyKeysFilter")
+  private List<String> issuePropertyKeysFilter = new ArrayList<>();
+
+  @JsonProperty("jqlFilter")
+  private String jqlFilter;
+
+  public WebhookDetails events(List<EventsEnum> events) {
+    this.events = events;
+    return this;
+  }
+
+  public WebhookDetails addEventsItem(EventsEnum eventsItem) {
+    this.events.add(eventsItem);
     return this;
   }
 
    /**
-   * The JQL filter that specifies which issues the webhook is sent for. Only a subset of JQL can be used. The supported elements are:   *  Fields: &#x60;issueKey&#x60;, &#x60;project&#x60;, &#x60;issuetype&#x60;, &#x60;status&#x60;, &#x60;assignee&#x60;, &#x60;reporter&#x60;, &#x60;issue.property&#x60;, and &#x60;cf[id]&#x60;. For custom fields (&#x60;cf[id]&#x60;), only the epic label custom field is supported.\&quot;.  *  Operators: &#x60;&#x3D;&#x60;, &#x60;!&#x3D;&#x60;, &#x60;IN&#x60;, and &#x60;NOT IN&#x60;.
-   * @return jqlFilter
+   * The Jira events that trigger the webhook.
+   * @return events
   **/
-  @ApiModelProperty(required = true, value = "The JQL filter that specifies which issues the webhook is sent for. Only a subset of JQL can be used. The supported elements are:   *  Fields: `issueKey`, `project`, `issuetype`, `status`, `assignee`, `reporter`, `issue.property`, and `cf[id]`. For custom fields (`cf[id]`), only the epic label custom field is supported.\".  *  Operators: `=`, `!=`, `IN`, and `NOT IN`.")
-  public String getJqlFilter() {
-    return jqlFilter;
+  @ApiModelProperty(required = true, value = "The Jira events that trigger the webhook.")
+  public List<EventsEnum> getEvents() {
+    return events;
   }
 
-  public void setJqlFilter(String jqlFilter) {
-    this.jqlFilter = jqlFilter;
+  public void setEvents(List<EventsEnum> events) {
+    this.events = events;
   }
 
   public WebhookDetails fieldIdsFilter(List<String> fieldIdsFilter) {
@@ -173,27 +178,22 @@ public class WebhookDetails {
     this.issuePropertyKeysFilter = issuePropertyKeysFilter;
   }
 
-  public WebhookDetails events(List<EventsEnum> events) {
-    this.events = events;
-    return this;
-  }
-
-  public WebhookDetails addEventsItem(EventsEnum eventsItem) {
-    this.events.add(eventsItem);
+  public WebhookDetails jqlFilter(String jqlFilter) {
+    this.jqlFilter = jqlFilter;
     return this;
   }
 
    /**
-   * The Jira events that trigger the webhook.
-   * @return events
+   * The JQL filter that specifies which issues the webhook is sent for. Only a subset of JQL can be used. The supported elements are:   *  Fields: &#x60;issueKey&#x60;, &#x60;project&#x60;, &#x60;issuetype&#x60;, &#x60;status&#x60;, &#x60;assignee&#x60;, &#x60;reporter&#x60;, &#x60;issue.property&#x60;, and &#x60;cf[id]&#x60;. For custom fields (&#x60;cf[id]&#x60;), only the epic label custom field is supported.\&quot;.  *  Operators: &#x60;&#x3D;&#x60;, &#x60;!&#x3D;&#x60;, &#x60;IN&#x60;, and &#x60;NOT IN&#x60;.
+   * @return jqlFilter
   **/
-  @ApiModelProperty(required = true, value = "The Jira events that trigger the webhook.")
-  public List<EventsEnum> getEvents() {
-    return events;
+  @ApiModelProperty(required = true, value = "The JQL filter that specifies which issues the webhook is sent for. Only a subset of JQL can be used. The supported elements are:   *  Fields: `issueKey`, `project`, `issuetype`, `status`, `assignee`, `reporter`, `issue.property`, and `cf[id]`. For custom fields (`cf[id]`), only the epic label custom field is supported.\".  *  Operators: `=`, `!=`, `IN`, and `NOT IN`.")
+  public String getJqlFilter() {
+    return jqlFilter;
   }
 
-  public void setEvents(List<EventsEnum> events) {
-    this.events = events;
+  public void setJqlFilter(String jqlFilter) {
+    this.jqlFilter = jqlFilter;
   }
 
 
@@ -206,15 +206,15 @@ public class WebhookDetails {
       return false;
     }
     WebhookDetails webhookDetails = (WebhookDetails) o;
-    return Objects.equals(this.jqlFilter, webhookDetails.jqlFilter) &&
+    return Objects.equals(this.events, webhookDetails.events) &&
         Objects.equals(this.fieldIdsFilter, webhookDetails.fieldIdsFilter) &&
         Objects.equals(this.issuePropertyKeysFilter, webhookDetails.issuePropertyKeysFilter) &&
-        Objects.equals(this.events, webhookDetails.events);
+        Objects.equals(this.jqlFilter, webhookDetails.jqlFilter);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(jqlFilter, fieldIdsFilter, issuePropertyKeysFilter, events);
+    return Objects.hash(events, fieldIdsFilter, issuePropertyKeysFilter, jqlFilter);
   }
 
 
@@ -223,10 +223,10 @@ public class WebhookDetails {
     StringBuilder sb = new StringBuilder();
     sb.append("class WebhookDetails {\n");
     
-    sb.append("    jqlFilter: ").append(toIndentedString(jqlFilter)).append("\n");
+    sb.append("    events: ").append(toIndentedString(events)).append("\n");
     sb.append("    fieldIdsFilter: ").append(toIndentedString(fieldIdsFilter)).append("\n");
     sb.append("    issuePropertyKeysFilter: ").append(toIndentedString(issuePropertyKeysFilter)).append("\n");
-    sb.append("    events: ").append(toIndentedString(events)).append("\n");
+    sb.append("    jqlFilter: ").append(toIndentedString(jqlFilter)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -39,31 +39,13 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * JiraExpressionsComplexityValueBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class JiraExpressionsComplexityValueBean {
-  @JsonProperty("value")
-  private Integer value;
-
   @JsonProperty("limit")
   private Integer limit;
 
-  public JiraExpressionsComplexityValueBean value(Integer value) {
-    this.value = value;
-    return this;
-  }
-
-   /**
-   * The complexity value of the current expression.
-   * @return value
-  **/
-  @ApiModelProperty(required = true, value = "The complexity value of the current expression.")
-  public Integer getValue() {
-    return value;
-  }
-
-  public void setValue(Integer value) {
-    this.value = value;
-  }
+  @JsonProperty("value")
+  private Integer value;
 
   public JiraExpressionsComplexityValueBean limit(Integer limit) {
     this.limit = limit;
@@ -83,6 +65,24 @@ public class JiraExpressionsComplexityValueBean {
     this.limit = limit;
   }
 
+  public JiraExpressionsComplexityValueBean value(Integer value) {
+    this.value = value;
+    return this;
+  }
+
+   /**
+   * The complexity value of the current expression.
+   * @return value
+  **/
+  @ApiModelProperty(required = true, value = "The complexity value of the current expression.")
+  public Integer getValue() {
+    return value;
+  }
+
+  public void setValue(Integer value) {
+    this.value = value;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -93,13 +93,13 @@ public class JiraExpressionsComplexityValueBean {
       return false;
     }
     JiraExpressionsComplexityValueBean jiraExpressionsComplexityValueBean = (JiraExpressionsComplexityValueBean) o;
-    return Objects.equals(this.value, jiraExpressionsComplexityValueBean.value) &&
-        Objects.equals(this.limit, jiraExpressionsComplexityValueBean.limit);
+    return Objects.equals(this.limit, jiraExpressionsComplexityValueBean.limit) &&
+        Objects.equals(this.value, jiraExpressionsComplexityValueBean.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value, limit);
+    return Objects.hash(limit, value);
   }
 
 
@@ -108,8 +108,8 @@ public class JiraExpressionsComplexityValueBean {
     StringBuilder sb = new StringBuilder();
     sb.append("class JiraExpressionsComplexityValueBean {\n");
     
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    limit: ").append(toIndentedString(limit)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }

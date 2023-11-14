@@ -42,90 +42,60 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.JsonTypeBean;
  * Details of a field.
  */
 @ApiModel(description = "Details of a field.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class Field {
-  @JsonProperty("id")
-  private String id;
-
-  @JsonProperty("name")
-  private String name;
-
-  @JsonProperty("schema")
-  private JsonTypeBean schema;
+  @JsonProperty("contextsCount")
+  private Long contextsCount;
 
   @JsonProperty("description")
   private String description;
 
-  @JsonProperty("key")
-  private String key;
+  @JsonProperty("id")
+  private String id;
 
   @JsonProperty("isLocked")
   private Boolean isLocked;
 
-  @JsonProperty("searcherKey")
-  private String searcherKey;
+  @JsonProperty("isUnscreenable")
+  private Boolean isUnscreenable;
 
-  @JsonProperty("screensCount")
-  private Long screensCount;
-
-  @JsonProperty("contextsCount")
-  private Long contextsCount;
+  @JsonProperty("key")
+  private String key;
 
   @JsonProperty("lastUsed")
   private FieldLastUsed lastUsed;
 
-  public Field id(String id) {
-    this.id = id;
+  @JsonProperty("name")
+  private String name;
+
+  @JsonProperty("projectsCount")
+  private Long projectsCount;
+
+  @JsonProperty("schema")
+  private JsonTypeBean schema;
+
+  @JsonProperty("screensCount")
+  private Long screensCount;
+
+  @JsonProperty("searcherKey")
+  private String searcherKey;
+
+  public Field contextsCount(Long contextsCount) {
+    this.contextsCount = contextsCount;
     return this;
   }
 
    /**
-   * The ID of the field.
-   * @return id
+   * Number of contexts where the field is used.
+   * @return contextsCount
   **/
-  @ApiModelProperty(required = true, value = "The ID of the field.")
-  public String getId() {
-    return id;
+  @ApiModelProperty(value = "Number of contexts where the field is used.")
+  public Long getContextsCount() {
+    return contextsCount;
   }
 
-  public void setId(String id) {
-    this.id = id;
-  }
-
-  public Field name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * The name of the field.
-   * @return name
-  **/
-  @ApiModelProperty(required = true, value = "The name of the field.")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public Field schema(JsonTypeBean schema) {
-    this.schema = schema;
-    return this;
-  }
-
-   /**
-   * Get schema
-   * @return schema
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public JsonTypeBean getSchema() {
-    return schema;
-  }
-
-  public void setSchema(JsonTypeBean schema) {
-    this.schema = schema;
+  public void setContextsCount(Long contextsCount) {
+    this.contextsCount = contextsCount;
   }
 
   public Field description(String description) {
@@ -146,22 +116,22 @@ public class Field {
     this.description = description;
   }
 
-  public Field key(String key) {
-    this.key = key;
+  public Field id(String id) {
+    this.id = id;
     return this;
   }
 
    /**
-   * The key of the field.
-   * @return key
+   * The ID of the field.
+   * @return id
   **/
-  @ApiModelProperty(value = "The key of the field.")
-  public String getKey() {
-    return key;
+  @ApiModelProperty(required = true, value = "The ID of the field.")
+  public String getId() {
+    return id;
   }
 
-  public void setKey(String key) {
-    this.key = key;
+  public void setId(String id) {
+    this.id = id;
   }
 
   public Field isLocked(Boolean isLocked) {
@@ -182,58 +152,40 @@ public class Field {
     this.isLocked = isLocked;
   }
 
-  public Field searcherKey(String searcherKey) {
-    this.searcherKey = searcherKey;
+  public Field isUnscreenable(Boolean isUnscreenable) {
+    this.isUnscreenable = isUnscreenable;
     return this;
   }
 
    /**
-   * The searcher key of the field. Returned for custom fields.
-   * @return searcherKey
+   * Whether the field is shown on screen or not.
+   * @return isUnscreenable
   **/
-  @ApiModelProperty(value = "The searcher key of the field. Returned for custom fields.")
-  public String getSearcherKey() {
-    return searcherKey;
+  @ApiModelProperty(value = "Whether the field is shown on screen or not.")
+  public Boolean getIsUnscreenable() {
+    return isUnscreenable;
   }
 
-  public void setSearcherKey(String searcherKey) {
-    this.searcherKey = searcherKey;
+  public void setIsUnscreenable(Boolean isUnscreenable) {
+    this.isUnscreenable = isUnscreenable;
   }
 
-  public Field screensCount(Long screensCount) {
-    this.screensCount = screensCount;
+  public Field key(String key) {
+    this.key = key;
     return this;
   }
 
    /**
-   * Number of screens where the field is used.
-   * @return screensCount
+   * The key of the field.
+   * @return key
   **/
-  @ApiModelProperty(value = "Number of screens where the field is used.")
-  public Long getScreensCount() {
-    return screensCount;
+  @ApiModelProperty(value = "The key of the field.")
+  public String getKey() {
+    return key;
   }
 
-  public void setScreensCount(Long screensCount) {
-    this.screensCount = screensCount;
-  }
-
-  public Field contextsCount(Long contextsCount) {
-    this.contextsCount = contextsCount;
-    return this;
-  }
-
-   /**
-   * Number of contexts where the field is used.
-   * @return contextsCount
-  **/
-  @ApiModelProperty(value = "Number of contexts where the field is used.")
-  public Long getContextsCount() {
-    return contextsCount;
-  }
-
-  public void setContextsCount(Long contextsCount) {
-    this.contextsCount = contextsCount;
+  public void setKey(String key) {
+    this.key = key;
   }
 
   public Field lastUsed(FieldLastUsed lastUsed) {
@@ -254,6 +206,96 @@ public class Field {
     this.lastUsed = lastUsed;
   }
 
+  public Field name(String name) {
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * The name of the field.
+   * @return name
+  **/
+  @ApiModelProperty(required = true, value = "The name of the field.")
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public Field projectsCount(Long projectsCount) {
+    this.projectsCount = projectsCount;
+    return this;
+  }
+
+   /**
+   * Number of projects where the field is used.
+   * @return projectsCount
+  **/
+  @ApiModelProperty(value = "Number of projects where the field is used.")
+  public Long getProjectsCount() {
+    return projectsCount;
+  }
+
+  public void setProjectsCount(Long projectsCount) {
+    this.projectsCount = projectsCount;
+  }
+
+  public Field schema(JsonTypeBean schema) {
+    this.schema = schema;
+    return this;
+  }
+
+   /**
+   * Get schema
+   * @return schema
+  **/
+  @ApiModelProperty(required = true, value = "")
+  public JsonTypeBean getSchema() {
+    return schema;
+  }
+
+  public void setSchema(JsonTypeBean schema) {
+    this.schema = schema;
+  }
+
+  public Field screensCount(Long screensCount) {
+    this.screensCount = screensCount;
+    return this;
+  }
+
+   /**
+   * Number of screens where the field is used.
+   * @return screensCount
+  **/
+  @ApiModelProperty(value = "Number of screens where the field is used.")
+  public Long getScreensCount() {
+    return screensCount;
+  }
+
+  public void setScreensCount(Long screensCount) {
+    this.screensCount = screensCount;
+  }
+
+  public Field searcherKey(String searcherKey) {
+    this.searcherKey = searcherKey;
+    return this;
+  }
+
+   /**
+   * The searcher key of the field. Returned for custom fields.
+   * @return searcherKey
+  **/
+  @ApiModelProperty(value = "The searcher key of the field. Returned for custom fields.")
+  public String getSearcherKey() {
+    return searcherKey;
+  }
+
+  public void setSearcherKey(String searcherKey) {
+    this.searcherKey = searcherKey;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -264,21 +306,23 @@ public class Field {
       return false;
     }
     Field field = (Field) o;
-    return Objects.equals(this.id, field.id) &&
-        Objects.equals(this.name, field.name) &&
-        Objects.equals(this.schema, field.schema) &&
+    return Objects.equals(this.contextsCount, field.contextsCount) &&
         Objects.equals(this.description, field.description) &&
-        Objects.equals(this.key, field.key) &&
+        Objects.equals(this.id, field.id) &&
         Objects.equals(this.isLocked, field.isLocked) &&
-        Objects.equals(this.searcherKey, field.searcherKey) &&
+        Objects.equals(this.isUnscreenable, field.isUnscreenable) &&
+        Objects.equals(this.key, field.key) &&
+        Objects.equals(this.lastUsed, field.lastUsed) &&
+        Objects.equals(this.name, field.name) &&
+        Objects.equals(this.projectsCount, field.projectsCount) &&
+        Objects.equals(this.schema, field.schema) &&
         Objects.equals(this.screensCount, field.screensCount) &&
-        Objects.equals(this.contextsCount, field.contextsCount) &&
-        Objects.equals(this.lastUsed, field.lastUsed);
+        Objects.equals(this.searcherKey, field.searcherKey);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, schema, description, key, isLocked, searcherKey, screensCount, contextsCount, lastUsed);
+    return Objects.hash(contextsCount, description, id, isLocked, isUnscreenable, key, lastUsed, name, projectsCount, schema, screensCount, searcherKey);
   }
 
 
@@ -287,16 +331,18 @@ public class Field {
     StringBuilder sb = new StringBuilder();
     sb.append("class Field {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    schema: ").append(toIndentedString(schema)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    key: ").append(toIndentedString(key)).append("\n");
-    sb.append("    isLocked: ").append(toIndentedString(isLocked)).append("\n");
-    sb.append("    searcherKey: ").append(toIndentedString(searcherKey)).append("\n");
-    sb.append("    screensCount: ").append(toIndentedString(screensCount)).append("\n");
     sb.append("    contextsCount: ").append(toIndentedString(contextsCount)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    isLocked: ").append(toIndentedString(isLocked)).append("\n");
+    sb.append("    isUnscreenable: ").append(toIndentedString(isUnscreenable)).append("\n");
+    sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    lastUsed: ").append(toIndentedString(lastUsed)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    projectsCount: ").append(toIndentedString(projectsCount)).append("\n");
+    sb.append("    schema: ").append(toIndentedString(schema)).append("\n");
+    sb.append("    screensCount: ").append(toIndentedString(screensCount)).append("\n");
+    sb.append("    searcherKey: ").append(toIndentedString(searcherKey)).append("\n");
     sb.append("}");
     return sb.toString();
   }

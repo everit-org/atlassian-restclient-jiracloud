@@ -41,36 +41,36 @@ import java.net.URI;
  * Details of an issue resolution.
  */
 @ApiModel(description = "Details of an issue resolution.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class Resolution {
-  @JsonProperty("self")
-  private URI self;
+  @JsonProperty("description")
+  private String description;
 
   @JsonProperty("id")
   private String id;
 
-  @JsonProperty("description")
-  private String description;
-
   @JsonProperty("name")
   private String name;
 
-  public Resolution self(URI self) {
-    this.self = self;
+  @JsonProperty("self")
+  private URI self;
+
+  public Resolution description(String description) {
+    this.description = description;
     return this;
   }
 
    /**
-   * The URL of the issue resolution.
-   * @return self
+   * The description of the issue resolution.
+   * @return description
   **/
-  @ApiModelProperty(value = "The URL of the issue resolution.")
-  public URI getSelf() {
-    return self;
+  @ApiModelProperty(value = "The description of the issue resolution.")
+  public String getDescription() {
+    return description;
   }
 
-  public void setSelf(URI self) {
-    this.self = self;
+  public void setDescription(String description) {
+    this.description = description;
   }
 
   public Resolution id(String id) {
@@ -91,24 +91,6 @@ public class Resolution {
     this.id = id;
   }
 
-  public Resolution description(String description) {
-    this.description = description;
-    return this;
-  }
-
-   /**
-   * The description of the issue resolution.
-   * @return description
-  **/
-  @ApiModelProperty(value = "The description of the issue resolution.")
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
   public Resolution name(String name) {
     this.name = name;
     return this;
@@ -127,6 +109,24 @@ public class Resolution {
     this.name = name;
   }
 
+  public Resolution self(URI self) {
+    this.self = self;
+    return this;
+  }
+
+   /**
+   * The URL of the issue resolution.
+   * @return self
+  **/
+  @ApiModelProperty(value = "The URL of the issue resolution.")
+  public URI getSelf() {
+    return self;
+  }
+
+  public void setSelf(URI self) {
+    this.self = self;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -137,15 +137,15 @@ public class Resolution {
       return false;
     }
     Resolution resolution = (Resolution) o;
-    return Objects.equals(this.self, resolution.self) &&
+    return Objects.equals(this.description, resolution.description) &&
         Objects.equals(this.id, resolution.id) &&
-        Objects.equals(this.description, resolution.description) &&
-        Objects.equals(this.name, resolution.name);
+        Objects.equals(this.name, resolution.name) &&
+        Objects.equals(this.self, resolution.self);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, id, description, name);
+    return Objects.hash(description, id, name, self);
   }
 
 
@@ -154,10 +154,10 @@ public class Resolution {
     StringBuilder sb = new StringBuilder();
     sb.append("class Resolution {\n");
     
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("}");
     return sb.toString();
   }

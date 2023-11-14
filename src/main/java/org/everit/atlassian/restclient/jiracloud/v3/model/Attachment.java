@@ -44,63 +44,36 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.UserDetails;
  * Details about an attachment.
  */
 @ApiModel(description = "Details about an attachment.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class Attachment {
-  @JsonProperty("self")
-  private String self;
-
-  @JsonProperty("id")
-  private String id;
-
-  @JsonProperty("filename")
-  private String filename;
-
   @JsonProperty("author")
   private UserDetails author;
+
+  @JsonProperty("content")
+  private String content;
 
   @JsonProperty("created")
   private OffsetDateTime created;
 
-  @JsonProperty("size")
-  private Long size;
+  @JsonProperty("filename")
+  private String filename;
+
+  @JsonProperty("id")
+  private String id;
 
   @JsonProperty("mimeType")
   private String mimeType;
 
-  @JsonProperty("content")
-  private String content;
+  @JsonProperty("self")
+  private String self;
+
+  @JsonProperty("size")
+  private Long size;
 
   @JsonProperty("thumbnail")
   private String thumbnail;
 
   private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
-
-   /**
-   * The URL of the attachment details response.
-   * @return self
-  **/
-  @ApiModelProperty(value = "The URL of the attachment details response.")
-  public String getSelf() {
-    return self;
-  }
-
-   /**
-   * The ID of the attachment.
-   * @return id
-  **/
-  @ApiModelProperty(value = "The ID of the attachment.")
-  public String getId() {
-    return id;
-  }
-
-   /**
-   * The file name of the attachment.
-   * @return filename
-  **/
-  @ApiModelProperty(value = "The file name of the attachment.")
-  public String getFilename() {
-    return filename;
-  }
 
    /**
    * Details of the user who added the attachment.
@@ -109,6 +82,15 @@ public class Attachment {
   @ApiModelProperty(value = "Details of the user who added the attachment.")
   public UserDetails getAuthor() {
     return author;
+  }
+
+   /**
+   * The content of the attachment.
+   * @return content
+  **/
+  @ApiModelProperty(value = "The content of the attachment.")
+  public String getContent() {
+    return content;
   }
 
    /**
@@ -121,12 +103,21 @@ public class Attachment {
   }
 
    /**
-   * The size of the attachment.
-   * @return size
+   * The file name of the attachment.
+   * @return filename
   **/
-  @ApiModelProperty(value = "The size of the attachment.")
-  public Long getSize() {
-    return size;
+  @ApiModelProperty(value = "The file name of the attachment.")
+  public String getFilename() {
+    return filename;
+  }
+
+   /**
+   * The ID of the attachment.
+   * @return id
+  **/
+  @ApiModelProperty(value = "The ID of the attachment.")
+  public String getId() {
+    return id;
   }
 
    /**
@@ -139,12 +130,21 @@ public class Attachment {
   }
 
    /**
-   * The content of the attachment.
-   * @return content
+   * The URL of the attachment details response.
+   * @return self
   **/
-  @ApiModelProperty(value = "The content of the attachment.")
-  public String getContent() {
-    return content;
+  @ApiModelProperty(value = "The URL of the attachment details response.")
+  public String getSelf() {
+    return self;
+  }
+
+   /**
+   * The size of the attachment.
+   * @return size
+  **/
+  @ApiModelProperty(value = "The size of the attachment.")
+  public Long getSize() {
+    return size;
   }
 
    /**
@@ -176,21 +176,21 @@ public class Attachment {
       return false;
     }
     Attachment attachment = (Attachment) o;
-    return Objects.equals(this.self, attachment.self) &&
-        Objects.equals(this.id, attachment.id) &&
-        Objects.equals(this.filename, attachment.filename) &&
-        Objects.equals(this.author, attachment.author) &&
-        Objects.equals(this.created, attachment.created) &&
-        Objects.equals(this.size, attachment.size) &&
-        Objects.equals(this.mimeType, attachment.mimeType) &&
+    return Objects.equals(this.author, attachment.author) &&
         Objects.equals(this.content, attachment.content) &&
+        Objects.equals(this.created, attachment.created) &&
+        Objects.equals(this.filename, attachment.filename) &&
+        Objects.equals(this.id, attachment.id) &&
+        Objects.equals(this.mimeType, attachment.mimeType) &&
+        Objects.equals(this.self, attachment.self) &&
+        Objects.equals(this.size, attachment.size) &&
         Objects.equals(this.thumbnail, attachment.thumbnail) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, id, filename, author, created, size, mimeType, content, thumbnail, super.hashCode());
+    return Objects.hash(author, content, created, filename, id, mimeType, self, size, thumbnail, super.hashCode());
   }
 
 
@@ -199,14 +199,14 @@ public class Attachment {
     StringBuilder sb = new StringBuilder();
     sb.append("class Attachment {\n");
     
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    filename: ").append(toIndentedString(filename)).append("\n");
     sb.append("    author: ").append(toIndentedString(author)).append("\n");
-    sb.append("    created: ").append(toIndentedString(created)).append("\n");
-    sb.append("    size: ").append(toIndentedString(size)).append("\n");
-    sb.append("    mimeType: ").append(toIndentedString(mimeType)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    created: ").append(toIndentedString(created)).append("\n");
+    sb.append("    filename: ").append(toIndentedString(filename)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    mimeType: ").append(toIndentedString(mimeType)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
+    sb.append("    size: ").append(toIndentedString(size)).append("\n");
     sb.append("    thumbnail: ").append(toIndentedString(thumbnail)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");

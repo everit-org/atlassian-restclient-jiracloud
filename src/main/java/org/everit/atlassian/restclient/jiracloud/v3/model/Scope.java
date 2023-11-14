@@ -43,8 +43,11 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.ProjectDetails;
  * The projects the item is associated with. Indicated for items associated with [next-gen projects](https://confluence.atlassian.com/x/loMyO).
  */
 @ApiModel(description = "The projects the item is associated with. Indicated for items associated with [next-gen projects](https://confluence.atlassian.com/x/loMyO).")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class Scope {
+  @JsonProperty("project")
+  private ProjectDetails project;
+
   /**
    * The type of scope.
    */
@@ -83,19 +86,7 @@ public class Scope {
   @JsonProperty("type")
   private TypeEnum type;
 
-  @JsonProperty("project")
-  private ProjectDetails project;
-
   private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
-
-   /**
-   * The type of scope.
-   * @return type
-  **/
-  @ApiModelProperty(value = "The type of scope.")
-  public TypeEnum getType() {
-    return type;
-  }
 
    /**
    * The project the item has scope in.
@@ -104,6 +95,15 @@ public class Scope {
   @ApiModelProperty(value = "The project the item has scope in.")
   public ProjectDetails getProject() {
     return project;
+  }
+
+   /**
+   * The type of scope.
+   * @return type
+  **/
+  @ApiModelProperty(value = "The type of scope.")
+  public TypeEnum getType() {
+    return type;
   }
 
 
@@ -126,14 +126,14 @@ public class Scope {
       return false;
     }
     Scope scope = (Scope) o;
-    return Objects.equals(this.type, scope.type) &&
-        Objects.equals(this.project, scope.project) &&
+    return Objects.equals(this.project, scope.project) &&
+        Objects.equals(this.type, scope.type) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, project, super.hashCode());
+    return Objects.hash(project, type, super.hashCode());
   }
 
 
@@ -142,8 +142,8 @@ public class Scope {
     StringBuilder sb = new StringBuilder();
     sb.append("class Scope {\n");
     
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    project: ").append(toIndentedString(project)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();

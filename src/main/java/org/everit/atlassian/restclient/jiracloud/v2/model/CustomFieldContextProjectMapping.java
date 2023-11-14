@@ -40,16 +40,16 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of a context to project association.
  */
 @ApiModel(description = "Details of a context to project association.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class CustomFieldContextProjectMapping {
   @JsonProperty("contextId")
   private String contextId;
 
-  @JsonProperty("projectId")
-  private String projectId;
-
   @JsonProperty("isGlobalContext")
   private Boolean isGlobalContext;
+
+  @JsonProperty("projectId")
+  private String projectId;
 
    /**
    * The ID of the context.
@@ -61,21 +61,21 @@ public class CustomFieldContextProjectMapping {
   }
 
    /**
-   * The ID of the project.
-   * @return projectId
-  **/
-  @ApiModelProperty(value = "The ID of the project.")
-  public String getProjectId() {
-    return projectId;
-  }
-
-   /**
    * Whether context is global.
    * @return isGlobalContext
   **/
   @ApiModelProperty(value = "Whether context is global.")
   public Boolean getIsGlobalContext() {
     return isGlobalContext;
+  }
+
+   /**
+   * The ID of the project.
+   * @return projectId
+  **/
+  @ApiModelProperty(value = "The ID of the project.")
+  public String getProjectId() {
+    return projectId;
   }
 
 
@@ -89,13 +89,13 @@ public class CustomFieldContextProjectMapping {
     }
     CustomFieldContextProjectMapping customFieldContextProjectMapping = (CustomFieldContextProjectMapping) o;
     return Objects.equals(this.contextId, customFieldContextProjectMapping.contextId) &&
-        Objects.equals(this.projectId, customFieldContextProjectMapping.projectId) &&
-        Objects.equals(this.isGlobalContext, customFieldContextProjectMapping.isGlobalContext);
+        Objects.equals(this.isGlobalContext, customFieldContextProjectMapping.isGlobalContext) &&
+        Objects.equals(this.projectId, customFieldContextProjectMapping.projectId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(contextId, projectId, isGlobalContext);
+    return Objects.hash(contextId, isGlobalContext, projectId);
   }
 
 
@@ -105,8 +105,8 @@ public class CustomFieldContextProjectMapping {
     sb.append("class CustomFieldContextProjectMapping {\n");
     
     sb.append("    contextId: ").append(toIndentedString(contextId)).append("\n");
-    sb.append("    projectId: ").append(toIndentedString(projectId)).append("\n");
     sb.append("    isGlobalContext: ").append(toIndentedString(isGlobalContext)).append("\n");
+    sb.append("    projectId: ").append(toIndentedString(projectId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

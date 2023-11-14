@@ -40,31 +40,13 @@ import io.swagger.annotations.ApiModelProperty;
  * A field auto-complete suggestion.
  */
 @ApiModel(description = "A field auto-complete suggestion.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class AutoCompleteSuggestion {
-  @JsonProperty("value")
-  private String value;
-
   @JsonProperty("displayName")
   private String displayName;
 
-  public AutoCompleteSuggestion value(String value) {
-    this.value = value;
-    return this;
-  }
-
-   /**
-   * The value of a suggested item.
-   * @return value
-  **/
-  @ApiModelProperty(value = "The value of a suggested item.")
-  public String getValue() {
-    return value;
-  }
-
-  public void setValue(String value) {
-    this.value = value;
-  }
+  @JsonProperty("value")
+  private String value;
 
   public AutoCompleteSuggestion displayName(String displayName) {
     this.displayName = displayName;
@@ -84,6 +66,24 @@ public class AutoCompleteSuggestion {
     this.displayName = displayName;
   }
 
+  public AutoCompleteSuggestion value(String value) {
+    this.value = value;
+    return this;
+  }
+
+   /**
+   * The value of a suggested item.
+   * @return value
+  **/
+  @ApiModelProperty(value = "The value of a suggested item.")
+  public String getValue() {
+    return value;
+  }
+
+  public void setValue(String value) {
+    this.value = value;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -94,13 +94,13 @@ public class AutoCompleteSuggestion {
       return false;
     }
     AutoCompleteSuggestion autoCompleteSuggestion = (AutoCompleteSuggestion) o;
-    return Objects.equals(this.value, autoCompleteSuggestion.value) &&
-        Objects.equals(this.displayName, autoCompleteSuggestion.displayName);
+    return Objects.equals(this.displayName, autoCompleteSuggestion.displayName) &&
+        Objects.equals(this.value, autoCompleteSuggestion.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value, displayName);
+    return Objects.hash(displayName, value);
   }
 
 
@@ -109,8 +109,8 @@ public class AutoCompleteSuggestion {
     StringBuilder sb = new StringBuilder();
     sb.append("class AutoCompleteSuggestion {\n");
     
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }

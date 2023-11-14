@@ -47,75 +47,30 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.Scope;
  * Details of a permission scheme.
  */
 @ApiModel(description = "Details of a permission scheme.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class PermissionScheme {
+  @JsonProperty("description")
+  private String description;
+
   @JsonProperty("expand")
   private String expand;
 
   @JsonProperty("id")
   private Long id;
 
-  @JsonProperty("self")
-  private URI self;
-
   @JsonProperty("name")
   private String name;
-
-  @JsonProperty("description")
-  private String description;
-
-  @JsonProperty("scope")
-  private Scope scope;
 
   @JsonProperty("permissions")
   private List<PermissionGrant> permissions = new ArrayList<>();
 
+  @JsonProperty("scope")
+  private Scope scope;
+
+  @JsonProperty("self")
+  private URI self;
+
   private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
-
-   /**
-   * The expand options available for the permission scheme.
-   * @return expand
-  **/
-  @ApiModelProperty(value = "The expand options available for the permission scheme.")
-  public String getExpand() {
-    return expand;
-  }
-
-   /**
-   * The ID of the permission scheme.
-   * @return id
-  **/
-  @ApiModelProperty(value = "The ID of the permission scheme.")
-  public Long getId() {
-    return id;
-  }
-
-   /**
-   * The URL of the permission scheme.
-   * @return self
-  **/
-  @ApiModelProperty(value = "The URL of the permission scheme.")
-  public URI getSelf() {
-    return self;
-  }
-
-  public PermissionScheme name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * The name of the permission scheme. Must be unique.
-   * @return name
-  **/
-  @ApiModelProperty(required = true, value = "The name of the permission scheme. Must be unique.")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
 
   public PermissionScheme description(String description) {
     this.description = description;
@@ -135,22 +90,40 @@ public class PermissionScheme {
     this.description = description;
   }
 
-  public PermissionScheme scope(Scope scope) {
-    this.scope = scope;
+   /**
+   * The expand options available for the permission scheme.
+   * @return expand
+  **/
+  @ApiModelProperty(value = "The expand options available for the permission scheme.")
+  public String getExpand() {
+    return expand;
+  }
+
+   /**
+   * The ID of the permission scheme.
+   * @return id
+  **/
+  @ApiModelProperty(value = "The ID of the permission scheme.")
+  public Long getId() {
+    return id;
+  }
+
+  public PermissionScheme name(String name) {
+    this.name = name;
     return this;
   }
 
    /**
-   * The scope of the permission scheme.
-   * @return scope
+   * The name of the permission scheme. Must be unique.
+   * @return name
   **/
-  @ApiModelProperty(value = "The scope of the permission scheme.")
-  public Scope getScope() {
-    return scope;
+  @ApiModelProperty(required = true, value = "The name of the permission scheme. Must be unique.")
+  public String getName() {
+    return name;
   }
 
-  public void setScope(Scope scope) {
-    this.scope = scope;
+  public void setName(String name) {
+    this.name = name;
   }
 
   public PermissionScheme permissions(List<PermissionGrant> permissions) {
@@ -179,6 +152,33 @@ public class PermissionScheme {
     this.permissions = permissions;
   }
 
+  public PermissionScheme scope(Scope scope) {
+    this.scope = scope;
+    return this;
+  }
+
+   /**
+   * The scope of the permission scheme.
+   * @return scope
+  **/
+  @ApiModelProperty(value = "The scope of the permission scheme.")
+  public Scope getScope() {
+    return scope;
+  }
+
+  public void setScope(Scope scope) {
+    this.scope = scope;
+  }
+
+   /**
+   * The URL of the permission scheme.
+   * @return self
+  **/
+  @ApiModelProperty(value = "The URL of the permission scheme.")
+  public URI getSelf() {
+    return self;
+  }
+
 
   @com.fasterxml.jackson.annotation.JsonAnyGetter
   public Map<String, Object> any() {
@@ -199,19 +199,19 @@ public class PermissionScheme {
       return false;
     }
     PermissionScheme permissionScheme = (PermissionScheme) o;
-    return Objects.equals(this.expand, permissionScheme.expand) &&
+    return Objects.equals(this.description, permissionScheme.description) &&
+        Objects.equals(this.expand, permissionScheme.expand) &&
         Objects.equals(this.id, permissionScheme.id) &&
-        Objects.equals(this.self, permissionScheme.self) &&
         Objects.equals(this.name, permissionScheme.name) &&
-        Objects.equals(this.description, permissionScheme.description) &&
-        Objects.equals(this.scope, permissionScheme.scope) &&
         Objects.equals(this.permissions, permissionScheme.permissions) &&
+        Objects.equals(this.scope, permissionScheme.scope) &&
+        Objects.equals(this.self, permissionScheme.self) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(expand, id, self, name, description, scope, permissions, super.hashCode());
+    return Objects.hash(description, expand, id, name, permissions, scope, self, super.hashCode());
   }
 
 
@@ -220,13 +220,13 @@ public class PermissionScheme {
     StringBuilder sb = new StringBuilder();
     sb.append("class PermissionScheme {\n");
     
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    expand: ").append(toIndentedString(expand)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
     sb.append("    permissions: ").append(toIndentedString(permissions)).append("\n");
+    sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();

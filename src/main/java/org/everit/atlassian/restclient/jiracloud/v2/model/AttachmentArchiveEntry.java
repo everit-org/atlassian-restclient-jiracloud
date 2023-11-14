@@ -39,13 +39,13 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * AttachmentArchiveEntry
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class AttachmentArchiveEntry {
-  @JsonProperty("entryIndex")
-  private Long entryIndex;
-
   @JsonProperty("abbreviatedName")
   private String abbreviatedName;
+
+  @JsonProperty("entryIndex")
+  private Long entryIndex;
 
   @JsonProperty("mediaType")
   private String mediaType;
@@ -55,24 +55,6 @@ public class AttachmentArchiveEntry {
 
   @JsonProperty("size")
   private Long size;
-
-  public AttachmentArchiveEntry entryIndex(Long entryIndex) {
-    this.entryIndex = entryIndex;
-    return this;
-  }
-
-   /**
-   * Get entryIndex
-   * @return entryIndex
-  **/
-  @ApiModelProperty(value = "")
-  public Long getEntryIndex() {
-    return entryIndex;
-  }
-
-  public void setEntryIndex(Long entryIndex) {
-    this.entryIndex = entryIndex;
-  }
 
   public AttachmentArchiveEntry abbreviatedName(String abbreviatedName) {
     this.abbreviatedName = abbreviatedName;
@@ -90,6 +72,24 @@ public class AttachmentArchiveEntry {
 
   public void setAbbreviatedName(String abbreviatedName) {
     this.abbreviatedName = abbreviatedName;
+  }
+
+  public AttachmentArchiveEntry entryIndex(Long entryIndex) {
+    this.entryIndex = entryIndex;
+    return this;
+  }
+
+   /**
+   * Get entryIndex
+   * @return entryIndex
+  **/
+  @ApiModelProperty(value = "")
+  public Long getEntryIndex() {
+    return entryIndex;
+  }
+
+  public void setEntryIndex(Long entryIndex) {
+    this.entryIndex = entryIndex;
   }
 
   public AttachmentArchiveEntry mediaType(String mediaType) {
@@ -156,8 +156,8 @@ public class AttachmentArchiveEntry {
       return false;
     }
     AttachmentArchiveEntry attachmentArchiveEntry = (AttachmentArchiveEntry) o;
-    return Objects.equals(this.entryIndex, attachmentArchiveEntry.entryIndex) &&
-        Objects.equals(this.abbreviatedName, attachmentArchiveEntry.abbreviatedName) &&
+    return Objects.equals(this.abbreviatedName, attachmentArchiveEntry.abbreviatedName) &&
+        Objects.equals(this.entryIndex, attachmentArchiveEntry.entryIndex) &&
         Objects.equals(this.mediaType, attachmentArchiveEntry.mediaType) &&
         Objects.equals(this.name, attachmentArchiveEntry.name) &&
         Objects.equals(this.size, attachmentArchiveEntry.size);
@@ -165,7 +165,7 @@ public class AttachmentArchiveEntry {
 
   @Override
   public int hashCode() {
-    return Objects.hash(entryIndex, abbreviatedName, mediaType, name, size);
+    return Objects.hash(abbreviatedName, entryIndex, mediaType, name, size);
   }
 
 
@@ -174,8 +174,8 @@ public class AttachmentArchiveEntry {
     StringBuilder sb = new StringBuilder();
     sb.append("class AttachmentArchiveEntry {\n");
     
-    sb.append("    entryIndex: ").append(toIndentedString(entryIndex)).append("\n");
     sb.append("    abbreviatedName: ").append(toIndentedString(abbreviatedName)).append("\n");
+    sb.append("    entryIndex: ").append(toIndentedString(entryIndex)).append("\n");
     sb.append("    mediaType: ").append(toIndentedString(mediaType)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    size: ").append(toIndentedString(size)).append("\n");

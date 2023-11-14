@@ -43,16 +43,19 @@ import java.util.List;
  * A page of items.
  */
 @ApiModel(description = "A page of items.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class PageBeanString {
-  @JsonProperty("self")
-  private URI self;
+  @JsonProperty("isLast")
+  private Boolean isLast;
+
+  @JsonProperty("maxResults")
+  private Integer maxResults;
 
   @JsonProperty("nextPage")
   private URI nextPage;
 
-  @JsonProperty("maxResults")
-  private Integer maxResults;
+  @JsonProperty("self")
+  private URI self;
 
   @JsonProperty("startAt")
   private Long startAt;
@@ -60,19 +63,25 @@ public class PageBeanString {
   @JsonProperty("total")
   private Long total;
 
-  @JsonProperty("isLast")
-  private Boolean isLast;
-
   @JsonProperty("values")
   private List<String> values = new ArrayList<>();
 
    /**
-   * The URL of the page.
-   * @return self
+   * Whether this is the last page.
+   * @return isLast
   **/
-  @ApiModelProperty(value = "The URL of the page.")
-  public URI getSelf() {
-    return self;
+  @ApiModelProperty(value = "Whether this is the last page.")
+  public Boolean getIsLast() {
+    return isLast;
+  }
+
+   /**
+   * The maximum number of items that could be returned.
+   * @return maxResults
+  **/
+  @ApiModelProperty(value = "The maximum number of items that could be returned.")
+  public Integer getMaxResults() {
+    return maxResults;
   }
 
    /**
@@ -85,12 +94,12 @@ public class PageBeanString {
   }
 
    /**
-   * The maximum number of items that could be returned.
-   * @return maxResults
+   * The URL of the page.
+   * @return self
   **/
-  @ApiModelProperty(value = "The maximum number of items that could be returned.")
-  public Integer getMaxResults() {
-    return maxResults;
+  @ApiModelProperty(value = "The URL of the page.")
+  public URI getSelf() {
+    return self;
   }
 
    /**
@@ -112,15 +121,6 @@ public class PageBeanString {
   }
 
    /**
-   * Whether this is the last page.
-   * @return isLast
-  **/
-  @ApiModelProperty(value = "Whether this is the last page.")
-  public Boolean getIsLast() {
-    return isLast;
-  }
-
-   /**
    * The list of items.
    * @return values
   **/
@@ -139,18 +139,18 @@ public class PageBeanString {
       return false;
     }
     PageBeanString pageBeanString = (PageBeanString) o;
-    return Objects.equals(this.self, pageBeanString.self) &&
-        Objects.equals(this.nextPage, pageBeanString.nextPage) &&
+    return Objects.equals(this.isLast, pageBeanString.isLast) &&
         Objects.equals(this.maxResults, pageBeanString.maxResults) &&
+        Objects.equals(this.nextPage, pageBeanString.nextPage) &&
+        Objects.equals(this.self, pageBeanString.self) &&
         Objects.equals(this.startAt, pageBeanString.startAt) &&
         Objects.equals(this.total, pageBeanString.total) &&
-        Objects.equals(this.isLast, pageBeanString.isLast) &&
         Objects.equals(this.values, pageBeanString.values);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, nextPage, maxResults, startAt, total, isLast, values);
+    return Objects.hash(isLast, maxResults, nextPage, self, startAt, total, values);
   }
 
 
@@ -159,12 +159,12 @@ public class PageBeanString {
     StringBuilder sb = new StringBuilder();
     sb.append("class PageBeanString {\n");
     
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    nextPage: ").append(toIndentedString(nextPage)).append("\n");
+    sb.append("    isLast: ").append(toIndentedString(isLast)).append("\n");
     sb.append("    maxResults: ").append(toIndentedString(maxResults)).append("\n");
+    sb.append("    nextPage: ").append(toIndentedString(nextPage)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    startAt: ").append(toIndentedString(startAt)).append("\n");
     sb.append("    total: ").append(toIndentedString(total)).append("\n");
-    sb.append("    isLast: ").append(toIndentedString(isLast)).append("\n");
     sb.append("    values: ").append(toIndentedString(values)).append("\n");
     sb.append("}");
     return sb.toString();

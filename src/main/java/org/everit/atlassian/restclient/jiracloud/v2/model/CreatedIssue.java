@@ -41,7 +41,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.NestedResponse;
  * Details about a created issue or subtask.
  */
 @ApiModel(description = "Details about a created issue or subtask.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class CreatedIssue {
   @JsonProperty("id")
   private String id;
@@ -54,6 +54,9 @@ public class CreatedIssue {
 
   @JsonProperty("transition")
   private NestedResponse transition;
+
+  @JsonProperty("watchers")
+  private NestedResponse watchers;
 
    /**
    * The ID of the created issue or subtask.
@@ -91,6 +94,15 @@ public class CreatedIssue {
     return transition;
   }
 
+   /**
+   * The response code and messages related to any requested watchers.
+   * @return watchers
+  **/
+  @ApiModelProperty(value = "The response code and messages related to any requested watchers.")
+  public NestedResponse getWatchers() {
+    return watchers;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -104,12 +116,13 @@ public class CreatedIssue {
     return Objects.equals(this.id, createdIssue.id) &&
         Objects.equals(this.key, createdIssue.key) &&
         Objects.equals(this.self, createdIssue.self) &&
-        Objects.equals(this.transition, createdIssue.transition);
+        Objects.equals(this.transition, createdIssue.transition) &&
+        Objects.equals(this.watchers, createdIssue.watchers);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, key, self, transition);
+    return Objects.hash(id, key, self, transition, watchers);
   }
 
 
@@ -122,6 +135,7 @@ public class CreatedIssue {
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    transition: ").append(toIndentedString(transition)).append("\n");
+    sb.append("    watchers: ").append(toIndentedString(watchers)).append("\n");
     sb.append("}");
     return sb.toString();
   }

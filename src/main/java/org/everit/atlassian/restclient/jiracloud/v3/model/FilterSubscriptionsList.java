@@ -43,10 +43,10 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.FilterSubscription;
  * A paginated list of subscriptions to a filter.
  */
 @ApiModel(description = "A paginated list of subscriptions to a filter.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class FilterSubscriptionsList {
-  @JsonProperty("size")
-  private Integer size;
+  @JsonProperty("end-index")
+  private Integer endIndex;
 
   @JsonProperty("items")
   private List<FilterSubscription> items = new ArrayList<>();
@@ -54,19 +54,19 @@ public class FilterSubscriptionsList {
   @JsonProperty("max-results")
   private Integer maxResults;
 
+  @JsonProperty("size")
+  private Integer size;
+
   @JsonProperty("start-index")
   private Integer startIndex;
 
-  @JsonProperty("end-index")
-  private Integer endIndex;
-
    /**
-   * The number of items on the page.
-   * @return size
+   * The index of the last item returned on the page.
+   * @return endIndex
   **/
-  @ApiModelProperty(value = "The number of items on the page.")
-  public Integer getSize() {
-    return size;
+  @ApiModelProperty(value = "The index of the last item returned on the page.")
+  public Integer getEndIndex() {
+    return endIndex;
   }
 
    /**
@@ -88,21 +88,21 @@ public class FilterSubscriptionsList {
   }
 
    /**
+   * The number of items on the page.
+   * @return size
+  **/
+  @ApiModelProperty(value = "The number of items on the page.")
+  public Integer getSize() {
+    return size;
+  }
+
+   /**
    * The index of the first item returned on the page.
    * @return startIndex
   **/
   @ApiModelProperty(value = "The index of the first item returned on the page.")
   public Integer getStartIndex() {
     return startIndex;
-  }
-
-   /**
-   * The index of the last item returned on the page.
-   * @return endIndex
-  **/
-  @ApiModelProperty(value = "The index of the last item returned on the page.")
-  public Integer getEndIndex() {
-    return endIndex;
   }
 
 
@@ -115,16 +115,16 @@ public class FilterSubscriptionsList {
       return false;
     }
     FilterSubscriptionsList filterSubscriptionsList = (FilterSubscriptionsList) o;
-    return Objects.equals(this.size, filterSubscriptionsList.size) &&
+    return Objects.equals(this.endIndex, filterSubscriptionsList.endIndex) &&
         Objects.equals(this.items, filterSubscriptionsList.items) &&
         Objects.equals(this.maxResults, filterSubscriptionsList.maxResults) &&
-        Objects.equals(this.startIndex, filterSubscriptionsList.startIndex) &&
-        Objects.equals(this.endIndex, filterSubscriptionsList.endIndex);
+        Objects.equals(this.size, filterSubscriptionsList.size) &&
+        Objects.equals(this.startIndex, filterSubscriptionsList.startIndex);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(size, items, maxResults, startIndex, endIndex);
+    return Objects.hash(endIndex, items, maxResults, size, startIndex);
   }
 
 
@@ -133,11 +133,11 @@ public class FilterSubscriptionsList {
     StringBuilder sb = new StringBuilder();
     sb.append("class FilterSubscriptionsList {\n");
     
-    sb.append("    size: ").append(toIndentedString(size)).append("\n");
+    sb.append("    endIndex: ").append(toIndentedString(endIndex)).append("\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("    maxResults: ").append(toIndentedString(maxResults)).append("\n");
+    sb.append("    size: ").append(toIndentedString(size)).append("\n");
     sb.append("    startIndex: ").append(toIndentedString(startIndex)).append("\n");
-    sb.append("    endIndex: ").append(toIndentedString(endIndex)).append("\n");
     sb.append("}");
     return sb.toString();
   }

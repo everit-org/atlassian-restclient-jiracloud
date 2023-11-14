@@ -40,22 +40,13 @@ import io.swagger.annotations.ApiModelProperty;
  * Property key details.
  */
 @ApiModel(description = "Property key details.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class PropertyKey {
-  @JsonProperty("self")
-  private String self;
-
   @JsonProperty("key")
   private String key;
 
-   /**
-   * The URL of the property.
-   * @return self
-  **/
-  @ApiModelProperty(value = "The URL of the property.")
-  public String getSelf() {
-    return self;
-  }
+  @JsonProperty("self")
+  private String self;
 
    /**
    * The key of the property.
@@ -64,6 +55,15 @@ public class PropertyKey {
   @ApiModelProperty(value = "The key of the property.")
   public String getKey() {
     return key;
+  }
+
+   /**
+   * The URL of the property.
+   * @return self
+  **/
+  @ApiModelProperty(value = "The URL of the property.")
+  public String getSelf() {
+    return self;
   }
 
 
@@ -76,13 +76,13 @@ public class PropertyKey {
       return false;
     }
     PropertyKey propertyKey = (PropertyKey) o;
-    return Objects.equals(this.self, propertyKey.self) &&
-        Objects.equals(this.key, propertyKey.key);
+    return Objects.equals(this.key, propertyKey.key) &&
+        Objects.equals(this.self, propertyKey.self);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, key);
+    return Objects.hash(key, self);
   }
 
 
@@ -91,8 +91,8 @@ public class PropertyKey {
     StringBuilder sb = new StringBuilder();
     sb.append("class PropertyKey {\n");
     
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("}");
     return sb.toString();
   }

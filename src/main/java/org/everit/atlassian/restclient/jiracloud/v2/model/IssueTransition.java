@@ -45,25 +45,19 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.StatusDetails;
  * Details of an issue transition.
  */
 @ApiModel(description = "Details of an issue transition.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class IssueTransition {
-  @JsonProperty("id")
-  private String id;
+  @JsonProperty("expand")
+  private String expand;
 
-  @JsonProperty("name")
-  private String name;
-
-  @JsonProperty("to")
-  private StatusDetails to;
+  @JsonProperty("fields")
+  private Map<String, FieldMetadata> fields = new HashMap<>();
 
   @JsonProperty("hasScreen")
   private Boolean hasScreen;
 
-  @JsonProperty("isGlobal")
-  private Boolean isGlobal;
-
-  @JsonProperty("isInitial")
-  private Boolean isInitial;
+  @JsonProperty("id")
+  private String id;
 
   @JsonProperty("isAvailable")
   private Boolean isAvailable;
@@ -71,16 +65,49 @@ public class IssueTransition {
   @JsonProperty("isConditional")
   private Boolean isConditional;
 
-  @JsonProperty("fields")
-  private Map<String, FieldMetadata> fields = new HashMap<>();
+  @JsonProperty("isGlobal")
+  private Boolean isGlobal;
 
-  @JsonProperty("expand")
-  private String expand;
+  @JsonProperty("isInitial")
+  private Boolean isInitial;
 
   @JsonProperty("looped")
   private Boolean looped;
 
+  @JsonProperty("name")
+  private String name;
+
+  @JsonProperty("to")
+  private StatusDetails to;
+
   private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
+
+   /**
+   * Expand options that include additional transition details in the response.
+   * @return expand
+  **/
+  @ApiModelProperty(value = "Expand options that include additional transition details in the response.")
+  public String getExpand() {
+    return expand;
+  }
+
+   /**
+   * Details of the fields associated with the issue transition screen. Use this information to populate &#x60;fields&#x60; and &#x60;update&#x60; in a transition request.
+   * @return fields
+  **/
+  @ApiModelProperty(value = "Details of the fields associated with the issue transition screen. Use this information to populate `fields` and `update` in a transition request.")
+  public Map<String, FieldMetadata> getFields() {
+    return fields;
+  }
+
+   /**
+   * Whether there is a screen associated with the issue transition.
+   * @return hasScreen
+  **/
+  @ApiModelProperty(value = "Whether there is a screen associated with the issue transition.")
+  public Boolean getHasScreen() {
+    return hasScreen;
+  }
 
   public IssueTransition id(String id) {
     this.id = id;
@@ -98,51 +125,6 @@ public class IssueTransition {
 
   public void setId(String id) {
     this.id = id;
-  }
-
-   /**
-   * The name of the issue transition.
-   * @return name
-  **/
-  @ApiModelProperty(value = "The name of the issue transition.")
-  public String getName() {
-    return name;
-  }
-
-   /**
-   * Details of the issue status after the transition.
-   * @return to
-  **/
-  @ApiModelProperty(value = "Details of the issue status after the transition.")
-  public StatusDetails getTo() {
-    return to;
-  }
-
-   /**
-   * Whether there is a screen associated with the issue transition.
-   * @return hasScreen
-  **/
-  @ApiModelProperty(value = "Whether there is a screen associated with the issue transition.")
-  public Boolean getHasScreen() {
-    return hasScreen;
-  }
-
-   /**
-   * Whether the issue transition is global, that is, the transition is applied to issues regardless of their status.
-   * @return isGlobal
-  **/
-  @ApiModelProperty(value = "Whether the issue transition is global, that is, the transition is applied to issues regardless of their status.")
-  public Boolean getIsGlobal() {
-    return isGlobal;
-  }
-
-   /**
-   * Whether this is the initial issue transition for the workflow.
-   * @return isInitial
-  **/
-  @ApiModelProperty(value = "Whether this is the initial issue transition for the workflow.")
-  public Boolean getIsInitial() {
-    return isInitial;
   }
 
    /**
@@ -164,21 +146,21 @@ public class IssueTransition {
   }
 
    /**
-   * Details of the fields associated with the issue transition screen. Use this information to populate &#x60;fields&#x60; and &#x60;update&#x60; in a transition request.
-   * @return fields
+   * Whether the issue transition is global, that is, the transition is applied to issues regardless of their status.
+   * @return isGlobal
   **/
-  @ApiModelProperty(value = "Details of the fields associated with the issue transition screen. Use this information to populate `fields` and `update` in a transition request.")
-  public Map<String, FieldMetadata> getFields() {
-    return fields;
+  @ApiModelProperty(value = "Whether the issue transition is global, that is, the transition is applied to issues regardless of their status.")
+  public Boolean getIsGlobal() {
+    return isGlobal;
   }
 
    /**
-   * Expand options that include additional transition details in the response.
-   * @return expand
+   * Whether this is the initial issue transition for the workflow.
+   * @return isInitial
   **/
-  @ApiModelProperty(value = "Expand options that include additional transition details in the response.")
-  public String getExpand() {
-    return expand;
+  @ApiModelProperty(value = "Whether this is the initial issue transition for the workflow.")
+  public Boolean getIsInitial() {
+    return isInitial;
   }
 
   public IssueTransition looped(Boolean looped) {
@@ -197,6 +179,24 @@ public class IssueTransition {
 
   public void setLooped(Boolean looped) {
     this.looped = looped;
+  }
+
+   /**
+   * The name of the issue transition.
+   * @return name
+  **/
+  @ApiModelProperty(value = "The name of the issue transition.")
+  public String getName() {
+    return name;
+  }
+
+   /**
+   * Details of the issue status after the transition.
+   * @return to
+  **/
+  @ApiModelProperty(value = "Details of the issue status after the transition.")
+  public StatusDetails getTo() {
+    return to;
   }
 
 
@@ -219,23 +219,23 @@ public class IssueTransition {
       return false;
     }
     IssueTransition issueTransition = (IssueTransition) o;
-    return Objects.equals(this.id, issueTransition.id) &&
-        Objects.equals(this.name, issueTransition.name) &&
-        Objects.equals(this.to, issueTransition.to) &&
+    return Objects.equals(this.expand, issueTransition.expand) &&
+        Objects.equals(this.fields, issueTransition.fields) &&
         Objects.equals(this.hasScreen, issueTransition.hasScreen) &&
-        Objects.equals(this.isGlobal, issueTransition.isGlobal) &&
-        Objects.equals(this.isInitial, issueTransition.isInitial) &&
+        Objects.equals(this.id, issueTransition.id) &&
         Objects.equals(this.isAvailable, issueTransition.isAvailable) &&
         Objects.equals(this.isConditional, issueTransition.isConditional) &&
-        Objects.equals(this.fields, issueTransition.fields) &&
-        Objects.equals(this.expand, issueTransition.expand) &&
+        Objects.equals(this.isGlobal, issueTransition.isGlobal) &&
+        Objects.equals(this.isInitial, issueTransition.isInitial) &&
         Objects.equals(this.looped, issueTransition.looped) &&
+        Objects.equals(this.name, issueTransition.name) &&
+        Objects.equals(this.to, issueTransition.to) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, to, hasScreen, isGlobal, isInitial, isAvailable, isConditional, fields, expand, looped, super.hashCode());
+    return Objects.hash(expand, fields, hasScreen, id, isAvailable, isConditional, isGlobal, isInitial, looped, name, to, super.hashCode());
   }
 
 
@@ -244,17 +244,17 @@ public class IssueTransition {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueTransition {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    to: ").append(toIndentedString(to)).append("\n");
+    sb.append("    expand: ").append(toIndentedString(expand)).append("\n");
+    sb.append("    fields: ").append(toIndentedString(fields)).append("\n");
     sb.append("    hasScreen: ").append(toIndentedString(hasScreen)).append("\n");
-    sb.append("    isGlobal: ").append(toIndentedString(isGlobal)).append("\n");
-    sb.append("    isInitial: ").append(toIndentedString(isInitial)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    isAvailable: ").append(toIndentedString(isAvailable)).append("\n");
     sb.append("    isConditional: ").append(toIndentedString(isConditional)).append("\n");
-    sb.append("    fields: ").append(toIndentedString(fields)).append("\n");
-    sb.append("    expand: ").append(toIndentedString(expand)).append("\n");
+    sb.append("    isGlobal: ").append(toIndentedString(isGlobal)).append("\n");
+    sb.append("    isInitial: ").append(toIndentedString(isInitial)).append("\n");
     sb.append("    looped: ").append(toIndentedString(looped)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    to: ").append(toIndentedString(to)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();

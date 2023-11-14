@@ -45,85 +45,40 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.Scope;
  * Details about the roles in a project.
  */
 @ApiModel(description = "Details about the roles in a project.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class ProjectRole {
-  @JsonProperty("self")
-  private URI self;
-
-  @JsonProperty("name")
-  private String name;
-
-  @JsonProperty("id")
-  private Long id;
-
-  @JsonProperty("description")
-  private String description;
-
   @JsonProperty("actors")
   private List<RoleActor> actors = new ArrayList<>();
-
-  @JsonProperty("scope")
-  private Scope scope;
-
-  @JsonProperty("translatedName")
-  private String translatedName;
-
-  @JsonProperty("currentUserRole")
-  private Boolean currentUserRole;
 
   @JsonProperty("admin")
   private Boolean admin;
 
-  @JsonProperty("roleConfigurable")
-  private Boolean roleConfigurable;
+  @JsonProperty("currentUserRole")
+  private Boolean currentUserRole;
 
   @JsonProperty("default")
   private Boolean _default;
 
-   /**
-   * The URL the project role details.
-   * @return self
-  **/
-  @ApiModelProperty(value = "The URL the project role details.")
-  public URI getSelf() {
-    return self;
-  }
+  @JsonProperty("description")
+  private String description;
 
-  public ProjectRole name(String name) {
-    this.name = name;
-    return this;
-  }
+  @JsonProperty("id")
+  private Long id;
 
-   /**
-   * The name of the project role.
-   * @return name
-  **/
-  @ApiModelProperty(value = "The name of the project role.")
-  public String getName() {
-    return name;
-  }
+  @JsonProperty("name")
+  private String name;
 
-  public void setName(String name) {
-    this.name = name;
-  }
+  @JsonProperty("roleConfigurable")
+  private Boolean roleConfigurable;
 
-   /**
-   * The ID of the project role.
-   * @return id
-  **/
-  @ApiModelProperty(value = "The ID of the project role.")
-  public Long getId() {
-    return id;
-  }
+  @JsonProperty("scope")
+  private Scope scope;
 
-   /**
-   * The description of the project role.
-   * @return description
-  **/
-  @ApiModelProperty(value = "The description of the project role.")
-  public String getDescription() {
-    return description;
-  }
+  @JsonProperty("self")
+  private URI self;
+
+  @JsonProperty("translatedName")
+  private String translatedName;
 
    /**
    * The list of users who act in this role.
@@ -135,30 +90,12 @@ public class ProjectRole {
   }
 
    /**
-   * The scope of the role. Indicated for roles associated with [next-gen projects](https://confluence.atlassian.com/x/loMyO).
-   * @return scope
+   * Whether this role is the admin role for the project.
+   * @return admin
   **/
-  @ApiModelProperty(value = "The scope of the role. Indicated for roles associated with [next-gen projects](https://confluence.atlassian.com/x/loMyO).")
-  public Scope getScope() {
-    return scope;
-  }
-
-  public ProjectRole translatedName(String translatedName) {
-    this.translatedName = translatedName;
-    return this;
-  }
-
-   /**
-   * The translated name of the project role.
-   * @return translatedName
-  **/
-  @ApiModelProperty(value = "The translated name of the project role.")
-  public String getTranslatedName() {
-    return translatedName;
-  }
-
-  public void setTranslatedName(String translatedName) {
-    this.translatedName = translatedName;
+  @ApiModelProperty(value = "Whether this role is the admin role for the project.")
+  public Boolean getAdmin() {
+    return admin;
   }
 
   public ProjectRole currentUserRole(Boolean currentUserRole) {
@@ -180,12 +117,48 @@ public class ProjectRole {
   }
 
    /**
-   * Whether this role is the admin role for the project.
-   * @return admin
+   * Whether this role is the default role for the project
+   * @return _default
   **/
-  @ApiModelProperty(value = "Whether this role is the admin role for the project.")
-  public Boolean getAdmin() {
-    return admin;
+  @ApiModelProperty(value = "Whether this role is the default role for the project")
+  public Boolean getDefault() {
+    return _default;
+  }
+
+   /**
+   * The description of the project role.
+   * @return description
+  **/
+  @ApiModelProperty(value = "The description of the project role.")
+  public String getDescription() {
+    return description;
+  }
+
+   /**
+   * The ID of the project role.
+   * @return id
+  **/
+  @ApiModelProperty(value = "The ID of the project role.")
+  public Long getId() {
+    return id;
+  }
+
+  public ProjectRole name(String name) {
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * The name of the project role.
+   * @return name
+  **/
+  @ApiModelProperty(value = "The name of the project role.")
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 
    /**
@@ -198,12 +171,39 @@ public class ProjectRole {
   }
 
    /**
-   * Whether this role is the default role for the project
-   * @return _default
+   * The scope of the role. Indicated for roles associated with [next-gen projects](https://confluence.atlassian.com/x/loMyO).
+   * @return scope
   **/
-  @ApiModelProperty(value = "Whether this role is the default role for the project")
-  public Boolean getDefault() {
-    return _default;
+  @ApiModelProperty(value = "The scope of the role. Indicated for roles associated with [next-gen projects](https://confluence.atlassian.com/x/loMyO).")
+  public Scope getScope() {
+    return scope;
+  }
+
+   /**
+   * The URL the project role details.
+   * @return self
+  **/
+  @ApiModelProperty(value = "The URL the project role details.")
+  public URI getSelf() {
+    return self;
+  }
+
+  public ProjectRole translatedName(String translatedName) {
+    this.translatedName = translatedName;
+    return this;
+  }
+
+   /**
+   * The translated name of the project role.
+   * @return translatedName
+  **/
+  @ApiModelProperty(value = "The translated name of the project role.")
+  public String getTranslatedName() {
+    return translatedName;
+  }
+
+  public void setTranslatedName(String translatedName) {
+    this.translatedName = translatedName;
   }
 
 
@@ -216,22 +216,22 @@ public class ProjectRole {
       return false;
     }
     ProjectRole projectRole = (ProjectRole) o;
-    return Objects.equals(this.self, projectRole.self) &&
-        Objects.equals(this.name, projectRole.name) &&
-        Objects.equals(this.id, projectRole.id) &&
-        Objects.equals(this.description, projectRole.description) &&
-        Objects.equals(this.actors, projectRole.actors) &&
-        Objects.equals(this.scope, projectRole.scope) &&
-        Objects.equals(this.translatedName, projectRole.translatedName) &&
-        Objects.equals(this.currentUserRole, projectRole.currentUserRole) &&
+    return Objects.equals(this.actors, projectRole.actors) &&
         Objects.equals(this.admin, projectRole.admin) &&
+        Objects.equals(this.currentUserRole, projectRole.currentUserRole) &&
+        Objects.equals(this._default, projectRole._default) &&
+        Objects.equals(this.description, projectRole.description) &&
+        Objects.equals(this.id, projectRole.id) &&
+        Objects.equals(this.name, projectRole.name) &&
         Objects.equals(this.roleConfigurable, projectRole.roleConfigurable) &&
-        Objects.equals(this._default, projectRole._default);
+        Objects.equals(this.scope, projectRole.scope) &&
+        Objects.equals(this.self, projectRole.self) &&
+        Objects.equals(this.translatedName, projectRole.translatedName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, name, id, description, actors, scope, translatedName, currentUserRole, admin, roleConfigurable, _default);
+    return Objects.hash(actors, admin, currentUserRole, _default, description, id, name, roleConfigurable, scope, self, translatedName);
   }
 
 
@@ -240,17 +240,17 @@ public class ProjectRole {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProjectRole {\n");
     
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    actors: ").append(toIndentedString(actors)).append("\n");
-    sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
-    sb.append("    translatedName: ").append(toIndentedString(translatedName)).append("\n");
-    sb.append("    currentUserRole: ").append(toIndentedString(currentUserRole)).append("\n");
     sb.append("    admin: ").append(toIndentedString(admin)).append("\n");
-    sb.append("    roleConfigurable: ").append(toIndentedString(roleConfigurable)).append("\n");
+    sb.append("    currentUserRole: ").append(toIndentedString(currentUserRole)).append("\n");
     sb.append("    _default: ").append(toIndentedString(_default)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    roleConfigurable: ").append(toIndentedString(roleConfigurable)).append("\n");
+    sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
+    sb.append("    translatedName: ").append(toIndentedString(translatedName)).append("\n");
     sb.append("}");
     return sb.toString();
   }

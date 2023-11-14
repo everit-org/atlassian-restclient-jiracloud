@@ -43,41 +43,33 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.BulkProjectPermissions
  * Details of global permissions to look up and project permissions with associated projects and issues to look up.
  */
 @ApiModel(description = "Details of global permissions to look up and project permissions with associated projects and issues to look up.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class BulkPermissionsRequestBean {
-  @JsonProperty("projectPermissions")
-  private List<BulkProjectPermissions> projectPermissions = new ArrayList<>();
+  @JsonProperty("accountId")
+  private String accountId;
 
   @JsonProperty("globalPermissions")
   private List<String> globalPermissions = new ArrayList<>();
 
-  @JsonProperty("accountId")
-  private String accountId;
+  @JsonProperty("projectPermissions")
+  private List<BulkProjectPermissions> projectPermissions = new ArrayList<>();
 
-  public BulkPermissionsRequestBean projectPermissions(List<BulkProjectPermissions> projectPermissions) {
-    this.projectPermissions = projectPermissions;
-    return this;
-  }
-
-  public BulkPermissionsRequestBean addProjectPermissionsItem(BulkProjectPermissions projectPermissionsItem) {
-    if (this.projectPermissions == null) {
-      this.projectPermissions = new ArrayList<>();
-    }
-    this.projectPermissions.add(projectPermissionsItem);
+  public BulkPermissionsRequestBean accountId(String accountId) {
+    this.accountId = accountId;
     return this;
   }
 
    /**
-   * Project permissions with associated projects and issues to look up.
-   * @return projectPermissions
+   * The account ID of a user.
+   * @return accountId
   **/
-  @ApiModelProperty(value = "Project permissions with associated projects and issues to look up.")
-  public List<BulkProjectPermissions> getProjectPermissions() {
-    return projectPermissions;
+  @ApiModelProperty(value = "The account ID of a user.")
+  public String getAccountId() {
+    return accountId;
   }
 
-  public void setProjectPermissions(List<BulkProjectPermissions> projectPermissions) {
-    this.projectPermissions = projectPermissions;
+  public void setAccountId(String accountId) {
+    this.accountId = accountId;
   }
 
   public BulkPermissionsRequestBean globalPermissions(List<String> globalPermissions) {
@@ -106,22 +98,30 @@ public class BulkPermissionsRequestBean {
     this.globalPermissions = globalPermissions;
   }
 
-  public BulkPermissionsRequestBean accountId(String accountId) {
-    this.accountId = accountId;
+  public BulkPermissionsRequestBean projectPermissions(List<BulkProjectPermissions> projectPermissions) {
+    this.projectPermissions = projectPermissions;
+    return this;
+  }
+
+  public BulkPermissionsRequestBean addProjectPermissionsItem(BulkProjectPermissions projectPermissionsItem) {
+    if (this.projectPermissions == null) {
+      this.projectPermissions = new ArrayList<>();
+    }
+    this.projectPermissions.add(projectPermissionsItem);
     return this;
   }
 
    /**
-   * The account ID of a user.
-   * @return accountId
+   * Project permissions with associated projects and issues to look up.
+   * @return projectPermissions
   **/
-  @ApiModelProperty(value = "The account ID of a user.")
-  public String getAccountId() {
-    return accountId;
+  @ApiModelProperty(value = "Project permissions with associated projects and issues to look up.")
+  public List<BulkProjectPermissions> getProjectPermissions() {
+    return projectPermissions;
   }
 
-  public void setAccountId(String accountId) {
-    this.accountId = accountId;
+  public void setProjectPermissions(List<BulkProjectPermissions> projectPermissions) {
+    this.projectPermissions = projectPermissions;
   }
 
 
@@ -134,14 +134,14 @@ public class BulkPermissionsRequestBean {
       return false;
     }
     BulkPermissionsRequestBean bulkPermissionsRequestBean = (BulkPermissionsRequestBean) o;
-    return Objects.equals(this.projectPermissions, bulkPermissionsRequestBean.projectPermissions) &&
+    return Objects.equals(this.accountId, bulkPermissionsRequestBean.accountId) &&
         Objects.equals(this.globalPermissions, bulkPermissionsRequestBean.globalPermissions) &&
-        Objects.equals(this.accountId, bulkPermissionsRequestBean.accountId);
+        Objects.equals(this.projectPermissions, bulkPermissionsRequestBean.projectPermissions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(projectPermissions, globalPermissions, accountId);
+    return Objects.hash(accountId, globalPermissions, projectPermissions);
   }
 
 
@@ -150,9 +150,9 @@ public class BulkPermissionsRequestBean {
     StringBuilder sb = new StringBuilder();
     sb.append("class BulkPermissionsRequestBean {\n");
     
-    sb.append("    projectPermissions: ").append(toIndentedString(projectPermissions)).append("\n");
-    sb.append("    globalPermissions: ").append(toIndentedString(globalPermissions)).append("\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
+    sb.append("    globalPermissions: ").append(toIndentedString(globalPermissions)).append("\n");
+    sb.append("    projectPermissions: ").append(toIndentedString(projectPermissions)).append("\n");
     sb.append("}");
     return sb.toString();
   }

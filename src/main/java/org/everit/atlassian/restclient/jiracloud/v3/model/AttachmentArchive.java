@@ -42,73 +42,19 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.AttachmentArchiveEntry
 /**
  * AttachmentArchive
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class AttachmentArchive {
+  @JsonProperty("entries")
+  private List<AttachmentArchiveEntry> entries = new ArrayList<>();
+
   @JsonProperty("moreAvailable")
   private Boolean moreAvailable;
-
-  @JsonProperty("totalNumberOfEntriesAvailable")
-  private Integer totalNumberOfEntriesAvailable;
 
   @JsonProperty("totalEntryCount")
   private Integer totalEntryCount;
 
-  @JsonProperty("entries")
-  private List<AttachmentArchiveEntry> entries = new ArrayList<>();
-
-  public AttachmentArchive moreAvailable(Boolean moreAvailable) {
-    this.moreAvailable = moreAvailable;
-    return this;
-  }
-
-   /**
-   * Get moreAvailable
-   * @return moreAvailable
-  **/
-  @ApiModelProperty(value = "")
-  public Boolean getMoreAvailable() {
-    return moreAvailable;
-  }
-
-  public void setMoreAvailable(Boolean moreAvailable) {
-    this.moreAvailable = moreAvailable;
-  }
-
-  public AttachmentArchive totalNumberOfEntriesAvailable(Integer totalNumberOfEntriesAvailable) {
-    this.totalNumberOfEntriesAvailable = totalNumberOfEntriesAvailable;
-    return this;
-  }
-
-   /**
-   * Get totalNumberOfEntriesAvailable
-   * @return totalNumberOfEntriesAvailable
-  **/
-  @ApiModelProperty(value = "")
-  public Integer getTotalNumberOfEntriesAvailable() {
-    return totalNumberOfEntriesAvailable;
-  }
-
-  public void setTotalNumberOfEntriesAvailable(Integer totalNumberOfEntriesAvailable) {
-    this.totalNumberOfEntriesAvailable = totalNumberOfEntriesAvailable;
-  }
-
-  public AttachmentArchive totalEntryCount(Integer totalEntryCount) {
-    this.totalEntryCount = totalEntryCount;
-    return this;
-  }
-
-   /**
-   * Get totalEntryCount
-   * @return totalEntryCount
-  **/
-  @ApiModelProperty(value = "")
-  public Integer getTotalEntryCount() {
-    return totalEntryCount;
-  }
-
-  public void setTotalEntryCount(Integer totalEntryCount) {
-    this.totalEntryCount = totalEntryCount;
-  }
+  @JsonProperty("totalNumberOfEntriesAvailable")
+  private Integer totalNumberOfEntriesAvailable;
 
   public AttachmentArchive entries(List<AttachmentArchiveEntry> entries) {
     this.entries = entries;
@@ -136,6 +82,60 @@ public class AttachmentArchive {
     this.entries = entries;
   }
 
+  public AttachmentArchive moreAvailable(Boolean moreAvailable) {
+    this.moreAvailable = moreAvailable;
+    return this;
+  }
+
+   /**
+   * Get moreAvailable
+   * @return moreAvailable
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getMoreAvailable() {
+    return moreAvailable;
+  }
+
+  public void setMoreAvailable(Boolean moreAvailable) {
+    this.moreAvailable = moreAvailable;
+  }
+
+  public AttachmentArchive totalEntryCount(Integer totalEntryCount) {
+    this.totalEntryCount = totalEntryCount;
+    return this;
+  }
+
+   /**
+   * Get totalEntryCount
+   * @return totalEntryCount
+  **/
+  @ApiModelProperty(value = "")
+  public Integer getTotalEntryCount() {
+    return totalEntryCount;
+  }
+
+  public void setTotalEntryCount(Integer totalEntryCount) {
+    this.totalEntryCount = totalEntryCount;
+  }
+
+  public AttachmentArchive totalNumberOfEntriesAvailable(Integer totalNumberOfEntriesAvailable) {
+    this.totalNumberOfEntriesAvailable = totalNumberOfEntriesAvailable;
+    return this;
+  }
+
+   /**
+   * Get totalNumberOfEntriesAvailable
+   * @return totalNumberOfEntriesAvailable
+  **/
+  @ApiModelProperty(value = "")
+  public Integer getTotalNumberOfEntriesAvailable() {
+    return totalNumberOfEntriesAvailable;
+  }
+
+  public void setTotalNumberOfEntriesAvailable(Integer totalNumberOfEntriesAvailable) {
+    this.totalNumberOfEntriesAvailable = totalNumberOfEntriesAvailable;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -146,15 +146,15 @@ public class AttachmentArchive {
       return false;
     }
     AttachmentArchive attachmentArchive = (AttachmentArchive) o;
-    return Objects.equals(this.moreAvailable, attachmentArchive.moreAvailable) &&
-        Objects.equals(this.totalNumberOfEntriesAvailable, attachmentArchive.totalNumberOfEntriesAvailable) &&
+    return Objects.equals(this.entries, attachmentArchive.entries) &&
+        Objects.equals(this.moreAvailable, attachmentArchive.moreAvailable) &&
         Objects.equals(this.totalEntryCount, attachmentArchive.totalEntryCount) &&
-        Objects.equals(this.entries, attachmentArchive.entries);
+        Objects.equals(this.totalNumberOfEntriesAvailable, attachmentArchive.totalNumberOfEntriesAvailable);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(moreAvailable, totalNumberOfEntriesAvailable, totalEntryCount, entries);
+    return Objects.hash(entries, moreAvailable, totalEntryCount, totalNumberOfEntriesAvailable);
   }
 
 
@@ -163,10 +163,10 @@ public class AttachmentArchive {
     StringBuilder sb = new StringBuilder();
     sb.append("class AttachmentArchive {\n");
     
-    sb.append("    moreAvailable: ").append(toIndentedString(moreAvailable)).append("\n");
-    sb.append("    totalNumberOfEntriesAvailable: ").append(toIndentedString(totalNumberOfEntriesAvailable)).append("\n");
-    sb.append("    totalEntryCount: ").append(toIndentedString(totalEntryCount)).append("\n");
     sb.append("    entries: ").append(toIndentedString(entries)).append("\n");
+    sb.append("    moreAvailable: ").append(toIndentedString(moreAvailable)).append("\n");
+    sb.append("    totalEntryCount: ").append(toIndentedString(totalEntryCount)).append("\n");
+    sb.append("    totalNumberOfEntriesAvailable: ").append(toIndentedString(totalNumberOfEntriesAvailable)).append("\n");
     sb.append("}");
     return sb.toString();
   }

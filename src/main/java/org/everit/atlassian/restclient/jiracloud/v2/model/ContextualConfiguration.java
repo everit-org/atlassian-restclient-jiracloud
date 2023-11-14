@@ -40,34 +40,19 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of the contextual configuration for a custom field.
  */
 @ApiModel(description = "Details of the contextual configuration for a custom field.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class ContextualConfiguration {
-  @JsonProperty("contextId")
-  private Long contextId;
-
   @JsonProperty("configuration")
   private Object _configuration = null;
 
+  @JsonProperty("fieldContextId")
+  private String fieldContextId;
+
+  @JsonProperty("id")
+  private String id;
+
   @JsonProperty("schema")
   private Object schema = null;
-
-  public ContextualConfiguration contextId(Long contextId) {
-    this.contextId = contextId;
-    return this;
-  }
-
-   /**
-   * The ID of the context the configuration is associated with.
-   * @return contextId
-  **/
-  @ApiModelProperty(required = true, value = "The ID of the context the configuration is associated with.")
-  public Long getContextId() {
-    return contextId;
-  }
-
-  public void setContextId(Long contextId) {
-    this.contextId = contextId;
-  }
 
   public ContextualConfiguration _configuration(Object _configuration) {
     this._configuration = _configuration;
@@ -75,10 +60,10 @@ public class ContextualConfiguration {
   }
 
    /**
-   * The configuration associated with the context.
+   * The field configuration.
    * @return _configuration
   **/
-  @ApiModelProperty(value = "The configuration associated with the context.")
+  @ApiModelProperty(value = "The field configuration.")
   public Object getConfiguration() {
     return _configuration;
   }
@@ -87,16 +72,43 @@ public class ContextualConfiguration {
     this._configuration = _configuration;
   }
 
+   /**
+   * The ID of the field context the configuration is associated with.
+   * @return fieldContextId
+  **/
+  @ApiModelProperty(required = true, value = "The ID of the field context the configuration is associated with.")
+  public String getFieldContextId() {
+    return fieldContextId;
+  }
+
+  public ContextualConfiguration id(String id) {
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * The ID of the configuration.
+   * @return id
+  **/
+  @ApiModelProperty(required = true, value = "The ID of the configuration.")
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
   public ContextualConfiguration schema(Object schema) {
     this.schema = schema;
     return this;
   }
 
    /**
-   * The schema associated with the context.
+   * The field value schema.
    * @return schema
   **/
-  @ApiModelProperty(value = "The schema associated with the context.")
+  @ApiModelProperty(value = "The field value schema.")
   public Object getSchema() {
     return schema;
   }
@@ -115,14 +127,15 @@ public class ContextualConfiguration {
       return false;
     }
     ContextualConfiguration contextualConfiguration = (ContextualConfiguration) o;
-    return Objects.equals(this.contextId, contextualConfiguration.contextId) &&
-        Objects.equals(this._configuration, contextualConfiguration._configuration) &&
+    return Objects.equals(this._configuration, contextualConfiguration._configuration) &&
+        Objects.equals(this.fieldContextId, contextualConfiguration.fieldContextId) &&
+        Objects.equals(this.id, contextualConfiguration.id) &&
         Objects.equals(this.schema, contextualConfiguration.schema);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(contextId, _configuration, schema);
+    return Objects.hash(_configuration, fieldContextId, id, schema);
   }
 
 
@@ -131,8 +144,9 @@ public class ContextualConfiguration {
     StringBuilder sb = new StringBuilder();
     sb.append("class ContextualConfiguration {\n");
     
-    sb.append("    contextId: ").append(toIndentedString(contextId)).append("\n");
     sb.append("    _configuration: ").append(toIndentedString(_configuration)).append("\n");
+    sb.append("    fieldContextId: ").append(toIndentedString(fieldContextId)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    schema: ").append(toIndentedString(schema)).append("\n");
     sb.append("}");
     return sb.toString();

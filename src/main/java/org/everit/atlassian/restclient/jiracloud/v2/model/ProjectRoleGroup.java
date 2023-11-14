@@ -40,10 +40,13 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of the group associated with the role.
  */
 @ApiModel(description = "Details of the group associated with the role.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class ProjectRoleGroup {
   @JsonProperty("displayName")
   private String displayName;
+
+  @JsonProperty("groupId")
+  private String groupId;
 
   @JsonProperty("name")
   private String name;
@@ -66,16 +69,34 @@ public class ProjectRoleGroup {
     this.displayName = displayName;
   }
 
+  public ProjectRoleGroup groupId(String groupId) {
+    this.groupId = groupId;
+    return this;
+  }
+
+   /**
+   * The ID of the group.
+   * @return groupId
+  **/
+  @ApiModelProperty(value = "The ID of the group.")
+  public String getGroupId() {
+    return groupId;
+  }
+
+  public void setGroupId(String groupId) {
+    this.groupId = groupId;
+  }
+
   public ProjectRoleGroup name(String name) {
     this.name = name;
     return this;
   }
 
    /**
-   * The name of the group
+   * The name of the group. As a group&#39;s name can change, use of &#x60;groupId&#x60; is recommended to identify the group.
    * @return name
   **/
-  @ApiModelProperty(value = "The name of the group")
+  @ApiModelProperty(value = "The name of the group. As a group's name can change, use of `groupId` is recommended to identify the group.")
   public String getName() {
     return name;
   }
@@ -95,12 +116,13 @@ public class ProjectRoleGroup {
     }
     ProjectRoleGroup projectRoleGroup = (ProjectRoleGroup) o;
     return Objects.equals(this.displayName, projectRoleGroup.displayName) &&
+        Objects.equals(this.groupId, projectRoleGroup.groupId) &&
         Objects.equals(this.name, projectRoleGroup.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(displayName, name);
+    return Objects.hash(displayName, groupId, name);
   }
 
 
@@ -110,6 +132,7 @@ public class ProjectRoleGroup {
     sb.append("class ProjectRoleGroup {\n");
     
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
+    sb.append("    groupId: ").append(toIndentedString(groupId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();

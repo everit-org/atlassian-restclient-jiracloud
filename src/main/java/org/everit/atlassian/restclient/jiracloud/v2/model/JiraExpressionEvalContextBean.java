@@ -35,14 +35,26 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.List;
+import org.everit.atlassian.restclient.jiracloud.v2.model.CustomContextVariable;
 import org.everit.atlassian.restclient.jiracloud.v2.model.IdOrKeyBean;
 import org.everit.atlassian.restclient.jiracloud.v2.model.JexpIssues;
 
 /**
  * JiraExpressionEvalContextBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class JiraExpressionEvalContextBean {
+  @JsonProperty("board")
+  private Long board;
+
+  @JsonProperty("custom")
+  private List<CustomContextVariable> custom = new ArrayList<>();
+
+  @JsonProperty("customerRequest")
+  private Long customerRequest;
+
   @JsonProperty("issue")
   private IdOrKeyBean issue;
 
@@ -52,17 +64,73 @@ public class JiraExpressionEvalContextBean {
   @JsonProperty("project")
   private IdOrKeyBean project;
 
-  @JsonProperty("sprint")
-  private Long sprint;
-
-  @JsonProperty("board")
-  private Long board;
-
   @JsonProperty("serviceDesk")
   private Long serviceDesk;
 
-  @JsonProperty("customerRequest")
-  private Long customerRequest;
+  @JsonProperty("sprint")
+  private Long sprint;
+
+  public JiraExpressionEvalContextBean board(Long board) {
+    this.board = board;
+    return this;
+  }
+
+   /**
+   * The ID of the board that is available under the &#x60;board&#x60; variable when evaluating the expression.
+   * @return board
+  **/
+  @ApiModelProperty(value = "The ID of the board that is available under the `board` variable when evaluating the expression.")
+  public Long getBoard() {
+    return board;
+  }
+
+  public void setBoard(Long board) {
+    this.board = board;
+  }
+
+  public JiraExpressionEvalContextBean custom(List<CustomContextVariable> custom) {
+    this.custom = custom;
+    return this;
+  }
+
+  public JiraExpressionEvalContextBean addCustomItem(CustomContextVariable customItem) {
+    if (this.custom == null) {
+      this.custom = new ArrayList<>();
+    }
+    this.custom.add(customItem);
+    return this;
+  }
+
+   /**
+   * Custom context variables and their types. These variable types are available for use in a custom context:   *  &#x60;user&#x60;: A [user](https://developer.atlassian.com/cloud/jira/platform/jira-expressions-type-reference#user) specified as an Atlassian account ID.  *  &#x60;issue&#x60;: An [issue](https://developer.atlassian.com/cloud/jira/platform/jira-expressions-type-reference#issue) specified by ID or key. All the fields of the issue object are available in the Jira expression.  *  &#x60;json&#x60;: A JSON object containing custom content.  *  &#x60;list&#x60;: A JSON list of &#x60;user&#x60;, &#x60;issue&#x60;, or &#x60;json&#x60; variable types.
+   * @return custom
+  **/
+  @ApiModelProperty(value = "Custom context variables and their types. These variable types are available for use in a custom context:   *  `user`: A [user](https://developer.atlassian.com/cloud/jira/platform/jira-expressions-type-reference#user) specified as an Atlassian account ID.  *  `issue`: An [issue](https://developer.atlassian.com/cloud/jira/platform/jira-expressions-type-reference#issue) specified by ID or key. All the fields of the issue object are available in the Jira expression.  *  `json`: A JSON object containing custom content.  *  `list`: A JSON list of `user`, `issue`, or `json` variable types.")
+  public List<CustomContextVariable> getCustom() {
+    return custom;
+  }
+
+  public void setCustom(List<CustomContextVariable> custom) {
+    this.custom = custom;
+  }
+
+  public JiraExpressionEvalContextBean customerRequest(Long customerRequest) {
+    this.customerRequest = customerRequest;
+    return this;
+  }
+
+   /**
+   * The ID of the customer request that is available under the &#x60;customerRequest&#x60; variable when evaluating the expression. This is the same as the ID of the underlying Jira issue, but the customer request context variable will have a different type.
+   * @return customerRequest
+  **/
+  @ApiModelProperty(value = "The ID of the customer request that is available under the `customerRequest` variable when evaluating the expression. This is the same as the ID of the underlying Jira issue, but the customer request context variable will have a different type.")
+  public Long getCustomerRequest() {
+    return customerRequest;
+  }
+
+  public void setCustomerRequest(Long customerRequest) {
+    this.customerRequest = customerRequest;
+  }
 
   public JiraExpressionEvalContextBean issue(IdOrKeyBean issue) {
     this.issue = issue;
@@ -118,42 +186,6 @@ public class JiraExpressionEvalContextBean {
     this.project = project;
   }
 
-  public JiraExpressionEvalContextBean sprint(Long sprint) {
-    this.sprint = sprint;
-    return this;
-  }
-
-   /**
-   * The ID of the sprint that is available under the &#x60;sprint&#x60; variable when evaluating the expression.
-   * @return sprint
-  **/
-  @ApiModelProperty(value = "The ID of the sprint that is available under the `sprint` variable when evaluating the expression.")
-  public Long getSprint() {
-    return sprint;
-  }
-
-  public void setSprint(Long sprint) {
-    this.sprint = sprint;
-  }
-
-  public JiraExpressionEvalContextBean board(Long board) {
-    this.board = board;
-    return this;
-  }
-
-   /**
-   * The ID of the board that is available under the &#x60;board&#x60; variable when evaluating the expression.
-   * @return board
-  **/
-  @ApiModelProperty(value = "The ID of the board that is available under the `board` variable when evaluating the expression.")
-  public Long getBoard() {
-    return board;
-  }
-
-  public void setBoard(Long board) {
-    this.board = board;
-  }
-
   public JiraExpressionEvalContextBean serviceDesk(Long serviceDesk) {
     this.serviceDesk = serviceDesk;
     return this;
@@ -172,22 +204,22 @@ public class JiraExpressionEvalContextBean {
     this.serviceDesk = serviceDesk;
   }
 
-  public JiraExpressionEvalContextBean customerRequest(Long customerRequest) {
-    this.customerRequest = customerRequest;
+  public JiraExpressionEvalContextBean sprint(Long sprint) {
+    this.sprint = sprint;
     return this;
   }
 
    /**
-   * The ID of the customer request that is available under the &#x60;customerRequest&#x60; variable when evaluating the expression. This is the same as the ID of the underlying Jira issue, but the customer request context variable will have a different type.
-   * @return customerRequest
+   * The ID of the sprint that is available under the &#x60;sprint&#x60; variable when evaluating the expression.
+   * @return sprint
   **/
-  @ApiModelProperty(value = "The ID of the customer request that is available under the `customerRequest` variable when evaluating the expression. This is the same as the ID of the underlying Jira issue, but the customer request context variable will have a different type.")
-  public Long getCustomerRequest() {
-    return customerRequest;
+  @ApiModelProperty(value = "The ID of the sprint that is available under the `sprint` variable when evaluating the expression.")
+  public Long getSprint() {
+    return sprint;
   }
 
-  public void setCustomerRequest(Long customerRequest) {
-    this.customerRequest = customerRequest;
+  public void setSprint(Long sprint) {
+    this.sprint = sprint;
   }
 
 
@@ -200,18 +232,19 @@ public class JiraExpressionEvalContextBean {
       return false;
     }
     JiraExpressionEvalContextBean jiraExpressionEvalContextBean = (JiraExpressionEvalContextBean) o;
-    return Objects.equals(this.issue, jiraExpressionEvalContextBean.issue) &&
+    return Objects.equals(this.board, jiraExpressionEvalContextBean.board) &&
+        Objects.equals(this.custom, jiraExpressionEvalContextBean.custom) &&
+        Objects.equals(this.customerRequest, jiraExpressionEvalContextBean.customerRequest) &&
+        Objects.equals(this.issue, jiraExpressionEvalContextBean.issue) &&
         Objects.equals(this.issues, jiraExpressionEvalContextBean.issues) &&
         Objects.equals(this.project, jiraExpressionEvalContextBean.project) &&
-        Objects.equals(this.sprint, jiraExpressionEvalContextBean.sprint) &&
-        Objects.equals(this.board, jiraExpressionEvalContextBean.board) &&
         Objects.equals(this.serviceDesk, jiraExpressionEvalContextBean.serviceDesk) &&
-        Objects.equals(this.customerRequest, jiraExpressionEvalContextBean.customerRequest);
+        Objects.equals(this.sprint, jiraExpressionEvalContextBean.sprint);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(issue, issues, project, sprint, board, serviceDesk, customerRequest);
+    return Objects.hash(board, custom, customerRequest, issue, issues, project, serviceDesk, sprint);
   }
 
 
@@ -220,13 +253,14 @@ public class JiraExpressionEvalContextBean {
     StringBuilder sb = new StringBuilder();
     sb.append("class JiraExpressionEvalContextBean {\n");
     
+    sb.append("    board: ").append(toIndentedString(board)).append("\n");
+    sb.append("    custom: ").append(toIndentedString(custom)).append("\n");
+    sb.append("    customerRequest: ").append(toIndentedString(customerRequest)).append("\n");
     sb.append("    issue: ").append(toIndentedString(issue)).append("\n");
     sb.append("    issues: ").append(toIndentedString(issues)).append("\n");
     sb.append("    project: ").append(toIndentedString(project)).append("\n");
-    sb.append("    sprint: ").append(toIndentedString(sprint)).append("\n");
-    sb.append("    board: ").append(toIndentedString(board)).append("\n");
     sb.append("    serviceDesk: ").append(toIndentedString(serviceDesk)).append("\n");
-    sb.append("    customerRequest: ").append(toIndentedString(customerRequest)).append("\n");
+    sb.append("    sprint: ").append(toIndentedString(sprint)).append("\n");
     sb.append("}");
     return sb.toString();
   }

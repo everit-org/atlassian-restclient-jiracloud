@@ -40,31 +40,13 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of a screen.
  */
 @ApiModel(description = "Details of a screen.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class UpdateScreenDetails {
-  @JsonProperty("name")
-  private String name;
-
   @JsonProperty("description")
   private String description;
 
-  public UpdateScreenDetails name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * The name of the screen. The name must be unique. The maximum length is 255 characters.
-   * @return name
-  **/
-  @ApiModelProperty(value = "The name of the screen. The name must be unique. The maximum length is 255 characters.")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
+  @JsonProperty("name")
+  private String name;
 
   public UpdateScreenDetails description(String description) {
     this.description = description;
@@ -84,6 +66,24 @@ public class UpdateScreenDetails {
     this.description = description;
   }
 
+  public UpdateScreenDetails name(String name) {
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * The name of the screen. The name must be unique. The maximum length is 255 characters.
+   * @return name
+  **/
+  @ApiModelProperty(value = "The name of the screen. The name must be unique. The maximum length is 255 characters.")
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -94,13 +94,13 @@ public class UpdateScreenDetails {
       return false;
     }
     UpdateScreenDetails updateScreenDetails = (UpdateScreenDetails) o;
-    return Objects.equals(this.name, updateScreenDetails.name) &&
-        Objects.equals(this.description, updateScreenDetails.description);
+    return Objects.equals(this.description, updateScreenDetails.description) &&
+        Objects.equals(this.name, updateScreenDetails.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description);
+    return Objects.hash(description, name);
   }
 
 
@@ -109,8 +109,8 @@ public class UpdateScreenDetails {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateScreenDetails {\n");
     
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }

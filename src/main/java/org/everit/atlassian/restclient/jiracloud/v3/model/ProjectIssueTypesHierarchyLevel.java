@@ -44,19 +44,19 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.IssueTypeInfo;
  * Details of an issue type hierarchy level.
  */
 @ApiModel(description = "Details of an issue type hierarchy level.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class ProjectIssueTypesHierarchyLevel {
   @JsonProperty("entityId")
   private UUID entityId;
+
+  @JsonProperty("issueTypes")
+  private List<IssueTypeInfo> issueTypes = new ArrayList<>();
 
   @JsonProperty("level")
   private Integer level;
 
   @JsonProperty("name")
   private String name;
-
-  @JsonProperty("issueTypes")
-  private List<IssueTypeInfo> issueTypes = new ArrayList<>();
 
    /**
    * The ID of the issue type hierarchy level. This property is deprecated, see [Change notice: Removing hierarchy level IDs from next-gen APIs](https://developer.atlassian.com/cloud/jira/platform/change-notice-removing-hierarchy-level-ids-from-next-gen-apis/).
@@ -65,6 +65,15 @@ public class ProjectIssueTypesHierarchyLevel {
   @ApiModelProperty(value = "The ID of the issue type hierarchy level. This property is deprecated, see [Change notice: Removing hierarchy level IDs from next-gen APIs](https://developer.atlassian.com/cloud/jira/platform/change-notice-removing-hierarchy-level-ids-from-next-gen-apis/).")
   public UUID getEntityId() {
     return entityId;
+  }
+
+   /**
+   * The list of issue types in the hierarchy level.
+   * @return issueTypes
+  **/
+  @ApiModelProperty(value = "The list of issue types in the hierarchy level.")
+  public List<IssueTypeInfo> getIssueTypes() {
+    return issueTypes;
   }
 
    /**
@@ -85,15 +94,6 @@ public class ProjectIssueTypesHierarchyLevel {
     return name;
   }
 
-   /**
-   * The list of issue types in the hierarchy level.
-   * @return issueTypes
-  **/
-  @ApiModelProperty(value = "The list of issue types in the hierarchy level.")
-  public List<IssueTypeInfo> getIssueTypes() {
-    return issueTypes;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -105,14 +105,14 @@ public class ProjectIssueTypesHierarchyLevel {
     }
     ProjectIssueTypesHierarchyLevel projectIssueTypesHierarchyLevel = (ProjectIssueTypesHierarchyLevel) o;
     return Objects.equals(this.entityId, projectIssueTypesHierarchyLevel.entityId) &&
+        Objects.equals(this.issueTypes, projectIssueTypesHierarchyLevel.issueTypes) &&
         Objects.equals(this.level, projectIssueTypesHierarchyLevel.level) &&
-        Objects.equals(this.name, projectIssueTypesHierarchyLevel.name) &&
-        Objects.equals(this.issueTypes, projectIssueTypesHierarchyLevel.issueTypes);
+        Objects.equals(this.name, projectIssueTypesHierarchyLevel.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(entityId, level, name, issueTypes);
+    return Objects.hash(entityId, issueTypes, level, name);
   }
 
 
@@ -122,9 +122,9 @@ public class ProjectIssueTypesHierarchyLevel {
     sb.append("class ProjectIssueTypesHierarchyLevel {\n");
     
     sb.append("    entityId: ").append(toIndentedString(entityId)).append("\n");
+    sb.append("    issueTypes: ").append(toIndentedString(issueTypes)).append("\n");
     sb.append("    level: ").append(toIndentedString(level)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    issueTypes: ").append(toIndentedString(issueTypes)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -42,58 +42,22 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.ScreenTypes;
  * A screen scheme.
  */
 @ApiModel(description = "A screen scheme.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class ScreenScheme {
-  @JsonProperty("id")
-  private Long id;
-
-  @JsonProperty("name")
-  private String name;
-
   @JsonProperty("description")
   private String description;
 
-  @JsonProperty("screens")
-  private ScreenTypes screens;
+  @JsonProperty("id")
+  private Long id;
 
   @JsonProperty("issueTypeScreenSchemes")
   private PageBeanIssueTypeScreenScheme issueTypeScreenSchemes;
 
-  public ScreenScheme id(Long id) {
-    this.id = id;
-    return this;
-  }
+  @JsonProperty("name")
+  private String name;
 
-   /**
-   * The ID of the screen scheme.
-   * @return id
-  **/
-  @ApiModelProperty(value = "The ID of the screen scheme.")
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public ScreenScheme name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * The name of the screen scheme.
-   * @return name
-  **/
-  @ApiModelProperty(value = "The name of the screen scheme.")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
+  @JsonProperty("screens")
+  private ScreenTypes screens;
 
   public ScreenScheme description(String description) {
     this.description = description;
@@ -113,22 +77,22 @@ public class ScreenScheme {
     this.description = description;
   }
 
-  public ScreenScheme screens(ScreenTypes screens) {
-    this.screens = screens;
+  public ScreenScheme id(Long id) {
+    this.id = id;
     return this;
   }
 
    /**
-   * The IDs of the screens for the screen types of the screen scheme.
-   * @return screens
+   * The ID of the screen scheme.
+   * @return id
   **/
-  @ApiModelProperty(value = "The IDs of the screens for the screen types of the screen scheme.")
-  public ScreenTypes getScreens() {
-    return screens;
+  @ApiModelProperty(value = "The ID of the screen scheme.")
+  public Long getId() {
+    return id;
   }
 
-  public void setScreens(ScreenTypes screens) {
-    this.screens = screens;
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public ScreenScheme issueTypeScreenSchemes(PageBeanIssueTypeScreenScheme issueTypeScreenSchemes) {
@@ -149,6 +113,42 @@ public class ScreenScheme {
     this.issueTypeScreenSchemes = issueTypeScreenSchemes;
   }
 
+  public ScreenScheme name(String name) {
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * The name of the screen scheme.
+   * @return name
+  **/
+  @ApiModelProperty(value = "The name of the screen scheme.")
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public ScreenScheme screens(ScreenTypes screens) {
+    this.screens = screens;
+    return this;
+  }
+
+   /**
+   * The IDs of the screens for the screen types of the screen scheme.
+   * @return screens
+  **/
+  @ApiModelProperty(value = "The IDs of the screens for the screen types of the screen scheme.")
+  public ScreenTypes getScreens() {
+    return screens;
+  }
+
+  public void setScreens(ScreenTypes screens) {
+    this.screens = screens;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -159,16 +159,16 @@ public class ScreenScheme {
       return false;
     }
     ScreenScheme screenScheme = (ScreenScheme) o;
-    return Objects.equals(this.id, screenScheme.id) &&
+    return Objects.equals(this.description, screenScheme.description) &&
+        Objects.equals(this.id, screenScheme.id) &&
+        Objects.equals(this.issueTypeScreenSchemes, screenScheme.issueTypeScreenSchemes) &&
         Objects.equals(this.name, screenScheme.name) &&
-        Objects.equals(this.description, screenScheme.description) &&
-        Objects.equals(this.screens, screenScheme.screens) &&
-        Objects.equals(this.issueTypeScreenSchemes, screenScheme.issueTypeScreenSchemes);
+        Objects.equals(this.screens, screenScheme.screens);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, screens, issueTypeScreenSchemes);
+    return Objects.hash(description, id, issueTypeScreenSchemes, name, screens);
   }
 
 
@@ -177,11 +177,11 @@ public class ScreenScheme {
     StringBuilder sb = new StringBuilder();
     sb.append("class ScreenScheme {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    screens: ").append(toIndentedString(screens)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    issueTypeScreenSchemes: ").append(toIndentedString(issueTypeScreenSchemes)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    screens: ").append(toIndentedString(screens)).append("\n");
     sb.append("}");
     return sb.toString();
   }

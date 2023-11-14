@@ -40,33 +40,33 @@ import io.swagger.annotations.ApiModelProperty;
  * The project and issue type mapping with a matching custom field context.
  */
 @ApiModel(description = "The project and issue type mapping with a matching custom field context.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class ContextForProjectAndIssueType {
-  @JsonProperty("projectId")
-  private String projectId;
+  @JsonProperty("contextId")
+  private String contextId;
 
   @JsonProperty("issueTypeId")
   private String issueTypeId;
 
-  @JsonProperty("contextId")
-  private String contextId;
+  @JsonProperty("projectId")
+  private String projectId;
 
-  public ContextForProjectAndIssueType projectId(String projectId) {
-    this.projectId = projectId;
+  public ContextForProjectAndIssueType contextId(String contextId) {
+    this.contextId = contextId;
     return this;
   }
 
    /**
-   * The ID of the project.
-   * @return projectId
+   * The ID of the custom field context.
+   * @return contextId
   **/
-  @ApiModelProperty(required = true, value = "The ID of the project.")
-  public String getProjectId() {
-    return projectId;
+  @ApiModelProperty(required = true, value = "The ID of the custom field context.")
+  public String getContextId() {
+    return contextId;
   }
 
-  public void setProjectId(String projectId) {
-    this.projectId = projectId;
+  public void setContextId(String contextId) {
+    this.contextId = contextId;
   }
 
   public ContextForProjectAndIssueType issueTypeId(String issueTypeId) {
@@ -87,22 +87,22 @@ public class ContextForProjectAndIssueType {
     this.issueTypeId = issueTypeId;
   }
 
-  public ContextForProjectAndIssueType contextId(String contextId) {
-    this.contextId = contextId;
+  public ContextForProjectAndIssueType projectId(String projectId) {
+    this.projectId = projectId;
     return this;
   }
 
    /**
-   * The ID of the custom field context.
-   * @return contextId
+   * The ID of the project.
+   * @return projectId
   **/
-  @ApiModelProperty(required = true, value = "The ID of the custom field context.")
-  public String getContextId() {
-    return contextId;
+  @ApiModelProperty(required = true, value = "The ID of the project.")
+  public String getProjectId() {
+    return projectId;
   }
 
-  public void setContextId(String contextId) {
-    this.contextId = contextId;
+  public void setProjectId(String projectId) {
+    this.projectId = projectId;
   }
 
 
@@ -115,14 +115,14 @@ public class ContextForProjectAndIssueType {
       return false;
     }
     ContextForProjectAndIssueType contextForProjectAndIssueType = (ContextForProjectAndIssueType) o;
-    return Objects.equals(this.projectId, contextForProjectAndIssueType.projectId) &&
+    return Objects.equals(this.contextId, contextForProjectAndIssueType.contextId) &&
         Objects.equals(this.issueTypeId, contextForProjectAndIssueType.issueTypeId) &&
-        Objects.equals(this.contextId, contextForProjectAndIssueType.contextId);
+        Objects.equals(this.projectId, contextForProjectAndIssueType.projectId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(projectId, issueTypeId, contextId);
+    return Objects.hash(contextId, issueTypeId, projectId);
   }
 
 
@@ -131,9 +131,9 @@ public class ContextForProjectAndIssueType {
     StringBuilder sb = new StringBuilder();
     sb.append("class ContextForProjectAndIssueType {\n");
     
-    sb.append("    projectId: ").append(toIndentedString(projectId)).append("\n");
-    sb.append("    issueTypeId: ").append(toIndentedString(issueTypeId)).append("\n");
     sb.append("    contextId: ").append(toIndentedString(contextId)).append("\n");
+    sb.append("    issueTypeId: ").append(toIndentedString(issueTypeId)).append("\n");
+    sb.append("    projectId: ").append(toIndentedString(projectId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -41,41 +41,41 @@ import java.util.List;
 /**
  * IncludedFields
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class IncludedFields {
-  @JsonProperty("included")
-  private List<String> included = new ArrayList<>();
+  @JsonProperty("actuallyIncluded")
+  private List<String> actuallyIncluded = new ArrayList<>();
 
   @JsonProperty("excluded")
   private List<String> excluded = new ArrayList<>();
 
-  @JsonProperty("actuallyIncluded")
-  private List<String> actuallyIncluded = new ArrayList<>();
+  @JsonProperty("included")
+  private List<String> included = new ArrayList<>();
 
-  public IncludedFields included(List<String> included) {
-    this.included = included;
+  public IncludedFields actuallyIncluded(List<String> actuallyIncluded) {
+    this.actuallyIncluded = actuallyIncluded;
     return this;
   }
 
-  public IncludedFields addIncludedItem(String includedItem) {
-    if (this.included == null) {
-      this.included = new ArrayList<>();
+  public IncludedFields addActuallyIncludedItem(String actuallyIncludedItem) {
+    if (this.actuallyIncluded == null) {
+      this.actuallyIncluded = new ArrayList<>();
     }
-    this.included.add(includedItem);
+    this.actuallyIncluded.add(actuallyIncludedItem);
     return this;
   }
 
    /**
-   * Get included
-   * @return included
+   * Get actuallyIncluded
+   * @return actuallyIncluded
   **/
   @ApiModelProperty(value = "")
-  public List<String> getIncluded() {
-    return included;
+  public List<String> getActuallyIncluded() {
+    return actuallyIncluded;
   }
 
-  public void setIncluded(List<String> included) {
-    this.included = included;
+  public void setActuallyIncluded(List<String> actuallyIncluded) {
+    this.actuallyIncluded = actuallyIncluded;
   }
 
   public IncludedFields excluded(List<String> excluded) {
@@ -104,30 +104,30 @@ public class IncludedFields {
     this.excluded = excluded;
   }
 
-  public IncludedFields actuallyIncluded(List<String> actuallyIncluded) {
-    this.actuallyIncluded = actuallyIncluded;
+  public IncludedFields included(List<String> included) {
+    this.included = included;
     return this;
   }
 
-  public IncludedFields addActuallyIncludedItem(String actuallyIncludedItem) {
-    if (this.actuallyIncluded == null) {
-      this.actuallyIncluded = new ArrayList<>();
+  public IncludedFields addIncludedItem(String includedItem) {
+    if (this.included == null) {
+      this.included = new ArrayList<>();
     }
-    this.actuallyIncluded.add(actuallyIncludedItem);
+    this.included.add(includedItem);
     return this;
   }
 
    /**
-   * Get actuallyIncluded
-   * @return actuallyIncluded
+   * Get included
+   * @return included
   **/
   @ApiModelProperty(value = "")
-  public List<String> getActuallyIncluded() {
-    return actuallyIncluded;
+  public List<String> getIncluded() {
+    return included;
   }
 
-  public void setActuallyIncluded(List<String> actuallyIncluded) {
-    this.actuallyIncluded = actuallyIncluded;
+  public void setIncluded(List<String> included) {
+    this.included = included;
   }
 
 
@@ -140,14 +140,14 @@ public class IncludedFields {
       return false;
     }
     IncludedFields includedFields = (IncludedFields) o;
-    return Objects.equals(this.included, includedFields.included) &&
+    return Objects.equals(this.actuallyIncluded, includedFields.actuallyIncluded) &&
         Objects.equals(this.excluded, includedFields.excluded) &&
-        Objects.equals(this.actuallyIncluded, includedFields.actuallyIncluded);
+        Objects.equals(this.included, includedFields.included);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(included, excluded, actuallyIncluded);
+    return Objects.hash(actuallyIncluded, excluded, included);
   }
 
 
@@ -156,9 +156,9 @@ public class IncludedFields {
     StringBuilder sb = new StringBuilder();
     sb.append("class IncludedFields {\n");
     
-    sb.append("    included: ").append(toIndentedString(included)).append("\n");
-    sb.append("    excluded: ").append(toIndentedString(excluded)).append("\n");
     sb.append("    actuallyIncluded: ").append(toIndentedString(actuallyIncluded)).append("\n");
+    sb.append("    excluded: ").append(toIndentedString(excluded)).append("\n");
+    sb.append("    included: ").append(toIndentedString(included)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -44,10 +44,19 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.UserBean;
  * Details of a share permission for the filter.
  */
 @ApiModel(description = "Details of a share permission for the filter.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class SharePermission {
+  @JsonProperty("group")
+  private GroupName group;
+
   @JsonProperty("id")
   private Long id;
+
+  @JsonProperty("project")
+  private Project project;
+
+  @JsonProperty("role")
+  private ProjectRole role;
 
   /**
    * The type of share permission:   *  &#x60;user&#x60; Shared with a user.  *  &#x60;group&#x60; Shared with a group. If set in a request, then specify &#x60;sharePermission.group&#x60; as well.  *  &#x60;project&#x60; Shared with a project. If set in a request, then specify &#x60;sharePermission.project&#x60; as well.  *  &#x60;projectRole&#x60; Share with a project role in a project. This value is not returned in responses. It is used in requests, where it needs to be specify with &#x60;projectId&#x60; and &#x60;projectRoleId&#x60;.  *  &#x60;global&#x60; Shared globally. If set in a request, no other &#x60;sharePermission&#x60; properties need to be specified.  *  &#x60;loggedin&#x60; Shared with all logged-in users. Note: This value is set in a request by specifying &#x60;authenticated&#x60; as the &#x60;type&#x60;.  *  &#x60;project-unknown&#x60; Shared with a project that the user does not have access to. Cannot be set in a request.
@@ -99,17 +108,26 @@ public class SharePermission {
   @JsonProperty("type")
   private TypeEnum type;
 
-  @JsonProperty("project")
-  private Project project;
-
-  @JsonProperty("role")
-  private ProjectRole role;
-
-  @JsonProperty("group")
-  private GroupName group;
-
   @JsonProperty("user")
   private UserBean user;
+
+  public SharePermission group(GroupName group) {
+    this.group = group;
+    return this;
+  }
+
+   /**
+   * The group that the filter is shared with. For a request, specify the &#x60;groupId&#x60; or &#x60;name&#x60; property for the group. As a group&#39;s name can change, use of &#x60;groupId&#x60; is recommended.
+   * @return group
+  **/
+  @ApiModelProperty(value = "The group that the filter is shared with. For a request, specify the `groupId` or `name` property for the group. As a group's name can change, use of `groupId` is recommended.")
+  public GroupName getGroup() {
+    return group;
+  }
+
+  public void setGroup(GroupName group) {
+    this.group = group;
+  }
 
    /**
    * The unique identifier of the share permission.
@@ -118,24 +136,6 @@ public class SharePermission {
   @ApiModelProperty(value = "The unique identifier of the share permission.")
   public Long getId() {
     return id;
-  }
-
-  public SharePermission type(TypeEnum type) {
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * The type of share permission:   *  &#x60;user&#x60; Shared with a user.  *  &#x60;group&#x60; Shared with a group. If set in a request, then specify &#x60;sharePermission.group&#x60; as well.  *  &#x60;project&#x60; Shared with a project. If set in a request, then specify &#x60;sharePermission.project&#x60; as well.  *  &#x60;projectRole&#x60; Share with a project role in a project. This value is not returned in responses. It is used in requests, where it needs to be specify with &#x60;projectId&#x60; and &#x60;projectRoleId&#x60;.  *  &#x60;global&#x60; Shared globally. If set in a request, no other &#x60;sharePermission&#x60; properties need to be specified.  *  &#x60;loggedin&#x60; Shared with all logged-in users. Note: This value is set in a request by specifying &#x60;authenticated&#x60; as the &#x60;type&#x60;.  *  &#x60;project-unknown&#x60; Shared with a project that the user does not have access to. Cannot be set in a request.
-   * @return type
-  **/
-  @ApiModelProperty(required = true, value = "The type of share permission:   *  `user` Shared with a user.  *  `group` Shared with a group. If set in a request, then specify `sharePermission.group` as well.  *  `project` Shared with a project. If set in a request, then specify `sharePermission.project` as well.  *  `projectRole` Share with a project role in a project. This value is not returned in responses. It is used in requests, where it needs to be specify with `projectId` and `projectRoleId`.  *  `global` Shared globally. If set in a request, no other `sharePermission` properties need to be specified.  *  `loggedin` Shared with all logged-in users. Note: This value is set in a request by specifying `authenticated` as the `type`.  *  `project-unknown` Shared with a project that the user does not have access to. Cannot be set in a request.")
-  public TypeEnum getType() {
-    return type;
-  }
-
-  public void setType(TypeEnum type) {
-    this.type = type;
   }
 
   public SharePermission project(Project project) {
@@ -174,22 +174,22 @@ public class SharePermission {
     this.role = role;
   }
 
-  public SharePermission group(GroupName group) {
-    this.group = group;
+  public SharePermission type(TypeEnum type) {
+    this.type = type;
     return this;
   }
 
    /**
-   * The group that the filter is shared with. For a request, specify the &#x60;name&#x60; property for the group.
-   * @return group
+   * The type of share permission:   *  &#x60;user&#x60; Shared with a user.  *  &#x60;group&#x60; Shared with a group. If set in a request, then specify &#x60;sharePermission.group&#x60; as well.  *  &#x60;project&#x60; Shared with a project. If set in a request, then specify &#x60;sharePermission.project&#x60; as well.  *  &#x60;projectRole&#x60; Share with a project role in a project. This value is not returned in responses. It is used in requests, where it needs to be specify with &#x60;projectId&#x60; and &#x60;projectRoleId&#x60;.  *  &#x60;global&#x60; Shared globally. If set in a request, no other &#x60;sharePermission&#x60; properties need to be specified.  *  &#x60;loggedin&#x60; Shared with all logged-in users. Note: This value is set in a request by specifying &#x60;authenticated&#x60; as the &#x60;type&#x60;.  *  &#x60;project-unknown&#x60; Shared with a project that the user does not have access to. Cannot be set in a request.
+   * @return type
   **/
-  @ApiModelProperty(value = "The group that the filter is shared with. For a request, specify the `name` property for the group.")
-  public GroupName getGroup() {
-    return group;
+  @ApiModelProperty(required = true, value = "The type of share permission:   *  `user` Shared with a user.  *  `group` Shared with a group. If set in a request, then specify `sharePermission.group` as well.  *  `project` Shared with a project. If set in a request, then specify `sharePermission.project` as well.  *  `projectRole` Share with a project role in a project. This value is not returned in responses. It is used in requests, where it needs to be specify with `projectId` and `projectRoleId`.  *  `global` Shared globally. If set in a request, no other `sharePermission` properties need to be specified.  *  `loggedin` Shared with all logged-in users. Note: This value is set in a request by specifying `authenticated` as the `type`.  *  `project-unknown` Shared with a project that the user does not have access to. Cannot be set in a request.")
+  public TypeEnum getType() {
+    return type;
   }
 
-  public void setGroup(GroupName group) {
-    this.group = group;
+  public void setType(TypeEnum type) {
+    this.type = type;
   }
 
   public SharePermission user(UserBean user) {
@@ -220,17 +220,17 @@ public class SharePermission {
       return false;
     }
     SharePermission sharePermission = (SharePermission) o;
-    return Objects.equals(this.id, sharePermission.id) &&
-        Objects.equals(this.type, sharePermission.type) &&
+    return Objects.equals(this.group, sharePermission.group) &&
+        Objects.equals(this.id, sharePermission.id) &&
         Objects.equals(this.project, sharePermission.project) &&
         Objects.equals(this.role, sharePermission.role) &&
-        Objects.equals(this.group, sharePermission.group) &&
+        Objects.equals(this.type, sharePermission.type) &&
         Objects.equals(this.user, sharePermission.user);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, type, project, role, group, user);
+    return Objects.hash(group, id, project, role, type, user);
   }
 
 
@@ -239,11 +239,11 @@ public class SharePermission {
     StringBuilder sb = new StringBuilder();
     sb.append("class SharePermission {\n");
     
+    sb.append("    group: ").append(toIndentedString(group)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    project: ").append(toIndentedString(project)).append("\n");
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
-    sb.append("    group: ").append(toIndentedString(group)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    user: ").append(toIndentedString(user)).append("\n");
     sb.append("}");
     return sb.toString();

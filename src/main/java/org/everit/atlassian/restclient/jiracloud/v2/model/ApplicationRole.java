@@ -37,110 +37,55 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import org.everit.atlassian.restclient.jiracloud.v2.model.GroupName;
 
 /**
  * Details of an application role.
  */
 @ApiModel(description = "Details of an application role.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class ApplicationRole {
-  @JsonProperty("key")
-  private String key;
-
-  @JsonProperty("groups")
-  private List<String> groups = new ArrayList<>();
-
-  @JsonProperty("name")
-  private String name;
-
   @JsonProperty("defaultGroups")
   private List<String> defaultGroups = new ArrayList<>();
 
-  @JsonProperty("selectedByDefault")
-  private Boolean selectedByDefault;
+  @JsonProperty("defaultGroupsDetails")
+  private List<GroupName> defaultGroupsDetails = new ArrayList<>();
 
   @JsonProperty("defined")
   private Boolean defined;
 
+  @JsonProperty("groupDetails")
+  private List<GroupName> groupDetails = new ArrayList<>();
+
+  @JsonProperty("groups")
+  private List<String> groups = new ArrayList<>();
+
+  @JsonProperty("hasUnlimitedSeats")
+  private Boolean hasUnlimitedSeats;
+
+  @JsonProperty("key")
+  private String key;
+
+  @JsonProperty("name")
+  private String name;
+
   @JsonProperty("numberOfSeats")
   private Integer numberOfSeats;
 
+  @JsonProperty("platform")
+  private Boolean platform;
+
   @JsonProperty("remainingSeats")
   private Integer remainingSeats;
+
+  @JsonProperty("selectedByDefault")
+  private Boolean selectedByDefault;
 
   @JsonProperty("userCount")
   private Integer userCount;
 
   @JsonProperty("userCountDescription")
   private String userCountDescription;
-
-  @JsonProperty("hasUnlimitedSeats")
-  private Boolean hasUnlimitedSeats;
-
-  @JsonProperty("platform")
-  private Boolean platform;
-
-  public ApplicationRole key(String key) {
-    this.key = key;
-    return this;
-  }
-
-   /**
-   * The key of the application role.
-   * @return key
-  **/
-  @ApiModelProperty(value = "The key of the application role.")
-  public String getKey() {
-    return key;
-  }
-
-  public void setKey(String key) {
-    this.key = key;
-  }
-
-  public ApplicationRole groups(List<String> groups) {
-    this.groups = groups;
-    return this;
-  }
-
-  public ApplicationRole addGroupsItem(String groupsItem) {
-    if (this.groups == null) {
-      this.groups = new ArrayList<>();
-    }
-    this.groups.add(groupsItem);
-    return this;
-  }
-
-   /**
-   * The groups associated with the application role.
-   * @return groups
-  **/
-  @ApiModelProperty(value = "The groups associated with the application role.")
-  public List<String> getGroups() {
-    return groups;
-  }
-
-  public void setGroups(List<String> groups) {
-    this.groups = groups;
-  }
-
-  public ApplicationRole name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * The display name of the application role.
-   * @return name
-  **/
-  @ApiModelProperty(value = "The display name of the application role.")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
 
   public ApplicationRole defaultGroups(List<String> defaultGroups) {
     this.defaultGroups = defaultGroups;
@@ -156,10 +101,10 @@ public class ApplicationRole {
   }
 
    /**
-   * The groups that are granted default access for this application role.
+   * The groups that are granted default access for this application role. As a group&#39;s name can change, use of &#x60;defaultGroupsDetails&#x60; is recommended to identify a groups.
    * @return defaultGroups
   **/
-  @ApiModelProperty(value = "The groups that are granted default access for this application role.")
+  @ApiModelProperty(value = "The groups that are granted default access for this application role. As a group's name can change, use of `defaultGroupsDetails` is recommended to identify a groups.")
   public List<String> getDefaultGroups() {
     return defaultGroups;
   }
@@ -168,22 +113,30 @@ public class ApplicationRole {
     this.defaultGroups = defaultGroups;
   }
 
-  public ApplicationRole selectedByDefault(Boolean selectedByDefault) {
-    this.selectedByDefault = selectedByDefault;
+  public ApplicationRole defaultGroupsDetails(List<GroupName> defaultGroupsDetails) {
+    this.defaultGroupsDetails = defaultGroupsDetails;
+    return this;
+  }
+
+  public ApplicationRole addDefaultGroupsDetailsItem(GroupName defaultGroupsDetailsItem) {
+    if (this.defaultGroupsDetails == null) {
+      this.defaultGroupsDetails = new ArrayList<>();
+    }
+    this.defaultGroupsDetails.add(defaultGroupsDetailsItem);
     return this;
   }
 
    /**
-   * Determines whether this application role should be selected by default on user creation.
-   * @return selectedByDefault
+   * The groups that are granted default access for this application role.
+   * @return defaultGroupsDetails
   **/
-  @ApiModelProperty(value = "Determines whether this application role should be selected by default on user creation.")
-  public Boolean getSelectedByDefault() {
-    return selectedByDefault;
+  @ApiModelProperty(value = "The groups that are granted default access for this application role.")
+  public List<GroupName> getDefaultGroupsDetails() {
+    return defaultGroupsDetails;
   }
 
-  public void setSelectedByDefault(Boolean selectedByDefault) {
-    this.selectedByDefault = selectedByDefault;
+  public void setDefaultGroupsDetails(List<GroupName> defaultGroupsDetails) {
+    this.defaultGroupsDetails = defaultGroupsDetails;
   }
 
   public ApplicationRole defined(Boolean defined) {
@@ -204,6 +157,112 @@ public class ApplicationRole {
     this.defined = defined;
   }
 
+  public ApplicationRole groupDetails(List<GroupName> groupDetails) {
+    this.groupDetails = groupDetails;
+    return this;
+  }
+
+  public ApplicationRole addGroupDetailsItem(GroupName groupDetailsItem) {
+    if (this.groupDetails == null) {
+      this.groupDetails = new ArrayList<>();
+    }
+    this.groupDetails.add(groupDetailsItem);
+    return this;
+  }
+
+   /**
+   * The groups associated with the application role.
+   * @return groupDetails
+  **/
+  @ApiModelProperty(value = "The groups associated with the application role.")
+  public List<GroupName> getGroupDetails() {
+    return groupDetails;
+  }
+
+  public void setGroupDetails(List<GroupName> groupDetails) {
+    this.groupDetails = groupDetails;
+  }
+
+  public ApplicationRole groups(List<String> groups) {
+    this.groups = groups;
+    return this;
+  }
+
+  public ApplicationRole addGroupsItem(String groupsItem) {
+    if (this.groups == null) {
+      this.groups = new ArrayList<>();
+    }
+    this.groups.add(groupsItem);
+    return this;
+  }
+
+   /**
+   * The groups associated with the application role. As a group&#39;s name can change, use of &#x60;groupDetails&#x60; is recommended to identify a groups.
+   * @return groups
+  **/
+  @ApiModelProperty(value = "The groups associated with the application role. As a group's name can change, use of `groupDetails` is recommended to identify a groups.")
+  public List<String> getGroups() {
+    return groups;
+  }
+
+  public void setGroups(List<String> groups) {
+    this.groups = groups;
+  }
+
+  public ApplicationRole hasUnlimitedSeats(Boolean hasUnlimitedSeats) {
+    this.hasUnlimitedSeats = hasUnlimitedSeats;
+    return this;
+  }
+
+   /**
+   * Get hasUnlimitedSeats
+   * @return hasUnlimitedSeats
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getHasUnlimitedSeats() {
+    return hasUnlimitedSeats;
+  }
+
+  public void setHasUnlimitedSeats(Boolean hasUnlimitedSeats) {
+    this.hasUnlimitedSeats = hasUnlimitedSeats;
+  }
+
+  public ApplicationRole key(String key) {
+    this.key = key;
+    return this;
+  }
+
+   /**
+   * The key of the application role.
+   * @return key
+  **/
+  @ApiModelProperty(value = "The key of the application role.")
+  public String getKey() {
+    return key;
+  }
+
+  public void setKey(String key) {
+    this.key = key;
+  }
+
+  public ApplicationRole name(String name) {
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * The display name of the application role.
+   * @return name
+  **/
+  @ApiModelProperty(value = "The display name of the application role.")
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
   public ApplicationRole numberOfSeats(Integer numberOfSeats) {
     this.numberOfSeats = numberOfSeats;
     return this;
@@ -222,6 +281,24 @@ public class ApplicationRole {
     this.numberOfSeats = numberOfSeats;
   }
 
+  public ApplicationRole platform(Boolean platform) {
+    this.platform = platform;
+    return this;
+  }
+
+   /**
+   * Indicates if the application role belongs to Jira platform (&#x60;jira-core&#x60;).
+   * @return platform
+  **/
+  @ApiModelProperty(value = "Indicates if the application role belongs to Jira platform (`jira-core`).")
+  public Boolean getPlatform() {
+    return platform;
+  }
+
+  public void setPlatform(Boolean platform) {
+    this.platform = platform;
+  }
+
   public ApplicationRole remainingSeats(Integer remainingSeats) {
     this.remainingSeats = remainingSeats;
     return this;
@@ -238,6 +315,24 @@ public class ApplicationRole {
 
   public void setRemainingSeats(Integer remainingSeats) {
     this.remainingSeats = remainingSeats;
+  }
+
+  public ApplicationRole selectedByDefault(Boolean selectedByDefault) {
+    this.selectedByDefault = selectedByDefault;
+    return this;
+  }
+
+   /**
+   * Determines whether this application role should be selected by default on user creation.
+   * @return selectedByDefault
+  **/
+  @ApiModelProperty(value = "Determines whether this application role should be selected by default on user creation.")
+  public Boolean getSelectedByDefault() {
+    return selectedByDefault;
+  }
+
+  public void setSelectedByDefault(Boolean selectedByDefault) {
+    this.selectedByDefault = selectedByDefault;
   }
 
   public ApplicationRole userCount(Integer userCount) {
@@ -276,42 +371,6 @@ public class ApplicationRole {
     this.userCountDescription = userCountDescription;
   }
 
-  public ApplicationRole hasUnlimitedSeats(Boolean hasUnlimitedSeats) {
-    this.hasUnlimitedSeats = hasUnlimitedSeats;
-    return this;
-  }
-
-   /**
-   * Get hasUnlimitedSeats
-   * @return hasUnlimitedSeats
-  **/
-  @ApiModelProperty(value = "")
-  public Boolean getHasUnlimitedSeats() {
-    return hasUnlimitedSeats;
-  }
-
-  public void setHasUnlimitedSeats(Boolean hasUnlimitedSeats) {
-    this.hasUnlimitedSeats = hasUnlimitedSeats;
-  }
-
-  public ApplicationRole platform(Boolean platform) {
-    this.platform = platform;
-    return this;
-  }
-
-   /**
-   * Indicates if the application role belongs to Jira platform (&#x60;jira-core&#x60;).
-   * @return platform
-  **/
-  @ApiModelProperty(value = "Indicates if the application role belongs to Jira platform (`jira-core`).")
-  public Boolean getPlatform() {
-    return platform;
-  }
-
-  public void setPlatform(Boolean platform) {
-    this.platform = platform;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -322,23 +381,25 @@ public class ApplicationRole {
       return false;
     }
     ApplicationRole applicationRole = (ApplicationRole) o;
-    return Objects.equals(this.key, applicationRole.key) &&
-        Objects.equals(this.groups, applicationRole.groups) &&
-        Objects.equals(this.name, applicationRole.name) &&
-        Objects.equals(this.defaultGroups, applicationRole.defaultGroups) &&
-        Objects.equals(this.selectedByDefault, applicationRole.selectedByDefault) &&
+    return Objects.equals(this.defaultGroups, applicationRole.defaultGroups) &&
+        Objects.equals(this.defaultGroupsDetails, applicationRole.defaultGroupsDetails) &&
         Objects.equals(this.defined, applicationRole.defined) &&
-        Objects.equals(this.numberOfSeats, applicationRole.numberOfSeats) &&
-        Objects.equals(this.remainingSeats, applicationRole.remainingSeats) &&
-        Objects.equals(this.userCount, applicationRole.userCount) &&
-        Objects.equals(this.userCountDescription, applicationRole.userCountDescription) &&
+        Objects.equals(this.groupDetails, applicationRole.groupDetails) &&
+        Objects.equals(this.groups, applicationRole.groups) &&
         Objects.equals(this.hasUnlimitedSeats, applicationRole.hasUnlimitedSeats) &&
-        Objects.equals(this.platform, applicationRole.platform);
+        Objects.equals(this.key, applicationRole.key) &&
+        Objects.equals(this.name, applicationRole.name) &&
+        Objects.equals(this.numberOfSeats, applicationRole.numberOfSeats) &&
+        Objects.equals(this.platform, applicationRole.platform) &&
+        Objects.equals(this.remainingSeats, applicationRole.remainingSeats) &&
+        Objects.equals(this.selectedByDefault, applicationRole.selectedByDefault) &&
+        Objects.equals(this.userCount, applicationRole.userCount) &&
+        Objects.equals(this.userCountDescription, applicationRole.userCountDescription);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(key, groups, name, defaultGroups, selectedByDefault, defined, numberOfSeats, remainingSeats, userCount, userCountDescription, hasUnlimitedSeats, platform);
+    return Objects.hash(defaultGroups, defaultGroupsDetails, defined, groupDetails, groups, hasUnlimitedSeats, key, name, numberOfSeats, platform, remainingSeats, selectedByDefault, userCount, userCountDescription);
   }
 
 
@@ -347,18 +408,20 @@ public class ApplicationRole {
     StringBuilder sb = new StringBuilder();
     sb.append("class ApplicationRole {\n");
     
-    sb.append("    key: ").append(toIndentedString(key)).append("\n");
-    sb.append("    groups: ").append(toIndentedString(groups)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    defaultGroups: ").append(toIndentedString(defaultGroups)).append("\n");
-    sb.append("    selectedByDefault: ").append(toIndentedString(selectedByDefault)).append("\n");
+    sb.append("    defaultGroupsDetails: ").append(toIndentedString(defaultGroupsDetails)).append("\n");
     sb.append("    defined: ").append(toIndentedString(defined)).append("\n");
+    sb.append("    groupDetails: ").append(toIndentedString(groupDetails)).append("\n");
+    sb.append("    groups: ").append(toIndentedString(groups)).append("\n");
+    sb.append("    hasUnlimitedSeats: ").append(toIndentedString(hasUnlimitedSeats)).append("\n");
+    sb.append("    key: ").append(toIndentedString(key)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    numberOfSeats: ").append(toIndentedString(numberOfSeats)).append("\n");
+    sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
     sb.append("    remainingSeats: ").append(toIndentedString(remainingSeats)).append("\n");
+    sb.append("    selectedByDefault: ").append(toIndentedString(selectedByDefault)).append("\n");
     sb.append("    userCount: ").append(toIndentedString(userCount)).append("\n");
     sb.append("    userCountDescription: ").append(toIndentedString(userCountDescription)).append("\n");
-    sb.append("    hasUnlimitedSeats: ").append(toIndentedString(hasUnlimitedSeats)).append("\n");
-    sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -189,11 +189,12 @@ public class ProjectRolesApi {
    * Returns a project role's details and actors associated with the project. The list of actors is sorted by display name.  To check whether a user belongs to a role based on their group memberships, use [Get user](#api-rest-api-3-user-get) with the `groups` expand parameter selected. Then check whether the user keys and groups match with the actors returned for the project.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** *Administer Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param projectIdOrKey The project ID or project key (case sensitive). (required)
    * @param id The ID of the project role. Use [Get all project roles](#api-rest-api-3-role-get) to get a list of project role IDs. (required)
+   * @param excludeInactiveUsers Exclude inactive users. (optional, default to false)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;ProjectRole&gt;
    */
   public Single<ProjectRole> getProjectRole(
-    String projectIdOrKey, Long id, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String projectIdOrKey, Long id, Optional<Boolean> excludeInactiveUsers, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.GET)
@@ -206,6 +207,9 @@ public class ProjectRolesApi {
     requestBuilder.pathParams(pathParams);
 
     Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (excludeInactiveUsers.isPresent()) {
+      queryParams.put("excludeInactiveUsers", Collections.singleton(String.valueOf(excludeInactiveUsers.get())));
+    }
     requestBuilder.queryParams(queryParams);
 
     Map<String, String> headers = new HashMap<>();

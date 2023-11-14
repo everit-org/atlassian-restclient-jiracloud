@@ -40,31 +40,13 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of an issue type screen scheme.
  */
 @ApiModel(description = "Details of an issue type screen scheme.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class IssueTypeScreenSchemeUpdateDetails {
-  @JsonProperty("name")
-  private String name;
-
   @JsonProperty("description")
   private String description;
 
-  public IssueTypeScreenSchemeUpdateDetails name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * The name of the issue type screen scheme. The name must be unique. The maximum length is 255 characters.
-   * @return name
-  **/
-  @ApiModelProperty(value = "The name of the issue type screen scheme. The name must be unique. The maximum length is 255 characters.")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
+  @JsonProperty("name")
+  private String name;
 
   public IssueTypeScreenSchemeUpdateDetails description(String description) {
     this.description = description;
@@ -84,6 +66,24 @@ public class IssueTypeScreenSchemeUpdateDetails {
     this.description = description;
   }
 
+  public IssueTypeScreenSchemeUpdateDetails name(String name) {
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * The name of the issue type screen scheme. The name must be unique. The maximum length is 255 characters.
+   * @return name
+  **/
+  @ApiModelProperty(value = "The name of the issue type screen scheme. The name must be unique. The maximum length is 255 characters.")
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -94,13 +94,13 @@ public class IssueTypeScreenSchemeUpdateDetails {
       return false;
     }
     IssueTypeScreenSchemeUpdateDetails issueTypeScreenSchemeUpdateDetails = (IssueTypeScreenSchemeUpdateDetails) o;
-    return Objects.equals(this.name, issueTypeScreenSchemeUpdateDetails.name) &&
-        Objects.equals(this.description, issueTypeScreenSchemeUpdateDetails.description);
+    return Objects.equals(this.description, issueTypeScreenSchemeUpdateDetails.description) &&
+        Objects.equals(this.name, issueTypeScreenSchemeUpdateDetails.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description);
+    return Objects.hash(description, name);
   }
 
 
@@ -109,8 +109,8 @@ public class IssueTypeScreenSchemeUpdateDetails {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueTypeScreenSchemeUpdateDetails {\n");
     
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }

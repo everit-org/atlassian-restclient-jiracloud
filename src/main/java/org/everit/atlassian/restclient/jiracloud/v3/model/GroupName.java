@@ -38,16 +38,37 @@ import io.swagger.annotations.ApiModelProperty;
 import java.net.URI;
 
 /**
- * Details about a group name.
+ * Details about a group.
  */
-@ApiModel(description = "Details about a group name.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@ApiModel(description = "Details about a group.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class GroupName {
+  @JsonProperty("groupId")
+  private String groupId;
+
   @JsonProperty("name")
   private String name;
 
   @JsonProperty("self")
   private URI self;
+
+  public GroupName groupId(String groupId) {
+    this.groupId = groupId;
+    return this;
+  }
+
+   /**
+   * The ID of the group, which uniquely identifies the group across all Atlassian products. For example, *952d12c3-5b5b-4d04-bb32-44d383afc4b2*.
+   * @return groupId
+  **/
+  @ApiModelProperty(value = "The ID of the group, which uniquely identifies the group across all Atlassian products. For example, *952d12c3-5b5b-4d04-bb32-44d383afc4b2*.")
+  public String getGroupId() {
+    return groupId;
+  }
+
+  public void setGroupId(String groupId) {
+    this.groupId = groupId;
+  }
 
   public GroupName name(String name) {
     this.name = name;
@@ -86,13 +107,14 @@ public class GroupName {
       return false;
     }
     GroupName groupName = (GroupName) o;
-    return Objects.equals(this.name, groupName.name) &&
+    return Objects.equals(this.groupId, groupName.groupId) &&
+        Objects.equals(this.name, groupName.name) &&
         Objects.equals(this.self, groupName.self);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, self);
+    return Objects.hash(groupId, name, self);
   }
 
 
@@ -101,6 +123,7 @@ public class GroupName {
     StringBuilder sb = new StringBuilder();
     sb.append("class GroupName {\n");
     
+    sb.append("    groupId: ").append(toIndentedString(groupId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("}");

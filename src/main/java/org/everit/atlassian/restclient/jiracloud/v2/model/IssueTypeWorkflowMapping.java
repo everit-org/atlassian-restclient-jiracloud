@@ -40,16 +40,16 @@ import io.swagger.annotations.ApiModelProperty;
  * Details about the mapping between an issue type and a workflow.
  */
 @ApiModel(description = "Details about the mapping between an issue type and a workflow.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class IssueTypeWorkflowMapping {
   @JsonProperty("issueType")
   private String issueType;
 
-  @JsonProperty("workflow")
-  private String workflow;
-
   @JsonProperty("updateDraftIfNeeded")
   private Boolean updateDraftIfNeeded;
+
+  @JsonProperty("workflow")
+  private String workflow;
 
   public IssueTypeWorkflowMapping issueType(String issueType) {
     this.issueType = issueType;
@@ -67,24 +67,6 @@ public class IssueTypeWorkflowMapping {
 
   public void setIssueType(String issueType) {
     this.issueType = issueType;
-  }
-
-  public IssueTypeWorkflowMapping workflow(String workflow) {
-    this.workflow = workflow;
-    return this;
-  }
-
-   /**
-   * The name of the workflow.
-   * @return workflow
-  **/
-  @ApiModelProperty(value = "The name of the workflow.")
-  public String getWorkflow() {
-    return workflow;
-  }
-
-  public void setWorkflow(String workflow) {
-    this.workflow = workflow;
   }
 
   public IssueTypeWorkflowMapping updateDraftIfNeeded(Boolean updateDraftIfNeeded) {
@@ -105,6 +87,24 @@ public class IssueTypeWorkflowMapping {
     this.updateDraftIfNeeded = updateDraftIfNeeded;
   }
 
+  public IssueTypeWorkflowMapping workflow(String workflow) {
+    this.workflow = workflow;
+    return this;
+  }
+
+   /**
+   * The name of the workflow.
+   * @return workflow
+  **/
+  @ApiModelProperty(value = "The name of the workflow.")
+  public String getWorkflow() {
+    return workflow;
+  }
+
+  public void setWorkflow(String workflow) {
+    this.workflow = workflow;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -116,13 +116,13 @@ public class IssueTypeWorkflowMapping {
     }
     IssueTypeWorkflowMapping issueTypeWorkflowMapping = (IssueTypeWorkflowMapping) o;
     return Objects.equals(this.issueType, issueTypeWorkflowMapping.issueType) &&
-        Objects.equals(this.workflow, issueTypeWorkflowMapping.workflow) &&
-        Objects.equals(this.updateDraftIfNeeded, issueTypeWorkflowMapping.updateDraftIfNeeded);
+        Objects.equals(this.updateDraftIfNeeded, issueTypeWorkflowMapping.updateDraftIfNeeded) &&
+        Objects.equals(this.workflow, issueTypeWorkflowMapping.workflow);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(issueType, workflow, updateDraftIfNeeded);
+    return Objects.hash(issueType, updateDraftIfNeeded, workflow);
   }
 
 
@@ -132,8 +132,8 @@ public class IssueTypeWorkflowMapping {
     sb.append("class IssueTypeWorkflowMapping {\n");
     
     sb.append("    issueType: ").append(toIndentedString(issueType)).append("\n");
-    sb.append("    workflow: ").append(toIndentedString(workflow)).append("\n");
     sb.append("    updateDraftIfNeeded: ").append(toIndentedString(updateDraftIfNeeded)).append("\n");
+    sb.append("    workflow: ").append(toIndentedString(workflow)).append("\n");
     sb.append("}");
     return sb.toString();
   }

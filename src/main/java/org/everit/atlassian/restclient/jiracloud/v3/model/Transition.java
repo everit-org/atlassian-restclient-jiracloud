@@ -36,27 +36,38 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import org.everit.atlassian.restclient.jiracloud.v3.model.ScreenID;
+import java.util.Map;
+import org.everit.atlassian.restclient.jiracloud.v3.model.TransitionScreenDetails;
 import org.everit.atlassian.restclient.jiracloud.v3.model.WorkflowRules;
 
 /**
  * Details of a workflow transition.
  */
 @ApiModel(description = "Details of a workflow transition.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class Transition {
+  @JsonProperty("description")
+  private String description;
+
+  @JsonProperty("from")
+  private List<String> from = new ArrayList<>();
+
   @JsonProperty("id")
   private String id;
 
   @JsonProperty("name")
   private String name;
 
-  @JsonProperty("description")
-  private String description;
+  @JsonProperty("properties")
+  private Map<String, Object> properties = new HashMap<>();
 
-  @JsonProperty("from")
-  private List<String> from = new ArrayList<>();
+  @JsonProperty("rules")
+  private WorkflowRules rules;
+
+  @JsonProperty("screen")
+  private TransitionScreenDetails screen;
 
   @JsonProperty("to")
   private String to;
@@ -101,48 +112,6 @@ public class Transition {
   @JsonProperty("type")
   private TypeEnum type;
 
-  @JsonProperty("screen")
-  private ScreenID screen;
-
-  @JsonProperty("rules")
-  private WorkflowRules rules;
-
-  public Transition id(String id) {
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * The ID of the transition.
-   * @return id
-  **/
-  @ApiModelProperty(required = true, value = "The ID of the transition.")
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-  public Transition name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * The name of the transition.
-   * @return name
-  **/
-  @ApiModelProperty(required = true, value = "The name of the transition.")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
   public Transition description(String description) {
     this.description = description;
     return this;
@@ -184,6 +153,104 @@ public class Transition {
     this.from = from;
   }
 
+  public Transition id(String id) {
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * The ID of the transition.
+   * @return id
+  **/
+  @ApiModelProperty(required = true, value = "The ID of the transition.")
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public Transition name(String name) {
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * The name of the transition.
+   * @return name
+  **/
+  @ApiModelProperty(required = true, value = "The name of the transition.")
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public Transition properties(Map<String, Object> properties) {
+    this.properties = properties;
+    return this;
+  }
+
+  public Transition putPropertiesItem(String key, Object propertiesItem) {
+    if (this.properties == null) {
+      this.properties = new HashMap<>();
+    }
+    this.properties.put(key, propertiesItem);
+    return this;
+  }
+
+   /**
+   * The properties of the transition.
+   * @return properties
+  **/
+  @ApiModelProperty(value = "The properties of the transition.")
+  public Map<String, Object> getProperties() {
+    return properties;
+  }
+
+  public void setProperties(Map<String, Object> properties) {
+    this.properties = properties;
+  }
+
+  public Transition rules(WorkflowRules rules) {
+    this.rules = rules;
+    return this;
+  }
+
+   /**
+   * Get rules
+   * @return rules
+  **/
+  @ApiModelProperty(value = "")
+  public WorkflowRules getRules() {
+    return rules;
+  }
+
+  public void setRules(WorkflowRules rules) {
+    this.rules = rules;
+  }
+
+  public Transition screen(TransitionScreenDetails screen) {
+    this.screen = screen;
+    return this;
+  }
+
+   /**
+   * Get screen
+   * @return screen
+  **/
+  @ApiModelProperty(value = "")
+  public TransitionScreenDetails getScreen() {
+    return screen;
+  }
+
+  public void setScreen(TransitionScreenDetails screen) {
+    this.screen = screen;
+  }
+
   public Transition to(String to) {
     this.to = to;
     return this;
@@ -220,42 +287,6 @@ public class Transition {
     this.type = type;
   }
 
-  public Transition screen(ScreenID screen) {
-    this.screen = screen;
-    return this;
-  }
-
-   /**
-   * Get screen
-   * @return screen
-  **/
-  @ApiModelProperty(value = "")
-  public ScreenID getScreen() {
-    return screen;
-  }
-
-  public void setScreen(ScreenID screen) {
-    this.screen = screen;
-  }
-
-  public Transition rules(WorkflowRules rules) {
-    this.rules = rules;
-    return this;
-  }
-
-   /**
-   * Get rules
-   * @return rules
-  **/
-  @ApiModelProperty(value = "")
-  public WorkflowRules getRules() {
-    return rules;
-  }
-
-  public void setRules(WorkflowRules rules) {
-    this.rules = rules;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -266,19 +297,20 @@ public class Transition {
       return false;
     }
     Transition transition = (Transition) o;
-    return Objects.equals(this.id, transition.id) &&
-        Objects.equals(this.name, transition.name) &&
-        Objects.equals(this.description, transition.description) &&
+    return Objects.equals(this.description, transition.description) &&
         Objects.equals(this.from, transition.from) &&
-        Objects.equals(this.to, transition.to) &&
-        Objects.equals(this.type, transition.type) &&
+        Objects.equals(this.id, transition.id) &&
+        Objects.equals(this.name, transition.name) &&
+        Objects.equals(this.properties, transition.properties) &&
+        Objects.equals(this.rules, transition.rules) &&
         Objects.equals(this.screen, transition.screen) &&
-        Objects.equals(this.rules, transition.rules);
+        Objects.equals(this.to, transition.to) &&
+        Objects.equals(this.type, transition.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, from, to, type, screen, rules);
+    return Objects.hash(description, from, id, name, properties, rules, screen, to, type);
   }
 
 
@@ -287,14 +319,15 @@ public class Transition {
     StringBuilder sb = new StringBuilder();
     sb.append("class Transition {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    from: ").append(toIndentedString(from)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    properties: ").append(toIndentedString(properties)).append("\n");
+    sb.append("    rules: ").append(toIndentedString(rules)).append("\n");
+    sb.append("    screen: ").append(toIndentedString(screen)).append("\n");
     sb.append("    to: ").append(toIndentedString(to)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    screen: ").append(toIndentedString(screen)).append("\n");
-    sb.append("    rules: ").append(toIndentedString(rules)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -45,29 +45,29 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.Comment;
  * A page of comments.
  */
 @ApiModel(description = "A page of comments.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class PageOfComments {
-  @JsonProperty("startAt")
-  private Long startAt;
+  @JsonProperty("comments")
+  private List<Comment> comments = new ArrayList<>();
 
   @JsonProperty("maxResults")
   private Integer maxResults;
 
+  @JsonProperty("startAt")
+  private Long startAt;
+
   @JsonProperty("total")
   private Long total;
-
-  @JsonProperty("comments")
-  private List<Comment> comments = new ArrayList<>();
 
   private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
 
    /**
-   * The index of the first item returned.
-   * @return startAt
+   * The list of comments.
+   * @return comments
   **/
-  @ApiModelProperty(value = "The index of the first item returned.")
-  public Long getStartAt() {
-    return startAt;
+  @ApiModelProperty(value = "The list of comments.")
+  public List<Comment> getComments() {
+    return comments;
   }
 
    /**
@@ -80,21 +80,21 @@ public class PageOfComments {
   }
 
    /**
+   * The index of the first item returned.
+   * @return startAt
+  **/
+  @ApiModelProperty(value = "The index of the first item returned.")
+  public Long getStartAt() {
+    return startAt;
+  }
+
+   /**
    * The number of items returned.
    * @return total
   **/
   @ApiModelProperty(value = "The number of items returned.")
   public Long getTotal() {
     return total;
-  }
-
-   /**
-   * The list of comments.
-   * @return comments
-  **/
-  @ApiModelProperty(value = "The list of comments.")
-  public List<Comment> getComments() {
-    return comments;
   }
 
 
@@ -117,16 +117,16 @@ public class PageOfComments {
       return false;
     }
     PageOfComments pageOfComments = (PageOfComments) o;
-    return Objects.equals(this.startAt, pageOfComments.startAt) &&
+    return Objects.equals(this.comments, pageOfComments.comments) &&
         Objects.equals(this.maxResults, pageOfComments.maxResults) &&
+        Objects.equals(this.startAt, pageOfComments.startAt) &&
         Objects.equals(this.total, pageOfComments.total) &&
-        Objects.equals(this.comments, pageOfComments.comments) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(startAt, maxResults, total, comments, super.hashCode());
+    return Objects.hash(comments, maxResults, startAt, total, super.hashCode());
   }
 
 
@@ -135,10 +135,10 @@ public class PageOfComments {
     StringBuilder sb = new StringBuilder();
     sb.append("class PageOfComments {\n");
     
-    sb.append("    startAt: ").append(toIndentedString(startAt)).append("\n");
-    sb.append("    maxResults: ").append(toIndentedString(maxResults)).append("\n");
-    sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("    comments: ").append(toIndentedString(comments)).append("\n");
+    sb.append("    maxResults: ").append(toIndentedString(maxResults)).append("\n");
+    sb.append("    startAt: ").append(toIndentedString(startAt)).append("\n");
+    sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();

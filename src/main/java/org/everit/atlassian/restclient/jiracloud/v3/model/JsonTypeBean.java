@@ -43,16 +43,10 @@ import java.util.Map;
  * The schema of a field.
  */
 @ApiModel(description = "The schema of a field.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class JsonTypeBean {
-  @JsonProperty("type")
-  private String type;
-
-  @JsonProperty("items")
-  private String items;
-
-  @JsonProperty("system")
-  private String system;
+  @JsonProperty("configuration")
+  private Map<String, Object> _configuration = new HashMap<>();
 
   @JsonProperty("custom")
   private String custom;
@@ -60,34 +54,22 @@ public class JsonTypeBean {
   @JsonProperty("customId")
   private Long customId;
 
-  @JsonProperty("configuration")
-  private Map<String, Object> _configuration = new HashMap<>();
+  @JsonProperty("items")
+  private String items;
+
+  @JsonProperty("system")
+  private String system;
+
+  @JsonProperty("type")
+  private String type;
 
    /**
-   * The data type of the field.
-   * @return type
+   * If the field is a custom field, the configuration of the field.
+   * @return _configuration
   **/
-  @ApiModelProperty(required = true, value = "The data type of the field.")
-  public String getType() {
-    return type;
-  }
-
-   /**
-   * When the data type is an array, the name of the field items within the array.
-   * @return items
-  **/
-  @ApiModelProperty(value = "When the data type is an array, the name of the field items within the array.")
-  public String getItems() {
-    return items;
-  }
-
-   /**
-   * If the field is a system field, the name of the field.
-   * @return system
-  **/
-  @ApiModelProperty(value = "If the field is a system field, the name of the field.")
-  public String getSystem() {
-    return system;
+  @ApiModelProperty(value = "If the field is a custom field, the configuration of the field.")
+  public Map<String, Object> getConfiguration() {
+    return _configuration;
   }
 
    /**
@@ -109,12 +91,30 @@ public class JsonTypeBean {
   }
 
    /**
-   * If the field is a custom field, the configuration of the field.
-   * @return _configuration
+   * When the data type is an array, the name of the field items within the array.
+   * @return items
   **/
-  @ApiModelProperty(value = "If the field is a custom field, the configuration of the field.")
-  public Map<String, Object> getConfiguration() {
-    return _configuration;
+  @ApiModelProperty(value = "When the data type is an array, the name of the field items within the array.")
+  public String getItems() {
+    return items;
+  }
+
+   /**
+   * If the field is a system field, the name of the field.
+   * @return system
+  **/
+  @ApiModelProperty(value = "If the field is a system field, the name of the field.")
+  public String getSystem() {
+    return system;
+  }
+
+   /**
+   * The data type of the field.
+   * @return type
+  **/
+  @ApiModelProperty(required = true, value = "The data type of the field.")
+  public String getType() {
+    return type;
   }
 
 
@@ -127,17 +127,17 @@ public class JsonTypeBean {
       return false;
     }
     JsonTypeBean jsonTypeBean = (JsonTypeBean) o;
-    return Objects.equals(this.type, jsonTypeBean.type) &&
-        Objects.equals(this.items, jsonTypeBean.items) &&
-        Objects.equals(this.system, jsonTypeBean.system) &&
+    return Objects.equals(this._configuration, jsonTypeBean._configuration) &&
         Objects.equals(this.custom, jsonTypeBean.custom) &&
         Objects.equals(this.customId, jsonTypeBean.customId) &&
-        Objects.equals(this._configuration, jsonTypeBean._configuration);
+        Objects.equals(this.items, jsonTypeBean.items) &&
+        Objects.equals(this.system, jsonTypeBean.system) &&
+        Objects.equals(this.type, jsonTypeBean.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, items, system, custom, customId, _configuration);
+    return Objects.hash(_configuration, custom, customId, items, system, type);
   }
 
 
@@ -146,12 +146,12 @@ public class JsonTypeBean {
     StringBuilder sb = new StringBuilder();
     sb.append("class JsonTypeBean {\n");
     
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    items: ").append(toIndentedString(items)).append("\n");
-    sb.append("    system: ").append(toIndentedString(system)).append("\n");
+    sb.append("    _configuration: ").append(toIndentedString(_configuration)).append("\n");
     sb.append("    custom: ").append(toIndentedString(custom)).append("\n");
     sb.append("    customId: ").append(toIndentedString(customId)).append("\n");
-    sb.append("    _configuration: ").append(toIndentedString(_configuration)).append("\n");
+    sb.append("    items: ").append(toIndentedString(items)).append("\n");
+    sb.append("    system: ").append(toIndentedString(system)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }

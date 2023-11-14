@@ -28,6 +28,7 @@ import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
 import org.everit.http.restclient.TypeReference;
 
+import org.everit.atlassian.restclient.jiracloud.v2.model.ChangeFilterOwner;
 import org.everit.atlassian.restclient.jiracloud.v2.model.ColumnItem;
 import org.everit.atlassian.restclient.jiracloud.v2.model.ErrorCollection;
 import org.everit.atlassian.restclient.jiracloud.v2.model.Filter;
@@ -44,6 +45,8 @@ public class FiltersApi {
 
   private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.net";
 
+  private static final TypeReference<Object> returnType_changeFilterOwner = new TypeReference<Object>() {};
+
   private static final TypeReference<Filter> returnType_createFilter = new TypeReference<Filter>() {};
 
   private static final TypeReference<Filter> returnType_deleteFavouriteForFilter = new TypeReference<Filter>() {};
@@ -53,8 +56,6 @@ public class FiltersApi {
   private static final TypeReference<List<Filter>> returnType_getFavouriteFilters = new TypeReference<List<Filter>>() {};
 
   private static final TypeReference<Filter> returnType_getFilter = new TypeReference<Filter>() {};
-
-  private static final TypeReference<List<Filter>> returnType_getFilters = new TypeReference<List<Filter>>() {};
 
   private static final TypeReference<PageBeanFilterDetails> returnType_getFiltersPaginated = new TypeReference<PageBeanFilterDetails>() {};
 
@@ -73,15 +74,47 @@ public class FiltersApi {
   }
 
   /**
+   * Change filter owner
+   * Changes the owner of the filter.  **[Permissions](#permissions) required:** Permission to access Jira. However, the user must own the filter or have the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * @param id The ID of the filter to update. (required)
+   * @param changeFilterOwner The account ID of the new owner of the filter. (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;Object&gt;
+   */
+  public Single<Object> changeFilterOwner(
+    Long id, ChangeFilterOwner changeFilterOwner, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.PUT)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/filter/{id}/owner");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("id", String.valueOf(id));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(changeFilterOwner));
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_changeFilterOwner);
+  }
+
+  /**
    * Create filter
    * Creates a filter. The filter is shared according to the [default share scope](#api-rest-api-2-filter-post). The filter is not selected as a favorite.  **[Permissions](#permissions) required:** Permission to access Jira.
    * @param filter The filter to create. (required)
    * @param expand Use [expand](#expansion) to include additional information about filter in the response. This parameter accepts a comma-separated list. Expand options include:   *  `sharedUsers` Returns the users that the filter is shared with. This includes users that can browse projects that the filter is shared with. If you don't specify `sharedUsers`, then the `sharedUsers` object is returned but it doesn't list any users. The list of users returned is limited to 1000, to access additional users append `[start-index:end-index]` to the expand request. For example, to access the next 1000 users, use `?expand=sharedUsers[1001:2000]`.  *  `subscriptions` Returns the users that are subscribed to the filter. If you don't specify `subscriptions`, the `subscriptions` object is returned but it doesn't list any subscriptions. The list of subscriptions returned is limited to 1000, to access additional subscriptions append `[start-index:end-index]` to the expand request. For example, to access the next 1000 subscriptions, use `?expand=subscriptions[1001:2000]`. (optional)
+   * @param overrideSharePermissions EXPERIMENTAL: Whether share permissions are overridden to enable filters with any share permissions to be created. Available to users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). (optional, default to false)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Filter&gt;
    */
   public Single<Filter> createFilter(
-    Filter filter, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Filter filter, Optional<String> expand, Optional<Boolean> overrideSharePermissions, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.POST)
@@ -94,6 +127,9 @@ public class FiltersApi {
     Map<String, Collection<String>> queryParams = new HashMap<>();
     if (expand.isPresent()) {
       queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
+    }
+    if (overrideSharePermissions.isPresent()) {
+      queryParams.put("overrideSharePermissions", Collections.singleton(String.valueOf(overrideSharePermissions.get())));
     }
     requestBuilder.queryParams(queryParams);
 
@@ -228,11 +264,12 @@ public class FiltersApi {
    * Returns a filter.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** None, however, the filter is only returned where it is:   *  owned by the user.  *  shared with a group that the user is a member of.  *  shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.  *  shared with a public project.  *  shared with the public.
    * @param id The ID of the filter to return. (required)
    * @param expand Use [expand](#expansion) to include additional information about filter in the response. This parameter accepts a comma-separated list. Expand options include:   *  `sharedUsers` Returns the users that the filter is shared with. This includes users that can browse projects that the filter is shared with. If you don't specify `sharedUsers`, then the `sharedUsers` object is returned but it doesn't list any users. The list of users returned is limited to 1000, to access additional users append `[start-index:end-index]` to the expand request. For example, to access the next 1000 users, use `?expand=sharedUsers[1001:2000]`.  *  `subscriptions` Returns the users that are subscribed to the filter. If you don't specify `subscriptions`, the `subscriptions` object is returned but it doesn't list any subscriptions. The list of subscriptions returned is limited to 1000, to access additional subscriptions append `[start-index:end-index]` to the expand request. For example, to access the next 1000 subscriptions, use `?expand=subscriptions[1001:2000]`. (optional)
+   * @param overrideSharePermissions EXPERIMENTAL: Whether share permissions are overridden to enable filters with any share permissions to be returned. Available to users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). (optional, default to false)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Filter&gt;
    */
   public Single<Filter> getFilter(
-    Long id, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Long id, Optional<String> expand, Optional<Boolean> overrideSharePermissions, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.GET)
@@ -247,6 +284,9 @@ public class FiltersApi {
     if (expand.isPresent()) {
       queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
     }
+    if (overrideSharePermissions.isPresent()) {
+      queryParams.put("overrideSharePermissions", Collections.singleton(String.valueOf(overrideSharePermissions.get())));
+    }
     requestBuilder.queryParams(queryParams);
 
     Map<String, String> headers = new HashMap<>();
@@ -256,55 +296,25 @@ public class FiltersApi {
   }
 
   /**
-   * Get filters
-   * Returns all filters. Deprecated, use [ Search for filters](#api-rest-api-2-filter-search-get) that supports search and pagination.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** None, however, only the following filters are returned:   *  filters owned by the user.  *  filters shared with a group that the user is a member of.  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.  *  filters shared with a public project.  *  filters shared with the public.
-   * @param expand Use [expand](#expansion) to include additional information about filter in the response. This parameter accepts a comma-separated list. Expand options include:   *  `sharedUsers` Returns the users that the filter is shared with. This includes users that can browse projects that the filter is shared with. If you don't specify `sharedUsers`, then the `sharedUsers` object is returned but it doesn't list any users. The list of users returned is limited to 1000, to access additional users append `[start-index:end-index]` to the expand request. For example, to access the next 1000 users, use `?expand=sharedUsers[1001:2000]`.  *  `subscriptions` Returns the users that are subscribed to the filter. If you don't specify `subscriptions`, the `subscriptions` object is returned but it doesn't list any subscriptions. The list of subscriptions returned is limited to 1000, to access additional subscriptions append `[start-index:end-index]` to the expand request. For example, to access the next 1000 subscriptions, use `?expand=subscriptions[1001:2000]`. (optional)
-   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
-   * @return Single&lt;List&lt;Filter&gt;&gt;
-   * @deprecated
-   */
-  @Deprecated
-  public Single<List<Filter>> getFilters(
-    Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
-
-    RestRequest.Builder requestBuilder = RestRequest.builder()
-        .method(HttpMethod.GET)
-        .basePath(DEFAULT_BASE_PATH)
-        .path("/rest/api/2/filter");
-
-    Map<String, String> pathParams = new HashMap<>();
-    requestBuilder.pathParams(pathParams);
-
-    Map<String, Collection<String>> queryParams = new HashMap<>();
-    if (expand.isPresent()) {
-      queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
-    }
-    requestBuilder.queryParams(queryParams);
-
-    Map<String, String> headers = new HashMap<>();
-    requestBuilder.headers(headers);
-
-    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getFilters);
-  }
-
-  /**
    * Search for filters
    * Returns a [paginated](#pagination) list of filters. Use this operation to get:   *  specific filters, by defining `id` only.  *  filters that match all of the specified attributes. For example, all filters for a user with a particular word in their name. When multiple attributes are specified only filters matching all attributes are returned.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** None, however, only the following filters that match the query parameters are returned:   *  filters owned by the user.  *  filters shared with a group that the user is a member of.  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.  *  filters shared with a public project.  *  filters shared with the public.
    * @param filterName String used to perform a case-insensitive partial match with `name`. (optional)
    * @param accountId User account ID used to return filters with the matching `owner.accountId`. This parameter cannot be used with `owner`. (optional)
    * @param owner This parameter is deprecated because of privacy changes. Use `accountId` instead. See the [migration guide](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details. User name used to return filters with the matching `owner.name`. This parameter cannot be used with `accountId`. (optional)
-   * @param groupname Group name used to returns filters that are shared with a group that matches `sharePermissions.group.groupname`. (optional)
+   * @param groupname As a group's name can change, use of `groupId` is recommended to identify a group. Group name used to returns filters that are shared with a group that matches `sharePermissions.group.groupname`. This parameter cannot be used with the `groupId` parameter. (optional)
+   * @param groupId Group ID used to returns filters that are shared with a group that matches `sharePermissions.group.groupId`. This parameter cannot be used with the `groupname` parameter. (optional)
    * @param projectId Project ID used to returns filters that are shared with a project that matches `sharePermissions.project.id`. (optional)
-   * @param id The list of filter IDs. To include multiple IDs, provide an ampersand-separated list. For example, `id=10000&id=10001`. (optional, default to new ArrayList&lt;&gt;())
-   * @param orderBy [Order](#ordering) the results by a field:   *  `description` Sorts by filter description. Note that this sorting works independently of whether the expand to display the description field is in use.  *  `favourite_count` Sorts by the count of how many users have this filter as a favorite.  *  `is_favourite` Sorts by whether the filter is marked as a favorite.  *  `id` Sorts by filter ID.  *  `name` Sorts by filter name.  *  `owner` Sorts by the ID of the filter owner. (optional, default to name)
+   * @param id The list of filter IDs. To include multiple IDs, provide an ampersand-separated list. For example, `id=10000&id=10001`. Do not exceed 200 filter IDs. (optional, default to new ArrayList&lt;&gt;())
+   * @param orderBy [Order](#ordering) the results by a field:   *  `description` Sorts by filter description. Note that this sorting works independently of whether the expand to display the description field is in use.  *  `favourite_count` Sorts by the count of how many users have this filter as a favorite.  *  `is_favourite` Sorts by whether the filter is marked as a favorite.  *  `id` Sorts by filter ID.  *  `name` Sorts by filter name.  *  `owner` Sorts by the ID of the filter owner.  *  `is_shared` Sorts by whether the filter is shared. (optional, default to name)
    * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0l)
    * @param maxResults The maximum number of items to return per page. (optional, default to 50)
-   * @param expand Use [expand](#expansion) to include additional information about filter in the response. This parameter accepts a comma-separated list. Expand options include:   *  `description` Returns the description of the filter.  *  `favourite` Returns an indicator of whether the user has set the filter as a favorite.  *  `favouritedCount` Returns a count of how many users have set this filter as a favorite.  *  `jql` Returns the JQL query that the filter uses.  *  `owner` Returns the owner of the filter.  *  `searchUrl` Returns a URL to perform the filter's JQL query.  *  `sharePermissions` Returns the share permissions defined for the filter.  *  `subscriptions` Returns the users that are subscribed to the filter.  *  `viewUrl` Returns a URL to view the filter. (optional)
+   * @param expand Use [expand](#expansion) to include additional information about filter in the response. This parameter accepts a comma-separated list. Expand options include:   *  `description` Returns the description of the filter.  *  `favourite` Returns an indicator of whether the user has set the filter as a favorite.  *  `favouritedCount` Returns a count of how many users have set this filter as a favorite.  *  `jql` Returns the JQL query that the filter uses.  *  `owner` Returns the owner of the filter.  *  `searchUrl` Returns a URL to perform the filter's JQL query.  *  `sharePermissions` Returns the share permissions defined for the filter.  *  `editPermissions` Returns the edit permissions defined for the filter.  *  `isWritable` Returns whether the current user has permission to edit the filter.  *  `subscriptions` Returns the users that are subscribed to the filter.  *  `viewUrl` Returns a URL to view the filter. (optional)
+   * @param overrideSharePermissions EXPERIMENTAL: Whether share permissions are overridden to enable filters with any share permissions to be returned. Available to users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). (optional, default to false)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PageBeanFilterDetails&gt;
    */
   public Single<PageBeanFilterDetails> getFiltersPaginated(
-    Optional<String> filterName, Optional<String> accountId, Optional<String> owner, Optional<String> groupname, Optional<Long> projectId, Optional<List<Long>> id, Optional<String> orderBy, Optional<Long> startAt, Optional<Integer> maxResults, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Optional<String> filterName, Optional<String> accountId, Optional<String> owner, Optional<String> groupname, Optional<String> groupId, Optional<Long> projectId, Optional<List<Long>> id, Optional<String> orderBy, Optional<Long> startAt, Optional<Integer> maxResults, Optional<String> expand, Optional<Boolean> overrideSharePermissions, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.GET)
@@ -327,6 +337,9 @@ public class FiltersApi {
     if (groupname.isPresent()) {
       queryParams.put("groupname", Collections.singleton(String.valueOf(groupname.get())));
     }
+    if (groupId.isPresent()) {
+      queryParams.put("groupId", Collections.singleton(String.valueOf(groupId.get())));
+    }
     if (projectId.isPresent()) {
       queryParams.put("projectId", Collections.singleton(String.valueOf(projectId.get())));
     }
@@ -344,6 +357,9 @@ public class FiltersApi {
     }
     if (expand.isPresent()) {
       queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
+    }
+    if (overrideSharePermissions.isPresent()) {
+      queryParams.put("overrideSharePermissions", Collections.singleton(String.valueOf(overrideSharePermissions.get())));
     }
     requestBuilder.queryParams(queryParams);
 
@@ -484,11 +500,12 @@ public class FiltersApi {
    * @param id The ID of the filter to update. (required)
    * @param filter The filter to update. (required)
    * @param expand Use [expand](#expansion) to include additional information about filter in the response. This parameter accepts a comma-separated list. Expand options include:   *  `sharedUsers` Returns the users that the filter is shared with. This includes users that can browse projects that the filter is shared with. If you don't specify `sharedUsers`, then the `sharedUsers` object is returned but it doesn't list any users. The list of users returned is limited to 1000, to access additional users append `[start-index:end-index]` to the expand request. For example, to access the next 1000 users, use `?expand=sharedUsers[1001:2000]`.  *  `subscriptions` Returns the users that are subscribed to the filter. If you don't specify `subscriptions`, the `subscriptions` object is returned but it doesn't list any subscriptions. The list of subscriptions returned is limited to 1000, to access additional subscriptions append `[start-index:end-index]` to the expand request. For example, to access the next 1000 subscriptions, use `?expand=subscriptions[1001:2000]`. (optional)
+   * @param overrideSharePermissions EXPERIMENTAL: Whether share permissions are overridden to enable the addition of any share permissions to filters. Available to users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). (optional, default to false)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Filter&gt;
    */
   public Single<Filter> updateFilter(
-    Long id, Filter filter, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Long id, Filter filter, Optional<String> expand, Optional<Boolean> overrideSharePermissions, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.PUT)
@@ -502,6 +519,9 @@ public class FiltersApi {
     Map<String, Collection<String>> queryParams = new HashMap<>();
     if (expand.isPresent()) {
       queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
+    }
+    if (overrideSharePermissions.isPresent()) {
+      queryParams.put("overrideSharePermissions", Collections.singleton(String.valueOf(overrideSharePermissions.get())));
     }
     requestBuilder.queryParams(queryParams);
 

@@ -44,8 +44,14 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.Scope;
  * Details about a field.
  */
 @ApiModel(description = "Details about a field.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class FieldDetails {
+  @JsonProperty("clauseNames")
+  private List<String> clauseNames = new ArrayList<>();
+
+  @JsonProperty("custom")
+  private Boolean custom;
+
   @JsonProperty("id")
   private String id;
 
@@ -55,26 +61,64 @@ public class FieldDetails {
   @JsonProperty("name")
   private String name;
 
-  @JsonProperty("custom")
-  private Boolean custom;
+  @JsonProperty("navigable")
+  private Boolean navigable;
 
   @JsonProperty("orderable")
   private Boolean orderable;
 
-  @JsonProperty("navigable")
-  private Boolean navigable;
-
-  @JsonProperty("searchable")
-  private Boolean searchable;
-
-  @JsonProperty("clauseNames")
-  private List<String> clauseNames = new ArrayList<>();
+  @JsonProperty("schema")
+  private JsonTypeBean schema;
 
   @JsonProperty("scope")
   private Scope scope;
 
-  @JsonProperty("schema")
-  private JsonTypeBean schema;
+  @JsonProperty("searchable")
+  private Boolean searchable;
+
+  public FieldDetails clauseNames(List<String> clauseNames) {
+    this.clauseNames = clauseNames;
+    return this;
+  }
+
+  public FieldDetails addClauseNamesItem(String clauseNamesItem) {
+    if (this.clauseNames == null) {
+      this.clauseNames = new ArrayList<>();
+    }
+    this.clauseNames.add(clauseNamesItem);
+    return this;
+  }
+
+   /**
+   * The names that can be used to reference the field in an advanced search. For more information, see [Advanced searching - fields reference](https://confluence.atlassian.com/x/gwORLQ).
+   * @return clauseNames
+  **/
+  @ApiModelProperty(value = "The names that can be used to reference the field in an advanced search. For more information, see [Advanced searching - fields reference](https://confluence.atlassian.com/x/gwORLQ).")
+  public List<String> getClauseNames() {
+    return clauseNames;
+  }
+
+  public void setClauseNames(List<String> clauseNames) {
+    this.clauseNames = clauseNames;
+  }
+
+  public FieldDetails custom(Boolean custom) {
+    this.custom = custom;
+    return this;
+  }
+
+   /**
+   * Whether the field is a custom field.
+   * @return custom
+  **/
+  @ApiModelProperty(value = "Whether the field is a custom field.")
+  public Boolean getCustom() {
+    return custom;
+  }
+
+  public void setCustom(Boolean custom) {
+    this.custom = custom;
+  }
 
   public FieldDetails id(String id) {
     this.id = id;
@@ -130,22 +174,22 @@ public class FieldDetails {
     this.name = name;
   }
 
-  public FieldDetails custom(Boolean custom) {
-    this.custom = custom;
+  public FieldDetails navigable(Boolean navigable) {
+    this.navigable = navigable;
     return this;
   }
 
    /**
-   * Whether the field is a custom field.
-   * @return custom
+   * Whether the field can be used as a column on the issue navigator.
+   * @return navigable
   **/
-  @ApiModelProperty(value = "Whether the field is a custom field.")
-  public Boolean getCustom() {
-    return custom;
+  @ApiModelProperty(value = "Whether the field can be used as a column on the issue navigator.")
+  public Boolean getNavigable() {
+    return navigable;
   }
 
-  public void setCustom(Boolean custom) {
-    this.custom = custom;
+  public void setNavigable(Boolean navigable) {
+    this.navigable = navigable;
   }
 
   public FieldDetails orderable(Boolean orderable) {
@@ -166,66 +210,22 @@ public class FieldDetails {
     this.orderable = orderable;
   }
 
-  public FieldDetails navigable(Boolean navigable) {
-    this.navigable = navigable;
+  public FieldDetails schema(JsonTypeBean schema) {
+    this.schema = schema;
     return this;
   }
 
    /**
-   * Whether the field can be used as a column on the issue navigator.
-   * @return navigable
+   * The data schema for the field.
+   * @return schema
   **/
-  @ApiModelProperty(value = "Whether the field can be used as a column on the issue navigator.")
-  public Boolean getNavigable() {
-    return navigable;
+  @ApiModelProperty(value = "The data schema for the field.")
+  public JsonTypeBean getSchema() {
+    return schema;
   }
 
-  public void setNavigable(Boolean navigable) {
-    this.navigable = navigable;
-  }
-
-  public FieldDetails searchable(Boolean searchable) {
-    this.searchable = searchable;
-    return this;
-  }
-
-   /**
-   * Whether the content of the field can be searched.
-   * @return searchable
-  **/
-  @ApiModelProperty(value = "Whether the content of the field can be searched.")
-  public Boolean getSearchable() {
-    return searchable;
-  }
-
-  public void setSearchable(Boolean searchable) {
-    this.searchable = searchable;
-  }
-
-  public FieldDetails clauseNames(List<String> clauseNames) {
-    this.clauseNames = clauseNames;
-    return this;
-  }
-
-  public FieldDetails addClauseNamesItem(String clauseNamesItem) {
-    if (this.clauseNames == null) {
-      this.clauseNames = new ArrayList<>();
-    }
-    this.clauseNames.add(clauseNamesItem);
-    return this;
-  }
-
-   /**
-   * The names that can be used to reference the field in an advanced search. For more information, see [Advanced searching - fields reference](https://confluence.atlassian.com/x/gwORLQ).
-   * @return clauseNames
-  **/
-  @ApiModelProperty(value = "The names that can be used to reference the field in an advanced search. For more information, see [Advanced searching - fields reference](https://confluence.atlassian.com/x/gwORLQ).")
-  public List<String> getClauseNames() {
-    return clauseNames;
-  }
-
-  public void setClauseNames(List<String> clauseNames) {
-    this.clauseNames = clauseNames;
+  public void setSchema(JsonTypeBean schema) {
+    this.schema = schema;
   }
 
   public FieldDetails scope(Scope scope) {
@@ -246,22 +246,22 @@ public class FieldDetails {
     this.scope = scope;
   }
 
-  public FieldDetails schema(JsonTypeBean schema) {
-    this.schema = schema;
+  public FieldDetails searchable(Boolean searchable) {
+    this.searchable = searchable;
     return this;
   }
 
    /**
-   * The data schema for the field.
-   * @return schema
+   * Whether the content of the field can be searched.
+   * @return searchable
   **/
-  @ApiModelProperty(value = "The data schema for the field.")
-  public JsonTypeBean getSchema() {
-    return schema;
+  @ApiModelProperty(value = "Whether the content of the field can be searched.")
+  public Boolean getSearchable() {
+    return searchable;
   }
 
-  public void setSchema(JsonTypeBean schema) {
-    this.schema = schema;
+  public void setSearchable(Boolean searchable) {
+    this.searchable = searchable;
   }
 
 
@@ -274,21 +274,21 @@ public class FieldDetails {
       return false;
     }
     FieldDetails fieldDetails = (FieldDetails) o;
-    return Objects.equals(this.id, fieldDetails.id) &&
+    return Objects.equals(this.clauseNames, fieldDetails.clauseNames) &&
+        Objects.equals(this.custom, fieldDetails.custom) &&
+        Objects.equals(this.id, fieldDetails.id) &&
         Objects.equals(this.key, fieldDetails.key) &&
         Objects.equals(this.name, fieldDetails.name) &&
-        Objects.equals(this.custom, fieldDetails.custom) &&
-        Objects.equals(this.orderable, fieldDetails.orderable) &&
         Objects.equals(this.navigable, fieldDetails.navigable) &&
-        Objects.equals(this.searchable, fieldDetails.searchable) &&
-        Objects.equals(this.clauseNames, fieldDetails.clauseNames) &&
+        Objects.equals(this.orderable, fieldDetails.orderable) &&
+        Objects.equals(this.schema, fieldDetails.schema) &&
         Objects.equals(this.scope, fieldDetails.scope) &&
-        Objects.equals(this.schema, fieldDetails.schema);
+        Objects.equals(this.searchable, fieldDetails.searchable);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, key, name, custom, orderable, navigable, searchable, clauseNames, scope, schema);
+    return Objects.hash(clauseNames, custom, id, key, name, navigable, orderable, schema, scope, searchable);
   }
 
 
@@ -297,16 +297,16 @@ public class FieldDetails {
     StringBuilder sb = new StringBuilder();
     sb.append("class FieldDetails {\n");
     
+    sb.append("    clauseNames: ").append(toIndentedString(clauseNames)).append("\n");
+    sb.append("    custom: ").append(toIndentedString(custom)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    custom: ").append(toIndentedString(custom)).append("\n");
-    sb.append("    orderable: ").append(toIndentedString(orderable)).append("\n");
     sb.append("    navigable: ").append(toIndentedString(navigable)).append("\n");
-    sb.append("    searchable: ").append(toIndentedString(searchable)).append("\n");
-    sb.append("    clauseNames: ").append(toIndentedString(clauseNames)).append("\n");
-    sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
+    sb.append("    orderable: ").append(toIndentedString(orderable)).append("\n");
     sb.append("    schema: ").append(toIndentedString(schema)).append("\n");
+    sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
+    sb.append("    searchable: ").append(toIndentedString(searchable)).append("\n");
     sb.append("}");
     return sb.toString();
   }

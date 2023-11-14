@@ -41,16 +41,37 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.PermissionHolder;
  * Issue security level member.
  */
 @ApiModel(description = "Issue security level member.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class IssueSecurityLevelMember {
+  @JsonProperty("holder")
+  private PermissionHolder holder;
+
   @JsonProperty("id")
   private Long id;
 
   @JsonProperty("issueSecurityLevelId")
   private Long issueSecurityLevelId;
 
-  @JsonProperty("holder")
-  private PermissionHolder holder;
+  @JsonProperty("managed")
+  private Boolean managed;
+
+  public IssueSecurityLevelMember holder(PermissionHolder holder) {
+    this.holder = holder;
+    return this;
+  }
+
+   /**
+   * The user or group being granted the permission. It consists of a &#x60;type&#x60; and a type-dependent &#x60;parameter&#x60;. See [Holder object](../api-group-permission-schemes/#holder-object) in *Get all permission schemes* for more information.
+   * @return holder
+  **/
+  @ApiModelProperty(required = true, value = "The user or group being granted the permission. It consists of a `type` and a type-dependent `parameter`. See [Holder object](../api-group-permission-schemes/#holder-object) in *Get all permission schemes* for more information.")
+  public PermissionHolder getHolder() {
+    return holder;
+  }
+
+  public void setHolder(PermissionHolder holder) {
+    this.holder = holder;
+  }
 
   public IssueSecurityLevelMember id(Long id) {
     this.id = id;
@@ -88,22 +109,22 @@ public class IssueSecurityLevelMember {
     this.issueSecurityLevelId = issueSecurityLevelId;
   }
 
-  public IssueSecurityLevelMember holder(PermissionHolder holder) {
-    this.holder = holder;
+  public IssueSecurityLevelMember managed(Boolean managed) {
+    this.managed = managed;
     return this;
   }
 
    /**
-   * The user or group being granted the permission. It consists of a &#x60;type&#x60; and a type-dependent &#x60;parameter&#x60;. See [Holder object](../api-group-permission-schemes/#holder-object) in *Get all permission schemes* for more information.
-   * @return holder
+   * Get managed
+   * @return managed
   **/
-  @ApiModelProperty(required = true, value = "The user or group being granted the permission. It consists of a `type` and a type-dependent `parameter`. See [Holder object](../api-group-permission-schemes/#holder-object) in *Get all permission schemes* for more information.")
-  public PermissionHolder getHolder() {
-    return holder;
+  @ApiModelProperty(value = "")
+  public Boolean getManaged() {
+    return managed;
   }
 
-  public void setHolder(PermissionHolder holder) {
-    this.holder = holder;
+  public void setManaged(Boolean managed) {
+    this.managed = managed;
   }
 
 
@@ -116,14 +137,15 @@ public class IssueSecurityLevelMember {
       return false;
     }
     IssueSecurityLevelMember issueSecurityLevelMember = (IssueSecurityLevelMember) o;
-    return Objects.equals(this.id, issueSecurityLevelMember.id) &&
+    return Objects.equals(this.holder, issueSecurityLevelMember.holder) &&
+        Objects.equals(this.id, issueSecurityLevelMember.id) &&
         Objects.equals(this.issueSecurityLevelId, issueSecurityLevelMember.issueSecurityLevelId) &&
-        Objects.equals(this.holder, issueSecurityLevelMember.holder);
+        Objects.equals(this.managed, issueSecurityLevelMember.managed);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, issueSecurityLevelId, holder);
+    return Objects.hash(holder, id, issueSecurityLevelId, managed);
   }
 
 
@@ -132,9 +154,10 @@ public class IssueSecurityLevelMember {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueSecurityLevelMember {\n");
     
+    sb.append("    holder: ").append(toIndentedString(holder)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    issueSecurityLevelId: ").append(toIndentedString(issueSecurityLevelId)).append("\n");
-    sb.append("    holder: ").append(toIndentedString(holder)).append("\n");
+    sb.append("    managed: ").append(toIndentedString(managed)).append("\n");
     sb.append("}");
     return sb.toString();
   }

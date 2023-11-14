@@ -43,10 +43,10 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.UserDetails;
  * A paged list. To access additional details append &#x60;[start-index:end-index]&#x60; to the expand request. For example, &#x60;?expand&#x3D;sharedUsers[10:40]&#x60; returns a list starting at item 10 and finishing at item 40.
  */
 @ApiModel(description = "A paged list. To access additional details append `[start-index:end-index]` to the expand request. For example, `?expand=sharedUsers[10:40]` returns a list starting at item 10 and finishing at item 40.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class PagedListUserDetailsApplicationUser {
-  @JsonProperty("size")
-  private Integer size;
+  @JsonProperty("end-index")
+  private Integer endIndex;
 
   @JsonProperty("items")
   private List<UserDetails> items = new ArrayList<>();
@@ -54,19 +54,19 @@ public class PagedListUserDetailsApplicationUser {
   @JsonProperty("max-results")
   private Integer maxResults;
 
+  @JsonProperty("size")
+  private Integer size;
+
   @JsonProperty("start-index")
   private Integer startIndex;
 
-  @JsonProperty("end-index")
-  private Integer endIndex;
-
    /**
-   * The number of items on the page.
-   * @return size
+   * The index of the last item returned on the page.
+   * @return endIndex
   **/
-  @ApiModelProperty(value = "The number of items on the page.")
-  public Integer getSize() {
-    return size;
+  @ApiModelProperty(value = "The index of the last item returned on the page.")
+  public Integer getEndIndex() {
+    return endIndex;
   }
 
    /**
@@ -88,21 +88,21 @@ public class PagedListUserDetailsApplicationUser {
   }
 
    /**
+   * The number of items on the page.
+   * @return size
+  **/
+  @ApiModelProperty(value = "The number of items on the page.")
+  public Integer getSize() {
+    return size;
+  }
+
+   /**
    * The index of the first item returned on the page.
    * @return startIndex
   **/
   @ApiModelProperty(value = "The index of the first item returned on the page.")
   public Integer getStartIndex() {
     return startIndex;
-  }
-
-   /**
-   * The index of the last item returned on the page.
-   * @return endIndex
-  **/
-  @ApiModelProperty(value = "The index of the last item returned on the page.")
-  public Integer getEndIndex() {
-    return endIndex;
   }
 
 
@@ -115,16 +115,16 @@ public class PagedListUserDetailsApplicationUser {
       return false;
     }
     PagedListUserDetailsApplicationUser pagedListUserDetailsApplicationUser = (PagedListUserDetailsApplicationUser) o;
-    return Objects.equals(this.size, pagedListUserDetailsApplicationUser.size) &&
+    return Objects.equals(this.endIndex, pagedListUserDetailsApplicationUser.endIndex) &&
         Objects.equals(this.items, pagedListUserDetailsApplicationUser.items) &&
         Objects.equals(this.maxResults, pagedListUserDetailsApplicationUser.maxResults) &&
-        Objects.equals(this.startIndex, pagedListUserDetailsApplicationUser.startIndex) &&
-        Objects.equals(this.endIndex, pagedListUserDetailsApplicationUser.endIndex);
+        Objects.equals(this.size, pagedListUserDetailsApplicationUser.size) &&
+        Objects.equals(this.startIndex, pagedListUserDetailsApplicationUser.startIndex);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(size, items, maxResults, startIndex, endIndex);
+    return Objects.hash(endIndex, items, maxResults, size, startIndex);
   }
 
 
@@ -133,11 +133,11 @@ public class PagedListUserDetailsApplicationUser {
     StringBuilder sb = new StringBuilder();
     sb.append("class PagedListUserDetailsApplicationUser {\n");
     
-    sb.append("    size: ").append(toIndentedString(size)).append("\n");
+    sb.append("    endIndex: ").append(toIndentedString(endIndex)).append("\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("    maxResults: ").append(toIndentedString(maxResults)).append("\n");
+    sb.append("    size: ").append(toIndentedString(size)).append("\n");
     sb.append("    startIndex: ").append(toIndentedString(startIndex)).append("\n");
-    sb.append("    endIndex: ").append(toIndentedString(endIndex)).append("\n");
     sb.append("}");
     return sb.toString();
   }

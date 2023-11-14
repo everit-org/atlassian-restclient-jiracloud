@@ -40,13 +40,31 @@ import io.swagger.annotations.ApiModelProperty;
  * Details about a group.
  */
 @ApiModel(description = "Details about a group.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class GroupDetails {
+  @JsonProperty("groupId")
+  private String groupId;
+
   @JsonProperty("name")
   private String name;
 
-  @JsonProperty("groupId")
-  private String groupId;
+  public GroupDetails groupId(String groupId) {
+    this.groupId = groupId;
+    return this;
+  }
+
+   /**
+   * The ID of the group, which uniquely identifies the group across all Atlassian products. For example, *952d12c3-5b5b-4d04-bb32-44d383afc4b2*.
+   * @return groupId
+  **/
+  @ApiModelProperty(value = "The ID of the group, which uniquely identifies the group across all Atlassian products. For example, *952d12c3-5b5b-4d04-bb32-44d383afc4b2*.")
+  public String getGroupId() {
+    return groupId;
+  }
+
+  public void setGroupId(String groupId) {
+    this.groupId = groupId;
+  }
 
   public GroupDetails name(String name) {
     this.name = name;
@@ -66,24 +84,6 @@ public class GroupDetails {
     this.name = name;
   }
 
-  public GroupDetails groupId(String groupId) {
-    this.groupId = groupId;
-    return this;
-  }
-
-   /**
-   * The ID of the group, if available, which uniquely identifies the group across all Atlassian products. For example, *952d12c3-5b5b-4d04-bb32-44d383afc4b2*.
-   * @return groupId
-  **/
-  @ApiModelProperty(value = "The ID of the group, if available, which uniquely identifies the group across all Atlassian products. For example, *952d12c3-5b5b-4d04-bb32-44d383afc4b2*.")
-  public String getGroupId() {
-    return groupId;
-  }
-
-  public void setGroupId(String groupId) {
-    this.groupId = groupId;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -94,13 +94,13 @@ public class GroupDetails {
       return false;
     }
     GroupDetails groupDetails = (GroupDetails) o;
-    return Objects.equals(this.name, groupDetails.name) &&
-        Objects.equals(this.groupId, groupDetails.groupId);
+    return Objects.equals(this.groupId, groupDetails.groupId) &&
+        Objects.equals(this.name, groupDetails.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, groupId);
+    return Objects.hash(groupId, name);
   }
 
 
@@ -109,8 +109,8 @@ public class GroupDetails {
     StringBuilder sb = new StringBuilder();
     sb.append("class GroupDetails {\n");
     
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    groupId: ").append(toIndentedString(groupId)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }

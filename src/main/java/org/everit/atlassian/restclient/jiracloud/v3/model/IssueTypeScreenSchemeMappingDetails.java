@@ -43,7 +43,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.IssueTypeScreenSchemeM
  * A list of issue type screen scheme mappings.
  */
 @ApiModel(description = "A list of issue type screen scheme mappings.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class IssueTypeScreenSchemeMappingDetails {
   @JsonProperty("issueTypeMappings")
   private List<IssueTypeScreenSchemeMapping> issueTypeMappings = new ArrayList<>();

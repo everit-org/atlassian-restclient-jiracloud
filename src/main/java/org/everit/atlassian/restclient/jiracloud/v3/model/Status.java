@@ -43,33 +43,15 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.Icon;
  * The status of the item.
  */
 @ApiModel(description = "The status of the item.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class Status {
-  @JsonProperty("resolved")
-  private Boolean resolved;
-
   @JsonProperty("icon")
   private Icon icon;
 
+  @JsonProperty("resolved")
+  private Boolean resolved;
+
   private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
-
-  public Status resolved(Boolean resolved) {
-    this.resolved = resolved;
-    return this;
-  }
-
-   /**
-   * Whether the item is resolved. If set to \&quot;true\&quot;, the link to the issue is displayed in a strikethrough font, otherwise the link displays in normal font.
-   * @return resolved
-  **/
-  @ApiModelProperty(value = "Whether the item is resolved. If set to \"true\", the link to the issue is displayed in a strikethrough font, otherwise the link displays in normal font.")
-  public Boolean getResolved() {
-    return resolved;
-  }
-
-  public void setResolved(Boolean resolved) {
-    this.resolved = resolved;
-  }
 
   public Status icon(Icon icon) {
     this.icon = icon;
@@ -87,6 +69,24 @@ public class Status {
 
   public void setIcon(Icon icon) {
     this.icon = icon;
+  }
+
+  public Status resolved(Boolean resolved) {
+    this.resolved = resolved;
+    return this;
+  }
+
+   /**
+   * Whether the item is resolved. If set to \&quot;true\&quot;, the link to the issue is displayed in a strikethrough font, otherwise the link displays in normal font.
+   * @return resolved
+  **/
+  @ApiModelProperty(value = "Whether the item is resolved. If set to \"true\", the link to the issue is displayed in a strikethrough font, otherwise the link displays in normal font.")
+  public Boolean getResolved() {
+    return resolved;
+  }
+
+  public void setResolved(Boolean resolved) {
+    this.resolved = resolved;
   }
 
 
@@ -109,14 +109,14 @@ public class Status {
       return false;
     }
     Status status = (Status) o;
-    return Objects.equals(this.resolved, status.resolved) &&
-        Objects.equals(this.icon, status.icon) &&
+    return Objects.equals(this.icon, status.icon) &&
+        Objects.equals(this.resolved, status.resolved) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(resolved, icon, super.hashCode());
+    return Objects.hash(icon, resolved, super.hashCode());
   }
 
 
@@ -125,8 +125,8 @@ public class Status {
     StringBuilder sb = new StringBuilder();
     sb.append("class Status {\n");
     
-    sb.append("    resolved: ").append(toIndentedString(resolved)).append("\n");
     sb.append("    icon: ").append(toIndentedString(icon)).append("\n");
+    sb.append("    resolved: ").append(toIndentedString(resolved)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();

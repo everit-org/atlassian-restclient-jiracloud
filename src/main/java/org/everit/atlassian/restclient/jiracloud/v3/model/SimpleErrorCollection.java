@@ -43,42 +43,16 @@ import java.util.Map;
 /**
  * SimpleErrorCollection
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class SimpleErrorCollection {
-  @JsonProperty("errors")
-  private Map<String, String> errors = new HashMap<>();
-
   @JsonProperty("errorMessages")
   private List<String> errorMessages = new ArrayList<>();
 
+  @JsonProperty("errors")
+  private Map<String, String> errors = new HashMap<>();
+
   @JsonProperty("httpStatusCode")
   private Integer httpStatusCode;
-
-  public SimpleErrorCollection errors(Map<String, String> errors) {
-    this.errors = errors;
-    return this;
-  }
-
-  public SimpleErrorCollection putErrorsItem(String key, String errorsItem) {
-    if (this.errors == null) {
-      this.errors = new HashMap<>();
-    }
-    this.errors.put(key, errorsItem);
-    return this;
-  }
-
-   /**
-   * The list of errors by parameter returned by the operation. For example,\&quot;projectKey\&quot;: \&quot;Project keys must start with an uppercase letter, followed by one or more uppercase alphanumeric characters.\&quot;
-   * @return errors
-  **/
-  @ApiModelProperty(value = "The list of errors by parameter returned by the operation. For example,\"projectKey\": \"Project keys must start with an uppercase letter, followed by one or more uppercase alphanumeric characters.\"")
-  public Map<String, String> getErrors() {
-    return errors;
-  }
-
-  public void setErrors(Map<String, String> errors) {
-    this.errors = errors;
-  }
 
   public SimpleErrorCollection errorMessages(List<String> errorMessages) {
     this.errorMessages = errorMessages;
@@ -104,6 +78,32 @@ public class SimpleErrorCollection {
 
   public void setErrorMessages(List<String> errorMessages) {
     this.errorMessages = errorMessages;
+  }
+
+  public SimpleErrorCollection errors(Map<String, String> errors) {
+    this.errors = errors;
+    return this;
+  }
+
+  public SimpleErrorCollection putErrorsItem(String key, String errorsItem) {
+    if (this.errors == null) {
+      this.errors = new HashMap<>();
+    }
+    this.errors.put(key, errorsItem);
+    return this;
+  }
+
+   /**
+   * The list of errors by parameter returned by the operation. For example,\&quot;projectKey\&quot;: \&quot;Project keys must start with an uppercase letter, followed by one or more uppercase alphanumeric characters.\&quot;
+   * @return errors
+  **/
+  @ApiModelProperty(value = "The list of errors by parameter returned by the operation. For example,\"projectKey\": \"Project keys must start with an uppercase letter, followed by one or more uppercase alphanumeric characters.\"")
+  public Map<String, String> getErrors() {
+    return errors;
+  }
+
+  public void setErrors(Map<String, String> errors) {
+    this.errors = errors;
   }
 
   public SimpleErrorCollection httpStatusCode(Integer httpStatusCode) {
@@ -134,14 +134,14 @@ public class SimpleErrorCollection {
       return false;
     }
     SimpleErrorCollection simpleErrorCollection = (SimpleErrorCollection) o;
-    return Objects.equals(this.errors, simpleErrorCollection.errors) &&
-        Objects.equals(this.errorMessages, simpleErrorCollection.errorMessages) &&
+    return Objects.equals(this.errorMessages, simpleErrorCollection.errorMessages) &&
+        Objects.equals(this.errors, simpleErrorCollection.errors) &&
         Objects.equals(this.httpStatusCode, simpleErrorCollection.httpStatusCode);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(errors, errorMessages, httpStatusCode);
+    return Objects.hash(errorMessages, errors, httpStatusCode);
   }
 
 
@@ -150,8 +150,8 @@ public class SimpleErrorCollection {
     StringBuilder sb = new StringBuilder();
     sb.append("class SimpleErrorCollection {\n");
     
-    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
     sb.append("    errorMessages: ").append(toIndentedString(errorMessages)).append("\n");
+    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
     sb.append("    httpStatusCode: ").append(toIndentedString(httpStatusCode)).append("\n");
     sb.append("}");
     return sb.toString();

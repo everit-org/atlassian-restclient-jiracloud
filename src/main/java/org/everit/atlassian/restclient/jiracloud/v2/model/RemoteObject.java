@@ -44,78 +44,24 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.Status;
  * The linked item.
  */
 @ApiModel(description = "The linked item.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class RemoteObject {
-  @JsonProperty("url")
-  private String url;
-
-  @JsonProperty("title")
-  private String title;
-
-  @JsonProperty("summary")
-  private String summary;
-
   @JsonProperty("icon")
   private Icon icon;
 
   @JsonProperty("status")
   private Status status;
 
+  @JsonProperty("summary")
+  private String summary;
+
+  @JsonProperty("title")
+  private String title;
+
+  @JsonProperty("url")
+  private String url;
+
   private HashMap<String, Object> additionalProperties_ = new HashMap<String, Object>();
-
-  public RemoteObject url(String url) {
-    this.url = url;
-    return this;
-  }
-
-   /**
-   * The URL of the item.
-   * @return url
-  **/
-  @ApiModelProperty(required = true, value = "The URL of the item.")
-  public String getUrl() {
-    return url;
-  }
-
-  public void setUrl(String url) {
-    this.url = url;
-  }
-
-  public RemoteObject title(String title) {
-    this.title = title;
-    return this;
-  }
-
-   /**
-   * The title of the item.
-   * @return title
-  **/
-  @ApiModelProperty(required = true, value = "The title of the item.")
-  public String getTitle() {
-    return title;
-  }
-
-  public void setTitle(String title) {
-    this.title = title;
-  }
-
-  public RemoteObject summary(String summary) {
-    this.summary = summary;
-    return this;
-  }
-
-   /**
-   * The summary details of the item.
-   * @return summary
-  **/
-  @ApiModelProperty(value = "The summary details of the item.")
-  public String getSummary() {
-    return summary;
-  }
-
-  public void setSummary(String summary) {
-    this.summary = summary;
-  }
 
   public RemoteObject icon(Icon icon) {
     this.icon = icon;
@@ -153,6 +99,60 @@ public class RemoteObject {
     this.status = status;
   }
 
+  public RemoteObject summary(String summary) {
+    this.summary = summary;
+    return this;
+  }
+
+   /**
+   * The summary details of the item.
+   * @return summary
+  **/
+  @ApiModelProperty(value = "The summary details of the item.")
+  public String getSummary() {
+    return summary;
+  }
+
+  public void setSummary(String summary) {
+    this.summary = summary;
+  }
+
+  public RemoteObject title(String title) {
+    this.title = title;
+    return this;
+  }
+
+   /**
+   * The title of the item.
+   * @return title
+  **/
+  @ApiModelProperty(required = true, value = "The title of the item.")
+  public String getTitle() {
+    return title;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
+  }
+
+  public RemoteObject url(String url) {
+    this.url = url;
+    return this;
+  }
+
+   /**
+   * The URL of the item.
+   * @return url
+  **/
+  @ApiModelProperty(required = true, value = "The URL of the item.")
+  public String getUrl() {
+    return url;
+  }
+
+  public void setUrl(String url) {
+    this.url = url;
+  }
+
 
   @com.fasterxml.jackson.annotation.JsonAnyGetter
   public Map<String, Object> any() {
@@ -173,17 +173,17 @@ public class RemoteObject {
       return false;
     }
     RemoteObject remoteObject = (RemoteObject) o;
-    return Objects.equals(this.url, remoteObject.url) &&
-        Objects.equals(this.title, remoteObject.title) &&
-        Objects.equals(this.summary, remoteObject.summary) &&
-        Objects.equals(this.icon, remoteObject.icon) &&
+    return Objects.equals(this.icon, remoteObject.icon) &&
         Objects.equals(this.status, remoteObject.status) &&
+        Objects.equals(this.summary, remoteObject.summary) &&
+        Objects.equals(this.title, remoteObject.title) &&
+        Objects.equals(this.url, remoteObject.url) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(url, title, summary, icon, status, super.hashCode());
+    return Objects.hash(icon, status, summary, title, url, super.hashCode());
   }
 
 
@@ -192,11 +192,11 @@ public class RemoteObject {
     StringBuilder sb = new StringBuilder();
     sb.append("class RemoteObject {\n");
     
-    sb.append("    url: ").append(toIndentedString(url)).append("\n");
-    sb.append("    title: ").append(toIndentedString(title)).append("\n");
-    sb.append("    summary: ").append(toIndentedString(summary)).append("\n");
     sb.append("    icon: ").append(toIndentedString(icon)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    summary: ").append(toIndentedString(summary)).append("\n");
+    sb.append("    title: ").append(toIndentedString(title)).append("\n");
+    sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties_)).append("\n");
     sb.append("}");
     return sb.toString();

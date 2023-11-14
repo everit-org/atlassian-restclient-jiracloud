@@ -40,16 +40,46 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of a user, group, field, or project role that holds a permission. See [Holder object](../api-group-permission-schemes/#holder-object) in *Get all permission schemes* for more information.
  */
 @ApiModel(description = "Details of a user, group, field, or project role that holds a permission. See [Holder object](../api-group-permission-schemes/#holder-object) in *Get all permission schemes* for more information.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class PermissionHolder {
-  @JsonProperty("type")
-  private String type;
+  @JsonProperty("expand")
+  private String expand;
 
   @JsonProperty("parameter")
   private String parameter;
 
-  @JsonProperty("expand")
-  private String expand;
+  @JsonProperty("type")
+  private String type;
+
+  @JsonProperty("value")
+  private String value;
+
+   /**
+   * Expand options that include additional permission holder details in the response.
+   * @return expand
+  **/
+  @ApiModelProperty(value = "Expand options that include additional permission holder details in the response.")
+  public String getExpand() {
+    return expand;
+  }
+
+  public PermissionHolder parameter(String parameter) {
+    this.parameter = parameter;
+    return this;
+  }
+
+   /**
+   * As a group&#39;s name can change, use of &#x60;value&#x60; is recommended. The identifier associated withthe &#x60;type&#x60; value that defines the holder of the permission.
+   * @return parameter
+  **/
+  @ApiModelProperty(value = "As a group's name can change, use of `value` is recommended. The identifier associated withthe `type` value that defines the holder of the permission.")
+  public String getParameter() {
+    return parameter;
+  }
+
+  public void setParameter(String parameter) {
+    this.parameter = parameter;
+  }
 
   public PermissionHolder type(String type) {
     this.type = type;
@@ -69,31 +99,22 @@ public class PermissionHolder {
     this.type = type;
   }
 
-  public PermissionHolder parameter(String parameter) {
-    this.parameter = parameter;
+  public PermissionHolder value(String value) {
+    this.value = value;
     return this;
   }
 
    /**
-   * The identifier of permission holder.
-   * @return parameter
+   * The identifier associated with the &#x60;type&#x60; value that defines the holder of the permission.
+   * @return value
   **/
-  @ApiModelProperty(value = "The identifier of permission holder.")
-  public String getParameter() {
-    return parameter;
+  @ApiModelProperty(value = "The identifier associated with the `type` value that defines the holder of the permission.")
+  public String getValue() {
+    return value;
   }
 
-  public void setParameter(String parameter) {
-    this.parameter = parameter;
-  }
-
-   /**
-   * Expand options that include additional permission holder details in the response.
-   * @return expand
-  **/
-  @ApiModelProperty(value = "Expand options that include additional permission holder details in the response.")
-  public String getExpand() {
-    return expand;
+  public void setValue(String value) {
+    this.value = value;
   }
 
 
@@ -106,14 +127,15 @@ public class PermissionHolder {
       return false;
     }
     PermissionHolder permissionHolder = (PermissionHolder) o;
-    return Objects.equals(this.type, permissionHolder.type) &&
+    return Objects.equals(this.expand, permissionHolder.expand) &&
         Objects.equals(this.parameter, permissionHolder.parameter) &&
-        Objects.equals(this.expand, permissionHolder.expand);
+        Objects.equals(this.type, permissionHolder.type) &&
+        Objects.equals(this.value, permissionHolder.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, parameter, expand);
+    return Objects.hash(expand, parameter, type, value);
   }
 
 
@@ -122,9 +144,10 @@ public class PermissionHolder {
     StringBuilder sb = new StringBuilder();
     sb.append("class PermissionHolder {\n");
     
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    parameter: ").append(toIndentedString(parameter)).append("\n");
     sb.append("    expand: ").append(toIndentedString(expand)).append("\n");
+    sb.append("    parameter: ").append(toIndentedString(parameter)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }

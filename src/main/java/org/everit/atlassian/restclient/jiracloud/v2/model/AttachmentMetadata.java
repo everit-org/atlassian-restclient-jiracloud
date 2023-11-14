@@ -46,25 +46,22 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.User;
  * Metadata for an issue attachment.
  */
 @ApiModel(description = "Metadata for an issue attachment.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class AttachmentMetadata {
-  @JsonProperty("id")
-  private Long id;
-
-  @JsonProperty("self")
-  private URI self;
-
-  @JsonProperty("filename")
-  private String filename;
-
   @JsonProperty("author")
   private User author;
+
+  @JsonProperty("content")
+  private String content;
 
   @JsonProperty("created")
   private OffsetDateTime created;
 
-  @JsonProperty("size")
-  private Long size;
+  @JsonProperty("filename")
+  private String filename;
+
+  @JsonProperty("id")
+  private Long id;
 
   @JsonProperty("mimeType")
   private String mimeType;
@@ -72,38 +69,14 @@ public class AttachmentMetadata {
   @JsonProperty("properties")
   private Map<String, Object> properties = new HashMap<>();
 
-  @JsonProperty("content")
-  private String content;
+  @JsonProperty("self")
+  private URI self;
+
+  @JsonProperty("size")
+  private Long size;
 
   @JsonProperty("thumbnail")
   private String thumbnail;
-
-   /**
-   * The ID of the attachment.
-   * @return id
-  **/
-  @ApiModelProperty(value = "The ID of the attachment.")
-  public Long getId() {
-    return id;
-  }
-
-   /**
-   * The URL of the attachment metadata details.
-   * @return self
-  **/
-  @ApiModelProperty(value = "The URL of the attachment metadata details.")
-  public URI getSelf() {
-    return self;
-  }
-
-   /**
-   * The name of the attachment file.
-   * @return filename
-  **/
-  @ApiModelProperty(value = "The name of the attachment file.")
-  public String getFilename() {
-    return filename;
-  }
 
    /**
    * Details of the user who attached the file.
@@ -112,6 +85,15 @@ public class AttachmentMetadata {
   @ApiModelProperty(value = "Details of the user who attached the file.")
   public User getAuthor() {
     return author;
+  }
+
+   /**
+   * The URL of the attachment.
+   * @return content
+  **/
+  @ApiModelProperty(value = "The URL of the attachment.")
+  public String getContent() {
+    return content;
   }
 
    /**
@@ -124,12 +106,21 @@ public class AttachmentMetadata {
   }
 
    /**
-   * The size of the attachment.
-   * @return size
+   * The name of the attachment file.
+   * @return filename
   **/
-  @ApiModelProperty(value = "The size of the attachment.")
-  public Long getSize() {
-    return size;
+  @ApiModelProperty(value = "The name of the attachment file.")
+  public String getFilename() {
+    return filename;
+  }
+
+   /**
+   * The ID of the attachment.
+   * @return id
+  **/
+  @ApiModelProperty(value = "The ID of the attachment.")
+  public Long getId() {
+    return id;
   }
 
    /**
@@ -151,12 +142,21 @@ public class AttachmentMetadata {
   }
 
    /**
-   * The URL of the attachment.
-   * @return content
+   * The URL of the attachment metadata details.
+   * @return self
   **/
-  @ApiModelProperty(value = "The URL of the attachment.")
-  public String getContent() {
-    return content;
+  @ApiModelProperty(value = "The URL of the attachment metadata details.")
+  public URI getSelf() {
+    return self;
+  }
+
+   /**
+   * The size of the attachment.
+   * @return size
+  **/
+  @ApiModelProperty(value = "The size of the attachment.")
+  public Long getSize() {
+    return size;
   }
 
    /**
@@ -178,21 +178,21 @@ public class AttachmentMetadata {
       return false;
     }
     AttachmentMetadata attachmentMetadata = (AttachmentMetadata) o;
-    return Objects.equals(this.id, attachmentMetadata.id) &&
-        Objects.equals(this.self, attachmentMetadata.self) &&
-        Objects.equals(this.filename, attachmentMetadata.filename) &&
-        Objects.equals(this.author, attachmentMetadata.author) &&
+    return Objects.equals(this.author, attachmentMetadata.author) &&
+        Objects.equals(this.content, attachmentMetadata.content) &&
         Objects.equals(this.created, attachmentMetadata.created) &&
-        Objects.equals(this.size, attachmentMetadata.size) &&
+        Objects.equals(this.filename, attachmentMetadata.filename) &&
+        Objects.equals(this.id, attachmentMetadata.id) &&
         Objects.equals(this.mimeType, attachmentMetadata.mimeType) &&
         Objects.equals(this.properties, attachmentMetadata.properties) &&
-        Objects.equals(this.content, attachmentMetadata.content) &&
+        Objects.equals(this.self, attachmentMetadata.self) &&
+        Objects.equals(this.size, attachmentMetadata.size) &&
         Objects.equals(this.thumbnail, attachmentMetadata.thumbnail);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, self, filename, author, created, size, mimeType, properties, content, thumbnail);
+    return Objects.hash(author, content, created, filename, id, mimeType, properties, self, size, thumbnail);
   }
 
 
@@ -201,15 +201,15 @@ public class AttachmentMetadata {
     StringBuilder sb = new StringBuilder();
     sb.append("class AttachmentMetadata {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    filename: ").append(toIndentedString(filename)).append("\n");
     sb.append("    author: ").append(toIndentedString(author)).append("\n");
+    sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
-    sb.append("    size: ").append(toIndentedString(size)).append("\n");
+    sb.append("    filename: ").append(toIndentedString(filename)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    mimeType: ").append(toIndentedString(mimeType)).append("\n");
     sb.append("    properties: ").append(toIndentedString(properties)).append("\n");
-    sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
+    sb.append("    size: ").append(toIndentedString(size)).append("\n");
     sb.append("    thumbnail: ").append(toIndentedString(thumbnail)).append("\n");
     sb.append("}");
     return sb.toString();

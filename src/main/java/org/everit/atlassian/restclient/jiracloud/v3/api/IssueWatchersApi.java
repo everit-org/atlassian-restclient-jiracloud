@@ -28,6 +28,8 @@ import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
 import org.everit.http.restclient.TypeReference;
 
+import org.everit.atlassian.restclient.jiracloud.v3.model.BulkIssueIsWatching;
+import org.everit.atlassian.restclient.jiracloud.v3.model.IssueList;
 import org.everit.atlassian.restclient.jiracloud.v3.model.Watchers;
 
 import java.util.ArrayList;
@@ -42,6 +44,8 @@ public class IssueWatchersApi {
   private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.net";
 
   private static final TypeReference<Object> returnType_addWatcher = new TypeReference<Object>() {};
+
+  private static final TypeReference<BulkIssueIsWatching> returnType_getIsWatchingIssueBulk = new TypeReference<BulkIssueIsWatching>() {};
 
   private static final TypeReference<Watchers> returnType_getIssueWatchers = new TypeReference<Watchers>() {};
 
@@ -80,6 +84,35 @@ public class IssueWatchersApi {
     requestBuilder.requestBody(Optional.of(body));
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_addWatcher);
+  }
+
+  /**
+   * Get is watching issue bulk
+   * Returns, for the user, details of the watched status of issues from a list. If an issue ID is invalid, the returned watched status is `false`.  This operation requires the **Allow users to watch issues** option to be *ON*. This option is set in General configuration for Jira. See [Configuring Jira application options](https://confluence.atlassian.com/x/uYXKM) for details.  **[Permissions](#permissions) required:**   *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
+   * @param issueList A list of issue IDs. (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;BulkIssueIsWatching&gt;
+   */
+  public Single<BulkIssueIsWatching> getIsWatchingIssueBulk(
+    IssueList issueList, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.POST)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/issue/watching");
+
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(issueList));
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getIsWatchingIssueBulk);
   }
 
   /**

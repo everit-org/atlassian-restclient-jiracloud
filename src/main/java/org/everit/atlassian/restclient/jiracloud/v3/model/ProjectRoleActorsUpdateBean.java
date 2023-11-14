@@ -42,22 +42,13 @@ import java.util.Map;
 /**
  * ProjectRoleActorsUpdateBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class ProjectRoleActorsUpdateBean {
-  @JsonProperty("id")
-  private Long id;
-
   @JsonProperty("categorisedActors")
   private Map<String, List<String>> categorisedActors = new HashMap<>();
 
-   /**
-   * The ID of the project role. Use [Get all project roles](#api-rest-api-3-role-get) to get a list of project role IDs.
-   * @return id
-  **/
-  @ApiModelProperty(value = "The ID of the project role. Use [Get all project roles](#api-rest-api-3-role-get) to get a list of project role IDs.")
-  public Long getId() {
-    return id;
-  }
+  @JsonProperty("id")
+  private Long id;
 
   public ProjectRoleActorsUpdateBean categorisedActors(Map<String, List<String>> categorisedActors) {
     this.categorisedActors = categorisedActors;
@@ -73,16 +64,25 @@ public class ProjectRoleActorsUpdateBean {
   }
 
    /**
-   * The actors to add to the project role. Add groups using &#x60;atlassian-group-role-actor&#x60; and a list of group names. For example, &#x60;\&quot;atlassian-group-role-actor\&quot;:[\&quot;another\&quot;,\&quot;administrators\&quot;]}&#x60;. Add users using &#x60;atlassian-user-role-actor&#x60; and a list of account IDs. For example, &#x60;\&quot;atlassian-user-role-actor\&quot;:[\&quot;12345678-9abc-def1-2345-6789abcdef12\&quot;, \&quot;abcdef12-3456-789a-bcde-f123456789ab\&quot;]&#x60;.
+   * The actors to add to the project role.  Add groups using:   *  &#x60;atlassian-group-role-actor&#x60; and a list of group names.  *  &#x60;atlassian-group-role-actor-id&#x60; and a list of group IDs.  As a group&#39;s name can change, use of &#x60;atlassian-group-role-actor-id&#x60; is recommended. For example, &#x60;\&quot;atlassian-group-role-actor-id\&quot;:[\&quot;eef79f81-0b89-4fca-a736-4be531a10869\&quot;,\&quot;77f6ab39-e755-4570-a6ae-2d7a8df0bcb8\&quot;]&#x60;.  Add users using &#x60;atlassian-user-role-actor&#x60; and a list of account IDs. For example, &#x60;\&quot;atlassian-user-role-actor\&quot;:[\&quot;12345678-9abc-def1-2345-6789abcdef12\&quot;, \&quot;abcdef12-3456-789a-bcde-f123456789ab\&quot;]&#x60;.
    * @return categorisedActors
   **/
-  @ApiModelProperty(value = "The actors to add to the project role. Add groups using `atlassian-group-role-actor` and a list of group names. For example, `\"atlassian-group-role-actor\":[\"another\",\"administrators\"]}`. Add users using `atlassian-user-role-actor` and a list of account IDs. For example, `\"atlassian-user-role-actor\":[\"12345678-9abc-def1-2345-6789abcdef12\", \"abcdef12-3456-789a-bcde-f123456789ab\"]`.")
+  @ApiModelProperty(value = "The actors to add to the project role.  Add groups using:   *  `atlassian-group-role-actor` and a list of group names.  *  `atlassian-group-role-actor-id` and a list of group IDs.  As a group's name can change, use of `atlassian-group-role-actor-id` is recommended. For example, `\"atlassian-group-role-actor-id\":[\"eef79f81-0b89-4fca-a736-4be531a10869\",\"77f6ab39-e755-4570-a6ae-2d7a8df0bcb8\"]`.  Add users using `atlassian-user-role-actor` and a list of account IDs. For example, `\"atlassian-user-role-actor\":[\"12345678-9abc-def1-2345-6789abcdef12\", \"abcdef12-3456-789a-bcde-f123456789ab\"]`.")
   public Map<String, List<String>> getCategorisedActors() {
     return categorisedActors;
   }
 
   public void setCategorisedActors(Map<String, List<String>> categorisedActors) {
     this.categorisedActors = categorisedActors;
+  }
+
+   /**
+   * The ID of the project role. Use [Get all project roles](#api-rest-api-3-role-get) to get a list of project role IDs.
+   * @return id
+  **/
+  @ApiModelProperty(value = "The ID of the project role. Use [Get all project roles](#api-rest-api-3-role-get) to get a list of project role IDs.")
+  public Long getId() {
+    return id;
   }
 
 
@@ -95,13 +95,13 @@ public class ProjectRoleActorsUpdateBean {
       return false;
     }
     ProjectRoleActorsUpdateBean projectRoleActorsUpdateBean = (ProjectRoleActorsUpdateBean) o;
-    return Objects.equals(this.id, projectRoleActorsUpdateBean.id) &&
-        Objects.equals(this.categorisedActors, projectRoleActorsUpdateBean.categorisedActors);
+    return Objects.equals(this.categorisedActors, projectRoleActorsUpdateBean.categorisedActors) &&
+        Objects.equals(this.id, projectRoleActorsUpdateBean.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, categorisedActors);
+    return Objects.hash(categorisedActors, id);
   }
 
 
@@ -110,8 +110,8 @@ public class ProjectRoleActorsUpdateBean {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProjectRoleActorsUpdateBean {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    categorisedActors: ").append(toIndentedString(categorisedActors)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }

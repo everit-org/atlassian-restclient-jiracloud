@@ -40,34 +40,16 @@ import io.swagger.annotations.ApiModelProperty;
  * The screen scheme for an issue type.
  */
 @ApiModel(description = "The screen scheme for an issue type.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class IssueTypeScreenSchemeItem {
-  @JsonProperty("issueTypeScreenSchemeId")
-  private String issueTypeScreenSchemeId;
-
   @JsonProperty("issueTypeId")
   private String issueTypeId;
 
+  @JsonProperty("issueTypeScreenSchemeId")
+  private String issueTypeScreenSchemeId;
+
   @JsonProperty("screenSchemeId")
   private String screenSchemeId;
-
-  public IssueTypeScreenSchemeItem issueTypeScreenSchemeId(String issueTypeScreenSchemeId) {
-    this.issueTypeScreenSchemeId = issueTypeScreenSchemeId;
-    return this;
-  }
-
-   /**
-   * The ID of the issue type screen scheme.
-   * @return issueTypeScreenSchemeId
-  **/
-  @ApiModelProperty(required = true, value = "The ID of the issue type screen scheme.")
-  public String getIssueTypeScreenSchemeId() {
-    return issueTypeScreenSchemeId;
-  }
-
-  public void setIssueTypeScreenSchemeId(String issueTypeScreenSchemeId) {
-    this.issueTypeScreenSchemeId = issueTypeScreenSchemeId;
-  }
 
   public IssueTypeScreenSchemeItem issueTypeId(String issueTypeId) {
     this.issueTypeId = issueTypeId;
@@ -85,6 +67,24 @@ public class IssueTypeScreenSchemeItem {
 
   public void setIssueTypeId(String issueTypeId) {
     this.issueTypeId = issueTypeId;
+  }
+
+  public IssueTypeScreenSchemeItem issueTypeScreenSchemeId(String issueTypeScreenSchemeId) {
+    this.issueTypeScreenSchemeId = issueTypeScreenSchemeId;
+    return this;
+  }
+
+   /**
+   * The ID of the issue type screen scheme.
+   * @return issueTypeScreenSchemeId
+  **/
+  @ApiModelProperty(required = true, value = "The ID of the issue type screen scheme.")
+  public String getIssueTypeScreenSchemeId() {
+    return issueTypeScreenSchemeId;
+  }
+
+  public void setIssueTypeScreenSchemeId(String issueTypeScreenSchemeId) {
+    this.issueTypeScreenSchemeId = issueTypeScreenSchemeId;
   }
 
   public IssueTypeScreenSchemeItem screenSchemeId(String screenSchemeId) {
@@ -115,14 +115,14 @@ public class IssueTypeScreenSchemeItem {
       return false;
     }
     IssueTypeScreenSchemeItem issueTypeScreenSchemeItem = (IssueTypeScreenSchemeItem) o;
-    return Objects.equals(this.issueTypeScreenSchemeId, issueTypeScreenSchemeItem.issueTypeScreenSchemeId) &&
-        Objects.equals(this.issueTypeId, issueTypeScreenSchemeItem.issueTypeId) &&
+    return Objects.equals(this.issueTypeId, issueTypeScreenSchemeItem.issueTypeId) &&
+        Objects.equals(this.issueTypeScreenSchemeId, issueTypeScreenSchemeItem.issueTypeScreenSchemeId) &&
         Objects.equals(this.screenSchemeId, issueTypeScreenSchemeItem.screenSchemeId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(issueTypeScreenSchemeId, issueTypeId, screenSchemeId);
+    return Objects.hash(issueTypeId, issueTypeScreenSchemeId, screenSchemeId);
   }
 
 
@@ -131,8 +131,8 @@ public class IssueTypeScreenSchemeItem {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueTypeScreenSchemeItem {\n");
     
-    sb.append("    issueTypeScreenSchemeId: ").append(toIndentedString(issueTypeScreenSchemeId)).append("\n");
     sb.append("    issueTypeId: ").append(toIndentedString(issueTypeId)).append("\n");
+    sb.append("    issueTypeScreenSchemeId: ").append(toIndentedString(issueTypeScreenSchemeId)).append("\n");
     sb.append("    screenSchemeId: ").append(toIndentedString(screenSchemeId)).append("\n");
     sb.append("}");
     return sb.toString();

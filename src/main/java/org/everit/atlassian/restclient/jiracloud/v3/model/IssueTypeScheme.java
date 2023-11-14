@@ -40,57 +40,39 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of an issue type scheme.
  */
 @ApiModel(description = "Details of an issue type scheme.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class IssueTypeScheme {
-  @JsonProperty("id")
-  private String id;
-
-  @JsonProperty("name")
-  private String name;
+  @JsonProperty("defaultIssueTypeId")
+  private String defaultIssueTypeId;
 
   @JsonProperty("description")
   private String description;
 
-  @JsonProperty("defaultIssueTypeId")
-  private String defaultIssueTypeId;
+  @JsonProperty("id")
+  private String id;
 
   @JsonProperty("isDefault")
   private Boolean isDefault;
 
-  public IssueTypeScheme id(String id) {
-    this.id = id;
+  @JsonProperty("name")
+  private String name;
+
+  public IssueTypeScheme defaultIssueTypeId(String defaultIssueTypeId) {
+    this.defaultIssueTypeId = defaultIssueTypeId;
     return this;
   }
 
    /**
-   * The ID of the issue type scheme.
-   * @return id
+   * The ID of the default issue type of the issue type scheme.
+   * @return defaultIssueTypeId
   **/
-  @ApiModelProperty(required = true, value = "The ID of the issue type scheme.")
-  public String getId() {
-    return id;
+  @ApiModelProperty(value = "The ID of the default issue type of the issue type scheme.")
+  public String getDefaultIssueTypeId() {
+    return defaultIssueTypeId;
   }
 
-  public void setId(String id) {
-    this.id = id;
-  }
-
-  public IssueTypeScheme name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * The name of the issue type scheme.
-   * @return name
-  **/
-  @ApiModelProperty(required = true, value = "The name of the issue type scheme.")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
+  public void setDefaultIssueTypeId(String defaultIssueTypeId) {
+    this.defaultIssueTypeId = defaultIssueTypeId;
   }
 
   public IssueTypeScheme description(String description) {
@@ -111,22 +93,22 @@ public class IssueTypeScheme {
     this.description = description;
   }
 
-  public IssueTypeScheme defaultIssueTypeId(String defaultIssueTypeId) {
-    this.defaultIssueTypeId = defaultIssueTypeId;
+  public IssueTypeScheme id(String id) {
+    this.id = id;
     return this;
   }
 
    /**
-   * The ID of the default issue type of the issue type scheme.
-   * @return defaultIssueTypeId
+   * The ID of the issue type scheme.
+   * @return id
   **/
-  @ApiModelProperty(value = "The ID of the default issue type of the issue type scheme.")
-  public String getDefaultIssueTypeId() {
-    return defaultIssueTypeId;
+  @ApiModelProperty(required = true, value = "The ID of the issue type scheme.")
+  public String getId() {
+    return id;
   }
 
-  public void setDefaultIssueTypeId(String defaultIssueTypeId) {
-    this.defaultIssueTypeId = defaultIssueTypeId;
+  public void setId(String id) {
+    this.id = id;
   }
 
   public IssueTypeScheme isDefault(Boolean isDefault) {
@@ -147,6 +129,24 @@ public class IssueTypeScheme {
     this.isDefault = isDefault;
   }
 
+  public IssueTypeScheme name(String name) {
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * The name of the issue type scheme.
+   * @return name
+  **/
+  @ApiModelProperty(required = true, value = "The name of the issue type scheme.")
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -157,16 +157,16 @@ public class IssueTypeScheme {
       return false;
     }
     IssueTypeScheme issueTypeScheme = (IssueTypeScheme) o;
-    return Objects.equals(this.id, issueTypeScheme.id) &&
-        Objects.equals(this.name, issueTypeScheme.name) &&
+    return Objects.equals(this.defaultIssueTypeId, issueTypeScheme.defaultIssueTypeId) &&
         Objects.equals(this.description, issueTypeScheme.description) &&
-        Objects.equals(this.defaultIssueTypeId, issueTypeScheme.defaultIssueTypeId) &&
-        Objects.equals(this.isDefault, issueTypeScheme.isDefault);
+        Objects.equals(this.id, issueTypeScheme.id) &&
+        Objects.equals(this.isDefault, issueTypeScheme.isDefault) &&
+        Objects.equals(this.name, issueTypeScheme.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, defaultIssueTypeId, isDefault);
+    return Objects.hash(defaultIssueTypeId, description, id, isDefault, name);
   }
 
 
@@ -175,11 +175,11 @@ public class IssueTypeScheme {
     StringBuilder sb = new StringBuilder();
     sb.append("class IssueTypeScheme {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    defaultIssueTypeId: ").append(toIndentedString(defaultIssueTypeId)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    isDefault: ").append(toIndentedString(isDefault)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }

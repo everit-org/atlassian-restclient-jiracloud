@@ -42,10 +42,10 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.LinkedIssue;
 /**
  * LinkIssueRequestJsonBean
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class LinkIssueRequestJsonBean {
-  @JsonProperty("type")
-  private IssueLinkType type;
+  @JsonProperty("comment")
+  private Comment comment;
 
   @JsonProperty("inwardIssue")
   private LinkedIssue inwardIssue;
@@ -53,25 +53,25 @@ public class LinkIssueRequestJsonBean {
   @JsonProperty("outwardIssue")
   private LinkedIssue outwardIssue;
 
-  @JsonProperty("comment")
-  private Comment comment;
+  @JsonProperty("type")
+  private IssueLinkType type;
 
-  public LinkIssueRequestJsonBean type(IssueLinkType type) {
-    this.type = type;
+  public LinkIssueRequestJsonBean comment(Comment comment) {
+    this.comment = comment;
     return this;
   }
 
    /**
-   * Get type
-   * @return type
+   * Get comment
+   * @return comment
   **/
-  @ApiModelProperty(required = true, value = "")
-  public IssueLinkType getType() {
-    return type;
+  @ApiModelProperty(value = "")
+  public Comment getComment() {
+    return comment;
   }
 
-  public void setType(IssueLinkType type) {
-    this.type = type;
+  public void setComment(Comment comment) {
+    this.comment = comment;
   }
 
   public LinkIssueRequestJsonBean inwardIssue(LinkedIssue inwardIssue) {
@@ -110,22 +110,22 @@ public class LinkIssueRequestJsonBean {
     this.outwardIssue = outwardIssue;
   }
 
-  public LinkIssueRequestJsonBean comment(Comment comment) {
-    this.comment = comment;
+  public LinkIssueRequestJsonBean type(IssueLinkType type) {
+    this.type = type;
     return this;
   }
 
    /**
-   * Get comment
-   * @return comment
+   * Get type
+   * @return type
   **/
-  @ApiModelProperty(value = "")
-  public Comment getComment() {
-    return comment;
+  @ApiModelProperty(required = true, value = "")
+  public IssueLinkType getType() {
+    return type;
   }
 
-  public void setComment(Comment comment) {
-    this.comment = comment;
+  public void setType(IssueLinkType type) {
+    this.type = type;
   }
 
 
@@ -138,15 +138,15 @@ public class LinkIssueRequestJsonBean {
       return false;
     }
     LinkIssueRequestJsonBean linkIssueRequestJsonBean = (LinkIssueRequestJsonBean) o;
-    return Objects.equals(this.type, linkIssueRequestJsonBean.type) &&
+    return Objects.equals(this.comment, linkIssueRequestJsonBean.comment) &&
         Objects.equals(this.inwardIssue, linkIssueRequestJsonBean.inwardIssue) &&
         Objects.equals(this.outwardIssue, linkIssueRequestJsonBean.outwardIssue) &&
-        Objects.equals(this.comment, linkIssueRequestJsonBean.comment);
+        Objects.equals(this.type, linkIssueRequestJsonBean.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, inwardIssue, outwardIssue, comment);
+    return Objects.hash(comment, inwardIssue, outwardIssue, type);
   }
 
 
@@ -155,10 +155,10 @@ public class LinkIssueRequestJsonBean {
     StringBuilder sb = new StringBuilder();
     sb.append("class LinkIssueRequestJsonBean {\n");
     
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    comment: ").append(toIndentedString(comment)).append("\n");
     sb.append("    inwardIssue: ").append(toIndentedString(inwardIssue)).append("\n");
     sb.append("    outwardIssue: ").append(toIndentedString(outwardIssue)).append("\n");
-    sb.append("    comment: ").append(toIndentedString(comment)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }

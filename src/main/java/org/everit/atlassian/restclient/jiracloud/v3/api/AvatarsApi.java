@@ -116,6 +116,118 @@ public class AvatarsApi {
   }
 
   /**
+   * Get avatar image by ID
+   * Returns a project or issue type avatar image by ID.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:**   *  For system avatars, none.  *  For custom project avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project the avatar belongs to.  *  For custom issue type avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for at least one project the issue type is used in.
+   * @param type The icon type of the avatar. (required)
+   * @param id The ID of the avatar. (required)
+   * @param size The size of the avatar image. If not provided the default size is returned. (optional)
+   * @param format The format to return the avatar image in. If not provided the original content format is returned. (optional)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Completable
+   */
+  public Completable getAvatarImageByID(
+    String type, Long id, Optional<String> size, Optional<String> format, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/universal_avatar/view/type/{type}/avatar/{id}");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("type", String.valueOf(type));
+    pathParams.put("id", String.valueOf(id));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (size.isPresent()) {
+      queryParams.put("size", Collections.singleton(String.valueOf(size.get())));
+    }
+    if (format.isPresent()) {
+      queryParams.put("format", Collections.singleton(String.valueOf(format.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
+  }
+
+  /**
+   * Get avatar image by owner
+   * Returns the avatar image for a project or issue type.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:**   *  For system avatars, none.  *  For custom project avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project the avatar belongs to.  *  For custom issue type avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for at least one project the issue type is used in.
+   * @param type The icon type of the avatar. (required)
+   * @param entityId The ID of the project or issue type the avatar belongs to. (required)
+   * @param size The size of the avatar image. If not provided the default size is returned. (optional)
+   * @param format The format to return the avatar image in. If not provided the original content format is returned. (optional)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Completable
+   */
+  public Completable getAvatarImageByOwner(
+    String type, String entityId, Optional<String> size, Optional<String> format, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/universal_avatar/view/type/{type}/owner/{entityId}");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("type", String.valueOf(type));
+    pathParams.put("entityId", String.valueOf(entityId));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (size.isPresent()) {
+      queryParams.put("size", Collections.singleton(String.valueOf(size.get())));
+    }
+    if (format.isPresent()) {
+      queryParams.put("format", Collections.singleton(String.valueOf(format.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
+  }
+
+  /**
+   * Get avatar image by type
+   * Returns the default project or issue type avatar image.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** None.
+   * @param type The icon type of the avatar. (required)
+   * @param size The size of the avatar image. If not provided the default size is returned. (optional)
+   * @param format The format to return the avatar image in. If not provided the original content format is returned. (optional)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Completable
+   */
+  public Completable getAvatarImageByType(
+    String type, Optional<String> size, Optional<String> format, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/universal_avatar/view/type/{type}");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("type", String.valueOf(type));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (size.isPresent()) {
+      queryParams.put("size", Collections.singleton(String.valueOf(size.get())));
+    }
+    if (format.isPresent()) {
+      queryParams.put("format", Collections.singleton(String.valueOf(format.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
+  }
+
+  /**
    * Get avatars
    * Returns the system and custom avatars for a project or issue type.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:**   *  for custom project avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project the avatar belongs to.  *  for custom issue type avatars, *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for at least one project the issue type is used in.  *  for system avatars, none.
    * @param type The avatar type. (required)

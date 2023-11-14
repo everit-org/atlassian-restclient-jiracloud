@@ -41,13 +41,68 @@ import java.util.List;
 /**
  * ActorsMap
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class ActorsMap {
+  @JsonProperty("group")
+  private List<String> group = new ArrayList<>();
+
+  @JsonProperty("groupId")
+  private List<String> groupId = new ArrayList<>();
+
   @JsonProperty("user")
   private List<String> user = new ArrayList<>();
 
-  @JsonProperty("group")
-  private List<String> group = new ArrayList<>();
+  public ActorsMap group(List<String> group) {
+    this.group = group;
+    return this;
+  }
+
+  public ActorsMap addGroupItem(String groupItem) {
+    if (this.group == null) {
+      this.group = new ArrayList<>();
+    }
+    this.group.add(groupItem);
+    return this;
+  }
+
+   /**
+   * The name of the group to add. This parameter cannot be used with the &#x60;groupId&#x60; parameter. As a group&#39;s name can change, use of &#x60;groupId&#x60; is recommended.
+   * @return group
+  **/
+  @ApiModelProperty(value = "The name of the group to add. This parameter cannot be used with the `groupId` parameter. As a group's name can change, use of `groupId` is recommended.")
+  public List<String> getGroup() {
+    return group;
+  }
+
+  public void setGroup(List<String> group) {
+    this.group = group;
+  }
+
+  public ActorsMap groupId(List<String> groupId) {
+    this.groupId = groupId;
+    return this;
+  }
+
+  public ActorsMap addGroupIdItem(String groupIdItem) {
+    if (this.groupId == null) {
+      this.groupId = new ArrayList<>();
+    }
+    this.groupId.add(groupIdItem);
+    return this;
+  }
+
+   /**
+   * The ID of the group to add. This parameter cannot be used with the &#x60;group&#x60; parameter.
+   * @return groupId
+  **/
+  @ApiModelProperty(value = "The ID of the group to add. This parameter cannot be used with the `group` parameter.")
+  public List<String> getGroupId() {
+    return groupId;
+  }
+
+  public void setGroupId(List<String> groupId) {
+    this.groupId = groupId;
+  }
 
   public ActorsMap user(List<String> user) {
     this.user = user;
@@ -75,32 +130,6 @@ public class ActorsMap {
     this.user = user;
   }
 
-  public ActorsMap group(List<String> group) {
-    this.group = group;
-    return this;
-  }
-
-  public ActorsMap addGroupItem(String groupItem) {
-    if (this.group == null) {
-      this.group = new ArrayList<>();
-    }
-    this.group.add(groupItem);
-    return this;
-  }
-
-   /**
-   * The name of the group to add.
-   * @return group
-  **/
-  @ApiModelProperty(value = "The name of the group to add.")
-  public List<String> getGroup() {
-    return group;
-  }
-
-  public void setGroup(List<String> group) {
-    this.group = group;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -111,13 +140,14 @@ public class ActorsMap {
       return false;
     }
     ActorsMap actorsMap = (ActorsMap) o;
-    return Objects.equals(this.user, actorsMap.user) &&
-        Objects.equals(this.group, actorsMap.group);
+    return Objects.equals(this.group, actorsMap.group) &&
+        Objects.equals(this.groupId, actorsMap.groupId) &&
+        Objects.equals(this.user, actorsMap.user);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(user, group);
+    return Objects.hash(group, groupId, user);
   }
 
 
@@ -126,8 +156,9 @@ public class ActorsMap {
     StringBuilder sb = new StringBuilder();
     sb.append("class ActorsMap {\n");
     
-    sb.append("    user: ").append(toIndentedString(user)).append("\n");
     sb.append("    group: ").append(toIndentedString(group)).append("\n");
+    sb.append("    groupId: ").append(toIndentedString(groupId)).append("\n");
+    sb.append("    user: ").append(toIndentedString(user)).append("\n");
     sb.append("}");
     return sb.toString();
   }

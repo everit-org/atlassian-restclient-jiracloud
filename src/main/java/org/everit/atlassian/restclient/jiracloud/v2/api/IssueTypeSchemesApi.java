@@ -28,7 +28,7 @@ import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
 import org.everit.http.restclient.TypeReference;
 
-import org.everit.atlassian.restclient.jiracloud.v2.model.IssueTypeIDs;
+import org.everit.atlassian.restclient.jiracloud.v2.model.IssueTypeIds;
 import org.everit.atlassian.restclient.jiracloud.v2.model.IssueTypeSchemeDetails;
 import org.everit.atlassian.restclient.jiracloud.v2.model.IssueTypeSchemeID;
 import org.everit.atlassian.restclient.jiracloud.v2.model.IssueTypeSchemeProjectAssociation;
@@ -79,12 +79,12 @@ public class IssueTypeSchemesApi {
    * Add issue types to issue type scheme
    * Adds issue types to an issue type scheme.  The added issue types are appended to the issue types list.  If any of the issue types exist in the issue type scheme, the operation fails and no issue types are added.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param issueTypeSchemeId The ID of the issue type scheme. (required)
-   * @param issueTypeIDs  (required)
+   * @param issueTypeIds  (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Object&gt;
    */
   public Single<Object> addIssueTypesToIssueTypeScheme(
-    Long issueTypeSchemeId, IssueTypeIDs issueTypeIDs, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Long issueTypeSchemeId, IssueTypeIds issueTypeIds, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.PUT)
@@ -101,7 +101,7 @@ public class IssueTypeSchemesApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    requestBuilder.requestBody(Optional.of(issueTypeIDs));
+    requestBuilder.requestBody(Optional.of(issueTypeIds));
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_addIssueTypesToIssueTypeScheme);
   }
@@ -198,11 +198,14 @@ public class IssueTypeSchemesApi {
    * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0l)
    * @param maxResults The maximum number of items to return per page. (optional, default to 50)
    * @param id The list of issue type schemes IDs. To include multiple IDs, provide an ampersand-separated list. For example, `id=10000&id=10001`. (optional, default to new ArrayList&lt;&gt;())
+   * @param orderBy [Order](#ordering) the results by a field:   *  `name` Sorts by issue type scheme name.  *  `id` Sorts by issue type scheme ID. (optional, default to id)
+   * @param expand Use [expand](#expansion) to include additional information in the response. This parameter accepts a comma-separated list. Expand options include:   *  `projects` For each issue type schemes, returns information about the projects the issue type scheme is assigned to.  *  `issueTypes` For each issue type schemes, returns information about the issueTypes the issue type scheme have. (optional, default to &quot;&quot;)
+   * @param queryString String used to perform a case-insensitive partial match with issue type scheme name. (optional, default to &quot;&quot;)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PageBeanIssueTypeScheme&gt;
    */
   public Single<PageBeanIssueTypeScheme> getAllIssueTypeSchemes(
-    Optional<Long> startAt, Optional<Integer> maxResults, Optional<List<Long>> id, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Optional<Long> startAt, Optional<Integer> maxResults, Optional<List<Long>> id, Optional<String> orderBy, Optional<String> expand, Optional<String> queryString, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.GET)
@@ -221,6 +224,15 @@ public class IssueTypeSchemesApi {
     }
     if (id.isPresent()) {
       queryParams.put("id", RestClientUtil.objectCollectionToStringCollection(id.get()));
+    }
+    if (orderBy.isPresent()) {
+      queryParams.put("orderBy", Collections.singleton(String.valueOf(orderBy.get())));
+    }
+    if (expand.isPresent()) {
+      queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
+    }
+    if (queryString.isPresent()) {
+      queryParams.put("queryString", Collections.singleton(String.valueOf(queryString.get())));
     }
     requestBuilder.queryParams(queryParams);
 

@@ -46,22 +46,34 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.User;
  * Details about a workflow scheme.
  */
 @ApiModel(description = "Details about a workflow scheme.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class WorkflowScheme {
-  @JsonProperty("id")
-  private Long id;
-
-  @JsonProperty("name")
-  private String name;
+  @JsonProperty("defaultWorkflow")
+  private String defaultWorkflow;
 
   @JsonProperty("description")
   private String description;
 
-  @JsonProperty("defaultWorkflow")
-  private String defaultWorkflow;
+  @JsonProperty("draft")
+  private Boolean draft;
+
+  @JsonProperty("id")
+  private Long id;
 
   @JsonProperty("issueTypeMappings")
   private Map<String, String> issueTypeMappings = new HashMap<>();
+
+  @JsonProperty("issueTypes")
+  private Map<String, IssueTypeDetails> issueTypes = new HashMap<>();
+
+  @JsonProperty("lastModified")
+  private String lastModified;
+
+  @JsonProperty("lastModifiedUser")
+  private User lastModifiedUser;
+
+  @JsonProperty("name")
+  private String name;
 
   @JsonProperty("originalDefaultWorkflow")
   private String originalDefaultWorkflow;
@@ -69,49 +81,28 @@ public class WorkflowScheme {
   @JsonProperty("originalIssueTypeMappings")
   private Map<String, String> originalIssueTypeMappings = new HashMap<>();
 
-  @JsonProperty("draft")
-  private Boolean draft;
-
-  @JsonProperty("lastModifiedUser")
-  private User lastModifiedUser;
-
-  @JsonProperty("lastModified")
-  private String lastModified;
-
   @JsonProperty("self")
   private URI self;
 
   @JsonProperty("updateDraftIfNeeded")
   private Boolean updateDraftIfNeeded;
 
-  @JsonProperty("issueTypes")
-  private Map<String, IssueTypeDetails> issueTypes = new HashMap<>();
-
-   /**
-   * The ID of the workflow scheme.
-   * @return id
-  **/
-  @ApiModelProperty(value = "The ID of the workflow scheme.")
-  public Long getId() {
-    return id;
-  }
-
-  public WorkflowScheme name(String name) {
-    this.name = name;
+  public WorkflowScheme defaultWorkflow(String defaultWorkflow) {
+    this.defaultWorkflow = defaultWorkflow;
     return this;
   }
 
    /**
-   * The name of the workflow scheme. The name must be unique. The maximum length is 255 characters. Required when creating a workflow scheme.
-   * @return name
+   * The name of the default workflow for the workflow scheme. The default workflow has *All Unassigned Issue Types* assigned to it in Jira. If &#x60;defaultWorkflow&#x60; is not specified when creating a workflow scheme, it is set to *Jira Workflow (jira)*.
+   * @return defaultWorkflow
   **/
-  @ApiModelProperty(value = "The name of the workflow scheme. The name must be unique. The maximum length is 255 characters. Required when creating a workflow scheme.")
-  public String getName() {
-    return name;
+  @ApiModelProperty(value = "The name of the default workflow for the workflow scheme. The default workflow has *All Unassigned Issue Types* assigned to it in Jira. If `defaultWorkflow` is not specified when creating a workflow scheme, it is set to *Jira Workflow (jira)*.")
+  public String getDefaultWorkflow() {
+    return defaultWorkflow;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setDefaultWorkflow(String defaultWorkflow) {
+    this.defaultWorkflow = defaultWorkflow;
   }
 
   public WorkflowScheme description(String description) {
@@ -132,22 +123,22 @@ public class WorkflowScheme {
     this.description = description;
   }
 
-  public WorkflowScheme defaultWorkflow(String defaultWorkflow) {
-    this.defaultWorkflow = defaultWorkflow;
-    return this;
+   /**
+   * Whether the workflow scheme is a draft or not.
+   * @return draft
+  **/
+  @ApiModelProperty(value = "Whether the workflow scheme is a draft or not.")
+  public Boolean getDraft() {
+    return draft;
   }
 
    /**
-   * The name of the default workflow for the workflow scheme. The default workflow has *All Unassigned Issue Types* assigned to it in Jira. If &#x60;defaultWorkflow&#x60; is not specified when creating a workflow scheme, it is set to *Jira Workflow (jira)*.
-   * @return defaultWorkflow
+   * The ID of the workflow scheme.
+   * @return id
   **/
-  @ApiModelProperty(value = "The name of the default workflow for the workflow scheme. The default workflow has *All Unassigned Issue Types* assigned to it in Jira. If `defaultWorkflow` is not specified when creating a workflow scheme, it is set to *Jira Workflow (jira)*.")
-  public String getDefaultWorkflow() {
-    return defaultWorkflow;
-  }
-
-  public void setDefaultWorkflow(String defaultWorkflow) {
-    this.defaultWorkflow = defaultWorkflow;
+  @ApiModelProperty(value = "The ID of the workflow scheme.")
+  public Long getId() {
+    return id;
   }
 
   public WorkflowScheme issueTypeMappings(Map<String, String> issueTypeMappings) {
@@ -177,6 +168,51 @@ public class WorkflowScheme {
   }
 
    /**
+   * The issue types available in Jira.
+   * @return issueTypes
+  **/
+  @ApiModelProperty(value = "The issue types available in Jira.")
+  public Map<String, IssueTypeDetails> getIssueTypes() {
+    return issueTypes;
+  }
+
+   /**
+   * The date-time that the draft workflow scheme was last modified. A modification is a change to the issue type-project mappings only. This property does not apply to non-draft workflows.
+   * @return lastModified
+  **/
+  @ApiModelProperty(value = "The date-time that the draft workflow scheme was last modified. A modification is a change to the issue type-project mappings only. This property does not apply to non-draft workflows.")
+  public String getLastModified() {
+    return lastModified;
+  }
+
+   /**
+   * The user that last modified the draft workflow scheme. A modification is a change to the issue type-project mappings only. This property does not apply to non-draft workflows.
+   * @return lastModifiedUser
+  **/
+  @ApiModelProperty(value = "The user that last modified the draft workflow scheme. A modification is a change to the issue type-project mappings only. This property does not apply to non-draft workflows.")
+  public User getLastModifiedUser() {
+    return lastModifiedUser;
+  }
+
+  public WorkflowScheme name(String name) {
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * The name of the workflow scheme. The name must be unique. The maximum length is 255 characters. Required when creating a workflow scheme.
+   * @return name
+  **/
+  @ApiModelProperty(value = "The name of the workflow scheme. The name must be unique. The maximum length is 255 characters. Required when creating a workflow scheme.")
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+   /**
    * For draft workflow schemes, this property is the name of the default workflow for the original workflow scheme. The default workflow has *All Unassigned Issue Types* assigned to it in Jira.
    * @return originalDefaultWorkflow
   **/
@@ -192,33 +228,6 @@ public class WorkflowScheme {
   @ApiModelProperty(value = "For draft workflow schemes, this property is the issue type to workflow mappings for the original workflow scheme, where each mapping is an issue type ID and workflow name pair. Note that an issue type can only be mapped to one workflow in a workflow scheme.")
   public Map<String, String> getOriginalIssueTypeMappings() {
     return originalIssueTypeMappings;
-  }
-
-   /**
-   * Whether the workflow scheme is a draft or not.
-   * @return draft
-  **/
-  @ApiModelProperty(value = "Whether the workflow scheme is a draft or not.")
-  public Boolean getDraft() {
-    return draft;
-  }
-
-   /**
-   * The user that last modified the draft workflow scheme. A modification is a change to the issue type-project mappings only. This property does not apply to non-draft workflows.
-   * @return lastModifiedUser
-  **/
-  @ApiModelProperty(value = "The user that last modified the draft workflow scheme. A modification is a change to the issue type-project mappings only. This property does not apply to non-draft workflows.")
-  public User getLastModifiedUser() {
-    return lastModifiedUser;
-  }
-
-   /**
-   * The date-time that the draft workflow scheme was last modified. A modification is a change to the issue type-project mappings only. This property does not apply to non-draft workflows.
-   * @return lastModified
-  **/
-  @ApiModelProperty(value = "The date-time that the draft workflow scheme was last modified. A modification is a change to the issue type-project mappings only. This property does not apply to non-draft workflows.")
-  public String getLastModified() {
-    return lastModified;
   }
 
    /**
@@ -248,15 +257,6 @@ public class WorkflowScheme {
     this.updateDraftIfNeeded = updateDraftIfNeeded;
   }
 
-   /**
-   * The issue types available in Jira.
-   * @return issueTypes
-  **/
-  @ApiModelProperty(value = "The issue types available in Jira.")
-  public Map<String, IssueTypeDetails> getIssueTypes() {
-    return issueTypes;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -267,24 +267,24 @@ public class WorkflowScheme {
       return false;
     }
     WorkflowScheme workflowScheme = (WorkflowScheme) o;
-    return Objects.equals(this.id, workflowScheme.id) &&
-        Objects.equals(this.name, workflowScheme.name) &&
+    return Objects.equals(this.defaultWorkflow, workflowScheme.defaultWorkflow) &&
         Objects.equals(this.description, workflowScheme.description) &&
-        Objects.equals(this.defaultWorkflow, workflowScheme.defaultWorkflow) &&
+        Objects.equals(this.draft, workflowScheme.draft) &&
+        Objects.equals(this.id, workflowScheme.id) &&
         Objects.equals(this.issueTypeMappings, workflowScheme.issueTypeMappings) &&
+        Objects.equals(this.issueTypes, workflowScheme.issueTypes) &&
+        Objects.equals(this.lastModified, workflowScheme.lastModified) &&
+        Objects.equals(this.lastModifiedUser, workflowScheme.lastModifiedUser) &&
+        Objects.equals(this.name, workflowScheme.name) &&
         Objects.equals(this.originalDefaultWorkflow, workflowScheme.originalDefaultWorkflow) &&
         Objects.equals(this.originalIssueTypeMappings, workflowScheme.originalIssueTypeMappings) &&
-        Objects.equals(this.draft, workflowScheme.draft) &&
-        Objects.equals(this.lastModifiedUser, workflowScheme.lastModifiedUser) &&
-        Objects.equals(this.lastModified, workflowScheme.lastModified) &&
         Objects.equals(this.self, workflowScheme.self) &&
-        Objects.equals(this.updateDraftIfNeeded, workflowScheme.updateDraftIfNeeded) &&
-        Objects.equals(this.issueTypes, workflowScheme.issueTypes);
+        Objects.equals(this.updateDraftIfNeeded, workflowScheme.updateDraftIfNeeded);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, defaultWorkflow, issueTypeMappings, originalDefaultWorkflow, originalIssueTypeMappings, draft, lastModifiedUser, lastModified, self, updateDraftIfNeeded, issueTypes);
+    return Objects.hash(defaultWorkflow, description, draft, id, issueTypeMappings, issueTypes, lastModified, lastModifiedUser, name, originalDefaultWorkflow, originalIssueTypeMappings, self, updateDraftIfNeeded);
   }
 
 
@@ -293,19 +293,19 @@ public class WorkflowScheme {
     StringBuilder sb = new StringBuilder();
     sb.append("class WorkflowScheme {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    defaultWorkflow: ").append(toIndentedString(defaultWorkflow)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    draft: ").append(toIndentedString(draft)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    issueTypeMappings: ").append(toIndentedString(issueTypeMappings)).append("\n");
+    sb.append("    issueTypes: ").append(toIndentedString(issueTypes)).append("\n");
+    sb.append("    lastModified: ").append(toIndentedString(lastModified)).append("\n");
+    sb.append("    lastModifiedUser: ").append(toIndentedString(lastModifiedUser)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    originalDefaultWorkflow: ").append(toIndentedString(originalDefaultWorkflow)).append("\n");
     sb.append("    originalIssueTypeMappings: ").append(toIndentedString(originalIssueTypeMappings)).append("\n");
-    sb.append("    draft: ").append(toIndentedString(draft)).append("\n");
-    sb.append("    lastModifiedUser: ").append(toIndentedString(lastModifiedUser)).append("\n");
-    sb.append("    lastModified: ").append(toIndentedString(lastModified)).append("\n");
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    updateDraftIfNeeded: ").append(toIndentedString(updateDraftIfNeeded)).append("\n");
-    sb.append("    issueTypes: ").append(toIndentedString(issueTypes)).append("\n");
     sb.append("}");
     return sb.toString();
   }

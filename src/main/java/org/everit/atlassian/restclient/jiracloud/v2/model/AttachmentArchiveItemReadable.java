@@ -40,31 +40,22 @@ import io.swagger.annotations.ApiModelProperty;
  * Metadata for an item in an attachment archive.
  */
 @ApiModel(description = "Metadata for an item in an attachment archive.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class AttachmentArchiveItemReadable {
-  @JsonProperty("path")
-  private String path;
-
   @JsonProperty("index")
   private Long index;
-
-  @JsonProperty("size")
-  private String size;
-
-  @JsonProperty("mediaType")
-  private String mediaType;
 
   @JsonProperty("label")
   private String label;
 
-   /**
-   * The path of the archive item.
-   * @return path
-  **/
-  @ApiModelProperty(value = "The path of the archive item.")
-  public String getPath() {
-    return path;
-  }
+  @JsonProperty("mediaType")
+  private String mediaType;
+
+  @JsonProperty("path")
+  private String path;
+
+  @JsonProperty("size")
+  private String size;
 
    /**
    * The position of the item within the archive.
@@ -76,12 +67,12 @@ public class AttachmentArchiveItemReadable {
   }
 
    /**
-   * The size of the archive item.
-   * @return size
+   * The label for the archive item.
+   * @return label
   **/
-  @ApiModelProperty(value = "The size of the archive item.")
-  public String getSize() {
-    return size;
+  @ApiModelProperty(value = "The label for the archive item.")
+  public String getLabel() {
+    return label;
   }
 
    /**
@@ -94,12 +85,21 @@ public class AttachmentArchiveItemReadable {
   }
 
    /**
-   * The label for the archive item.
-   * @return label
+   * The path of the archive item.
+   * @return path
   **/
-  @ApiModelProperty(value = "The label for the archive item.")
-  public String getLabel() {
-    return label;
+  @ApiModelProperty(value = "The path of the archive item.")
+  public String getPath() {
+    return path;
+  }
+
+   /**
+   * The size of the archive item.
+   * @return size
+  **/
+  @ApiModelProperty(value = "The size of the archive item.")
+  public String getSize() {
+    return size;
   }
 
 
@@ -112,16 +112,16 @@ public class AttachmentArchiveItemReadable {
       return false;
     }
     AttachmentArchiveItemReadable attachmentArchiveItemReadable = (AttachmentArchiveItemReadable) o;
-    return Objects.equals(this.path, attachmentArchiveItemReadable.path) &&
-        Objects.equals(this.index, attachmentArchiveItemReadable.index) &&
-        Objects.equals(this.size, attachmentArchiveItemReadable.size) &&
+    return Objects.equals(this.index, attachmentArchiveItemReadable.index) &&
+        Objects.equals(this.label, attachmentArchiveItemReadable.label) &&
         Objects.equals(this.mediaType, attachmentArchiveItemReadable.mediaType) &&
-        Objects.equals(this.label, attachmentArchiveItemReadable.label);
+        Objects.equals(this.path, attachmentArchiveItemReadable.path) &&
+        Objects.equals(this.size, attachmentArchiveItemReadable.size);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(path, index, size, mediaType, label);
+    return Objects.hash(index, label, mediaType, path, size);
   }
 
 
@@ -130,11 +130,11 @@ public class AttachmentArchiveItemReadable {
     StringBuilder sb = new StringBuilder();
     sb.append("class AttachmentArchiveItemReadable {\n");
     
-    sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("    index: ").append(toIndentedString(index)).append("\n");
-    sb.append("    size: ").append(toIndentedString(size)).append("\n");
-    sb.append("    mediaType: ").append(toIndentedString(mediaType)).append("\n");
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
+    sb.append("    mediaType: ").append(toIndentedString(mediaType)).append("\n");
+    sb.append("    path: ").append(toIndentedString(path)).append("\n");
+    sb.append("    size: ").append(toIndentedString(size)).append("\n");
     sb.append("}");
     return sb.toString();
   }

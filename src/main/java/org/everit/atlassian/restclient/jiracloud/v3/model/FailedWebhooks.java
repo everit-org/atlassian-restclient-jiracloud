@@ -44,39 +44,16 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.FailedWebhook;
  * A page of failed webhooks.
  */
 @ApiModel(description = "A page of failed webhooks.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class FailedWebhooks {
-  @JsonProperty("values")
-  private List<FailedWebhook> values = new ArrayList<>();
-
   @JsonProperty("maxResults")
   private Integer maxResults;
 
   @JsonProperty("next")
   private URI next;
 
-  public FailedWebhooks values(List<FailedWebhook> values) {
-    this.values = values;
-    return this;
-  }
-
-  public FailedWebhooks addValuesItem(FailedWebhook valuesItem) {
-    this.values.add(valuesItem);
-    return this;
-  }
-
-   /**
-   * The list of webhooks.
-   * @return values
-  **/
-  @ApiModelProperty(required = true, value = "The list of webhooks.")
-  public List<FailedWebhook> getValues() {
-    return values;
-  }
-
-  public void setValues(List<FailedWebhook> values) {
-    this.values = values;
-  }
+  @JsonProperty("values")
+  private List<FailedWebhook> values = new ArrayList<>();
 
   public FailedWebhooks maxResults(Integer maxResults) {
     this.maxResults = maxResults;
@@ -114,6 +91,29 @@ public class FailedWebhooks {
     this.next = next;
   }
 
+  public FailedWebhooks values(List<FailedWebhook> values) {
+    this.values = values;
+    return this;
+  }
+
+  public FailedWebhooks addValuesItem(FailedWebhook valuesItem) {
+    this.values.add(valuesItem);
+    return this;
+  }
+
+   /**
+   * The list of webhooks.
+   * @return values
+  **/
+  @ApiModelProperty(required = true, value = "The list of webhooks.")
+  public List<FailedWebhook> getValues() {
+    return values;
+  }
+
+  public void setValues(List<FailedWebhook> values) {
+    this.values = values;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -124,14 +124,14 @@ public class FailedWebhooks {
       return false;
     }
     FailedWebhooks failedWebhooks = (FailedWebhooks) o;
-    return Objects.equals(this.values, failedWebhooks.values) &&
-        Objects.equals(this.maxResults, failedWebhooks.maxResults) &&
-        Objects.equals(this.next, failedWebhooks.next);
+    return Objects.equals(this.maxResults, failedWebhooks.maxResults) &&
+        Objects.equals(this.next, failedWebhooks.next) &&
+        Objects.equals(this.values, failedWebhooks.values);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(values, maxResults, next);
+    return Objects.hash(maxResults, next, values);
   }
 
 
@@ -140,9 +140,9 @@ public class FailedWebhooks {
     StringBuilder sb = new StringBuilder();
     sb.append("class FailedWebhooks {\n");
     
-    sb.append("    values: ").append(toIndentedString(values)).append("\n");
     sb.append("    maxResults: ").append(toIndentedString(maxResults)).append("\n");
     sb.append("    next: ").append(toIndentedString(next)).append("\n");
+    sb.append("    values: ").append(toIndentedString(values)).append("\n");
     sb.append("}");
     return sb.toString();
   }

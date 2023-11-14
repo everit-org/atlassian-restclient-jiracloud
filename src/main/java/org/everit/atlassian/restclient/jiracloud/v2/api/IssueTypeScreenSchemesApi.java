@@ -28,7 +28,7 @@ import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
 import org.everit.http.restclient.TypeReference;
 
-import org.everit.atlassian.restclient.jiracloud.v2.model.IssueTypeIDs;
+import org.everit.atlassian.restclient.jiracloud.v2.model.IssueTypeIds;
 import org.everit.atlassian.restclient.jiracloud.v2.model.IssueTypeScreenSchemeDetails;
 import org.everit.atlassian.restclient.jiracloud.v2.model.IssueTypeScreenSchemeId;
 import org.everit.atlassian.restclient.jiracloud.v2.model.IssueTypeScreenSchemeMappingDetails;
@@ -276,11 +276,14 @@ public class IssueTypeScreenSchemesApi {
    * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0l)
    * @param maxResults The maximum number of items to return per page. (optional, default to 50)
    * @param id The list of issue type screen scheme IDs. To include multiple IDs, provide an ampersand-separated list. For example, `id=10000&id=10001`. (optional, default to new ArrayList&lt;&gt;())
+   * @param queryString String used to perform a case-insensitive partial match with issue type screen scheme name. (optional, default to &quot;&quot;)
+   * @param orderBy [Order](#ordering) the results by a field:   *  `name` Sorts by issue type screen scheme name.  *  `id` Sorts by issue type screen scheme ID. (optional, default to id)
+   * @param expand Use [expand](#expansion) to include additional information in the response. This parameter accepts `projects` that, for each issue type screen schemes, returns information about the projects the issue type screen scheme is assigned to. (optional, default to &quot;&quot;)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PageBeanIssueTypeScreenScheme&gt;
    */
   public Single<PageBeanIssueTypeScreenScheme> getIssueTypeScreenSchemes(
-    Optional<Long> startAt, Optional<Integer> maxResults, Optional<List<Long>> id, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Optional<Long> startAt, Optional<Integer> maxResults, Optional<List<Long>> id, Optional<String> queryString, Optional<String> orderBy, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.GET)
@@ -300,6 +303,15 @@ public class IssueTypeScreenSchemesApi {
     if (id.isPresent()) {
       queryParams.put("id", RestClientUtil.objectCollectionToStringCollection(id.get()));
     }
+    if (queryString.isPresent()) {
+      queryParams.put("queryString", Collections.singleton(String.valueOf(queryString.get())));
+    }
+    if (orderBy.isPresent()) {
+      queryParams.put("orderBy", Collections.singleton(String.valueOf(orderBy.get())));
+    }
+    if (expand.isPresent()) {
+      queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
+    }
     requestBuilder.queryParams(queryParams);
 
     Map<String, String> headers = new HashMap<>();
@@ -314,11 +326,12 @@ public class IssueTypeScreenSchemesApi {
    * @param issueTypeScreenSchemeId The ID of the issue type screen scheme. (required)
    * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0l)
    * @param maxResults The maximum number of items to return per page. (optional, default to 50)
+   * @param query  (optional, default to &quot;&quot;)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PageBeanProjectDetails&gt;
    */
   public Single<PageBeanProjectDetails> getProjectsForIssueTypeScreenScheme(
-    Long issueTypeScreenSchemeId, Optional<Long> startAt, Optional<Integer> maxResults, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Long issueTypeScreenSchemeId, Optional<Long> startAt, Optional<Integer> maxResults, Optional<String> query, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.GET)
@@ -336,6 +349,9 @@ public class IssueTypeScreenSchemesApi {
     if (maxResults.isPresent()) {
       queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults.get())));
     }
+    if (query.isPresent()) {
+      queryParams.put("query", Collections.singleton(String.valueOf(query.get())));
+    }
     requestBuilder.queryParams(queryParams);
 
     Map<String, String> headers = new HashMap<>();
@@ -348,12 +364,12 @@ public class IssueTypeScreenSchemesApi {
    * Remove mappings from issue type screen scheme
    * Removes issue type to screen scheme mappings from an issue type screen scheme.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param issueTypeScreenSchemeId The ID of the issue type screen scheme. (required)
-   * @param issueTypeIDs  (required)
+   * @param issueTypeIds  (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Object&gt;
    */
   public Single<Object> removeMappingsFromIssueTypeScreenScheme(
-    String issueTypeScreenSchemeId, IssueTypeIDs issueTypeIDs, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String issueTypeScreenSchemeId, IssueTypeIds issueTypeIds, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.POST)
@@ -370,7 +386,7 @@ public class IssueTypeScreenSchemesApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    requestBuilder.requestBody(Optional.of(issueTypeIDs));
+    requestBuilder.requestBody(Optional.of(issueTypeIds));
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_removeMappingsFromIssueTypeScreenScheme);
   }

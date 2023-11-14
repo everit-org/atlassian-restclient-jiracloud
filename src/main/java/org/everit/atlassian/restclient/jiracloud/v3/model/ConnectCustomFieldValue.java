@@ -41,7 +41,7 @@ import java.math.BigDecimal;
  * A list of custom field details.
  */
 @ApiModel(description = "A list of custom field details.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class ConnectCustomFieldValue {
   /**
    * The type of custom field.
@@ -89,23 +89,23 @@ public class ConnectCustomFieldValue {
   @JsonProperty("_type")
   private TypeEnum type;
 
-  @JsonProperty("issueID")
-  private Integer issueID;
-
   @JsonProperty("fieldID")
   private Integer fieldID;
 
-  @JsonProperty("string")
-  private String string;
+  @JsonProperty("issueID")
+  private Integer issueID;
 
   @JsonProperty("number")
   private BigDecimal number;
 
+  @JsonProperty("optionID")
+  private String optionID;
+
   @JsonProperty("richText")
   private String richText;
 
-  @JsonProperty("optionID")
-  private String optionID;
+  @JsonProperty("string")
+  private String string;
 
   @JsonProperty("text")
   private String text;
@@ -128,24 +128,6 @@ public class ConnectCustomFieldValue {
     this.type = type;
   }
 
-  public ConnectCustomFieldValue issueID(Integer issueID) {
-    this.issueID = issueID;
-    return this;
-  }
-
-   /**
-   * The issue ID.
-   * @return issueID
-  **/
-  @ApiModelProperty(required = true, value = "The issue ID.")
-  public Integer getIssueID() {
-    return issueID;
-  }
-
-  public void setIssueID(Integer issueID) {
-    this.issueID = issueID;
-  }
-
   public ConnectCustomFieldValue fieldID(Integer fieldID) {
     this.fieldID = fieldID;
     return this;
@@ -164,22 +146,22 @@ public class ConnectCustomFieldValue {
     this.fieldID = fieldID;
   }
 
-  public ConnectCustomFieldValue string(String string) {
-    this.string = string;
+  public ConnectCustomFieldValue issueID(Integer issueID) {
+    this.issueID = issueID;
     return this;
   }
 
    /**
-   * The value of string type custom field when &#x60;_type&#x60; is &#x60;StringIssueField&#x60;.
-   * @return string
+   * The issue ID.
+   * @return issueID
   **/
-  @ApiModelProperty(value = "The value of string type custom field when `_type` is `StringIssueField`.")
-  public String getString() {
-    return string;
+  @ApiModelProperty(required = true, value = "The issue ID.")
+  public Integer getIssueID() {
+    return issueID;
   }
 
-  public void setString(String string) {
-    this.string = string;
+  public void setIssueID(Integer issueID) {
+    this.issueID = issueID;
   }
 
   public ConnectCustomFieldValue number(BigDecimal number) {
@@ -200,6 +182,24 @@ public class ConnectCustomFieldValue {
     this.number = number;
   }
 
+  public ConnectCustomFieldValue optionID(String optionID) {
+    this.optionID = optionID;
+    return this;
+  }
+
+   /**
+   * The value of single select and multiselect custom field type when &#x60;_type&#x60; is &#x60;SingleSelectIssueField&#x60; or &#x60;MultiSelectIssueField&#x60;.
+   * @return optionID
+  **/
+  @ApiModelProperty(value = "The value of single select and multiselect custom field type when `_type` is `SingleSelectIssueField` or `MultiSelectIssueField`.")
+  public String getOptionID() {
+    return optionID;
+  }
+
+  public void setOptionID(String optionID) {
+    this.optionID = optionID;
+  }
+
   public ConnectCustomFieldValue richText(String richText) {
     this.richText = richText;
     return this;
@@ -218,22 +218,22 @@ public class ConnectCustomFieldValue {
     this.richText = richText;
   }
 
-  public ConnectCustomFieldValue optionID(String optionID) {
-    this.optionID = optionID;
+  public ConnectCustomFieldValue string(String string) {
+    this.string = string;
     return this;
   }
 
    /**
-   * The value of single select and multiselect custom field type when &#x60;_type&#x60; is &#x60;SingleSelectIssueField&#x60; or &#x60;MultiSelectIssueField&#x60;.
-   * @return optionID
+   * The value of string type custom field when &#x60;_type&#x60; is &#x60;StringIssueField&#x60;.
+   * @return string
   **/
-  @ApiModelProperty(value = "The value of single select and multiselect custom field type when `_type` is `SingleSelectIssueField` or `MultiSelectIssueField`.")
-  public String getOptionID() {
-    return optionID;
+  @ApiModelProperty(value = "The value of string type custom field when `_type` is `StringIssueField`.")
+  public String getString() {
+    return string;
   }
 
-  public void setOptionID(String optionID) {
-    this.optionID = optionID;
+  public void setString(String string) {
+    this.string = string;
   }
 
   public ConnectCustomFieldValue text(String text) {
@@ -265,18 +265,18 @@ public class ConnectCustomFieldValue {
     }
     ConnectCustomFieldValue connectCustomFieldValue = (ConnectCustomFieldValue) o;
     return Objects.equals(this.type, connectCustomFieldValue.type) &&
-        Objects.equals(this.issueID, connectCustomFieldValue.issueID) &&
         Objects.equals(this.fieldID, connectCustomFieldValue.fieldID) &&
-        Objects.equals(this.string, connectCustomFieldValue.string) &&
+        Objects.equals(this.issueID, connectCustomFieldValue.issueID) &&
         Objects.equals(this.number, connectCustomFieldValue.number) &&
-        Objects.equals(this.richText, connectCustomFieldValue.richText) &&
         Objects.equals(this.optionID, connectCustomFieldValue.optionID) &&
+        Objects.equals(this.richText, connectCustomFieldValue.richText) &&
+        Objects.equals(this.string, connectCustomFieldValue.string) &&
         Objects.equals(this.text, connectCustomFieldValue.text);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, issueID, fieldID, string, number, richText, optionID, text);
+    return Objects.hash(type, fieldID, issueID, number, optionID, richText, string, text);
   }
 
 
@@ -286,12 +286,12 @@ public class ConnectCustomFieldValue {
     sb.append("class ConnectCustomFieldValue {\n");
     
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    issueID: ").append(toIndentedString(issueID)).append("\n");
     sb.append("    fieldID: ").append(toIndentedString(fieldID)).append("\n");
-    sb.append("    string: ").append(toIndentedString(string)).append("\n");
+    sb.append("    issueID: ").append(toIndentedString(issueID)).append("\n");
     sb.append("    number: ").append(toIndentedString(number)).append("\n");
-    sb.append("    richText: ").append(toIndentedString(richText)).append("\n");
     sb.append("    optionID: ").append(toIndentedString(optionID)).append("\n");
+    sb.append("    richText: ").append(toIndentedString(richText)).append("\n");
+    sb.append("    string: ").append(toIndentedString(string)).append("\n");
     sb.append("    text: ").append(toIndentedString(text)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -40,31 +40,13 @@ import io.swagger.annotations.ApiModelProperty;
  * Details about the default workflow.
  */
 @ApiModel(description = "Details about the default workflow.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class DefaultWorkflow {
-  @JsonProperty("workflow")
-  private String workflow;
-
   @JsonProperty("updateDraftIfNeeded")
   private Boolean updateDraftIfNeeded;
 
-  public DefaultWorkflow workflow(String workflow) {
-    this.workflow = workflow;
-    return this;
-  }
-
-   /**
-   * The name of the workflow to set as the default workflow.
-   * @return workflow
-  **/
-  @ApiModelProperty(required = true, value = "The name of the workflow to set as the default workflow.")
-  public String getWorkflow() {
-    return workflow;
-  }
-
-  public void setWorkflow(String workflow) {
-    this.workflow = workflow;
-  }
+  @JsonProperty("workflow")
+  private String workflow;
 
   public DefaultWorkflow updateDraftIfNeeded(Boolean updateDraftIfNeeded) {
     this.updateDraftIfNeeded = updateDraftIfNeeded;
@@ -84,6 +66,24 @@ public class DefaultWorkflow {
     this.updateDraftIfNeeded = updateDraftIfNeeded;
   }
 
+  public DefaultWorkflow workflow(String workflow) {
+    this.workflow = workflow;
+    return this;
+  }
+
+   /**
+   * The name of the workflow to set as the default workflow.
+   * @return workflow
+  **/
+  @ApiModelProperty(required = true, value = "The name of the workflow to set as the default workflow.")
+  public String getWorkflow() {
+    return workflow;
+  }
+
+  public void setWorkflow(String workflow) {
+    this.workflow = workflow;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -94,13 +94,13 @@ public class DefaultWorkflow {
       return false;
     }
     DefaultWorkflow defaultWorkflow = (DefaultWorkflow) o;
-    return Objects.equals(this.workflow, defaultWorkflow.workflow) &&
-        Objects.equals(this.updateDraftIfNeeded, defaultWorkflow.updateDraftIfNeeded);
+    return Objects.equals(this.updateDraftIfNeeded, defaultWorkflow.updateDraftIfNeeded) &&
+        Objects.equals(this.workflow, defaultWorkflow.workflow);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(workflow, updateDraftIfNeeded);
+    return Objects.hash(updateDraftIfNeeded, workflow);
   }
 
 
@@ -109,8 +109,8 @@ public class DefaultWorkflow {
     StringBuilder sb = new StringBuilder();
     sb.append("class DefaultWorkflow {\n");
     
-    sb.append("    workflow: ").append(toIndentedString(workflow)).append("\n");
     sb.append("    updateDraftIfNeeded: ").append(toIndentedString(updateDraftIfNeeded)).append("\n");
+    sb.append("    workflow: ").append(toIndentedString(workflow)).append("\n");
     sb.append("}");
     return sb.toString();
   }

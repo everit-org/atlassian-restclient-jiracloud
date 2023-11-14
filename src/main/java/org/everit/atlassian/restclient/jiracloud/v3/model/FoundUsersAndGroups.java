@@ -42,31 +42,13 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.FoundUsers;
  * List of users and groups found in a search.
  */
 @ApiModel(description = "List of users and groups found in a search.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class FoundUsersAndGroups {
-  @JsonProperty("users")
-  private FoundUsers users;
-
   @JsonProperty("groups")
   private FoundGroups groups;
 
-  public FoundUsersAndGroups users(FoundUsers users) {
-    this.users = users;
-    return this;
-  }
-
-   /**
-   * Get users
-   * @return users
-  **/
-  @ApiModelProperty(value = "")
-  public FoundUsers getUsers() {
-    return users;
-  }
-
-  public void setUsers(FoundUsers users) {
-    this.users = users;
-  }
+  @JsonProperty("users")
+  private FoundUsers users;
 
   public FoundUsersAndGroups groups(FoundGroups groups) {
     this.groups = groups;
@@ -86,6 +68,24 @@ public class FoundUsersAndGroups {
     this.groups = groups;
   }
 
+  public FoundUsersAndGroups users(FoundUsers users) {
+    this.users = users;
+    return this;
+  }
+
+   /**
+   * Get users
+   * @return users
+  **/
+  @ApiModelProperty(value = "")
+  public FoundUsers getUsers() {
+    return users;
+  }
+
+  public void setUsers(FoundUsers users) {
+    this.users = users;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -96,13 +96,13 @@ public class FoundUsersAndGroups {
       return false;
     }
     FoundUsersAndGroups foundUsersAndGroups = (FoundUsersAndGroups) o;
-    return Objects.equals(this.users, foundUsersAndGroups.users) &&
-        Objects.equals(this.groups, foundUsersAndGroups.groups);
+    return Objects.equals(this.groups, foundUsersAndGroups.groups) &&
+        Objects.equals(this.users, foundUsersAndGroups.users);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(users, groups);
+    return Objects.hash(groups, users);
   }
 
 
@@ -111,8 +111,8 @@ public class FoundUsersAndGroups {
     StringBuilder sb = new StringBuilder();
     sb.append("class FoundUsersAndGroups {\n");
     
-    sb.append("    users: ").append(toIndentedString(users)).append("\n");
     sb.append("    groups: ").append(toIndentedString(groups)).append("\n");
+    sb.append("    users: ").append(toIndentedString(users)).append("\n");
     sb.append("}");
     return sb.toString();
   }

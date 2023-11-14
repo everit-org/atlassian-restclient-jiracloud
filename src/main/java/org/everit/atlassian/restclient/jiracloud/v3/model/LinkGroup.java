@@ -43,60 +43,50 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.SimpleLink;
  * Details a link group, which defines issue operations.
  */
 @ApiModel(description = "Details a link group, which defines issue operations.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class LinkGroup {
-  @JsonProperty("id")
-  private String id;
-
-  @JsonProperty("styleClass")
-  private String styleClass;
+  @JsonProperty("groups")
+  private List<LinkGroup> groups = new ArrayList<>();
 
   @JsonProperty("header")
   private SimpleLink header;
 
-  @JsonProperty("weight")
-  private Integer weight;
+  @JsonProperty("id")
+  private String id;
 
   @JsonProperty("links")
   private List<SimpleLink> links = new ArrayList<>();
 
-  @JsonProperty("groups")
-  private List<LinkGroup> groups = new ArrayList<>();
+  @JsonProperty("styleClass")
+  private String styleClass;
 
-  public LinkGroup id(String id) {
-    this.id = id;
+  @JsonProperty("weight")
+  private Integer weight;
+
+  public LinkGroup groups(List<LinkGroup> groups) {
+    this.groups = groups;
+    return this;
+  }
+
+  public LinkGroup addGroupsItem(LinkGroup groupsItem) {
+    if (this.groups == null) {
+      this.groups = new ArrayList<>();
+    }
+    this.groups.add(groupsItem);
     return this;
   }
 
    /**
-   * Get id
-   * @return id
+   * Get groups
+   * @return groups
   **/
   @ApiModelProperty(value = "")
-  public String getId() {
-    return id;
+  public List<LinkGroup> getGroups() {
+    return groups;
   }
 
-  public void setId(String id) {
-    this.id = id;
-  }
-
-  public LinkGroup styleClass(String styleClass) {
-    this.styleClass = styleClass;
-    return this;
-  }
-
-   /**
-   * Get styleClass
-   * @return styleClass
-  **/
-  @ApiModelProperty(value = "")
-  public String getStyleClass() {
-    return styleClass;
-  }
-
-  public void setStyleClass(String styleClass) {
-    this.styleClass = styleClass;
+  public void setGroups(List<LinkGroup> groups) {
+    this.groups = groups;
   }
 
   public LinkGroup header(SimpleLink header) {
@@ -117,22 +107,22 @@ public class LinkGroup {
     this.header = header;
   }
 
-  public LinkGroup weight(Integer weight) {
-    this.weight = weight;
+  public LinkGroup id(String id) {
+    this.id = id;
     return this;
   }
 
    /**
-   * Get weight
-   * @return weight
+   * Get id
+   * @return id
   **/
   @ApiModelProperty(value = "")
-  public Integer getWeight() {
-    return weight;
+  public String getId() {
+    return id;
   }
 
-  public void setWeight(Integer weight) {
-    this.weight = weight;
+  public void setId(String id) {
+    this.id = id;
   }
 
   public LinkGroup links(List<SimpleLink> links) {
@@ -161,30 +151,40 @@ public class LinkGroup {
     this.links = links;
   }
 
-  public LinkGroup groups(List<LinkGroup> groups) {
-    this.groups = groups;
-    return this;
-  }
-
-  public LinkGroup addGroupsItem(LinkGroup groupsItem) {
-    if (this.groups == null) {
-      this.groups = new ArrayList<>();
-    }
-    this.groups.add(groupsItem);
+  public LinkGroup styleClass(String styleClass) {
+    this.styleClass = styleClass;
     return this;
   }
 
    /**
-   * Get groups
-   * @return groups
+   * Get styleClass
+   * @return styleClass
   **/
   @ApiModelProperty(value = "")
-  public List<LinkGroup> getGroups() {
-    return groups;
+  public String getStyleClass() {
+    return styleClass;
   }
 
-  public void setGroups(List<LinkGroup> groups) {
-    this.groups = groups;
+  public void setStyleClass(String styleClass) {
+    this.styleClass = styleClass;
+  }
+
+  public LinkGroup weight(Integer weight) {
+    this.weight = weight;
+    return this;
+  }
+
+   /**
+   * Get weight
+   * @return weight
+  **/
+  @ApiModelProperty(value = "")
+  public Integer getWeight() {
+    return weight;
+  }
+
+  public void setWeight(Integer weight) {
+    this.weight = weight;
   }
 
 
@@ -197,17 +197,17 @@ public class LinkGroup {
       return false;
     }
     LinkGroup linkGroup = (LinkGroup) o;
-    return Objects.equals(this.id, linkGroup.id) &&
-        Objects.equals(this.styleClass, linkGroup.styleClass) &&
+    return Objects.equals(this.groups, linkGroup.groups) &&
         Objects.equals(this.header, linkGroup.header) &&
-        Objects.equals(this.weight, linkGroup.weight) &&
+        Objects.equals(this.id, linkGroup.id) &&
         Objects.equals(this.links, linkGroup.links) &&
-        Objects.equals(this.groups, linkGroup.groups);
+        Objects.equals(this.styleClass, linkGroup.styleClass) &&
+        Objects.equals(this.weight, linkGroup.weight);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, styleClass, header, weight, links, groups);
+    return Objects.hash(groups, header, id, links, styleClass, weight);
   }
 
 
@@ -216,12 +216,12 @@ public class LinkGroup {
     StringBuilder sb = new StringBuilder();
     sb.append("class LinkGroup {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    styleClass: ").append(toIndentedString(styleClass)).append("\n");
-    sb.append("    header: ").append(toIndentedString(header)).append("\n");
-    sb.append("    weight: ").append(toIndentedString(weight)).append("\n");
-    sb.append("    links: ").append(toIndentedString(links)).append("\n");
     sb.append("    groups: ").append(toIndentedString(groups)).append("\n");
+    sb.append("    header: ").append(toIndentedString(header)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    links: ").append(toIndentedString(links)).append("\n");
+    sb.append("    styleClass: ").append(toIndentedString(styleClass)).append("\n");
+    sb.append("    weight: ").append(toIndentedString(weight)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -32,7 +32,12 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.DefaultWorkflow;
 import org.everit.atlassian.restclient.jiracloud.v2.model.IssueTypeWorkflowMapping;
 import org.everit.atlassian.restclient.jiracloud.v2.model.IssueTypesWorkflowMapping;
 import org.everit.atlassian.restclient.jiracloud.v2.model.PageBeanWorkflowScheme;
+import org.everit.atlassian.restclient.jiracloud.v2.model.TaskProgressBeanObject;
 import org.everit.atlassian.restclient.jiracloud.v2.model.WorkflowScheme;
+import org.everit.atlassian.restclient.jiracloud.v2.model.WorkflowSchemeReadRequest;
+import org.everit.atlassian.restclient.jiracloud.v2.model.WorkflowSchemeReadResponse;
+import org.everit.atlassian.restclient.jiracloud.v2.model.WorkflowSchemeUpdateRequiredMappingsRequest;
+import org.everit.atlassian.restclient.jiracloud.v2.model.WorkflowSchemeUpdateRequiredMappingsResponse;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -49,6 +54,8 @@ public class WorkflowSchemesApi {
 
   private static final TypeReference<WorkflowScheme> returnType_deleteDefaultWorkflow = new TypeReference<WorkflowScheme>() {};
 
+  private static final TypeReference<Object> returnType_deleteWorkflowScheme = new TypeReference<Object>() {};
+
   private static final TypeReference<WorkflowScheme> returnType_deleteWorkflowSchemeIssueType = new TypeReference<WorkflowScheme>() {};
 
   private static final TypeReference<PageBeanWorkflowScheme> returnType_getAllWorkflowSchemes = new TypeReference<PageBeanWorkflowScheme>() {};
@@ -61,13 +68,19 @@ public class WorkflowSchemesApi {
 
   private static final TypeReference<IssueTypeWorkflowMapping> returnType_getWorkflowSchemeIssueType = new TypeReference<IssueTypeWorkflowMapping>() {};
 
+  private static final TypeReference<List<WorkflowSchemeReadResponse>> returnType_readWorkflowSchemes = new TypeReference<List<WorkflowSchemeReadResponse>>() {};
+
   private static final TypeReference<WorkflowScheme> returnType_setWorkflowSchemeIssueType = new TypeReference<WorkflowScheme>() {};
 
   private static final TypeReference<WorkflowScheme> returnType_updateDefaultWorkflow = new TypeReference<WorkflowScheme>() {};
 
+  private static final TypeReference<Object> returnType_updateSchemes = new TypeReference<Object>() {};
+
   private static final TypeReference<WorkflowScheme> returnType_updateWorkflowMapping = new TypeReference<WorkflowScheme>() {};
 
   private static final TypeReference<WorkflowScheme> returnType_updateWorkflowScheme = new TypeReference<WorkflowScheme>() {};
+
+  private static final TypeReference<WorkflowSchemeUpdateRequiredMappingsResponse> returnType_updateWorkflowSchemeMappings = new TypeReference<WorkflowSchemeUpdateRequiredMappingsResponse>() {};
 
   private final RestClient restClient;
 
@@ -175,9 +188,9 @@ public class WorkflowSchemesApi {
    * Deletes a workflow scheme. Note that a workflow scheme cannot be deleted if it is active (that is, being used by at least one project).  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param id The ID of the workflow scheme. Find this ID by editing the desired workflow scheme in Jira. The ID is shown in the URL as `schemeId`. For example, *schemeId=10301*. (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
-   * @return Completable
+   * @return Single&lt;Object&gt;
    */
-  public Completable deleteWorkflowScheme(
+  public Single<Object> deleteWorkflowScheme(
     Long id, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
@@ -195,7 +208,7 @@ public class WorkflowSchemesApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_deleteWorkflowScheme);
   }
 
   /**
@@ -401,6 +414,39 @@ public class WorkflowSchemesApi {
   }
 
   /**
+   * Bulk get workflow schemes
+   * Returns a list of workflow schemes by providing workflow scheme IDs or project IDs.  **[Permissions](#permissions) required:**   *  *Administer Jira* global permission to access all, including project-scoped, workflow schemes  *  *Administer projects* project permissions to access project-scoped workflow schemes
+   * @param workflowSchemeReadRequest  (required)
+   * @param expand Use [expand](#expansion) to include additional information in the response. This parameter accepts a comma-separated list. Expand options include:   *  `workflows.usages` Returns the project and issue types that each workflow in the workflow scheme is associated with. (optional)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;List&lt;WorkflowSchemeReadResponse&gt;&gt;
+   */
+  public Single<List<WorkflowSchemeReadResponse>> readWorkflowSchemes(
+    WorkflowSchemeReadRequest workflowSchemeReadRequest, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.POST)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/workflowscheme/read");
+
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (expand.isPresent()) {
+      queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(workflowSchemeReadRequest));
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_readWorkflowSchemes);
+  }
+
+  /**
    * Set workflow for issue type in workflow scheme
    * Sets the workflow for an issue type in a workflow scheme.  Note that active workflow schemes cannot be edited. If the workflow scheme is active, set `updateDraftIfNeeded` to `true` in the request body and a draft workflow scheme is created or updated with the new issue type-workflow mapping. The draft workflow scheme can be published in Jira.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param id The ID of the workflow scheme. (required)
@@ -465,6 +511,35 @@ public class WorkflowSchemesApi {
   }
 
   /**
+   * Update workflow scheme
+   * Updates company-managed and team-managed project workflow schemes. This API doesn't have a concept of draft, so any changes made to a workflow scheme are immediately available. When changing the available statuses for issue types, an [asynchronous task](#async) migrates the issues as defined in the provided mappings.  **[Permissions](#permissions) required:**   *  *Administer Jira* project permission to update all, including global-scoped, workflow schemes.  *  *Administer projects* project permission to update project-scoped workflow schemes.
+   * @param requestBody  (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;Object&gt;
+   */
+  public Single<Object> updateSchemes(
+    Map<String, Object> requestBody, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.POST)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/workflowscheme/update");
+
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(requestBody));
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updateSchemes);
+  }
+
+  /**
    * Set issue types for workflow in workflow scheme
    * Sets the issue types for a workflow in a workflow scheme. The workflow can also be set as the default workflow for the workflow scheme. Unmapped issues types are mapped to the default workflow.  Note that active workflow schemes cannot be edited. If the workflow scheme is active, set `updateDraftIfNeeded` to `true` in the request body and a draft workflow scheme is created or updated with the new workflow-issue types mappings. The draft workflow scheme can be published in Jira.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param id The ID of the workflow scheme. (required)
@@ -498,8 +573,8 @@ public class WorkflowSchemesApi {
   }
 
   /**
-   * Update workflow scheme
-   * Updates a workflow scheme, including the name, default workflow, issue type to project mappings, and more. If the workflow scheme is active (that is, being used by at least one project), then a draft workflow scheme is created or updated instead, provided that `updateDraftIfNeeded` is set to `true`.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * Classic update workflow scheme
+   * Updates a company-manged project workflow scheme, including the name, default workflow, issue type to project mappings, and more. If the workflow scheme is active (that is, being used by at least one project), then a draft workflow scheme is created or updated instead, provided that `updateDraftIfNeeded` is set to `true`.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param id The ID of the workflow scheme. Find this ID by editing the desired workflow scheme in Jira. The ID is shown in the URL as `schemeId`. For example, *schemeId=10301*. (required)
    * @param workflowScheme  (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
@@ -526,6 +601,35 @@ public class WorkflowSchemesApi {
     requestBuilder.requestBody(Optional.of(workflowScheme));
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updateWorkflowScheme);
+  }
+
+  /**
+   * Get required status mappings for workflow scheme update
+   * Gets the required status mappings for the desired changes to a workflow scheme. The results are provided per issue type and workflow. When updating a workflow scheme, status mappings can be provided per issue type, per workflow, or both.  **[Permissions](#permissions) required:**   *  *Administer Jira* permission to update all, including global-scoped, workflow schemes.  *  *Administer projects* project permission to update project-scoped workflow schemes.
+   * @param workflowSchemeUpdateRequiredMappingsRequest  (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;WorkflowSchemeUpdateRequiredMappingsResponse&gt;
+   */
+  public Single<WorkflowSchemeUpdateRequiredMappingsResponse> updateWorkflowSchemeMappings(
+    WorkflowSchemeUpdateRequiredMappingsRequest workflowSchemeUpdateRequiredMappingsRequest, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.POST)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/workflowscheme/update/mappings");
+
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(workflowSchemeUpdateRequiredMappingsRequest));
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_updateWorkflowSchemeMappings);
   }
 
 }

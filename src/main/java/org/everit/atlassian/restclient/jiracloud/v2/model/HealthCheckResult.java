@@ -40,34 +40,16 @@ import io.swagger.annotations.ApiModelProperty;
  * Jira instance health check results. Deprecated and no longer returned.
  */
 @ApiModel(description = "Jira instance health check results. Deprecated and no longer returned.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class HealthCheckResult {
-  @JsonProperty("name")
-  private String name;
-
   @JsonProperty("description")
   private String description;
 
+  @JsonProperty("name")
+  private String name;
+
   @JsonProperty("passed")
   private Boolean passed;
-
-  public HealthCheckResult name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * The name of the Jira health check item.
-   * @return name
-  **/
-  @ApiModelProperty(value = "The name of the Jira health check item.")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
 
   public HealthCheckResult description(String description) {
     this.description = description;
@@ -85,6 +67,24 @@ public class HealthCheckResult {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public HealthCheckResult name(String name) {
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * The name of the Jira health check item.
+   * @return name
+  **/
+  @ApiModelProperty(value = "The name of the Jira health check item.")
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 
   public HealthCheckResult passed(Boolean passed) {
@@ -115,14 +115,14 @@ public class HealthCheckResult {
       return false;
     }
     HealthCheckResult healthCheckResult = (HealthCheckResult) o;
-    return Objects.equals(this.name, healthCheckResult.name) &&
-        Objects.equals(this.description, healthCheckResult.description) &&
+    return Objects.equals(this.description, healthCheckResult.description) &&
+        Objects.equals(this.name, healthCheckResult.name) &&
         Objects.equals(this.passed, healthCheckResult.passed);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, passed);
+    return Objects.hash(description, name, passed);
   }
 
 
@@ -131,8 +131,8 @@ public class HealthCheckResult {
     StringBuilder sb = new StringBuilder();
     sb.append("class HealthCheckResult {\n");
     
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    passed: ").append(toIndentedString(passed)).append("\n");
     sb.append("}");
     return sb.toString();

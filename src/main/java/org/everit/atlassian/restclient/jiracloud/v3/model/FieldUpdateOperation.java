@@ -40,21 +40,24 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of an operation to perform on a field.
  */
 @ApiModel(description = "Details of an operation to perform on a field.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 @com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 public
                     class FieldUpdateOperation {
   @JsonProperty("add")
   private Object add = null;
 
-  @JsonProperty("set")
-  private Object set = null;
+  @JsonProperty("copy")
+  private Object copy = null;
+
+  @JsonProperty("edit")
+  private Object edit = null;
 
   @JsonProperty("remove")
   private Object remove = null;
 
-  @JsonProperty("edit")
-  private Object edit = null;
+  @JsonProperty("set")
+  private Object set = null;
 
   public FieldUpdateOperation add(Object add) {
     this.add = add;
@@ -62,10 +65,10 @@ public
   }
 
    /**
-   * A map containing the name of a field and the value to add to it.
+   * The value to add to the field.
    * @return add
   **/
-  @ApiModelProperty(example = "{\"labels\":\"Training\",\"issuelinks\":{\"id\":10001}}", value = "A map containing the name of a field and the value to add to it.")
+  @ApiModelProperty(example = "triaged", value = "The value to add to the field.")
   public Object getAdd() {
     return add;
   }
@@ -74,40 +77,22 @@ public
     this.add = add;
   }
 
-  public FieldUpdateOperation set(Object set) {
-    this.set = set;
+  public FieldUpdateOperation copy(Object copy) {
+    this.copy = copy;
     return this;
   }
 
    /**
-   * A map containing the name of a field and the value to set in it.
-   * @return set
+   * The field value to copy from another issue.
+   * @return copy
   **/
-  @ApiModelProperty(example = "{\"summary\":\"A new summary\",\"issuetype\":{\"id\":10010}}", value = "A map containing the name of a field and the value to set in it.")
-  public Object getSet() {
-    return set;
+  @ApiModelProperty(example = "{\"issuelinks\":{\"sourceIssues\":[{\"key\":\"FP-5\"}]}}", value = "The field value to copy from another issue.")
+  public Object getCopy() {
+    return copy;
   }
 
-  public void setSet(Object set) {
-    this.set = set;
-  }
-
-  public FieldUpdateOperation remove(Object remove) {
-    this.remove = remove;
-    return this;
-  }
-
-   /**
-   * A map containing the name of a field and the value to removed from it.
-   * @return remove
-  **/
-  @ApiModelProperty(example = "{\"labels\":\"Training\",\"components\":{\"id\":10017}}", value = "A map containing the name of a field and the value to removed from it.")
-  public Object getRemove() {
-    return remove;
-  }
-
-  public void setRemove(Object remove) {
-    this.remove = remove;
+  public void setCopy(Object copy) {
+    this.copy = copy;
   }
 
   public FieldUpdateOperation edit(Object edit) {
@@ -116,16 +101,52 @@ public
   }
 
    /**
-   * A map containing the name of a field and the value to edit in it.
+   * The value to edit in the field.
    * @return edit
   **/
-  @ApiModelProperty(example = "{\"timetracking\":{\"key\":\"JIRA\"}}", value = "A map containing the name of a field and the value to edit in it.")
+  @ApiModelProperty(example = "{\"originalEstimate\":\"1w 1d\",\"remainingEstimate\":\"4d\"}", value = "The value to edit in the field.")
   public Object getEdit() {
     return edit;
   }
 
   public void setEdit(Object edit) {
     this.edit = edit;
+  }
+
+  public FieldUpdateOperation remove(Object remove) {
+    this.remove = remove;
+    return this;
+  }
+
+   /**
+   * The value to removed from the field.
+   * @return remove
+  **/
+  @ApiModelProperty(example = "blocker", value = "The value to removed from the field.")
+  public Object getRemove() {
+    return remove;
+  }
+
+  public void setRemove(Object remove) {
+    this.remove = remove;
+  }
+
+  public FieldUpdateOperation set(Object set) {
+    this.set = set;
+    return this;
+  }
+
+   /**
+   * The value to set in the field.
+   * @return set
+  **/
+  @ApiModelProperty(example = "A new summary", value = "The value to set in the field.")
+  public Object getSet() {
+    return set;
+  }
+
+  public void setSet(Object set) {
+    this.set = set;
   }
 
 
@@ -139,14 +160,15 @@ public
     }
     FieldUpdateOperation fieldUpdateOperation = (FieldUpdateOperation) o;
     return Objects.equals(this.add, fieldUpdateOperation.add) &&
-        Objects.equals(this.set, fieldUpdateOperation.set) &&
+        Objects.equals(this.copy, fieldUpdateOperation.copy) &&
+        Objects.equals(this.edit, fieldUpdateOperation.edit) &&
         Objects.equals(this.remove, fieldUpdateOperation.remove) &&
-        Objects.equals(this.edit, fieldUpdateOperation.edit);
+        Objects.equals(this.set, fieldUpdateOperation.set);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(add, set, remove, edit);
+    return Objects.hash(add, copy, edit, remove, set);
   }
 
 
@@ -156,9 +178,10 @@ public
     sb.append("class FieldUpdateOperation {\n");
     
     sb.append("    add: ").append(toIndentedString(add)).append("\n");
-    sb.append("    set: ").append(toIndentedString(set)).append("\n");
-    sb.append("    remove: ").append(toIndentedString(remove)).append("\n");
+    sb.append("    copy: ").append(toIndentedString(copy)).append("\n");
     sb.append("    edit: ").append(toIndentedString(edit)).append("\n");
+    sb.append("    remove: ").append(toIndentedString(remove)).append("\n");
+    sb.append("    set: ").append(toIndentedString(set)).append("\n");
     sb.append("}");
     return sb.toString();
   }

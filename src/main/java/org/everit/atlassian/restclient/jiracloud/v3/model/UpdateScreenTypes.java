@@ -40,37 +40,19 @@ import io.swagger.annotations.ApiModelProperty;
  * The IDs of the screens for the screen types of the screen scheme.
  */
 @ApiModel(description = "The IDs of the screens for the screen types of the screen scheme.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class UpdateScreenTypes {
-  @JsonProperty("edit")
-  private String edit;
-
   @JsonProperty("create")
   private String create;
-
-  @JsonProperty("view")
-  private String view;
 
   @JsonProperty("default")
   private String _default;
 
-  public UpdateScreenTypes edit(String edit) {
-    this.edit = edit;
-    return this;
-  }
+  @JsonProperty("edit")
+  private String edit;
 
-   /**
-   * The ID of the edit screen. To remove the screen association, pass a null.
-   * @return edit
-  **/
-  @ApiModelProperty(value = "The ID of the edit screen. To remove the screen association, pass a null.")
-  public String getEdit() {
-    return edit;
-  }
-
-  public void setEdit(String edit) {
-    this.edit = edit;
-  }
+  @JsonProperty("view")
+  private String view;
 
   public UpdateScreenTypes create(String create) {
     this.create = create;
@@ -88,24 +70,6 @@ public class UpdateScreenTypes {
 
   public void setCreate(String create) {
     this.create = create;
-  }
-
-  public UpdateScreenTypes view(String view) {
-    this.view = view;
-    return this;
-  }
-
-   /**
-   * The ID of the view screen. To remove the screen association, pass a null.
-   * @return view
-  **/
-  @ApiModelProperty(value = "The ID of the view screen. To remove the screen association, pass a null.")
-  public String getView() {
-    return view;
-  }
-
-  public void setView(String view) {
-    this.view = view;
   }
 
   public UpdateScreenTypes _default(String _default) {
@@ -126,6 +90,42 @@ public class UpdateScreenTypes {
     this._default = _default;
   }
 
+  public UpdateScreenTypes edit(String edit) {
+    this.edit = edit;
+    return this;
+  }
+
+   /**
+   * The ID of the edit screen. To remove the screen association, pass a null.
+   * @return edit
+  **/
+  @ApiModelProperty(value = "The ID of the edit screen. To remove the screen association, pass a null.")
+  public String getEdit() {
+    return edit;
+  }
+
+  public void setEdit(String edit) {
+    this.edit = edit;
+  }
+
+  public UpdateScreenTypes view(String view) {
+    this.view = view;
+    return this;
+  }
+
+   /**
+   * The ID of the view screen. To remove the screen association, pass a null.
+   * @return view
+  **/
+  @ApiModelProperty(value = "The ID of the view screen. To remove the screen association, pass a null.")
+  public String getView() {
+    return view;
+  }
+
+  public void setView(String view) {
+    this.view = view;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -136,15 +136,15 @@ public class UpdateScreenTypes {
       return false;
     }
     UpdateScreenTypes updateScreenTypes = (UpdateScreenTypes) o;
-    return Objects.equals(this.edit, updateScreenTypes.edit) &&
-        Objects.equals(this.create, updateScreenTypes.create) &&
-        Objects.equals(this.view, updateScreenTypes.view) &&
-        Objects.equals(this._default, updateScreenTypes._default);
+    return Objects.equals(this.create, updateScreenTypes.create) &&
+        Objects.equals(this._default, updateScreenTypes._default) &&
+        Objects.equals(this.edit, updateScreenTypes.edit) &&
+        Objects.equals(this.view, updateScreenTypes.view);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(edit, create, view, _default);
+    return Objects.hash(create, _default, edit, view);
   }
 
 
@@ -153,10 +153,10 @@ public class UpdateScreenTypes {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateScreenTypes {\n");
     
-    sb.append("    edit: ").append(toIndentedString(edit)).append("\n");
     sb.append("    create: ").append(toIndentedString(create)).append("\n");
-    sb.append("    view: ").append(toIndentedString(view)).append("\n");
     sb.append("    _default: ").append(toIndentedString(_default)).append("\n");
+    sb.append("    edit: ").append(toIndentedString(edit)).append("\n");
+    sb.append("    view: ").append(toIndentedString(view)).append("\n");
     sb.append("}");
     return sb.toString();
   }

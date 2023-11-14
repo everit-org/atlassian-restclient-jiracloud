@@ -42,11 +42,8 @@ import java.util.List;
  * Details of functions that can be used in advanced searches.
  */
 @ApiModel(description = "Details of functions that can be used in advanced searches.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class FunctionReferenceData {
-  @JsonProperty("value")
-  private String value;
-
   @JsonProperty("displayName")
   private String displayName;
 
@@ -88,26 +85,49 @@ public class FunctionReferenceData {
   @JsonProperty("isList")
   private IsListEnum isList;
 
+  /**
+   * Whether the function supports both single and list value operators.
+   */
+  public enum SupportsListAndSingleValueOperatorsEnum {
+    TRUE("true"),
+    
+    FALSE("false");
+
+    private String value;
+
+    SupportsListAndSingleValueOperatorsEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static SupportsListAndSingleValueOperatorsEnum fromValue(String value) {
+      for (SupportsListAndSingleValueOperatorsEnum b : SupportsListAndSingleValueOperatorsEnum.values()) {
+        if (b.value.equalsIgnoreCase(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  @JsonProperty("supportsListAndSingleValueOperators")
+  private SupportsListAndSingleValueOperatorsEnum supportsListAndSingleValueOperators;
+
   @JsonProperty("types")
   private List<String> types = new ArrayList<>();
 
-  public FunctionReferenceData value(String value) {
-    this.value = value;
-    return this;
-  }
-
-   /**
-   * The function identifier.
-   * @return value
-  **/
-  @ApiModelProperty(value = "The function identifier.")
-  public String getValue() {
-    return value;
-  }
-
-  public void setValue(String value) {
-    this.value = value;
-  }
+  @JsonProperty("value")
+  private String value;
 
   public FunctionReferenceData displayName(String displayName) {
     this.displayName = displayName;
@@ -145,6 +165,24 @@ public class FunctionReferenceData {
     this.isList = isList;
   }
 
+  public FunctionReferenceData supportsListAndSingleValueOperators(SupportsListAndSingleValueOperatorsEnum supportsListAndSingleValueOperators) {
+    this.supportsListAndSingleValueOperators = supportsListAndSingleValueOperators;
+    return this;
+  }
+
+   /**
+   * Whether the function supports both single and list value operators.
+   * @return supportsListAndSingleValueOperators
+  **/
+  @ApiModelProperty(value = "Whether the function supports both single and list value operators.")
+  public SupportsListAndSingleValueOperatorsEnum getSupportsListAndSingleValueOperators() {
+    return supportsListAndSingleValueOperators;
+  }
+
+  public void setSupportsListAndSingleValueOperators(SupportsListAndSingleValueOperatorsEnum supportsListAndSingleValueOperators) {
+    this.supportsListAndSingleValueOperators = supportsListAndSingleValueOperators;
+  }
+
   public FunctionReferenceData types(List<String> types) {
     this.types = types;
     return this;
@@ -171,6 +209,24 @@ public class FunctionReferenceData {
     this.types = types;
   }
 
+  public FunctionReferenceData value(String value) {
+    this.value = value;
+    return this;
+  }
+
+   /**
+   * The function identifier.
+   * @return value
+  **/
+  @ApiModelProperty(value = "The function identifier.")
+  public String getValue() {
+    return value;
+  }
+
+  public void setValue(String value) {
+    this.value = value;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -181,15 +237,16 @@ public class FunctionReferenceData {
       return false;
     }
     FunctionReferenceData functionReferenceData = (FunctionReferenceData) o;
-    return Objects.equals(this.value, functionReferenceData.value) &&
-        Objects.equals(this.displayName, functionReferenceData.displayName) &&
+    return Objects.equals(this.displayName, functionReferenceData.displayName) &&
         Objects.equals(this.isList, functionReferenceData.isList) &&
-        Objects.equals(this.types, functionReferenceData.types);
+        Objects.equals(this.supportsListAndSingleValueOperators, functionReferenceData.supportsListAndSingleValueOperators) &&
+        Objects.equals(this.types, functionReferenceData.types) &&
+        Objects.equals(this.value, functionReferenceData.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value, displayName, isList, types);
+    return Objects.hash(displayName, isList, supportsListAndSingleValueOperators, types, value);
   }
 
 
@@ -198,10 +255,11 @@ public class FunctionReferenceData {
     StringBuilder sb = new StringBuilder();
     sb.append("class FunctionReferenceData {\n");
     
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    isList: ").append(toIndentedString(isList)).append("\n");
+    sb.append("    supportsListAndSingleValueOperators: ").append(toIndentedString(supportsListAndSingleValueOperators)).append("\n");
     sb.append("    types: ").append(toIndentedString(types)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }

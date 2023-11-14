@@ -40,27 +40,33 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of an issue level security item.
  */
 @ApiModel(description = "Details of an issue level security item.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class SecurityLevel {
-  @JsonProperty("self")
-  private String self;
+  @JsonProperty("description")
+  private String description;
 
   @JsonProperty("id")
   private String id;
 
-  @JsonProperty("description")
-  private String description;
+  @JsonProperty("isDefault")
+  private Boolean isDefault;
+
+  @JsonProperty("issueSecuritySchemeId")
+  private String issueSecuritySchemeId;
 
   @JsonProperty("name")
   private String name;
 
+  @JsonProperty("self")
+  private String self;
+
    /**
-   * The URL of the issue level security item.
-   * @return self
+   * The description of the issue level security item.
+   * @return description
   **/
-  @ApiModelProperty(value = "The URL of the issue level security item.")
-  public String getSelf() {
-    return self;
+  @ApiModelProperty(value = "The description of the issue level security item.")
+  public String getDescription() {
+    return description;
   }
 
    /**
@@ -73,12 +79,21 @@ public class SecurityLevel {
   }
 
    /**
-   * The description of the issue level security item.
-   * @return description
+   * Whether the issue level security item is the default.
+   * @return isDefault
   **/
-  @ApiModelProperty(value = "The description of the issue level security item.")
-  public String getDescription() {
-    return description;
+  @ApiModelProperty(value = "Whether the issue level security item is the default.")
+  public Boolean getIsDefault() {
+    return isDefault;
+  }
+
+   /**
+   * The ID of the issue level security scheme.
+   * @return issueSecuritySchemeId
+  **/
+  @ApiModelProperty(value = "The ID of the issue level security scheme.")
+  public String getIssueSecuritySchemeId() {
+    return issueSecuritySchemeId;
   }
 
    /**
@@ -88,6 +103,15 @@ public class SecurityLevel {
   @ApiModelProperty(value = "The name of the issue level security item.")
   public String getName() {
     return name;
+  }
+
+   /**
+   * The URL of the issue level security item.
+   * @return self
+  **/
+  @ApiModelProperty(value = "The URL of the issue level security item.")
+  public String getSelf() {
+    return self;
   }
 
 
@@ -100,15 +124,17 @@ public class SecurityLevel {
       return false;
     }
     SecurityLevel securityLevel = (SecurityLevel) o;
-    return Objects.equals(this.self, securityLevel.self) &&
+    return Objects.equals(this.description, securityLevel.description) &&
         Objects.equals(this.id, securityLevel.id) &&
-        Objects.equals(this.description, securityLevel.description) &&
-        Objects.equals(this.name, securityLevel.name);
+        Objects.equals(this.isDefault, securityLevel.isDefault) &&
+        Objects.equals(this.issueSecuritySchemeId, securityLevel.issueSecuritySchemeId) &&
+        Objects.equals(this.name, securityLevel.name) &&
+        Objects.equals(this.self, securityLevel.self);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self, id, description, name);
+    return Objects.hash(description, id, isDefault, issueSecuritySchemeId, name, self);
   }
 
 
@@ -117,10 +143,12 @@ public class SecurityLevel {
     StringBuilder sb = new StringBuilder();
     sb.append("class SecurityLevel {\n");
     
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    isDefault: ").append(toIndentedString(isDefault)).append("\n");
+    sb.append("    issueSecuritySchemeId: ").append(toIndentedString(issueSecuritySchemeId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("}");
     return sb.toString();
   }

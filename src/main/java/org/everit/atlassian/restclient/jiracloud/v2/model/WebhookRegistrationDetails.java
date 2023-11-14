@@ -43,13 +43,31 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.WebhookDetails;
  * Details of webhooks to register.
  */
 @ApiModel(description = "Details of webhooks to register.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:17.349+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:36.903+01:00[Europe/Prague]")
 public class WebhookRegistrationDetails {
+  @JsonProperty("url")
+  private String url;
+
   @JsonProperty("webhooks")
   private List<WebhookDetails> webhooks = new ArrayList<>();
 
-  @JsonProperty("url")
-  private String url;
+  public WebhookRegistrationDetails url(String url) {
+    this.url = url;
+    return this;
+  }
+
+   /**
+   * The URL that specifies where to send the webhooks. This URL must use the same base URL as the Connect app. Only a single URL per app is allowed to be registered.
+   * @return url
+  **/
+  @ApiModelProperty(required = true, value = "The URL that specifies where to send the webhooks. This URL must use the same base URL as the Connect app. Only a single URL per app is allowed to be registered.")
+  public String getUrl() {
+    return url;
+  }
+
+  public void setUrl(String url) {
+    this.url = url;
+  }
 
   public WebhookRegistrationDetails webhooks(List<WebhookDetails> webhooks) {
     this.webhooks = webhooks;
@@ -74,24 +92,6 @@ public class WebhookRegistrationDetails {
     this.webhooks = webhooks;
   }
 
-  public WebhookRegistrationDetails url(String url) {
-    this.url = url;
-    return this;
-  }
-
-   /**
-   * The URL that specifies where to send the webhooks. This URL must use the same base URL as the Connect app.
-   * @return url
-  **/
-  @ApiModelProperty(required = true, value = "The URL that specifies where to send the webhooks. This URL must use the same base URL as the Connect app.")
-  public String getUrl() {
-    return url;
-  }
-
-  public void setUrl(String url) {
-    this.url = url;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -102,13 +102,13 @@ public class WebhookRegistrationDetails {
       return false;
     }
     WebhookRegistrationDetails webhookRegistrationDetails = (WebhookRegistrationDetails) o;
-    return Objects.equals(this.webhooks, webhookRegistrationDetails.webhooks) &&
-        Objects.equals(this.url, webhookRegistrationDetails.url);
+    return Objects.equals(this.url, webhookRegistrationDetails.url) &&
+        Objects.equals(this.webhooks, webhookRegistrationDetails.webhooks);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(webhooks, url);
+    return Objects.hash(url, webhooks);
   }
 
 
@@ -117,8 +117,8 @@ public class WebhookRegistrationDetails {
     StringBuilder sb = new StringBuilder();
     sb.append("class WebhookRegistrationDetails {\n");
     
-    sb.append("    webhooks: ").append(toIndentedString(webhooks)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
+    sb.append("    webhooks: ").append(toIndentedString(webhooks)).append("\n");
     sb.append("}");
     return sb.toString();
   }

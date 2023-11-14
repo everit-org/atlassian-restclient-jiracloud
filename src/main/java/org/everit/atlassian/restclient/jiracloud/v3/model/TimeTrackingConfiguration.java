@@ -40,54 +40,8 @@ import io.swagger.annotations.ApiModelProperty;
  * Details of the time tracking configuration.
  */
 @ApiModel(description = "Details of the time tracking configuration.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class TimeTrackingConfiguration {
-  @JsonProperty("workingHoursPerDay")
-  private Double workingHoursPerDay;
-
-  @JsonProperty("workingDaysPerWeek")
-  private Double workingDaysPerWeek;
-
-  /**
-   * The format that will appear on an issue&#39;s *Time Spent* field.
-   */
-  public enum TimeFormatEnum {
-    PRETTY("pretty"),
-    
-    DAYS("days"),
-    
-    HOURS("hours");
-
-    private String value;
-
-    TimeFormatEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static TimeFormatEnum fromValue(String value) {
-      for (TimeFormatEnum b : TimeFormatEnum.values()) {
-        if (b.value.equalsIgnoreCase(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  @JsonProperty("timeFormat")
-  private TimeFormatEnum timeFormat;
-
   /**
    * The default unit of time applied to logged time.
    */
@@ -130,40 +84,68 @@ public class TimeTrackingConfiguration {
   @JsonProperty("defaultUnit")
   private DefaultUnitEnum defaultUnit;
 
-  public TimeTrackingConfiguration workingHoursPerDay(Double workingHoursPerDay) {
-    this.workingHoursPerDay = workingHoursPerDay;
+  /**
+   * The format that will appear on an issue&#39;s *Time Spent* field.
+   */
+  public enum TimeFormatEnum {
+    PRETTY("pretty"),
+    
+    DAYS("days"),
+    
+    HOURS("hours");
+
+    private String value;
+
+    TimeFormatEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static TimeFormatEnum fromValue(String value) {
+      for (TimeFormatEnum b : TimeFormatEnum.values()) {
+        if (b.value.equalsIgnoreCase(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  @JsonProperty("timeFormat")
+  private TimeFormatEnum timeFormat;
+
+  @JsonProperty("workingDaysPerWeek")
+  private Double workingDaysPerWeek;
+
+  @JsonProperty("workingHoursPerDay")
+  private Double workingHoursPerDay;
+
+  public TimeTrackingConfiguration defaultUnit(DefaultUnitEnum defaultUnit) {
+    this.defaultUnit = defaultUnit;
     return this;
   }
 
    /**
-   * The number of hours in a working day.
-   * @return workingHoursPerDay
+   * The default unit of time applied to logged time.
+   * @return defaultUnit
   **/
-  @ApiModelProperty(required = true, value = "The number of hours in a working day.")
-  public Double getWorkingHoursPerDay() {
-    return workingHoursPerDay;
+  @ApiModelProperty(required = true, value = "The default unit of time applied to logged time.")
+  public DefaultUnitEnum getDefaultUnit() {
+    return defaultUnit;
   }
 
-  public void setWorkingHoursPerDay(Double workingHoursPerDay) {
-    this.workingHoursPerDay = workingHoursPerDay;
-  }
-
-  public TimeTrackingConfiguration workingDaysPerWeek(Double workingDaysPerWeek) {
-    this.workingDaysPerWeek = workingDaysPerWeek;
-    return this;
-  }
-
-   /**
-   * The number of days in a working week.
-   * @return workingDaysPerWeek
-  **/
-  @ApiModelProperty(required = true, value = "The number of days in a working week.")
-  public Double getWorkingDaysPerWeek() {
-    return workingDaysPerWeek;
-  }
-
-  public void setWorkingDaysPerWeek(Double workingDaysPerWeek) {
-    this.workingDaysPerWeek = workingDaysPerWeek;
+  public void setDefaultUnit(DefaultUnitEnum defaultUnit) {
+    this.defaultUnit = defaultUnit;
   }
 
   public TimeTrackingConfiguration timeFormat(TimeFormatEnum timeFormat) {
@@ -184,22 +166,40 @@ public class TimeTrackingConfiguration {
     this.timeFormat = timeFormat;
   }
 
-  public TimeTrackingConfiguration defaultUnit(DefaultUnitEnum defaultUnit) {
-    this.defaultUnit = defaultUnit;
+  public TimeTrackingConfiguration workingDaysPerWeek(Double workingDaysPerWeek) {
+    this.workingDaysPerWeek = workingDaysPerWeek;
     return this;
   }
 
    /**
-   * The default unit of time applied to logged time.
-   * @return defaultUnit
+   * The number of days in a working week.
+   * @return workingDaysPerWeek
   **/
-  @ApiModelProperty(required = true, value = "The default unit of time applied to logged time.")
-  public DefaultUnitEnum getDefaultUnit() {
-    return defaultUnit;
+  @ApiModelProperty(required = true, value = "The number of days in a working week.")
+  public Double getWorkingDaysPerWeek() {
+    return workingDaysPerWeek;
   }
 
-  public void setDefaultUnit(DefaultUnitEnum defaultUnit) {
-    this.defaultUnit = defaultUnit;
+  public void setWorkingDaysPerWeek(Double workingDaysPerWeek) {
+    this.workingDaysPerWeek = workingDaysPerWeek;
+  }
+
+  public TimeTrackingConfiguration workingHoursPerDay(Double workingHoursPerDay) {
+    this.workingHoursPerDay = workingHoursPerDay;
+    return this;
+  }
+
+   /**
+   * The number of hours in a working day.
+   * @return workingHoursPerDay
+  **/
+  @ApiModelProperty(required = true, value = "The number of hours in a working day.")
+  public Double getWorkingHoursPerDay() {
+    return workingHoursPerDay;
+  }
+
+  public void setWorkingHoursPerDay(Double workingHoursPerDay) {
+    this.workingHoursPerDay = workingHoursPerDay;
   }
 
 
@@ -212,15 +212,15 @@ public class TimeTrackingConfiguration {
       return false;
     }
     TimeTrackingConfiguration timeTrackingConfiguration = (TimeTrackingConfiguration) o;
-    return Objects.equals(this.workingHoursPerDay, timeTrackingConfiguration.workingHoursPerDay) &&
-        Objects.equals(this.workingDaysPerWeek, timeTrackingConfiguration.workingDaysPerWeek) &&
+    return Objects.equals(this.defaultUnit, timeTrackingConfiguration.defaultUnit) &&
         Objects.equals(this.timeFormat, timeTrackingConfiguration.timeFormat) &&
-        Objects.equals(this.defaultUnit, timeTrackingConfiguration.defaultUnit);
+        Objects.equals(this.workingDaysPerWeek, timeTrackingConfiguration.workingDaysPerWeek) &&
+        Objects.equals(this.workingHoursPerDay, timeTrackingConfiguration.workingHoursPerDay);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(workingHoursPerDay, workingDaysPerWeek, timeFormat, defaultUnit);
+    return Objects.hash(defaultUnit, timeFormat, workingDaysPerWeek, workingHoursPerDay);
   }
 
 
@@ -229,10 +229,10 @@ public class TimeTrackingConfiguration {
     StringBuilder sb = new StringBuilder();
     sb.append("class TimeTrackingConfiguration {\n");
     
-    sb.append("    workingHoursPerDay: ").append(toIndentedString(workingHoursPerDay)).append("\n");
-    sb.append("    workingDaysPerWeek: ").append(toIndentedString(workingDaysPerWeek)).append("\n");
-    sb.append("    timeFormat: ").append(toIndentedString(timeFormat)).append("\n");
     sb.append("    defaultUnit: ").append(toIndentedString(defaultUnit)).append("\n");
+    sb.append("    timeFormat: ").append(toIndentedString(timeFormat)).append("\n");
+    sb.append("    workingDaysPerWeek: ").append(toIndentedString(workingDaysPerWeek)).append("\n");
+    sb.append("    workingHoursPerDay: ").append(toIndentedString(workingHoursPerDay)).append("\n");
     sb.append("}");
     return sb.toString();
   }

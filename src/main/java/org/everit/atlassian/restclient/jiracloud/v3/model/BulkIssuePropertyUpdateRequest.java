@@ -41,34 +41,16 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.IssueFilterForBulkProp
  * Bulk issue property update request details.
  */
 @ApiModel(description = "Bulk issue property update request details.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class BulkIssuePropertyUpdateRequest {
-  @JsonProperty("value")
-  private Object value = null;
-
   @JsonProperty("expression")
   private String expression;
 
   @JsonProperty("filter")
   private IssueFilterForBulkPropertySet filter;
 
-  public BulkIssuePropertyUpdateRequest value(Object value) {
-    this.value = value;
-    return this;
-  }
-
-   /**
-   * The value of the property. The value must be a [valid](https://tools.ietf.org/html/rfc4627), non-empty JSON blob. The maximum length is 32768 characters.
-   * @return value
-  **/
-  @ApiModelProperty(value = "The value of the property. The value must be a [valid](https://tools.ietf.org/html/rfc4627), non-empty JSON blob. The maximum length is 32768 characters.")
-  public Object getValue() {
-    return value;
-  }
-
-  public void setValue(Object value) {
-    this.value = value;
-  }
+  @JsonProperty("value")
+  private Object value = null;
 
   public BulkIssuePropertyUpdateRequest expression(String expression) {
     this.expression = expression;
@@ -106,6 +88,24 @@ public class BulkIssuePropertyUpdateRequest {
     this.filter = filter;
   }
 
+  public BulkIssuePropertyUpdateRequest value(Object value) {
+    this.value = value;
+    return this;
+  }
+
+   /**
+   * The value of the property. The value must be a [valid](https://tools.ietf.org/html/rfc4627), non-empty JSON blob. The maximum length is 32768 characters.
+   * @return value
+  **/
+  @ApiModelProperty(value = "The value of the property. The value must be a [valid](https://tools.ietf.org/html/rfc4627), non-empty JSON blob. The maximum length is 32768 characters.")
+  public Object getValue() {
+    return value;
+  }
+
+  public void setValue(Object value) {
+    this.value = value;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -116,14 +116,14 @@ public class BulkIssuePropertyUpdateRequest {
       return false;
     }
     BulkIssuePropertyUpdateRequest bulkIssuePropertyUpdateRequest = (BulkIssuePropertyUpdateRequest) o;
-    return Objects.equals(this.value, bulkIssuePropertyUpdateRequest.value) &&
-        Objects.equals(this.expression, bulkIssuePropertyUpdateRequest.expression) &&
-        Objects.equals(this.filter, bulkIssuePropertyUpdateRequest.filter);
+    return Objects.equals(this.expression, bulkIssuePropertyUpdateRequest.expression) &&
+        Objects.equals(this.filter, bulkIssuePropertyUpdateRequest.filter) &&
+        Objects.equals(this.value, bulkIssuePropertyUpdateRequest.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value, expression, filter);
+    return Objects.hash(expression, filter, value);
   }
 
 
@@ -132,9 +132,9 @@ public class BulkIssuePropertyUpdateRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class BulkIssuePropertyUpdateRequest {\n");
     
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    expression: ").append(toIndentedString(expression)).append("\n");
     sb.append("    filter: ").append(toIndentedString(filter)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }

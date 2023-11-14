@@ -40,31 +40,13 @@ import io.swagger.annotations.ApiModelProperty;
  * Properties that identify a workflow.
  */
 @ApiModel(description = "Properties that identify a workflow.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-03T13:48:26.928+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-13T15:26:43.813+01:00[Europe/Prague]")
 public class WorkflowId {
-  @JsonProperty("name")
-  private String name;
-
   @JsonProperty("draft")
   private Boolean draft;
 
-  public WorkflowId name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * The name of the workflow.
-   * @return name
-  **/
-  @ApiModelProperty(required = true, value = "The name of the workflow.")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
+  @JsonProperty("name")
+  private String name;
 
   public WorkflowId draft(Boolean draft) {
     this.draft = draft;
@@ -84,6 +66,24 @@ public class WorkflowId {
     this.draft = draft;
   }
 
+  public WorkflowId name(String name) {
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * The name of the workflow.
+   * @return name
+  **/
+  @ApiModelProperty(required = true, value = "The name of the workflow.")
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -94,13 +94,13 @@ public class WorkflowId {
       return false;
     }
     WorkflowId workflowId = (WorkflowId) o;
-    return Objects.equals(this.name, workflowId.name) &&
-        Objects.equals(this.draft, workflowId.draft);
+    return Objects.equals(this.draft, workflowId.draft) &&
+        Objects.equals(this.name, workflowId.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, draft);
+    return Objects.hash(draft, name);
   }
 
 
@@ -109,8 +109,8 @@ public class WorkflowId {
     StringBuilder sb = new StringBuilder();
     sb.append("class WorkflowId {\n");
     
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    draft: ").append(toIndentedString(draft)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }
