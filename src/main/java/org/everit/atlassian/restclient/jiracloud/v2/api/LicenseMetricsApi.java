@@ -28,6 +28,7 @@ import org.everit.http.restclient.RestRequest;
 import org.everit.http.restclient.RestRequestEnhancer;
 import org.everit.http.restclient.TypeReference;
 
+import org.everit.atlassian.restclient.jiracloud.v2.model.ErrorCollection;
 import org.everit.atlassian.restclient.jiracloud.v2.model.License;
 import org.everit.atlassian.restclient.jiracloud.v2.model.LicenseMetric;
 

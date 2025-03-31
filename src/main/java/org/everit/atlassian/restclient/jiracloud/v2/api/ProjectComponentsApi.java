@@ -29,6 +29,7 @@ import org.everit.http.restclient.RestRequestEnhancer;
 import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v2.model.ComponentIssuesCount;
+import org.everit.atlassian.restclient.jiracloud.v2.model.PageBean2ComponentJsonBean;
 import org.everit.atlassian.restclient.jiracloud.v2.model.PageBeanComponentWithIssueCount;
 import org.everit.atlassian.restclient.jiracloud.v2.model.ProjectComponent;
 
@@ -44,6 +45,8 @@ public class ProjectComponentsApi {
   private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.net";
 
   private static final TypeReference<ProjectComponent> returnType_createComponent = new TypeReference<ProjectComponent>() {};
+
+  private static final TypeReference<PageBean2ComponentJsonBean> returnType_findComponentsForProjects = new TypeReference<PageBean2ComponentJsonBean>() {};
 
   private static final TypeReference<ProjectComponent> returnType_getComponent = new TypeReference<ProjectComponent>() {};
 
@@ -123,6 +126,52 @@ public class ProjectComponentsApi {
   }
 
   /**
+   * Find components for projects
+   * Returns a [paginated](#pagination) list of all components in a project, including global (Compass) components when applicable.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * @param projectIdsOrKeys The project IDs and/or project keys (case sensitive). (optional, default to new ArrayList&lt;&gt;())
+   * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0l)
+   * @param maxResults The maximum number of items to return per page. (optional, default to 50)
+   * @param orderBy [Order](#ordering) the results by a field:   *  `description` Sorts by the component description.  *  `name` Sorts by component name. (optional)
+   * @param query Filter the results using a literal string. Components with a matching `name` or `description` are returned (case insensitive). (optional)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;PageBean2ComponentJsonBean&gt;
+   */
+  public Single<PageBean2ComponentJsonBean> findComponentsForProjects(
+    Optional<List<String>> projectIdsOrKeys, Optional<Long> startAt, Optional<Integer> maxResults, Optional<String> orderBy, Optional<String> query, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/component");
+
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (projectIdsOrKeys.isPresent()) {
+      queryParams.put("projectIdsOrKeys", RestClientUtil.objectCollectionToStringCollection(projectIdsOrKeys.get()));
+    }
+    if (startAt.isPresent()) {
+      queryParams.put("startAt", Collections.singleton(String.valueOf(startAt.get())));
+    }
+    if (maxResults.isPresent()) {
+      queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults.get())));
+    }
+    if (orderBy.isPresent()) {
+      queryParams.put("orderBy", Collections.singleton(String.valueOf(orderBy.get())));
+    }
+    if (query.isPresent()) {
+      queryParams.put("query", Collections.singleton(String.valueOf(query.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_findComponentsForProjects);
+  }
+
+  /**
    * Get component
    * Returns a component.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for project containing the component.
    * @param id The ID of the component. (required)
@@ -152,7 +201,7 @@ public class ProjectComponentsApi {
 
   /**
    * Get component issues count
-   * Returns the counts of issues assigned to the component.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** None.
+   * Returns the counts of issues assigned to the component.  This operation can be accessed anonymously.  **Deprecation notice:** The required OAuth 2.0 scopes will be updated on June 15, 2024.   *  **Classic**: `read:jira-work`  *  **Granular**: `read:field:jira`, `read:project.component:jira`  **[Permissions](#permissions) required:** None.
    * @param id The ID of the component. (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;ComponentIssuesCount&gt;
@@ -180,13 +229,14 @@ public class ProjectComponentsApi {
 
   /**
    * Get project components
-   * Returns all components in a project. See the [Get project components paginated](#api-rest-api-2-project-projectIdOrKey-component-get) resource if you want to get a full list of components with pagination.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * Returns all components in a project. See the [Get project components paginated](#api-rest-api-2-project-projectIdOrKey-component-get) resource if you want to get a full list of components with pagination.  If your project uses Compass components, this API will return a paginated list of Compass components that are linked to issues in that project.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    * @param projectIdOrKey The project ID or project key (case sensitive). (required)
+   * @param componentSource The source of the components to return. Can be `jira` (default), `compass` or `auto`. When `auto` is specified, the API will return connected Compass components if the project is opted into Compass, otherwise it will return Jira components. Defaults to `jira`. (optional, default to jira)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;List&lt;ProjectComponent&gt;&gt;
    */
   public Single<List<ProjectComponent>> getProjectComponents(
-    String projectIdOrKey, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String projectIdOrKey, Optional<String> componentSource, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.GET)
@@ -198,6 +248,9 @@ public class ProjectComponentsApi {
     requestBuilder.pathParams(pathParams);
 
     Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (componentSource.isPresent()) {
+      queryParams.put("componentSource", Collections.singleton(String.valueOf(componentSource.get())));
+    }
     requestBuilder.queryParams(queryParams);
 
     Map<String, String> headers = new HashMap<>();
@@ -208,17 +261,18 @@ public class ProjectComponentsApi {
 
   /**
    * Get project components paginated
-   * Returns a [paginated](#pagination) list of all components in a project. See the [Get project components](#api-rest-api-2-project-projectIdOrKey-components-get) resource if you want to get a full list of versions without pagination.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
+   * Returns a [paginated](#pagination) list of all components in a project. See the [Get project components](#api-rest-api-2-project-projectIdOrKey-components-get) resource if you want to get a full list of versions without pagination.  If your project uses Compass components, this API will return a list of Compass components that are linked to issues in that project.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** *Browse Projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
    * @param projectIdOrKey The project ID or project key (case sensitive). (required)
    * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0l)
    * @param maxResults The maximum number of items to return per page. (optional, default to 50)
    * @param orderBy [Order](#ordering) the results by a field:   *  `description` Sorts by the component description.  *  `issueCount` Sorts by the count of issues associated with the component.  *  `lead` Sorts by the user key of the component's project lead.  *  `name` Sorts by component name. (optional)
+   * @param componentSource The source of the components to return. Can be `jira` (default), `compass` or `auto`. When `auto` is specified, the API will return connected Compass components if the project is opted into Compass, otherwise it will return Jira components. Defaults to `jira`. (optional, default to jira)
    * @param query Filter the results using a literal string. Components with a matching `name` or `description` are returned (case insensitive). (optional)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PageBeanComponentWithIssueCount&gt;
    */
   public Single<PageBeanComponentWithIssueCount> getProjectComponentsPaginated(
-    String projectIdOrKey, Optional<Long> startAt, Optional<Integer> maxResults, Optional<String> orderBy, Optional<String> query, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String projectIdOrKey, Optional<Long> startAt, Optional<Integer> maxResults, Optional<String> orderBy, Optional<String> componentSource, Optional<String> query, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.GET)
@@ -238,6 +292,9 @@ public class ProjectComponentsApi {
     }
     if (orderBy.isPresent()) {
       queryParams.put("orderBy", Collections.singleton(String.valueOf(orderBy.get())));
+    }
+    if (componentSource.isPresent()) {
+      queryParams.put("componentSource", Collections.singleton(String.valueOf(componentSource.get())));
     }
     if (query.isPresent()) {
       queryParams.put("query", Collections.singleton(String.valueOf(query.get())));

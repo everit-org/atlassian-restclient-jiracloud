@@ -268,9 +268,7 @@ public class ProjectsApi {
    * @param projectId The ID of the project. (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;ProjectIssueTypeHierarchy&gt;
-   * @deprecated
    */
-  @Deprecated
   public Single<ProjectIssueTypeHierarchy> getHierarchy(
     Long projectId, Optional<RestRequestEnhancer> restRequestEnhancer) {
 

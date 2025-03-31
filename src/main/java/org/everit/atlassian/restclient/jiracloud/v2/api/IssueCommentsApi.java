@@ -164,7 +164,7 @@ public class IssueCommentsApi {
    * Returns all comments for an issue.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** Comments are included in the response where the user has:   *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the comment.  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.  *  If the comment has visibility restrictions, belongs to the group or has the role visibility is role visibility is restricted to.
    * @param issueIdOrKey The ID or key of the issue. (required)
    * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0l)
-   * @param maxResults The maximum number of items to return per page. (optional, default to 5000)
+   * @param maxResults The maximum number of items to return per page. (optional, default to 100)
    * @param orderBy [Order](#ordering) the results by a field. Accepts *created* to sort comments by their created date. (optional)
    * @param expand Use [expand](#expansion) to include additional information about comments in the response. This parameter accepts `renderedBody`, which returns the comment body rendered in HTML. (optional)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>

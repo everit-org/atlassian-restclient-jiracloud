@@ -27,7 +27,7 @@
 
   <groupId>org.everit.atlassian</groupId>
   <artifactId>org.everit.atlassian.restclient.jiracloud</artifactId>
-  <version>5.0.0-202311131527</version>
+  <version>6.0.0-202503311715</version>
 
   <packaging>bundle</packaging>
 
@@ -86,10 +86,10 @@
               *
             </Import-Package>
             <Export-Package>
-              org.everit.atlassian.restclient.jiracloud.v2.model;version="5.0.0",
-              org.everit.atlassian.restclient.jiracloud.v2.api;version="5.0.0",
-              org.everit.atlassian.restclient.jiracloud.v3.model;version="5.0.0",
-              org.everit.atlassian.restclient.jiracloud.v3.api;version="5.0.0",
+              org.everit.atlassian.restclient.jiracloud.v2.model;version="6.0.0",
+              org.everit.atlassian.restclient.jiracloud.v2.api;version="6.0.0",
+              org.everit.atlassian.restclient.jiracloud.v3.model;version="6.0.0",
+              org.everit.atlassian.restclient.jiracloud.v3.api;version="6.0.0",
               org.everit.atlassian.restclient.jiracloud.util;version="1.1.0"
             </Export-Package>
           </instructions>

@@ -49,7 +49,7 @@ public class AppPropertiesApi {
 
   private static final TypeReference<OperationMessage> returnType_addonPropertiesResourcePutAddonPropertyPut = new TypeReference<OperationMessage>() {};
 
-  private static final TypeReference<OperationMessage> returnType_addonPropertiesResourcePutAppPropertyPut = new TypeReference<OperationMessage>() {};
+  private static final TypeReference<OperationMessage> returnType_putForgeAppProperty = new TypeReference<OperationMessage>() {};
 
   private final RestClient restClient;
 
@@ -59,7 +59,7 @@ public class AppPropertiesApi {
 
   /**
    * Delete app property
-   * Deletes an app's property.  **[Permissions](#permissions) required:** Only a Connect app whose key matches `addonKey` can make this request.
+   * Deletes an app's property.  **[Permissions](#permissions) required:** Only a Connect app whose key matches `addonKey` can make this request. Additionally, Forge apps can access Connect app properties (stored against the same `app.connect.key`).
    * @param addonKey The key of the app, as defined in its descriptor. (required)
    * @param propertyKey The key of the property. (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
@@ -88,36 +88,8 @@ public class AppPropertiesApi {
   }
 
   /**
-   * Delete app property (Forge)
-   * Deletes a Forge app's property.  **[Permissions](#permissions) required:** Only Forge apps can make this request.
-   * @param propertyKey The key of the property. (required)
-   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
-   * @return Completable
-   */
-  public Completable addonPropertiesResourceDeleteAppPropertyDelete(
-    String propertyKey, Optional<RestRequestEnhancer> restRequestEnhancer) {
-
-    RestRequest.Builder requestBuilder = RestRequest.builder()
-        .method(HttpMethod.DELETE)
-        .basePath(DEFAULT_BASE_PATH)
-        .path("/rest/forge/1/app/properties/{propertyKey}");
-
-    Map<String, String> pathParams = new HashMap<>();
-    pathParams.put("propertyKey", String.valueOf(propertyKey));
-    requestBuilder.pathParams(pathParams);
-
-    Map<String, Collection<String>> queryParams = new HashMap<>();
-    requestBuilder.queryParams(queryParams);
-
-    Map<String, String> headers = new HashMap<>();
-    requestBuilder.headers(headers);
-
-    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
-  }
-
-  /**
    * Get app properties
-   * Gets all the properties of an app.  **[Permissions](#permissions) required:** Only a Connect app whose key matches `addonKey` can make this request. Additionally, Forge apps published on the Marketplace can access properties of Connect apps they were [migrated from](https://developer.atlassian.com/platform/forge/build-a-connect-on-forge-app/).
+   * Gets all the properties of an app.  **[Permissions](#permissions) required:** Only a Connect app whose key matches `addonKey` can make this request. Additionally, Forge apps can access Connect app properties (stored against the same `app.connect.key`).
    * @param addonKey The key of the app, as defined in its descriptor. (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PropertyKeys&gt;
@@ -145,7 +117,7 @@ public class AppPropertiesApi {
 
   /**
    * Get app property
-   * Returns the key and value of an app's property.  **[Permissions](#permissions) required:** Only a Connect app whose key matches `addonKey` can make this request. Additionally, Forge apps published on the Marketplace can access properties of Connect apps they were [migrated from](https://developer.atlassian.com/platform/forge/build-a-connect-on-forge-app/).
+   * Returns the key and value of an app's property.  **[Permissions](#permissions) required:** Only a Connect app whose key matches `addonKey` can make this request. Additionally, Forge apps can access Connect app properties (stored against the same `app.connect.key`).
    * @param addonKey The key of the app, as defined in its descriptor. (required)
    * @param propertyKey The key of the property. (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
@@ -175,7 +147,7 @@ public class AppPropertiesApi {
 
   /**
    * Set app property
-   * Sets the value of an app's property. Use this resource to store custom data for your app.  The value of the request body must be a [valid](http://tools.ietf.org/html/rfc4627), non-empty JSON blob. The maximum length is 32768 characters.  **[Permissions](#permissions) required:** Only a Connect app whose key matches `addonKey` can make this request.
+   * Sets the value of an app's property. Use this resource to store custom data for your app.  The value of the request body must be a [valid](http://tools.ietf.org/html/rfc4627), non-empty JSON blob. The maximum length is 32768 characters.  **[Permissions](#permissions) required:** Only a Connect app whose key matches `addonKey` can make this request. Additionally, Forge apps can access Connect app properties (stored against the same `app.connect.key`).
    * @param addonKey The key of the app, as defined in its descriptor. (required)
    * @param propertyKey The key of the property. (required)
    * @param body  (required)
@@ -207,14 +179,42 @@ public class AppPropertiesApi {
   }
 
   /**
+   * Delete app property (Forge)
+   * Deletes a Forge app's property.  **[Permissions](#permissions) required:** Only Forge apps can make this request.  The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we recommend adding it to your app's scope list because we will eventually make it mandatory.
+   * @param propertyKey The key of the property. (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Completable
+   */
+  public Completable deleteForgeAppProperty(
+    String propertyKey, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.DELETE)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/forge/1/app/properties/{propertyKey}");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("propertyKey", String.valueOf(propertyKey));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
+  }
+
+  /**
    * Set app property (Forge)
-   * Sets the value of a Forge app's property. These values can be retrieved in [Jira expressions](https://developer.atlassian.com/cloud/jira/platform/jira-expressions/) through the `app` [context variable](https://developer.atlassian.com/cloud/jira/platform/jira-expressions/#context-variables).  For other use cases, use the [Storage API](https://developer.atlassian.com/platform/forge/runtime-reference/storage-api/).  The value of the request body must be a [valid](http://tools.ietf.org/html/rfc4627), non-empty JSON blob. The maximum length is 32768 characters.  **[Permissions](#permissions) required:** Only Forge apps can make this request.
+   * Sets the value of a Forge app's property. These values can be retrieved in [Jira expressions](/cloud/jira/platform/jira-expressions/) through the `app` [context variable](/cloud/jira/platform/jira-expressions/#context-variables). They are also available in [entity property display conditions](/platform/forge/manifest-reference/display-conditions/entity-property-conditions/).  For other use cases, use the [Storage API](/platform/forge/runtime-reference/storage-api/).  The value of the request body must be a [valid](http://tools.ietf.org/html/rfc4627), non-empty JSON blob. The maximum length is 32768 characters.  **[Permissions](#permissions) required:** Only Forge apps can make this request.  The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we recommend adding it to your app's scope list because we will eventually make it mandatory.
    * @param propertyKey The key of the property. (required)
    * @param body  (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;OperationMessage&gt;
    */
-  public Single<OperationMessage> addonPropertiesResourcePutAppPropertyPut(
+  public Single<OperationMessage> putForgeAppProperty(
     String propertyKey, Object body, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
@@ -234,7 +234,7 @@ public class AppPropertiesApi {
 
     requestBuilder.requestBody(Optional.of(body));
 
-    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_addonPropertiesResourcePutAppPropertyPut);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_putForgeAppProperty);
   }
 
 }

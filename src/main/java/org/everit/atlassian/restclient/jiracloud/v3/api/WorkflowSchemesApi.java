@@ -34,6 +34,7 @@ import org.everit.atlassian.restclient.jiracloud.v3.model.IssueTypesWorkflowMapp
 import org.everit.atlassian.restclient.jiracloud.v3.model.PageBeanWorkflowScheme;
 import org.everit.atlassian.restclient.jiracloud.v3.model.TaskProgressBeanObject;
 import org.everit.atlassian.restclient.jiracloud.v3.model.WorkflowScheme;
+import org.everit.atlassian.restclient.jiracloud.v3.model.WorkflowSchemeProjectUsageDTO;
 import org.everit.atlassian.restclient.jiracloud.v3.model.WorkflowSchemeReadRequest;
 import org.everit.atlassian.restclient.jiracloud.v3.model.WorkflowSchemeReadResponse;
 import org.everit.atlassian.restclient.jiracloud.v3.model.WorkflowSchemeUpdateRequiredMappingsRequest;
@@ -61,6 +62,8 @@ public class WorkflowSchemesApi {
   private static final TypeReference<PageBeanWorkflowScheme> returnType_getAllWorkflowSchemes = new TypeReference<PageBeanWorkflowScheme>() {};
 
   private static final TypeReference<DefaultWorkflow> returnType_getDefaultWorkflow = new TypeReference<DefaultWorkflow>() {};
+
+  private static final TypeReference<WorkflowSchemeProjectUsageDTO> returnType_getProjectUsagesForWorkflowScheme = new TypeReference<WorkflowSchemeProjectUsageDTO>() {};
 
   private static final TypeReference<IssueTypesWorkflowMapping> returnType_getWorkflow = new TypeReference<IssueTypesWorkflowMapping>() {};
 
@@ -154,7 +157,7 @@ public class WorkflowSchemesApi {
    * Deletes the workflow-issue type mapping for a workflow in a workflow scheme.  Note that active workflow schemes cannot be edited. If the workflow scheme is active, set `updateDraftIfNeeded` to `true` and a draft workflow scheme is created or updated with the workflow-issue type mapping deleted. The draft workflow scheme can be published in Jira.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param id The ID of the workflow scheme. (required)
    * @param workflowName The name of the workflow. (required)
-   * @param updateDraftIfNeeded Set to true to create or update the draft of a workflow scheme and delete the mapping from the draft, when the workflow scheme cannot be edited. Defaults to `false`. (optional)
+   * @param updateDraftIfNeeded Set to true to create or update the draft of a workflow scheme and delete the mapping from the draft, when the workflow scheme cannot be edited. Defaults to `false`. (optional, default to false)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Completable
    */
@@ -216,7 +219,7 @@ public class WorkflowSchemesApi {
    * Deletes the issue type-workflow mapping for an issue type in a workflow scheme.  Note that active workflow schemes cannot be edited. If the workflow scheme is active, set `updateDraftIfNeeded` to `true` and a draft workflow scheme is created or updated with the issue type-workflow mapping deleted. The draft workflow scheme can be published in Jira.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param id The ID of the workflow scheme. (required)
    * @param issueType The ID of the issue type. (required)
-   * @param updateDraftIfNeeded Set to true to create or update the draft of a workflow scheme and update the mapping in the draft, when the workflow scheme cannot be edited. Defaults to `false`. (optional)
+   * @param updateDraftIfNeeded Set to true to create or update the draft of a workflow scheme and update the mapping in the draft, when the workflow scheme cannot be edited. Defaults to `false`. (optional, default to false)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;WorkflowScheme&gt;
    */
@@ -309,6 +312,42 @@ public class WorkflowSchemesApi {
     requestBuilder.headers(headers);
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getDefaultWorkflow);
+  }
+
+  /**
+   * Get projects which are using a given workflow scheme
+   * Returns a page of projects using a given workflow scheme.
+   * @param workflowSchemeId The workflow scheme ID (required)
+   * @param nextPageToken The cursor for pagination (optional)
+   * @param maxResults The maximum number of results to return. Must be an integer between 1 and 200. (optional, default to 50)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;WorkflowSchemeProjectUsageDTO&gt;
+   */
+  public Single<WorkflowSchemeProjectUsageDTO> getProjectUsagesForWorkflowScheme(
+    String workflowSchemeId, Optional<String> nextPageToken, Optional<Integer> maxResults, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/3/workflowscheme/{workflowSchemeId}/projectUsages");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("workflowSchemeId", String.valueOf(workflowSchemeId));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (nextPageToken.isPresent()) {
+      queryParams.put("nextPageToken", Collections.singleton(String.valueOf(nextPageToken.get())));
+    }
+    if (maxResults.isPresent()) {
+      queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getProjectUsagesForWorkflowScheme);
   }
 
   /**
@@ -417,7 +456,7 @@ public class WorkflowSchemesApi {
    * Bulk get workflow schemes
    * Returns a list of workflow schemes by providing workflow scheme IDs or project IDs.  **[Permissions](#permissions) required:**   *  *Administer Jira* global permission to access all, including project-scoped, workflow schemes  *  *Administer projects* project permissions to access project-scoped workflow schemes
    * @param workflowSchemeReadRequest  (required)
-   * @param expand Use [expand](#expansion) to include additional information in the response. This parameter accepts a comma-separated list. Expand options include:   *  `workflows.usages` Returns the project and issue types that each workflow in the workflow scheme is associated with. (optional)
+   * @param expand Deprecated. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/changelog/#CHANGE-2298) for details.  Use [expand](#expansion) to include additional information in the response. This parameter accepts a comma-separated list. Expand options include:   *  `workflows.usages` Returns the project and issue types that each workflow in the workflow scheme is associated with. (optional)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;List&lt;WorkflowSchemeReadResponse&gt;&gt;
    */

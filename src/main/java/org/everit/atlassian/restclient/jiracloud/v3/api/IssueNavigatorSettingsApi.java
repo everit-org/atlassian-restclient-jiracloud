@@ -29,6 +29,8 @@ import org.everit.http.restclient.RestRequestEnhancer;
 import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v3.model.ColumnItem;
+import org.everit.atlassian.restclient.jiracloud.v3.model.ColumnRequestBody;
+import org.everit.atlassian.restclient.jiracloud.v3.model.ErrorCollection;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -42,8 +44,6 @@ public class IssueNavigatorSettingsApi {
   private static final String DEFAULT_BASE_PATH = "https://your-domain.atlassian.net";
 
   private static final TypeReference<List<ColumnItem>> returnType_getIssueNavigatorDefaultColumns = new TypeReference<List<ColumnItem>>() {};
-
-  private static final TypeReference<Object> returnType_setIssueNavigatorDefaultColumns = new TypeReference<Object>() {};
 
   private final RestClient restClient;
 
@@ -80,12 +80,12 @@ public class IssueNavigatorSettingsApi {
   /**
    * Set issue navigator default columns
    * Sets the default issue navigator columns.  The `columns` parameter accepts a navigable field value and is expressed as HTML form data. To specify multiple columns, pass multiple `columns` parameters. For example, in curl:  `curl -X PUT -d columns=summary -d columns=description https://your-domain.atlassian.net/rest/api/3/settings/columns`  If no column details are sent, then all default columns are removed.  A navigable field is one that can be used as a column on the issue navigator. Find details of navigable issue columns using [Get fields](#api-rest-api-3-field-get).  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
-   * @param requestBody A navigable field value. (optional)
+   * @param columnRequestBody A navigable field value. (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
-   * @return Single&lt;Object&gt;
+   * @return Completable
    */
-  public Single<Object> setIssueNavigatorDefaultColumns(
-    Optional<List<String>> requestBody, Optional<RestRequestEnhancer> restRequestEnhancer) {
+  public Completable setIssueNavigatorDefaultColumns(
+    ColumnRequestBody columnRequestBody, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.PUT)
@@ -101,9 +101,9 @@ public class IssueNavigatorSettingsApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    requestBuilder.requestBody(requestBody);
+    requestBuilder.requestBody(Optional.of(columnRequestBody));
 
-    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_setIssueNavigatorDefaultColumns);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
 }

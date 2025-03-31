@@ -32,6 +32,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.ChangedWorklogs;
 import org.everit.atlassian.restclient.jiracloud.v2.model.PageOfWorklogs;
 import org.everit.atlassian.restclient.jiracloud.v2.model.Worklog;
 import org.everit.atlassian.restclient.jiracloud.v2.model.WorklogIdsRequestBean;
+import org.everit.atlassian.restclient.jiracloud.v2.model.WorklogsMoveRequestBean;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -117,6 +118,84 @@ public class IssueWorklogsApi {
     requestBuilder.requestBody(Optional.of(requestBody));
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_addWorklog);
+  }
+
+  /**
+   * Bulk delete worklogs
+   * Deletes a list of worklogs from an issue. This is an experimental API with limitations:   *  You can't delete more than 5000 worklogs at once.  *  No notifications will be sent for deleted worklogs.  Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).  **[Permissions](#permissions) required:**   *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the issue.  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.  *  *Delete all worklogs*[ project permission](https://confluence.atlassian.com/x/yodKLg) to delete any worklog.  *  If any worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
+   * @param issueIdOrKey The ID or key of the issue. (required)
+   * @param worklogIdsRequestBean A JSON object containing a list of worklog IDs. (required)
+   * @param adjustEstimate Defines how to update the issue's time estimate, the options are:   *  `leave` Leaves the estimate unchanged.  *  `auto` Reduces the estimate by the aggregate value of `timeSpent` across all worklogs being deleted. (optional, default to auto)
+   * @param overrideEditableFlag Whether the work log entries should be removed to the issue even if the issue is not editable, because jira.issue.editable set to false or missing. For example, the issue is closed. Connect and Forge app users with admin permission can use this flag. (optional, default to false)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Completable
+   */
+  public Completable bulkDeleteWorklogs(
+    String issueIdOrKey, WorklogIdsRequestBean worklogIdsRequestBean, Optional<String> adjustEstimate, Optional<Boolean> overrideEditableFlag, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.DELETE)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/issue/{issueIdOrKey}/worklog");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("issueIdOrKey", String.valueOf(issueIdOrKey));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (adjustEstimate.isPresent()) {
+      queryParams.put("adjustEstimate", Collections.singleton(String.valueOf(adjustEstimate.get())));
+    }
+    if (overrideEditableFlag.isPresent()) {
+      queryParams.put("overrideEditableFlag", Collections.singleton(String.valueOf(overrideEditableFlag.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(worklogIdsRequestBean));
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
+  }
+
+  /**
+   * Bulk move worklogs
+   * Moves a list of worklogs from one issue to another. This is an experimental API with several limitations:   *  You can't move more than 5000 worklogs at once.  *  You can't move worklogs containing an attachment.  *  You can't move worklogs restricted by project roles.  *  No notifications will be sent for moved worklogs.  *  No webhooks or events will be sent for moved worklogs.  *  No issue history will be recorded for moved worklogs.  Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).  **[Permissions](#permissions) required:**   *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the projects containing the source and destination issues.  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.  *  *Delete all worklogs*[ and *Edit all worklogs*](https://confluence.atlassian.com/x/yodKLg)[project permission](https://confluence.atlassian.com/x/yodKLg)  *  If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
+   * @param issueIdOrKey  (required)
+   * @param worklogsMoveRequestBean A JSON object containing a list of worklog IDs and the ID or key of the destination issue. (required)
+   * @param adjustEstimate Defines how to update the issues' time estimate, the options are:   *  `leave` Leaves the estimate unchanged.  *  `auto` Reduces the estimate by the aggregate value of `timeSpent` across all worklogs being moved in the source issue, and increases it in the destination issue. (optional, default to auto)
+   * @param overrideEditableFlag Whether the work log entry should be moved to and from the issues even if the issues are not editable, because jira.issue.editable set to false or missing. For example, the issue is closed. Connect and Forge app users with admin permission can use this flag. (optional, default to false)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Completable
+   */
+  public Completable bulkMoveWorklogs(
+    String issueIdOrKey, WorklogsMoveRequestBean worklogsMoveRequestBean, Optional<String> adjustEstimate, Optional<Boolean> overrideEditableFlag, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.POST)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/issue/{issueIdOrKey}/worklog/move");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("issueIdOrKey", String.valueOf(issueIdOrKey));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (adjustEstimate.isPresent()) {
+      queryParams.put("adjustEstimate", Collections.singleton(String.valueOf(adjustEstimate.get())));
+    }
+    if (overrideEditableFlag.isPresent()) {
+      queryParams.put("overrideEditableFlag", Collections.singleton(String.valueOf(overrideEditableFlag.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(worklogsMoveRequestBean));
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**
@@ -235,7 +314,7 @@ public class IssueWorklogsApi {
 
   /**
    * Get issue worklogs
-   * Returns worklogs for an issue, starting from the oldest worklog or from the worklog started on or after a date and time.  Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** Workloads are only returned where the user has:   *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.  *  If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
+   * Returns worklogs for an issue (ordered by created time), starting from the oldest worklog or from the worklog started on or after a date and time.  Time tracking must be enabled in Jira, otherwise this operation returns an error. For more information, see [Configuring time tracking](https://confluence.atlassian.com/x/qoXKM).  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** Workloads are only returned where the user has:   *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.  *  If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
    * @param issueIdOrKey The ID or key of the issue. (required)
    * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0l)
    * @param maxResults The maximum number of items to return per page. (optional, default to 5000)

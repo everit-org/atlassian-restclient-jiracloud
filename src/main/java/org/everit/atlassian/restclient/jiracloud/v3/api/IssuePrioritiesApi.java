@@ -69,11 +69,13 @@ public class IssuePrioritiesApi {
 
   /**
    * Create priority
-   * Creates an issue priority.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * Creates an issue priority.  Deprecation applies to iconUrl param in request body which will be sunset on 16th Mar 2025. For more details refer to [changelog](https://developer.atlassian.com/changelog/#CHANGE-1525).  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param requestBody  (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PriorityId&gt;
+   * @deprecated
    */
+  @Deprecated
   public Single<PriorityId> createPriority(
     Map<String, Object> requestBody, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
@@ -98,16 +100,13 @@ public class IssuePrioritiesApi {
 
   /**
    * Delete priority
-   * *Deprecated: please refer to the* [changelog](https://developer.atlassian.com/changelog/#CHANGE-1066) *for more details.*  Deletes an issue priority.  This operation is [asynchronous](#async). Follow the `location` link in the response to determine the status of the task and use [Get task](#api-rest-api-3-task-taskId-get) to obtain subsequent updates.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * Deletes an issue priority.  This operation is [asynchronous](#async). Follow the `location` link in the response to determine the status of the task and use [Get task](#api-rest-api-3-task-taskId-get) to obtain subsequent updates.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param id The ID of the issue priority. (required)
-   * @param replaceWith The ID of the issue priority that will replace the currently selected resolution. (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Completable
-   * @deprecated
    */
-  @Deprecated
   public Completable deletePriority(
-    String id, String replaceWith, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String id, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.DELETE)
@@ -119,7 +118,6 @@ public class IssuePrioritiesApi {
     requestBuilder.pathParams(pathParams);
 
     Map<String, Collection<String>> queryParams = new HashMap<>();
-    queryParams.put("replaceWith", Collections.singleton(String.valueOf(replaceWith)));
     requestBuilder.queryParams(queryParams);
 
     Map<String, String> headers = new HashMap<>();
@@ -222,11 +220,14 @@ public class IssuePrioritiesApi {
    * @param projectId The list of projects IDs. To include multiple IDs, provide an ampersand-separated list. For example, `projectId=10010&projectId=10111`. (optional, default to new ArrayList&lt;&gt;())
    * @param priorityName The name of priority to search for. (optional, default to &quot;&quot;)
    * @param onlyDefault Whether only the default priority is returned. (optional, default to false)
+   * @param expand Use `schemes` to return the associated priority schemes for each priority. Limited to returning first 15 priority schemes per priority. (optional, default to &quot;&quot;)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PageBeanPriority&gt;
+   * @deprecated
    */
+  @Deprecated
   public Single<PageBeanPriority> searchPriorities(
-    Optional<String> startAt, Optional<String> maxResults, Optional<List<String>> id, Optional<List<String>> projectId, Optional<String> priorityName, Optional<Boolean> onlyDefault, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Optional<String> startAt, Optional<String> maxResults, Optional<List<String>> id, Optional<List<String>> projectId, Optional<String> priorityName, Optional<Boolean> onlyDefault, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.GET)
@@ -254,6 +255,9 @@ public class IssuePrioritiesApi {
     }
     if (onlyDefault.isPresent()) {
       queryParams.put("onlyDefault", Collections.singleton(String.valueOf(onlyDefault.get())));
+    }
+    if (expand.isPresent()) {
+      queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
     }
     requestBuilder.queryParams(queryParams);
 
@@ -294,12 +298,14 @@ public class IssuePrioritiesApi {
 
   /**
    * Update priority
-   * Updates an issue priority.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * Updates an issue priority.  At least one request body parameter must be defined.  Deprecation applies to iconUrl param in request body which will be sunset on 16th Mar 2025. For more details refer to [changelog](https://developer.atlassian.com/changelog/#CHANGE-1525).  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param id The ID of the issue priority. (required)
    * @param requestBody  (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Object&gt;
+   * @deprecated
    */
+  @Deprecated
   public Single<Object> updatePriority(
     String id, Map<String, Object> requestBody, Optional<RestRequestEnhancer> restRequestEnhancer) {
 

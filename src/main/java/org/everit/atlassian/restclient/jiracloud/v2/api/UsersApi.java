@@ -33,6 +33,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.GroupName;
 import org.everit.atlassian.restclient.jiracloud.v2.model.PageBeanUser;
 import org.everit.atlassian.restclient.jiracloud.v2.model.UnrestrictedUserEmail;
 import org.everit.atlassian.restclient.jiracloud.v2.model.User;
+import org.everit.atlassian.restclient.jiracloud.v2.model.UserColumnRequestBody;
 import org.everit.atlassian.restclient.jiracloud.v2.model.UserMigrationBean;
 
 import java.util.ArrayList;
@@ -335,7 +336,7 @@ public class UsersApi {
 
   /**
    * Get user email
-   * Returns a user's email address. This API is only available to apps approved by Atlassian, according to these [guidelines](https://community.developer.atlassian.com/t/guidelines-for-requesting-access-to-email-address/27603).
+   * Returns a user's email address regardless of the user's profile visibility settings. For Connect apps, this API is only available to apps approved by Atlassian, according to these [guidelines](https://community.developer.atlassian.com/t/guidelines-for-requesting-access-to-email-address/27603). For Forge apps, this API only supports access via asApp() requests.
    * @param accountId The account ID of the user, which uniquely identifies the user across all Atlassian products. For example, `5b10ac8d82e05b22cc7d4ef5`. (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;UnrestrictedUserEmail&gt;
@@ -363,7 +364,7 @@ public class UsersApi {
 
   /**
    * Get user email bulk
-   * Returns a user's email address. This API is only available to apps approved by Atlassian, according to these [guidelines](https://community.developer.atlassian.com/t/guidelines-for-requesting-access-to-email-address/27603).
+   * Returns a user's email address regardless of the user's profile visibility settings. For Connect apps, this API is only available to apps approved by Atlassian, according to these [guidelines](https://community.developer.atlassian.com/t/guidelines-for-requesting-access-to-email-address/27603). For Forge apps, this API only supports access via asApp() requests.
    * @param accountId The account IDs of the users for which emails are required. An `accountId` is an identifier that uniquely identifies the user across all Atlassian products. For example, `5b10ac8d82e05b22cc7d4ef5`. Note, this should be treated as an opaque identifier (that is, do not assume any structure in the value). (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;UnrestrictedUserEmail&gt;
@@ -498,13 +499,13 @@ public class UsersApi {
   /**
    * Set user default columns
    * Sets the default [ issue table columns](https://confluence.atlassian.com/x/XYdKLg) for the user. If an account ID is not passed, the calling user's default columns are set. If no column details are sent, then all default columns are removed.  The parameters for this resource are expressed as HTML form data. For example, in curl:  `curl -X PUT -d columns=summary -d columns=description https://your-domain.atlassian.net/rest/api/2/user/columns?accountId=5b10ac8d82e05b22cc7d4ef5'`  **[Permissions](#permissions) required:**   *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), to set the columns on any user.  *  Permission to access Jira, to set the calling user's columns.
+   * @param userColumnRequestBody The ID of a column to set. To set multiple columns, send multiple `columns` parameters. (required)
    * @param accountId The account ID of the user, which uniquely identifies the user across all Atlassian products. For example, *5b10ac8d82e05b22cc7d4ef5*. (optional)
-   * @param requestBody The ID of a column to set. To set multiple columns, send multiple `columns` parameters. (optional)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Object&gt;
    */
   public Single<Object> setUserColumns(
-    Optional<String> accountId, Optional<List<String>> requestBody, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    UserColumnRequestBody userColumnRequestBody, Optional<String> accountId, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.PUT)
@@ -523,7 +524,7 @@ public class UsersApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    requestBuilder.requestBody(requestBody);
+    requestBuilder.requestBody(Optional.of(userColumnRequestBody));
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_setUserColumns);
   }

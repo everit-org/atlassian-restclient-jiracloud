@@ -30,6 +30,7 @@ import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v3.model.ChangeFilterOwner;
 import org.everit.atlassian.restclient.jiracloud.v3.model.ColumnItem;
+import org.everit.atlassian.restclient.jiracloud.v3.model.ColumnRequestBody;
 import org.everit.atlassian.restclient.jiracloud.v3.model.ErrorCollection;
 import org.everit.atlassian.restclient.jiracloud.v3.model.Filter;
 import org.everit.atlassian.restclient.jiracloud.v3.model.PageBeanFilterDetails;
@@ -308,13 +309,14 @@ public class FiltersApi {
    * @param orderBy [Order](#ordering) the results by a field:   *  `description` Sorts by filter description. Note that this sorting works independently of whether the expand to display the description field is in use.  *  `favourite_count` Sorts by the count of how many users have this filter as a favorite.  *  `is_favourite` Sorts by whether the filter is marked as a favorite.  *  `id` Sorts by filter ID.  *  `name` Sorts by filter name.  *  `owner` Sorts by the ID of the filter owner.  *  `is_shared` Sorts by whether the filter is shared. (optional, default to name)
    * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0l)
    * @param maxResults The maximum number of items to return per page. (optional, default to 50)
-   * @param expand Use [expand](#expansion) to include additional information about filter in the response. This parameter accepts a comma-separated list. Expand options include:   *  `description` Returns the description of the filter.  *  `favourite` Returns an indicator of whether the user has set the filter as a favorite.  *  `favouritedCount` Returns a count of how many users have set this filter as a favorite.  *  `jql` Returns the JQL query that the filter uses.  *  `owner` Returns the owner of the filter.  *  `searchUrl` Returns a URL to perform the filter's JQL query.  *  `sharePermissions` Returns the share permissions defined for the filter.  *  `editPermissions` Returns the edit permissions defined for the filter.  *  `isWritable` Returns whether the current user has permission to edit the filter.  *  `subscriptions` Returns the users that are subscribed to the filter.  *  `viewUrl` Returns a URL to view the filter. (optional)
+   * @param expand Use [expand](#expansion) to include additional information about filter in the response. This parameter accepts a comma-separated list. Expand options include:   *  `description` Returns the description of the filter.  *  `favourite` Returns an indicator of whether the user has set the filter as a favorite.  *  `favouritedCount` Returns a count of how many users have set this filter as a favorite.  *  `jql` Returns the JQL query that the filter uses.  *  `owner` Returns the owner of the filter.  *  `searchUrl` Returns a URL to perform the filter's JQL query.  *  `sharePermissions` Returns the share permissions defined for the filter.  *  `editPermissions` Returns the edit permissions defined for the filter.  *  `isWritable` Returns whether the current user has permission to edit the filter.  *  `approximateLastUsed` \\[Experimental\\] Returns the approximate date and time when the filter was last evaluated.  *  `subscriptions` Returns the users that are subscribed to the filter.  *  `viewUrl` Returns a URL to view the filter. (optional)
    * @param overrideSharePermissions EXPERIMENTAL: Whether share permissions are overridden to enable filters with any share permissions to be returned. Available to users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg). (optional, default to false)
+   * @param isSubstringMatch When `true` this will perform a case-insensitive substring match for the provided `filterName`. When `false` the filter name will be searched using [full text search syntax](https://support.atlassian.com/jira-software-cloud/docs/search-for-issues-using-the-text-field/). (optional, default to false)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PageBeanFilterDetails&gt;
    */
   public Single<PageBeanFilterDetails> getFiltersPaginated(
-    Optional<String> filterName, Optional<String> accountId, Optional<String> owner, Optional<String> groupname, Optional<String> groupId, Optional<Long> projectId, Optional<List<Long>> id, Optional<String> orderBy, Optional<Long> startAt, Optional<Integer> maxResults, Optional<String> expand, Optional<Boolean> overrideSharePermissions, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Optional<String> filterName, Optional<String> accountId, Optional<String> owner, Optional<String> groupname, Optional<String> groupId, Optional<Long> projectId, Optional<List<Long>> id, Optional<String> orderBy, Optional<Long> startAt, Optional<Integer> maxResults, Optional<String> expand, Optional<Boolean> overrideSharePermissions, Optional<Boolean> isSubstringMatch, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.GET)
@@ -360,6 +362,9 @@ public class FiltersApi {
     }
     if (overrideSharePermissions.isPresent()) {
       queryParams.put("overrideSharePermissions", Collections.singleton(String.valueOf(overrideSharePermissions.get())));
+    }
+    if (isSubstringMatch.isPresent()) {
+      queryParams.put("isSubstringMatch", Collections.singleton(String.valueOf(isSubstringMatch.get())));
     }
     requestBuilder.queryParams(queryParams);
 
@@ -435,12 +440,12 @@ public class FiltersApi {
    * Set columns
    * Sets the columns for a filter. Only navigable fields can be set as columns. Use [Get fields](#api-rest-api-3-field-get) to get the list fields in Jira. A navigable field has `navigable` set to `true`.  The parameters for this resource are expressed as HTML form data. For example, in curl:  `curl -X PUT -d columns=summary -d columns=description https://your-domain.atlassian.net/rest/api/3/filter/10000/columns`  **[Permissions](#permissions) required:** Permission to access Jira, however, columns are only set for:   *  filters owned by the user.  *  filters shared with a group that the user is a member of.  *  filters shared with a private project that the user has *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for.  *  filters shared with a public project.  *  filters shared with the public.
    * @param id The ID of the filter. (required)
-   * @param requestBody The IDs of the fields to set as columns. In the form data, specify each field as `columns=id`, where `id` is the *id* of a field (as seen in the response for [Get fields](#api-rest-api-<ver>-field-get)). For example, `columns=summary`. (optional)
+   * @param columnRequestBody The IDs of the fields to set as columns. In the form data, specify each field as `columns=id`, where `id` is the *id* of a field (as seen in the response for [Get fields](#api-rest-api-<ver>-field-get)). For example, `columns=summary`. (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Object&gt;
    */
   public Single<Object> setColumns(
-    Long id, Optional<List<String>> requestBody, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Long id, ColumnRequestBody columnRequestBody, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.PUT)
@@ -457,7 +462,7 @@ public class FiltersApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    requestBuilder.requestBody(requestBody);
+    requestBuilder.requestBody(Optional.of(columnRequestBody));
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_setColumns);
   }
