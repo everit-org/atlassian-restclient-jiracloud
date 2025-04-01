@@ -154,7 +154,7 @@ public class IssueWorklogPropertiesApi {
    * @param issueIdOrKey The ID or key of the issue. (required)
    * @param worklogId The ID of the worklog. (required)
    * @param propertyKey The key of the issue property. The maximum length is 255 characters. (required)
-   * @param body  (required)
+   * @param body The value of the property. The value has to be a valid, non-empty [JSON](https://tools.ietf.org/html/rfc4627) value. The maximum length of the property value is 32768 bytes. (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Object&gt;
    */

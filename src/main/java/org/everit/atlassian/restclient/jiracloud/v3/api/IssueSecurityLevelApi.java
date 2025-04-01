@@ -81,7 +81,7 @@ public class IssueSecurityLevelApi {
   }
 
   /**
-   * Get issue security level members
+   * Get issue security level members by issue security scheme
    * Returns issue security level members.  Only issue security level members in context of classic projects are returned.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param issueSecuritySchemeId The ID of the issue security scheme. Use the [Get issue security schemes](#api-rest-api-3-issuesecurityschemes-get) operation to get a list of issue security scheme IDs. (required)
    * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0l)
@@ -92,7 +92,7 @@ public class IssueSecurityLevelApi {
    * @return Single&lt;PageBeanIssueSecurityLevelMember&gt;
    */
   public Single<PageBeanIssueSecurityLevelMember> getIssueSecurityLevelMembers(
-    Long issueSecuritySchemeId, Optional<Long> startAt, Optional<Integer> maxResults, Optional<List<Long>> issueSecurityLevelId, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Long issueSecuritySchemeId, Optional<Long> startAt, Optional<Integer> maxResults, Optional<List<String>> issueSecurityLevelId, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.GET)

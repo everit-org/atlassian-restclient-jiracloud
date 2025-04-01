@@ -62,6 +62,8 @@ public class DashboardsApi {
 
   private static final TypeReference<Dashboard> returnType_createDashboard = new TypeReference<Dashboard>() {};
 
+  private static final TypeReference<Object> returnType_deleteDashboardItemProperty = new TypeReference<Object>() {};
+
   private static final TypeReference<AvailableDashboardGadgetsResponse> returnType_getAllAvailableDashboardGadgets = new TypeReference<AvailableDashboardGadgetsResponse>() {};
 
   private static final TypeReference<PageOfDashboards> returnType_getAllDashboards = new TypeReference<PageOfDashboards>() {};
@@ -155,11 +157,12 @@ public class DashboardsApi {
    * Copies a dashboard. Any values provided in the `dashboard` parameter replace those in the copied dashboard.  **[Permissions](#permissions) required:** None  The dashboard to be copied must be owned by or shared with the user.
    * @param id  (required)
    * @param dashboardDetails Dashboard details. (required)
+   * @param extendAdminPermissions Whether admin level permissions are used. It should only be true if the user has *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) (optional, default to false)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Dashboard&gt;
    */
   public Single<Dashboard> copyDashboard(
-    String id, DashboardDetails dashboardDetails, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String id, DashboardDetails dashboardDetails, Optional<Boolean> extendAdminPermissions, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.POST)
@@ -171,6 +174,9 @@ public class DashboardsApi {
     requestBuilder.pathParams(pathParams);
 
     Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (extendAdminPermissions.isPresent()) {
+      queryParams.put("extendAdminPermissions", Collections.singleton(String.valueOf(extendAdminPermissions.get())));
+    }
     requestBuilder.queryParams(queryParams);
 
     Map<String, String> headers = new HashMap<>();
@@ -185,11 +191,12 @@ public class DashboardsApi {
    * Create dashboard
    * Creates a dashboard.  **[Permissions](#permissions) required:** None.
    * @param dashboardDetails Dashboard details. (required)
+   * @param extendAdminPermissions Whether admin level permissions are used. It should only be true if the user has *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) (optional, default to false)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Dashboard&gt;
    */
   public Single<Dashboard> createDashboard(
-    DashboardDetails dashboardDetails, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    DashboardDetails dashboardDetails, Optional<Boolean> extendAdminPermissions, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.POST)
@@ -200,6 +207,9 @@ public class DashboardsApi {
     requestBuilder.pathParams(pathParams);
 
     Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (extendAdminPermissions.isPresent()) {
+      queryParams.put("extendAdminPermissions", Collections.singleton(String.valueOf(extendAdminPermissions.get())));
+    }
     requestBuilder.queryParams(queryParams);
 
     Map<String, String> headers = new HashMap<>();
@@ -245,9 +255,9 @@ public class DashboardsApi {
    * @param itemId The ID of the dashboard item. (required)
    * @param propertyKey The key of the dashboard item property. (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
-   * @return Completable
+   * @return Single&lt;Object&gt;
    */
-  public Completable deleteDashboardItemProperty(
+  public Single<Object> deleteDashboardItemProperty(
     String dashboardId, String itemId, String propertyKey, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
@@ -267,7 +277,7 @@ public class DashboardsApi {
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
-    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_deleteDashboardItemProperty);
   }
 
   /**
@@ -404,7 +414,7 @@ public class DashboardsApi {
 
   /**
    * Get dashboard item property
-   * Returns the key and value of a dashboard item property.  A dashboard item enables an app to add user-specific information to a user dashboard. Dashboard items are exposed to users as gadgets that users can add to their dashboards. For more information on how users do this, see [Adding and customizing gadgets](https://confluence.atlassian.com/x/7AeiLQ).  When an app creates a dashboard item it registers a callback to receive the dashboard item ID. The callback fires whenever the item is rendered or, where the item is configurable, the user edits the item. The app then uses this resource to store the item's content or configuration details. For more information on working with dashboard items, see [ Building a dashboard item for a JIRA Connect add-on](https://developer.atlassian.com/server/jira/platform/guide-building-a-dashboard-item-for-a-jira-connect-add-on-33746254/) and the [Dashboard Item](https://developer.atlassian.com/cloud/jira/platform/modules/dashboard-item/) documentation.  There is no resource to set or get dashboard items.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** The user must be the owner of the dashboard or have the dashboard shared with them. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. The System dashboard is considered to be shared with all other users, and is accessible to anonymous users when Jira’s anonymous access is permitted.
+   * Returns the key and value of a dashboard item property.  A dashboard item enables an app to add user-specific information to a user dashboard. Dashboard items are exposed to users as gadgets that users can add to their dashboards. For more information on how users do this, see [Adding and customizing gadgets](https://confluence.atlassian.com/x/7AeiLQ).  When an app creates a dashboard item it registers a callback to receive the dashboard item ID. The callback fires whenever the item is rendered or, where the item is configurable, the user edits the item. The app then uses this resource to store the item's content or configuration details. For more information on working with dashboard items, see [ Building a dashboard item for a JIRA Connect add-on](https://developer.atlassian.com/server/jira/platform/guide-building-a-dashboard-item-for-a-jira-connect-add-on-33746254/) and the [Dashboard Item](https://developer.atlassian.com/cloud/jira/platform/modules/dashboard-item/) documentation.  There is no resource to set or get dashboard items.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** The user must be the owner of the dashboard or have the dashboard shared with them. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. The System dashboard is considered to be shared with all other users, and is accessible to anonymous users when Jira\\\\u2019s anonymous access is permitted.
    * @param dashboardId The ID of the dashboard. (required)
    * @param itemId The ID of the dashboard item. (required)
    * @param propertyKey The key of the dashboard item property. (required)
@@ -436,7 +446,7 @@ public class DashboardsApi {
 
   /**
    * Get dashboard item property keys
-   * Returns the keys of all properties for a dashboard item.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** The user must be the owner of the dashboard or have the dashboard shared with them. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. The System dashboard is considered to be shared with all other users, and is accessible to anonymous users when Jira’s anonymous access is permitted.
+   * Returns the keys of all properties for a dashboard item.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** The user must be the owner of the dashboard or have the dashboard shared with them. Note, users with the *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System dashboard. The System dashboard is considered to be shared with all other users, and is accessible to anonymous users when Jira\\\\u2019s anonymous access is permitted.
    * @param dashboardId The ID of the dashboard. (required)
    * @param itemId The ID of the dashboard item. (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
@@ -570,7 +580,7 @@ public class DashboardsApi {
    * @param dashboardId The ID of the dashboard. (required)
    * @param itemId The ID of the dashboard item. (required)
    * @param propertyKey The key of the dashboard item property. The maximum length is 255 characters. For dashboard items with a spec URI and no complete module key, if the provided propertyKey is equal to \"config\", the request body's JSON must be an object with all keys and values as strings. (required)
-   * @param body  (required)
+   * @param body The value of the property. The value has to be a valid, non-empty [JSON](https://tools.ietf.org/html/rfc4627) value. The maximum length of the property value is 32768 bytes. (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Object&gt;
    */
@@ -604,11 +614,12 @@ public class DashboardsApi {
    * Updates a dashboard, replacing all the dashboard details with those provided.  **[Permissions](#permissions) required:** None  The dashboard to be updated must be owned by the user.
    * @param id The ID of the dashboard to update. (required)
    * @param dashboardDetails Replacement dashboard details. (required)
+   * @param extendAdminPermissions Whether admin level permissions are used. It should only be true if the user has *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) (optional, default to false)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Dashboard&gt;
    */
   public Single<Dashboard> updateDashboard(
-    String id, DashboardDetails dashboardDetails, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String id, DashboardDetails dashboardDetails, Optional<Boolean> extendAdminPermissions, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.PUT)
@@ -620,6 +631,9 @@ public class DashboardsApi {
     requestBuilder.pathParams(pathParams);
 
     Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (extendAdminPermissions.isPresent()) {
+      queryParams.put("extendAdminPermissions", Collections.singleton(String.valueOf(extendAdminPermissions.get())));
+    }
     requestBuilder.queryParams(queryParams);
 
     Map<String, String> headers = new HashMap<>();

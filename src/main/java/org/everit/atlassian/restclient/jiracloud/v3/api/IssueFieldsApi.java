@@ -192,19 +192,20 @@ public class IssueFieldsApi {
 
   /**
    * Get fields paginated
-   * Returns a [paginated](#pagination) list of fields for Classic Jira projects. The list can include:   *  all fields  *  specific fields, by defining `id`  *  fields that contain a string in the field name or description, by defining `query`  *  specific fields that contain a string in the field name or description, by defining `id` and `query`  Only custom fields can be queried, `type` must be set to `custom`.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * Returns a [paginated](#pagination) list of fields for Classic Jira projects. The list can include:   *  all fields  *  specific fields, by defining `id`  *  fields that contain a string in the field name or description, by defining `query`  *  specific fields that contain a string in the field name or description, by defining `id` and `query`  Use `type` must be set to `custom` to show custom fields only.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0l)
    * @param maxResults The maximum number of items to return per page. (optional, default to 50)
    * @param type The type of fields to search. (optional, default to new ArrayList&lt;&gt;())
    * @param id The IDs of the custom fields to return or, where `query` is specified, filter. (optional, default to new ArrayList&lt;&gt;())
    * @param query String used to perform a case-insensitive partial match with field names or descriptions. (optional)
-   * @param orderBy [Order](#ordering) the results by a field:   *  `contextsCount` sorts by the number of contexts related to a field  *  `lastUsed` sorts by the date when the value of the field last changed  *  `name` sorts by the field name  *  `screensCount` sorts by the number of screens related to a field (optional)
-   * @param expand Use [expand](#expansion) to include additional information in the response. This parameter accepts a comma-separated list. Expand options include:   *  `key` returns the key for each field  *  `lastUsed` returns the date when the value of the field last changed  *  `screensCount` returns the number of screens related to a field  *  `contextsCount` returns the number of contexts related to a field  *  `isLocked` returns information about whether the field is [locked](https://confluence.atlassian.com/x/ZSN7Og)  *  `searcherKey` returns the searcher key for each custom field (optional)
+   * @param orderBy [Order](#ordering) the results by:   *  `contextsCount` sorts by the number of contexts related to a field  *  `lastUsed` sorts by the date when the value of the field last changed  *  `name` sorts by the field name  *  `screensCount` sorts by the number of screens related to a field (optional)
+   * @param expand Use [expand](#expansion) to include additional information in the response. This parameter accepts a comma-separated list. Expand options include:   *  `key` returns the key for each field  *  `stableId` returns the stableId for each field  *  `lastUsed` returns the date when the value of the field last changed  *  `screensCount` returns the number of screens related to a field  *  `contextsCount` returns the number of contexts related to a field  *  `isLocked` returns information about whether the field is locked  *  `searcherKey` returns the searcher key for each custom field (optional)
+   * @param projectIds  (optional, default to new ArrayList&lt;&gt;())
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PageBeanField&gt;
    */
   public Single<PageBeanField> getFieldsPaginated(
-    Optional<Long> startAt, Optional<Integer> maxResults, Optional<List<String>> type, Optional<List<String>> id, Optional<String> query, Optional<String> orderBy, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Optional<Long> startAt, Optional<Integer> maxResults, Optional<List<String>> type, Optional<List<String>> id, Optional<String> query, Optional<String> orderBy, Optional<String> expand, Optional<List<Long>> projectIds, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.GET)
@@ -235,6 +236,9 @@ public class IssueFieldsApi {
     }
     if (expand.isPresent()) {
       queryParams.put("expand", Collections.singleton(String.valueOf(expand.get())));
+    }
+    if (projectIds.isPresent()) {
+      queryParams.put("projectIds", RestClientUtil.objectCollectionToStringCollection(projectIds.get()));
     }
     requestBuilder.queryParams(queryParams);
 

@@ -29,6 +29,10 @@ import org.everit.http.restclient.RestRequestEnhancer;
 import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v2.model.ArchiveIssueAsyncRequest;
+import org.everit.atlassian.restclient.jiracloud.v2.model.BulkChangelogRequestBean;
+import org.everit.atlassian.restclient.jiracloud.v2.model.BulkChangelogResponseBean;
+import org.everit.atlassian.restclient.jiracloud.v2.model.BulkFetchIssueRequestBean;
+import org.everit.atlassian.restclient.jiracloud.v2.model.BulkIssueResults;
 import org.everit.atlassian.restclient.jiracloud.v2.model.CreatedIssue;
 import org.everit.atlassian.restclient.jiracloud.v2.model.CreatedIssues;
 import org.everit.atlassian.restclient.jiracloud.v2.model.ErrorCollection;
@@ -39,9 +43,11 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.IssueBean;
 import org.everit.atlassian.restclient.jiracloud.v2.model.IssueChangelogIds;
 import org.everit.atlassian.restclient.jiracloud.v2.model.IssueCreateMetadata;
 import org.everit.atlassian.restclient.jiracloud.v2.model.IssueEvent;
+import org.everit.atlassian.restclient.jiracloud.v2.model.IssueLimitReportResponseBean;
 import org.everit.atlassian.restclient.jiracloud.v2.model.IssueUpdateMetadata;
 import org.everit.atlassian.restclient.jiracloud.v2.model.PageBeanChangelog;
 import org.everit.atlassian.restclient.jiracloud.v2.model.PageOfChangelogs;
+import org.everit.atlassian.restclient.jiracloud.v2.model.PageOfCreateMetaIssueTypeWithField;
 import org.everit.atlassian.restclient.jiracloud.v2.model.PageOfCreateMetaIssueTypes;
 import org.everit.atlassian.restclient.jiracloud.v2.model.Transitions;
 import org.everit.atlassian.restclient.jiracloud.v2.model.User;
@@ -63,6 +69,8 @@ public class IssuesApi {
 
   private static final TypeReference<Object> returnType_assignIssue = new TypeReference<Object>() {};
 
+  private static final TypeReference<BulkIssueResults> returnType_bulkFetchIssues = new TypeReference<BulkIssueResults>() {};
+
   private static final TypeReference<CreatedIssue> returnType_createIssue = new TypeReference<CreatedIssue>() {};
 
   private static final TypeReference<CreatedIssues> returnType_createIssues = new TypeReference<CreatedIssues>() {};
@@ -73,11 +81,15 @@ public class IssuesApi {
 
   private static final TypeReference<ExportArchivedIssuesTaskProgressResponse> returnType_exportArchivedIssues = new TypeReference<ExportArchivedIssuesTaskProgressResponse>() {};
 
+  private static final TypeReference<BulkChangelogResponseBean> returnType_getBulkChangelogs = new TypeReference<BulkChangelogResponseBean>() {};
+
   private static final TypeReference<PageBeanChangelog> returnType_getChangeLogs = new TypeReference<PageBeanChangelog>() {};
 
   private static final TypeReference<PageOfChangelogs> returnType_getChangeLogsByIds = new TypeReference<PageOfChangelogs>() {};
 
   private static final TypeReference<IssueCreateMetadata> returnType_getCreateIssueMeta = new TypeReference<IssueCreateMetadata>() {};
+
+  private static final TypeReference<PageOfCreateMetaIssueTypeWithField> returnType_getCreateIssueMetaIssueTypeId = new TypeReference<PageOfCreateMetaIssueTypeWithField>() {};
 
   private static final TypeReference<PageOfCreateMetaIssueTypes> returnType_getCreateIssueMetaIssueTypes = new TypeReference<PageOfCreateMetaIssueTypes>() {};
 
@@ -86,6 +98,8 @@ public class IssuesApi {
   private static final TypeReference<List<IssueEvent>> returnType_getEvents = new TypeReference<List<IssueEvent>>() {};
 
   private static final TypeReference<IssueBean> returnType_getIssue = new TypeReference<IssueBean>() {};
+
+  private static final TypeReference<IssueLimitReportResponseBean> returnType_getIssueLimitReport = new TypeReference<IssueLimitReportResponseBean>() {};
 
   private static final TypeReference<Transitions> returnType_getTransitions = new TypeReference<Transitions>() {};
 
@@ -130,7 +144,7 @@ public class IssuesApi {
 
   /**
    * Archive issue(s) by JQL
-   * Enables admins to archive up to 100,000 issues in a single request using JQL, returning the URL to check the status of the submitted request.  You can use the [get task](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-tasks/#api-rest-api-3-task-taskid-get) and [cancel task](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-tasks/#api-rest-api-3-task-taskid-cancel-post) APIs to manage the request.  **Note that:**   *  you can't archive subtasks directly, only through their parent issues  *  you can only archive issues from software, service management, and business projects  **[Permissions](#permissions) required:** Jira admin or site admin: [global permission](https://confluence.atlassian.com/x/x4dKLg)  **License required:** Premium or Enterprise  **Signed-in users only:** This API can't be accessed anonymously.  **Rate limiting:** Only a single request per user can be active at any given time.     
+   * Enables admins to archive up to 100,000 issues in a single request using JQL, returning the URL to check the status of the submitted request.  You can use the [get task](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-tasks/#api-rest-api-3-task-taskid-get) and [cancel task](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-tasks/#api-rest-api-3-task-taskid-cancel-post) APIs to manage the request.  **Note that:**   *  you can't archive subtasks directly, only through their parent issues  *  you can only archive issues from software, service management, and business projects  **[Permissions](#permissions) required:** Jira admin or site admin: [global permission](https://confluence.atlassian.com/x/x4dKLg)  **License required:** Premium or Enterprise  **Signed-in users only:** This API can't be accessed anonymously.  **Rate limiting:** Only a single request per jira instance can be active at any given time.     
    * @param archiveIssueAsyncRequest A JQL query specifying the issues to archive. Note that subtasks can only be archived through their parent issues. (required)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;String&gt;
@@ -186,6 +200,35 @@ public class IssuesApi {
     requestBuilder.requestBody(Optional.of(user));
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_assignIssue);
+  }
+
+  /**
+   * Bulk fetch issues
+   * Returns the details for a set of requested issues. You can request up to 100 issues.  Each issue is identified by its ID or key, however, if the identifier doesn't match an issue, a case-insensitive search and check for moved issues is performed. If a matching issue is found its details are returned, a 302 or other redirect is **not** returned.  Issues will be returned in ascending `id` order. If there are errors, Jira will return a list of issues which couldn't be fetched along with error messages.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** Issues are included in the response where the user has:   *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
+   * @param bulkFetchIssueRequestBean A JSON object containing the information about which issues and fields to fetch. (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;BulkIssueResults&gt;
+   */
+  public Single<BulkIssueResults> bulkFetchIssues(
+    BulkFetchIssueRequestBean bulkFetchIssueRequestBean, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.POST)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/issue/bulkfetch");
+
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(bulkFetchIssueRequestBean));
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_bulkFetchIssues);
   }
 
   /**
@@ -315,7 +358,7 @@ public class IssuesApi {
 
   /**
    * Edit issue
-   * Edits an issue. A transition may be applied and issue properties updated as part of the edit.  The edits to the issue's fields are defined using `update` and `fields`. The fields that can be edited are determined using [ Get edit issue metadata](#api-rest-api-2-issue-issueIdOrKey-editmeta-get).  The parent field may be set by key or ID. For standard issue types, the parent may be removed by setting `update.parent.set.none` to *true*.  Connect apps having an app user with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), and Forge apps acting on behalf of users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), can override the screen security configuration using `overrideScreenSecurity` and `overrideEditableFlag`.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:**   *  *Browse projects* and *Edit issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
+   * Edits an issue. Issue properties may be updated as part of the edit. Please note that issue transition is not supported and is ignored here. To transition an issue, please use [Transition issue](#api-rest-api-2-issue-issueIdOrKey-transitions-post).  The edits to the issue's fields are defined using `update` and `fields`. The fields that can be edited are determined using [ Get edit issue metadata](#api-rest-api-2-issue-issueIdOrKey-editmeta-get).  The parent field may be set by key or ID. For standard issue types, the parent may be removed by setting `update.parent.set.none` to *true*.  Connect apps having an app user with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), and Forge apps acting on behalf of users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg), can override the screen security configuration using `overrideScreenSecurity` and `overrideEditableFlag`.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:**   *  *Browse projects* and *Edit issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
    * @param issueIdOrKey The ID or key of the issue. (required)
    * @param requestBody  (required)
    * @param notifyUsers Whether a notification email about the issue update is sent to all watchers. To disable the notification, administer Jira or administer project permissions are required. If the user doesn't have the necessary permission the request is ignored. (optional, default to true)
@@ -394,6 +437,35 @@ public class IssuesApi {
   }
 
   /**
+   * Bulk fetch changelogs
+   * Bulk fetch changelogs for multiple issues and filter by fields  Returns a paginated list of all changelogs for given issues sorted by changelog date and issue IDs, starting from the oldest changelog and smallest issue ID.  Issues are identified by their ID or key, and optionally changelogs can be filtered by their field IDs. You can request the changelogs of up to 1000 issues and can filter them by up to 10 field IDs.  **[Permissions](#permissions) required:**   *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the projects that the issues are in.  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issues.
+   * @param bulkChangelogRequestBean A JSON object containing the bulk fetch changelog request filters such as issue IDs and field IDs. (required)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;BulkChangelogResponseBean&gt;
+   */
+  public Single<BulkChangelogResponseBean> getBulkChangelogs(
+    BulkChangelogRequestBean bulkChangelogRequestBean, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.POST)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/changelog/bulkfetch");
+
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    requestBuilder.requestBody(Optional.of(bulkChangelogRequestBean));
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getBulkChangelogs);
+  }
+
+  /**
    * Get changelogs
    * Returns a [paginated](#pagination) list of all changelogs for an issue sorted by date, starting from the oldest.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:**   *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.  *  If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission to view the issue.
    * @param issueIdOrKey The ID or key of the issue. (required)
@@ -462,7 +534,7 @@ public class IssuesApi {
 
   /**
    * Get create issue metadata
-   * Returns details of projects, issue types within projects, and, when requested, the create screen fields for each issue type for the user. Use the information to populate the requests in [ Create issue](#api-rest-api-2-issue-post) and [Create issues](#api-rest-api-2-issue-bulk-post).  The request can be restricted to specific projects or issue types using the query parameters. The response will contain information for the valid projects, issue types, or project and issue type combinations requested. Note that invalid project, issue type, or project and issue type combinations do not generate errors.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** *Create issues* [project permission](https://confluence.atlassian.com/x/yodKLg) in the requested projects.
+   * Returns details of projects, issue types within projects, and, when requested, the create screen fields for each issue type for the user. Use the information to populate the requests in [ Create issue](#api-rest-api-2-issue-post) and [Create issues](#api-rest-api-2-issue-bulk-post).  Deprecated, see [Create Issue Meta Endpoint Deprecation Notice](https://developer.atlassian.com/cloud/jira/platform/changelog/#CHANGE-1304).  The request can be restricted to specific projects or issue types using the query parameters. The response will contain information for the valid projects, issue types, or project and issue type combinations requested. Note that invalid project, issue type, or project and issue type combinations do not generate errors.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** *Create issues* [project permission](https://confluence.atlassian.com/x/yodKLg) in the requested projects.
    * @param projectIds List of project IDs. This parameter accepts a comma-separated list. Multiple project IDs can also be provided using an ampersand-separated list. For example, `projectIds=10000,10001&projectIds=10020,10021`. This parameter may be provided with `projectKeys`. (optional, default to new ArrayList&lt;&gt;())
    * @param projectKeys List of project keys. This parameter accepts a comma-separated list. Multiple project keys can also be provided using an ampersand-separated list. For example, `projectKeys=proj1,proj2&projectKeys=proj3`. This parameter may be provided with `projectIds`. (optional, default to new ArrayList&lt;&gt;())
    * @param issuetypeIds List of issue type IDs. This parameter accepts a comma-separated list. Multiple issue type IDs can also be provided using an ampersand-separated list. For example, `issuetypeIds=10000,10001&issuetypeIds=10020,10021`. This parameter may be provided with `issuetypeNames`. (optional, default to new ArrayList&lt;&gt;())
@@ -470,7 +542,9 @@ public class IssuesApi {
    * @param expand Use [expand](#expansion) to include additional information about issue metadata in the response. This parameter accepts `projects.issuetypes.fields`, which returns information about the fields in the issue creation screen for each issue type. Fields hidden from the screen are not returned. Use the information to populate the `fields` and `update` fields in [Create issue](#api-rest-api-2-issue-post) and [Create issues](#api-rest-api-2-issue-bulk-post). (optional)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;IssueCreateMetadata&gt;
+   * @deprecated
    */
+  @Deprecated
   public Single<IssueCreateMetadata> getCreateIssueMeta(
     Optional<List<String>> projectIds, Optional<List<String>> projectKeys, Optional<List<String>> issuetypeIds, Optional<List<String>> issuetypeNames, Optional<String> expand, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
@@ -507,6 +581,44 @@ public class IssuesApi {
   }
 
   /**
+   * Get create field metadata for a project and issue type id
+   * Returns a page of field metadata for a specified project and issuetype id. Use the information to populate the requests in [ Create issue](#api-rest-api-2-issue-post) and [Create issues](#api-rest-api-2-issue-bulk-post).  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** *Create issues* [project permission](https://confluence.atlassian.com/x/yodKLg) in the requested projects.
+   * @param projectIdOrKey The ID or key of the project. (required)
+   * @param issueTypeId The issuetype ID. (required)
+   * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0)
+   * @param maxResults The maximum number of items to return per page. (optional, default to 50)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;PageOfCreateMetaIssueTypeWithField&gt;
+   */
+  public Single<PageOfCreateMetaIssueTypeWithField> getCreateIssueMetaIssueTypeId(
+    String projectIdOrKey, String issueTypeId, Optional<Integer> startAt, Optional<Integer> maxResults, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/issue/createmeta/{projectIdOrKey}/issuetypes/{issueTypeId}");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("projectIdOrKey", String.valueOf(projectIdOrKey));
+    pathParams.put("issueTypeId", String.valueOf(issueTypeId));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (startAt.isPresent()) {
+      queryParams.put("startAt", Collections.singleton(String.valueOf(startAt.get())));
+    }
+    if (maxResults.isPresent()) {
+      queryParams.put("maxResults", Collections.singleton(String.valueOf(maxResults.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getCreateIssueMetaIssueTypeId);
+  }
+
+  /**
    * Get create metadata issue types for a project
    * Returns a page of issue type metadata for a specified project. Use the information to populate the requests in [ Create issue](#api-rest-api-2-issue-post) and [Create issues](#api-rest-api-2-issue-bulk-post).  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** *Create issues* [project permission](https://confluence.atlassian.com/x/yodKLg) in the requested projects.
    * @param projectIdOrKey The ID or key of the project. (required)
@@ -521,7 +633,7 @@ public class IssuesApi {
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.GET)
         .basePath(DEFAULT_BASE_PATH)
-        .path("/rest/api/2/issue/createmeta/{projectIdOrKey}/issueTypes");
+        .path("/rest/api/2/issue/createmeta/{projectIdOrKey}/issuetypes");
 
     Map<String, String> pathParams = new HashMap<>();
     pathParams.put("projectIdOrKey", String.valueOf(projectIdOrKey));
@@ -613,11 +725,12 @@ public class IssuesApi {
    * @param expand Use [expand](#expansion) to include additional information about the issues in the response. This parameter accepts a comma-separated list. Expand options include:   *  `renderedFields` Returns field values rendered in HTML format.  *  `names` Returns the display name of each field.  *  `schema` Returns the schema describing a field type.  *  `transitions` Returns all possible transitions for the issue.  *  `editmeta` Returns information about how each field can be edited.  *  `changelog` Returns a list of recent updates to an issue, sorted by date, starting from the most recent.  *  `versionedRepresentations` Returns a JSON array for each version of a field's value, with the highest number representing the most recent version. Note: When included in the request, the `fields` parameter is ignored. (optional)
    * @param properties A list of issue properties to return for the issue. This parameter accepts a comma-separated list. Allowed values:   *  `*all` Returns all issue properties.  *  Any issue property key, prefixed with a minus to exclude.  Examples:   *  `*all` Returns all properties.  *  `*all,-prop1` Returns all properties except `prop1`.  *  `prop1,prop2` Returns `prop1` and `prop2` properties.  This parameter may be specified multiple times. For example, `properties=prop1,prop2& properties=prop3`. (optional, default to new ArrayList&lt;&gt;())
    * @param updateHistory Whether the project in which the issue is created is added to the user's **Recently viewed** project list, as shown under **Projects** in Jira. This also populates the [JQL issues search](#api-rest-api-2-search-get) `lastViewed` field. (optional, default to false)
+   * @param failFast Whether to fail the request quickly in case of an error while loading fields for an issue. For `failFast=true`, if one field fails, the entire operation fails. For `failFast=false`, the operation will continue even if a field fails. It will return a valid response, but without values for the failed field(s). (optional, default to false)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;IssueBean&gt;
    */
   public Single<IssueBean> getIssue(
-    String issueIdOrKey, Optional<List<String>> fields, Optional<Boolean> fieldsByKeys, Optional<String> expand, Optional<List<String>> properties, Optional<Boolean> updateHistory, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String issueIdOrKey, Optional<List<String>> fields, Optional<Boolean> fieldsByKeys, Optional<String> expand, Optional<List<String>> properties, Optional<Boolean> updateHistory, Optional<Boolean> failFast, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.GET)
@@ -644,12 +757,45 @@ public class IssuesApi {
     if (updateHistory.isPresent()) {
       queryParams.put("updateHistory", Collections.singleton(String.valueOf(updateHistory.get())));
     }
+    if (failFast.isPresent()) {
+      queryParams.put("failFast", Collections.singleton(String.valueOf(failFast.get())));
+    }
     requestBuilder.queryParams(queryParams);
 
     Map<String, String> headers = new HashMap<>();
     requestBuilder.headers(headers);
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getIssue);
+  }
+
+  /**
+   * Get issue limit report
+   * Returns all issues breaching and approaching per-issue limits.  **[Permissions](#permissions) required:**   *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) is required for the project the issues are in. Results may be incomplete otherwise  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * @param isReturningKeys Return issue keys instead of issue ids in the response.  Usage: Add `?isReturningKeys=true` to the end of the path to request issue keys. (optional, default to false)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Single&lt;IssueLimitReportResponseBean&gt;
+   */
+  public Single<IssueLimitReportResponseBean> getIssueLimitReport(
+    Optional<Boolean> isReturningKeys, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.GET)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/issue/limit/report");
+
+    Map<String, String> pathParams = new HashMap<>();
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (isReturningKeys.isPresent()) {
+      queryParams.put("isReturningKeys", Collections.singleton(String.valueOf(isReturningKeys.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_getIssueLimitReport);
   }
 
   /**

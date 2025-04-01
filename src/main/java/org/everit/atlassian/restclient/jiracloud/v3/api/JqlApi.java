@@ -197,13 +197,13 @@ public class JqlApi {
   /**
    * Parse JQL query
    * Parses and validates JQL queries.  Validation is performed in context of the current user.  This operation can be accessed anonymously.  **[Permissions](#permissions) required:** None.
+   * @param validation How to validate the JQL query and treat the validation results. Validation options include:   *  `strict` Returns all errors. If validation fails, the query structure is not returned.  *  `warn` Returns all errors. If validation fails but the JQL query is correctly formed, the query structure is returned.  *  `none` No validation is performed. If JQL query is correctly formed, the query structure is returned. (required)
    * @param jqlQueriesToParse  (required)
-   * @param validation How to validate the JQL query and treat the validation results. Validation options include:   *  `strict` Returns all errors. If validation fails, the query structure is not returned.  *  `warn` Returns all errors. If validation fails but the JQL query is correctly formed, the query structure is returned.  *  `none` No validation is performed. If JQL query is correctly formed, the query structure is returned. (optional, default to strict)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;ParsedJqlQueries&gt;
    */
   public Single<ParsedJqlQueries> parseJqlQueries(
-    JqlQueriesToParse jqlQueriesToParse, Optional<String> validation, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    String validation, JqlQueriesToParse jqlQueriesToParse, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.POST)
@@ -214,9 +214,7 @@ public class JqlApi {
     requestBuilder.pathParams(pathParams);
 
     Map<String, Collection<String>> queryParams = new HashMap<>();
-    if (validation.isPresent()) {
-      queryParams.put("validation", Collections.singleton(String.valueOf(validation.get())));
-    }
+    queryParams.put("validation", Collections.singleton(String.valueOf(validation)));
     requestBuilder.queryParams(queryParams);
 
     Map<String, String> headers = new HashMap<>();

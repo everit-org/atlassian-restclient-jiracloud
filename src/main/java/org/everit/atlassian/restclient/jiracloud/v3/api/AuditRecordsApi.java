@@ -29,7 +29,7 @@ import org.everit.http.restclient.RestRequestEnhancer;
 import org.everit.http.restclient.TypeReference;
 
 import org.everit.atlassian.restclient.jiracloud.v3.model.AuditRecords;
-import java.time.OffsetDateTime;
+import org.everit.atlassian.restclient.jiracloud.v3.model.ErrorCollection;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -62,7 +62,7 @@ public class AuditRecordsApi {
    * @return Single&lt;AuditRecords&gt;
    */
   public Single<AuditRecords> getAuditRecords(
-    Optional<Integer> offset, Optional<Integer> limit, Optional<String> filter, Optional<OffsetDateTime> from, Optional<OffsetDateTime> to, Optional<RestRequestEnhancer> restRequestEnhancer) {
+    Optional<Integer> offset, Optional<Integer> limit, Optional<String> filter, Optional<String> from, Optional<String> to, Optional<RestRequestEnhancer> restRequestEnhancer) {
 
     RestRequest.Builder requestBuilder = RestRequest.builder()
         .method(HttpMethod.GET)

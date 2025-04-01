@@ -35,6 +35,7 @@ import org.everit.atlassian.restclient.jiracloud.v2.model.CustomFieldOption;
 import org.everit.atlassian.restclient.jiracloud.v2.model.CustomFieldUpdatedContextOptionsList;
 import org.everit.atlassian.restclient.jiracloud.v2.model.OrderOfCustomFieldOptions;
 import org.everit.atlassian.restclient.jiracloud.v2.model.PageBeanCustomFieldContextOption;
+import org.everit.atlassian.restclient.jiracloud.v2.model.TaskProgressBeanRemoveOptionFromIssuesResult;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -233,6 +234,46 @@ public class IssueCustomFieldOptionsApi {
     requestBuilder.requestBody(Optional.of(orderOfCustomFieldOptions));
 
     return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer, returnType_reorderCustomFieldOptions);
+  }
+
+  /**
+   * Replace custom field options
+   * Replaces the options of a custom field.  Note that this operation **only works for issue field select list options created in Jira or using operations from the [Issue custom field options](#api-group-Issue-custom-field-options) resource**, it cannot be used with issue field select list options created by Connect or Forge apps.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * @param fieldId The ID of the custom field. (required)
+   * @param optionId The ID of the option to be deselected. (required)
+   * @param contextId The ID of the context. (required)
+   * @param replaceWith The ID of the option that will replace the currently selected option. (optional)
+   * @param jql A JQL query that specifies the issues to be updated. For example, *project=10000*. (optional)
+   * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
+   * @return Completable
+   */
+  public Completable replaceCustomFieldOption(
+    String fieldId, Long optionId, Long contextId, Optional<Long> replaceWith, Optional<String> jql, Optional<RestRequestEnhancer> restRequestEnhancer) {
+
+    RestRequest.Builder requestBuilder = RestRequest.builder()
+        .method(HttpMethod.DELETE)
+        .basePath(DEFAULT_BASE_PATH)
+        .path("/rest/api/2/field/{fieldId}/context/{contextId}/option/{optionId}/issue");
+
+    Map<String, String> pathParams = new HashMap<>();
+    pathParams.put("fieldId", String.valueOf(fieldId));
+    pathParams.put("optionId", String.valueOf(optionId));
+    pathParams.put("contextId", String.valueOf(contextId));
+    requestBuilder.pathParams(pathParams);
+
+    Map<String, Collection<String>> queryParams = new HashMap<>();
+    if (replaceWith.isPresent()) {
+      queryParams.put("replaceWith", Collections.singleton(String.valueOf(replaceWith.get())));
+    }
+    if (jql.isPresent()) {
+      queryParams.put("jql", Collections.singleton(String.valueOf(jql.get())));
+    }
+    requestBuilder.queryParams(queryParams);
+
+    Map<String, String> headers = new HashMap<>();
+    requestBuilder.headers(headers);
+
+    return restClient.callEndpoint(requestBuilder.build(), restRequestEnhancer);
   }
 
   /**

@@ -234,7 +234,7 @@ public class GroupsApi {
 
   /**
    * Get group
-   * This operation is deprecated, use [`group/member`](#api-rest-api-3-group-member-get).  Returns all users in a group.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * This operation is deprecated, use [`group/member`](#api-rest-api-3-group-member-get).  Returns all users in a group.  **[Permissions](#permissions) required:** either of:   *  *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg).  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param groupname As a group's name can change, use of `groupId` is recommended to identify a group.   The name of the group. This parameter cannot be used with the `groupId` parameter. (optional)
    * @param groupId The ID of the group. This parameter cannot be used with the `groupName` parameter. (optional)
    * @param expand List of fields to expand. (optional)
@@ -274,12 +274,12 @@ public class GroupsApi {
 
   /**
    * Get users from group
-   * Returns a [paginated](#pagination) list of all users in a group.  Note that users are ordered by username, however the username is not returned in the results due to privacy reasons.  **[Permissions](#permissions) required:** *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
+   * Returns a [paginated](#pagination) list of all users in a group.  Note that users are ordered by username, however the username is not returned in the results due to privacy reasons.  **[Permissions](#permissions) required:** either of:   *  *Browse users and groups* [global permission](https://confluence.atlassian.com/x/x4dKLg).  *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).
    * @param groupname As a group's name can change, use of `groupId` is recommended to identify a group.   The name of the group. This parameter cannot be used with the `groupId` parameter. (optional)
    * @param groupId The ID of the group. This parameter cannot be used with the `groupName` parameter. (optional)
    * @param includeInactiveUsers Include inactive users. (optional, default to false)
    * @param startAt The index of the first item to return in a page of results (page offset). (optional, default to 0l)
-   * @param maxResults The maximum number of items to return per page. (optional, default to 50)
+   * @param maxResults The maximum number of items to return per page (number should be between 1 and 50). (optional, default to 50)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;PageBeanUserDetails&gt;
    */

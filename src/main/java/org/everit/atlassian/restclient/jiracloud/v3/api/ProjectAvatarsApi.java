@@ -61,7 +61,7 @@ public class ProjectAvatarsApi {
    * @param body  (required)
    * @param x The X coordinate of the top-left corner of the crop region. (optional, default to 0)
    * @param y The Y coordinate of the top-left corner of the crop region. (optional, default to 0)
-   * @param size The length of each side of the crop region. (optional)
+   * @param size The length of each side of the crop region. (optional, default to 0)
    * @param restRequestEnhancer <p>Adds the possibility to modify the rest request before sending out. This can be useful to add authorizations tokens for example.</p>
    * @return Single&lt;Avatar&gt;
    */
